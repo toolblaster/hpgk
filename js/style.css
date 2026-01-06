@@ -48,8 +48,15 @@ body {
     background-color: var(--bg-color);
     color: var(--text-main);
     margin: 0;
-    /* CLS FIX: Reserve strict space for fixed header */
-    padding-top: 60px; 
+    
+    /* STICKY FOOTER SETUP */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    
+    /* Header is now sticky/static in flow, so no padding needed */
+    padding-top: 0; 
+    
     transition: background-color 0.3s ease, color 0.3s ease;
     line-height: 1.4; /* Slightly tighter global line-height for density */
 }
@@ -71,7 +78,8 @@ body {
 /* --- Header --- */
 /* CLS FIX: Explicit height and containment */
 header, #site-header {
-    position: fixed;
+    /* Changed from fixed to sticky to stay at top but remain in flow */
+    position: sticky; 
     top: 0; left: 0; right: 0;
     background: var(--card-bg);
     border-bottom: 1px solid var(--border-color);
@@ -145,6 +153,8 @@ header, #site-header {
 /* --- Main Layout --- */
 main {
     padding: 15px 10px; /* Reduced outer padding for density */
+    flex: 1; /* Pushes footer to bottom */
+    width: 100%;
 }
 .main-layout {
     width: 100%;
