@@ -15,7 +15,7 @@
     --bg-color: #f8fafc;      /* Slate-50 */
     --card-bg: #ffffff;
     --text-main: #1e293b;     /* Slate-800 */
-    --text-sec: #64748b;      /* Slate-500 */
+    --text-sec: #475569;      /* Slate-600 - High Contrast for Readability (WCAG AA compliant) */
     --border-color: #e2e8f0;  /* Slate-200 */
     --input-bg: #f1f5f9;
     
