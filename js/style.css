@@ -456,7 +456,13 @@ main {
 }
 
 /* Options */
-.options-list { display: flex; flex-direction: column; gap: 6px; /* Tighter option gap */ }
+.options-list { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 6px; /* Tighter option gap */ 
+    counter-reset: option-counter; /* Initialize counter */
+}
+
 .option-btn {
     background: var(--input-bg);
     border: 1px solid transparent;
@@ -465,13 +471,30 @@ main {
     cursor: pointer;
     transition: all 0.2s;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start; /* Align start to keep label left */
     align-items: center;
     color: var(--text-main);
     line-height: 1.3;
     user-select: none;
     font-size: 0.875rem; /* Default 14px */
+    position: relative; /* For pseudo-element positioning if needed */
 }
+
+/* Add A, B, C, D labels */
+.option-btn::before {
+    counter-increment: option-counter;
+    content: counter(option-counter, upper-alpha) ". ";
+    font-weight: 700;
+    color: var(--primary);
+    margin-right: 8px;
+    min-width: 20px; /* Ensure alignment */
+}
+
+/* Adjust layout for the icon/text span inside option-btn */
+.option-btn span {
+    flex: 1; /* Text takes remaining space */
+}
+
 .option-btn:hover:not(.disabled) {
     background: var(--border-color);
 }
@@ -495,6 +518,33 @@ main {
     font-weight: 600;
     text-align: center;
     font-size: 0.8rem;
+}
+
+/* Explanation Box */
+.explanation-box {
+    margin-top: 8px; /* Reduced margin */
+    padding: 8px; /* Reduced padding */
+    background: var(--input-bg);
+    border-left: 3px solid var(--primary);
+    border-radius: 4px;
+    color: var(--text-main);
+    font-size: 0.8rem; /* Slightly smaller text */
+    line-height: 1.2; /* Tighter line height for compactness */
+}
+.explanation-box strong {
+    color: var(--primary);
+    display: block;
+    margin-bottom: 2px; /* Tighter spacing for title */
+    font-size: 0.75rem; /* Smaller title */
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+/* Reduce spacing between paragraphs inside explanation box */
+.explanation-box p {
+    margin-bottom: 4px;
+}
+.explanation-box p:last-child {
+    margin-bottom: 0;
 }
 
 /* Widget Footer */
