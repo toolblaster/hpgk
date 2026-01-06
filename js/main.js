@@ -1,5 +1,4 @@
 // Dynamic Storage Key based on Page Config or URL
-// If a global config 'QUIZ_CONFIG' exists, use its key, otherwise fallback
 const STORAGE_ID = (window.QUIZ_CONFIG && window.QUIZ_CONFIG.category) 
     ? `hpgk_${window.QUIZ_CONFIG.category}_v1` 
     : 'hpgk_general_v1';
@@ -114,10 +113,12 @@ function adjustFont(dir) {
 }
 
 function getFontSize() {
-    const baseSize = 0.9; 
-    const step = 0.1; 
-    const offset = fontLevel + 1; 
-    return `${baseSize + (offset * step)}rem`;
+    // -1 = 12px (0.75rem), 0 = 14px (0.875rem), 1 = 16px (1rem), etc.
+    const baseSize = 0.875; // 14px
+    const step = 0.125; // 2px step
+    const size = baseSize + (fontLevel * step);
+    // Ensure min 12px (0.75rem)
+    return size < 0.75 ? '0.75rem' : `${size}rem`;
 }
 
 function updateStats() {
@@ -199,12 +200,23 @@ function loadQuestion(index) {
     }).join('');
 
     let feedbackHtml = '';
+    let explanationHtml = '';
+
     if (isAnswered) {
         const isCorrect = savedAnswer === q.answer;
         const bg = isCorrect ? 'var(--correct-bg)' : 'var(--wrong-bg)';
         const color = isCorrect ? 'var(--correct-text)' : 'var(--wrong-text)';
         const text = isCorrect ? 'Correct Answer!' : `Correct: ${q.options[q.answer]}`;
         feedbackHtml = `<div class="feedback-msg" style="display:block; background:${bg}; color:${color}">${text}</div>`;
+        
+        // Add Explanation if available
+        if (q.explanation) {
+            explanationHtml = `
+            <div class="explanation-box" style="font-size:${fontSize}">
+                <strong><i class="fa-solid fa-lightbulb"></i> Explanation:</strong><br>
+                ${q.explanation.replace(/\n/g, '<br>')}
+            </div>`;
+        }
     }
 
     const listClass = isAnswered ? 'options-list answered' : 'options-list';
@@ -223,6 +235,7 @@ function loadQuestion(index) {
             ${optionsHtml}
         </div>
         ${feedbackHtml}
+        ${explanationHtml}
     `;
 
     if (searchInput.value === '') { 
@@ -235,6 +248,10 @@ function loadQuestion(index) {
 window.handleAnswer = function(btn, qId, choiceIndex) {
     if (!currentList || !currentList[currentIndex]) return;
     const q = currentList[currentIndex];
+    
+    // Prevent re-answering
+    if (historyState.answers[qId] !== undefined) return;
+
     historyState.answers[qId] = choiceIndex;
     saveToStorage();
     updateStats(); 
