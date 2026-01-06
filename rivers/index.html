@@ -29,7 +29,8 @@
             border-radius: 8px;
             padding: 15px;
         }
-        .intro-card h3 {
+        /* Updated selector from h3 to h2 for hierarchy compliance */
+        .intro-card h2 {
             margin-top: 0;
             font-size: 1rem;
             color: var(--primary-dark);
@@ -37,20 +38,41 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            font-weight: 700;
         }
         .intro-card p {
             font-size: 0.85rem;
-            color: var(--text-sec);
+            color: #334155; /* Higher contrast than var(--text-sec) */
             margin: 0;
             line-height: 1.4;
+            font-weight: 500; /* Added weight for better readability */
         }
         .intro-list {
             margin: 5px 0 0 0;
             padding-left: 18px;
             font-size: 0.8rem;
-            color: var(--text-sec);
+            color: #334155; /* Higher contrast than var(--text-sec) */
+            font-weight: 500;
         }
         .intro-list li { margin-bottom: 2px; }
+
+        /* High Contrast Borders for Content Cards as requested */
+        .seo-card {
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--primary); /* Accent border */
+            box-shadow: var(--glass-shadow);
+        }
+        
+        [data-theme="dark"] .seo-card {
+            border: 1px solid #475569; /* Lighter grey border for dark mode visibility */
+            border-left: 4px solid var(--primary);
+        }
+
+        /* Dark mode specific high contrast adjustments */
+        [data-theme="dark"] .intro-card p,
+        [data-theme="dark"] .intro-list {
+            color: #e2e8f0; /* Lighter text for dark mode */
+        }
     </style>
 </head>
 <body>
@@ -68,21 +90,24 @@
             
             <div class="intro-grid">
                 <div class="intro-card">
-                    <h3><i class="fa-solid fa-star"></i> Why This Matters?</h3>
+                    <!-- Changed h3 to h2 for sequential order (H1 -> H2) -->
+                    <h2><i class="fa-solid fa-star"></i> Why This Matters?</h2>
                     <p>The river system is the most high-yielding topic for HPAS and Allied exams. Every year, 3-4 questions appear directly from tributaries, Vedic names, and hydro projects associated with these five rivers.</p>
                 </div>
 
                 <div class="intro-card">
-                    <h3><i class="fa-solid fa-list-check"></i> What this Page Covers</h3>
+                    <!-- Changed h3 to h2 -->
+                    <h2><i class="fa-solid fa-list-check"></i> What this Page Covers</h2>
                     <ul class="intro-list">
                         <li><strong>5 Major Rivers:</strong> Satluj, Beas, Ravi, Chenab, Yamuna.</li>
                         <li><strong>Deep Dive:</strong> Origin, Vedic names, Tributaries, and Dams.</li>
-                        <li><strong>Quiz:</strong> 40+ MCQs to test your retention instantly.</li>
+                        <li><strong>Quiz:</strong> 50+ MCQs to test your retention instantly.</li>
                     </ul>
                 </div>
                 
                 <div class="intro-card" style="background: var(--primary-light); border-color: var(--primary);">
-                    <h3><i class="fa-solid fa-lightbulb"></i> Pro Tip</h3>
+                    <!-- Changed h3 to h2 -->
+                    <h2><i class="fa-solid fa-lightbulb"></i> Pro Tip</h2>
                     <p>Don't just read. Attempt the quiz on the right side immediately after reading the detailed notes below to fix the facts in your memory.</p>
                 </div>
             </div>
@@ -140,64 +165,159 @@
             </div>
 
             <div class="seo-grid">
+                
+                <!-- River 1: Satluj -->
                 <div class="seo-card">
-                    <h3>1. The Satluj (Vedic: Sutudri)</h3>
-                    <p>Originating from Rakas Tal near Mansarovar in Tibet, the Satluj enters HP at Shipki La (Kinnaur). It cuts through the Great Himalaya and the Zaskar ranges. It flows through Kinnaur, Shimla, Kullu, Solan, Mandi, and Bilaspur before entering Punjab at Bhakra.</p>
+                    <h3>1. The Satluj (Red River)</h3>
+                    <p>The Satluj is the longest river in Himachal Pradesh, cutting across the formidable Great Himalaya and Zaskar ranges. It is an antecedent river, meaning it existed before the Himalayas were formed.</p>
                     <ul class="seo-list">
-                        <li><strong>Length in HP:</strong> 320 km (Longest river in HP).</li>
-                        <li><strong>Catchment Area:</strong> 20,000 sq km.</li>
-                        <li><strong>Tributaries:</strong> Spiti, Ropa, Taiti, Kashang, Mulgaon, Yula, Wanger, Throng, Ropa. Spiti river joins Satluj at Namgia (Khab).</li>
-                        <li><strong>Major Projects:</strong> Bhakra Nangal (1325 MW), Nathpa Jhakri (1500 MW), Karcham Wangtoo (1000 MW), Rampur (412 MW).</li>
-                        <li><strong>Towns:</strong> Kalpa, Rampur, Tattapani, Bilaspur.</li>
+                        <li><strong>Vedic Name:</strong> Sutudri | <strong>Sanskrit Name:</strong> Shatadru.</li>
+                        <li><strong>Origin:</strong> Rakas Tal near Mansarovar (Tibet). Known as 'Langqen Zangbo' (Elephant River) in Tibet.</li>
+                        <li><strong>Entry into HP:</strong> Enters at Shipki La (Pass) in Kinnaur at an altitude of 6,608 meters.</li>
+                        <li><strong>Exit from HP:</strong> Leaves HP at Bhakra village (Naila) to enter Punjab (Nangal).</li>
+                        <li><strong>Total Length in HP:</strong> 320 km.</li>
+                        <li><strong>Catchment Area:</strong> 20,000 sq km (Largest in HP).</li>
+                        <li><strong>Course:</strong> Flows through Kinnaur, Shimla, Kullu, Solan, Mandi, and Bilaspur districts.</li>
+                        <li><strong>Geological Feature:</strong> It has cut a deep gorge across the Great Himalaya range near Kalpa.</li>
                     </ul>
+                    <p style="margin-top:8px;"><strong>Major Tributaries:</strong></p>
+                    <ul class="seo-list">
+                        <li><strong>Spiti River:</strong> Originates from Kunzum Range. It flows parallel to the Satluj for some distance before joining it at Namgia (Khab) in Kinnaur. The confluence is known as 'Khab Sangam'. Tributaries of Spiti: Tegpo and Kabzian.</li>
+                        <li><strong>Baspa River:</strong> Originates from Baspa hills. It drains the Sangla valley and joins Satluj at Karcham (Kalpa).</li>
+                        <li><strong>Nogli Khad:</strong> Joins Satluj below Rampur Bushahr.</li>
+                        <li><strong>Soan River:</strong> Flows in the Una district (technically Satluj basin but joins in Punjab). Known as the 'River of Sorrows' for Una.</li>
+                        <li><strong>Bispah:</strong> A major tributary in Kinnaur.</li>
+                        <li><strong>Ali Khad:</strong> Rises near Arki, enters Bilaspur, and joins Satluj at Beri Ghat.</li>
+                        <li><strong>Seer Khad:</strong> Largest tributary in Bilaspur district, joins Satluj at Serimqt.</li>
+                        <li><strong>Gamber Khad:</strong> Rises from Tara Devi (Shimla), joins Satluj in Bilaspur.</li>
+                        <li><strong>Others:</strong> Ropa, Taiti, Kashang, Mulgaon, Yula, Wanger, Throng (Kinnaur).</li>
+                    </ul>
+                    <p style="margin-top:8px;"><strong>Prominent Towns on Bank:</strong> Kalpa, Rampur, Tattapani, Bilaspur, Namgia.</p>
+                    <p><strong>Hydro Projects:</strong> Bhakra Nangal (1325 MW), Nathpa Jhakri (1500 MW - Run of River), Karcham Wangtoo (1000 MW), Rampur (412 MW), Kol Dam (800 MW), Sanjay Vidyut Pariyojana (Bhaba).</p>
                 </div>
 
+                <!-- River 2: Beas -->
                 <div class="seo-card">
-                    <h3>2. The Beas (Vedic: Arjikiya)</h3>
-                    <p>Originates from Beas Kund near Rohtang Pass in the Pir Panjal range. It flows south through Kullu valley, then turns west, flowing through Mandi, Hamirpur, and Kangra. It leaves HP at Mirthal to enter Punjab.</p>
+                    <h3>2. The Beas</h3>
+                    <p>Historically significant, marking the eastern border of Alexander's conquest in 326 BC. It flows entirely within India.</p>
                     <ul class="seo-list">
-                        <li><strong>Sanskrit Name:</strong> Vipasha.</li>
-                        <li><strong>Length in HP:</strong> 256 km.</li>
+                        <li><strong>Vedic Name:</strong> Arjikiya | <strong>Sanskrit Name:</strong> Vipasha.</li>
+                        <li><strong>Greek Name:</strong> Hyphasis.</li>
+                        <li><strong>Origin:</strong> Beas Kund near Rohtang Pass, Pir Panjal Range.</li>
+                        <li><strong>Exit from HP:</strong> Leaves HP at Mirthal (near Kathgarh) to enter Punjab.</li>
+                        <li><strong>Total Length in HP:</strong> 256 km.</li>
                         <li><strong>Catchment Area:</strong> 12,000 sq km.</li>
-                        <li><strong>Tributaries:</strong> Parbati (joins at Shamshi), Spin, Hurla, Sainj, Uhl (joins at Mandi), Banganga, Chakki, Gaj, Dehr.</li>
-                        <li><strong>Mythology:</strong> It is believed that Alexander the Great stopped his invasion at this river (Hyphasis).</li>
+                        <li><strong>Course:</strong> Flows south through Kullu ("Kulu Valley"), cuts through the Dhauladhar range at Larji, then turns west through Mandi, Hamirpur, and Kangra.</li>
                     </ul>
+                    <p style="margin-top:8px;"><strong>Major Tributaries:</strong></p>
+                    <ul class="seo-list">
+                        <li><strong>Parbati River:</strong> Largest tributary. Rises from Mantalai Lake. Joins Beas at Shamshi (Bhuntar). Famous for hot springs at Manikaran and Kasol.</li>
+                        <li><strong>Banganga:</strong> Rises from the southern slopes of Dhauladhar. Joins Beas in Kangra valley.</li>
+                        <li><strong>Chakki:</strong> Rises from Dhauladhar, joins Beas near Pathankot.</li>
+                        <li><strong>Sainj & Tirthan:</strong> Join Beas at Larji. Tirthan flows through the Great Himalayan National Park.</li>
+                        <li><strong>Uhl:</strong> Rises from Thamsar Pass, flows through Barot valley, and joins Beas near Mandi.</li>
+                        <li><strong>Luni:</strong> Rises in Kangra, joins Beas.</li>
+                        <li><strong>Binwa:</strong> Rises near Baijnath, joins Beas.</li>
+                        <li><strong>Others:</strong> Harla, Solang, Manalsu, Sujoin, Fozal, Sarvari, Kunah, Maan, Gaj, Dehar, Awa, Neugal.</li>
+                    </ul>
+                    <p style="margin-top:8px;"><strong>Prominent Towns on Bank:</strong> Manali, Kullu, Mandi, Pandoh, Sujanpur, Nadaun, Dehra-Gopipur.</p>
+                    <p><strong>Hydro Projects:</strong> Larji (126 MW), Baner, Neugal, Beas-Satluj Link (Pandoh Dam - diverts Beas water to Satluj), Pong Dam (Maharana Pratap Sagar - famous bird sanctuary).</p>
                 </div>
 
+                <!-- River 3: Ravi -->
                 <div class="seo-card">
-                    <h3>3. The Ravi (Vedic: Parushni)</h3>
-                    <p>Originates from Bara Banghal (Kangra) as a joint stream formed by Bhadal and Tant Gari glaciers. It flows westward through the Chamba valley (Ravi Valley) between Dhauladhar and Pir Panjal ranges.</p>
+                    <h3>3. The Ravi</h3>
+                    <p>The life-line of the Chamba valley, flowing between the Dhauladhar and Pir Panjal ranges. It is known for its rugged course.</p>
                     <ul class="seo-list">
-                        <li><strong>Sanskrit Name:</strong> Iravati.</li>
-                        <li><strong>Length in HP:</strong> 158 km.</li>
+                        <li><strong>Vedic Name:</strong> Parushni | <strong>Sanskrit Name:</strong> Iravati.</li>
+                        <li><strong>Greek Name:</strong> Hydraotes.</li>
+                        <li><strong>Origin:</strong> Bara Banghal (Kangra) as a joint stream formed by Bhadal and Tant Gari glaciers.</li>
+                        <li><strong>Exit from HP:</strong> Leaves Chamba at Kheri to enter J&K (near Madhopur).</li>
+                        <li><strong>Total Length in HP:</strong> 158 km.</li>
                         <li><strong>Catchment Area:</strong> 5,451 sq km.</li>
-                        <li><strong>Tributaries:</strong> Bhadal, Tant Gari, Siul, Baira, Chirchind Nala.</li>
-                        <li><strong>Towns:</strong> Chamba town is situated on its right bank. It leaves HP at Kheri.</li>
+                        <li><strong>Course:</strong> Primarily flows through Chamba district, separating the Pir Panjal from the Dhauladhar range.</li>
                     </ul>
+                    <p style="margin-top:8px;"><strong>Major Tributaries:</strong></p>
+                    <ul class="seo-list">
+                        <li><strong>Bhadal:</strong> Rises from the snowy range between Pir Panjal and Dhauladhar.</li>
+                        <li><strong>Tant Gari:</strong> Rises from the slopes of Pir Panjal.</li>
+                        <li><strong>Siul:</strong> Major tributary joining Ravi from the north. It rises near the Padri pass.</li>
+                        <li><strong>Baira:</strong> Feeds into Siul river. Originates from the snows of Pangi range.</li>
+                        <li><strong>Budhil:</strong> Rises from Kugti Pass and flows through Harsar and Bharmour. Joins Ravi near Kharamukh.</li>
+                        <li><strong>Tundah:</strong> Rises from Kalicho Pass.</li>
+                        <li><strong>Chirchind Nala:</strong> A small tributary.</li>
+                        <li><strong>Chatrari:</strong> A small stream joining near Chatrari village.</li>
+                    </ul>
+                    <p style="margin-top:8px;"><strong>Prominent Towns on Bank:</strong> Chamba (Right Bank), Bharmour.</p>
+                    <p><strong>Hydro Projects:</strong> Chamera I (540 MW), Chamera II (300 MW), Chamera III (231 MW), Baira Siul (180 MW), Thein Dam (Ranjit Sagar Dam - on border).</p>
                 </div>
                 
+                <!-- River 4: Chenab -->
                 <div class="seo-card">
-                    <h3>4. The Chenab (Vedic: Asikni)</h3>
-                    <p>Formed by the confluence of Chandra and Bhaga rivers at Tandi (Lahaul). It is the largest river in HP by volume of water. It flows through Lahaul and the Pangi valley of Chamba.</p>
+                    <h3>4. The Chenab</h3>
+                    <p>The largest river in HP by volume of water. Known as "Chandrabhaga" in HP because it is formed by two streams: Chandra and Bhaga.</p>
                     <ul class="seo-list">
-                        <li><strong>Sanskrit Name:</strong> Chandrabhaga.</li>
-                        <li><strong>Length in HP:</strong> 122 km.</li>
+                        <li><strong>Vedic Name:</strong> Asikni.</li>
+                        <li><strong>Greek Name:</strong> Acesines.</li>
+                        <li><strong>Origin:</strong> Formed by the confluence of Chandra and Bhaga rivers at Tandi (Lahaul).</li>
+                        <li><strong>Chandra River:</strong> Originates from Chandra Tal glacier in Lahaul. Flows through a desolate region.</li>
+                        <li><strong>Bhaga River:</strong> Originates from Suraj Tal (near Baralacha Pass). Meets Chandra at Tandi.</li>
+                        <li><strong>Exit from HP:</strong> Leaves Pangi valley at Sansari Nala to enter Paddar valley (Kashmir).</li>
+                        <li><strong>Total Length in HP:</strong> 122 km.</li>
                         <li><strong>Catchment Area:</strong> 7,500 sq km.</li>
-                        <li><strong>Route:</strong> It enters Pangi valley at Bhujind and leaves HP at Sansari Nala to enter the Paddar valley of Kashmir.</li>
-                        <li><strong>Speciality:</strong> Known for Gold content in ancient times.</li>
+                        <li><strong>Course:</strong> Flows through Lahaul valley and Pangi valley (Chamba).</li>
+                    </ul>
+                    <p style="margin-top:8px;"><strong>Major Tributaries:</strong></p>
+                    <ul class="seo-list">
+                        <li><strong>Miyar Nala:</strong> Joins Chenab in Lahaul at Udaipur. Originates from Miyar glacier.</li>
+                        <li><strong>Saicher Nala:</strong> Joins near Pangi (Sach Khas).</li>
+                        <li><strong>Thirot Nala:</strong> Joins near Thirot.</li>
+                        <li><strong>Others:</strong> Sohal, Bhut Nala, Marau, Shansha Nala.</li>
+                    </ul>
+                    <p style="margin-top:8px;"><strong>Special Note:</strong> Gold is found in the sands of Chenab (hence called Gold River). Tandi legend says it is where Draupadi's body was cremated.</p>
+                    <p><strong>Hydro Projects:</strong> Seli, Raoli, Miyar, Thirot (small project).</p>
+                </div>
+
+                <!-- River 5: Yamuna -->
+                <div class="seo-card">
+                    <h3>5. The Yamuna</h3>
+                    <p>The shortest river course in HP, yet vital as it forms the eastern boundary with Uttarakhand. It is a major tributary of the Ganga.</p>
+                    <ul class="seo-list">
+                        <li><strong>Vedic Name:</strong> Kalindi.</li>
+                        <li><strong>Origin:</strong> Yamunotri (Garhwal Hills, Uttarakhand).</li>
+                        <li><strong>Entry into HP:</strong> Khodar Majri (Sirmaur).</li>
+                        <li><strong>Exit from HP:</strong> Tajewala (enters Haryana).</li>
+                        <li><strong>Total Length in HP:</strong> 22 km.</li>
+                        <li><strong>Catchment Area:</strong> 2,320 sq km.</li>
+                        <li><strong>Relation:</strong> Mythologically related to the Sun God (Surya).</li>
+                    </ul>
+                    <p style="margin-top:8px;"><strong>Major Tributaries:</strong></p>
+                    <ul class="seo-list">
+                        <li><strong>Tons River:</strong> Largest tributary. Rises from Rupin and Supin streams (joining at Naitwar). Joins Yamuna at Kalsi. It carries more water than Yamuna itself at the confluence.</li>
+                        <li><strong>Giri River:</strong> Rises from Kupara peak (Jubbal). Divides Sirmaur into Cis-Giri and Trans-Giri. Joins Yamuna at Paonta Sahib (Mokkampur).</li>
+                        <li><strong>Pabbar River:</strong> Rises from Chander Nahan Lake (Rohru) near Chanshal Peak. Joins Tons near Tiuni. Famous for Trout fish.</li>
+                        <li><strong>Bata River:</strong> Originates from Dharthi range (Silla Ki Dhar). Joins Yamuna at Bata Mandi.</li>
+                        <li><strong>Andhra River:</strong> Tributary of Pabbar, rises near Chirgaon.</li>
+                        <li><strong>Patsari:</strong> Tributary of Pabbar, rises near Khara-Pathar.</li>
+                        <li><strong>Jalal:</strong> Tributary of Giri, rises from Dharthi ranges. joins Giri at Dadahu.</li>
+                        <li><strong>Markanda:</strong> Rises near Baraban (Kiarda Dun valley), flows towards Haryana.</li>
+                    </ul>
+                    <p style="margin-top:8px;"><strong>Prominent Towns on Bank:</strong> Paonta Sahib.</p>
+                    <p><strong>Hydro Projects:</strong> Giri Bata Project, Yamuna Hydel Project (shared), Renuka Dam (Proposed).</p>
+                </div>
+
+                <!-- Minor Rivers -->
+                <div class="seo-card">
+                    <h3>6. Other Important Streams (Khads)</h3>
+                    <ul class="seo-list">
+                        <li><strong>Swan River:</strong> Flows through Una district. Known as the "River of Sorrows" of HP due to seasonal floods. It divides Una district into two parts.</li>
+                        <li><strong>Sirsa River:</strong> Flows through Nalagarh (Solan). Industrial hub of Baddi-Barotiwala is in its catchment. It joins Satluj near Ropar.</li>
+                        <li><strong>Ghamber Khad:</strong> Tributary of Satluj, rising from Tara Devi (Shimla).</li>
+                        <li><strong>Imla and Bimla:</strong> Two streams flowing through the Karsog valley of Mandi district (tributaries of Satluj).</li>
+                        <li><strong>Chkaki Khad:</strong> Defines the boundary between HP and Punjab near Pathankot.</li>
                     </ul>
                 </div>
 
-                <div class="seo-card">
-                    <h3>5. The Yamuna (Vedic: Kalindi)</h3>
-                    <p>It originates from Yamunotri in Garhwal hills. It enters HP at Khodar Majri in Sirmaur and leaves at Tajewala. It forms the eastern boundary with Uttarakhand.</p>
-                    <ul class="seo-list">
-                        <li><strong>Length in HP:</strong> Shortest course in HP.</li>
-                        <li><strong>Catchment Area:</strong> 2,320 sq km.</li>
-                        <li><strong>Tributaries:</strong> Giri (Giri Ganga), Tons (largest tributary), Pabbar, Bata, Andhra.</li>
-                        <li><strong>Relation:</strong> Associated with the Sun God (Surya).</li>
-                    </ul>
-                </div>
             </div>
         </section>
     </div>
