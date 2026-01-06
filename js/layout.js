@@ -30,6 +30,15 @@ function renderHeader(options = {}) {
     const headerEl = document.getElementById('site-header');
     if (!headerEl) return;
 
+    // Standard Header Behavior
+    // The header sits at the top of the document and scrolls away when the user scrolls down.
+    headerEl.style.position = 'relative'; 
+    headerEl.style.width = '100%';
+    headerEl.style.zIndex = '1000';
+
+    // Remove body padding as header is in the document flow
+    document.body.style.paddingTop = '0px';
+
     // Define Controls based on page type
     let actionButtons = '';
     
