@@ -79,12 +79,16 @@ body {
 /* CLS FIX: Explicit height and containment */
 header, #site-header {
     /* Changed from fixed to sticky to stay at top but remain in flow */
-    position: sticky; 
+    position: relative; /* Default back to relative as per latest logic */
     top: 0; left: 0; right: 0;
     background: var(--card-bg);
     border-bottom: 1px solid var(--border-color);
     z-index: 1000;
+    
+    /* CLS FIX: Reserve strict space for fixed header */
     height: 60px; 
+    min-height: 60px; /* Force minimum height to prevent collapse before JS loads */
+    
     contain: layout size; /* Performance & Layout Stability */
     display: flex;
     align-items: center;
