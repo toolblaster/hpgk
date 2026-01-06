@@ -548,6 +548,72 @@ main {
     color: var(--text-sec);
     font-size: 0.9rem;
 }
+
+/* --- Directory Specific Inline Styles (Moved to CSS) --- */
+.hub-hero { text-align: center; max-width: 800px; margin: 0 auto 40px auto; }
+
+/* Updated Grid for 4 Columns (8 Cards) */
+.topic-grid { 
+    display: grid; 
+    /* Reduced minmax to allow 4 columns on desktop (1100px / 4 approx 250px) */
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); 
+    gap: 15px; /* Tighter gap for density */
+    margin-bottom: 50px; 
+}
+
+.topic-card { 
+    background: var(--card-bg); 
+    border: 1px solid var(--border-color); 
+    border-radius: 12px; 
+    padding: 20px; /* Reduced padding from 25px */
+    text-decoration: none; 
+    color: var(--text-main); 
+    transition: transform 0.2s, box-shadow 0.2s; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    text-align: center; 
+    box-shadow: var(--glass-shadow); 
+}
+.topic-card:hover { transform: translateY(-5px); box-shadow: var(--hover-shadow); border-color: var(--primary); }
+
+.topic-icon { 
+    font-size: 1.8rem; /* Slightly smaller icon */
+    color: var(--primary); 
+    margin-bottom: 12px; 
+    background: var(--primary-light); 
+    width: 50px; /* Smaller circle */
+    height: 50px; 
+    border-radius: 50%; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+}
+
+.topic-title { 
+    font-size: 1rem; /* Compact title */
+    font-weight: 700; 
+    margin-bottom: 6px; 
+}
+
+.topic-desc { 
+    font-size: 0.8rem; /* Dense description */
+    color: var(--text-sec); 
+    margin-bottom: 12px; 
+    line-height: 1.35; 
+}
+
+.topic-badge { 
+    margin-top: auto; 
+    background: var(--input-bg); 
+    color: var(--text-sec); 
+    font-size: 0.7rem; 
+    padding: 3px 10px; 
+    border-radius: 20px; 
+    font-weight: 600; 
+}
+.topic-badge.active { background: var(--correct-bg); color: var(--correct-text); }
+
 .seo-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
