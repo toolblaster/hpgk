@@ -13,6 +13,45 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Noto+Sans+Devanagari:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../js/style.css">
+    
+    <style>
+        /* Specific tweaks for this page */
+        .quiz-card {
+            border: 2px solid var(--primary-dark); /* Darker border for visual pop */
+        }
+        .intro-grid {
+            display: grid;
+            gap: 15px;
+        }
+        .intro-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 15px;
+        }
+        .intro-card h3 {
+            margin-top: 0;
+            font-size: 1rem;
+            color: var(--primary-dark);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .intro-card p {
+            font-size: 0.85rem;
+            color: var(--text-sec);
+            margin: 0;
+            line-height: 1.4;
+        }
+        .intro-list {
+            margin: 5px 0 0 0;
+            padding-left: 18px;
+            font-size: 0.8rem;
+            color: var(--text-sec);
+        }
+        .intro-list li { margin-bottom: 2px; }
+    </style>
 </head>
 <body>
 
@@ -22,54 +61,29 @@
 <main>
     <div class="main-layout">
         
-        <!-- Left Column: Deep Content -->
+        <!-- Left Column: Intro Hook (Parallel to Quiz) -->
         <section class="hero-section">
             <span class="hero-badge">Geography Series</span>
             <h1 class="hero-title">River System of Himachal Pradesh</h1>
             
-            <div class="seo-content-wrapper" style="margin: 0;">
-                <div class="seo-card" style="margin-bottom: 20px;">
-                    <h3><i class="fa-solid fa-water"></i> Introduction</h3>
-                    <p>Himachal Pradesh provides water to both the Indus and Ganges basins. The drainage system of the region is composed of five major rivers: <strong>Chenab, Ravi, Beas, Satluj, and Yamuna</strong>.</p>
+            <div class="intro-grid">
+                <div class="intro-card">
+                    <h3><i class="fa-solid fa-star"></i> Why This Matters?</h3>
+                    <p>The river system is the most high-yielding topic for HPAS and Allied exams. Every year, 3-4 questions appear directly from tributaries, Vedic names, and hydro projects associated with these five rivers.</p>
                 </div>
 
-                <div class="seo-card" style="margin-bottom: 20px;">
-                    <h3>1. The Satluj (Vedic: Sutudri)</h3>
-                    <p>Originating from Rakas Tal near Mansarovar in Tibet, the Satluj enters HP at Shipki La (Kinnaur). It flows through Kinnaur, Shimla, Kullu, Solan, Mandi, and Bilaspur before entering Punjab at Bhakra.</p>
-                    <ul class="seo-list">
-                        <li><strong>Length in HP:</strong> 320 km (Longest river in HP).</li>
-                        <li><strong>Tributaries:</strong> Spiti, Ropa, Taiti, Kashang, Mulgaon, Yula, Wanger, Throng.</li>
-                        <li><strong>Major Projects:</strong> Bhakra Nangal, Nathpa Jhakri, Karcham Wangtoo.</li>
-                    </ul>
-                </div>
-
-                <div class="seo-card" style="margin-bottom: 20px;">
-                    <h3>2. The Beas (Vedic: Arjikiya)</h3>
-                    <p>Originates from Beas Kund near Rohtang Pass. It flows through Kullu, Mandi, Hamirpur, and Kangra. It leaves HP at Mirthal to enter Punjab.</p>
-                    <ul class="seo-list">
-                        <li><strong>Length in HP:</strong> 256 km.</li>
-                        <li><strong>Tributaries:</strong> Parbati, Spin, Hurla, Sainj, Uhl, Banganga, Chakki.</li>
-                        <li><strong>Mythology:</strong> It is believed that Alexander the Great stopped his invasion at this river.</li>
-                    </ul>
-                </div>
-
-                <div class="seo-card" style="margin-bottom: 20px;">
-                    <h3>3. The Ravi (Vedic: Parushni)</h3>
-                    <p>Originates from Bara Banghal (Kangra). It flows westward through the Chamba valley between Dhauladhar and Pir Panjal ranges.</p>
-                    <ul class="seo-list">
-                        <li><strong>Length in HP:</strong> 158 km.</li>
-                        <li><strong>Tributaries:</strong> Bhadal, Tant Gari, Siul, Baira.</li>
-                        <li><strong>Towns:</strong> Chamba town is situated on its right bank.</li>
+                <div class="intro-card">
+                    <h3><i class="fa-solid fa-list-check"></i> What this Page Covers</h3>
+                    <ul class="intro-list">
+                        <li><strong>5 Major Rivers:</strong> Satluj, Beas, Ravi, Chenab, Yamuna.</li>
+                        <li><strong>Deep Dive:</strong> Origin, Vedic names, Tributaries, and Dams.</li>
+                        <li><strong>Quiz:</strong> 40+ MCQs to test your retention instantly.</li>
                     </ul>
                 </div>
                 
-                <div class="seo-card">
-                    <h3>4. The Chenab (Vedic: Asikni)</h3>
-                    <p>Formed by the confluence of Chandra and Bhaga rivers at Tandi (Lahaul). It is the largest river in HP by volume of water.</p>
-                    <ul class="seo-list">
-                        <li><strong>Length in HP:</strong> 122 km.</li>
-                        <li><strong>Route:</strong> Flows through Lahaul and Pangi valley of Chamba before entering J&K at Sansari Nala.</li>
-                    </ul>
+                <div class="intro-card" style="background: var(--primary-light); border-color: var(--primary);">
+                    <h3><i class="fa-solid fa-lightbulb"></i> Pro Tip</h3>
+                    <p>Don't just read. Attempt the quiz on the right side immediately after reading the detailed notes below to fix the facts in your memory.</p>
                 </div>
             </div>
         </section>
@@ -114,6 +128,80 @@
 
     </div>
     
+    <!-- Separator Line -->
+    <div class="section-separator"></div>
+
+    <!-- Full Width Dense Content Section -->
+    <div class="main-layout" style="display: block;">
+        <section class="seo-content-wrapper" style="margin: 0 auto;">
+            <div class="seo-header">
+                <h2>Detailed Study Notes</h2>
+                <p>Comprehensive analysis of the drainage system for competitive exams.</p>
+            </div>
+
+            <div class="seo-grid">
+                <div class="seo-card">
+                    <h3>1. The Satluj (Vedic: Sutudri)</h3>
+                    <p>Originating from Rakas Tal near Mansarovar in Tibet, the Satluj enters HP at Shipki La (Kinnaur). It cuts through the Great Himalaya and the Zaskar ranges. It flows through Kinnaur, Shimla, Kullu, Solan, Mandi, and Bilaspur before entering Punjab at Bhakra.</p>
+                    <ul class="seo-list">
+                        <li><strong>Length in HP:</strong> 320 km (Longest river in HP).</li>
+                        <li><strong>Catchment Area:</strong> 20,000 sq km.</li>
+                        <li><strong>Tributaries:</strong> Spiti, Ropa, Taiti, Kashang, Mulgaon, Yula, Wanger, Throng, Ropa. Spiti river joins Satluj at Namgia (Khab).</li>
+                        <li><strong>Major Projects:</strong> Bhakra Nangal (1325 MW), Nathpa Jhakri (1500 MW), Karcham Wangtoo (1000 MW), Rampur (412 MW).</li>
+                        <li><strong>Towns:</strong> Kalpa, Rampur, Tattapani, Bilaspur.</li>
+                    </ul>
+                </div>
+
+                <div class="seo-card">
+                    <h3>2. The Beas (Vedic: Arjikiya)</h3>
+                    <p>Originates from Beas Kund near Rohtang Pass in the Pir Panjal range. It flows south through Kullu valley, then turns west, flowing through Mandi, Hamirpur, and Kangra. It leaves HP at Mirthal to enter Punjab.</p>
+                    <ul class="seo-list">
+                        <li><strong>Sanskrit Name:</strong> Vipasha.</li>
+                        <li><strong>Length in HP:</strong> 256 km.</li>
+                        <li><strong>Catchment Area:</strong> 12,000 sq km.</li>
+                        <li><strong>Tributaries:</strong> Parbati (joins at Shamshi), Spin, Hurla, Sainj, Uhl (joins at Mandi), Banganga, Chakki, Gaj, Dehr.</li>
+                        <li><strong>Mythology:</strong> It is believed that Alexander the Great stopped his invasion at this river (Hyphasis).</li>
+                    </ul>
+                </div>
+
+                <div class="seo-card">
+                    <h3>3. The Ravi (Vedic: Parushni)</h3>
+                    <p>Originates from Bara Banghal (Kangra) as a joint stream formed by Bhadal and Tant Gari glaciers. It flows westward through the Chamba valley (Ravi Valley) between Dhauladhar and Pir Panjal ranges.</p>
+                    <ul class="seo-list">
+                        <li><strong>Sanskrit Name:</strong> Iravati.</li>
+                        <li><strong>Length in HP:</strong> 158 km.</li>
+                        <li><strong>Catchment Area:</strong> 5,451 sq km.</li>
+                        <li><strong>Tributaries:</strong> Bhadal, Tant Gari, Siul, Baira, Chirchind Nala.</li>
+                        <li><strong>Towns:</strong> Chamba town is situated on its right bank. It leaves HP at Kheri.</li>
+                    </ul>
+                </div>
+                
+                <div class="seo-card">
+                    <h3>4. The Chenab (Vedic: Asikni)</h3>
+                    <p>Formed by the confluence of Chandra and Bhaga rivers at Tandi (Lahaul). It is the largest river in HP by volume of water. It flows through Lahaul and the Pangi valley of Chamba.</p>
+                    <ul class="seo-list">
+                        <li><strong>Sanskrit Name:</strong> Chandrabhaga.</li>
+                        <li><strong>Length in HP:</strong> 122 km.</li>
+                        <li><strong>Catchment Area:</strong> 7,500 sq km.</li>
+                        <li><strong>Route:</strong> It enters Pangi valley at Bhujind and leaves HP at Sansari Nala to enter the Paddar valley of Kashmir.</li>
+                        <li><strong>Speciality:</strong> Known for Gold content in ancient times.</li>
+                    </ul>
+                </div>
+
+                <div class="seo-card">
+                    <h3>5. The Yamuna (Vedic: Kalindi)</h3>
+                    <p>It originates from Yamunotri in Garhwal hills. It enters HP at Khodar Majri in Sirmaur and leaves at Tajewala. It forms the eastern boundary with Uttarakhand.</p>
+                    <ul class="seo-list">
+                        <li><strong>Length in HP:</strong> Shortest course in HP.</li>
+                        <li><strong>Catchment Area:</strong> 2,320 sq km.</li>
+                        <li><strong>Tributaries:</strong> Giri (Giri Ganga), Tons (largest tributary), Pabbar, Bata, Andhra.</li>
+                        <li><strong>Relation:</strong> Associated with the Sun God (Surya).</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+
     <!-- Dynamic Footer Container -->
     <div id="site-footer"></div>
 </main>
@@ -142,7 +230,8 @@
 </script>
 
 <!-- Load Data & Logic -->
-<script src="data.js"></script>
+<!-- RENAMED: part1.js -> river-part-1.js -->
+<script src="river-part-1.js"></script>
 <script src="../js/main.js"></script>
 
 </body>
