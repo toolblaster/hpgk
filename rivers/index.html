@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Comprehensive Guide to Rivers of Himachal Pradesh. Study Satluj, Beas, Ravi, Chenab & Yamuna. Attempt 50+ free MCQs on HP River System.">
+    <title>Rivers of HP | Study Notes & Quiz</title>
+    <link rel="canonical" href="https://hpgk.toolblaster.com/rivers/">
+
+    <!-- Assets -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Noto+Sans+Devanagari:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../js/style.css">
+</head>
+<body>
+
+<!-- Dynamic Header Container -->
+<div id="site-header"></div>
+
+<main>
+    <div class="main-layout">
+        
+        <!-- Left Column: Deep Content -->
+        <section class="hero-section">
+            <span class="hero-badge">Geography Series</span>
+            <h1 class="hero-title">River System of Himachal Pradesh</h1>
+            
+            <div class="seo-content-wrapper" style="margin: 0;">
+                <div class="seo-card" style="margin-bottom: 20px;">
+                    <h3><i class="fa-solid fa-water"></i> Introduction</h3>
+                    <p>Himachal Pradesh provides water to both the Indus and Ganges basins. The drainage system of the region is composed of five major rivers: <strong>Chenab, Ravi, Beas, Satluj, and Yamuna</strong>.</p>
+                </div>
+
+                <div class="seo-card" style="margin-bottom: 20px;">
+                    <h3>1. The Satluj (Vedic: Sutudri)</h3>
+                    <p>Originating from Rakas Tal near Mansarovar in Tibet, the Satluj enters HP at Shipki La (Kinnaur). It flows through Kinnaur, Shimla, Kullu, Solan, Mandi, and Bilaspur before entering Punjab at Bhakra.</p>
+                    <ul class="seo-list">
+                        <li><strong>Length in HP:</strong> 320 km (Longest river in HP).</li>
+                        <li><strong>Tributaries:</strong> Spiti, Ropa, Taiti, Kashang, Mulgaon, Yula, Wanger, Throng.</li>
+                        <li><strong>Major Projects:</strong> Bhakra Nangal, Nathpa Jhakri, Karcham Wangtoo.</li>
+                    </ul>
+                </div>
+
+                <div class="seo-card" style="margin-bottom: 20px;">
+                    <h3>2. The Beas (Vedic: Arjikiya)</h3>
+                    <p>Originates from Beas Kund near Rohtang Pass. It flows through Kullu, Mandi, Hamirpur, and Kangra. It leaves HP at Mirthal to enter Punjab.</p>
+                    <ul class="seo-list">
+                        <li><strong>Length in HP:</strong> 256 km.</li>
+                        <li><strong>Tributaries:</strong> Parbati, Spin, Hurla, Sainj, Uhl, Banganga, Chakki.</li>
+                        <li><strong>Mythology:</strong> It is believed that Alexander the Great stopped his invasion at this river.</li>
+                    </ul>
+                </div>
+
+                <div class="seo-card" style="margin-bottom: 20px;">
+                    <h3>3. The Ravi (Vedic: Parushni)</h3>
+                    <p>Originates from Bara Banghal (Kangra). It flows westward through the Chamba valley between Dhauladhar and Pir Panjal ranges.</p>
+                    <ul class="seo-list">
+                        <li><strong>Length in HP:</strong> 158 km.</li>
+                        <li><strong>Tributaries:</strong> Bhadal, Tant Gari, Siul, Baira.</li>
+                        <li><strong>Towns:</strong> Chamba town is situated on its right bank.</li>
+                    </ul>
+                </div>
+                
+                <div class="seo-card">
+                    <h3>4. The Chenab (Vedic: Asikni)</h3>
+                    <p>Formed by the confluence of Chandra and Bhaga rivers at Tandi (Lahaul). It is the largest river in HP by volume of water.</p>
+                    <ul class="seo-list">
+                        <li><strong>Length in HP:</strong> 122 km.</li>
+                        <li><strong>Route:</strong> Flows through Lahaul and Pangi valley of Chamba before entering J&K at Sansari Nala.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Right Column: Dedicated Quiz Engine -->
+        <section class="quiz-widget-wrapper">
+            <div class="quiz-card">
+                <div class="widget-header">
+                    <div class="search-container" id="searchContainer">
+                        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                        <input type="text" id="searchInput" class="search-input" placeholder="Search Rivers...">
+                        <i class="fa-solid fa-xmark search-clear" id="searchClear" onclick="clearSearch()"></i>
+                    </div>
+                    <div class="text-controls">
+                        <button class="text-btn" onclick="adjustFont(-1)">A-</button>
+                        <button class="text-btn" onclick="adjustFont(1)">A+</button>
+                    </div>
+                </div>
+
+                <div class="stats-dashboard">
+                    <div class="stat-item"><span class="stat-label">Done</span><span class="stat-value" id="statDone">0</span></div>
+                    <div class="stat-item"><span class="stat-label">Left</span><span class="stat-value" id="statLeft">0</span></div>
+                    <div class="stat-item"><span class="stat-label">Right</span><span class="stat-value green" id="statCorrect">0</span></div>
+                    <div class="stat-item"><span class="stat-label">Wrong</span><span class="stat-value red" id="statWrong">0</span></div>
+                    <div class="stat-item"><span class="stat-label">Acc.</span><span class="stat-value accent" id="statAccuracy">0%</span></div>
+                </div>
+
+                <div id="quizContent" class="quiz-content">
+                    <div id="cardArea">Loading Questions...</div>
+                </div>
+
+                <div class="widget-controls">
+                    <button id="prevBtn" class="nav-btn"><i class="fa-solid fa-arrow-left"></i></button>
+                    <div class="jump-trigger" id="jumpTrigger">
+                        <span class="progress-text" id="progressText">0 / 0</span>
+                        <span class="jump-label">Jump To</span>
+                    </div>
+                    <button id="nextBtn" class="nav-btn"><i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+        </section>
+
+    </div>
+    
+    <!-- Dynamic Footer Container -->
+    <div id="site-footer"></div>
+</main>
+
+<!-- Load Layout Manager -->
+<script src="../js/layout.js"></script>
+
+<!-- Initialize Header & Footer First -->
+<script>
+    renderHeader({
+        title: 'Rivers of HP',
+        subtitle: 'Category',
+        iconClass: 'fa-solid fa-arrow-left',
+        link: '../index.html',
+        isQuizPage: true, // This enables Import/Export/Reset buttons
+        rootPath: '..'
+    });
+
+    renderFooter('..');
+</script>
+
+<!-- Config for this specific category -->
+<script>
+    window.QUIZ_CONFIG = { category: 'rivers' };
+    window.quizData = []; 
+</script>
+
+<!-- Load Data & Logic -->
+<script src="data.js"></script>
+<script src="../js/main.js"></script>
+
+</body>
+</html>
