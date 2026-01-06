@@ -95,6 +95,12 @@ function renderFooter(rootPath = '.') {
     const footerEl = document.getElementById('site-footer');
     if (!footerEl) return;
 
+    // Ensure footer is at the end of the body for sticky behavior
+    // If it's inside 'main' or elsewhere, move it to be a direct child of body
+    if (footerEl.parentNode !== document.body) {
+        document.body.appendChild(footerEl);
+    }
+
     const currentYear = new Date().getFullYear();
 
     footerEl.innerHTML = `
