@@ -30,7 +30,9 @@ function renderHeader(options = {}) {
 
     // Ensure clean URL by stripping index.html from any passed link
     // This fixes cases where '../index.html' is passed, converting it to '../' (clean root)
-    const cleanLink = link.replace(/\/index\.html$/, '/').replace(/^index\.html$/, './');
+    // Also ensures we don't have trailing '#' if link was default
+    let cleanLink = link.replace(/\/index\.html$/, '/').replace(/^index\.html$/, './');
+    if (cleanLink === '#') cleanLink = 'https://hpgk.toolblaster.com';
 
     const headerEl = document.getElementById('site-header');
     if (!headerEl) return;
