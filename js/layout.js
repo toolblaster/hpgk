@@ -22,10 +22,15 @@ function renderHeader(options = {}) {
         title = 'HPGK Quiz', 
         subtitle = 'by toolblaster.com', 
         iconClass = 'fa-solid fa-mountain-sun', 
-        link = '#', 
+        // Default to absolute root URL for clean navigation
+        link = 'https://hpgk.toolblaster.com', 
         isQuizPage = false,
         rootPath = '.' 
     } = options;
+
+    // Ensure clean URL by stripping index.html from any passed link
+    // This fixes cases where '../index.html' is passed, converting it to '../' (clean root)
+    const cleanLink = link.replace(/\/index\.html$/, '/').replace(/^index\.html$/, './');
 
     const headerEl = document.getElementById('site-header');
     if (!headerEl) return;
@@ -70,7 +75,7 @@ function renderHeader(options = {}) {
 
     headerEl.innerHTML = `
         <div class="header-content">
-            <a href="${link}" class="brand">
+            <a href="${cleanLink}" class="brand">
                 <i class="${iconClass} brand-icon" ${isQuizPage ? 'style="font-size:1.2rem;"' : ''}></i>
                 <div class="brand-name">
                     ${title}
@@ -95,14 +100,26 @@ function renderFooter(rootPath = '.') {
     const footerEl = document.getElementById('site-footer');
     if (!footerEl) return;
 
-    // Ensure footer is at the end of the body for sticky behavior
-    // If it's inside 'main' or elsewhere, move it to be a direct child of body
+    // Standard Footer Logic:
+    // Move the footer container to be a direct child of document.body
     if (footerEl.parentNode !== document.body) {
         document.body.appendChild(footerEl);
     }
+    
+    // Ensure footer sits at the bottom using flexbox margin-top: auto
+    footerEl.style.position = 'relative';
+    footerEl.style.width = '100%';
+    footerEl.style.marginTop = 'auto'; 
+    footerEl.style.marginBottom = '0';
+    
+    // Remove padding from body since footer is in flow
+    document.body.style.paddingBottom = '0px';
 
     const currentYear = new Date().getFullYear();
 
+    // Clean links in footer (removing index.html if present in rootPath logic, though here they are specific pages)
+    // For general links, ensure no index.html is appended manually in other calls.
+    
     footerEl.innerHTML = `
         <div class="site-footer">
             <div class="footer-inner">
