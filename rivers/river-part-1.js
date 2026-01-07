@@ -1,4 +1,5 @@
-window.quizData = [
+window.quizData = window.quizData || [];
+window.quizData = window.quizData.concat([
     {
         id: 1,
         questionEn: "Which river of Himachal Pradesh is known as 'Iravati' in Sanskrit literature?",
@@ -397,86 +398,6 @@ window.quizData = [
         questionHi: "वेदों में किस नदी को 'अर्जीकिया' कहा गया है?",
         options: ["Beas", "Ravi", "Satluj", "Yamuna"],
         answer: 0,
-        explanation: "The Beas river is referred to as 'Arjikiya' in the Rigveda.\n\nऋग्वेद में व्यास नदी को 'अर्जीकिया' कहा गया है।"
-    },
-    {
-        id: 51,
-        questionEn: "Which is a tributary of the Indus river system but flows through Himachal Pradesh?",
-        questionHi: "सिंधु नदी तंत्र की वह कौन सी सहायक नदी है जो हिमाचल प्रदेश से होकर बहती है?",
-        options: ["Ganga", "Yamuna", "Saraswati", "Chenab"],
-        answer: 3,
-        explanation: "The Chenab, along with Satluj, Beas, and Ravi, is part of the Indus river system and flows through HP.\n\nचिनाब, सतलुज, व्यास और रावी के साथ सिंधु नदी तंत्र का हिस्सा है और हिमाचल प्रदेश से होकर बहती है।"
-    },
-    {
-        id: 52,
-        questionEn: "Which river is also known as the 'River of Lahore'?",
-        questionHi: "किस नदी को 'लाहौर की नदी' भी कहा जाता है?",
-        options: ["Ravi", "Beas", "Satluj", "Chenab"],
-        answer: 0,
-        explanation: "The Ravi river flows past Lahore in Pakistan and is often referred to as the river of Lahore.\n\nरावी नदी पाकिस्तान में लाहौर से होकर बहती है और अक्सर इसे लाहौर की नदी कहा जाता है।"
-    },
-    {
-        id: 53,
-        questionEn: "Which river's water is diverted to the Beas river at Pandoh?",
-        questionHi: "पंडोह में किस नदी का पानी व्यास नदी में मोड़ा जाता है?",
-        options: ["Satluj", "Ravi", "Chenab", "Yamuna"],
-        answer: 0,
-        explanation: "Actually, it's the Beas water that is diverted to the Satluj at Pandoh Dam (Beas-Satluj Link Project), not the other way around. The question phrasing is tricky or incorrect. Correct logic: Beas water -> Satluj.\n\nवास्तव में, पंडोह बांध (व्यास-सतलुज लिंक परियोजना) में व्यास का पानी सतलुज में मोड़ा जाता है।"
-    },
-    {
-        id: 54,
-        questionEn: "Which khad joins the Satluj river at Bilaspur?",
-        questionHi: "बिलासपुर में सतलुज नदी में कौन सी खड्ड मिलती है?",
-        options: ["Ali Khad", "Suketi Khad", "Baner Khad", "Neugal Khad"],
-        answer: 0,
-        explanation: "Ali Khad is a significant tributary joining the Satluj in Bilaspur district.\n\nअली खड्ड एक महत्वपूर्ण सहायक नदी है जो बिलासपुर जिले में सतलुज में मिलती है।"
-    },
-    {
-        id: 55,
-        questionEn: "The 'Binwa' river is a tributary of which river?",
-        questionHi: "'बिनवा' नदी किस नदी की सहायक नदी है?",
-        options: ["Beas", "Ravi", "Satluj", "Yamuna"],
-        answer: 0,
-        explanation: "The Binwa river rises near Baijnath and joins the Beas river.\n\nबिनवा नदी बैजनाथ के पास से निकलती है और व्यास नदी में मिलती है।"
-    },
-    {
-        id: 56,
-        questionEn: "Which river flows through the 'Tirthan' valley?",
-        questionHi: "'तीर्थन' घाटी से होकर कौन सी नदी बहती है?",
-        options: ["Tirthan", "Sainj", "Parbati", "Uhl"],
-        answer: 0,
-        explanation: "The Tirthan river flows through the Tirthan valley in Kullu and is a tributary of the Beas.\n\nतीर्थन नदी कुल्लू की तीर्थन घाटी से होकर बहती है और व्यास की एक सहायक नदी है।"
-    },
-    {
-        id: 57,
-        questionEn: "The 'Sainj' river joins the Beas at which place?",
-        questionHi: "'सैंज' नदी व्यास में किस स्थान पर मिलती है?",
-        options: ["Larji", "Pandoh", "Bhuntar", "Manali"],
-        answer: 0,
-        explanation: "The Sainj river joins the Beas at Larji in Kullu district.\n\nसैंज नदी कुल्लू जिले के लार्जी में व्यास से मिलती है।"
-    },
-    {
-        id: 58,
-        questionEn: "Which river rises from the 'Kupara' peak near Jubbal?",
-        questionHi: "जुब्बल के पास 'कुपारा' चोटी से कौन सी नदी निकलती है?",
-        options: ["Giri", "Pabbar", "Tons", "Bata"],
-        answer: 0,
-        explanation: "The Giri river rises from the Kupara peak near Jubbal in Shimla district.\n\nगिरी नदी शिमला जिले में जुब्बल के पास कुपारा चोटी से निकलती है।"
-    },
-    {
-        id: 59,
-        questionEn: "The 'Jalori' pass is located near the catchment of which river?",
-        questionHi: "'जलोड़ी' दर्रा किस नदी के जलग्रहण क्षेत्र के पास स्थित है?",
-        options: ["Satluj", "Beas", "Ravi", "Chenab"],
-        answer: 0,
-        explanation: "Jalori Pass connects Shimla/Kinnaur (Satluj basin) with Kullu (Beas basin), but geographically closer to the Satluj catchment divide.\n\nजलोड़ी दर्रा शिमला/किन्नौर (सतलुज बेसिन) को कुल्लू (व्यास बेसिन) से जोड़ता है।"
-    },
-    {
-        id: 60,
-        questionEn: "Which river is formed by the confluence of 'Rupin' and 'Supin' streams?",
-        questionHi: "'रूपिन' और 'सुपिन' धाराओं के संगम से किस नदी का निर्माण होता है?",
-        options: ["Tons", "Pabbar", "Giri", "Bata"],
-        answer: 0,
-        explanation: "The Tons river is formed by the confluence of Rupin and Supin streams in Uttarakhand before entering HP.\n\nटोंस नदी का निर्माण हिमाचल प्रदेश में प्रवेश करने से पहले उत्तराखंड में रूपिन और सुपिन धाराओं के संगम से होता है।"
+        explanation: "The Beas river is referred to as 'Arjikiya' in the Rigveda.\n\nऋग्वेद में व्यास नदी को 'अर्जीकिया' कहा गया है."
     }
-];
+]);
