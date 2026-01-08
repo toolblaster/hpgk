@@ -65,16 +65,24 @@
     <style>
         .hub-hero { text-align: center; max-width: 800px; margin: 0 auto 30px auto; }
         
-        /* Updated Grid for Compact Layout */
+        /* Grid Layout: Optimized for 2 columns on Mobile */
         .topic-grid { 
             display: grid; 
-            /* Default for mobile/tablet: auto-fit with small min-width */
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); 
-            gap: 12px; 
+            /* Mobile First: Strictly 2 columns */
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 10px; 
             margin-bottom: 40px; 
         }
 
-        /* Large Screen: Force 5 columns */
+        /* Tablet (min 600px): Adapt with auto-fill */
+        @media (min-width: 600px) {
+            .topic-grid {
+                grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+                gap: 15px;
+            }
+        }
+
+        /* Large Screen (min 1024px): Force 5 columns */
         @media (min-width: 1024px) {
             .topic-grid {
                 grid-template-columns: repeat(5, 1fr);
@@ -83,12 +91,12 @@
 
         .topic-card { 
             background: var(--card-bg); 
-            border: 1px solid var(--border-color); 
-            border-radius: 10px; /* Reduced radius */
-            padding: 15px; /* Reduced padding */
+            border: 1px solid #cbd5e1; /* Increased contrast from var(--border-color) which is usually lighter */
+            border-radius: 12px; 
+            padding: 15px; 
             text-decoration: none; 
             color: var(--text-main); 
-            transition: transform 0.2s, box-shadow 0.2s; 
+            transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s; 
             display: flex; 
             flex-direction: column; 
             align-items: center; 
@@ -97,15 +105,20 @@
             min-height: 100%;
         }
         
+        /* Dark mode specific override for border if needed, assuming style.css handles variables */
+        [data-theme="dark"] .topic-card {
+            border-color: #475569; /* Higher contrast for dark mode */
+        }
+        
         .topic-card:hover { transform: translateY(-3px); box-shadow: var(--hover-shadow); border-color: var(--primary); }
         
         .topic-icon { 
-            font-size: 1.5rem; /* Reduced icon size */
+            font-size: 1.5rem; 
             color: var(--primary); 
             margin-bottom: 10px; 
             background: var(--primary-light); 
-            width: 40px; /* Reduced size */
-            height: 40px; /* Reduced size */
+            width: 45px; 
+            height: 45px; 
             border-radius: 50%; 
             display: flex; 
             align-items: center; 
@@ -113,14 +126,14 @@
         }
         
         .topic-title { 
-            font-size: 0.9rem; /* Reduced font size */
+            font-size: 0.95rem; 
             font-weight: 700; 
             margin-bottom: 5px; 
-            line-height: 1.2;
+            line-height: 1.25;
         }
         
         .topic-desc { 
-            font-size: 0.75rem; /* Reduced description size */
+            font-size: 0.8rem; 
             color: var(--text-sec); 
             margin-bottom: 10px; 
             line-height: 1.35; 
@@ -130,16 +143,58 @@
             margin-top: auto; 
             background: var(--input-bg); 
             color: var(--text-sec); 
-            font-size: 0.65rem; /* Smaller badge */
-            padding: 3px 8px; 
+            font-size: 0.7rem; 
+            padding: 4px 10px; 
             border-radius: 12px; 
             font-weight: 600; 
         }
         .topic-badge.active { background: var(--correct-bg); color: var(--correct-text); }
+
+        /* Mobile Adjustments for 2-column layout */
+        @media (max-width: 599px) {
+            .topic-card {
+                padding: 12px 8px; /* Tighter padding to fit 2 cols */
+                border-radius: 10px;
+            }
+            .topic-icon {
+                width: 38px;
+                height: 38px;
+                font-size: 1.2rem;
+                margin-bottom: 8px;
+            }
+            .topic-title {
+                font-size: 0.85rem;
+                margin-bottom: 4px;
+            }
+            .topic-desc {
+                font-size: 0.7rem;
+                margin-bottom: 8px;
+                display: -webkit-box;
+                -webkit-line-clamp: 3; /* Limit lines to prevent height disparity */
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+            .topic-badge {
+                font-size: 0.6rem;
+                padding: 2px 6px;
+            }
+        }
         
         /* Install Button Style Override for HPGK theme */
         .install-float { position: fixed; bottom: 20px; right: 20px; z-index: 1000; display: none; background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 50px; font-weight: 600; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4); cursor: pointer; align-items: center; gap: 8px; animation: slideUp 0.3s ease-out; }
         @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+        /* SEO Grid Updates for 4 Columns */
+        .seo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        @media (min-width: 1200px) {
+            .seo-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
     </style>
 </head>
 <body>
@@ -311,11 +366,20 @@
             </div>
             <div class="seo-card">
                 <h3><i class="fa-solid fa-scale-balanced"></i> Polity & Admin</h3>
-                <p>Overview of the administrative structure, 12 districts, Vidhan Sabha (68 seats), and the High Court. Key constitutional history.</p>
+                <p>Detailed insight into the administrative framework of HP. From the first Chief Commissioner to current Vidhan Sabha dynamics.</p>
                 <ul class="seo-list">
-                    <li>Administrative Divisions</li>
-                    <li>Lok Sabha (4) & Rajya Sabha (3)</li>
-                    <li>First CM: Dr. Y.S. Parmar</li>
+                    <li>Administrative Divisions: Mandi, Kangra, Shimla</li>
+                    <li>Vidhan Sabha: 68 Constituencies</li>
+                    <li>High Court & Local Governance</li>
+                </ul>
+            </div>
+            <div class="seo-card">
+                <h3><i class="fa-solid fa-map-location-dot"></i> Districts Profile</h3>
+                <p>Specific GK related to all 12 districts. Understand the geography, history, and economy of each district individually.</p>
+                <ul class="seo-list">
+                    <li>Largest District: Lahaul-Spiti (Area)</li>
+                    <li>Most Populous: Kangra</li>
+                    <li>Literacy Rate: Highest in Hamirpur</li>
                 </ul>
             </div>
             <div class="seo-card">
@@ -325,6 +389,15 @@
                     <li>Major Somnath Sharma (PVC)</li>
                     <li>Captain Vikram Batra (PVC)</li>
                     <li>Sardar Shobha Singh (Artist)</li>
+                </ul>
+            </div>
+            <div class="seo-card">
+                <h3><i class="fa-solid fa-tree"></i> Flora & Fauna</h3>
+                <p>Discover the rich biodiversity of Himachal. Learn about State symbols, National Parks, and conservation efforts.</p>
+                <ul class="seo-list">
+                    <li>State Bird: Jujurana (Western Tragopan)</li>
+                    <li>National Parks: GHNP, Pin Valley</li>
+                    <li>Medicinal Plants & Biosphere Reserves</li>
                 </ul>
             </div>
         </div>
