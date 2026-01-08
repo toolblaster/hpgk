@@ -190,10 +190,54 @@
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 20px;
         }
+        
+        /* Enhanced Border Contrast for SEO Cards */
+        .seo-card {
+            background: var(--card-bg); /* Ensure background is set */
+            border: 1px solid #94a3b8; /* Increased contrast (Slate-400) - darker than previous */
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: var(--glass-shadow);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        [data-theme="dark"] .seo-card {
+            border-color: #64748b; /* Slate-500 for dark mode contrast */
+        }
+
+        .seo-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--hover-shadow);
+            border-color: var(--primary); /* Highlight on hover */
+        }
+
         @media (min-width: 1200px) {
             .seo-grid {
                 grid-template-columns: repeat(4, 1fr);
             }
+        }
+
+        /* Feature Section Compact Style */
+        .features-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+        .feature-item {
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 20px;
+            background: var(--input-bg);
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border: 1px solid var(--border-color);
+        }
+        /* Make feature icons blue */
+        .feature-item i {
+            color: var(--primary); 
         }
     </style>
 </head>
@@ -214,7 +258,7 @@
             <span class="hero-badge" style="background: var(--primary); color: white;">Devbhoomi Edition 2026</span>
             <h1 class="hero-title">Master Himachal Pradesh<br>General Knowledge</h1>
             <p class="hero-desc" style="margin: 0 auto 25px auto;">
-                The ultimate study companion for HPAS (HAS), HPPSC, Allied Services, Naib Tehsildar, and HP Police. 
+                The ultimate study companion for HPAS (HAS), HPPSC, Allied Services, Naib Tehsildar, HP Patwari, HP High Court, HPRCA and HP Police. 
                 Select a topic below to start practicing bilingual questions.
             </p>
             <div class="subject-tags" style="justify-content: center;">
@@ -307,14 +351,18 @@
             </a>
         </div>
 
-        <div class="subjects-container" style="text-align: center; margin-bottom: 50px;">
-            <h2 class="subjects-title" style="justify-content: center;">Why Use This Platform?</h2>
-            <div class="features-grid" style="justify-content: center;">
-                <div class="feature-item"><i class="fa-solid fa-language"></i> English & Hindi</div>
-                <div class="feature-item"><i class="fa-solid fa-wifi"></i> Works Offline</div>
-                <div class="feature-item"><i class="fa-solid fa-bolt"></i> Fast & Ad-Free</div>
-                <div class="feature-item"><i class="fa-solid fa-mobile"></i> Mobile First</div>
-                <div class="feature-item"><i class="fa-solid fa-floppy-disk"></i> Auto-Save</div>
+        <div class="section-separator"></div>
+
+        <!-- Vertically Compact Features Section -->
+        <div class="subjects-container" style="text-align: center; margin-bottom: 40px; padding: 10px;">
+            <div class="features-grid">
+                <div class="feature-item"><i class="fa-solid fa-language"></i> Bilingual (Eng/Hin)</div>
+                <div class="feature-item"><i class="fa-solid fa-book-open"></i> HPPSC Syllabus Aligned</div>
+                <div class="feature-item"><i class="fa-solid fa-layer-group"></i> Comprehensive Coverage</div>
+                <div class="feature-item"><i class="fa-solid fa-mobile-screen"></i> Mobile Optimized</div>
+                <div class="feature-item"><i class="fa-solid fa-floppy-disk"></i> Auto-Save Progress</div>
+                <div class="feature-item"><i class="fa-solid fa-newspaper"></i> Genuine & Relevant Information</div>
+                <div class="feature-item"><i class="fa-solid fa-circle-check"></i> Detailed Explanations</div>
             </div>
         </div>
 
