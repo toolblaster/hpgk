@@ -76,8 +76,6 @@ function renderHeader(options = {}) {
     }
 
     // Determine the Home Link URL (root of the site)
-    // If we are deep in a folder (rootPath is '..'), use that to go back up.
-    // If rootPath is '.', we are at root (or close enough), but to be safe use absolute or relative correctly.
     const homeUrl = rootPath === '.' ? './' : '../';
 
     headerEl.innerHTML = `
@@ -92,7 +90,7 @@ function renderHeader(options = {}) {
             
             <!-- Compact Home Link Centered -->
             <a href="${homeUrl}" class="home-link-compact" title="Go Home">
-                <i class="fa-solid fa-house"></i> Home
+                <i class="fa-solid fa-house"></i><span class="home-lbl">Home</span>
             </a>
 
             <div class="header-actions">
@@ -111,18 +109,61 @@ function renderHeader(options = {}) {
                 gap: 5px;
                 color: var(--text-sec);
                 text-decoration: none;
-                font-size: 0.75rem; /* Smaller size */
+                font-size: 0.75rem;
                 font-weight: 500;
-                padding: 4px 8px; /* Reduced padding */
-                border-radius: 12px; /* Smaller radius */
+                padding: 4px 10px;
+                border-radius: 20px;
                 background: var(--input-bg);
                 border: 1px solid var(--border-color);
-                /* Removed hover effects */
+                z-index: 10;
+                white-space: nowrap;
             }
-            @media (max-width: 600px) {
-                /* Hide on very small screens if it overlaps, or move it */
+            .home-lbl {
+                display: inline-block;
+            }
+
+            @media (max-width: 480px) {
+                /* Make brand title more compact */
+                .brand-name {
+                    font-size: 0.9rem !important; /* Reduce main title size */
+                    line-height: 1.1;
+                }
+                .brand-sub {
+                    font-size: 0.65rem !important; /* Reduce subtitle size */
+                    display: block; /* Ensure it stacks or hides if needed */
+                }
+                .brand-icon {
+                    font-size: 1.1rem !important; /* Reduce icon size */
+                    margin-right: 6px !important;
+                }
+                
+                /* Adjust spacing of container */
+                .header-content {
+                    padding: 10px 12px !important; /* Slightly tighter padding */
+                }
+
+                /* Mobile Home Link: Right Slide-out Style */
+                .home-lbl {
+                    display: none; /* Hide label for compact look */
+                }
                 .home-link-compact {
-                    display: none; 
+                    position: fixed;
+                    left: auto;
+                    right: 0;
+                    top: 100px; /* Positioned below header */
+                    transform: none;
+                    background: var(--primary); /* High visibility */
+                    color: white !important;
+                    border: none;
+                    border-radius: 20px 0 0 20px; /* Left-rounded tab shape */
+                    padding: 8px 10px 8px 14px;
+                    box-shadow: -2px 2px 8px rgba(0,0,0,0.2);
+                    z-index: 9999;
+                    gap: 0;
+                }
+                .home-link-compact i {
+                    font-size: 1rem;
+                    color: white;
                 }
             }
         </style>
@@ -156,9 +197,6 @@ function renderFooter(rootPath = '.') {
     document.body.style.paddingBottom = '0px';
 
     const currentYear = new Date().getFullYear();
-
-    // Clean links in footer (removing index.html if present in rootPath logic, though here they are specific pages)
-    // For general links, ensure no index.html is appended manually in other calls.
     
     footerEl.innerHTML = `
         <div class="site-footer">
