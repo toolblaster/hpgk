@@ -63,14 +63,78 @@
     <link rel="stylesheet" href="js/style.css">
 
     <style>
-        .hub-hero { text-align: center; max-width: 800px; margin: 0 auto 40px auto; }
-        .topic-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 15px; margin-bottom: 50px; }
-        .topic-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; text-decoration: none; color: var(--text-main); transition: transform 0.2s, box-shadow 0.2s; display: flex; flex-direction: column; align-items: center; text-align: center; box-shadow: var(--glass-shadow); }
-        .topic-card:hover { transform: translateY(-5px); box-shadow: var(--hover-shadow); border-color: var(--primary); }
-        .topic-icon { font-size: 1.8rem; color: var(--primary); margin-bottom: 12px; background: var(--primary-light); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-        .topic-title { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
-        .topic-desc { font-size: 0.8rem; color: var(--text-sec); margin-bottom: 12px; line-height: 1.35; }
-        .topic-badge { margin-top: auto; background: var(--input-bg); color: var(--text-sec); font-size: 0.7rem; padding: 3px 10px; border-radius: 20px; font-weight: 600; }
+        .hub-hero { text-align: center; max-width: 800px; margin: 0 auto 30px auto; }
+        
+        /* Updated Grid for Compact Layout */
+        .topic-grid { 
+            display: grid; 
+            /* Default for mobile/tablet: auto-fit with small min-width */
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); 
+            gap: 12px; 
+            margin-bottom: 40px; 
+        }
+
+        /* Large Screen: Force 5 columns */
+        @media (min-width: 1024px) {
+            .topic-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+
+        .topic-card { 
+            background: var(--card-bg); 
+            border: 1px solid var(--border-color); 
+            border-radius: 10px; /* Reduced radius */
+            padding: 15px; /* Reduced padding */
+            text-decoration: none; 
+            color: var(--text-main); 
+            transition: transform 0.2s, box-shadow 0.2s; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            text-align: center; 
+            box-shadow: var(--glass-shadow); 
+            min-height: 100%;
+        }
+        
+        .topic-card:hover { transform: translateY(-3px); box-shadow: var(--hover-shadow); border-color: var(--primary); }
+        
+        .topic-icon { 
+            font-size: 1.5rem; /* Reduced icon size */
+            color: var(--primary); 
+            margin-bottom: 10px; 
+            background: var(--primary-light); 
+            width: 40px; /* Reduced size */
+            height: 40px; /* Reduced size */
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+        }
+        
+        .topic-title { 
+            font-size: 0.9rem; /* Reduced font size */
+            font-weight: 700; 
+            margin-bottom: 5px; 
+            line-height: 1.2;
+        }
+        
+        .topic-desc { 
+            font-size: 0.75rem; /* Reduced description size */
+            color: var(--text-sec); 
+            margin-bottom: 10px; 
+            line-height: 1.35; 
+        }
+        
+        .topic-badge { 
+            margin-top: auto; 
+            background: var(--input-bg); 
+            color: var(--text-sec); 
+            font-size: 0.65rem; /* Smaller badge */
+            padding: 3px 8px; 
+            border-radius: 12px; 
+            font-weight: 600; 
+        }
         .topic-badge.active { background: var(--correct-bg); color: var(--correct-text); }
         
         /* Install Button Style Override for HPGK theme */
@@ -115,12 +179,11 @@
                 <div class="topic-badge active">290+ MCQs Available</div>
             </a>
 
-            <!-- Card 2: History (UPDATED COUNT) -->
+            <!-- Card 2: History -->
             <a href="history/" class="topic-card">
                 <div class="topic-icon"><i class="fa-solid fa-landmark"></i></div>
                 <div class="topic-title">History of HP</div>
                 <div class="topic-desc">Ancient Trigarta, Gorkha Wars, British Rule, and Statehood.</div>
-                <!-- Updated to reflect 480+ MCQs -->
                 <div class="topic-badge active">480+ MCQs Available</div>
             </a>
 
@@ -169,6 +232,22 @@
                 <div class="topic-icon"><i class="fa-solid fa-user-graduate"></i></div>
                 <div class="topic-title">Famous People</div>
                 <div class="topic-desc">Freedom fighters, PVC awardees, Artists and Writers.</div>
+                <div class="topic-badge">Coming Soon</div>
+            </a>
+
+            <!-- Card 9: Flora & Fauna -->
+            <a href="#" class="topic-card" style="opacity: 0.8;">
+                <div class="topic-icon"><i class="fa-solid fa-tree"></i></div>
+                <div class="topic-title">Flora & Fauna</div>
+                <div class="topic-desc">State symbols, Parks, Sanctuaries & Medicinal plants.</div>
+                <div class="topic-badge">Coming Soon</div>
+            </a>
+
+            <!-- Card 10: Tourism -->
+            <a href="#" class="topic-card" style="opacity: 0.8;">
+                <div class="topic-icon"><i class="fa-solid fa-person-hiking"></i></div>
+                <div class="topic-title">Tourism</div>
+                <div class="topic-desc">Hill stations, Shakti Peethas, Adventure & Tribal circuits.</div>
                 <div class="topic-badge">Coming Soon</div>
             </a>
         </div>
