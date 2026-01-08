@@ -13,12 +13,12 @@
     <meta property="og:url" content="https://hpgk.toolblaster.com">
     <meta property="og:title" content="HPGK Quiz 2026 | Himachal Pradesh General Knowledge Hub">
     <meta property="og:description" content="Master Himachal Pradesh GK with HPGK Quiz! Free mock tests for HPAS, HPPSC, Allied Services, Naib Tehsildar & HP Police 2026.">
-    <meta property="og:image" content="https://hpgk.toolblaster.com/favicon/android-chrome-512x512.png">
+    <meta property="og:image" content="https://hpgk.toolblaster.com/favicon/web-app-manifest-512x512.png">
     <meta property="twitter:card" content="summary">
     <meta property="twitter:url" content="https://hpgk.toolblaster.com">
     <meta property="twitter:title" content="HPGK Quiz 2026 | Himachal Pradesh General Knowledge Hub">
     <meta property="twitter:description" content="Master Himachal Pradesh GK with HPGK Quiz! Free mock tests for HPAS, HPPSC, Allied Services, Naib Tehsildar & HP Police 2026.">
-    <meta property="twitter:image" content="https://hpgk.toolblaster.com/favicon/android-chrome-512x512.png">
+    <meta property="twitter:image" content="https://hpgk.toolblaster.com/favicon/web-app-manifest-512x512.png">
 
     <!-- Clean URL Script: Removes index.html from address bar -->
     <script>
@@ -47,7 +47,13 @@
 
     <!-- Assets -->
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="favicon/web-app-manifest-512x512.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="favicon/web-app-manifest-192x192.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="favicon/favicon-48x48.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="manifest" href="favicon/site.webmanifest">
     <link rel="shortcut icon" href="favicon/favicon.ico">
     <meta name="msapplication-TileColor" content="#2563eb">
     <meta name="theme-color" content="#ffffff">
@@ -66,12 +72,21 @@
         .topic-desc { font-size: 0.8rem; color: var(--text-sec); margin-bottom: 12px; line-height: 1.35; }
         .topic-badge { margin-top: auto; background: var(--input-bg); color: var(--text-sec); font-size: 0.7rem; padding: 3px 10px; border-radius: 20px; font-weight: 600; }
         .topic-badge.active { background: var(--correct-bg); color: var(--correct-text); }
+        
+        /* Install Button Style Override for HPGK theme */
+        .install-float { position: fixed; bottom: 20px; right: 20px; z-index: 1000; display: none; background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 50px; font-weight: 600; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4); cursor: pointer; align-items: center; gap: 8px; animation: slideUp 0.3s ease-out; }
+        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
     </style>
 </head>
 <body>
 
 <!-- Dynamic Header Container -->
 <div id="site-header"></div>
+
+<!-- Install App Button (Hidden by default, shown via JS) -->
+<button id="installBtn" class="install-float" onclick="installApp()">
+    <i class="fa-solid fa-download"></i> Install App
+</button>
 
 <main>
     <div class="main-layout" style="display: block;">
@@ -245,6 +260,47 @@
 
 <!-- Load Layout Manager -->
 <script src="js/layout.js"></script>
+
+<!-- Service Worker Registration for PWA & Install Logic -->
+<script>
+    // Service Worker Registration
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('./sw.js')
+                .then(registration => {
+                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                })
+                .catch(err => {
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+        });
+    }
+
+    // Install Prompt Logic
+    let deferredPrompt;
+    const installBtn = document.getElementById('installBtn');
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        if (installBtn) installBtn.style.display = 'flex';
+    });
+
+    async function installApp() {
+        if (deferredPrompt) {
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            console.log(`User response to the install prompt: ${outcome}`);
+            deferredPrompt = null;
+            if (installBtn) installBtn.style.display = 'none';
+        }
+    }
+
+    window.addEventListener('appinstalled', () => {
+        if (installBtn) installBtn.style.display = 'none';
+        console.log('PWA was installed');
+    });
+</script>
 
 <!-- Initialize Page -->
 <script>
