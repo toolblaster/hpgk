@@ -95,7 +95,27 @@
             border: 1px solid var(--border-color);
             border-left: 4px solid var(--primary);
             box-shadow: var(--glass-shadow);
+            margin-bottom: 15px;
+            /* overflow: hidden; Removed for static display */
         }
+        
+        /* Static Header Style (No Click) */
+        .seo-card h3 {
+            margin: 0;
+            padding: 15px; /* Add padding to header */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--card-bg);
+            border-bottom: 1px solid var(--border-color); /* Separator line */
+        }
+        
+        /* Content Container (Visible by Default) */
+        .seo-content {
+            padding: 15px;
+            display: block; /* Ensure visible */
+        }
+
         [data-theme="dark"] .seo-card {
             border: 1px solid #475569;
             border-left: 4px solid var(--primary);
@@ -189,7 +209,7 @@
         <section class="seo-content-wrapper" style="margin: 0 auto;">
             <div class="seo-header">
                 <h2>Historical Overview (ऐतिहासिक अवलोकन)</h2>
-                <p>From the Mahabharata era to the formation of the 18th state of India.</p>
+                <p>From the Mahabharata era to the formation of the 18th state of India. Detailed notes for competitive exams.<br>महाभारत काल से भारत के 18वें राज्य के गठन तक। प्रतियोगी परीक्षाओं के लिए विस्तृत नोट्स।</p>
             </div>
 
             <div class="seo-grid">
@@ -197,142 +217,166 @@
                 <!-- Card 1: Ancient Kingdoms -->
                 <div class="seo-card">
                     <h3>1. Ancient Janapadas (प्राचीन जनपद)</h3>
-                    <p>Himachal was inhabited by tribes like Dasas, Khasas, and Kinnars. Major ancient states included:</p>
-                    <ul class="seo-list">
-                        <li><strong>Trigarta (Kangra):</strong> Founded by Susharma Chandra (ally of Kauravas). Capital: Nagarkot (Multan earlier). Oldest princely state in HP. Mentioned by Panini as 'Ayudhjivi Sangha'. (सबसे पुरानी रियासत, संस्थापक: सुशर्मा चंद्र, पाणिनि द्वारा उल्लेखित).</li>
-                        <li><strong>Kuluta (Kullu):</strong> Founded by Behangamani Pal. Mentioned in Ramayana and Vishnu Purana. Old capital: Jagatsukh. Famous for ancient democracy (Malana). (विहंगमणि पाल द्वारा स्थापित, प्राचीन राजधानी: जगतसुख).</li>
-                        <li><strong>Audumbaras:</strong> Tribal republic in Pathankot/Kangra/Nurpur region. Worshipped Shiva (Vishwamitra connection). Famous for copper and silver coins found in Kangra and Hamirpur. (पठानकोट/कांगड़ा क्षेत्र, शिव उपासक, तांबे और चांदी के सिक्के).</li>
-                        <li><strong>Kunindas:</strong> Lived between Ambala and Saharanpur (Sirmaur/Shimla hills). Coins found in Tappa Mewa and Jwalamukhi. Ruler: Amoghabhuti (Most famous king). (सिरमौर/शिमला पहाड़ियों के बीच, राजा अमोधभूति).</li>
-                    </ul>
+                    <div class="seo-content">
+                        <p>Himachal was inhabited by tribes like Dasas, Khasas, and Kinnars. Major ancient states included:</p>
+                        <ul class="seo-list">
+                            <li><strong>Trigarta (Kangra):</strong> Founded by Susharma Chandra (ally of Kauravas). Capital: Nagarkot (Multan earlier). Oldest princely state in HP. Mentioned by Panini as 'Ayudhjivi Sangha'. The region between Ravi and Satluj was known as Trigarta. (सबसे पुरानी रियासत, संस्थापक: सुशर्मा चंद्र, पाणिनि द्वारा उल्लेखित 'आयुधजीवी संघ' - जो युद्ध से जीते थे। रावी और सतलुज के बीच का क्षेत्र त्रिगर्त कहलाता था).</li>
+                            <li><strong>Kuluta (Kullu):</strong> Founded by Behangamani Pal. Mentioned in Ramayana, Mahabharata, and Vishnu Purana. Old capital: Jagatsukh (Nast). Famous for ancient democracy (Malana) known as the oldest democracy in the world. (विहंगमणि पाल द्वारा स्थापित, प्राचीन राजधानी: जगतसुख। मलाना को विश्व का सबसे पुराना लोकतंत्र माना जाता है).</li>
+                            <li><strong>Audumbaras:</strong> Tribal republic in Pathankot/Kangra/Nurpur region. Worshipped Shiva (Vishwamitra connection). Famous for copper and silver coins found in Kangra and Hamirpur bearing the figure of a trident (Trishul). (पठानकोट/कांगड़ा क्षेत्र, शिव उपासक, तांबे और चांदी के सिक्के जिन पर त्रिशूल की आकृति थी).</li>
+                            <li><strong>Kunindas:</strong> Lived between Ambala and Saharanpur (Sirmaur/Shimla hills) along the Yamuna river. Coins found in Tappa Mewa and Jwalamukhi. Ruler: Amoghabhuti (Most famous king mentioned in coins). Arjun conquered them during his Digvijaya. (सिरमौर/शिमला पहाड़ियों के बीच यमुना नदी के किनारे। राजा अमोधभूति के सिक्के मिले हैं। अर्जुन ने अपनी दिग्विजय के दौरान उन्हें जीता था).</li>
+                        </ul>
+                    </div>
                 </div>
 
                 <!-- Card 2: Medieval History -->
                 <div class="seo-card">
                     <h3>2. Medieval Period (मध्यकालीन काल)</h3>
-                    <p>The hill states faced invasions from Ghaznavids, Tughlaqs, and later came under Mughal suzerainty.</p>
-                    <ul class="seo-list">
-                        <li><strong>Mahmud Ghazni (1009 AD):</strong> Looted Nagarkot fort and Brajeshwari temple during the 4th expedition. Carried away immense wealth. (नगरकोट किले और ब्रजेश्वरी मंदिर को लूटा).</li>
-                        <li><strong>Firoz Shah Tughlaq (1365 AD):</strong> Attacked Kangra (Raja Rup Chand). Took 1300 Sanskrit books from Jwalamukhi library to translate into Persian (Dalail-i-Firozshahi) by Izz-ud-din Khalid Khani. (1300 संस्कृत पुस्तकें फारसी अनुवाद के लिए ले गए).</li>
-                        <li><strong>Timur (1398 AD):</strong> Invaded Shivalik hills on his way back from Delhi. Hindur (Nalagarh) Raja Alam Chand helped him and saved his state. (शिवालिक पहाड़ियों पर आक्रमण, हिंदूर राजा ने मदद की).</li>
-                        <li><strong>Mughals:</strong> Akbar besieged Kangra (1572). Jahangir captured Kangra Fort (1620) - first Mughal Emperor to visit. Built a mosque inside the fort. (जहांगीर ने कांगड़ा किले पर कब्जा किया, मस्जिद बनवाई).</li>
-                    </ul>
+                    <div class="seo-content">
+                        <p>The hill states faced invasions from Ghaznavids, Tughlaqs, and later came under Mughal suzerainty.</p>
+                        <ul class="seo-list">
+                            <li><strong>Mahmud Ghazni (1009 AD):</strong> Looted Nagarkot fort and Brajeshwari temple during the 4th expedition. Carried away immense wealth. The fort remained under Ghaznavid control until 1043 AD when local Tomar kings recaptured it. (नगरकोट किले और ब्रजेश्वरी मंदिर को लूटा। 1043 ई. तक किला गजनवियों के अधीन रहा जब तक कि तोमर राजाओं ने इसे वापस नहीं ले लिया).</li>
+                            <li><strong>Firoz Shah Tughlaq (1365 AD):</strong> Attacked Kangra (Raja Rup Chand). Took 1300 Sanskrit books from Jwalamukhi library to translate into Persian (Dalail-i-Firozshahi) by Izz-ud-din Khalid Khani. Raja Rup Chand had earlier looted plains up to Delhi. (1300 संस्कृत पुस्तकें फारसी अनुवाद 'दलाइल-ए-फिरोजशाही' के लिए ले गए। राजा रूप चंद ने पहले दिल्ली तक के मैदानी इलाकों को लूटा था).</li>
+                            <li><strong>Timur (1398 AD):</strong> Invaded Shivalik hills on his way back from Delhi. Hindur (Nalagarh) Raja Alam Chand helped him and saved his state. He captured the fort of Nagarkot and Dhameri (Nurpur). (शिवालिक पहाड़ियों पर आक्रमण, हिंदूर राजा आलम चंद ने मदद की और अपना राज्य बचाया। उसने नगरकोट और धमेरी के किले पर कब्जा किया).</li>
+                            <li><strong>Mughals:</strong> Akbar sent Todar Mal to measure land. Jahangir captured Kangra Fort (1620) - first Mughal Emperor to visit. He built a mosque inside the fort. Raja Sansar Chand later recovered the fort in 1786. (अकबर ने टोडर मल को भेजा। जहांगीर ने 1620 में कांगड़ा किले पर कब्जा किया और मस्जिद बनवाई। 1786 में राजा संसार चंद ने किला वापस लिया).</li>
+                        </ul>
+                    </div>
                 </div>
 
                 <!-- Card 3: The Gorkha Wars -->
                 <div class="seo-card">
                     <h3>3. The Gorkha Invasion (गोरखा आक्रमण)</h3>
-                    <p>The expanding Gorkha empire under Amar Singh Thapa clashed with Sansar Chand and later the British.</p>
-                    <ul class="seo-list">
-                        <li><strong>Battle of Mahal Morian (1806):</strong> Gorkhas defeated Sansar Chand of Kangra at Mahal Morian (Hamirpur). Sansar Chand took refuge in Kangra Fort for 4 years. (गोरखाओं ने संसार चंद को हराया).</li>
-                        <li><strong>Invitation:</strong> Raja Mahan Chand of Bilaspur invited Gorkhas to fight Sansar Chand due to his expansionist policy. (बिलासपुर के राजा महान चंद ने आमंत्रण दिया).</li>
-                        <li><strong>Anglo-Gorkha War (1814-15):</strong> British (David Ochterlony) vs Gorkhas (Amar Singh Thapa). Key Battles: Jaitak (Sirmaur), Malaon (Solan). Bhakti Thapa showed immense bravery. (अंग्रेज बनाम गोरखा).</li>
-                        <li><strong>Treaty of Sugauli (1815):</strong> Ended the war. Signed at Sugauli. Gorkhas ceded HP territories (Shimla, Kinnaur, Sirmaur) to British. Satluj became the boundary. (युद्ध समाप्त, सतलुज सीमा बनी).</li>
-                    </ul>
+                    <div class="seo-content">
+                        <p>The expanding Gorkha empire under Amar Singh Thapa clashed with Sansar Chand and later the British.</p>
+                        <ul class="seo-list">
+                            <li><strong>Battle of Mahal Morian (1806):</strong> Gorkhas defeated Sansar Chand of Kangra at Mahal Morian (Hamirpur). Sansar Chand took refuge in Kangra Fort for 4 years. He sought help from Maharaja Ranjit Singh. (गोरखाओं ने संसार चंद को महल मोरियां में हराया। संसार चंद ने कांगड़ा किले में शरण ली और महाराजा रणजीत सिंह से मदद मांगी).</li>
+                            <li><strong>Invitation:</strong> Raja Mahan Chand of Bilaspur invited Gorkhas to fight Sansar Chand due to his expansionist policy. Other hill chiefs also joined the Gorkhas against Sansar Chand. (बिलासपुर के राजा महान चंद ने आमंत्रण दिया। अन्य पहाड़ी राजा भी संसार चंद के खिलाफ गोरखाओं में शामिल हो गए).</li>
+                            <li><strong>Anglo-Gorkha War (1814-15):</strong> British (David Ochterlony) vs Gorkhas (Amar Singh Thapa). Key Battles: Jaitak (Sirmaur), Malaon (Solan). Bhakti Thapa showed immense bravery at Malaon fort but died. (अंग्रेज बनाम गोरखा। जैतक और मलौण के प्रमुख युद्ध। भक्ति थापा ने मलौण किले में वीरता दिखाई लेकिन मारे गए).</li>
+                            <li><strong>Treaty of Sugauli (1815):</strong> Ended the war. Signed at Sugauli. Gorkhas ceded HP territories (Shimla, Kinnaur, Sirmaur) to British. Satluj became the boundary between British India and the Gorkha Kingdom. (युद्ध समाप्त, सतलुज सीमा बनी। गोरखाओं ने शिमला, किन्नौर और सिरमौर के क्षेत्र अंग्रेजों को सौंप दिए).</li>
+                        </ul>
+                    </div>
                 </div>
 
                 <!-- Card 4: British Rule & 1857 -->
                 <div class="seo-card">
                     <h3>4. British Rule & 1857 Revolt (ब्रिटिश शासन)</h3>
-                    <p>After 1815, British paramountcy was established. The 1857 revolt saw mixed reactions from Hill Chiefs.</p>
-                    <ul class="seo-list">
-                        <li><strong>1857 Revolt (विद्रोह):</strong> Raja Shamsher Singh of Bushahr was hostile to British and refused tribute. Raja of Kahlur (Bilaspur) & Mandi helped British. Ram Singh Pathania revolted in Nurpur. (बुशहर के राजा ने विरोध किया, नूरपुर में वजीर राम सिंह).</li>
-                        <li><strong>Subathu:</strong> First Nasiri Battalion (Gurkhas) formed here. Oldest Cantonment established in 1815. (पहली नासिरी बटालियन, सबसे पुराना छावनी).</li>
-                        <li><strong>Kasauli:</strong> Soldiers of the Nasiri battalion revolted and looted the treasury but were suppressed. (कसौली विद्रोह).</li>
-                        <li><strong>Loyalty:</strong> Most hill rajas (Chamba, Mandi, Bilaspur, Sirmaur) remained loyal to British to save their states and received Sanads. (अधिकतर राजा वफादार रहे).</li>
-                    </ul>
+                    <div class="seo-content">
+                        <p>After 1815, British paramountcy was established. The 1857 revolt saw mixed reactions from Hill Chiefs.</p>
+                        <ul class="seo-list">
+                            <li><strong>1857 Revolt (विद्रोह):</strong> Raja Shamsher Singh of Bushahr was hostile to British and refused tribute. Raja of Kahlur (Bilaspur), Mandi & Sirmaur helped British. Ram Singh Pathania revolted in Nurpur but was captured and sent to Singapore. (बुशहर के राजा ने विरोध किया। बिलासपुर, मंडी और सिरमौर ने अंग्रेजों की मदद की। नूरपुर में वजीर राम सिंह ने विद्रोह किया लेकिन पकड़े गए).</li>
+                            <li><strong>Subathu:</strong> First Nasiri Battalion (Gurkhas) formed here. Oldest Cantonment established in 1815. It became the headquarters of the political agent for hill states. (पहली नासिरी बटालियन, सबसे पुराना छावनी 1815 में स्थापित। यह पहाड़ी राज्यों के राजनीतिक एजेंट का मुख्यालय बना).</li>
+                            <li><strong>Kasauli:</strong> Soldiers of the Nasiri battalion revolted and looted the treasury but were suppressed. The rebellion started here on 20th April 1857. (कसौली विद्रोह। 20 अप्रैल 1857 को यहाँ विद्रोह शुरू हुआ, खजाना लूटा गया).</li>
+                            <li><strong>Loyalty:</strong> Most hill rajas (Chamba, Mandi, Bilaspur, Sirmaur) remained loyal to British to save their states and received Sanads (Right of Adoption). (अधिकतर राजा वफादार रहे और उन्हें गोद लेने का अधिकार 'सनद' मिला).</li>
+                        </ul>
+                    </div>
                 </div>
 
                 <!-- Card 5: Freedom Struggle -->
                 <div class="seo-card">
                     <h3>5. Prajamandal Movement (प्रजामंडल आंदोलन)</h3>
-                    <p>People's movement against the feudal rule of Rajas and British interference, demanding democratic rights.</p>
-                    <ul class="seo-list">
-                        <li><strong>Dhami Firing (1939):</strong> "Black Day" in HP history. Bhagmal Sautha led the protest demanding end to Begar. Police fired on peaceful crowd, 2 died. (धामी गोलीकांड - काला दिवस).</li>
-                        <li><strong>Pajhota Andolan (1942):</strong> Extension of Quit India Movement in Sirmaur. Leaders: Vaid Surat Singh, Mian Chu-Chu. Slogan "Bhai Do Na Pai" started here. (पझोता आंदोलन, सिरमौर).</li>
-                        <li><strong>Suket Satyagraha (1948):</strong> Led by Pt. Padam Dev against Raja of Suket. Led to merger of Suket into India, accelerating HP formation. (सुकेत सत्याग्रह, पं. पदम देव).</li>
-                        <li><strong>Bhai Do Na Pai Do:</strong> Movement in Kangra/Hills echoing "No Revenue, No Soldiers" to British. (भाई दो न पाई दो आंदोलन).</li>
-                    </ul>
+                    <div class="seo-content">
+                        <p>People's movement against the feudal rule of Rajas and British interference, demanding democratic rights.</p>
+                        <ul class="seo-list">
+                            <li><strong>Dhami Firing (1939):</strong> "Black Day" in HP history (16 July 1939). Bhagmal Sautha led the protest demanding end to Begar. Police fired on peaceful crowd, 2 died. The ruler of Dhami was Rana Dalip Singh. (धामी गोलीकांड - काला दिवस, 16 जुलाई 1939। भागमल सौठा के नेतृत्व में बेगार प्रथा के खिलाफ प्रदर्शन। राणा दलीप सिंह शासक थे).</li>
+                            <li><strong>Pajhota Andolan (1942):</strong> Extension of Quit India Movement in Sirmaur. Leaders: Vaid Surat Singh, Mian Chu-Chu. Slogan "Bhai Do Na Pai" started here. The movement demanded a representative government. (पझोता आंदोलन, सिरमौर। भारत छोड़ो आंदोलन का विस्तार। नारा 'भाई दो न पाई' - न सेना दो, न पैसा दो).</li>
+                            <li><strong>Suket Satyagraha (1948):</strong> Led by Pt. Padam Dev against Raja of Suket (Lakshman Sen). On 18 Feb 1948, satyagrahis marched into Sundernagar. Led to merger of Suket into India, accelerating HP formation. (सुकेत सत्याग्रह, पं. पदम देव के नेतृत्व में। 18 फरवरी 1948 को सुंदरनगर कूच किया। इससे हिमाचल गठन में तेजी आई).</li>
+                            <li><strong>Bhai Do Na Pai Do:</strong> Movement in Kangra/Hills echoing "No Revenue, No Soldiers" to British. It was part of the Civil Disobedience Movement. (भाई दो न पाई दो आंदोलन - सविनय अवज्ञा आंदोलन का हिस्सा).</li>
+                        </ul>
+                    </div>
                 </div>
 
-                <!-- Card 6: Formation of HP -->
+                <!-- Card 6: Formation of State -->
                 <div class="seo-card">
                     <h3>6. Formation of State (राज्य का गठन)</h3>
-                    <ul class="seo-list">
-                        <li><strong>15 April 1948:</strong> HP formed as Chief Commissioner's Province (30 princely states merged). 4 Districts: Chamba, Mandi, Mahasu, Sirmour. First Chief Commissioner: N.C. Mehta. (मुख्य आयुक्त प्रांत, 4 जिले).</li>
-                        <li><strong>1951:</strong> Became 'Part C' State under Indian Constitution. First Lt. Governor: Major Gen Himmat Singh. ('सी' श्रेणी राज्य).</li>
-                        <li><strong>1 Nov 1966:</strong> Punjab Reorganization. Kangra, Kullu, Shimla, Lahaul-Spiti merged into HP. Area doubled to 55,673 sq km. (विशाल हिमाचल का निर्माण).</li>
-                        <li><strong>25 Jan 1971:</strong> Full Statehood (18th State). Inaugurated by Indira Gandhi at Ridge, Shimla amid snowfall. First CM: Dr. Y.S. Parmar. (पूर्ण राज्यत्व, 18वां राज्य).</li>
-                    </ul>
+                    <div class="seo-content">
+                        <ul class="seo-list">
+                            <li><strong>15 April 1948:</strong> HP formed as Chief Commissioner's Province (30 princely states merged). 4 Districts: Chamba, Mandi, Mahasu, Sirmour. First Chief Commissioner: N.C. Mehta. Area: 27,018 sq km. (मुख्य आयुक्त प्रांत, 4 जिले, क्षेत्रफल 27,018 वर्ग किमी).</li>
+                            <li><strong>1951:</strong> Became 'Part C' State under Indian Constitution. First Lt. Governor: Major Gen Himmat Singh. 36 member legislative assembly was formed. ('सी' श्रेणी राज्य। 36 सदस्यीय विधानसभा बनी).</li>
+                            <li><strong>1 Nov 1966:</strong> Punjab Reorganization. Kangra, Kullu, Shimla, Lahaul-Spiti merged into HP. Area doubled to 55,673 sq km. This created 'Vishal Himachal'. (विशाल हिमाचल का निर्माण। पंजाब पुनर्गठन से क्षेत्रफल दोगुना हो गया).</li>
+                            <li><strong>25 Jan 1971:</strong> Full Statehood (18th State). Inaugurated by Indira Gandhi at Ridge, Shimla amid snowfall. First CM: Dr. Y.S. Parmar. S. Chakravarti became the first Governor. (पूर्ण राज्यत्व, 18वां राज्य। एस. चक्रवर्ती पहले राज्यपाल बने).</li>
+                        </ul>
+                    </div>
                 </div>
 
                 <!-- Card 6A: C-class State -->
                 <div class="seo-card">
                     <h3>6A. C-class State (1948-1956) ('सी' श्रेणी राज्य)</h3>
-                    <p>After being a Chief Commissioner's Province from 1948 to 1951, Himachal Pradesh became a Part-C state. <br>1948 से 1951 तक मुख्य आयुक्त प्रांत रहने के बाद, हिमाचल प्रदेश एक 'सी' श्रेणी राज्य बन गया।</p>
-                    <ul class="seo-list">
-                        <li><strong>1951 Act:</strong> The Government of Part C States Act, 1951 was passed. (भाग सी राज्य अधिनियम पारित).</li>
-                        <li><strong>First Elections (पहले चुनाव):</strong> Held in 1952. Congress won 24 out of 36 seats. (1952 में चुनाव, कांग्रेस ने 24 सीटें जीतीं).</li>
-                        <li><strong>First CM (प्रथम मुख्यमंत्री):</strong> Dr. Y.S. Parmar took oath on 24th March 1952. (डॉ. वाई.एस. परमार ने शपथ ली).</li>
-                        <li><strong>Lt. Governor (उपराज्यपाल):</strong> Replaced the Chief Commissioner. Major General Himmat Singh was the first (1st March 1952). (मुख्य आयुक्त की जगह उपराज्यपाल).</li>
-                    </ul>
+                    <div class="seo-content">
+                        <p>After being a Chief Commissioner's Province from 1948 to 1951, Himachal Pradesh became a Part-C state. <br>1948 से 1951 तक मुख्य आयुक्त प्रांत रहने के बाद, हिमाचल प्रदेश एक 'सी' श्रेणी राज्य बन गया।</p>
+                        <ul class="seo-list">
+                            <li><strong>1951 Act:</strong> The Government of Part C States Act, 1951 was passed. This allowed for a legislative assembly. (भाग सी राज्य अधिनियम पारित, विधानसभा की अनुमति मिली).</li>
+                            <li><strong>First Elections (पहले चुनाव):</strong> Held in 1952. Congress won 24 out of 36 seats. KLP (Kisan Mazdoor Praja Party) was the main opposition. (1952 में चुनाव, कांग्रेस ने 24 सीटें जीतीं).</li>
+                            <li><strong>First CM (प्रथम मुख्यमंत्री):</strong> Dr. Y.S. Parmar took oath on 24th March 1952. Pandit Jaivant Ram became the first Speaker. (डॉ. वाई.एस. परमार ने शपथ ली। पंडित जयवंत राम पहले अध्यक्ष बने).</li>
+                            <li><strong>Lt. Governor (उपराज्यपाल):</strong> Replaced the Chief Commissioner. Major General Himmat Singh was the first (1st March 1952). (मुख्य आयुक्त की जगह उपराज्यपाल पद सृजित).</li>
+                        </ul>
+                    </div>
                 </div>
 
                 <!-- Card 6B: Union Territory -->
                 <div class="seo-card">
                     <h3>6B. Union Territory (1956-1971) (केंद्र शासित प्रदेश)</h3>
-                    <p>Following the States Reorganization Commission (Fazl Ali Commission) report, HP became a Union Territory. <br>राज्य पुनर्गठन आयोग (फजल अली आयोग) की रिपोर्ट के बाद, हिमाचल प्रदेश एक केंद्र शासित प्रदेश बन गया।</p>
-                    <ul class="seo-list">
-                        <li><strong>1 Nov 1956:</strong> Status changed from Part-C State to Union Territory. (भाग-सी राज्य से केंद्र शासित प्रदेश बना).</li>
-                        <li><strong>Territorial Council (क्षेत्रीय परिषद):</strong> The Legislative Assembly was abolished and replaced by a Territorial Council. Thakur Karam Singh was elected Chairman. (विधानसभा समाप्त, क्षेत्रीय परिषद गठित).</li>
-                        <li><strong>Restoration (बहाली):</strong> The Legislative Assembly was restored on 1st July 1963. Dr. Y.S. Parmar became CM again. (विधानसभा बहाल).</li>
-                        <li><strong>1966 Merger (विलय):</strong> Massive expansion with merger of Punjab hill areas, but remained a UT. (पंजाब पहाड़ी क्षेत्रों का विलय).</li>
-                    </ul>
+                    <div class="seo-content">
+                        <p>Following the States Reorganization Commission (Fazl Ali Commission) report, HP became a Union Territory. <br>राज्य पुनर्गठन आयोग (फजल अली आयोग) की रिपोर्ट के बाद, हिमाचल प्रदेश एक केंद्र शासित प्रदेश बन गया।</p>
+                        <ul class="seo-list">
+                            <li><strong>1 Nov 1956:</strong> Status changed from Part-C State to Union Territory. Bajrang Bahadur Singh became the first Lt. Governor of UT Himachal. (भाग-सी राज्य से केंद्र शासित प्रदेश बना। बजरंग बहादुर सिंह पहले उपराज्यपाल बने).</li>
+                            <li><strong>Territorial Council (क्षेत्रीय परिषद):</strong> The Legislative Assembly was abolished and replaced by a Territorial Council. Thakur Karam Singh was elected Chairman. (विधानसभा समाप्त, क्षेत्रीय परिषद गठित। ठाकुर करम सिंह अध्यक्ष बने).</li>
+                            <li><strong>Restoration (बहाली):</strong> The Legislative Assembly was restored on 1st July 1963. Dr. Y.S. Parmar became CM again. This was due to the 14th Amendment Act. (विधानसभा बहाल, 14वें संशोधन अधिनियम के कारण).</li>
+                            <li><strong>1966 Merger (विलय):</strong> Massive expansion with merger of Punjab hill areas, but remained a UT. New districts like Kangra, Kullu, Shimla, Lahaul-Spiti added. (पंजाब पहाड़ी क्षेत्रों का विलय, नए जिले जुड़े).</li>
+                        </ul>
+                    </div>
                 </div>
 
                 <!-- Card 6C: Full Statehood -->
                 <div class="seo-card">
                     <h3>6C. Full Statehood (1971) (पूर्ण राज्यत्व)</h3>
-                    <p>The final step in the political journey of Himachal Pradesh. <br>हिमाचल प्रदेश की राजनीतिक यात्रा का अंतिम चरण।</p>
-                    <ul class="seo-list">
-                        <li><strong>31 July 1970:</strong> The State of Himachal Pradesh Act was passed by the Parliament. (संसद ने हिमाचल प्रदेश राज्य अधिनियम पारित किया).</li>
-                        <li><strong>25 Jan 1971:</strong> Prime Minister Indira Gandhi inaugurated the new state at Ridge, Shimla. (प्रधानमंत्री इंदिरा गांधी ने नए राज्य का उद्घाटन किया).</li>
-                        <li><strong>Status (स्थिति):</strong> Became the 18th State of the Indian Union. (भारतीय संघ का 18वां राज्य बना).</li>
-                        <li><strong>Significance (महत्व):</strong> First hill state to achieve this status after J&K, proving that hill economies could be viable. (जम्मू-कश्मीर के बाद यह दर्जा पाने वाला पहला पहाड़ी राज्य).</li>
-                    </ul>
+                    <div class="seo-content">
+                        <p>The final step in the political journey of Himachal Pradesh. <br>हिमाचल प्रदेश की राजनीतिक यात्रा का अंतिम चरण।</p>
+                        <ul class="seo-list">
+                            <li><strong>31 July 1970:</strong> The State of Himachal Pradesh Act was passed by the Parliament. It received Presidential assent in Dec 1970. (संसद ने हिमाचल प्रदेश राज्य अधिनियम पारित किया).</li>
+                            <li><strong>25 Jan 1971:</strong> Prime Minister Indira Gandhi inaugurated the new state at Ridge, Shimla. She addressed a massive gathering in snow. (प्रधानमंत्री इंदिरा गांधी ने नए राज्य का उद्घाटन किया).</li>
+                            <li><strong>Status (स्थिति):</strong> Became the 18th State of the Indian Union. (भारतीय संघ का 18वां राज्य बना).</li>
+                            <li><strong>Significance (महत्व):</strong> First hill state to achieve this status after J&K, proving that hill economies could be viable. It paved way for other hill states. (जम्मू-कश्मीर के बाद यह दर्जा पाने वाला पहला पहाड़ी राज्य).</li>
+                        </ul>
+                    </div>
                 </div>
 
                 <!-- Card 7: Famous Freedom Fighters -->
                 <div class="seo-card">
                     <h3>7. Famous Freedom Fighters (प्रसिद्ध स्वतंत्रता सेनानी)</h3>
-                    <ul class="seo-list">
-                        <li><strong>Dr. Y.S. Parmar:</strong> Known as the 'Founder of Himachal Pradesh'. First Chief Minister. Led the Himalayan Hill States Regional Council. (हिमाचल निर्माता, प्रथम मुख्यमंत्री).</li>
-                        <li><strong>Baba Kanshi Ram:</strong> 'Pahari Gandhi' (Title by Nehru) & 'Paharan Da Bulbul' (Title by Sarojini Naidu). Vowed to wear black clothes until freedom after execution of Bhagat Singh. (पहाड़ी गांधी, काले कपड़े पहनने की शपथ).</li>
-                        <li><strong>Pt. Padam Dev:</strong> 'Kaviraj'. Led the Suket Satyagraha. Founding member of HP Congress. (कविराज, सुकेत सत्याग्रह).</li>
-                        <li><strong>Vaid Surat Singh:</strong> Key leader of the Pajhota Movement in Sirmaur. Advocated for non-violent resistance. (पझोता आंदोलन के नेता).</li>
-                    </ul>
+                    <div class="seo-content">
+                        <ul class="seo-list">
+                            <li><strong>Dr. Y.S. Parmar:</strong> Known as the 'Founder of Himachal Pradesh'. First Chief Minister (4 times). Led the Himalayan Hill States Regional Council. Born in Bagthan, Sirmaur. (हिमाचल निर्माता, 4 बार मुख्यमंत्री, सिरमौर के बागथन में जन्म).</li>
+                            <li><strong>Baba Kanshi Ram:</strong> 'Pahari Gandhi' (Title by Nehru at Gadhiwala conference) & 'Paharan Da Bulbul' (Title by Sarojini Naidu). Vowed to wear black clothes until freedom after execution of Bhagat Singh. (पहाड़ी गांधी - नेहरू द्वारा, पहाड़ा दा बुलबुल - सरोजिनी नायडू द्वारा। काले कपड़े पहनने की शपथ).</li>
+                            <li><strong>Pt. Padam Dev:</strong> 'Kaviraj'. Led the Suket Satyagraha. Founding member of HP Congress. Born in Rohru. Fought against Reet marriage custom. (कविराज, सुकेत सत्याग्रह, रीत विवाह प्रथा के खिलाफ लड़े).</li>
+                            <li><strong>Vaid Surat Singh:</strong> Key leader of the Pajhota Movement in Sirmaur. Advocated for non-violent resistance. Served as chairman of the Praja Mandal. (पझोता आंदोलन के नेता, प्रजामंडल के अध्यक्ष रहे).</li>
+                        </ul>
+                    </div>
                 </div>
 
                 <!-- Card 8: Key Historical Treaties -->
                 <div class="seo-card">
                     <h3>8. Key Historical Treaties (प्रमुख ऐतिहासिक संधियाँ)</h3>
-                    <ul class="seo-list">
-                        <li><strong>Treaty of Jwalamukhi (1809):</strong> Between Sansar Chand & Maharaja Ranjit Singh. Kangra Fort ceded to Sikhs. (ज्वालामुखी संधि).</li>
-                        <li><strong>Treaty of Sugauli (1815):</strong> Between British & Gurkhas. Defined British control over HP hills west of Kali river. (सुगौली संधि).</li>
-                        <li><strong>Treaty of Amritsar (1846):</strong> Between British & Gulab Singh. Created J&K state, transferred Chamba and Lahaul to Gulab Singh (later Chamba restored). (अमृतसर संधि).</li>
-                        <li><strong>Treaty of Malaon (1815):</strong> Surrender of Amar Singh Thapa to Ochterlony, ending Gurkha rule in HP. (मलौण संधि).</li>
-                    </ul>
+                    <div class="seo-content">
+                        <ul class="seo-list">
+                            <li><strong>Treaty of Jwalamukhi (1809):</strong> Between Sansar Chand & Maharaja Ranjit Singh. Kangra Fort ceded to Sikhs in exchange for help against Gorkhas. 66 villages also given. (ज्वालामुखी संधि: कांगड़ा किला और 66 गाँव सिखों को दिए, गोरखाओं के खिलाफ मदद के बदले).</li>
+                            <li><strong>Treaty of Sugauli (1815):</strong> Between British & Gurkhas. Defined British control over HP hills west of Kali river. Amar Singh Thapa surrendered his son Ranjor Singh. (सुगौली संधि: काली नदी के पश्चिम में अंग्रेजों का नियंत्रण).</li>
+                            <li><strong>Treaty of Amritsar (1846):</strong> Between British & Gulab Singh. Created J&K state, transferred Chamba and Lahaul to Gulab Singh (later Chamba restored to Raja Sri Singh for 6 lakh rupees). (अमृतसर संधि: जेएंडके राज्य का निर्माण, चंबा बाद में वापस मिला).</li>
+                            <li><strong>Treaty of Malaon (1815):</strong> Surrender of Amar Singh Thapa to Ochterlony, ending Gurkha rule in HP. It allowed Thapa to retreat with his arms. (मलौण संधि: हिमाचल में गोरखा शासन का अंत).</li>
+                        </ul>
+                    </div>
                 </div>
 
                 <!-- Card 9: Historical Forts & Architecture -->
                 <div class="seo-card">
                     <h3>9. Historical Forts (ऐतिहासिक किले)</h3>
-                    <ul class="seo-list">
-                        <li><strong>Kangra Fort:</strong> Built by Susharma Chandra. Oldest fort in HP. Captured by Mahmud Ghazni, Firoz Tughlaq, Jahangir, Ranjit Singh, and British. (कांगड़ा किला - सबसे पुराना).</li>
-                        <li><strong>Kamlah Fort:</strong> Located in Mandi. Built by Raja Suraj Sen. Famous for its invincibility until 1840 when Sikhs captured it. (कमलाह किला, मंडी).</li>
-                        <li><strong>Jaitak Fort:</strong> Built by Ranjor Singh Thapa (Gurkha) in Sirmaur using material from Nahan fort. Site of major battle in 1814. (जैटक किला, सिरमौर).</li>
-                        <li><strong>Naggar Castle:</strong> Ancient seat of Kullu Rajas. Built by Raja Sidh Singh. Example of Kath-Kuni architecture. (नग्गर कैसल, कुल्लू).</li>
-                        <li><strong>Arki Fort:</strong> Capital of Baghal state. Mural paintings in Arki style are famous. (अर्की किला).</li>
-                    </ul>
+                    <div class="seo-content">
+                        <ul class="seo-list">
+                            <li><strong>Kangra Fort:</strong> Built by Susharma Chandra. Oldest fort in HP. Captured by Mahmud Ghazni, Firoz Tughlaq, Jahangir, Ranjit Singh, and British. Known as Nagarkot. (कांगड़ा किला - सबसे पुराना, नगरकोट के नाम से प्रसिद्ध).</li>
+                            <li><strong>Kamlah Fort:</strong> Located in Mandi. Built by Raja Suraj Sen (1625). Famous for its invincibility until 1840 when Sikhs captured it. It has 6 gates. (कमलाह किला, मंडी। 1625 में राजा सूरज सेन द्वारा निर्मित, 6 दरवाजे).</li>
+                            <li><strong>Jaitak Fort:</strong> Built by Ranjor Singh Thapa (Gurkha) in Sirmaur using material from Nahan fort. Site of major battle in 1814 against British. (जैटक किला, सिरमौर। रंजोर सिंह थापा द्वारा निर्मित).</li>
+                            <li><strong>Naggar Castle:</strong> Ancient seat of Kullu Rajas. Built by Raja Sidh Singh. Example of Kath-Kuni architecture (wood and stone interlocking). Now a heritage hotel. (नग्गर कैसल, कुल्लू। काठ-कुणी वास्तुकला का उदाहरण).</li>
+                            <li><strong>Arki Fort:</strong> Capital of Baghal state. Mural paintings in Arki style are famous. Built by Rana Prithvi Singh. (अर्की किला, बाघल राज्य की राजधानी। भित्ति चित्रों के लिए प्रसिद्ध).</li>
+                        </ul>
+                    </div>
                 </div>
 
             </div>
@@ -351,7 +395,7 @@
     renderHeader({
         title: 'History of HP',
         subtitle: 'Category',
-        iconClass: 'fa-solid fa-landmark', // Changed icon to Landmark for History
+        iconClass: 'fa-solid fa-landmark', 
         link: '../index.html',
         isQuizPage: true, 
         rootPath: '..'
