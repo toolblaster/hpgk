@@ -75,8 +75,13 @@ function renderHeader(options = {}) {
         `;
     }
 
+    // Determine the Home Link URL (root of the site)
+    // If we are deep in a folder (rootPath is '..'), use that to go back up.
+    // If rootPath is '.', we are at root (or close enough), but to be safe use absolute or relative correctly.
+    const homeUrl = rootPath === '.' ? './' : '../';
+
     headerEl.innerHTML = `
-        <div class="header-content">
+        <div class="header-content" style="position: relative;">
             <a href="${cleanLink}" class="brand">
                 <i class="${iconClass} brand-icon" ${isQuizPage ? 'style="font-size:1.2rem;"' : ''}></i>
                 <div class="brand-name">
@@ -84,10 +89,43 @@ function renderHeader(options = {}) {
                     <span class="brand-sub">${subtitle}</span>
                 </div>
             </a>
+            
+            <!-- Compact Home Link Centered -->
+            <a href="${homeUrl}" class="home-link-compact" title="Go Home">
+                <i class="fa-solid fa-house"></i> Home
+            </a>
+
             <div class="header-actions">
                 ${actionButtons}
             </div>
         </div>
+        <style>
+            /* Dynamic Styles for LayoutJS elements */
+            .home-link-compact {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                color: var(--text-sec);
+                text-decoration: none;
+                font-size: 0.75rem; /* Smaller size */
+                font-weight: 500;
+                padding: 4px 8px; /* Reduced padding */
+                border-radius: 12px; /* Smaller radius */
+                background: var(--input-bg);
+                border: 1px solid var(--border-color);
+                /* Removed hover effects */
+            }
+            @media (max-width: 600px) {
+                /* Hide on very small screens if it overlaps, or move it */
+                .home-link-compact {
+                    display: none; 
+                }
+            }
+        </style>
     `;
 
     // Initialize Theme State immediately after render
