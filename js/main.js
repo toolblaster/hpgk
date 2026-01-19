@@ -9,7 +9,7 @@ let historyState = { lastIndex: 0, answers: {} };
 let fontLevel = -1; 
 let currentSearchTerm = '';
 
-// Elements
+// Elements - These might be null on non-quiz pages
 const cardArea = document.getElementById('cardArea');
 const quizContent = document.getElementById('quizContent');
 const prevBtn = document.getElementById('prevBtn');
@@ -24,6 +24,9 @@ const jumpTrigger = document.getElementById('jumpTrigger');
 window.onload = () => {
     const currentTheme = document.documentElement.getAttribute('data-theme');
     updateThemeIcon(currentTheme);
+
+    // GUARD: If no quiz card area exists, stop here to prevent errors
+    if (!cardArea) return;
 
     setTimeout(() => {
         if (window.quizData && window.quizData.length > 0) {
@@ -57,6 +60,7 @@ function toggleTheme() {
 }
 
 function updateThemeIcon(theme) {
+    if (!themeBtn) return; // Guard for missing theme button
     if(theme === 'dark') {
         themeBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
     } else {
@@ -122,6 +126,9 @@ function getFontSize() {
 }
 
 function updateStats() {
+    // GUARD: Check if stat elements exist
+    if (!document.getElementById('statDone')) return;
+
     const total = window.quizData.length;
     const completedIds = Object.keys(historyState.answers);
     const completedCount = completedIds.length;
@@ -153,6 +160,9 @@ function highlightText(text, term) {
 }
 
 function loadQuestion(index) {
+    // GUARD: Ensure UI elements exist
+    if (!quizContent || !cardArea) return;
+
     quizContent.scrollTop = 0;
 
     if (currentList.length === 0) {
@@ -238,7 +248,7 @@ function loadQuestion(index) {
         ${explanationHtml}
     `;
 
-    if (searchInput.value === '') { 
+    if (searchInput && searchInput.value === '') { 
         historyState.lastIndex = currentIndex;
         saveToStorage();
     }
@@ -258,40 +268,41 @@ window.handleAnswer = function(btn, qId, choiceIndex) {
     loadQuestion(currentIndex);
 };
 
-nextBtn.addEventListener('click', () => {
-    if (currentIndex < currentList.length - 1) {
-        currentIndex++;
-        loadQuestion(currentIndex);
-    }
-});
-
-prevBtn.addEventListener('click', () => {
-    if (currentIndex > 0) {
-        currentIndex--;
-        loadQuestion(currentIndex);
-    }
-});
-
-jumpTrigger.addEventListener('click', () => {
-    const max = currentList.length;
-    const p = prompt(`Enter Question Number (1 - ${max}) to jump:`, currentIndex + 1);
-    if (p) {
-        const num = parseInt(p);
-        if (!isNaN(num) && num >= 1 && num <= max) {
-            currentIndex = num - 1;
+// Event Listeners with Null Checks
+if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+        if (currentIndex < currentList.length - 1) {
+            currentIndex++;
             loadQuestion(currentIndex);
         }
-    }
-});
+    });
+}
+
+if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+        if (currentIndex > 0) {
+            currentIndex--;
+            loadQuestion(currentIndex);
+        }
+    });
+}
+
+// Removed jumpTrigger click listener
 
 document.addEventListener('keydown', (e) => {
-    if (document.activeElement !== searchInput) {
-        if (e.key === 'ArrowRight' && !nextBtn.disabled) nextBtn.click();
-        if (e.key === 'ArrowLeft' && !prevBtn.disabled) prevBtn.click();
+    // Safety check for searchInput presence
+    const isSearchFocused = searchInput && document.activeElement === searchInput;
+    
+    if (!isSearchFocused) {
+        if (e.key === 'ArrowRight' && nextBtn && !nextBtn.disabled) nextBtn.click();
+        if (e.key === 'ArrowLeft' && prevBtn && !prevBtn.disabled) prevBtn.click();
     }
 });
 
 function updateControls() {
+    // GUARD: Ensure elements exist
+    if (!prevBtn || !nextBtn || !progressText || !progressFill) return;
+
     if (!currentList || currentList.length === 0) {
         prevBtn.disabled = true;
         nextBtn.disabled = true;
@@ -304,47 +315,69 @@ function updateControls() {
     const isAnswered = historyState.answers[currentQ.id] !== undefined;
     prevBtn.disabled = currentIndex === 0;
     nextBtn.disabled = (currentIndex === currentList.length - 1) || !isAnswered;
+    
+    // Updated to show current index vs total without jump functionality
     progressText.innerText = `${currentIndex + 1} / ${currentList.length}`;
+    
+    // Also update the jump trigger label to show just "Total MCQs" or similar if element exists
+    // This repurposes the UI element without needing HTML changes
+    // Improved selector logic to scope within jumpTrigger if possible
+    if (jumpTrigger) {
+        const jumpLabel = jumpTrigger.querySelector('.jump-label');
+        if (jumpLabel) {
+            jumpLabel.innerHTML = 'Total MCQs';
+        }
+        // Remove pointer cursor to indicate non-clickable
+        jumpTrigger.style.cursor = 'default';
+    }
+
     const pct = ((currentIndex + 1) / currentList.length) * 100;
     progressFill.style.width = `${pct}%`;
 }
 
-searchInput.addEventListener('input', (e) => {
-    const term = e.target.value.toLowerCase().trim();
-    currentSearchTerm = term;
-    
-    if (term.length > 0) searchContainer.classList.add('active');
-    else searchContainer.classList.remove('active');
-    
-    if (term === '') {
-        currentList = [...window.quizData];
-        if (historyState.lastIndex !== undefined && historyState.lastIndex < currentList.length) {
-            currentIndex = historyState.lastIndex;
+if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+        const term = e.target.value.toLowerCase().trim();
+        currentSearchTerm = term;
+        
+        if (searchContainer) {
+            if (term.length > 0) searchContainer.classList.add('active');
+            else searchContainer.classList.remove('active');
+        }
+        
+        if (term === '') {
+            currentList = [...window.quizData];
+            if (historyState.lastIndex !== undefined && historyState.lastIndex < currentList.length) {
+                currentIndex = historyState.lastIndex;
+            } else {
+                currentIndex = 0;
+            }
         } else {
+            currentList = window.quizData.filter(q => {
+                const qEn = q.questionEn ? q.questionEn.toLowerCase() : '';
+                const qHi = q.questionHi ? q.questionHi.toLowerCase() : ''; 
+                const qId = q.id ? q.id.toString() : '';
+                const optionsStr = q.options ? q.options.join(' ').toLowerCase() : '';
+                return qEn.includes(term) || qHi.includes(term) || qId.includes(term) || optionsStr.includes(term);
+            });
             currentIndex = 0;
         }
-    } else {
-        currentList = window.quizData.filter(q => {
-            const qEn = q.questionEn ? q.questionEn.toLowerCase() : '';
-            const qHi = q.questionHi ? q.questionHi.toLowerCase() : ''; 
-            const qId = q.id ? q.id.toString() : '';
-            const optionsStr = q.options ? q.options.join(' ').toLowerCase() : '';
-            return qEn.includes(term) || qHi.includes(term) || qId.includes(term) || optionsStr.includes(term);
-        });
-        currentIndex = 0;
-    }
-    loadQuestion(currentIndex);
-});
+        loadQuestion(currentIndex);
+    });
+}
 
 window.clearSearch = function() {
-    searchInput.value = '';
-    searchInput.dispatchEvent(new Event('input')); 
-    searchInput.focus();
+    if (searchInput) {
+        searchInput.value = '';
+        searchInput.dispatchEvent(new Event('input')); 
+        searchInput.focus();
+    }
 };
 
 window.shareApp = async function() {
     const canonical = document.querySelector('link[rel="canonical"]')?.href || window.location.href;
     const btn = document.querySelector('.footer-share-btn');
+    if (!btn) return; // Guard
     const originalHtml = btn.innerHTML;
 
     if (navigator.share) {
