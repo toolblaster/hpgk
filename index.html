@@ -205,9 +205,8 @@
         }
         .topic-badge.active { background: var(--correct-bg); color: var(--correct-text); }
 
-        /* Install Button Style */
-        .install-float { position: fixed; bottom: 20px; right: 20px; z-index: 1000; display: none; background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 50px; font-weight: 600; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4); cursor: pointer; align-items: center; gap: 8px; animation: slideUp 0.3s ease-out; }
-        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        /* Install Button Style (Hidden now as SW is removed) */
+        .install-float { display: none; } 
 
         /* SEO Grid */
         .seo-grid {
@@ -294,11 +293,6 @@
 
 <!-- Dynamic Header Container -->
 <div id="site-header"></div>
-
-<!-- Install App Button -->
-<button id="installBtn" class="install-float" onclick="installApp()">
-    <i class="fa-solid fa-download"></i> Install App
-</button>
 
 <main>
     <div class="main-layout" style="display: block;">
@@ -576,29 +570,6 @@
 
 <!-- Load Layout Manager -->
 <script src="js/layout.js"></script>
-
-<!-- Service Worker & Install Logic (Kept same) -->
-<script>
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-            navigator.serviceWorker.register('./sw.js').catch(err => console.log('SW failed', err));
-        });
-    }
-    let deferredPrompt;
-    const installBtn = document.getElementById('installBtn');
-    window.addEventListener('beforeinstallprompt', (e) => {
-        e.preventDefault(); deferredPrompt = e;
-        if (installBtn) installBtn.style.display = 'flex';
-    });
-    async function installApp() {
-        if (deferredPrompt) {
-            deferredPrompt.prompt();
-            const { outcome } = await deferredPrompt.userChoice;
-            deferredPrompt = null;
-            if (installBtn) installBtn.style.display = 'none';
-        }
-    }
-</script>
 
 <!-- Initialize Page -->
 <script>
