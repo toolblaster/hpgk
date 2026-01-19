@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Master Himachal Pradesh GK with HPGK Quiz! Free mock tests for HPAS, HPPSC, Allied Services, Naib Tehsildar & HP Police 2026. History, Geography, Culture & Economy.">
+    <meta name="description" content="Master Himachal Pradesh GK with HPGK Quiz! Free mock tests for HPAS, HPPSC, Allied Services, Naib Tehsildar & HP Police 2026. Comprehensive coverage of History, Geography, Culture, Economy & Polity.">
     <title>HPGK Quiz 2026 | Himachal Pradesh General Knowledge Hub</title>
     <!-- Clean Canonical Link -->
     <link rel="canonical" href="https://hpgk.toolblaster.com">
@@ -63,18 +63,75 @@
     <link rel="stylesheet" href="js/style.css">
 
     <style>
-        .hub-hero { text-align: center; max-width: 800px; margin: 0 auto 30px auto; }
+        /* Compact Hero Section */
+        .hub-hero { 
+            text-align: center; 
+            max-width: 800px; 
+            margin: 0 auto 20px auto; 
+            padding: 10px 15px;
+        }
         
-        /* Grid Layout: Optimized for 2 columns on Mobile */
-        .topic-grid { 
-            display: grid; 
-            /* Mobile First: Strictly 2 columns */
-            grid-template-columns: repeat(2, 1fr); 
-            gap: 10px; 
-            margin-bottom: 40px; 
+        .hero-badge {
+            font-size: 0.7rem;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 8px;
         }
 
-        /* Tablet (min 600px): Adapt with auto-fill */
+        .hero-title {
+            font-size: 1.75rem; /* Reduced from default h1 */
+            margin: 0 0 8px 0;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+            color: var(--text-main);
+        }
+
+        .hero-title span {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-sec);
+            margin-top: 4px;
+        }
+
+        .hero-desc {
+            font-size: 0.9rem;
+            color: var(--text-sec);
+            line-height: 1.5;
+            margin: 0 auto 15px auto;
+            max-width: 650px;
+        }
+
+        .subject-tags {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .subject-tag {
+            font-size: 0.75rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 4px 10px;
+            border-radius: 20px;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: 500;
+        }
+        
+        /* Grid Layout */
+        .topic-grid { 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 10px; 
+            margin-bottom: 30px; 
+        }
+
         @media (min-width: 600px) {
             .topic-grid {
                 grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
@@ -82,7 +139,6 @@
             }
         }
 
-        /* Large Screen (min 1024px): Force 5 columns */
         @media (min-width: 1024px) {
             .topic-grid {
                 grid-template-columns: repeat(5, 1fr);
@@ -91,9 +147,9 @@
 
         .topic-card { 
             background: var(--card-bg); 
-            border: 1px solid #cbd5e1; /* Increased contrast from var(--border-color) which is usually lighter */
+            border: 1px solid #cbd5e1; 
             border-radius: 12px; 
-            padding: 15px; 
+            padding: 12px; 
             text-decoration: none; 
             color: var(--text-main); 
             transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s; 
@@ -105,20 +161,19 @@
             min-height: 100%;
         }
         
-        /* Dark mode specific override for border if needed, assuming style.css handles variables */
         [data-theme="dark"] .topic-card {
-            border-color: #475569; /* Higher contrast for dark mode */
+            border-color: #475569; 
         }
         
         .topic-card:hover { transform: translateY(-3px); box-shadow: var(--hover-shadow); border-color: var(--primary); }
         
         .topic-icon { 
-            font-size: 1.5rem; 
+            font-size: 1.4rem; 
             color: var(--primary); 
-            margin-bottom: 10px; 
+            margin-bottom: 8px; 
             background: var(--primary-light); 
-            width: 45px; 
-            height: 45px; 
+            width: 40px; 
+            height: 40px; 
             border-radius: 50%; 
             display: flex; 
             align-items: center; 
@@ -126,119 +181,113 @@
         }
         
         .topic-title { 
-            font-size: 0.95rem; 
+            font-size: 0.9rem; 
             font-weight: 700; 
-            margin-bottom: 5px; 
-            line-height: 1.25;
+            margin-bottom: 4px; 
+            line-height: 1.2;
         }
         
         .topic-desc { 
-            font-size: 0.8rem; 
+            font-size: 0.75rem; 
             color: var(--text-sec); 
-            margin-bottom: 10px; 
-            line-height: 1.35; 
+            margin-bottom: 8px; 
+            line-height: 1.3; 
         }
         
         .topic-badge { 
             margin-top: auto; 
             background: var(--input-bg); 
             color: var(--text-sec); 
-            font-size: 0.7rem; 
-            padding: 4px 10px; 
-            border-radius: 12px; 
+            font-size: 0.65rem; 
+            padding: 3px 8px; 
+            border-radius: 10px; 
             font-weight: 600; 
         }
         .topic-badge.active { background: var(--correct-bg); color: var(--correct-text); }
 
-        /* Mobile Adjustments for 2-column layout */
-        @media (max-width: 599px) {
-            .topic-card {
-                padding: 12px 8px; /* Tighter padding to fit 2 cols */
-                border-radius: 10px;
-            }
-            .topic-icon {
-                width: 38px;
-                height: 38px;
-                font-size: 1.2rem;
-                margin-bottom: 8px;
-            }
-            .topic-title {
-                font-size: 0.85rem;
-                margin-bottom: 4px;
-            }
-            .topic-desc {
-                font-size: 0.7rem;
-                margin-bottom: 8px;
-                display: -webkit-box;
-                -webkit-line-clamp: 3; /* Limit lines to prevent height disparity */
-                -webkit-box-orient: vertical;
-                overflow: hidden;
-            }
-            .topic-badge {
-                font-size: 0.6rem;
-                padding: 2px 6px;
-            }
-        }
-        
-        /* Install Button Style Override for HPGK theme */
+        /* Install Button Style */
         .install-float { position: fixed; bottom: 20px; right: 20px; z-index: 1000; display: none; background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 50px; font-weight: 600; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4); cursor: pointer; align-items: center; gap: 8px; animation: slideUp 0.3s ease-out; }
         @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
-        /* SEO Grid Updates for 4 Columns */
+        /* SEO Grid */
         .seo-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
         }
         
-        /* Enhanced Border Contrast for SEO Cards */
-        .seo-card {
-            background: var(--card-bg); /* Ensure background is set */
-            border: 1px solid #94a3b8; /* Increased contrast (Slate-400) - darker than previous */
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: var(--glass-shadow);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        
-        [data-theme="dark"] .seo-card {
-            border-color: #64748b; /* Slate-500 for dark mode contrast */
-        }
-
-        .seo-card:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--hover-shadow);
-            border-color: var(--primary); /* Highlight on hover */
-        }
-
+        /* 4 in a row for larger screens for SEO cards */
         @media (min-width: 1200px) {
             .seo-grid {
                 grid-template-columns: repeat(4, 1fr);
             }
         }
+        
+        .seo-card {
+            background: var(--card-bg);
+            border: 1px solid #94a3b8; 
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: var(--glass-shadow);
+            transition: transform 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        [data-theme="dark"] .seo-card { border-color: #64748b; }
+        .seo-card:hover { transform: translateY(-2px); border-color: var(--primary); }
 
-        /* Feature Section Compact Style */
+        .seo-card h3 {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+            border-bottom: 2px solid var(--primary-light);
+            padding-bottom: 6px;
+        }
+        
+        .seo-card p {
+            font-size: 0.8rem;
+            line-height: 1.4;
+            color: var(--text-sec);
+            margin-bottom: 8px;
+        }
+
+        .seo-list {
+            margin: 0;
+            padding-left: 18px;
+        }
+
+        .seo-list li {
+            font-size: 0.8rem;
+            margin-bottom: 4px;
+            line-height: 1.3;
+            color: var(--text-main);
+        }
+
+        /* Features Grid */
         .features-grid {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 8px;
             justify-content: center;
         }
         .feature-item {
-            font-size: 0.8rem;
-            padding: 6px 12px;
-            border-radius: 20px;
+            font-size: 0.75rem;
+            padding: 5px 10px;
+            border-radius: 15px;
             background: var(--input-bg);
             color: var(--text-main);
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
             border: 1px solid var(--border-color);
         }
-        /* Make feature icons blue */
-        .feature-item i {
-            color: var(--primary); 
-        }
+        .feature-item i { color: var(--primary); }
     </style>
 </head>
 <body>
@@ -246,7 +295,7 @@
 <!-- Dynamic Header Container -->
 <div id="site-header"></div>
 
-<!-- Install App Button (Hidden by default, shown via JS) -->
+<!-- Install App Button -->
 <button id="installBtn" class="install-float" onclick="installApp()">
     <i class="fa-solid fa-download"></i> Install App
 </button>
@@ -254,22 +303,22 @@
 <main>
     <div class="main-layout" style="display: block;">
         
+        <!-- Compact Hero Section -->
         <section class="hub-hero">
             <span class="hero-badge" style="background: var(--primary); color: white;">Devbhoomi Edition 2026</span>
             <h1 class="hero-title">Master Himachal Pradesh<br>General Knowledge</h1>
-            <p class="hero-desc" style="margin: 0 auto 25px auto;">
-                The ultimate study companion for HPAS (HAS), HPPSC, Allied Services, Naib Tehsildar, HP Police, HP Patwari, HP High Court, and HP Panchayat Secretary. 
-                Select a topic below to start practicing bilingual questions.
+            <p class="hero-desc">
+                The ultimate study companion for HPAS (HAS), HPPSC, Allied Services, Naib Tehsildar, HP Police, HP Patwari, HP High Court, and HP Panchayat Secretary. Select a topic below to start practicing bilingual questions.
             </p>
-            <div class="subject-tags" style="justify-content: center;">
+            <div class="subject-tags">
                 <span class="subject-tag"><i class="fa-solid fa-water"></i> Rivers</span>
                 <span class="subject-tag"><i class="fa-solid fa-landmark"></i> History</span>
                 <span class="subject-tag"><i class="fa-solid fa-gopuram"></i> Culture</span>
-                <span class="subject-tag"><i class="fa-solid fa-mountain"></i> Geography</span>
+                <span class="subject-tag"><i class="fa-solid fa-map-location-dot"></i> Districts</span>
             </div>
         </section>
 
-        <!-- Main Topics Grid (Top 10) -->
+        <!-- Main Topics Grid -->
         <div class="topic-grid">
             <!-- Card 1: Rivers -->
             <a href="rivers/" class="topic-card">
@@ -291,7 +340,7 @@
             <a href="geography/" class="topic-card">
                 <div class="topic-icon"><i class="fa-solid fa-mountain"></i></div>
                 <div class="topic-title">Geography</div>
-                <div class="topic-desc">Peaks, Passes, Glaciers, Valleys and Climate zones.</div>
+                <div class="topic-desc">Peaks, Passes, Glaciers, Climate & Valleys.</div>
                 <div class="topic-badge active">440+ MCQs Available</div>
             </a>
 
@@ -307,7 +356,7 @@
             <a href="economy/" class="topic-card">
                 <div class="topic-icon"><i class="fa-solid fa-bolt"></i></div>
                 <div class="topic-title">Economy</div>
-                <div class="topic-desc">Hydro Projects, Agriculture, Apple production, and Tourism.</div>
+                <div class="topic-desc">Hydropower, Agriculture, Apple production, and Tourism.</div>
                 <div class="topic-badge active">510+ MCQs Available</div>
             </a>
 
@@ -328,36 +377,35 @@
             </a>
 
             <!-- Card 8: Famous People -->
-            <a href="#" class="topic-card" style="opacity: 0.8;">
+            <a href="#" class="topic-card" style="opacity: 0.7;">
                 <div class="topic-icon"><i class="fa-solid fa-user-graduate"></i></div>
-                <div class="topic-title">Famous People</div>
-                <div class="topic-desc">Freedom fighters, PVC awardees, Artists and Writers.</div>
+                <div class="topic-title">Personalities</div>
+                <div class="topic-desc">Freedom Fighters, Awardees & Artists.</div>
                 <div class="topic-badge">Coming Soon</div>
             </a>
 
             <!-- Card 9: Flora & Fauna -->
-            <a href="#" class="topic-card" style="opacity: 0.8;">
+            <a href="#" class="topic-card" style="opacity: 0.7;">
                 <div class="topic-icon"><i class="fa-solid fa-tree"></i></div>
-                <div class="topic-title">Flora & Fauna</div>
-                <div class="topic-desc">State symbols, Parks, Sanctuaries & Medicinal plants.</div>
+                <div class="topic-title">Environment</div>
+                <div class="topic-desc">National Parks, Sanctuaries & Symbols.</div>
                 <div class="topic-badge">Coming Soon</div>
             </a>
 
             <!-- Card 10: Tourism -->
-            <a href="#" class="topic-card" style="opacity: 0.8;">
+            <a href="#" class="topic-card" style="opacity: 0.7;">
                 <div class="topic-icon"><i class="fa-solid fa-person-hiking"></i></div>
                 <div class="topic-title">Tourism</div>
-                <div class="topic-desc">Hill stations, Shakti Peethas, Adventure & Tribal circuits.</div>
+                <div class="topic-desc">Hill Stations, Treks & Religious Circuit.</div>
                 <div class="topic-badge">Coming Soon</div>
             </a>
         </div>
 
-        <!-- Section Separator -->
-        <div class="section-separator" style="margin-top: 20px; margin-bottom: 20px; border-bottom: 3px solid var(--border-color); opacity: 0.8;"></div>
-        
-        <!-- Hero Style Description for Secondary Grid -->
+        <div class="section-separator" style="margin-top: 15px; margin-bottom: 15px; border-bottom: 2px solid #e2e8f0;"></div>
+
+        <!-- Secondary Description Section -->
         <div class="hub-hero" style="margin-bottom: 15px;">
-            <p class="hero-desc" style="font-size: 15.2px; max-width: 800px; margin: 0 auto; color: var(--text-sec); font-weight: 500;">
+            <p class="hero-desc" style="font-size: 0.95rem; max-width: 800px; margin: 0 auto; color: var(--text-sec); font-weight: 500;">
                 These 5 exams are crucial for your HP government job preparation, and our HP GK Hub offers tailored content to help you succeed.
             </p>
         </div>
@@ -365,7 +413,7 @@
         <!-- Secondary Grid for Exams -->
         <div class="topic-grid" style="margin-top: 0px;">
             <!-- Card 11: HP Patwari -->
-            <a href="#" class="topic-card" style="opacity: 0.8;">
+            <a href="#" class="topic-card" style="opacity: 0.7;">
                 <div class="topic-icon"><i class="fa-solid fa-file-pen"></i></div>
                 <div class="topic-title">HP Patwari</div>
                 <div class="topic-desc">Revenue records, Mensuration, Land reforms & Terminology.</div>
@@ -373,7 +421,7 @@
             </a>
 
             <!-- Card 12: HP High Court -->
-            <a href="#" class="topic-card" style="opacity: 0.8;">
+            <a href="#" class="topic-card" style="opacity: 0.7;">
                 <div class="topic-icon"><i class="fa-solid fa-gavel"></i></div>
                 <div class="topic-title">HP High Court</div>
                 <div class="topic-desc">Clerk, Process Server, & Driver exam specific GK.</div>
@@ -381,131 +429,145 @@
             </a>
 
             <!-- Card 13: HP Panchayat Secretary -->
-            <a href="#" class="topic-card" style="opacity: 0.8;">
+            <a href="#" class="topic-card" style="opacity: 0.7;">
                 <div class="topic-icon"><i class="fa-solid fa-users-gear"></i></div>
-                <div class="topic-title">HP Panchayat Sec</div>
+                <div class="topic-title">Panchayat Sec</div>
                 <div class="topic-desc">Panchayati Raj Act, Rural Development, and Schemes.</div>
                 <div class="topic-badge">Coming Soon</div>
             </a>
 
             <!-- Card 14: HP HRTC Conductor -->
-            <a href="#" class="topic-card" style="opacity: 0.8;">
+            <a href="#" class="topic-card" style="opacity: 0.7;">
                 <div class="topic-icon"><i class="fa-solid fa-bus"></i></div>
-                <div class="topic-title">HP HRTC Conductor</div>
+                <div class="topic-title">HRTC Conductor</div>
                 <div class="topic-desc">First Aid, Motor Vehicle Act, Routes & Fares.</div>
                 <div class="topic-badge">Coming Soon</div>
             </a>
 
             <!-- Card 15: HP Police -->
-            <a href="#" class="topic-card" style="opacity: 0.8;">
+            <a href="#" class="topic-card" style="opacity: 0.7;">
                 <div class="topic-icon"><i class="fa-solid fa-shield-halved"></i></div>
                 <div class="topic-title">HP Police</div>
-                <div class="topic-desc">Constable, Sub-Inspector exam preparation & previous papers.</div>
+                <div class="topic-desc">Constable, Sub-Inspector exam preparation.</div>
                 <div class="topic-badge">Coming Soon</div>
             </a>
         </div>
 
-        <div class="section-separator" style="margin-top: 20px; margin-bottom: 20px; border-bottom: 3px solid #cbd5e1; opacity: 0.8;"></div>
+        <div class="section-separator" style="margin-top: 15px; margin-bottom: 25px; border-bottom: 3px solid #cbd5e1;"></div>
 
-        <!-- Vertically Compact Features Section -->
-        <div class="subjects-container" style="text-align: center; margin-bottom: 40px; padding: 10px;">
+        <!-- SEO Content Section: Comprehensive & High Quality (8 Cards, 4 per row on large screens) -->
+        <section class="seo-content-wrapper">
+            <div class="seo-header">
+                <h2>Complete Guide to Himachal Pradesh GK</h2>
+                <p>Essential facts and detailed insights for competitive exam preparation.</p>
+            </div>
+            <div class="seo-grid">
+                
+                <!-- Card 1: Geography -->
+                <div class="seo-card">
+                    <h3><i class="fa-solid fa-mountain-sun"></i> Geography & Terrain</h3>
+                    <p>Explore the three zones: <strong>Shivalik</strong>, <strong>Mid-Himalayas</strong>, and <strong>Great Himalayas</strong>. Master the river systems of Satluj, Beas, Ravi, Chenab, and Yamuna.</p>
+                    <ul class="seo-list">
+                        <li><strong>Major Passes:</strong> Rohtang, Shipki La, Baralacha La.</li>
+                        <li><strong>Glaciers:</strong> Bara Shigri, Sonapani.</li>
+                        <li><strong>Hot Springs:</strong> Manikaran, Tattapani, Vashisht.</li>
+                    </ul>
+                </div>
+
+                <!-- Card 2: History -->
+                <div class="seo-card">
+                    <h3><i class="fa-solid fa-landmark"></i> History & Heritage</h3>
+                    <p>Trace the history from ancient <strong>Trigarta</strong> to the Gorkha invasion (1805). Learn about the Prajamandal movement and the formation of HP.</p>
+                    <ul class="seo-list">
+                        <li><strong>Katoch Dynasty:</strong> Sansar Chand's era.</li>
+                        <li><strong>Formation:</strong> 15th April 1948 (30 states merged).</li>
+                        <li><strong>Statehood:</strong> 25th Jan 1971 (18th State).</li>
+                    </ul>
+                </div>
+
+                <!-- Card 3: Culture -->
+                <div class="seo-card">
+                    <h3><i class="fa-solid fa-gopuram"></i> Culture & Customs</h3>
+                    <p>Himachal is known for its distinct Pahari culture. Study the architectural styles of temples (Pagoda, Nagara) and famous fairs like Minjar and Lavi.</p>
+                    <ul class="seo-list">
+                        <li><strong>Temples:</strong> Hidimba, Jwalaji, Masroor.</li>
+                        <li><strong>Dances:</strong> Nati, Dangi, Chham.</li>
+                        <li><strong>Tribes:</strong> Gaddis, Kinnauras, Pangwals.</li>
+                    </ul>
+                </div>
+
+                <!-- Card 4: Economy -->
+                <div class="seo-card">
+                    <h3><i class="fa-solid fa-bolt"></i> Economy & Dev</h3>
+                    <p>Understand the backbone of HP's economy: <strong>Hydroelectric Power</strong> and <strong>Horticulture</strong>. Learn about major projects like Nathpa Jhakri.</p>
+                    <ul class="seo-list">
+                        <li><strong>Apple State:</strong> Major producer of apples.</li>
+                        <li><strong>Hydro Power:</strong> Potential ~27,000 MW.</li>
+                        <li><strong>Tourism:</strong> Adventure and Religious tourism.</li>
+                    </ul>
+                </div>
+
+                <!-- Card 5: Polity -->
+                <div class="seo-card">
+                    <h3><i class="fa-solid fa-scale-balanced"></i> Polity & Admin</h3>
+                    <p>Detailed insight into the administrative framework of HP. From the first Chief Commissioner to current Vidhan Sabha dynamics.</p>
+                    <ul class="seo-list">
+                        <li><strong>Divisions:</strong> Mandi, Kangra, Shimla.</li>
+                        <li><strong>Vidhan Sabha:</strong> 68 Constituencies.</li>
+                        <li><strong>High Court:</strong> Established 1971 in Shimla.</li>
+                    </ul>
+                </div>
+
+                <!-- Card 6: Districts Profile -->
+                <div class="seo-card">
+                    <h3><i class="fa-solid fa-map-location-dot"></i> Districts Profile</h3>
+                    <p>Specific GK related to all 12 districts. Understand the geography, history, and economy of each district individually.</p>
+                    <ul class="seo-list">
+                        <li><strong>Largest:</strong> Lahaul-Spiti (Area).</li>
+                        <li><strong>Populous:</strong> Kangra.</li>
+                        <li><strong>Literacy:</strong> Highest in Hamirpur.</li>
+                    </ul>
+                </div>
+
+                <!-- Card 7: Famous People -->
+                <div class="seo-card">
+                    <h3><i class="fa-solid fa-user-graduate"></i> Famous People</h3>
+                    <p>Notable personalities from Himachal Pradesh in the fields of defense (Param Vir Chakra), sports, literature, and arts.</p>
+                    <ul class="seo-list">
+                        <li><strong>PVC:</strong> Major Somnath Sharma, Capt. Vikram Batra.</li>
+                        <li><strong>Arts:</strong> Sardar Shobha Singh, Nicholas Roerich.</li>
+                        <li><strong>Politics:</strong> Dr. Y.S. Parmar.</li>
+                    </ul>
+                </div>
+
+                <!-- Card 8: Flora & Fauna -->
+                <div class="seo-card">
+                    <h3><i class="fa-solid fa-tree"></i> Flora & Fauna</h3>
+                    <p>Discover the rich biodiversity of Himachal. Learn about State symbols, National Parks, and conservation efforts.</p>
+                    <ul class="seo-list">
+                        <li><strong>State Bird:</strong> Jujurana (Western Tragopan).</li>
+                        <li><strong>Parks:</strong> Great Himalayan National Park, Pin Valley.</li>
+                        <li><strong>Biosphere:</strong> Cold Desert Biosphere Reserve.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <div class="section-separator" style="margin-top: 15px; margin-bottom: 25px; border-bottom: 3px solid #cbd5e1;"></div>
+
+        <!-- Features Section -->
+        <div class="subjects-container" style="text-align: center; margin-bottom: 30px;">
             <div class="features-grid">
-                <div class="feature-item"><i class="fa-solid fa-language"></i> Bilingual (Eng/Hin)</div>
-                <div class="feature-item"><i class="fa-solid fa-book-open"></i> HPPSC Syllabus Aligned</div>
-                <div class="feature-item"><i class="fa-solid fa-layer-group"></i> Comprehensive Coverage</div>
-                <div class="feature-item"><i class="fa-solid fa-mobile-screen"></i> Mobile Optimized</div>
-                <div class="feature-item"><i class="fa-solid fa-floppy-disk"></i> Auto-Save Progress</div>
-                <div class="feature-item"><i class="fa-solid fa-newspaper"></i> Genuine & Relevant Information</div>
-                <div class="feature-item"><i class="fa-solid fa-circle-check"></i> Detailed Explanations</div>
+                <div class="feature-item"><i class="fa-solid fa-language"></i> Bilingual</div>
+                <div class="feature-item"><i class="fa-solid fa-book-open"></i> HPPSC Aligned</div>
+                <div class="feature-item"><i class="fa-solid fa-layer-group"></i> 4000+ Questions</div>
+                <div class="feature-item"><i class="fa-solid fa-mobile-screen"></i> Mobile Ready</div>
+                <div class="feature-item"><i class="fa-solid fa-floppy-disk"></i> Auto-Save</div>
             </div>
         </div>
 
     </div>
-
-    <div class="section-separator" style="margin-top: 20px; margin-bottom: 20px; border-bottom: 3px solid #cbd5e1; opacity: 0.8;"></div>
-
-    <section class="seo-content-wrapper">
-        <div class="seo-header">
-            <h2>Complete Guide to Himachal Pradesh GK</h2>
-            <p>A comprehensive resource covering the Geography, History, Economy, and Culture of the "Land of Gods" for competitive exams.</p>
-        </div>
-        <div class="seo-grid">
-            <div class="seo-card">
-                <h3><i class="fa-solid fa-mountain-sun"></i> Geography & Terrain</h3>
-                <p>Explore the three zones: <strong>Shivalik</strong>, <strong>Mid-Himalayas</strong>, and <strong>Great Himalayas</strong>. Master the river systems of Satluj, Beas, Ravi, Chenab, and Yamuna.</p>
-                <ul class="seo-list">
-                    <li>Major Passes: Rohtang, Shipki La</li>
-                    <li>Glaciers: Bara Shigri, Sonapani</li>
-                    <li>Hot Springs: Manikaran, Tattapani</li>
-                </ul>
-            </div>
-            <div class="seo-card">
-                <h3><i class="fa-solid fa-landmark"></i> History & Heritage</h3>
-                <p>Trace the history from ancient <strong>Trigarta</strong> to the Gorkha invasion (1805). Learn about the Prajamandal movement and the formation of HP.</p>
-                <ul class="seo-list">
-                    <li>Katoch Dynasty & Sansar Chand</li>
-                    <li>Formation of HP (1948)</li>
-                    <li>Statehood Day (1971)</li>
-                </ul>
-            </div>
-            <div class="seo-card">
-                <h3><i class="fa-solid fa-gopuram"></i> Culture & Customs</h3>
-                <p>Himachal is known for its distinct Pahari culture. Study the architectural styles of temples (Pagoda, Nagara) and famous fairs like Minjar and Lavi.</p>
-                <ul class="seo-list">
-                    <li>Temples: Hidimba, Jwalaji</li>
-                    <li>Dances: Nati, Dangi</li>
-                    <li>Tribes: Gaddis, Kinnauras</li>
-                </ul>
-            </div>
-            <div class="seo-card">
-                <h3><i class="fa-solid fa-bolt"></i> Economy & Dev</h3>
-                <p>Understand the backbone of HP's economy: <strong>Hydroelectric Power</strong> and <strong>Horticulture</strong>. Learn about major projects like Nathpa Jhakri.</p>
-                <ul class="seo-list">
-                    <li>"Apple State of India" status</li>
-                    <li>Hydro Power Potential</li>
-                    <li>Tourism & Ecotourism</li>
-                </ul>
-            </div>
-            <div class="seo-card">
-                <h3><i class="fa-solid fa-scale-balanced"></i> Polity & Admin</h3>
-                <p>Detailed insight into the administrative framework of HP. From the first Chief Commissioner to current Vidhan Sabha dynamics.</p>
-                <ul class="seo-list">
-                    <li>Administrative Divisions: Mandi, Kangra, Shimla</li>
-                    <li>Vidhan Sabha: 68 Constituencies</li>
-                    <li>High Court & Local Governance</li>
-                </ul>
-            </div>
-            <div class="seo-card">
-                <h3><i class="fa-solid fa-map-location-dot"></i> Districts Profile</h3>
-                <p>Specific GK related to all 12 districts. Understand the geography, history, and economy of each district individually.</p>
-                <ul class="seo-list">
-                    <li>Largest District: Lahaul-Spiti (Area)</li>
-                    <li>Most Populous: Kangra</li>
-                    <li>Literacy Rate: Highest in Hamirpur</li>
-                </ul>
-            </div>
-            <div class="seo-card">
-                <h3><i class="fa-solid fa-user-graduate"></i> Famous People</h3>
-                <p>Notable personalities from Himachal Pradesh in the fields of defense (Param Vir Chakra), sports, literature, and arts.</p>
-                <ul class="seo-list">
-                    <li>Major Somnath Sharma (PVC)</li>
-                    <li>Captain Vikram Batra (PVC)</li>
-                    <li>Sardar Shobha Singh (Artist)</li>
-                </ul>
-            </div>
-            <div class="seo-card">
-                <h3><i class="fa-solid fa-tree"></i> Flora & Fauna</h3>
-                <p>Discover the rich biodiversity of Himachal. Learn about State symbols, National Parks, and conservation efforts.</p>
-                <ul class="seo-list">
-                    <li>State Bird: Jujurana (Western Tragopan)</li>
-                    <li>National Parks: GHNP, Pin Valley</li>
-                    <li>Medicinal Plants & Biosphere Reserves</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <div class="section-separator" style="margin-top: 20px; margin-bottom: 20px; border-bottom: 3px solid #cbd5e1; opacity: 0.8;"></div>
 
     <!-- Dynamic Footer Container -->
     <div id="site-footer"></div>
@@ -515,50 +577,31 @@
 <!-- Load Layout Manager -->
 <script src="js/layout.js"></script>
 
-<!-- Service Worker Registration for PWA & Install Logic -->
+<!-- Service Worker & Install Logic (Kept same) -->
 <script>
-    // Service Worker Registration
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-            navigator.serviceWorker.register('./sw.js')
-                .then(registration => {
-                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                })
-                .catch(err => {
-                    console.log('ServiceWorker registration failed: ', err);
-                });
+            navigator.serviceWorker.register('./sw.js').catch(err => console.log('SW failed', err));
         });
     }
-
-    // Install Prompt Logic
     let deferredPrompt;
     const installBtn = document.getElementById('installBtn');
-
     window.addEventListener('beforeinstallprompt', (e) => {
-        e.preventDefault();
-        deferredPrompt = e;
+        e.preventDefault(); deferredPrompt = e;
         if (installBtn) installBtn.style.display = 'flex';
     });
-
     async function installApp() {
         if (deferredPrompt) {
             deferredPrompt.prompt();
             const { outcome } = await deferredPrompt.userChoice;
-            console.log(`User response to the install prompt: ${outcome}`);
             deferredPrompt = null;
             if (installBtn) installBtn.style.display = 'none';
         }
     }
-
-    window.addEventListener('appinstalled', () => {
-        if (installBtn) installBtn.style.display = 'none';
-        console.log('PWA was installed');
-    });
 </script>
 
 <!-- Initialize Page -->
 <script>
-    // Config for Homepage
     renderHeader({
         title: 'HPGK Quiz',
         subtitle: 'by toolblaster.com',
