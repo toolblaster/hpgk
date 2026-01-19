@@ -28,6 +28,11 @@ window.onload = () => {
     // GUARD: If no quiz card area exists, stop here to prevent errors
     if (!cardArea) return;
 
+    // HIDE JUMP TRIGGER COMPLETELY
+    if (jumpTrigger) {
+        jumpTrigger.style.display = 'none';
+    }
+
     setTimeout(() => {
         if (window.quizData && window.quizData.length > 0) {
             // Sort by ID
@@ -150,6 +155,12 @@ function updateStats() {
     document.getElementById('statCorrect').innerText = correctCount;
     document.getElementById('statWrong').innerText = wrongCount;
     document.getElementById('statAccuracy').innerText = accuracy + '%';
+    
+    // Update Total MCQ Stat if element exists
+    const statTotalEl = document.getElementById('statTotal');
+    if (statTotalEl) {
+        statTotalEl.innerText = total;
+    }
 }
 
 function highlightText(text, term) {
@@ -319,16 +330,9 @@ function updateControls() {
     // Updated to show current index vs total without jump functionality
     progressText.innerText = `${currentIndex + 1} / ${currentList.length}`;
     
-    // Also update the jump trigger label to show just "Total MCQs" or similar if element exists
-    // This repurposes the UI element without needing HTML changes
-    // Improved selector logic to scope within jumpTrigger if possible
+    // Explicitly hide jump trigger if it somehow reappears or wasn't hidden on load
     if (jumpTrigger) {
-        const jumpLabel = jumpTrigger.querySelector('.jump-label');
-        if (jumpLabel) {
-            jumpLabel.innerHTML = 'Total MCQs';
-        }
-        // Remove pointer cursor to indicate non-clickable
-        jumpTrigger.style.cursor = 'default';
+        jumpTrigger.style.display = 'none';
     }
 
     const pct = ((currentIndex + 1) / currentList.length) * 100;
