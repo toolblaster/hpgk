@@ -288,12 +288,13 @@ if (nextBtn) {
         const isAnswered = currentQ && historyState.answers[currentQ.id] !== undefined;
 
         if (!isAnswered) {
-            // Visual Shake Feedback
+            // Visual Shake Feedback via CSS class
             if(cardArea) {
-                cardArea.style.transition = "transform 0.1s";
-                cardArea.style.transform = "translateX(5px)";
-                setTimeout(() => cardArea.style.transform = "translateX(-5px)", 100);
-                setTimeout(() => cardArea.style.transform = "translateX(0)", 200);
+                // Reset animation if needed to re-trigger
+                cardArea.classList.remove('apply-shake');
+                // Trigger reflow to restart animation
+                void cardArea.offsetWidth;
+                cardArea.classList.add('apply-shake');
             }
             return; // STRICT BLOCK
         }
@@ -331,10 +332,9 @@ document.addEventListener('keydown', (e) => {
             } else {
                  // Trigger Shake if user tries keyboard nav without answering
                  if(cardArea && !isAnswered) {
-                    cardArea.style.transition = "transform 0.1s";
-                    cardArea.style.transform = "translateX(5px)";
-                    setTimeout(() => cardArea.style.transform = "translateX(-5px)", 100);
-                    setTimeout(() => cardArea.style.transform = "translateX(0)", 200);
+                    cardArea.classList.remove('apply-shake');
+                    void cardArea.offsetWidth;
+                    cardArea.classList.add('apply-shake');
                 }
             }
         }
@@ -364,10 +364,6 @@ function updateControls() {
     // This enforces the "Must Answer to Proceed" logic
     nextBtn.disabled = (currentIndex === currentList.length - 1) || !isAnswered;
     
-    // Apply explicit visual styling to ensure user knows it's locked
-    nextBtn.style.opacity = nextBtn.disabled ? '0.5' : '1';
-    nextBtn.style.cursor = nextBtn.disabled ? 'not-allowed' : 'pointer';
-
     // Updated to show current index vs total without jump functionality
     progressText.innerText = `${currentIndex + 1} / ${currentList.length}`;
     
