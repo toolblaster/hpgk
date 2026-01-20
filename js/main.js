@@ -282,6 +282,25 @@ window.handleAnswer = function(btn, qId, choiceIndex) {
 // Event Listeners with Null Checks
 if (nextBtn) {
     nextBtn.addEventListener('click', () => {
+        // Enforce logic: STOP if current question is NOT answered
+        const currentQ = currentList[currentIndex];
+        // Ensure robust check against history
+        const isAnswered = currentQ && historyState.answers[currentQ.id] !== undefined;
+
+        if (!isAnswered) {
+            // Visual Shake Feedback
+            if(cardArea) {
+                cardArea.style.transition = "transform 0.1s";
+                cardArea.style.transform = "translateX(5px)";
+                setTimeout(() => cardArea.style.transform = "translateX(-5px)", 100);
+                setTimeout(() => cardArea.style.transform = "translateX(0)", 200);
+            }
+            return; // STRICT BLOCK
+        }
+
+        // Secondary check on disabled prop
+        if (nextBtn.disabled) return;
+
         if (currentIndex < currentList.length - 1) {
             currentIndex++;
             loadQuestion(currentIndex);
@@ -298,14 +317,27 @@ if (prevBtn) {
     });
 }
 
-// Removed jumpTrigger click listener
-
 document.addEventListener('keydown', (e) => {
     // Safety check for searchInput presence
     const isSearchFocused = searchInput && document.activeElement === searchInput;
     
     if (!isSearchFocused) {
-        if (e.key === 'ArrowRight' && nextBtn && !nextBtn.disabled) nextBtn.click();
+        if (e.key === 'ArrowRight') {
+            // Check logic before clicking
+            const currentQ = currentList[currentIndex];
+            const isAnswered = currentQ && historyState.answers[currentQ.id] !== undefined;
+            if (nextBtn && !nextBtn.disabled && isAnswered) {
+                nextBtn.click();
+            } else {
+                 // Trigger Shake if user tries keyboard nav without answering
+                 if(cardArea && !isAnswered) {
+                    cardArea.style.transition = "transform 0.1s";
+                    cardArea.style.transform = "translateX(5px)";
+                    setTimeout(() => cardArea.style.transform = "translateX(-5px)", 100);
+                    setTimeout(() => cardArea.style.transform = "translateX(0)", 200);
+                }
+            }
+        }
         if (e.key === 'ArrowLeft' && prevBtn && !prevBtn.disabled) prevBtn.click();
     }
 });
@@ -324,9 +356,18 @@ function updateControls() {
 
     const currentQ = currentList[currentIndex];
     const isAnswered = historyState.answers[currentQ.id] !== undefined;
+    
+    // Disable Previous if at start
     prevBtn.disabled = currentIndex === 0;
+    
+    // Disable Next if at end OR if current question NOT answered
+    // This enforces the "Must Answer to Proceed" logic
     nextBtn.disabled = (currentIndex === currentList.length - 1) || !isAnswered;
     
+    // Apply explicit visual styling to ensure user knows it's locked
+    nextBtn.style.opacity = nextBtn.disabled ? '0.5' : '1';
+    nextBtn.style.cursor = nextBtn.disabled ? 'not-allowed' : 'pointer';
+
     // Updated to show current index vs total without jump functionality
     progressText.innerText = `${currentIndex + 1} / ${currentList.length}`;
     
