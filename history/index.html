@@ -107,6 +107,30 @@
         }
         .intro-list li { margin-bottom: 2px; }
 
+        /* Quick Links Styling */
+        .quick-links {
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px dashed var(--border-color);
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .quick-link-item {
+            font-size: 0.7rem;
+            text-decoration: none;
+            color: var(--primary);
+            background: var(--primary-light);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        .quick-link-item:hover {
+            background: var(--primary);
+            color: white;
+        }
+
         /* High Contrast & 3D Effect for Content Cards */
         .seo-card {
             background: var(--card-bg);
@@ -164,6 +188,14 @@
                 <div class="intro-card">
                     <h3><i class="fa-solid fa-star"></i> Why This Matters? (यह महत्वपूर्ण क्यों है?)</h3>
                     <p>History forms the backbone of HP GK. Around 25-30% of questions in HPAS/Allied exams come from ancient lineages, Gorkha wars, and the freedom struggle. <br><br>इतिहास हिमाचल जीके की रीढ़ है। HPAS/Allied परीक्षाओं में लगभग 25-30% प्रश्न प्राचीन वंशों, गोरखा युद्धों और स्वतंत्रता संग्राम से आते हैं।</p>
+                    
+                    <!-- Added Interlinking Section -->
+                    <div class="quick-links">
+                        <a href="../rivers/" class="quick-link-item"><i class="fa-solid fa-water"></i> Rivers</a>
+                        <a href="../geography/" class="quick-link-item"><i class="fa-solid fa-mountain"></i> Geography</a>
+                        <a href="../district/" class="quick-link-item"><i class="fa-solid fa-map"></i> Districts</a>
+                        <a href="../economy/" class="quick-link-item"><i class="fa-solid fa-chart-line"></i> Economy</a>
+                    </div>
                 </div>
 
                 <div class="intro-card">
