@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Master Himachal Pradesh GK with HPGK Quiz! Free mock tests for HPAS, HPPSC, Allied Services, Naib Tehsildar & HP Police 2026. Comprehensive coverage of History, Geography, Culture, Economy, Polity & Famous People.">
-    <title>HPGK Quiz 2026 | Himachal Pradesh General Knowledge Hub</title>
+    <meta name="description" content="Master Himachal Pradesh GK with HPGK Quiz! Free mock tests for HPAS, HPPSC, Allied Services, Naib Tehsildar & HP Police. Comprehensive coverage of History, Geography, Culture, Economy, Polity & Famous People.">
+    <title>HPGK Quiz | Himachal Pradesh General Knowledge Hub</title>
     <!-- Clean Canonical Link -->
     <link rel="canonical" href="https://hpgk.toolblaster.com">
 
     <!-- Open Graph & Meta Tags -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://hpgk.toolblaster.com">
-    <meta property="og:title" content="HPGK Quiz 2026 | Himachal Pradesh General Knowledge Hub">
-    <meta property="og:description" content="Master Himachal Pradesh GK with HPGK Quiz! Free mock tests for HPAS, HPPSC, Allied Services, Naib Tehsildar & HP Police 2026.">
+    <meta property="og:title" content="HPGK Quiz | Himachal Pradesh General Knowledge Hub">
+    <meta property="og:description" content="Master Himachal Pradesh GK with HPGK Quiz! Free mock tests for HPAS, HPPSC, Allied Services, Naib Tehsildar & HP Police.">
     <meta property="og:image" content="https://hpgk.toolblaster.com/favicon/web-app-manifest-512x512.png">
     <meta property="twitter:card" content="summary">
     <meta property="twitter:url" content="https://hpgk.toolblaster.com">
-    <meta property="twitter:title" content="HPGK Quiz 2026 | Himachal Pradesh General Knowledge Hub">
-    <meta property="twitter:description" content="Master Himachal Pradesh GK with HPGK Quiz! Free mock tests for HPAS, HPPSC, Allied Services, Naib Tehsildar & HP Police 2026.">
+    <meta property="twitter:title" content="HPGK Quiz | Himachal Pradesh General Knowledge Hub">
+    <meta property="twitter:description" content="Master Himachal Pradesh GK with HPGK Quiz! Free mock tests for HPAS, HPPSC, Allied Services, Naib Tehsildar & HP Police.">
     <meta property="twitter:image" content="https://hpgk.toolblaster.com/favicon/web-app-manifest-512x512.png">
 
     <!-- Clean URL Script: Removes index.html from address bar -->
@@ -205,8 +205,9 @@
         }
         .topic-badge.active { background: var(--correct-bg); color: var(--correct-text); }
 
-        /* Install Button Style (Hidden now as SW is removed) */
-        .install-float { display: none; } 
+        /* Install Button Style */
+        .install-float { position: fixed; bottom: 20px; right: 20px; z-index: 1000; display: none; background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 50px; font-weight: 600; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4); cursor: pointer; align-items: center; gap: 8px; animation: slideUp 0.3s ease-out; }
+        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
         /* SEO Grid */
         .seo-grid {
@@ -294,12 +295,17 @@
 <!-- Dynamic Header Container -->
 <div id="site-header"></div>
 
+<!-- Install App Button -->
+<button id="installBtn" class="install-float" onclick="installApp()">
+    <i class="fa-solid fa-download"></i> Install App
+</button>
+
 <main>
     <div class="main-layout" style="display: block;">
         
         <!-- Compact Hero Section -->
         <section class="hub-hero">
-            <span class="hero-badge" style="background: var(--primary); color: white;">Devbhoomi Edition 2026</span>
+            <span class="hero-badge" style="background: var(--primary); color: white;">Devbhoomi Edition</span>
             <h1 class="hero-title">Master Himachal Pradesh<br>General Knowledge</h1>
             <p class="hero-desc">
                 The ultimate study companion for HPAS (HAS), HPPSC, Allied Services, Naib Tehsildar, HP Police, HP Patwari, HP High Court, and HP Panchayat Secretary. Select a topic below to start practicing bilingual questions.
@@ -395,7 +401,7 @@
             </a>
         </div>
 
-        <div class="section-separator" style="margin-top: 15px; margin-bottom: 15px; border-bottom: 2px solid #e2e8f0;"></div>
+        <div class="section-separator" style="margin-top: 15px; margin-bottom: 25px; border-bottom: 2px solid #e2e8f0;"></div>
 
         <!-- Secondary Description Section -->
         <div class="hub-hero" style="margin-bottom: 15px;">
@@ -547,20 +553,6 @@
 
             </div>
         </section>
-
-        <div class="section-separator" style="margin-top: 15px; margin-bottom: 25px; border-bottom: 3px solid #cbd5e1;"></div>
-
-        <!-- Features Section -->
-        <div class="subjects-container" style="text-align: center; margin-bottom: 30px;">
-            <div class="features-grid">
-                <div class="feature-item"><i class="fa-solid fa-language"></i> Bilingual</div>
-                <div class="feature-item"><i class="fa-solid fa-book-open"></i> HPPSC Aligned</div>
-                <div class="feature-item"><i class="fa-solid fa-layer-group"></i> 4000+ Questions</div>
-                <div class="feature-item"><i class="fa-solid fa-mobile-screen"></i> Mobile Ready</div>
-                <div class="feature-item"><i class="fa-solid fa-floppy-disk"></i> Auto-Save</div>
-            </div>
-        </div>
-
     </div>
 
     <!-- Dynamic Footer Container -->
@@ -570,6 +562,17 @@
 
 <!-- Load Layout Manager -->
 <script src="js/layout.js"></script>
+
+<!-- Service Worker & Install Logic (Kept same) -->
+<script>
+    // SW registration logic removed to avoid 404/console errors as per instruction
+    let deferredPrompt;
+    const installBtn = document.getElementById('installBtn');
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault(); deferredPrompt = e;
+        // Button kept hidden for now
+    });
+</script>
 
 <!-- Initialize Page -->
 <script>
