@@ -77,8 +77,7 @@
         /* Specific tweaks for this page */
         .quiz-card {
             border: 2px solid var(--primary-dark);
-            /* REVERTED: Removed 3D transform that caused blurriness */
-            /* Kept Shadow for depth */
+            /* Kept Shadow for depth but removed 3D transform to avoid blur */
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
             transition: box-shadow 0.3s ease;
         }
@@ -125,6 +124,30 @@
             font-weight: 500;
         }
         .intro-list li { margin-bottom: 2px; }
+
+        /* Quick Links Styling */
+        .quick-links {
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px dashed var(--border-color);
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .quick-link-item {
+            font-size: 0.7rem;
+            text-decoration: none;
+            color: var(--primary);
+            background: var(--primary-light);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        .quick-link-item:hover {
+            background: var(--primary);
+            color: white;
+        }
 
         /* High Contrast & 3D Effect for Content Cards */
         .seo-card {
@@ -183,6 +206,14 @@
                 <div class="intro-card">
                     <h3><i class="fa-solid fa-star"></i> Why This Matters? (यह महत्वपूर्ण क्यों है?)</h3>
                     <p>The river system is the most high-yielding topic for HPAS and Allied exams. Every year, 3-4 questions appear directly from tributaries, Vedic names, and hydro projects. <br><br>यह विषय HPAS और अन्य परीक्षाओं के लिए सबसे महत्वपूर्ण है। हर साल 3-4 प्रश्न सीधे पूछे जाते हैं।</p>
+                    
+                    <!-- Added Interlinking Section -->
+                    <div class="quick-links">
+                        <a href="../history/" class="quick-link-item"><i class="fa-solid fa-landmark"></i> History</a>
+                        <a href="../geography/" class="quick-link-item"><i class="fa-solid fa-mountain"></i> Geography</a>
+                        <a href="../district/" class="quick-link-item"><i class="fa-solid fa-map"></i> Districts</a>
+                        <a href="../economy/" class="quick-link-item"><i class="fa-solid fa-chart-line"></i> Economy</a>
+                    </div>
                 </div>
 
                 <div class="intro-card">
