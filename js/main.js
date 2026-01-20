@@ -135,24 +135,30 @@ function updateStats() {
     if (!document.getElementById('statDone')) return;
 
     const total = window.quizData.length;
-    const completedIds = Object.keys(historyState.answers);
-    const completedCount = completedIds.length;
-    const leftCount = total - completedCount;
+    const answers = historyState.answers;
     
-    let correctCount = 0;
-    completedIds.forEach(id => {
-        const q = window.quizData.find(item => item.id == id);
-        if (q && q.answer === historyState.answers[id]) {
-            correctCount++;
+    let validDoneCount = 0;
+    let validCorrectCount = 0;
+
+    // FIXED CALCULATION: Iterate through ACTUAL quiz data to match with answers.
+    // This prevents stale IDs in localStorage from messing up the "Left" count.
+    window.quizData.forEach(q => {
+        // Check if this specific question ID has a recorded answer
+        if (answers[q.id] !== undefined && answers[q.id] !== null) {
+            validDoneCount++;
+            if (answers[q.id] === q.answer) {
+                validCorrectCount++;
+            }
         }
     });
     
-    const wrongCount = completedCount - correctCount;
-    const accuracy = completedCount > 0 ? Math.round((correctCount / completedCount) * 100) : 0;
+    const leftCount = total - validDoneCount;
+    const wrongCount = validDoneCount - validCorrectCount;
+    const accuracy = validDoneCount > 0 ? Math.round((validCorrectCount / validDoneCount) * 100) : 0;
 
-    document.getElementById('statDone').innerText = completedCount;
+    document.getElementById('statDone').innerText = validDoneCount;
     document.getElementById('statLeft').innerText = leftCount;
-    document.getElementById('statCorrect').innerText = correctCount;
+    document.getElementById('statCorrect').innerText = validCorrectCount;
     document.getElementById('statWrong').innerText = wrongCount;
     document.getElementById('statAccuracy').innerText = accuracy + '%';
     
