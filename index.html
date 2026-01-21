@@ -128,14 +128,15 @@
         .topic-grid { 
             display: grid; 
             grid-template-columns: repeat(2, 1fr); 
-            gap: 10px; 
+            gap: 8px; /* Compact gap */
             margin-bottom: 30px; 
         }
 
         @media (min-width: 600px) {
             .topic-grid {
-                grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
-                gap: 15px;
+                /* Reduced minmax to 150px to allow denser packing */
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 12px;
             }
         }
 
@@ -143,13 +144,25 @@
             .topic-grid {
                 grid-template-columns: repeat(5, 1fr);
             }
+            /* Modifier for 6-column layout */
+            .topic-grid.six-cols {
+                grid-template-columns: repeat(6, 1fr);
+            }
+            /* Modifier for 5-column layout for Study Material */
+            .topic-grid.five-cols {
+                grid-template-columns: repeat(5, 1fr);
+            }
+            /* Modifier for 4-column layout for Study Material */
+            .topic-grid.four-cols {
+                grid-template-columns: repeat(4, 1fr);
+            }
         }
 
         .topic-card { 
             background: var(--card-bg); 
             border: 1px solid #cbd5e1; 
             border-radius: 12px; 
-            padding: 12px; 
+            padding: 10px; /* Reduced padding for compactness */
             text-decoration: none; 
             color: var(--text-main); 
             transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s; 
@@ -168,12 +181,12 @@
         .topic-card:hover { transform: translateY(-3px); box-shadow: var(--hover-shadow); border-color: var(--primary); }
         
         .topic-icon { 
-            font-size: 1.4rem; 
+            font-size: 1.3rem; /* Slightly smaller icon */
             color: var(--primary); 
-            margin-bottom: 8px; 
+            margin-bottom: 6px; 
             background: var(--primary-light); 
-            width: 40px; 
-            height: 40px; 
+            width: 36px; /* Compact size */
+            height: 36px; 
             border-radius: 50%; 
             display: flex; 
             align-items: center; 
@@ -181,16 +194,16 @@
         }
         
         .topic-title { 
-            font-size: 0.9rem; 
+            font-size: 0.85rem; /* Compact font size */
             font-weight: 700; 
-            margin-bottom: 4px; 
+            margin-bottom: 3px; 
             line-height: 1.2;
         }
         
         .topic-desc { 
-            font-size: 0.75rem; 
+            font-size: 0.7rem; /* Compact font size */
             color: var(--text-sec); 
-            margin-bottom: 8px; 
+            margin-bottom: 6px; 
             line-height: 1.3; 
         }
         
@@ -198,8 +211,8 @@
             margin-top: auto; 
             background: var(--input-bg); 
             color: var(--text-sec); 
-            font-size: 0.65rem; 
-            padding: 3px 8px; 
+            font-size: 0.6rem; 
+            padding: 2px 6px; 
             border-radius: 10px; 
             font-weight: 600; 
         }
@@ -521,8 +534,8 @@
             </p>
         </div>
 
-        <!-- Secondary Grid for Exams -->
-        <div class="topic-grid" style="margin-top: 0px;">
+        <!-- Secondary Grid for Exams: Added 'six-cols' for 6-column layout -->
+        <div class="topic-grid six-cols" style="margin-top: 0px;">
             <!-- Card 11: HP Patwari -->
             <a href="#" class="topic-card" style="opacity: 0.7;">
                 <div class="topic-icon"><i class="fa-solid fa-file-pen"></i></div>
@@ -562,12 +575,73 @@
                 <div class="topic-desc">Constable, Sub-Inspector exam preparation.</div>
                 <div class="topic-badge">Coming Soon</div>
             </a>
+            
+            <!-- Card 16: HP TGT Arts (New Added) -->
+            <a href="#" class="topic-card" style="opacity: 0.7;">
+                <div class="topic-icon"><i class="fa-solid fa-palette"></i></div>
+                <div class="topic-title">HP TGT Arts</div>
+                <div class="topic-desc">Commission GK, Social Studies & Teaching Aptitude.</div>
+                <div class="topic-badge">Coming Soon</div>
+            </a>
         </div>
 
         <div class="section-separator" style="margin-top: 15px; margin-bottom: 25px; border-bottom: 2px solid #e2e8f0;"></div>
 
+        <!-- New Study Material Section (Moved Here) -->
+        <section class="features-section" style="margin-top: 20px; border-left: 4px solid #2563eb;">
+            <div class="features-header">
+                <i class="fa-solid fa-folder-open" style="color: #2563eb; font-size: 1.2rem;"></i>
+                <h2 class="features-title">Study Material & Resources</h2>
+            </div>
+            
+            <div class="topic-grid five-cols" style="margin-bottom: 0;">
+                <!-- Card 1: Study Notes -->
+                <a href="study-notes/" class="topic-card">
+                    <div class="topic-icon"><i class="fa-solid fa-book-open"></i></div>
+                    <div class="topic-title">Study Notes</div>
+                    <div class="topic-desc">Govt Schemes, Budget, Economic Survey & Notes.</div>
+                    <div class="topic-badge active">Updated</div>
+                </a>
+
+                <!-- Card 2: One Liners -->
+                <a href="#" class="topic-card" style="opacity: 0.7;">
+                    <div class="topic-icon"><i class="fa-solid fa-list-ol"></i></div>
+                    <div class="topic-title">HP GK One Liner</div>
+                    <div class="topic-desc">Quick revision facts and bullet points.</div>
+                    <div class="topic-badge">Coming Soon</div>
+                </a>
+
+                <!-- Card 3: Child Dev -->
+                <a href="#" class="topic-card" style="opacity: 0.7;">
+                    <div class="topic-icon"><i class="fa-solid fa-child-reaching"></i></div>
+                    <div class="topic-title">Child Dev & Pedagogy</div>
+                    <div class="topic-desc">Essential for TGT, JBT & TET Exams.</div>
+                    <div class="topic-badge">Coming Soon</div>
+                </a>
+
+                <!-- Card 4: Previous Papers -->
+                <a href="#" class="topic-card" style="opacity: 0.7;">
+                    <div class="topic-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
+                    <div class="topic-title">Previous Papers</div>
+                    <div class="topic-desc">Solved papers for HPAS and HPPSC exams.</div>
+                    <div class="topic-badge">Coming Soon</div>
+                </a>
+
+                <!-- Card 5: Current Affairs (New Added) -->
+                <a href="#" class="topic-card" style="opacity: 0.7;">
+                    <div class="topic-icon"><i class="fa-solid fa-newspaper"></i></div>
+                    <div class="topic-title">Current Affairs</div>
+                    <div class="topic-desc">HP specific monthly current affairs & events.</div>
+                    <div class="topic-badge">Coming Soon</div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Accent Separator -->
+        <div class="section-separator" style="margin-top: 25px; margin-bottom: 25px; border-bottom: 2px solid var(--primary-light);"></div>
+
         <!-- NEW PURPOSE & GUIDE SECTION -->
-        <section class="features-section">
+        <section class="features-section" style="margin-bottom: 30px;">
             <div class="features-header">
                 <i class="fa-solid fa-lightbulb" style="color: var(--accent); font-size: 1.2rem;"></i>
                 <h2 class="features-title">Purpose & How to Use</h2>
@@ -627,135 +701,6 @@
                     <span class="subject-tag" style="border-color: #16a34a; color: #166534; background: #dcfce7; font-size: 0.7rem;"><i class="fa-solid fa-book-open"></i> Detailed Explanations</span>
                     <span class="subject-tag" style="border-color: #16a34a; color: #166534; background: #dcfce7; font-size: 0.7rem;"><i class="fa-solid fa-chart-line"></i> Self-Assessment</span>
                 </div>
-            </div>
-
-            <div class="seo-header">
-                <h2>Essential Facts & Insights</h2>
-                <p>Key topics covered in our detailed study modules.</p>
-            </div>
-            <div class="seo-grid">
-                
-                <!-- Card 1: Geography -->
-                <div class="seo-card">
-                    <h3><i class="fa-solid fa-mountain-sun"></i> Geography & Terrain</h3>
-                    <p>Explore the physical features of the 'Abode of Snow'. <br>हिमाचल की भौगोलिक विशेषताओं का अन्वेषण करें।</p>
-                    <ul class="seo-list">
-                        <li><strong>Three Zones:</strong> Outer Himalayas (Shivalik), Lesser Himalayas (Dhauladhar/Pir Panjal), Great Himalayas (Zaskar).</li>
-                        <li><strong>River Systems:</strong> Satluj (Longest), Beas, Ravi, Chenab (Largest by volume), Yamuna (Shortest).</li>
-                        <li><strong>High Peaks:</strong> Reo Purgyil (6816m), Shilla (6132m), Manirang (6597m).</li>
-                        <li><strong>Glaciers:</strong> Bara Shigri (Largest), Sonapani, Gyephang, Lady of Keylong.</li>
-                    </ul>
-                </div>
-
-                <!-- Card 2: History -->
-                <div class="seo-card">
-                    <h3><i class="fa-solid fa-landmark"></i> History & Heritage</h3>
-                    <p>From ancient Trigarta to the 18th State of India. <br>प्राचीन त्रिगर्त से भारत के 18वें राज्य तक।</p>
-                    <ul class="seo-list">
-                        <li><strong>Ancient:</strong> Trigarta (Kangra), Kuluta (Kullu), Audumbaras, Kunindas.</li>
-                        <li><strong>Medieval:</strong> Mahmud Ghazni's invasion (1009), Sansar Chand's Golden Age, Gorkha Wars (1805-1815).</li>
-                        <li><strong>British Era:</strong> Anglo-Gorkha War, Treaty of Sugauli, Shimla as Summer Capital (1864).</li>
-                        <li><strong>Modern:</strong> Prajamandal Movement, Dhami Firing (1939), Statehood (25 Jan 1971).</li>
-                    </ul>
-                </div>
-
-                <!-- Card 3: Culture -->
-                <div class="seo-card">
-                    <h3><i class="fa-solid fa-gopuram"></i> Culture & Customs</h3>
-                    <p>A vibrant tapestry of fairs, festivals, and architecture. <br>मेलों, त्योहारों और वास्तुकला की एक जीवंत टेपेस्ट्री।</p>
-                    <ul class="seo-list">
-                        <li><strong>Temple Styles:</strong> Pent-roof (Lakshana Devi), Pagoda (Hadimba), Nagara (Masroor), Dome (Jwalamukhi).</li>
-                        <li><strong>Fairs:</strong> Minjar (Chamba), Lavi (Rampur - Trade), Shivratri (Mandi), Dussehra (Kullu).</li>
-                        <li><strong>Dances:</strong> Nati (Guinness Record), Dangi, Chham (Mask Dance), Thoda (War Dance).</li>
-                        <li><strong>Tribes:</strong> Gaddis, Gujjars, Kinnauras, Pangwals, Swanglas.</li>
-                    </ul>
-                </div>
-
-                <!-- Card 4: Economy -->
-                <div class="seo-card">
-                    <h3><i class="fa-solid fa-bolt"></i> Economy & Dev</h3>
-                    <p>Hydropower and Horticulture are the twin pillars. <br>पनबिजली और बागवानी दो मुख्य स्तंभ हैं।</p>
-                    <ul class="seo-list">
-                        <li><strong>Hydropower:</strong> Potential ~27,436 MW. Major projects: Nathpa Jhakri (1500 MW), Bhakra, Pong, Chamera.</li>
-                        <li><strong>Agriculture:</strong> 'Apple State of India'. First apples by Satyanand Stokes (Kotgarh).</li>
-                        <li><strong>Industries:</strong> Pharma hub (Baddi-Barotiwala-Nalagarh). Cement plants (Barmana, Darlaghat).</li>
-                        <li><strong>Schemes:</strong> HIMCAD, Mukhya Mantri Khet Sanrakshan, Prakritik Kheti Khushhal Kisan.</li>
-                    </ul>
-                </div>
-
-                <!-- Card 5: Polity -->
-                <div class="seo-card">
-                    <h3><i class="fa-solid fa-scale-balanced"></i> Polity & Admin</h3>
-                    <p>Administrative evolution and constitutional framework. <br>प्रशासनिक विकास और संवैधानिक ढांचा।</p>
-                    <ul class="seo-list">
-                        <li><strong>Evolution:</strong> Chief Commissioner's Province (1948) -> Part C State (1951) -> UT (1956) -> State (1971).</li>
-                        <li><strong>Assembly:</strong> 68 Seats. First Speaker: Jaiwant Ram. First CM: Dr. Y.S. Parmar.</li>
-                        <li><strong>Admin:</strong> 12 Districts, 3 Divisions (Kangra, Mandi, Shimla). High Court est. 1971 (M.H. Beg).</li>
-                        <li><strong>Local Bodies:</strong> Panchayati Raj Act 1994. 3-tier system.</li>
-                    </ul>
-                </div>
-
-                <!-- Card 6: Districts Profile -->
-                <div class="seo-card">
-                    <h3><i class="fa-solid fa-map-location-dot"></i> Districts Profile</h3>
-                    <p>Unique facts about all 12 districts. <br>सभी 12 जिलों के बारे में अनूठे तथ्य।</p>
-                    <ul class="seo-list">
-                        <li><strong>Kangra:</strong> Most populous. Tea capital. Masroor Temple.</li>
-                        <li><strong>Lahaul-Spiti:</strong> Largest area. Lowest population density. Cold Desert. Potato farming.</li>
-                        <li><strong>Hamirpur:</strong> Highest literacy. Highest road density. Smallest area.</li>
-                        <li><strong>Mandi:</strong> 'Chhoti Kashi'. IIT Mandi. Salt Mines (Gumma/Drang).</li>
-                        <li><strong>Chamba:</strong> Ravi river. Minjar fair. Switzerland of HP (Khajjiar).</li>
-                    </ul>
-                </div>
-
-                <!-- Card 7: Famous People -->
-                <div class="seo-card">
-                    <h3><i class="fa-solid fa-user-graduate"></i> Famous People</h3>
-                    <p>Legends who shaped the state and nation. <br>राज्य और राष्ट्र को आकार देने वाले महापुरूष।</p>
-                    <ul class="seo-list">
-                        <li><strong>Defense:</strong> Major Somnath Sharma (First PVC), Capt. Vikram Batra (PVC), Riffleman Sanjay Kumar (PVC).</li>
-                        <li><strong>Politics:</strong> Dr. Y.S. Parmar (Architect of HP), Virbhadra Singh (6-time CM).</li>
-                        <li><strong>Arts/Lit:</strong> Sardar Sobha Singh (Painter), Norah Richards (Theatre), Ruskin Bond (Kasauli connection).</li>
-                        <li><strong>Sports:</strong> The Great Khali, Vijay Kumar (Shooter), Charanjit Singh (Hockey).</li>
-                    </ul>
-                </div>
-
-                <!-- Card 8: Flora & Fauna -->
-                <div class="seo-card">
-                    <h3><i class="fa-solid fa-tree"></i> Flora & Fauna</h3>
-                    <p>Biodiversity, National Parks, and State Symbols. <br>जैव विविधता, राष्ट्रीय उद्यान और राज्य प्रतीक।</p>
-                    <ul class="seo-list">
-                        <li><strong>State Symbols:</strong> Animal: Snow Leopard. Bird: Western Tragopan (Jujurana). Flower: Pink Rhododendron. Tree: Deodar.</li>
-                        <li><strong>National Parks:</strong> Great Himalayan NP (UNESCO), Pin Valley, Khirganga, Inderkilla, Simbalbara.</li>
-                        <li><strong>Sanctuaries:</strong> Kibber (Largest), Shilli (Smallest), Pong Dam (Bird), Renuka.</li>
-                        <li><strong>Herbs:</strong> Kuth, Patish, Kala Zira (GI Tag).</li>
-                    </ul>
-                </div>
-
-                <!-- Card 9: Tourism -->
-                <div class="seo-card">
-                    <h3><i class="fa-solid fa-person-hiking"></i> Tourism</h3>
-                    <p>Destinations, adventure, and spiritual circuits. <br>गंतव्य, रोमांच और आध्यात्मिक सर्किट।</p>
-                    <ul class="seo-list">
-                        <li><strong>Hill Stations:</strong> Shimla, Manali, Dalhousie, Dharamshala, Kasauli.</li>
-                        <li><strong>Adventure:</strong> Paragliding (Bir Billing), Skiing (Solang, Kufri), Rafting (Beas, Sutlej).</li>
-                        <li><strong>Religious:</strong> Shakti Peethas (Jwalamukhi, Naina Devi), Buddhist Monasteries (Tabo, Key), Sikh Gurudwaras (Paonta, Manikaran).</li>
-                        <li><strong>Heritage:</strong> Kalka-Shimla Railway (UNESCO), Viceregal Lodge, Naggar Castle.</li>
-                    </ul>
-                </div>
-
-                <!-- Card 10: Famous Tribes -->
-                <div class="seo-card">
-                    <h3><i class="fa-solid fa-people-group"></i> Famous Tribes</h3>
-                    <p>Indigenous communities and their unique culture. <br>स्वदेशी समुदाय और उनकी अनूठी संस्कृति।</p>
-                    <ul class="seo-list">
-                        <li><strong>Gaddis:</strong> Shepherds of Chamba/Kangra. Worship Shiva. Wear Chola-Dora.</li>
-                        <li><strong>Kinnauras:</strong> Inhabitants of Kinnaur. Practice polyandry (historically). Speak Kinnauri.</li>
-                        <li><strong>Gujjars:</strong> Pastoral nomads. Hindu & Muslim Gujjars. Buffalo rearers.</li>
-                        <li><strong>Pangwals:</strong> Pangi Valley (Chamba). Famous for 'Jhanjhar' dance.</li>
-                    </ul>
-                </div>
-
             </div>
         </section>
     </div>
