@@ -198,26 +198,129 @@ function renderFooter(rootPath = '.') {
 
     const currentYear = new Date().getFullYear();
     
+    // Using a slightly lighter background for the footer to separate it visually
+    // Adding specific text colors for better readability
     footerEl.innerHTML = `
-        <div class="site-footer">
-            <div class="footer-inner">
-                <span>&copy; ${currentYear} HPGK Quiz by <a href="https://toolblaster.com" style="color: var(--primary-dark); text-decoration: none; font-weight: 600;">toolblaster.com</a>.</span>
+        <footer class="site-footer" style="background: var(--card-bg); border-top: 1px solid var(--border-color); padding: 30px 20px 20px; margin-top: auto; box-shadow: 0 -2px 10px rgba(0,0,0,0.02);">
+            <div class="footer-grid" style="display: grid; grid-template-columns: 35fr 65fr; gap: 40px; max-width: 1000px; margin: 0 auto 20px auto;">
                 
-                <span class="footer-links">
-                    <a href="${rootPath}/legal/about.html" style="color: var(--text-sec); text-decoration: none; font-size: 0.8rem; margin: 0 5px;">About</a> |
-                    <a href="${rootPath}/legal/privacy.html" style="color: var(--text-sec); text-decoration: none; font-size: 0.8rem; margin: 0 5px;">Privacy</a> |
-                    <a href="${rootPath}/legal/terms.html" style="color: var(--text-sec); text-decoration: none; font-size: 0.8rem; margin: 0 5px;">Terms</a>
-                </span>
+                <!-- Column 1: Brand & About (35%) -->
+                <div class="footer-col" style="display: flex; flex-direction: column; align-items: flex-start;">
+                    <div class="footer-brand" style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
+                        <div style="background: linear-gradient(135deg, var(--primary-light) 0%, var(--card-bg) 100%); padding: 10px; border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); border: 1px solid var(--border-color);">
+                            <i class="fa-solid fa-mountain-sun" style="color: var(--primary); font-size: 1.4rem;"></i>
+                        </div>
+                        <div style="display: flex; flex-direction: column;">
+                            <span style="font-weight: 800; color: var(--text-main); font-size: 1.2rem; letter-spacing: -0.5px; line-height: 1.1;">HPGK Quiz</span>
+                            <span style="font-size: 0.7rem; color: var(--text-sec); font-weight: 500;">Himachal General Knowledge</span>
+                        </div>
+                    </div>
+                    <p style="font-size: 12px; color: var(--text-sec); line-height: 1.6; margin-bottom: 15px; max-width: 90%;">
+                        Your dedicated companion for Himachal Pradesh competitive exams. Master HP GK with our comprehensive quizzes and notes.
+                    </p>
+                </div>
 
-                <button onclick="shareApp()" class="footer-share-btn" title="Share this page">
-                    <i class="fa-solid fa-share-nodes"></i> <span class="share-text">Share</span>
-                </button>
+                <!-- Column 2: Quick Links (65%) -->
+                <div class="footer-col">
+                    <h3 style="color: var(--text-main); font-size: 0.9rem; font-weight: 700; margin-bottom: 10px; position: relative; padding-left: 10px; border-left: 3px solid var(--primary);">Quick Links</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px 10px;">
+                        <li><a href="${rootPath}/history/" class="footer-link">History</a></li>
+                        <li><a href="${rootPath}/geography/" class="footer-link">Geography</a></li>
+                        <li><a href="${rootPath}/district/" class="footer-link">Districts</a></li>
+                        <li><a href="${rootPath}/polity/" class="footer-link">Polity</a></li>
+                        <li><a href="${rootPath}/economy/" class="footer-link">Economy</a></li>
+                        <li><a href="${rootPath}/study-notes/" class="footer-link">Study Notes</a></li>
+                        <li><a href="${rootPath}/famous-people/" class="footer-link">Famous People</a></li>
+                        <li><a href="${rootPath}/environment/" class="footer-link">Environment</a></li>
+                        <li><a href="${rootPath}/tourism/" class="footer-link">Tourism</a></li>
+                        <li><a href="${rootPath}/art-culture/" class="footer-link">Art & Culture</a></li>
+                        <li><a href="${rootPath}/rivers/" class="footer-link">Rivers</a></li>
+                        <li><a href="${rootPath}/index.html" class="footer-link">Home</a></li>
+                    </ul>
+                </div>
             </div>
-        </div>
+            
+            <!-- Thin Divider -->
+            <div style="max-width: 1000px; margin: 15px auto 10px; opacity: 0.4; height: 1px; background-color: var(--border-color);"></div>
+            
+            <!-- Bottom Bar: Centered Copyright & Legal -->
+            <div style="max-width: 1000px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center;">
+                <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; align-items: center;">
+                    <span style="font-size: 10px; color: var(--text-sec); opacity: 0.8;">
+                        &copy; ${currentYear} hpgk.toolblaster.com. All rights reserved.
+                    </span>
+                    <span class="legal-separator" style="color: var(--border-color); font-size: 9px; display: none;">|</span>
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                        <a href="${rootPath}/legal/about.html" class="footer-bottom-link">About Us</a>
+                        <a href="${rootPath}/legal/privacy.html" class="footer-bottom-link">Privacy Policy</a>
+                        <a href="${rootPath}/legal/terms.html" class="footer-bottom-link">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <style>
+            .footer-link {
+                text-decoration: none; 
+                color: var(--text-sec); 
+                font-size: 11px; 
+                transition: opacity 0.2s ease;
+                display: inline-flex;
+                align-items: center;
+                white-space: nowrap;
+            }
+            /* Removing hover color change as requested, keeping opacity shift for subtle feedback */
+            .footer-link:hover {
+                opacity: 0.8;
+            }
+            .footer-bottom-link {
+                text-decoration: none;
+                color: var(--text-sec);
+                font-size: 10px;
+                opacity: 0.8;
+                transition: opacity 0.2s ease;
+            }
+            .footer-bottom-link:hover {
+                opacity: 1;
+            }
+            /* Subtle hover effect for columns */
+            .footer-col:hover .footer-brand i {
+                transform: scale(1.1);
+                transition: transform 0.3s ease;
+            }
+            
+            @media (min-width: 769px) {
+                /* Show separator on desktop */
+                .legal-separator { display: inline-block !important; }
+            }
+
+            @media (max-width: 768px) {
+                .footer-grid {
+                    grid-template-columns: 1fr !important; /* Stack columns on mobile */
+                    gap: 20px !important;
+                }
+                .footer-col {
+                    align-items: center !important; /* Center content on mobile */
+                    text-align: center;
+                }
+                .footer-col p {
+                    max-width: 100% !important;
+                    text-align: center;
+                }
+                /* Adjust quick links grid for mobile */
+                .footer-col ul {
+                    grid-template-columns: repeat(3, 1fr) !important; /* 3 cols on mobile for density */
+                    width: 100%;
+                    gap: 6px 4px !important;
+                }
+                .footer-link {
+                    justify-content: center;
+                }
+            }
+        </style>
     `;
 }
 
-// --- Shared Logic (Theme & Share) ---
+// --- Shared Logic (Theme Only) ---
 
 function initThemeState() {
     const savedTheme = localStorage.getItem('theme') || 'light';
@@ -244,23 +347,7 @@ function updateThemeIcon(theme) {
     }
 }
 
-window.shareApp = async function() {
-    const canonical = document.querySelector('link[rel="canonical"]')?.href || window.location.href;
-    const btn = document.querySelector('.footer-share-btn');
-    if (!btn) return;
-    
-    const originalHtml = btn.innerHTML;
-
-    if (navigator.share) {
-        try { await navigator.share({ url: canonical }); } catch (err) {}
-    } else {
-        try {
-            await navigator.clipboard.writeText(canonical);
-            btn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
-            setTimeout(() => { btn.innerHTML = originalHtml; }, 2000);
-        } catch (err) { alert('Could not copy URL'); }
-    }
-};
+// Share function removed as per request
 
 // Auto-run theme init on load (in case header renders late)
 document.addEventListener('DOMContentLoaded', initThemeState);
