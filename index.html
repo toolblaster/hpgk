@@ -212,15 +212,15 @@
         /* SEO Grid */
         .seo-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); /* Adjusted minmax for 5 columns */
             gap: 15px;
             margin-top: 20px;
         }
         
-        /* 4 in a row for larger screens for SEO cards */
+        /* 5 in a row for larger screens for SEO cards */
         @media (min-width: 1200px) {
             .seo-grid {
-                grid-template-columns: repeat(4, 1fr);
+                grid-template-columns: repeat(5, 1fr);
             }
         }
         
@@ -236,13 +236,23 @@
         }
         
         [data-theme="dark"] .seo-card { border-color: #64748b; }
-        .seo-card:hover { transform: translateY(-2px); border-color: var(--primary); }
+        
+        .seo-card:hover { 
+            /* Removed transform and shadow hover effects */
+            transform: none; 
+            box-shadow: var(--glass-shadow); 
+            border-color: #e2e8f0; /* Keep original border color or subtle change */
+        }
+        
+        [data-theme="dark"] .seo-card:hover {
+             border-color: #475569;
+        }
 
         .seo-card h3 {
             display: flex;
             align-items: center;
             gap: 8px;
-            font-size: 1rem;
+            font-size: 0.9rem; /* Matched to topic-title (was 1rem) */
             font-weight: 700;
             color: var(--primary-dark);
             margin-bottom: 10px;
@@ -251,7 +261,7 @@
         }
         
         .seo-card p {
-            font-size: 0.8rem;
+            font-size: 0.75rem; /* Matched to topic-desc (was 0.8rem) */
             line-height: 1.4;
             color: var(--text-sec);
             margin-bottom: 8px;
@@ -263,7 +273,7 @@
         }
 
         .seo-list li {
-            font-size: 0.8rem;
+            font-size: 0.75rem; /* Matched to topic-desc (was 0.8rem) */
             margin-bottom: 4px;
             line-height: 1.3;
             color: var(--text-main);
@@ -288,6 +298,107 @@
             border: 1px solid var(--border-color);
         }
         .feature-item i { color: var(--primary); }
+
+        /* Feature Section Styling */
+        .features-section {
+            background: linear-gradient(135deg, var(--card-bg) 0%, var(--primary-light) 100%);
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Dark Mode Specific Overrides for Features Section */
+        [data-theme="dark"] .features-section {
+            background: linear-gradient(135deg, var(--card-bg) 0%, #1e293b 100%); /* Darker gradient end */
+            border-left-color: #22c55e !important; /* Brighter green for border */
+        }
+        
+        [data-theme="dark"] .features-section p {
+            color: var(--text-sec) !important; /* Ensure readable text color */
+        }
+        
+        [data-theme="dark"] .features-header i {
+            color: #4ade80 !important; /* Brighter icon color */
+        }
+
+        /* Subtle decorative accent */
+        .features-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+        }
+
+        .features-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .features-title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin: 0;
+        }
+
+        .features-grid-compact {
+            display: grid;
+            grid-template-columns: 1fr; /* Single column for vertical stacking */
+            gap: 16px; 
+        }
+
+        .feature-box {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px; /* Slightly more rounded */
+            padding: 18px; 
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+            transition: box-shadow 0.2s; /* Removed transform transition */
+        }
+
+        /* No hover effect */
+        .feature-box:hover {
+            /* No changes on hover */
+        }
+
+        .feature-icon-wrapper {
+            width: 36px; /* Reduced for compactness */
+            height: 36px; 
+            border-radius: 50%;
+            background: var(--input-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0; 
+            color: var(--primary);
+            font-size: 1rem; 
+        }
+
+        .feature-label {
+            font-size: 0.9rem; /* Matched to topic-title */
+            font-weight: 700; 
+            color: var(--text-main);
+            margin-bottom: 4px;
+        }
+
+        .feature-desc {
+            font-size: 0.75rem; /* Matched to topic-desc */
+            color: var(--text-sec);
+            line-height: 1.4;
+        }
     </style>
 </head>
 <body>
@@ -453,101 +564,195 @@
             </a>
         </div>
 
-        <div class="section-separator" style="margin-top: 15px; margin-bottom: 25px; border-bottom: 3px solid #cbd5e1;"></div>
+        <div class="section-separator" style="margin-top: 15px; margin-bottom: 25px; border-bottom: 2px solid #e2e8f0;"></div>
+
+        <!-- NEW PURPOSE & GUIDE SECTION -->
+        <section class="features-section">
+            <div class="features-header">
+                <i class="fa-solid fa-lightbulb" style="color: var(--accent); font-size: 1.2rem;"></i>
+                <h2 class="features-title">Purpose & How to Use</h2>
+            </div>
+            
+            <div class="features-grid-compact" style="grid-template-columns: 1fr;">
+                <!-- Combined Purpose & Guide -->
+                <div class="feature-box" style="align-items: flex-start; text-align: left; padding: 15px;">
+                    <!-- Exam Preparation Hub -->
+                    <div style="display: flex; gap: 15px; width: 100%; margin-bottom: 20px;">
+                        <div class="feature-icon-wrapper" style="margin-bottom: 0; flex-shrink: 0; width: 36px; height: 36px; font-size: 1rem;">
+                            <i class="fa-solid fa-book-open-reader"></i>
+                        </div>
+                        <div>
+                            <div class="feature-label" style="font-size: 0.9rem; margin-bottom: 4px;">Exam Preparation Hub</div>
+                            <div class="feature-desc" style="font-size: 0.75rem; line-height: 1.4;">
+                                This platform is designed for aspirants of HPAS, HPPSC, and other state exams. Use the <strong>Topic Cards</strong> above to access specific question banks. Each section contains <strong>Bilingual MCQs</strong> with detailed explanations.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Effective Usage Guide (Moved Below) -->
+                    <div style="display: flex; gap: 15px; width: 100%;">
+                        <div class="feature-icon-wrapper" style="margin-bottom: 0; flex-shrink: 0; width: 36px; height: 36px; font-size: 1rem;">
+                            <i class="fa-solid fa-list-check"></i>
+                        </div>
+                        <div>
+                            <div class="feature-label" style="font-size: 0.9rem; margin-bottom: 4px;">Effective Usage Guide</div>
+                            <div class="feature-desc" style="font-size: 0.75rem; line-height: 1.4;">
+                                1. Select a category (e.g., History, Geography).<br>
+                                2. Read the <strong>Study Notes</strong> provided at the bottom of each category page.<br>
+                                3. Attempt the MCQs. Use the <strong>Search Bar</strong> to find specific topics.<br>
+                                4. Review explanations for every answer to deepen your understanding.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- SEO Content Section: Comprehensive & High Quality -->
         <section class="seo-content-wrapper">
+            <!-- New Complete Guide Section -->
+            <div class="features-section" style="margin-bottom: 30px; border-left: 4px solid #16a34a;">
+                <div class="features-header">
+                    <i class="fa-solid fa-graduation-cap" style="color: #16a34a; font-size: 1.2rem;"></i>
+                    <h2 class="features-title">Complete Guide to Himachal Pradesh GK</h2>
+                </div>
+                <p style="font-size: 0.75rem; color: var(--text-sec); margin-bottom: 15px; line-height: 1.5;">
+                    Welcome to the ultimate resource for Himachal Pradesh General Knowledge. This comprehensive guide covers every aspect of the state, tailored specifically for competitive exams like HPAS, HPPSC, and Allied Services. From the snow-capped peaks of the Himalayas to the vibrant culture of its people, explore detailed notes and quizzes designed to boost your preparation.
+                </p>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <span class="subject-tag" style="border-color: #16a34a; color: #166534; background: #dcfce7; font-size: 0.7rem;"><i class="fa-solid fa-check"></i> Exam Oriented</span>
+                    <span class="subject-tag" style="border-color: #16a34a; color: #166534; background: #dcfce7; font-size: 0.7rem;"><i class="fa-solid fa-language"></i> Bilingual Content</span>
+                    <span class="subject-tag" style="border-color: #16a34a; color: #166534; background: #dcfce7; font-size: 0.7rem;"><i class="fa-solid fa-infinity"></i> Unlimited Practice</span>
+                    <span class="subject-tag" style="border-color: #16a34a; color: #166534; background: #dcfce7; font-size: 0.7rem;"><i class="fa-solid fa-layer-group"></i> Topic-wise Learning</span>
+                    <span class="subject-tag" style="border-color: #16a34a; color: #166534; background: #dcfce7; font-size: 0.7rem;"><i class="fa-solid fa-book-open"></i> Detailed Explanations</span>
+                    <span class="subject-tag" style="border-color: #16a34a; color: #166534; background: #dcfce7; font-size: 0.7rem;"><i class="fa-solid fa-chart-line"></i> Self-Assessment</span>
+                </div>
+            </div>
+
             <div class="seo-header">
-                <h2>Complete Guide to Himachal Pradesh GK</h2>
-                <p>Essential facts and detailed insights for competitive exam preparation.</p>
+                <h2>Essential Facts & Insights</h2>
+                <p>Key topics covered in our detailed study modules.</p>
             </div>
             <div class="seo-grid">
                 
                 <!-- Card 1: Geography -->
                 <div class="seo-card">
                     <h3><i class="fa-solid fa-mountain-sun"></i> Geography & Terrain</h3>
-                    <p>Explore the three zones: <strong>Shivalik</strong>, <strong>Mid-Himalayas</strong>, and <strong>Great Himalayas</strong>. Master the river systems of Satluj, Beas, Ravi, Chenab, and Yamuna.</p>
+                    <p>Explore the physical features of the 'Abode of Snow'. <br>हिमाचल की भौगोलिक विशेषताओं का अन्वेषण करें।</p>
                     <ul class="seo-list">
-                        <li><strong>Major Passes:</strong> Rohtang, Shipki La, Baralacha La.</li>
-                        <li><strong>Glaciers:</strong> Bara Shigri, Sonapani.</li>
-                        <li><strong>Hot Springs:</strong> Manikaran, Tattapani, Vashisht.</li>
+                        <li><strong>Three Zones:</strong> Outer Himalayas (Shivalik), Lesser Himalayas (Dhauladhar/Pir Panjal), Great Himalayas (Zaskar).</li>
+                        <li><strong>River Systems:</strong> Satluj (Longest), Beas, Ravi, Chenab (Largest by volume), Yamuna (Shortest).</li>
+                        <li><strong>High Peaks:</strong> Reo Purgyil (6816m), Shilla (6132m), Manirang (6597m).</li>
+                        <li><strong>Glaciers:</strong> Bara Shigri (Largest), Sonapani, Gyephang, Lady of Keylong.</li>
                     </ul>
                 </div>
 
                 <!-- Card 2: History -->
                 <div class="seo-card">
                     <h3><i class="fa-solid fa-landmark"></i> History & Heritage</h3>
-                    <p>Trace the history from ancient <strong>Trigarta</strong> to the Gorkha invasion (1805). Learn about the Prajamandal movement and the formation of HP.</p>
+                    <p>From ancient Trigarta to the 18th State of India. <br>प्राचीन त्रिगर्त से भारत के 18वें राज्य तक।</p>
                     <ul class="seo-list">
-                        <li><strong>Katoch Dynasty:</strong> Sansar Chand's era.</li>
-                        <li><strong>Formation:</strong> 15th April 1948 (30 states merged).</li>
-                        <li><strong>Statehood:</strong> 25th Jan 1971 (18th State).</li>
+                        <li><strong>Ancient:</strong> Trigarta (Kangra), Kuluta (Kullu), Audumbaras, Kunindas.</li>
+                        <li><strong>Medieval:</strong> Mahmud Ghazni's invasion (1009), Sansar Chand's Golden Age, Gorkha Wars (1805-1815).</li>
+                        <li><strong>British Era:</strong> Anglo-Gorkha War, Treaty of Sugauli, Shimla as Summer Capital (1864).</li>
+                        <li><strong>Modern:</strong> Prajamandal Movement, Dhami Firing (1939), Statehood (25 Jan 1971).</li>
                     </ul>
                 </div>
 
                 <!-- Card 3: Culture -->
                 <div class="seo-card">
                     <h3><i class="fa-solid fa-gopuram"></i> Culture & Customs</h3>
-                    <p>Himachal is known for its distinct Pahari culture. Study the architectural styles of temples (Pagoda, Nagara) and famous fairs like Minjar and Lavi.</p>
+                    <p>A vibrant tapestry of fairs, festivals, and architecture. <br>मेलों, त्योहारों और वास्तुकला की एक जीवंत टेपेस्ट्री।</p>
                     <ul class="seo-list">
-                        <li><strong>Temples:</strong> Hidimba, Jwalaji, Masroor.</li>
-                        <li><strong>Dances:</strong> Nati, Dangi, Chham.</li>
-                        <li><strong>Tribes:</strong> Gaddis, Kinnauras, Pangwals.</li>
+                        <li><strong>Temple Styles:</strong> Pent-roof (Lakshana Devi), Pagoda (Hadimba), Nagara (Masroor), Dome (Jwalamukhi).</li>
+                        <li><strong>Fairs:</strong> Minjar (Chamba), Lavi (Rampur - Trade), Shivratri (Mandi), Dussehra (Kullu).</li>
+                        <li><strong>Dances:</strong> Nati (Guinness Record), Dangi, Chham (Mask Dance), Thoda (War Dance).</li>
+                        <li><strong>Tribes:</strong> Gaddis, Gujjars, Kinnauras, Pangwals, Swanglas.</li>
                     </ul>
                 </div>
 
                 <!-- Card 4: Economy -->
                 <div class="seo-card">
                     <h3><i class="fa-solid fa-bolt"></i> Economy & Dev</h3>
-                    <p>Understand the backbone of HP's economy: <strong>Hydroelectric Power</strong> and <strong>Horticulture</strong>. Learn about major projects like Nathpa Jhakri.</p>
+                    <p>Hydropower and Horticulture are the twin pillars. <br>पनबिजली और बागवानी दो मुख्य स्तंभ हैं।</p>
                     <ul class="seo-list">
-                        <li><strong>Apple State:</strong> Major producer of apples.</li>
-                        <li><strong>Hydro Power:</strong> Potential ~27,000 MW.</li>
-                        <li><strong>Tourism:</strong> Adventure and Religious tourism.</li>
+                        <li><strong>Hydropower:</strong> Potential ~27,436 MW. Major projects: Nathpa Jhakri (1500 MW), Bhakra, Pong, Chamera.</li>
+                        <li><strong>Agriculture:</strong> 'Apple State of India'. First apples by Satyanand Stokes (Kotgarh).</li>
+                        <li><strong>Industries:</strong> Pharma hub (Baddi-Barotiwala-Nalagarh). Cement plants (Barmana, Darlaghat).</li>
+                        <li><strong>Schemes:</strong> HIMCAD, Mukhya Mantri Khet Sanrakshan, Prakritik Kheti Khushhal Kisan.</li>
                     </ul>
                 </div>
 
                 <!-- Card 5: Polity -->
                 <div class="seo-card">
                     <h3><i class="fa-solid fa-scale-balanced"></i> Polity & Admin</h3>
-                    <p>Detailed insight into the administrative framework of HP. From the first Chief Commissioner to current Vidhan Sabha dynamics.</p>
+                    <p>Administrative evolution and constitutional framework. <br>प्रशासनिक विकास और संवैधानिक ढांचा।</p>
                     <ul class="seo-list">
-                        <li><strong>Divisions:</strong> Mandi, Kangra, Shimla.</li>
-                        <li><strong>Vidhan Sabha:</strong> 68 Constituencies.</li>
-                        <li><strong>High Court:</strong> Established 1971 in Shimla.</li>
+                        <li><strong>Evolution:</strong> Chief Commissioner's Province (1948) -> Part C State (1951) -> UT (1956) -> State (1971).</li>
+                        <li><strong>Assembly:</strong> 68 Seats. First Speaker: Jaiwant Ram. First CM: Dr. Y.S. Parmar.</li>
+                        <li><strong>Admin:</strong> 12 Districts, 3 Divisions (Kangra, Mandi, Shimla). High Court est. 1971 (M.H. Beg).</li>
+                        <li><strong>Local Bodies:</strong> Panchayati Raj Act 1994. 3-tier system.</li>
                     </ul>
                 </div>
 
                 <!-- Card 6: Districts Profile -->
                 <div class="seo-card">
                     <h3><i class="fa-solid fa-map-location-dot"></i> Districts Profile</h3>
-                    <p>Specific GK related to all 12 districts. Understand the geography, history, and economy of each district individually.</p>
+                    <p>Unique facts about all 12 districts. <br>सभी 12 जिलों के बारे में अनूठे तथ्य।</p>
                     <ul class="seo-list">
-                        <li><strong>Largest:</strong> Lahaul-Spiti (Area).</li>
-                        <li><strong>Populous:</strong> Kangra.</li>
-                        <li><strong>Literacy:</strong> Highest in Hamirpur.</li>
+                        <li><strong>Kangra:</strong> Most populous. Tea capital. Masroor Temple.</li>
+                        <li><strong>Lahaul-Spiti:</strong> Largest area. Lowest population density. Cold Desert. Potato farming.</li>
+                        <li><strong>Hamirpur:</strong> Highest literacy. Highest road density. Smallest area.</li>
+                        <li><strong>Mandi:</strong> 'Chhoti Kashi'. IIT Mandi. Salt Mines (Gumma/Drang).</li>
+                        <li><strong>Chamba:</strong> Ravi river. Minjar fair. Switzerland of HP (Khajjiar).</li>
                     </ul>
                 </div>
 
                 <!-- Card 7: Famous People -->
                 <div class="seo-card">
                     <h3><i class="fa-solid fa-user-graduate"></i> Famous People</h3>
-                    <p>Notable personalities from Himachal Pradesh in the fields of defense (Param Vir Chakra), sports, literature, and arts.</p>
+                    <p>Legends who shaped the state and nation. <br>राज्य और राष्ट्र को आकार देने वाले महापुरूष।</p>
                     <ul class="seo-list">
-                        <li><strong>PVC:</strong> Major Somnath Sharma, Capt. Vikram Batra.</li>
-                        <li><strong>Arts:</strong> Sardar Shobha Singh, Nicholas Roerich.</li>
-                        <li><strong>Politics:</strong> Dr. Y.S. Parmar.</li>
+                        <li><strong>Defense:</strong> Major Somnath Sharma (First PVC), Capt. Vikram Batra (PVC), Riffleman Sanjay Kumar (PVC).</li>
+                        <li><strong>Politics:</strong> Dr. Y.S. Parmar (Architect of HP), Virbhadra Singh (6-time CM).</li>
+                        <li><strong>Arts/Lit:</strong> Sardar Sobha Singh (Painter), Norah Richards (Theatre), Ruskin Bond (Kasauli connection).</li>
+                        <li><strong>Sports:</strong> The Great Khali, Vijay Kumar (Shooter), Charanjit Singh (Hockey).</li>
                     </ul>
                 </div>
 
                 <!-- Card 8: Flora & Fauna -->
                 <div class="seo-card">
                     <h3><i class="fa-solid fa-tree"></i> Flora & Fauna</h3>
-                    <p>Discover the rich biodiversity of Himachal. Learn about State symbols, National Parks, and conservation efforts.</p>
+                    <p>Biodiversity, National Parks, and State Symbols. <br>जैव विविधता, राष्ट्रीय उद्यान और राज्य प्रतीक।</p>
                     <ul class="seo-list">
-                        <li><strong>State Bird:</strong> Jujurana (Western Tragopan).</li>
-                        <li><strong>Parks:</strong> Great Himalayan National Park, Pin Valley.</li>
-                        <li><strong>Biosphere:</strong> Cold Desert Biosphere Reserve.</li>
+                        <li><strong>State Symbols:</strong> Animal: Snow Leopard. Bird: Western Tragopan (Jujurana). Flower: Pink Rhododendron. Tree: Deodar.</li>
+                        <li><strong>National Parks:</strong> Great Himalayan NP (UNESCO), Pin Valley, Khirganga, Inderkilla, Simbalbara.</li>
+                        <li><strong>Sanctuaries:</strong> Kibber (Largest), Shilli (Smallest), Pong Dam (Bird), Renuka.</li>
+                        <li><strong>Herbs:</strong> Kuth, Patish, Kala Zira (GI Tag).</li>
+                    </ul>
+                </div>
+
+                <!-- Card 9: Tourism -->
+                <div class="seo-card">
+                    <h3><i class="fa-solid fa-person-hiking"></i> Tourism</h3>
+                    <p>Destinations, adventure, and spiritual circuits. <br>गंतव्य, रोमांच और आध्यात्मिक सर्किट।</p>
+                    <ul class="seo-list">
+                        <li><strong>Hill Stations:</strong> Shimla, Manali, Dalhousie, Dharamshala, Kasauli.</li>
+                        <li><strong>Adventure:</strong> Paragliding (Bir Billing), Skiing (Solang, Kufri), Rafting (Beas, Sutlej).</li>
+                        <li><strong>Religious:</strong> Shakti Peethas (Jwalamukhi, Naina Devi), Buddhist Monasteries (Tabo, Key), Sikh Gurudwaras (Paonta, Manikaran).</li>
+                        <li><strong>Heritage:</strong> Kalka-Shimla Railway (UNESCO), Viceregal Lodge, Naggar Castle.</li>
+                    </ul>
+                </div>
+
+                <!-- Card 10: Famous Tribes -->
+                <div class="seo-card">
+                    <h3><i class="fa-solid fa-people-group"></i> Famous Tribes</h3>
+                    <p>Indigenous communities and their unique culture. <br>स्वदेशी समुदाय और उनकी अनूठी संस्कृति।</p>
+                    <ul class="seo-list">
+                        <li><strong>Gaddis:</strong> Shepherds of Chamba/Kangra. Worship Shiva. Wear Chola-Dora.</li>
+                        <li><strong>Kinnauras:</strong> Inhabitants of Kinnaur. Practice polyandry (historically). Speak Kinnauri.</li>
+                        <li><strong>Gujjars:</strong> Pastoral nomads. Hindu & Muslim Gujjars. Buffalo rearers.</li>
+                        <li><strong>Pangwals:</strong> Pangi Valley (Chamba). Famous for 'Jhanjhar' dance.</li>
                     </ul>
                 </div>
 
