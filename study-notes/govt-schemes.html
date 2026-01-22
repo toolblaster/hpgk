@@ -28,40 +28,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Noto+Sans+Devanagari:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../js/style.css"> 
-
-    <!-- FAQ Schema (English Only) -->
+    
+    <!-- Breadcrumb Schema -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [{
-        "@type": "Question",
-        "name": "What is the HIMCARE scheme?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "HIMCARE is a health insurance scheme by the HP government providing cashless treatment up to ₹5 Lakh per year for families not covered under Ayushman Bharat."
-        }
-      }, {
-        "@type": "Question",
-        "name": "Who is eligible for Mukhya Mantri Swavalamban Yojana?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Bonafide Himachali youth aged 18-45 years are eligible to avail subsidies for setting up self-employment ventures under this scheme."
-        }
-      }, {
-        "@type": "Question",
-        "name": "What is the benefit of the Sahara Yojana?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "The Sahara Yojana provides ₹3,000 per month financial assistance to patients from economically weaker sections suffering from serious diseases like cancer and renal failure."
-        }
-      }, {
-        "@type": "Question",
-        "name": "What is the Shagun Yojana?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Shagun Yojana provides a marriage grant of ₹31,000 to girls from BPL families."
-        }
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://hpgk.toolblaster.com/"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Study Notes",
+        "item": "https://hpgk.toolblaster.com/study-notes/"
+      },{
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Govt Schemes"
       }]
     }
     </script>
@@ -95,6 +81,41 @@
             line-height: 1.4;
             margin: 0 auto 10px auto;
             max-width: 650px;
+        }
+
+        /* Breadcrumb Styles */
+        .breadcrumb-nav {
+            max-width: 800px;
+            margin: 15px auto 0 auto;
+            padding: 0 15px;
+            font-size: 0.75rem; /* Reduced size for cleaner look */
+        }
+        .breadcrumb-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            color: var(--text-sec);
+        }
+        .breadcrumb-item a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .breadcrumb-item a:hover {
+            text-decoration: underline;
+        }
+        .breadcrumb-item.active {
+            color: var(--text-sec);
+            pointer-events: none;
+        }
+        .breadcrumb-separator {
+            font-size: 0.75rem;
+            opacity: 0.6;
         }
 
         /* SCHEMES GRID - 4 Columns & Dense */
@@ -198,82 +219,6 @@
             font-size: 0.7rem;
             margin-top: 1px;
         }
-
-        /* FAQ Section Styles - Updated for 2 Column Layout */
-        .faq-section {
-            margin-top: 40px;
-            padding: 20px;
-            background: var(--card-bg);
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-        }
-
-        .faq-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--text-main);
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .faq-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-        }
-
-        @media (min-width: 768px) {
-            .faq-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 25px;
-            }
-        }
-
-        .faq-item {
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 15px;
-            height: 100%;
-        }
-
-        /* Remove border bottom for last items in grid visually if needed, but keeping consistent is better for uneven columns */
-        
-        .faq-question {
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 8px;
-            line-height: 1.4;
-        }
-
-        .faq-question span.q-num {
-            color: var(--text-sec);
-            margin-right: 5px;
-            font-weight: 500;
-        }
-
-        .faq-question .q-hi {
-            display: block;
-            font-weight: 500;
-            color: var(--text-main);
-            font-size: 0.85rem;
-            margin-top: 2px;
-            font-family: 'Noto Sans Devanagari', sans-serif;
-        }
-
-        .faq-answer {
-            font-size: 0.85rem;
-            color: var(--text-sec);
-            line-height: 1.5;
-        }
-
-        .faq-answer .a-hi {
-            display: block;
-            margin-top: 4px;
-            color: var(--text-sec);
-            font-family: 'Noto Sans Devanagari', sans-serif;
-        }
     </style>
 </head>
 <body>
@@ -284,6 +229,17 @@
 <main>
     <div class="main-layout" style="display: block;">
         
+        <!-- Visible Breadcrumb Navigation -->
+        <nav aria-label="breadcrumb" class="breadcrumb-nav">
+            <ol class="breadcrumb-list">
+                <li class="breadcrumb-item"><a href="../"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li class="breadcrumb-separator">/</li>
+                <li class="breadcrumb-item"><a href="./">Study Notes</a></li>
+                <li class="breadcrumb-separator">/</li>
+                <li class="breadcrumb-item active" aria-current="page">Govt Schemes</li>
+            </ol>
+        </nav>
+
         <!-- Hero Section -->
         <section class="hub-hero">
             <span class="hero-badge" style="background: var(--primary); color: white;">Updated</span>
@@ -297,7 +253,6 @@
         <!-- Content Area: Govt Schemes -->
         <section id="content-schemes">
             <div class="schemes-grid">
-                <!-- ... existing schemes cards ... -->
                 
                 <!-- Scheme Card 1: HIMCARE -->
                 <div class="scheme-card">
@@ -831,61 +786,6 @@
                     </ul>
                 </div>
 
-            </div>
-        </section>
-
-        <!-- FAQ Section -->
-        <section class="faq-section">
-            <div class="faq-title"><i class="fa-solid fa-circle-question"></i> Frequently Asked Questions (FAQs)</div>
-            
-            <div class="faq-grid">
-                <!-- FAQ 1 -->
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span class="q-num">1.</span> What is the HIMCARE scheme?
-                        <span class="q-hi">HIMCARE योजना क्या है?</span>
-                    </div>
-                    <div class="faq-answer">
-                        HIMCARE is a health insurance scheme by the HP government providing cashless treatment up to ₹5 Lakh per year for families not covered under Ayushman Bharat.
-                        <span class="a-hi">HIMCARE हिमाचल प्रदेश सरकार की एक स्वास्थ्य बीमा योजना है जो आयुष्मान भारत के तहत कवर नहीं किए गए परिवारों को प्रति वर्ष ₹5 लाख तक का कैशलेस इलाज प्रदान करती है।</span>
-                    </div>
-                </div>
-
-                <!-- FAQ 2 -->
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span class="q-num">2.</span> Who is eligible for Mukhya Mantri Swavalamban Yojana?
-                        <span class="q-hi">मुख्यमंत्री स्वावलंबन योजना के लिए कौन पात्र है?</span>
-                    </div>
-                    <div class="faq-answer">
-                        Bonafide Himachali youth aged 18-45 years are eligible to avail subsidies for setting up self-employment ventures under this scheme.
-                        <span class="a-hi">18-45 वर्ष की आयु के हिमाचली युवा इस योजना के तहत स्वरोजगार उद्यम स्थापित करने के लिए सब्सिडी प्राप्त करने के पात्र हैं।</span>
-                    </div>
-                </div>
-
-                <!-- FAQ 3 -->
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span class="q-num">3.</span> What is the benefit of the Sahara Yojana?
-                        <span class="q-hi">सहारा योजना का लाभ क्या है?</span>
-                    </div>
-                    <div class="faq-answer">
-                        The Sahara Yojana provides ₹3,000 per month financial assistance to patients from economically weaker sections suffering from serious diseases like cancer and renal failure.
-                        <span class="a-hi">सहारा योजना कैंसर और गुर्दे की विफलता जैसी गंभीर बीमारियों से पीड़ित आर्थिक रूप से कमजोर वर्गों के रोगियों को प्रति माह ₹3,000 की वित्तीय सहायता प्रदान करती है।</span>
-                    </div>
-                </div>
-
-                <!-- FAQ 4 -->
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span class="q-num">4.</span> What is the Shagun Yojana?
-                        <span class="q-hi">शगुन योजना क्या है?</span>
-                    </div>
-                    <div class="faq-answer">
-                        Shagun Yojana provides a marriage grant of ₹31,000 to girls from BPL families.
-                        <span class="a-hi">शगुन योजना बीपीएल परिवारों की लड़कियों को ₹31,000 का विवाह अनुदान प्रदान करती है।</span>
-                    </div>
-                </div>
             </div>
         </section>
 
