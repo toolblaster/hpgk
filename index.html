@@ -45,6 +45,71 @@
     }
     </script>
 
+    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://hpgk.toolblaster.com"
+      }]
+    }
+    </script>
+
+    <!-- FAQ Schema (Updated: Removed Offline FAQ) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "What topics are covered in HPGK Quiz?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The HPGK Quiz covers a wide range of topics including Himachal Pradesh History, Geography, Art & Culture, Economy, Polity, Famous People, Environment (Flora & Fauna), Tourism, and more."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Is this platform useful for HPAS and HPPSC exams?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, our content is specifically tailored for HPAS (HAS), HPPSC, Allied Services, Naib Tehsildar, HP Police, and other state-level competitive exams."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Are the quizzes bilingual?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, our quizzes offer bilingual content (English and Hindi) to cater to a broader audience and facilitate better understanding."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Does the platform provide study notes?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, in addition to MCQs, we provide detailed study notes, one-liners, and resources like government schemes and budget summaries."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Do you offer full-length mock tests?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We are currently rolling out subject-specific quizzes. Full-length mock tests simulating the actual exam pattern for HPAS and Allied Services are coming soon."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Is the content updated regularly?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Absolutely. We regularly update our question bank and study notes to reflect the latest current affairs, economic survey data, and government notifications."
+        }
+      }]
+    }
+    </script>
+
     <!-- Assets -->
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="512x512" href="favicon/web-app-manifest-512x512.png">
@@ -165,7 +230,7 @@
             padding: 10px; /* Reduced padding for compactness */
             text-decoration: none; 
             color: var(--text-main); 
-            transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s; 
+            transition: border-color 0.2s; /* Removed transform and shadow transition */
             display: flex; 
             flex-direction: column; 
             align-items: center; 
@@ -178,7 +243,10 @@
             border-color: #475569; 
         }
         
-        .topic-card:hover { transform: translateY(-3px); box-shadow: var(--hover-shadow); border-color: var(--primary); }
+        .topic-card:hover { 
+            /* REMOVED: transform: translateY(-3px); box-shadow: var(--hover-shadow); */
+            border-color: var(--primary); 
+        }
         
         .topic-icon { 
             font-size: 1.3rem; /* Slightly smaller icon */
@@ -243,7 +311,7 @@
             border-radius: 10px;
             padding: 15px;
             box-shadow: var(--glass-shadow);
-            transition: transform 0.2s;
+            /* Removed transition for transform */
             display: flex;
             flex-direction: column;
         }
@@ -379,7 +447,7 @@
             flex-direction: column;
             align-items: flex-start;
             text-align: left;
-            transition: box-shadow 0.2s; /* Removed transform transition */
+            /* Removed shadow transition */
         }
 
         /* No hover effect */
@@ -527,6 +595,31 @@
 
         <div class="section-separator" style="margin-top: 15px; margin-bottom: 25px; border-bottom: 2px solid #e2e8f0;"></div>
 
+        <!-- SEO Content Section: Comprehensive & High Quality -->
+        <section class="seo-content-wrapper">
+            <!-- New Complete Guide Section MOVED HERE -->
+            <div class="features-section" style="margin-bottom: 30px;">
+                <div class="features-header">
+                    <i class="fa-solid fa-graduation-cap" style="color: #16a34a; font-size: 1.2rem;"></i>
+                    <h2 class="features-title">Complete Guide to Himachal Pradesh GK</h2>
+                </div>
+                <p style="font-size: 0.75rem; color: var(--text-sec); margin-bottom: 15px; line-height: 1.5;">
+                    Welcome to the ultimate resource for Himachal Pradesh General Knowledge. This comprehensive guide covers every aspect of the state, tailored specifically for competitive exams like HPAS, HPPSC, and Allied Services. From the snow-capped peaks of the Himalayas to the vibrant culture of its people, explore detailed notes and quizzes designed to boost your preparation.
+                </p>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <span class="subject-tag" style="border-color: #16a34a; color: #166534; background: #dcfce7; font-size: 0.7rem;"><i class="fa-solid fa-check"></i> Exam Oriented</span>
+                    <span class="subject-tag" style="border-color: #16a34a; color: #166534; background: #dcfce7; font-size: 0.7rem;"><i class="fa-solid fa-language"></i> Bilingual Content</span>
+                    <span class="subject-tag" style="border-color: #16a34a; color: #166534; background: #dcfce7; font-size: 0.7rem;"><i class="fa-solid fa-infinity"></i> Unlimited Practice</span>
+                    <span class="subject-tag" style="border-color: #16a34a; color: #166534; background: #dcfce7; font-size: 0.7rem;"><i class="fa-solid fa-layer-group"></i> Topic-wise Learning</span>
+                    <span class="subject-tag" style="border-color: #16a34a; color: #166534; background: #dcfce7; font-size: 0.7rem;"><i class="fa-solid fa-book-open"></i> Detailed Explanations</span>
+                    <span class="subject-tag" style="border-color: #16a34a; color: #166534; background: #dcfce7; font-size: 0.7rem;"><i class="fa-solid fa-chart-line"></i> Self-Assessment</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Divider after Complete Guide section -->
+        <div class="section-separator" style="margin-top: 15px; margin-bottom: 25px; border-bottom: 2px solid #e2e8f0;"></div>
+
         <!-- Secondary Description Section -->
         <div class="hub-hero" style="margin-bottom: 15px;">
             <p class="hero-desc" style="font-size: 0.95rem; max-width: 800px; margin: 0 auto; color: var(--text-sec); font-weight: 500;">
@@ -588,13 +681,14 @@
         <div class="section-separator" style="margin-top: 15px; margin-bottom: 25px; border-bottom: 2px solid #e2e8f0;"></div>
 
         <!-- New Study Material Section (Moved Here) -->
-        <section class="features-section" style="margin-top: 20px; border-left: 4px solid #2563eb;">
+        <section class="features-section" style="margin-top: 20px;">
             <div class="features-header">
                 <i class="fa-solid fa-folder-open" style="color: #2563eb; font-size: 1.2rem;"></i>
                 <h2 class="features-title">Study Material & Resources</h2>
             </div>
             
-            <div class="topic-grid five-cols" style="margin-bottom: 0;">
+            <!-- Updated to six-cols to accommodate new card -->
+            <div class="topic-grid six-cols" style="margin-bottom: 0;">
                 <!-- Card 1: Study Notes -->
                 <a href="study-notes/" class="topic-card">
                     <div class="topic-icon"><i class="fa-solid fa-book-open"></i></div>
@@ -627,11 +721,19 @@
                     <div class="topic-badge">Coming Soon</div>
                 </a>
 
-                <!-- Card 5: Current Affairs (New Added) -->
+                <!-- Card 5: Current Affairs -->
                 <a href="#" class="topic-card" style="opacity: 0.7;">
                     <div class="topic-icon"><i class="fa-solid fa-newspaper"></i></div>
                     <div class="topic-title">Current Affairs</div>
                     <div class="topic-desc">HP specific monthly current affairs & events.</div>
+                    <div class="topic-badge">Coming Soon</div>
+                </a>
+
+                <!-- Card 6: Computer/IT Practices (New Added) -->
+                <a href="#" class="topic-card" style="opacity: 0.7;">
+                    <div class="topic-icon"><i class="fa-solid fa-desktop"></i></div>
+                    <div class="topic-title">Computer/IT</div>
+                    <div class="topic-desc">Basic computer knowledge for JOA IT & other exams.</div>
                     <div class="topic-badge">Coming Soon</div>
                 </a>
             </div>
@@ -678,28 +780,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SEO Content Section: Comprehensive & High Quality -->
-        <section class="seo-content-wrapper">
-            <!-- New Complete Guide Section -->
-            <div class="features-section" style="margin-bottom: 30px; border-left: 4px solid #16a34a;">
-                <div class="features-header">
-                    <i class="fa-solid fa-graduation-cap" style="color: #16a34a; font-size: 1.2rem;"></i>
-                    <h2 class="features-title">Complete Guide to Himachal Pradesh GK</h2>
-                </div>
-                <p style="font-size: 0.75rem; color: var(--text-sec); margin-bottom: 15px; line-height: 1.5;">
-                    Welcome to the ultimate resource for Himachal Pradesh General Knowledge. This comprehensive guide covers every aspect of the state, tailored specifically for competitive exams like HPAS, HPPSC, and Allied Services. From the snow-capped peaks of the Himalayas to the vibrant culture of its people, explore detailed notes and quizzes designed to boost your preparation.
-                </p>
-                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                    <span class="subject-tag" style="border-color: #16a34a; color: #166534; background: #dcfce7; font-size: 0.7rem;"><i class="fa-solid fa-check"></i> Exam Oriented</span>
-                    <span class="subject-tag" style="border-color: #16a34a; color: #166534; background: #dcfce7; font-size: 0.7rem;"><i class="fa-solid fa-language"></i> Bilingual Content</span>
-                    <span class="subject-tag" style="border-color: #16a34a; color: #166534; background: #dcfce7; font-size: 0.7rem;"><i class="fa-solid fa-infinity"></i> Unlimited Practice</span>
-                    <span class="subject-tag" style="border-color: #16a34a; color: #166534; background: #dcfce7; font-size: 0.7rem;"><i class="fa-solid fa-layer-group"></i> Topic-wise Learning</span>
-                    <span class="subject-tag" style="border-color: #16a34a; color: #166534; background: #dcfce7; font-size: 0.7rem;"><i class="fa-solid fa-book-open"></i> Detailed Explanations</span>
-                    <span class="subject-tag" style="border-color: #16a34a; color: #166534; background: #dcfce7; font-size: 0.7rem;"><i class="fa-solid fa-chart-line"></i> Self-Assessment</span>
                 </div>
             </div>
         </section>
