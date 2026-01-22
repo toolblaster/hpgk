@@ -25,6 +25,9 @@ window.onload = () => {
     const currentTheme = document.documentElement.getAttribute('data-theme');
     updateThemeIcon(currentTheme);
 
+    // INJECT CONTROLS INTO WIDGET HEADER (New logic to avoid editing HTML files)
+    injectQuizControls();
+
     // GUARD: If no quiz card area exists, stop here to prevent errors
     if (!cardArea) return;
 
@@ -54,6 +57,40 @@ window.onload = () => {
         }
     }, 100);
 };
+
+// Function to inject controls into the widget header without touching HTML
+function injectQuizControls() {
+    const header = document.querySelector('.widget-header');
+    if (!header) return; // Not a quiz page
+
+    // Check if already injected
+    if (document.querySelector('.quiz-actions')) return;
+
+    // Create Action Container
+    const actionsDiv = document.createElement('div');
+    actionsDiv.className = 'quiz-actions';
+    actionsDiv.innerHTML = `
+        <button class="quiz-action-btn" onclick="exportProgress()" title="Backup Progress">
+            <i class="fa-solid fa-download"></i>
+        </button>
+        <label for="importFile" class="quiz-action-btn" title="Restore Progress" style="margin:0;">
+            <i class="fa-solid fa-upload"></i>
+        </label>
+        <input type="file" id="importFile" style="display: none;" accept=".json" onchange="importProgress(this)">
+        
+        <button class="quiz-action-btn reset" onclick="resetProgress()" title="Reset Progress">
+            <i class="fa-solid fa-rotate-right"></i>
+        </button>
+    `;
+
+    // Insert before the text controls if they exist, or append
+    const textControls = document.querySelector('.text-controls');
+    if (textControls) {
+        header.insertBefore(actionsDiv, textControls);
+    } else {
+        header.appendChild(actionsDiv);
+    }
+}
 
 function toggleTheme() {
     const html = document.documentElement;
