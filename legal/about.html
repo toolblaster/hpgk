@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us | HPGK Quiz & Agriculture Prep</title>
-    <meta name="description" content="Learn about HPGK Quiz, a dedicated platform offering free, bilingual mock tests for Himachal Pradesh state exams and Agriculture (ICAR, IBPS AFO).">
+    <meta name="description" content="Learn about HPGK Quiz, offering free bilingual mock tests for Himachal Pradesh exams and Agriculture prep for ICAR, IBPS AFO & NABARD.">
     
     <!-- Canonical Link -->
     <link rel="canonical" href="https://hpgk.toolblaster.com/legal/about.html">
@@ -29,7 +29,7 @@
     <!-- Load Global Style First -->
     <link rel="stylesheet" href="../js/style.css">
 
-    <!-- Premium Glassmorphism Stylesheet for Legal Pages -->
+    <!-- Premium Glassmorphism Stylesheet for Legal Pages (Compact Version) -->
     <style>
         :root {
             --primary: #2563eb;       
@@ -90,152 +90,40 @@
             box-shadow: var(--glass-shadow);
         }
 
-        main { flex: 1; max-width: 900px; margin: 0 auto; padding: 25px 15px; width: 100%; }
+        /* Compact Layout */
+        main { flex: 1; max-width: 900px; margin: 0 auto; padding: 15px; width: 100%; }
 
-        /* Page Header */
-        .page-header {
-            text-align: center;
-            margin-bottom: 25px;
-        }
+        .page-header { text-align: center; margin-bottom: 15px; }
+        .page-title { font-size: 28px !important; font-weight: 800 !important; margin: 0 0 4px 0; letter-spacing: -0.5px; color: var(--text-main); }
+        .page-desc { font-size: 0.85rem; color: var(--text-sec); margin: 0; }
 
-        .page-title {
-            font-size: 32px !important;
-            font-weight: 800 !important;
-            margin: 0 0 8px 0;
-            letter-spacing: -0.5px;
-            color: var(--text-main);
-        }
-
-        .page-desc {
-            font-size: 0.95rem;
-            color: var(--text-sec);
-            margin: 0;
-        }
-
-        /* Content Blocks */
-        .content-section {
-            border-radius: var(--radius-xl);
-            padding: 25px;
-            margin-bottom: 25px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .content-block {
-            background: var(--input-bg);
-            border: 1px solid var(--card-border);
-            border-radius: var(--radius-lg);
-            padding: 20px;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .content-block h3 {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin: 0 0 10px 0;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .content-block p {
-            font-size: 0.85rem;
-            line-height: 1.6;
-            margin: 0 0 12px 0;
-        }
-
+        .content-section { border-radius: var(--radius-xl); padding: 15px; margin-bottom: 15px; display: flex; flex-direction: column; gap: 12px; }
+        .content-block { background: var(--input-bg); border: 1px solid var(--card-border); border-radius: var(--radius-lg); padding: 15px; box-shadow: var(--shadow-sm); }
+        .content-block h3 { font-size: 1.05rem; font-weight: 700; color: var(--primary); margin: 0 0 6px 0; display: flex; align-items: center; gap: 8px; }
+        .content-block p { font-size: 0.85rem; line-height: 1.5; margin: 0 0 8px 0; }
         .content-block p:last-child { margin-bottom: 0; }
-
-        .content-block a {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 600;
-        }
+        .content-block a { color: var(--primary); text-decoration: none; font-weight: 600; }
         .content-block a:hover { text-decoration: underline; }
 
-        /* Fancy Lists */
-        .styled-list {
-            list-style: none;
-            padding-left: 0;
-            margin: 0;
-        }
-        
-        .styled-list li {
-            position: relative;
-            padding-left: 20px;
-            font-size: 0.85rem;
-            margin-bottom: 8px;
-            line-height: 1.5;
-        }
-        
-        .styled-list li::before {
-            content: "\f111"; 
-            font-family: "Font Awesome 6 Free";
-            font-weight: 900;
-            color: var(--primary);
-            position: absolute;
-            left: 0;
-            top: 6px;
-            font-size: 0.4rem;
-        }
+        .styled-list { list-style: none; padding-left: 0; margin: 0; }
+        .styled-list li { position: relative; padding-left: 20px; font-size: 0.85rem; margin-bottom: 6px; line-height: 1.5; }
+        .styled-list li::before { content: "\f111"; font-family: "Font Awesome 6 Free"; font-weight: 900; color: var(--primary); position: absolute; left: 0; top: 6px; font-size: 0.4rem; }
 
-        /* Sister Platform Promo Card */
-        .promo-card {
-            border-radius: var(--radius-xl);
-            padding: 25px;
-            margin-top: 30px;
-            border-left: 4px solid #059669;
-            position: relative;
-        }
+        /* Sister Platform Promo Card (Compact) */
+        .promo-card { border-radius: var(--radius-xl); padding: 15px; margin-top: 15px; border-left: 4px solid #059669; position: relative; }
         [data-theme="dark"] .promo-card { border-left-color: #34d399; }
-
-        .promo-badge {
-            position: absolute;
-            top: -12px;
-            left: 20px;
-            background: #059669;
-            color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            box-shadow: 0 4px 6px rgba(5, 150, 105, 0.2);
-        }
-        [data-theme="dark"] .promo-badge { background: #34d399; color: #022c22; box-shadow: 0 4px 6px rgba(52, 211, 153, 0.2); }
-
-        .promo-card h3 {
-            color: #059669;
-            margin: 10px 0 10px 0;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 1.2rem;
-        }
+        .promo-badge { position: absolute; top: -10px; left: 15px; background: #059669; color: white; padding: 2px 10px; border-radius: 20px; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; }
+        [data-theme="dark"] .promo-badge { background: #34d399; color: #022c22; }
+        .promo-card h3 { color: #059669; margin: 5px 0 8px 0; display: flex; align-items: center; gap: 8px; font-size: 1.1rem; }
         [data-theme="dark"] .promo-card h3 { color: #34d399; }
-
-        .promo-card a { color: #059669; font-weight: 700; text-decoration: underline; }
-        [data-theme="dark"] .promo-card a { color: #34d399; }
-
-        .promo-inner {
-            background: var(--input-bg);
-            border-radius: var(--radius-lg);
-            padding: 15px;
-            margin-top: 15px;
-            border: 1px solid var(--card-border);
-        }
-
-        .promo-inner h4 { font-size: 0.95rem; margin: 0 0 5px 0; }
-        .promo-inner p { font-size: 0.8rem; color: var(--text-sec); margin: 0; line-height: 1.5; }
+        .promo-inner { background: var(--input-bg); border-radius: var(--radius-lg); padding: 12px; margin-top: 10px; border: 1px solid var(--card-border); }
+        .promo-inner h4 { font-size: 0.9rem; margin: 0 0 4px 0; }
+        .promo-inner p { font-size: 0.75rem; color: var(--text-sec); margin: 0; line-height: 1.4; }
 
         @media (max-width: 600px) {
-            main { padding: 20px 10px; }
-            .content-section { padding: 15px; gap: 15px; }
-            .content-block { padding: 15px; }
-            .page-title { font-size: 26px !important; }
-            .promo-card { padding: 20px 15px; }
+            main { padding: 10px; }
+            .content-section { padding: 12px; gap: 10px; }
+            .page-title { font-size: 24px !important; }
         }
     </style>
 
@@ -260,31 +148,31 @@
         <div class="content-block">
             <h3><i class="fa-solid fa-bullseye"></i> Our Mission</h3>
             <p>
-                HPGK Quiz is a dedicated platform designed to help aspirants prepare for competitive examinations in Himachal Pradesh, including <strong>HPAS, HPPSC, Allied Services</strong>, and other state-level tests. Our goal is to provide comprehensive, accurate, and accessible study material in a user-friendly, modern format.
+                HPGK Quiz is a dedicated platform designed to help aspirants prepare for competitive examinations in Himachal Pradesh, including <strong>HPAS, HPPSC, and Allied Services</strong>. Our goal is to provide comprehensive and accessible study material in a modern format.
             </p>
         </div>
 
         <div class="content-block">
             <h3><i class="fa-solid fa-layer-group"></i> What We Offer</h3>
             <ul class="styled-list">
-                <li><strong>Topic-wise Quizzes:</strong> Over 3000+ curated questions covering History, Geography, Economy, Culture, and more.</li>
-                <li><strong>Bilingual Content:</strong> Questions and explanations are available in both English and Hindi simultaneously to cater to a wider audience.</li>
-                <li><strong>Detailed Notes:</strong> In-depth study notes, budget highlights, and economic surveys for quick revision.</li>
-                <li><strong>Privacy First:</strong> Local storage-based progress tracking helps you monitor your learning journey without the need for sign-ups or giving away your personal data.</li>
+                <li><strong>Topic-wise Quizzes:</strong> 3000+ curated questions covering History, Geography, and Culture.</li>
+                <li><strong>Bilingual Content:</strong> Questions available in both English and Hindi simultaneously.</li>
+                <li><strong>Detailed Notes:</strong> In-depth study notes and budget highlights for quick revision.</li>
+                <li><strong>Privacy First:</strong> Local storage progress tracking without the need for sign-ups.</li>
             </ul>
         </div>
 
         <div class="content-block">
             <h3><i class="fa-solid fa-code"></i> The Team</h3>
             <p>
-                This platform is developed and maintained by <strong>ToolBlaster</strong>. We are passionate about education and technology, striving to bridge the gap between quality content and aspirants by providing seamless, ad-light, and distraction-free environments.
+                Developed and maintained by <strong>ToolBlaster</strong>. We strive to bridge the gap between quality content and aspirants by providing seamless, distraction-free learning environments.
             </p>
         </div>
 
         <div class="content-block">
             <h3><i class="fa-solid fa-envelope"></i> Contact Us</h3>
             <p>
-                If you have any questions, spot an error in our questions, or want to share feedback, please feel free to reach out to us at <a href="mailto:hello@toolblaster.com">hello@toolblaster.com</a>.
+                For feedback or queries, reach out to us at <a href="mailto:hello@toolblaster.com">hello@toolblaster.com</a>.
             </p>
         </div>
         
@@ -294,18 +182,14 @@
     <div class="promo-card glass-panel">
         <div class="promo-badge">Also Check Out</div>
         <h3><i class="fa-solid fa-wheat-awn"></i> AgriQuiz</h3>
-        <p style="font-size: 0.85rem; color: var(--text-sec); margin-bottom: 10px;">
-            Preparing for national or state-level agricultural exams? Visit our specialized sub-module directly: 
-            <a href="../agriculture-quiz/" target="_blank">Agriculture Mock Tests</a>
+        <p style="font-size: 0.8rem; color: var(--text-sec); margin-bottom: 5px;">
+            Visit our specialized submodule: <a href="../agriculture-quiz/" style="color: #059669; font-weight: 700;">Agriculture Mock Tests</a>
         </p>
         
         <div class="promo-inner">
-            <h4>Free General Agriculture Mock Test</h4>
-            <p style="margin-bottom: 8px;">
-                Unlock access to <strong>507+ curated questions</strong> tailored specifically for <strong>ICAR JRF, IBPS AFO, NABARD</strong>, and State ADO/RAEO positions. 
-            </p>
-            <p style="font-size: 0.75rem;">
-                <strong>Key Subjects:</strong> General Agriculture, Agronomy, Forestry, Horticulture, Soil Science, Cropping Patterns, and Farming Systems.
+            <h4>Free Agriculture Mock Test</h4>
+            <p>
+                Access <strong>507+ curated questions</strong> for <strong>ICAR JRF, IBPS AFO, and NABARD</strong> exams.
             </p>
         </div>
     </div>
