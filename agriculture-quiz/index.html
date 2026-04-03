@@ -17,14 +17,14 @@
     <meta property="og:url" content="https://hpgk.toolblaster.com/agriculture-quiz/">
     <meta property="og:title" content="AgriQuiz: Free Agriculture Mock Test & Exam Prep">
     <meta property="og:description" content="Free General Agriculture Mock Test. Attempt 507+ bilingual questions for ICAR JRF, IBPS AFO. Instant results, no login.">
-    <meta property="og:image" content="https://hpgk.toolblaster.com/favicon/web-app-manifest-512x512.png">
+    <meta property="og:image" content="https://hpgk.toolblaster.com/js/favicon/web-app-manifest-512x512.png">
 
     <!-- Twitter (UPDATED FOR SUBFOLDER) -->
     <meta property="twitter:card" content="summary"> 
     <meta property="twitter:url" content="https://hpgk.toolblaster.com/agriculture-quiz/">
     <meta property="twitter:title" content="AgriQuiz: Free Agriculture Mock Test & Exam Prep">
     <meta property="twitter:description" content="Free General Agriculture Mock Test. Attempt 507+ bilingual questions for ICAR JRF, IBPS AFO. Instant results, no login.">
-    <meta property="twitter:image" content="https://hpgk.toolblaster.com/favicon/web-app-manifest-512x512.png">
+    <meta property="twitter:image" content="https://hpgk.toolblaster.com/js/favicon/web-app-manifest-512x512.png">
 
     <!-- JSON-LD Schema for SEO -->
     <script type="application/ld+json">
@@ -124,16 +124,16 @@
     }
     </script>
 
-    <!-- Favicons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="../favicon/web-app-manifest-512x512.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="../favicon/web-app-manifest-192x192.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="../favicon/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="48x48" href="../favicon/favicon-48x48.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
-    <link rel="manifest" href="../favicon/site.webmanifest">
-    <link rel="shortcut icon" href="../favicon/favicon.ico">
+    <!-- Assets (Favicon path updated to js/favicon) -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../js/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="../js/favicon/web-app-manifest-512x512.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../js/favicon/web-app-manifest-192x192.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="../js/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="../js/favicon/favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../js/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../js/favicon/favicon-16x16.png">
+    <link rel="manifest" href="../js/favicon/site.webmanifest">
+    <link rel="shortcut icon" href="../js/favicon/favicon.ico">
     <meta name="msapplication-TileColor" content="#047857">
     <meta name="theme-color" content="#ffffff">
 
@@ -150,6 +150,10 @@
 
     <!-- EMBEDDED LOCAL COMPACT & GLASSMORPHISM STYLESHEET -->
     <style>
+        /* ==========================================================================
+           AGRIQUIZ - MAIN STYLESHEET (Glassmorphism & Compact UI)
+           ========================================================================== */
+
         :root {
             --primary: #047857;       
             --primary-hover: #065f46; 
@@ -211,7 +215,13 @@
             flex-direction: column;
         }
 
-        h1, h2, h3, h4 { color: var(--text-main); line-height: 1.25; }
+        /* Strictly enforcing Inter font for all headings to remove Devanagari mix */
+        h1, h2, h3, h4 { 
+            color: var(--text-main); 
+            line-height: 1.25; 
+            font-family: 'Inter', sans-serif !important; 
+        }
+
         a { color: var(--primary); text-decoration: none; transition: color 0.2s; }
         a:hover { color: var(--primary-hover); }
 
@@ -239,26 +249,40 @@
             .quiz-widget-wrapper { position: relative; }
         }
 
+        /* Centered Hero Section alignment */
+        .hero-section {
+            text-align: center;
+        }
+
         .hero-badge {
             display: inline-block; background: var(--primary-light); color: var(--primary); padding: 3px 10px;
             border-radius: 20px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
-            letter-spacing: 1px; margin-bottom: 12px; border: 1px solid var(--primary);
+            letter-spacing: 1px; margin: 0 auto 12px auto; border: 1px solid var(--primary);
             backdrop-filter: blur(4px); 
         }
 
-        /* FIXED: Force Inter Font for H1 completely */
+        /* Explicitly styling H1 to ONLY use Inter, be bold, exactly 32px, and centered */
         .hero-title { 
             font-family: 'Inter', sans-serif !important;
-            font-size: clamp(1.6rem, 3.5vw, 2.2rem); 
+            font-size: 32px !important; 
             font-weight: 800 !important; 
             margin-bottom: 12px; 
             letter-spacing: -0.5px; 
+            text-align: center;
         }
         
-        .hero-desc { font-size: 0.9rem; color: var(--text-sec); margin-bottom: 20px; }
+        .hero-desc { 
+            font-size: 0.9rem; 
+            color: var(--text-sec); 
+            margin: 0 auto 20px auto; 
+            text-align: center;
+            max-width: 600px;
+        }
 
         .subjects-title { font-size: 1rem; margin-bottom: 10px; border-bottom: 1px solid var(--card-border); padding-bottom: 4px; display: inline-block; }
-        .subject-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+        
+        /* Centered tags */
+        .subject-tags { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
         .subject-tag { padding: 4px 8px; border-radius: 20px; font-size: 0.75rem; color: var(--text-sec); display: flex; align-items: center; gap: 5px; }
         .subject-tag i { color: var(--primary); }
         .subjects-container { margin-bottom: 25px; }
@@ -363,11 +387,10 @@
         .seo-card h3 i { color: var(--primary); }
         .seo-card p { color: var(--text-body) !important; font-size: 0.85rem; margin-bottom: 10px; }
         
-        /* FIXED: Bullet points replaced with foolproof FontAwesome circles */
         .seo-list { list-style: none; padding-left: 0; }
         .seo-list li { position: relative; padding-left: 18px; margin-bottom: 5px; font-size: 0.8rem; color: var(--text-body) !important; }
         .seo-list li::before { 
-            content: "\f111"; /* Solid FontAwesome circle */
+            content: "\f111"; 
             font-family: "Font Awesome 6 Free";
             font-weight: 900;
             color: var(--primary); 
@@ -419,7 +442,6 @@
         
         <section class="hero-section">
             <span class="hero-badge glass-panel">Exam Ready</span>
-            <!-- FIXED: H1 Title forced to Inter strictly -->
             <h1 class="hero-title">Free General Agriculture<br>Mock Test & Exam Prep</h1>
             <p class="hero-desc">
                 Unlock access to <strong>507+ curated questions</strong> tailored for <strong>ICAR JRF, IBPS AFO, and NABARD</strong>. 
@@ -700,7 +722,6 @@
                 title: 'AgriQuiz',
                 subtitle: 'Agriculture Exams',
                 iconClass: 'fa-solid fa-seedling',
-                // FIXED: Explicitly pointing to the root layout path as requested
                 link: 'https://hpgk.toolblaster.com/', 
                 isQuizPage: true,
                 rootPath: '..'
@@ -716,7 +737,7 @@
     window.quizData = []; 
 </script>
 
-<!-- FIXED: Moved Data parts into the js folder -->
+<!-- Scripts for Data Parts -->
 <script src="js/part1.js"></script>
 <script src="js/part2.js"></script>
 <script src="js/part3.js"></script>
