@@ -108,18 +108,18 @@ function renderFooter(rootPath = '.') {
                         </div>
                     </a>
 
-                    <!-- Nav Grid (Horizontal & Wrapped) -->
+                    <!-- Nav Grid (Horizontal & Wrapped) - UPDATED TO NEW FOLDER PATH -->
                     <nav class="footer-nav">
-                        <a href="${rootPath}/history/" class="footer-link">History</a>
-                        <a href="${rootPath}/geography/" class="footer-link">Geography</a>
-                        <a href="${rootPath}/district/" class="footer-link">Districts</a>
-                        <a href="${rootPath}/polity/" class="footer-link">Polity</a>
-                        <a href="${rootPath}/economy/" class="footer-link">Economy</a>
-                        <a href="${rootPath}/famous-people/" class="footer-link">Famous People</a>
-                        <a href="${rootPath}/environment/" class="footer-link">Environment</a>
-                        <a href="${rootPath}/tourism/" class="footer-link">Tourism</a>
-                        <a href="${rootPath}/art-culture/" class="footer-link">Art & Culture</a>
-                        <a href="${rootPath}/rivers/" class="footer-link">Rivers</a>
+                        <a href="${rootPath}/himachal-pradesh-gk/history/" class="footer-link">History</a>
+                        <a href="${rootPath}/himachal-pradesh-gk/geography/" class="footer-link">Geography</a>
+                        <a href="${rootPath}/himachal-pradesh-gk/district/" class="footer-link">Districts</a>
+                        <a href="${rootPath}/himachal-pradesh-gk/polity/" class="footer-link">Polity</a>
+                        <a href="${rootPath}/himachal-pradesh-gk/economy/" class="footer-link">Economy</a>
+                        <a href="${rootPath}/himachal-pradesh-gk/famous-people/" class="footer-link">Famous People</a>
+                        <a href="${rootPath}/himachal-pradesh-gk/environment/" class="footer-link">Environment</a>
+                        <a href="${rootPath}/himachal-pradesh-gk/tourism/" class="footer-link">Tourism</a>
+                        <a href="${rootPath}/himachal-pradesh-gk/art-culture/" class="footer-link">Art & Culture</a>
+                        <a href="${rootPath}/himachal-pradesh-gk/rivers/" class="footer-link">Rivers</a>
                     </nav>
                 </div>
 
