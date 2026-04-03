@@ -42,7 +42,7 @@
       "author": {
         "@type": "Organization",
         "name": "ToolBlaster",
-        "url": "https://toolblaster.com"
+        "url": "https://hpgk.toolblaster.com/"
       },
       "aggregateRating": {
         "@type": "AggregateRating",
@@ -54,7 +54,7 @@
     }
     </script>
     
-    <!-- Breadcrumb Schema (UPDATED FOR SUBFOLDER) -->
+    <!-- Breadcrumb Schema -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -63,7 +63,7 @@
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://hpgk.toolblaster.com"
+        "item": "https://hpgk.toolblaster.com/"
       },{
         "@type": "ListItem",
         "position": 2,
@@ -145,93 +145,59 @@
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Global HPGK CSS (Required for Global Header/Footer styles) -->
+    <!-- Global HPGK CSS -->
     <link rel="stylesheet" href="../js/style.css">
 
     <!-- EMBEDDED LOCAL COMPACT & GLASSMORPHISM STYLESHEET -->
     <style>
-        /* ==========================================================================
-           AGRIQUIZ - MAIN STYLESHEET (Glassmorphism & Compact UI)
-           ========================================================================== */
-
         :root {
-            /* --- Light Mode Palette --- */
             --primary: #047857;       
             --primary-hover: #065f46; 
             --primary-light: rgba(4, 120, 87, 0.1); 
             --primary-dark: #022c22;  
-            
             --accent: #B45309;        
-            
-            /* Glassmorphism Background */
             --bg-gradient: linear-gradient(135deg, #e0f2fe 0%, #dcfce7 50%, #f3e8ff 100%);
-            
-            /* Glassmorphism Variables */
             --card-bg: rgba(255, 255, 255, 0.65); 
             --card-border: rgba(255, 255, 255, 0.5); 
             --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
-            
             --text-main: #1f2937;     
             --text-body: #374151;     
             --text-sec: #4b5563;      
-            
             --stats-bg: rgba(255, 255, 255, 0.4); 
-            
-            /* Feedback Colors */
             --correct-bg: rgba(220, 252, 231, 0.9); 
             --correct-border: #22c55e;
             --correct-text: #14532d;  
-            
             --wrong-bg: rgba(254, 226, 226, 0.9); 
             --wrong-border: #ef4444;
             --wrong-text: #7f1d1d;    
-
             --radius-md: 8px;
             --radius-lg: 12px;
             --radius-xl: 16px;
         }
 
-        /* --- Dark Mode Palette --- */
         [data-theme="dark"] {
             --primary: #34d399;       
             --primary-hover: #6ee7b7; 
             --primary-light: rgba(52, 211, 153, 0.15); 
             --primary-dark: #a7f3d0;  
-            
             --accent: #fbbf24;        
-            
-            /* Dark Glassmorphism Background */
             --bg-gradient: linear-gradient(135deg, #0f172a 0%, #022c22 50%, #1e1b4b 100%);
-            
-            /* Dark Glassmorphism Variables */
             --card-bg: rgba(30, 41, 59, 0.5); 
             --card-border: rgba(255, 255, 255, 0.08); 
             --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-            
             --text-main: #f9fafb;     
             --text-body: #e5e7eb;     
             --text-sec: #9ca3af;      
-            
             --stats-bg: rgba(0, 0, 0, 0.2); 
-            
-            /* Feedback Colors */
             --correct-bg: rgba(6, 78, 59, 0.9); 
             --correct-border: #059669;
             --correct-text: #6ee7b7;  
-            
             --wrong-bg: rgba(127, 29, 29, 0.9); 
             --wrong-border: #dc2626;
             --wrong-text: #fca5a5;    
         }
 
-        /* ==========================================================================
-           GLOBAL RESET & TYPOGRAPHY
-           ========================================================================== */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             font-family: 'Inter', 'Noto Sans Devanagari', sans-serif;
@@ -245,20 +211,10 @@
             flex-direction: column;
         }
 
-        h1, h2, h3, h4 {
-            color: var(--text-main);
-            line-height: 1.25;
-        }
-
+        h1, h2, h3, h4 { color: var(--text-main); line-height: 1.25; }
         a { color: var(--primary); text-decoration: none; transition: color 0.2s; }
         a:hover { color: var(--primary-hover); }
 
-        :focus-visible {
-            outline: 2px solid var(--primary);
-            outline-offset: 2px;
-        }
-
-        /* Glassmorphism Utility Class */
         .glass-panel {
             background: var(--card-bg);
             backdrop-filter: blur(16px);
@@ -267,674 +223,186 @@
             box-shadow: var(--glass-shadow);
         }
 
-        /* ==========================================================================
-           PROGRESS BAR
-           ========================================================================== */
         .progress-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px; 
-            background: rgba(0,0,0,0.1);
-            z-index: 1000;
+            position: fixed; top: 0; left: 0; width: 100%; height: 3px; 
+            background: rgba(0,0,0,0.1); z-index: 1000;
         }
 
-        .progress-fill {
-            height: 100%;
-            background: var(--primary);
-            width: 0%;
-            transition: width 0.3s ease-out;
-        }
+        .progress-fill { height: 100%; background: var(--primary); width: 0%; transition: width 0.3s ease-out; }
 
-        /* ==========================================================================
-           MAIN LAYOUT & HERO SECTION
-           ========================================================================== */
-        main {
-            flex: 1;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 25px 15px;
-            width: 100%;
-        }
-
-        .main-layout {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
+        main { flex: 1; max-width: 1200px; margin: 0 auto; padding: 25px 15px; width: 100%; }
+        .main-layout { display: flex; flex-direction: column; gap: 30px; }
 
         @media (min-width: 900px) {
-            .main-layout {
-                flex-direction: row;
-                align-items: flex-start;
-            }
-            .hero-section, .quiz-widget-wrapper {
-                flex: 1;
-                width: 50%;
-            }
-            .quiz-widget-wrapper {
-                position: relative;
-            }
+            .main-layout { flex-direction: row; align-items: flex-start; }
+            .hero-section, .quiz-widget-wrapper { flex: 1; width: 50%; }
+            .quiz-widget-wrapper { position: relative; }
         }
 
         .hero-badge {
-            display: inline-block;
-            background: var(--primary-light);
-            color: var(--primary);
-            padding: 3px 10px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 12px;
-            border: 1px solid var(--primary);
+            display: inline-block; background: var(--primary-light); color: var(--primary); padding: 3px 10px;
+            border-radius: 20px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 1px; margin-bottom: 12px; border: 1px solid var(--primary);
             backdrop-filter: blur(4px); 
         }
 
-        .hero-title {
+        /* FIXED: Force Inter Font for H1 completely */
+        .hero-title { 
+            font-family: 'Inter', sans-serif !important;
             font-size: clamp(1.6rem, 3.5vw, 2.2rem); 
-            font-weight: 800;
-            margin-bottom: 12px;
-            letter-spacing: -0.5px;
+            font-weight: 800 !important; 
+            margin-bottom: 12px; 
+            letter-spacing: -0.5px; 
         }
+        
+        .hero-desc { font-size: 0.9rem; color: var(--text-sec); margin-bottom: 20px; }
 
-        .hero-desc {
-            font-size: 0.9rem; 
-            color: var(--text-sec);
-            margin-bottom: 20px;
-        }
-
-        .hero-desc strong {
-            color: var(--text-main);
-        }
-
-        .subjects-title {
-            font-size: 1rem;
-            margin-bottom: 10px;
-            border-bottom: 1px solid var(--card-border);
-            padding-bottom: 4px;
-            display: inline-block;
-        }
-
-        .subject-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-        }
-
-        .subject-tag {
-            padding: 4px 8px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            color: var(--text-sec);
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
+        .subjects-title { font-size: 1rem; margin-bottom: 10px; border-bottom: 1px solid var(--card-border); padding-bottom: 4px; display: inline-block; }
+        .subject-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+        .subject-tag { padding: 4px 8px; border-radius: 20px; font-size: 0.75rem; color: var(--text-sec); display: flex; align-items: center; gap: 5px; }
         .subject-tag i { color: var(--primary); }
+        .subjects-container { margin-bottom: 25px; }
 
-        .subjects-container {
-            margin-bottom: 25px;
-        }
+        /* QUIZ WIDGET */
+        .quiz-card { border-radius: var(--radius-xl); display: flex; flex-direction: column; overflow: hidden; height: auto; min-height: 480px; max-height: 85vh; }
 
-        /* ==========================================================================
-           QUIZ WIDGET (Glassmorphism & Inline Toolbar)
-           ========================================================================== */
-        
-        .quiz-card {
-            border-radius: var(--radius-xl);
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            height: auto;
-            min-height: 480px; 
-            max-height: 85vh; 
-        }
-
-        /* Top Quick Start Ribbon */
         .quick-start-ribbon {
-            background: var(--primary);
-            color: #fff;
-            border: none;
-            padding: 8px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            text-align: center;
-            cursor: pointer;
-            transition: background 0.2s;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 8px;
+            background: var(--primary); color: #fff; border: none; padding: 8px; font-size: 0.85rem;
+            font-weight: 700; text-align: center; cursor: pointer; transition: background 0.2s;
+            width: 100%; display: flex; justify-content: center; align-items: center; gap: 8px;
         }
+        .quick-start-ribbon:hover { background: var(--primary-hover); }
 
-        .quick-start-ribbon:hover {
-            background: var(--primary-hover);
-        }
+        .widget-header { padding: 12px 15px; background: transparent; border-bottom: 1px solid var(--card-border); display: flex; flex-direction: column; gap: 10px; }
 
-        .widget-header {
-            padding: 12px 15px; 
-            background: transparent;
-            border-bottom: 1px solid var(--card-border);
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
+        @media (min-width: 500px) { .widget-header { flex-direction: row; justify-content: space-between; align-items: center; } }
 
-        @media (min-width: 500px) {
-            .widget-header {
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-            }
-        }
-
-        .search-container {
-            position: relative;
-            flex: 1;
-            max-width: 300px;
-        }
-
+        .search-container { position: relative; flex: 1; max-width: 300px; }
         .search-input {
-            width: 100%;
-            padding: 6px 25px 6px 30px; 
-            border: 1px solid var(--card-border);
-            border-radius: 20px;
-            font-size: 0.8rem;
-            background: rgba(255,255,255,0.2); 
-            color: var(--text-main);
-            transition: all 0.2s;
+            width: 100%; padding: 5px 25px 5px 30px; border: 1px solid var(--card-border); border-radius: 20px;
+            font-size: 0.8rem; background: rgba(255,255,255,0.2); color: var(--text-main); transition: all 0.2s;
         }
-        
         [data-theme="dark"] .search-input { background: rgba(0,0,0,0.2); }
-
-        .search-input:focus {
-            outline: none;
-            border-color: var(--primary);
-            background: var(--card-bg);
-        }
-
-        .search-icon {
-            position: absolute;
-            left: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-sec);
-            font-size: 0.8rem;
-        }
-
-        .search-clear {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-sec);
-            cursor: pointer;
-            display: none;
-        }
-
+        .search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--text-sec); font-size: 0.8rem; }
+        .search-clear { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); color: var(--text-sec); cursor: pointer; display: none; }
         .search-container.active .search-clear { display: block; }
 
-        .text-controls {
-            display: flex;
-            flex-wrap: wrap; /* Allows wrapping on small screens */
-            gap: 5px;
-            justify-content: center;
-            align-items: center;
-        }
-
+        .text-controls { display: flex; flex-wrap: wrap; gap: 5px; justify-content: center; align-items: center; }
         .text-controls button, .text-controls label {
-            background: rgba(255,255,255,0.2);
-            border: 1px solid var(--card-border);
-            color: var(--text-sec);
-            width: 28px; 
-            height: 28px;
-            border-radius: var(--radius-md);
-            cursor: pointer;
-            font-size: 0.85rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s;
-            margin: 0;
+            background: rgba(255,255,255,0.2); border: 1px solid var(--card-border); color: var(--text-sec);
+            width: 28px; height: 28px; border-radius: var(--radius-md); cursor: pointer; font-size: 0.85rem;
+            display: flex; align-items: center; justify-content: center; transition: all 0.2s; margin: 0;
         }
         [data-theme="dark"] .text-controls button, [data-theme="dark"] .text-controls label { background: rgba(0,0,0,0.2); }
+        .text-controls button:hover, .text-controls label:hover { background: var(--primary-light); color: var(--text-main); }
+        .text-controls button.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+        .text-controls .reset-btn-small:hover { background: var(--wrong-bg) !important; color: var(--wrong-text) !important; border-color: var(--wrong-border) !important; }
 
-        .text-controls button:hover, .text-controls label:hover {
-            background: var(--primary-light);
-            color: var(--text-main);
-        }
-
-        .text-controls button.active {
-            background: var(--primary);
-            color: #fff;
-            border-color: var(--primary);
-        }
-
-        /* Distinct Hover for Inline Reset Button */
-        .text-controls .reset-btn-small:hover {
-            background: var(--wrong-bg) !important;
-            color: var(--wrong-text) !important;
-            border-color: var(--wrong-border) !important;
-        }
-
-        /* -----------------------------------------------------------
-           2nd Border: Inner MCQ Container (The Core Quiz Area)
-           ----------------------------------------------------------- */
         .quiz-mcq-container {
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-            overflow: hidden;
-            margin: 4px 15px 15px 15px; 
-            border: 1.5px solid rgba(4, 120, 87, 0.25); 
-            border-radius: var(--radius-lg);
-            background: rgba(255, 255, 255, 0.55); 
+            display: flex; flex-direction: column; flex: 1; overflow: hidden; margin: 4px 15px 15px 15px; 
+            border: 1.5px solid rgba(4, 120, 87, 0.25); border-radius: var(--radius-lg); background: rgba(255, 255, 255, 0.55); 
             box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.02);
         }
+        [data-theme="dark"] .quiz-mcq-container { border-color: rgba(52, 211, 153, 0.25); background: rgba(0, 0, 0, 0.25); }
 
-        [data-theme="dark"] .quiz-mcq-container {
-            border-color: rgba(52, 211, 153, 0.25); 
-            background: rgba(0, 0, 0, 0.25);
-        }
-
-        /* Stats Dashboard */
-        .stats-dashboard {
-            display: flex;
-            background: rgba(255,255,255,0.3);
-            border-bottom: 1px solid rgba(0,0,0,0.06);
-        }
+        .stats-dashboard { display: flex; background: rgba(255,255,255,0.3); border-bottom: 1px solid rgba(0,0,0,0.06); }
         [data-theme="dark"] .stats-dashboard { background: rgba(0,0,0,0.2); border-bottom-color: rgba(255,255,255,0.05); }
-
-        .stat-item {
-            flex: 1;
-            padding: 8px 4px; 
-            text-align: center;
-            border-right: 1px solid rgba(0,0,0,0.06);
-            display: flex;
-            flex-direction: column;
-        }
-        [data-theme="dark"] .stat-item { border-right-color: rgba(255,255,255,0.05); }
+        .stat-item { flex: 1; padding: 8px 4px; text-align: center; border-right: 1px solid rgba(0,0,0,0.06); display: flex; flex-direction: column; }
         .stat-item:last-child { border-right: none; }
-
-        .stat-label {
-            font-size: 0.6rem;
-            text-transform: uppercase;
-            color: var(--text-sec);
-            font-weight: 700;
-            margin-bottom: 1px;
-        }
-
-        .stat-value {
-            font-size: 0.9rem; 
-            font-weight: 800;
-            color: var(--text-main);
-        }
-
+        .stat-label { font-size: 0.6rem; text-transform: uppercase; color: var(--text-sec); font-weight: 700; margin-bottom: 1px; }
+        .stat-value { font-size: 0.9rem; font-weight: 800; color: var(--text-main); }
         .stat-value.green { color: var(--correct-border); }
         .stat-value.red { color: var(--wrong-border); }
         .stat-value.accent { color: var(--accent); }
 
-        /* Quiz Content Area */
-        .quiz-content {
-            flex: 1;
-            padding: 20px 15px; 
-            overflow-y: auto;
-            background: transparent;
-        }
-
-        .q-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: var(--text-sec);
-            margin-bottom: 12px; 
-            padding-bottom: 8px; 
-            border-bottom: 1px dashed var(--card-border);
-        }
-
-        .q-actions {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .share-icon, .bookmark-icon {
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: color 0.2s, transform 0.2s;
-        }
-
+        .quiz-content { flex: 1; padding: 20px 15px; overflow-y: auto; background: transparent; }
+        .q-meta { display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; font-weight: 700; color: var(--text-sec); margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px dashed var(--card-border); }
+        .q-actions { display: flex; align-items: center; gap: 10px; }
+        .share-icon, .bookmark-icon { cursor: pointer; font-size: 0.9rem; transition: color 0.2s, transform 0.2s; }
         .share-icon:hover { color: var(--primary); transform: scale(1.1); }
         .bookmark-icon:hover { color: var(--accent); transform: scale(1.1); }
         .bookmark-icon.active { color: var(--accent); }
+        .q-text-en { font-weight: 700; color: var(--text-main); margin-bottom: 8px; }
+        .q-text-hi { font-weight: 600; color: var(--text-sec); margin-bottom: 16px; }
+        mark.highlight { background: var(--accent); color: #fff; padding: 0 2px; border-radius: 3px; }
 
-        .q-text-en {
-            font-weight: 700;
-            color: var(--text-main);
-            margin-bottom: 8px; 
-        }
-
-        .q-text-hi {
-            font-weight: 600;
-            color: var(--text-sec);
-            margin-bottom: 16px; 
-        }
-
-        mark.highlight {
-            background: var(--accent);
-            color: #fff;
-            padding: 0 2px;
-            border-radius: 3px;
-        }
-
-        /* Options */
-        .options-list {
-            display: flex;
-            flex-direction: column;
-            gap: 8px; 
-        }
-
+        .options-list { display: flex; flex-direction: column; gap: 8px; }
         .option-btn {
-            width: 100%;
-            text-align: left;
-            padding: 10px 12px; 
-            background: rgba(255,255,255,0.6); 
-            border: 1px solid var(--card-border);
-            border-radius: var(--radius-md);
-            cursor: pointer;
-            color: var(--text-body);
-            font-weight: 600;
-            transition: all 0.2s;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            width: 100%; text-align: left; padding: 10px 12px; background: rgba(255,255,255,0.6); 
+            border: 1px solid var(--card-border); border-radius: var(--radius-md); cursor: pointer;
+            color: var(--text-body); font-weight: 600; transition: all 0.2s; display: flex; justify-content: space-between; align-items: center;
         }
         [data-theme="dark"] .option-btn { background: rgba(0,0,0,0.4); }
+        .option-btn:hover:not(.disabled) { border-color: var(--primary); background: var(--primary-light); }
+        .option-btn.disabled { cursor: default; opacity: 0.8; }
+        .option-btn.correct { background: var(--correct-bg); border-color: var(--correct-border); color: var(--correct-text); }
+        .option-btn.wrong { background: var(--wrong-bg); border-color: var(--wrong-border); color: var(--wrong-text); }
 
-        .option-btn:hover:not(.disabled) {
-            border-color: var(--primary);
-            background: var(--primary-light);
-        }
+        .feedback-msg { margin-top: 12px; padding: 8px 10px; border-radius: var(--radius-md); font-weight: 700; font-size: 0.8rem; text-align: center; animation: fadeIn 0.3s ease-in; border: 1px solid transparent; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
 
-        .option-btn.disabled {
-            cursor: default;
-            opacity: 0.8;
-        }
-
-        .option-btn.correct {
-            background: var(--correct-bg);
-            border-color: var(--correct-border);
-            color: var(--correct-text);
-        }
-
-        .option-btn.wrong {
-            background: var(--wrong-bg);
-            border-color: var(--wrong-border);
-            color: var(--wrong-text);
-        }
-
-        .status-icon {
-            font-size: 1rem;
-        }
-
-        .feedback-msg {
-            margin-top: 12px; 
-            padding: 8px 10px; 
-            border-radius: var(--radius-md);
-            font-weight: 700;
-            font-size: 0.8rem; 
-            text-align: center;
-            animation: fadeIn 0.3s ease-in;
-            border: 1px solid transparent;
-        }
-        [data-theme="dark"] .feedback-msg {
-            backdrop-filter: blur(5px);
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-5px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Empty State */
-        .empty-state {
-            text-align: center;
-            padding: 25px 10px;
-        }
-
-        .empty-state i {
-            font-size: 2rem;
-            color: var(--card-border);
-            margin-bottom: 10px;
-        }
-
-        .empty-state p {
-            color: var(--text-sec);
-            margin-bottom: 12px;
-            font-size: 0.85rem;
-        }
-
-        .empty-state button, .summary-btn {
-            background: var(--primary);
-            color: #fff;
-            border: none;
-            padding: 6px 14px;
-            border-radius: var(--radius-md);
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.8rem;
-        }
-
-        .summary-score {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: var(--primary);
-            margin: 5px 0;
-        }
-
-        /* Widget Footer Controls */
-        .widget-controls {
-            padding: 12px 15px; 
-            border-top: 1px solid rgba(0,0,0,0.06);
-            background: rgba(255,255,255,0.3);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+        .widget-controls { padding: 12px 15px; border-top: 1px solid rgba(0,0,0,0.06); background: rgba(255,255,255,0.3); display: flex; justify-content: space-between; align-items: center; }
         [data-theme="dark"] .widget-controls { background: rgba(0,0,0,0.2); border-top-color: rgba(255,255,255,0.05); }
-
-        .nav-btn {
-            background: rgba(255,255,255,0.4);
-            border: 1px solid var(--card-border);
-            color: var(--text-main);
-            padding: 6px 12px;
-            border-radius: var(--radius-md);
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.8rem;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
+        .nav-btn { background: rgba(255,255,255,0.4); border: 1px solid var(--card-border); color: var(--text-main); padding: 6px 12px; border-radius: var(--radius-md); cursor: pointer; font-weight: 600; font-size: 0.8rem; transition: all 0.2s; display: flex; align-items: center; gap: 6px; }
         [data-theme="dark"] .nav-btn { background: rgba(0,0,0,0.4); }
-
-        .nav-btn:hover:not(:disabled) {
-            background: var(--primary);
-            color: #fff;
-            border-color: var(--primary);
-        }
-
-        .nav-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        .jump-trigger {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            cursor: pointer;
-            padding: 2px 8px;
-            border-radius: var(--radius-md);
-            transition: background 0.2s;
-        }
-
-        .jump-trigger:hover {
-            background: rgba(0,0,0,0.05);
-        }
+        .nav-btn:hover:not(:disabled) { background: var(--primary); color: #fff; border-color: var(--primary); }
+        .nav-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .jump-trigger { display: flex; flex-direction: column; align-items: center; cursor: pointer; padding: 2px 8px; border-radius: var(--radius-md); transition: background 0.2s; }
+        .jump-trigger:hover { background: rgba(0,0,0,0.05); }
         [data-theme="dark"] .jump-trigger:hover { background: rgba(255,255,255,0.05); }
+        .progress-text { font-weight: 800; color: var(--text-main); font-size: 0.8rem; }
+        .jump-label { font-size: 0.6rem; color: var(--text-sec); font-weight: 600; text-transform: uppercase; display: flex; align-items: center; gap: 4px; }
 
-        .progress-text {
-            font-weight: 800;
-            color: var(--text-main);
-            font-size: 0.8rem;
+        .section-separator { height: 1px; background: linear-gradient(90deg, transparent, var(--card-border), transparent); margin: 15px 0; }
+        .seo-content-wrapper { margin-bottom: 30px; }
+        .seo-header { text-align: center; margin-bottom: 20px; }
+        .seo-header h2 { font-size: clamp(1.2rem, 3vw, 1.6rem); margin-bottom: 8px; }
+        .seo-header p { color: var(--text-sec); max-width: 600px; margin: 0 auto; font-size: 0.85rem; }
+        .seo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+        .seo-card h3 { font-size: 1rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; color: var(--text-main) !important; }
+        .seo-card h3 i { color: var(--primary); }
+        .seo-card p { color: var(--text-body) !important; font-size: 0.85rem; margin-bottom: 10px; }
+        
+        /* FIXED: Bullet points replaced with foolproof FontAwesome circles */
+        .seo-list { list-style: none; padding-left: 0; }
+        .seo-list li { position: relative; padding-left: 18px; margin-bottom: 5px; font-size: 0.8rem; color: var(--text-body) !important; }
+        .seo-list li::before { 
+            content: "\f111"; /* Solid FontAwesome circle */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            color: var(--primary); 
+            position: absolute; 
+            left: 0; 
+            top: 5px; 
+            font-size: 0.4rem; 
         }
 
-        .jump-label {
-            font-size: 0.6rem;
-            color: var(--text-sec);
-            font-weight: 600;
-            text-transform: uppercase;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        /* ==========================================================================
-           SEO & INFORMATION SECTIONS
-           ========================================================================== */
-        .section-separator {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--card-border), transparent);
-            margin: 15px 0;
-        }
-
-        .seo-content-wrapper {
-            margin-bottom: 30px;
-        }
-
-        .seo-header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .seo-header h2 {
-            font-size: clamp(1.2rem, 3vw, 1.6rem);
-            margin-bottom: 8px;
-        }
-
-        .seo-header p {
-            color: var(--text-sec);
-            max-width: 600px;
-            margin: 0 auto;
-            font-size: 0.85rem;
-        }
-
-        .seo-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 12px;
-        }
-
-        .seo-card h3 {
-            font-size: 1rem;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--text-main) !important;
-        }
-
-        .seo-card h3 i {
-            color: var(--primary);
-        }
-
-        .seo-card p {
-            color: var(--text-body) !important;
-            font-size: 0.85rem;
-            margin-bottom: 10px;
-        }
-
-        .seo-list {
-            list-style: none;
-        }
-
-        .seo-list li {
-            position: relative;
-            padding-left: 15px;
-            margin-bottom: 5px;
-            font-size: 0.8rem;
-            color: var(--text-body) !important;
-        }
-
-        .seo-list li::before {
-            content: "•";
-            color: var(--primary);
-            position: absolute;
-            left: 0;
-            top: 0;
-            font-weight: bold;
-            font-size: 1rem;
-            line-height: 1.2;
-        }
-
-        /* ==========================================================================
-           MOBILE SPECIFIC TWEAKS (Max-width: 600px)
-           ========================================================================== */
         @media (max-width: 600px) {
             main { padding: 10px; }
-            
-            .quiz-mcq-container {
-                margin: 4px 10px 10px 10px; 
-                border-width: 1.5px;
-            }
-
+            .quiz-mcq-container { margin: 4px 10px 10px 10px; border-width: 1.5px; }
             .stats-dashboard { margin-bottom: 4px; }
             .stat-item { padding: 4px 2px; }
             .stat-label { font-size: 0.5rem; margin-bottom: 2px; }
             .stat-value { font-size: 0.8rem; }
-
             .quiz-content { padding: 15px 12px; } 
             .option-btn { padding: 8px 10px; } 
-
             .widget-controls { padding: 8px 10px; }
-            
-            .nav-btn {
-                padding: 4px 8px;
-                font-size: 0.7rem; 
-                min-width: 55px;
-            }
-            
-            .jump-trigger {
-                padding: 2px 6px;
-                gap: 2px;
-            }
-
+            .nav-btn { padding: 4px 8px; font-size: 0.7rem; min-width: 55px; }
+            .jump-trigger { padding: 2px 6px; gap: 2px; }
             .progress-text { font-size: 0.7rem; }
             .jump-label { font-size: 0.55rem; }
-
             .seo-card { padding: 12px; }
         }
     </style>
 
     <!-- Theme Initialization Script -->
     <script>
-        // Apply theme immediately to prevent flash
         const savedTheme = localStorage.getItem('theme') || 'light';
         document.documentElement.setAttribute('data-theme', savedTheme);
     </script>
 </head>
 <body>
 
-<!-- Fallback for disabled JavaScript -->
 <noscript>
     <div style="padding: 20px; text-align: center; color: #7f1d1d; background: #fef2f2;">
         <strong>JavaScript is required.</strong> Please enable JavaScript to use the AgriQuiz application.
@@ -943,27 +411,22 @@
 
 <div class="progress-container"><div class="progress-fill" id="progressFill"></div></div>
 
-<!-- FIXED: Correct IDs for layout.js to target -->
 <!-- Global HPGK Header Placeholder -->
 <div id="site-header"></div>
 
-<!-- Main Landmark for Accessibility -->
 <main>
     <div class="main-layout">
         
-        <!-- Left Column: Hero Content (50%) -->
         <section class="hero-section">
             <span class="hero-badge glass-panel">Exam Ready</span>
-            <!-- H1: Main Title -->
+            <!-- FIXED: H1 Title forced to Inter strictly -->
             <h1 class="hero-title">Free General Agriculture<br>Mock Test & Exam Prep</h1>
             <p class="hero-desc">
                 Unlock access to <strong>507+ curated questions</strong> tailored for <strong>ICAR JRF, IBPS AFO, and NABARD</strong>. 
-                Our interactive, <strong>bilingual (English & Hindi)</strong> quiz system challenges your brain, boosts retention, and ensures you are exam-ready.
+                Bilingual (English & Hindi) interactive system.
             </p>
             
-            <!-- Key Subjects Section (Compact) -->
             <div class="subjects-container">
-                <!-- H2: Major Section Heading -->
                 <h2 class="subjects-title">Key Subjects Covered</h2>
                 <div class="subject-tags">
                     <span class="subject-tag glass-panel"><i class="fa-solid fa-wheat-awn"></i> General Agriculture</span>
@@ -977,13 +440,11 @@
                 </div>
             </div>
 
-            <!-- Platform Features Section (Now Compact exactly like Subjects) -->
             <div class="subjects-container">
-                <!-- H2: Major Section Heading -->
                 <h2 class="subjects-title">Platform Features</h2>
                 <div class="subject-tags">
-                    <span class="subject-tag glass-panel"><i class="fa-solid fa-book"></i> Bilingual Questions</span>
-                    <span class="subject-tag glass-panel"><i class="fa-solid fa-floppy-disk"></i> Auto-Save Progress</span>
+                    <span class="subject-tag glass-panel"><i class="fa-solid fa-book"></i> Bilingual</span>
+                    <span class="subject-tag glass-panel"><i class="fa-solid fa-floppy-disk"></i> Auto-Save</span>
                     <span class="subject-tag glass-panel"><i class="fa-solid fa-bolt"></i> Instant Feedback</span>
                     <span class="subject-tag glass-panel"><i class="fa-solid fa-mobile-screen"></i> Mobile Optimized</span>
                     <span class="subject-tag glass-panel"><i class="fa-solid fa-magnifying-glass"></i> Smart Search</span>
@@ -994,17 +455,13 @@
             </div>
         </section>
 
-        <!-- Right Column: Compact Quiz Widget (50%) -->
         <section class="quiz-widget-wrapper" id="quizWidgetWrapper">
-            <!-- OUTER CONTAINER: Contains Tools -->
             <div class="quiz-card glass-panel">
 
-                <!-- TOP RIBBON: Start Quick 10 Quiz -->
                 <button class="quick-start-ribbon" onclick="toggleQuickMode(true)">
                     <i class="fa-solid fa-bolt"></i> Start Quick 10 Quiz
                 </button>
 
-                <!-- Widget Header (Search & All Tools Inline) -->
                 <div class="widget-header">
                     <div class="search-container" id="searchContainer">
                         <i class="fa-solid fa-magnifying-glass search-icon"></i>
@@ -1013,7 +470,6 @@
                     </div>
                     
                     <div class="text-controls">
-                        <!-- Inline System Tools -->
                         <button onclick="exportProgress()" title="Backup Progress">
                             <i class="fa-solid fa-download"></i>
                         </button>
@@ -1021,24 +477,23 @@
                             <i class="fa-solid fa-upload"></i>
                         </label>
                         <input type="file" id="importFile" style="display: none;" accept=".json" onchange="importProgress(this)">
+                        
                         <button class="reset-btn-small" onclick="resetProgress()" title="Reset All Data">
                             <i class="fa-solid fa-rotate-right"></i>
                         </button>
                         
-                        <!-- Visual Separator -->
                         <div style="width:1px; height:20px; background:var(--card-border); margin:0 2px;"></div>
 
-                        <!-- Existing Filters and Controls -->
                         <button class="quick-btn" id="quickModeBtn" onclick="toggleQuickMode()" title="Toggle Quick 10 Mode">
                             <i class="fa-solid fa-bolt"></i>
                         </button>
-                        <button class="shuffle-btn" id="shuffleBtn" onclick="toggleShuffle()" title="Shuffle Questions (Randomize Order)">
+                        <button class="shuffle-btn" id="shuffleBtn" onclick="toggleShuffle()" title="Shuffle">
                             <i class="fa-solid fa-shuffle"></i>
                         </button>
-                        <button class="mistake-btn" id="mistakeFilterBtn" onclick="toggleMistakeFilter()" title="Show Mistakes Only (Smart Review)">
+                        <button class="mistake-btn" id="mistakeFilterBtn" onclick="toggleMistakeFilter()" title="Show Mistakes">
                             <i class="fa-solid fa-triangle-exclamation"></i>
                         </button>
-                        <button class="bookmark-btn" id="bookmarkFilterBtn" onclick="toggleBookmarkFilter()" title="Show Bookmarked Questions">
+                        <button class="bookmark-btn" id="bookmarkFilterBtn" onclick="toggleBookmarkFilter()" title="Show Bookmarks">
                             <i class="fa-regular fa-bookmark"></i>
                         </button>
                         <button class="text-btn" onclick="adjustFont(-1)" title="Smaller Text">A-</button>
@@ -1046,34 +501,15 @@
                     </div>
                 </div>
 
-                <!-- INNER CONTAINER: Encapsulates Actual Quiz & Stats (2nd Border Layout) -->
                 <div class="quiz-mcq-container">
-                    
-                    <!-- Stats Dashboard -->
                     <div class="stats-dashboard">
-                        <div class="stat-item">
-                            <span class="stat-label">Done</span>
-                            <span class="stat-value" id="statDone">0</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-label">Left</span>
-                            <span class="stat-value" id="statLeft">0</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-label">Correct</span>
-                            <span class="stat-value green" id="statCorrect">0</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-label">Wrong</span>
-                            <span class="stat-value red" id="statWrong">0</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-label">Accuracy</span>
-                            <span class="stat-value accent" id="statAccuracy">0%</span>
-                        </div>
+                        <div class="stat-item"><span class="stat-label">Done</span><span class="stat-value" id="statDone">0</span></div>
+                        <div class="stat-item"><span class="stat-label">Left</span><span class="stat-value" id="statLeft">0</span></div>
+                        <div class="stat-item"><span class="stat-label">Correct</span><span class="stat-value green" id="statCorrect">0</span></div>
+                        <div class="stat-item"><span class="stat-label">Wrong</span><span class="stat-value red" id="statWrong">0</span></div>
+                        <div class="stat-item"><span class="stat-label">Accuracy</span><span class="stat-value accent" id="statAccuracy">0%</span></div>
                     </div>
 
-                    <!-- Scrollable Questions Area -->
                     <div id="quizContent" class="quiz-content">
                         <div id="cardArea">
                             <div style="text-align:center; padding: 20px; color: #4B5563; font-size: 0.85rem;">
@@ -1082,35 +518,19 @@
                         </div>
                     </div>
 
-                    <!-- Integrated Footer Controls -->
                     <div class="widget-controls">
-                        <button id="prevBtn" class="nav-btn" aria-label="Previous">
-                            <i class="fa-solid fa-arrow-left"></i> Prev
-                        </button>
-                        
-                        <div class="jump-trigger" id="jumpTrigger" title="Tap to Jump to specific question">
-                            <span class="progress-text" id="progressText">0 / 0</span>
-                            <span class="jump-label">
-                                <i class="fa-solid fa-location-crosshairs"></i> Jump To
-                            </span>
-                        </div>
-
-                        <button id="nextBtn" class="nav-btn" aria-label="Next">
-                            Next <i class="fa-solid fa-arrow-right"></i>
-                        </button>
+                        <button id="prevBtn" class="nav-btn" aria-label="Previous"><i class="fa-solid fa-arrow-left"></i> Prev</button>
+                        <div class="jump-trigger" id="jumpTrigger" title="Jump To"><span class="progress-text" id="progressText">0 / 0</span><span class="jump-label"><i class="fa-solid fa-location-crosshairs"></i> Jump</span></div>
+                        <button id="nextBtn" class="nav-btn" aria-label="Next">Next <i class="fa-solid fa-arrow-right"></i></button>
                     </div>
-                    
-                </div> <!-- End of Inner Quiz Container -->
+                </div> 
 
-            </div> <!-- End of Outer Glass Card -->
+            </div>
         </section>
-
     </div>
 
-    <!-- Modern Separator Line -->
     <div class="section-separator"></div>
 
-    <!-- SEO Content Section (Compact & Dense) -->
     <section class="seo-content-wrapper">
         <div class="seo-header">
             <h2>Comprehensive Agriculture & Resources Guide</h2>
@@ -1180,10 +600,8 @@
         </div>
     </section>
 
-    <!-- Modern Separator Line for Author Section -->
     <div class="section-separator"></div>
 
-    <!-- Trust & Effectiveness Section -->
     <section class="seo-content-wrapper">
         <div class="seo-header">
             <h2><i class="fa-solid fa-shield-halved" style="color: var(--primary); margin-right: 10px;"></i>Why Trust AgriQuiz?</h2>
@@ -1214,10 +632,8 @@
         </div>
     </section>
 
-    <!-- Modern Separator Line -->
     <div class="section-separator"></div>
 
-    <!-- How to & FAQ Section -->
     <section class="seo-content-wrapper">
         <div class="seo-header">
             <h2><i class="fa-solid fa-circle-info" style="color: var(--primary); margin-right: 10px;"></i>Help & Common Questions</h2>
@@ -1270,17 +686,13 @@
             </div>
         </div>
     </section>
+
 </main>
 
-<!-- FIXED: Correct ID for layout.js to target -->
-<!-- Global HPGK Footer Placeholder -->
 <div id="site-footer"></div>
 
-<!-- Global Domain Scripts -->
-<!-- REMOVED main.js TO PREVENT QUIZ VARIABLE CONFLICTS -->
 <script src="../js/layout.js"></script>
 
-<!-- INITIALIZE GLOBAL HEADER & FOOTER -->
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         if (typeof renderHeader === 'function') {
@@ -1288,7 +700,8 @@
                 title: 'AgriQuiz',
                 subtitle: 'Agriculture Exams',
                 iconClass: 'fa-solid fa-seedling',
-                link: 'https://hpgk.toolblaster.com/agriculture-quiz/',
+                // FIXED: Explicitly pointing to the root layout path as requested
+                link: 'https://hpgk.toolblaster.com/', 
                 isQuizPage: true,
                 rootPath: '..'
             });
@@ -1299,581 +712,19 @@
     });
 </script>
 
-<!-- Data Loading -->
 <script>
     window.quizData = []; 
 </script>
 
-<!-- Scripts for Data Parts -->
-<script src="part1.js"></script>
-<script src="part2.js"></script>
-<script src="part3.js"></script>
-<script src="part4.js"></script>
-<script src="part5.js"></script>
+<!-- FIXED: Moved Data parts into the js folder -->
+<script src="js/part1.js"></script>
+<script src="js/part2.js"></script>
+<script src="js/part3.js"></script>
+<script src="js/part4.js"></script>
+<script src="js/part5.js"></script>
 
-<!-- Main Logic -->
-<script>
-// Wrapping ENTIRE logic inside an IIFE (Immediately Invoked Function Expression)
-// This strictly isolates the quiz logic from the global environment.
-(function() {
-    const STORAGE_KEY = 'agri_vantage_history_v1';
-    
-    let currentList = [];
-    let currentIndex = 0;
-    let historyState = { lastIndex: 0, answers: {}, bookmarks: [] };
-    
-    let fontLevel = -1; 
-    let currentSearchTerm = '';
-    let isBookmarkFilterActive = false;
-    let isMistakesFilterActive = false;
-    let isShuffleActive = false;
-    let isQuickModeActive = false;
-    let quickSessionScore = 0;
-    const QUICK_LIMIT = 10;
+<!-- Link to isolated quiz application script -->
+<script src="js/quiz-app.js"></script>
 
-    // DOM Elements
-    const cardArea = document.getElementById('cardArea');
-    const quizContent = document.getElementById('quizContent');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const progressText = document.getElementById('progressText');
-    const progressFill = document.getElementById('progressFill');
-    const searchInput = document.getElementById('searchInput');
-    const searchContainer = document.getElementById('searchContainer');
-    const jumpTrigger = document.getElementById('jumpTrigger');
-    const bookmarkFilterBtn = document.getElementById('bookmarkFilterBtn');
-    const mistakeFilterBtn = document.getElementById('mistakeFilterBtn');
-    const shuffleBtn = document.getElementById('shuffleBtn');
-    const quickModeBtn = document.getElementById('quickModeBtn');
-    const quizWidgetWrapper = document.getElementById('quizWidgetWrapper');
-
-    window.exportProgress = function() {
-        const dataStr = JSON.stringify(historyState);
-        const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
-        const exportFileDefaultName = 'agriquiz_backup.json';
-        const linkElement = document.createElement('a');
-        linkElement.setAttribute('href', dataUri);
-        linkElement.setAttribute('download', exportFileDefaultName);
-        linkElement.click();
-    }
-
-    window.importProgress = function(input) {
-        const file = input.files[0];
-        if (!file) return;
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            try {
-                const contents = JSON.parse(e.target.result);
-                if (contents && contents.answers) {
-                    historyState = contents;
-                    if(!historyState.bookmarks) historyState.bookmarks = [];
-                    saveToStorage();
-                    
-                    if(historyState.lastIndex && historyState.lastIndex < currentList.length) {
-                        currentIndex = historyState.lastIndex;
-                    } else {
-                        currentIndex = 0;
-                    }
-                    
-                    applyFilters(); 
-                    updateStats();
-                    alert('Progress restored successfully!');
-                } else {
-                    alert('Invalid backup file. Please ensure it is a valid AgriQuiz JSON file.');
-                }
-            } catch(err) {
-                alert('Error reading file. Please try again.');
-            }
-        };
-        reader.readAsText(file);
-        input.value = '';
-    }
-
-    window.adjustFont = function(dir) {
-        fontLevel += dir;
-        if(fontLevel > 3) fontLevel = 3;
-        if(fontLevel < -3) fontLevel = -3;
-        loadQuestion(currentIndex);
-    }
-
-    function getFontSize() {
-        const isMobile = window.innerWidth <= 600;
-        const baseSize = isMobile ? 0.65 : 0.75; 
-        const step = 0.1; 
-        const offset = fontLevel + 1; 
-        return `${baseSize + (offset * step)}rem`;
-    }
-
-    function updateStats() {
-        const total = window.quizData.length;
-        const completedIds = Object.keys(historyState.answers);
-        const completedCount = completedIds.length;
-        const leftCount = total - completedCount;
-        
-        let correctCount = 0;
-        completedIds.forEach(id => {
-            const q = window.quizData.find(item => item.id == id);
-            if (q && q.answer === historyState.answers[id]) {
-                correctCount++;
-            }
-        });
-        
-        const wrongCount = completedCount - correctCount;
-        const accuracy = completedCount > 0 ? Math.round((correctCount / completedCount) * 100) : 0;
-
-        document.getElementById('statDone').innerText = completedCount;
-        document.getElementById('statLeft').innerText = leftCount;
-        document.getElementById('statCorrect').innerText = correctCount;
-        document.getElementById('statWrong').innerText = wrongCount;
-        document.getElementById('statAccuracy').innerText = accuracy + '%';
-    }
-
-    function highlightText(text, term) {
-        if (!term || term.length < 2) return text;
-        const safeTerm = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-        const regex = new RegExp(`(${safeTerm})`, 'gi');
-        return text.replace(regex, '<mark class="highlight">$1</mark>');
-    }
-
-    function loadQuestion(index) {
-        quizContent.scrollTop = 0;
-
-        if (isQuickModeActive && index >= currentList.length) {
-            cardArea.innerHTML = `
-                <div class="empty-state">
-                    <i class="fa-solid fa-trophy" style="color:var(--accent)"></i>
-                    <p style="font-size:1rem; font-weight:700;">Session Complete!</p>
-                    <div class="summary-score">${quickSessionScore} / ${currentList.length}</div>
-                    <p style="margin-bottom:15px; color:var(--text-sec)">Questions mastered in this quick session.</p>
-                    <button class="summary-btn" onclick="continueQuickMode()">Start Next 10 <i class="fa-solid fa-arrow-right"></i></button>
-                    <br><br>
-                    <button style="background:transparent; color:var(--text-sec); font-size:0.75rem;" onclick="toggleQuickMode(false)">Exit Quick Mode</button>
-                </div>
-            `;
-            updateControls(); 
-            return;
-        }
-
-        if (!currentList || currentList.length === 0) {
-            let message = '';
-            let subMsg = '';
-            
-            if (isQuickModeActive) {
-                message = `All caught up!`;
-                subMsg = `You have answered all available questions. Try reviewing your mistakes.`;
-            } else if (isMistakesFilterActive) {
-                message = `Great job! No mistakes found.`;
-                subMsg = `<span style="font-size:0.75em; color:var(--text-sec)">Any questions you answer incorrectly will appear here for review.</span>`;
-            } else if (isBookmarkFilterActive) {
-                message = `No bookmarks found.`;
-                subMsg = `<span style="font-size:0.75em; color:var(--text-sec)">Tap the <i class="fa-regular fa-bookmark"></i> icon on any question to save it here.</span>`;
-            } else {
-                message = `No matches found for "<strong>${currentSearchTerm}</strong>"`;
-            }
-
-            cardArea.innerHTML = `
-                <div class="empty-state">
-                    <i class="fa-solid fa-file-circle-question"></i>
-                    <p>${message}</p>
-                    ${subMsg ? `<p>${subMsg}</p>` : ''}
-                    ${currentSearchTerm ? '<button onclick="clearSearch()">Clear Search</button>' : ''}
-                    ${isQuickModeActive ? '<br><button onclick="toggleQuickMode(false)">Exit Quick Mode</button>' : ''}
-                </div>`;
-            updateControls();
-            return;
-        }
-
-        const q = currentList[index];
-        const savedAnswer = historyState.answers[q.id];
-        const isAnswered = (savedAnswer !== undefined && savedAnswer !== null && typeof savedAnswer === 'number');
-        const isBookmarked = historyState.bookmarks.includes(q.id);
-        
-        const fontSize = getFontSize();
-        const qEnText = highlightText(q.questionEn, currentSearchTerm);
-        const qHiText = highlightText(q.questionHi, currentSearchTerm);
-
-        const optionsHtml = q.options.map((opt, i) => {
-            let statusClass = '';
-            let iconHtml = '';
-            
-            const optText = highlightText(opt, currentSearchTerm);
-            
-            if (isAnswered) {
-                if (i === q.answer) { 
-                    statusClass = 'correct'; 
-                    iconHtml = '<span class="status-icon"><i class="fa-solid fa-check"></i></span>'; 
-                } 
-                else if (i === savedAnswer) { 
-                    statusClass = 'wrong'; 
-                    iconHtml = '<span class="status-icon"><i class="fa-solid fa-xmark"></i></span>'; 
-                }
-            }
-            
-            return `
-            <div class="option-btn ${statusClass} ${isAnswered ? 'disabled' : ''}" 
-                 style="font-size: ${fontSize};"
-                 onclick="handleAnswer(this, '${q.id}', ${i})">
-                <span>${optText}</span>
-                ${iconHtml}
-            </div>`;
-        }).join('');
-
-        let feedbackHtml = '';
-        if (isAnswered) {
-            const isCorrect = savedAnswer === q.answer;
-            const bg = isCorrect ? 'var(--correct-bg)' : 'var(--wrong-bg)';
-            const color = isCorrect ? 'var(--correct-text)' : 'var(--wrong-text)';
-            const text = isCorrect ? 'Correct Answer!' : `Correct: ${q.options[q.answer]}`;
-            feedbackHtml = `<div class="feedback-msg" style="display:block; background:${bg}; color:${color}">${text}</div>`;
-        }
-
-        const listClass = isAnswered ? 'options-list answered' : 'options-list';
-        const statusDisplay = isAnswered 
-            ? (savedAnswer === q.answer 
-                ? '<i class="fa-solid fa-check"></i> Solved' 
-                : '<i class="fa-solid fa-xmark"></i> Review') 
-            : 'Pending';
-
-        const bookmarkIconClass = isBookmarked ? 'fa-solid fa-bookmark active' : 'fa-regular fa-bookmark';
-
-        cardArea.innerHTML = `
-            <div class="q-meta">
-                <span>Q. ${q.id}</span>
-                <span class="q-actions">
-                    <span style="color:var(--primary)">${statusDisplay}</span>
-                    <i class="fa-solid fa-share-from-square share-icon" onclick="shareQuestion('${q.id}')" title="Share Question"></i>
-                    <i class="${bookmarkIconClass} bookmark-icon" onclick="toggleBookmark('${q.id}')" title="Bookmark Question"></i>
-                </span>
-            </div>
-            <div class="q-text-en" style="font-size:${fontSize}">${qEnText}</div>
-            <div class="q-text-hi" style="font-size:${fontSize}">${qHiText}</div>
-            <div class="${listClass}" id="opts-${q.id}">
-                ${optionsHtml}
-            </div>
-            ${feedbackHtml}
-        `;
-
-        if (searchInput.value === '' && !isBookmarkFilterActive && !isMistakesFilterActive && !isShuffleActive && !isQuickModeActive) { 
-            historyState.lastIndex = currentIndex;
-            saveToStorage();
-        }
-
-        updateControls();
-    }
-
-    window.toggleBookmark = function(qId) {
-        qId = parseInt(qId);
-        const idx = historyState.bookmarks.indexOf(qId);
-        if (idx > -1) historyState.bookmarks.splice(idx, 1);
-        else historyState.bookmarks.push(qId);
-        saveToStorage();
-        loadQuestion(currentIndex); 
-        if (isBookmarkFilterActive) applyFilters(false);
-    };
-
-    window.toggleBookmarkFilter = function() {
-        isBookmarkFilterActive = !isBookmarkFilterActive;
-        if (isBookmarkFilterActive) {
-            disableOtherFilters('bookmark');
-            document.getElementById('bookmarkFilterBtn').classList.add('active');
-            document.getElementById('bookmarkFilterBtn').innerHTML = '<i class="fa-solid fa-bookmark"></i>';
-        } else {
-            document.getElementById('bookmarkFilterBtn').classList.remove('active');
-            document.getElementById('bookmarkFilterBtn').innerHTML = '<i class="fa-regular fa-bookmark"></i>';
-        }
-        applyFilters(true);
-    };
-
-    window.toggleMistakeFilter = function() {
-        isMistakesFilterActive = !isMistakesFilterActive;
-        if (isMistakesFilterActive) {
-            disableOtherFilters('mistake');
-            document.getElementById('mistakeFilterBtn').classList.add('active');
-        } else {
-            document.getElementById('mistakeFilterBtn').classList.remove('active');
-        }
-        applyFilters(true);
-    }
-
-    window.toggleShuffle = function() {
-        isShuffleActive = !isShuffleActive;
-        if (isShuffleActive) {
-            document.getElementById('shuffleBtn').classList.add('active');
-        } else {
-            document.getElementById('shuffleBtn').classList.remove('active');
-        }
-        applyFilters(true);
-    }
-
-    window.toggleQuickMode = function(forceOn = null) {
-        if (forceOn !== null) isQuickModeActive = forceOn;
-        else isQuickModeActive = !isQuickModeActive;
-
-        if (isQuickModeActive) {
-            quizWidgetWrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            disableOtherFilters('quick');
-            document.getElementById('quickModeBtn').classList.add('active');
-            quickSessionScore = 0;
-        } else {
-            document.getElementById('quickModeBtn').classList.remove('active');
-        }
-        applyFilters(true);
-    };
-
-    window.continueQuickMode = function() {
-        quickSessionScore = 0;
-        applyFilters(true);
-    }
-
-    function disableOtherFilters(active) {
-        if (active !== 'bookmark') {
-            isBookmarkFilterActive = false;
-            document.getElementById('bookmarkFilterBtn').classList.remove('active');
-            document.getElementById('bookmarkFilterBtn').innerHTML = '<i class="fa-regular fa-bookmark"></i>';
-        }
-        if (active !== 'mistake') {
-            isMistakesFilterActive = false;
-            document.getElementById('mistakeFilterBtn').classList.remove('active');
-        }
-        if (active !== 'quick') {
-            isQuickModeActive = false;
-            document.getElementById('quickModeBtn').classList.remove('active');
-        }
-    }
-
-    function applyFilters(resetIndex = false) {
-        const term = currentSearchTerm;
-        let filtered = [...window.quizData];
-
-        if (isShuffleActive) {
-            for (let i = filtered.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [filtered[i], filtered[j]] = [filtered[j], filtered[i]];
-            }
-        } else {
-            filtered.sort((a, b) => a.id - b.id);
-        }
-
-        if (isBookmarkFilterActive) {
-            filtered = filtered.filter(q => historyState.bookmarks.includes(q.id));
-        } else if (isMistakesFilterActive) {
-            filtered = filtered.filter(q => {
-                const userAns = historyState.answers[q.id];
-                return userAns !== undefined && userAns !== q.answer;
-            });
-        }
-
-        if (term && term !== '') {
-             filtered = filtered.filter(q => {
-                const qEn = q.questionEn ? q.questionEn.toLowerCase() : '';
-                const qHi = q.questionHi ? q.questionHi.toLowerCase() : ''; 
-                const qId = q.id ? q.id.toString() : '';
-                const optionsStr = q.options ? q.options.join(' ').toLowerCase() : '';
-                return qEn.includes(term) || qHi.includes(term) || qId.includes(term) || optionsStr.includes(term);
-            });
-        }
-
-        if (isQuickModeActive) {
-            filtered = filtered.filter(q => historyState.answers[q.id] === undefined);
-            filtered = filtered.slice(0, QUICK_LIMIT);
-        }
-
-        currentList = filtered;
-        
-        if (resetIndex) {
-            currentIndex = 0;
-        } else {
-            if (currentIndex >= currentList.length) {
-                currentIndex = Math.max(0, currentList.length - 1);
-                if (currentIndex < 0) currentIndex = 0; 
-            }
-        }
-        
-        loadQuestion(currentIndex);
-    }
-
-    window.shareQuestion = async function(qId) {
-        const q = window.quizData.find(item => item.id == qId);
-        if(!q) return;
-        
-        const baseUrl = window.location.origin + window.location.pathname;
-        const deepLink = `${baseUrl}?id=${qId}`;
-        const shareText = `Can you solve this AgriQuiz question? 🤔\n\nQ: ${q.questionEn}\n\n👉 Attempt here: ${deepLink}`;
-        
-        if (navigator.share) {
-            try { await navigator.share({ title: 'AgriQuiz Challenge', text: shareText, url: deepLink }); } catch (err) { }
-        } else {
-            try {
-                await navigator.clipboard.writeText(shareText);
-                alert('Challenge link copied to clipboard!');
-            } catch (err) {
-                alert('Could not copy link.');
-            }
-        }
-    };
-
-    window.handleAnswer = function(btn, qId, choiceIndex) {
-        if (!currentList || !currentList[currentIndex]) return;
-        const q = currentList[currentIndex];
-        if (isQuickModeActive && historyState.answers[qId] === undefined) {
-            if (choiceIndex === q.answer) quickSessionScore++;
-        }
-        historyState.answers[qId] = choiceIndex;
-        saveToStorage();
-        updateStats(); 
-        loadQuestion(currentIndex);
-    };
-
-    nextBtn.addEventListener('click', () => {
-        if (isQuickModeActive && currentIndex === currentList.length - 1) {
-            currentIndex++;
-            loadQuestion(currentIndex);
-        } else if (currentIndex < currentList.length - 1) {
-            currentIndex++;
-            loadQuestion(currentIndex);
-        }
-    });
-
-    prevBtn.addEventListener('click', () => {
-        if (currentIndex > 0) {
-            currentIndex--;
-            loadQuestion(currentIndex);
-        }
-    });
-
-    jumpTrigger.addEventListener('click', () => {
-        if (isQuickModeActive) return; 
-        const max = currentList.length;
-        if (max === 0) return;
-        let msg = `Enter Card Number (1 - ${max}) to jump:`;
-        if (isShuffleActive) msg += `\n(Note: In Shuffle mode, this jumps to the position in the random list, not Question ID)`;
-        const p = prompt(msg, currentIndex + 1);
-        if (p) {
-            const num = parseInt(p);
-            if (!isNaN(num) && num >= 1 && num <= max) {
-                currentIndex = num - 1;
-                loadQuestion(currentIndex);
-            }
-        }
-    });
-
-    document.addEventListener('keydown', (e) => {
-        if (document.activeElement !== searchInput) {
-            if (e.key === 'ArrowRight' && !nextBtn.disabled) nextBtn.click();
-            if (e.key === 'ArrowLeft' && !prevBtn.disabled) prevBtn.click();
-        }
-    });
-
-    function updateControls() {
-        if (isQuickModeActive && currentIndex >= currentList.length) {
-            prevBtn.disabled = true;
-            nextBtn.disabled = true;
-            progressText.innerText = "Done";
-            progressFill.style.width = "100%";
-            return;
-        }
-
-        if (!currentList || currentList.length === 0) {
-            prevBtn.disabled = true;
-            nextBtn.disabled = true;
-            progressText.innerText = `0 / 0`;
-            progressFill.style.width = `0%`;
-            return;
-        }
-
-        const currentQ = currentList[currentIndex];
-        const isAnswered = historyState.answers[currentQ.id] !== undefined;
-
-        prevBtn.disabled = currentIndex === 0;
-        nextBtn.disabled = (currentIndex === currentList.length - 1 && !isQuickModeActive) || (!isAnswered); 
-
-        let label = `${currentIndex + 1} / ${currentList.length}`;
-        let prefix = [];
-        
-        if (isQuickModeActive) prefix.push("Quick 10");
-        else if (isShuffleActive) prefix.push("Random");
-        
-        if (isMistakesFilterActive) prefix.push("Mistakes");
-        else if (isBookmarkFilterActive) prefix.push("Saved");
-        else if (currentSearchTerm) prefix.push("Found");
-        
-        if (prefix.length > 0) label = `${prefix.join(' + ')}: ${label}`;
-
-        progressText.innerText = label;
-        const pct = ((currentIndex + 1) / currentList.length) * 100;
-        progressFill.style.width = `${pct}%`;
-    }
-
-    searchInput.addEventListener('input', (e) => {
-        const term = e.target.value.toLowerCase().trim();
-        currentSearchTerm = term;
-        if (term.length > 0) searchContainer.classList.add('active');
-        else searchContainer.classList.remove('active');
-        applyFilters(true);
-    });
-
-    window.clearSearch = function() {
-        searchInput.value = '';
-        searchInput.dispatchEvent(new Event('input')); 
-        searchInput.focus();
-    };
-
-    function saveToStorage() { localStorage.setItem(STORAGE_KEY, JSON.stringify(historyState)); }
-    
-    function loadFromStorage() {
-        const saved = localStorage.getItem(STORAGE_KEY);
-        if (saved) { 
-            try { 
-                historyState = JSON.parse(saved); 
-                if (!historyState.answers) historyState.answers = {}; 
-                if (!historyState.bookmarks) historyState.bookmarks = []; 
-            } catch (e) {} 
-        }
-    }
-    
-    window.resetProgress = function() {
-        if(confirm("Clear history?")) { localStorage.removeItem(STORAGE_KEY); location.reload(); }
-    };
-
-    function initQuizNow() {
-        if (window.quizData && window.quizData.length > 0) {
-            window.quizData.sort((a, b) => a.id - b.id);
-            
-            loadFromStorage();
-            currentList = [...window.quizData];
-            
-            const urlParams = new URLSearchParams(window.location.search);
-            const sharedId = urlParams.get('id');
-            
-            if (sharedId) {
-                const qId = parseInt(sharedId);
-                const targetIndex = currentList.findIndex(q => q.id === qId);
-                
-                if (targetIndex !== -1) {
-                    currentIndex = targetIndex;
-                    setTimeout(() => {
-                        if(quizWidgetWrapper) quizWidgetWrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }, 500);
-                }
-            } else {
-                if (historyState.lastIndex && historyState.lastIndex < currentList.length) {
-                    currentIndex = historyState.lastIndex;
-                }
-            }
-            
-            loadQuestion(currentIndex);
-            updateStats(); 
-        } else {
-            cardArea.innerHTML = `<div style="text-align:center; color:#EF4444; padding:20px; font-size:0.85rem;">
-                <strong>Data Missing</strong><br>
-                Please make sure <code>part1.js</code> is correctly loaded.
-            </div>`;
-        }
-    }
-
-    initQuizNow();
-
-})(); // END OF ISOLATED SCOPE
-</script>
 </body>
 </html>
