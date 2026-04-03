@@ -3,57 +3,246 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy | HPGK Quiz</title>
-    <meta name="description" content="Privacy Policy for HPGK Quiz. We prioritize your privacy and data security.">
-    <link rel="stylesheet" href="../js/style.css">
+    <title>Privacy Policy | HPGK Quiz & Agriculture Prep</title>
+    <meta name="description" content="Read the Privacy Policy for HPGK Quiz. Learn how we prioritize your data security, use local storage, and protect your privacy while you prepare for exams.">
+    
+    <!-- Canonical Link -->
+    <link rel="canonical" href="https://hpgk.toolblaster.com/legal/privacy.html">
+
+    <!-- Assets (Favicon paths pointing to js/favicon) -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../js/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="../js/favicon/web-app-manifest-512x512.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../js/favicon/web-app-manifest-192x192.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="../js/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="../js/favicon/favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../js/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../js/favicon/favicon-16x16.png">
+    <link rel="manifest" href="../js/favicon/site.webmanifest">
+    <link rel="shortcut icon" href="../js/favicon/favicon.ico">
+    <meta name="msapplication-TileColor" content="#2563eb">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Noto+Sans+Devanagari:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+    <!-- Load Global Style First -->
+    <link rel="stylesheet" href="../js/style.css">
+
+    <!-- Premium Glassmorphism Stylesheet for Legal Pages -->
+    <style>
+        :root {
+            --primary: #2563eb;       
+            --primary-hover: #1d4ed8; 
+            --primary-light: rgba(37, 99, 235, 0.1); 
+            --primary-dark: #1e3a8a;  
+            --accent: #ea580c;        
+            
+            --bg-gradient: linear-gradient(135deg, #eff6ff 0%, #dbeafe 50%, #f3e8ff 100%);
+            --card-bg: rgba(255, 255, 255, 0.65); 
+            --card-border: rgba(255, 255, 255, 0.5); 
+            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+            
+            --text-main: #0f172a;     
+            --text-body: #334155;     
+            --text-sec: #475569;      
+            --input-bg: rgba(255, 255, 255, 0.4); 
+            
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 16px;
+        }
+
+        [data-theme="dark"] {
+            --primary: #60a5fa;       
+            --primary-hover: #93c5fd; 
+            --primary-light: rgba(96, 165, 250, 0.15); 
+            --primary-dark: #bfdbfe;  
+            --accent: #fbbf24;        
+            
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #020617 100%);
+            --card-bg: rgba(30, 41, 59, 0.5); 
+            --card-border: rgba(255, 255, 255, 0.08); 
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            
+            --text-main: #f8fafc;     
+            --text-body: #cbd5e1;     
+            --text-sec: #94a3b8;      
+            --input-bg: rgba(0, 0, 0, 0.2); 
+        }
+
+        body {
+            background: var(--bg-gradient);
+            color: var(--text-body);
+            font-family: 'Inter', 'Noto Sans Devanagari', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1, h2, h3, h4 { font-family: 'Inter', sans-serif !important; color: var(--text-main); }
+
+        .glass-panel {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--card-border);
+            box-shadow: var(--glass-shadow);
+        }
+
+        main { flex: 1; max-width: 900px; margin: 0 auto; padding: 25px 15px; width: 100%; }
+
+        /* Page Header */
+        .page-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .page-title {
+            font-size: 32px !important;
+            font-weight: 800 !important;
+            margin: 0 0 8px 0;
+            letter-spacing: -0.5px;
+            color: var(--text-main);
+        }
+
+        .page-desc {
+            font-size: 0.95rem;
+            color: var(--text-sec);
+            margin: 0;
+        }
+
+        /* Content Blocks */
+        .content-section {
+            border-radius: var(--radius-xl);
+            padding: 25px;
+            margin-bottom: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .content-block {
+            background: var(--input-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .content-block h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 0 0 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .content-block p {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            margin: 0 0 12px 0;
+        }
+
+        .content-block p:last-child { margin-bottom: 0; }
+
+        .content-block a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .content-block a:hover { text-decoration: underline; }
+
+        /* Fancy Lists */
+        .styled-list {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+        }
+        
+        .styled-list li {
+            position: relative;
+            padding-left: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+        
+        .styled-list li::before {
+            content: "\f111"; 
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            color: var(--primary);
+            position: absolute;
+            left: 0;
+            top: 6px;
+            font-size: 0.4rem;
+        }
+
+        @media (max-width: 600px) {
+            main { padding: 20px 10px; }
+            .content-section { padding: 15px; gap: 15px; }
+            .content-block { padding: 15px; }
+            .page-title { font-size: 26px !important; }
+        }
+    </style>
+
+    <script>
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
 </head>
 <body>
 
 <div id="site-header"></div>
 
-<main class="container main-content" style="max-width: 800px; margin: 20px auto; padding: 0 15px;">
-    
-    <div class="page-header" style="text-align: center; margin-bottom: 15px;">
-        <h1 style="color: var(--primary-dark); font-size: 1.25rem; margin-bottom: 5px;">Privacy Policy</h1>
-        <p style="color: var(--text-sec); font-size: 0.85rem;">Last Updated: January 2025</p>
+<main>
+    <div class="page-header">
+        <h1 class="page-title">Privacy Policy</h1>
+        <p class="page-desc">Last Updated: January 2026</p>
     </div>
 
-    <div class="content-card" style="background: var(--card-bg); padding: 15px; border-radius: 8px; box-shadow: var(--glass-shadow); border: 1px solid var(--border-color);">
+    <!-- Main Content Section -->
+    <div class="content-section glass-panel">
         
-        <h3 style="color: var(--primary); margin-top: 0; font-size: 1rem; margin-bottom: 6px;">1. No Personal Data Collection</h3>
-        <p style="line-height: 1.4; color: var(--text-main); font-size: 0.85rem; margin-bottom: 12px;">
-            We respect your privacy. HPGK Quiz <strong>does not collect, store, or share any personal identifiable information</strong> (PII) such as your name, email address, phone number, or location on our servers. You can use the application freely without creating an account.
-        </p>
+        <div class="content-block">
+            <h3><i class="fa-solid fa-user-shield"></i> 1. No Personal Data Collection</h3>
+            <p>
+                We respect your privacy. HPGK Quiz <strong>does not collect, store, or share any personal identifiable information</strong> (PII) such as your name, email address, phone number, or location on our servers. You can use the application freely without creating an account.
+            </p>
+        </div>
 
-        <h3 style="color: var(--primary); margin-top: 0; font-size: 1rem; margin-bottom: 6px;">2. Local Storage Usage</h3>
-        <p style="line-height: 1.4; color: var(--text-main); font-size: 0.85rem; margin-bottom: 6px;">
-            To enhance your experience, we use your browser's <strong>Local Storage</strong> technology. This allows us to:
-        </p>
-        <ul style="line-height: 1.4; color: var(--text-main); padding-left: 20px; font-size: 0.85rem; margin-bottom: 6px;">
-            <li>Save your quiz progress (questions attempted, correct/incorrect answers).</li>
-            <li>Remember your theme preference (Dark/Light mode).</li>
-            <li>Store bookmarked questions for later review.</li>
-        </ul>
-        <p style="line-height: 1.4; color: var(--text-main); font-size: 0.85rem; margin-bottom: 12px;">
-            This data remains strictly on your device and is never transmitted to us or any third party. Clearing your browser cache will reset this data.
-        </p>
+        <div class="content-block">
+            <h3><i class="fa-solid fa-hard-drive"></i> 2. Local Storage Usage</h3>
+            <p>
+                To enhance your experience, we use your browser's <strong>Local Storage</strong> technology. This allows us to:
+            </p>
+            <ul class="styled-list">
+                <li>Save your quiz progress (questions attempted, correct/incorrect answers).</li>
+                <li>Remember your theme preference (Dark/Light mode).</li>
+                <li>Store bookmarked questions for later review.</li>
+            </ul>
+            <p style="margin-top: 12px;">
+                This data remains strictly on your device and is never transmitted to us or any third party. Clearing your browser cache will reset this data.
+            </p>
+        </div>
 
-        <h3 style="color: var(--primary); margin-top: 0; font-size: 1rem; margin-bottom: 6px;">3. Third-Party Services</h3>
-        <p style="line-height: 1.4; color: var(--text-main); font-size: 0.85rem; margin-bottom: 12px;">
-            We may use standard analytics tools (like Google Analytics) to understand aggregate usage patterns (e.g., popular pages, total visitors) to improve the website. These tools may use cookies, but they do not identify you personally.
-        </p>
+        <div class="content-block">
+            <h3><i class="fa-solid fa-chart-pie"></i> 3. Third-Party Services</h3>
+            <p>
+                We may use standard analytics tools (like Google Analytics) to understand aggregate usage patterns (e.g., popular pages, total visitors) to improve the website. These tools may use cookies, but they do not identify you personally.
+            </p>
+        </div>
 
-        <h3 style="color: var(--primary); margin-top: 0; font-size: 1rem; margin-bottom: 6px;">4. Changes to This Policy</h3>
-        <p style="line-height: 1.4; color: var(--text-main); font-size: 0.85rem; margin-bottom: 0;">
-            We may update our Privacy Policy from time to time. Any changes will be posted on this page.
-        </p>
+        <div class="content-block">
+            <h3><i class="fa-solid fa-clock-rotate-left"></i> 4. Changes to This Policy</h3>
+            <p>
+                We may update our Privacy Policy from time to time. Any changes will be posted on this page and reflected by the "Last Updated" date at the top.
+            </p>
+        </div>
+        
     </div>
 
 </main>
@@ -62,15 +251,21 @@
 
 <script src="../js/layout.js"></script>
 <script>
-    renderHeader({
-        title: 'Privacy Policy',
-        subtitle: 'Legal',
-        iconClass: 'fa-solid fa-shield-halved',
-        link: '../index.html',
-        isQuizPage: false,
-        rootPath: '..'
+    document.addEventListener('DOMContentLoaded', () => {
+        if (typeof renderHeader === 'function') {
+            renderHeader({
+                title: 'Privacy Policy',
+                subtitle: 'Legal',
+                iconClass: 'fa-solid fa-shield-halved',
+                link: '../index.html',
+                isQuizPage: false,
+                rootPath: '..'
+            });
+        }
+        if (typeof renderFooter === 'function') {
+            renderFooter('..');
+        }
     });
-    renderFooter('..');
 </script>
 
 </body>
