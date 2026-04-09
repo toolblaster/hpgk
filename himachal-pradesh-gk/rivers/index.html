@@ -66,7 +66,7 @@
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Noto+Sans+Devanagari:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Noto+Sans+Devanagari:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Global CSS (Updated Path) -->
@@ -86,6 +86,7 @@
             --card-bg: rgba(255, 255, 255, 0.65); 
             --card-border: rgba(255, 255, 255, 0.5); 
             --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+            --tooltip-bg: #ffffff;    
             
             --text-main: #0f172a;     
             --text-body: #334155;     
@@ -114,6 +115,7 @@
             --card-bg: rgba(30, 41, 59, 0.5); 
             --card-border: rgba(255, 255, 255, 0.08); 
             --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            --tooltip-bg: #1e293b;    
             
             --text-main: #f8fafc;     
             --text-body: #cbd5e1;     
@@ -147,57 +149,195 @@
             box-shadow: var(--glass-shadow);
         }
 
-        main { flex: 1; max-width: 1200px; margin: 0 auto; padding: 15px 15px; width: 100%; }
+        /* ==========================================
+           MAIN LAYOUT & ALIGNMENT FIXES (var(--site-width))
+           ========================================== */
+        
+        main { flex: 1; width: 100%; padding: 15px 0 !important; }
 
-        /* Compact Breadcrumbs */
-        .breadcrumb-nav { max-width: 1200px; margin: 0 auto 15px auto; display: flex; justify-content: center; }
-        .breadcrumb-list { list-style: none; padding: 6px 16px; margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; background: var(--card-bg); border-radius: 20px; border: 1px solid var(--card-border); backdrop-filter: blur(8px); box-shadow: var(--shadow-sm); }
-        .breadcrumb-item { font-size: 0.75rem; font-weight: 600; color: var(--text-sec); display: flex; align-items: center; }
+        /* Top Meta Bar strictly locked to var(--site-width) so it aligns perfectly with the global header */
+        .top-meta-bar { 
+            display: flex; justify-content: space-between; align-items: center; 
+            width: 100%; max-width: var(--site-width); margin: 0 auto 12px auto; 
+            padding: 0 15px; flex-wrap: nowrap; gap: 10px; 
+        }
+
+        /* Sub-containers locked to var(--site-width) */
+        .page-header-top, .main-layout, .seo-content-wrapper { 
+            width: 100%; max-width: var(--site-width); margin: 0 auto; padding: 0 15px; 
+        }
+
+        .section-separator { 
+            height: 1px; background: linear-gradient(90deg, transparent, var(--card-border), transparent); 
+            margin: 25px auto; width: 100%; max-width: var(--site-width); 
+        }
+
+        @media (max-width: 480px) {
+            .top-meta-bar, .page-header-top, .main-layout, .seo-content-wrapper {
+                padding: 0 12px !important;
+            }
+        }
+
+        /* ==========================================
+           META BAR (Inline Alignment & Matched Sizes)
+           ========================================== */
+        
+        .breadcrumb-nav { margin: 0; flex-shrink: 1; display: flex; align-items: center; height: 24px; }
+        
+        .breadcrumb-list { 
+            list-style: none; padding: 0 10px; margin: 0; display: flex; flex-wrap: nowrap; 
+            align-items: center; gap: 4px; background: var(--card-bg); border-radius: 12px; 
+            border: 1px solid var(--card-border); backdrop-filter: blur(8px); box-shadow: var(--shadow-sm); 
+            height: 100%; box-sizing: border-box;
+        }
+        
+        .breadcrumb-item { font-size: 0.6rem; font-weight: 600; color: var(--text-sec); display: flex; align-items: center; white-space: nowrap; height: 100%; }
         .breadcrumb-item a { color: var(--text-sec); text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 4px; }
         .breadcrumb-item a:hover { color: var(--primary); }
         .breadcrumb-item.active { color: var(--primary); pointer-events: none; }
-        .breadcrumb-separator { font-size: 0.65rem; color: var(--text-sec); opacity: 0.6; }
+        .breadcrumb-separator { font-size: 0.55rem; color: var(--text-sec); opacity: 0.6; margin: 0 2px; }
 
-        /* Top Page Header (Separated from the two columns) */
+        .hero-badge { 
+            display: inline-flex; align-items: center; justify-content: center; height: 24px; 
+            background: var(--primary-light); color: var(--primary); padding: 0 10px; 
+            border-radius: 12px; font-size: 0.6rem; font-weight: 700; text-transform: uppercase; 
+            margin: 0; border: 1px solid var(--primary); letter-spacing: 0.5px; white-space: nowrap; 
+            flex-shrink: 0; box-sizing: border-box;
+        }
+
+        /* Top Page Header (H1) */
         .page-header-top { text-align: center; margin-bottom: 20px; }
-        .hero-badge { display: inline-block; background: var(--primary-light); color: var(--primary); padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; margin-bottom: 10px; border: 1px solid var(--primary); }
-        .hero-title { font-size: 32px !important; font-weight: 800 !important; margin: 0; letter-spacing: -0.5px; text-align: center; }
+        .hero-title { 
+            font-size: clamp(1.6rem, 4vw, 2.2rem) !important; 
+            font-weight: 900 !important; 
+            margin: 0; 
+            letter-spacing: -0.5px; 
+            text-align: center; 
+            /* Added Blackish-to-Blue Gradient. Adapts perfectly to light/dark themes */
+            background: linear-gradient(135deg, var(--text-main) 0%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: var(--primary); 
+            line-height: 1.2;
+        }
         
         /* Two Column Layout */
         .main-layout { display: flex; flex-direction: column; gap: 20px; }
         @media (min-width: 900px) { 
             .main-layout { flex-direction: row; align-items: flex-start; } 
             .intro-column, .quiz-widget-wrapper { flex: 1; width: 50%; } 
-            /* Sticky behavior removed so card stays static and aligned */
         }
 
         /* Intro Grid (Compact) */
         .intro-grid { display: grid; gap: 12px; text-align: left; }
         .intro-card { background: var(--input-bg); border: 1px solid var(--card-border); border-radius: var(--radius-lg); padding: 15px; box-shadow: var(--shadow-sm); }
-        .intro-card h3 { font-size: 1.05rem; color: var(--primary); margin: 0 0 8px 0; display: flex; align-items: center; gap: 8px; font-weight: 700; }
+        .intro-card h2 { font-size: 1.05rem; color: var(--primary); margin: 0 0 8px 0; display: flex; align-items: center; gap: 8px; font-weight: 700; }
         .intro-card p { font-size: 0.85rem; color: var(--text-body); margin: 0; line-height: 1.5; }
         .intro-list { margin: 8px 0 0 0; padding-left: 20px; font-size: 0.85rem; color: var(--text-body); line-height: 1.5; }
         .intro-list li { margin-bottom: 4px; }
         
-        .quick-links { margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--card-border); display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-start; }
-        .quick-link-item { font-size: 0.75rem; text-decoration: none; color: var(--primary); background: var(--primary-light); padding: 4px 12px; border-radius: 20px; font-weight: 600; transition: background 0.2s; border: 1px solid var(--primary); display: flex; align-items: center; gap: 4px; }
+        /* Quick Links (Base Desktop styling) */
+        .quick-links { 
+            margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--card-border); 
+            display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; 
+        }
+        .quick-link-item { 
+            font-size: 0.7rem; text-decoration: none; color: var(--primary); 
+            background: var(--primary-light); padding: 3px 10px; border-radius: 15px; 
+            font-weight: 600; transition: background 0.2s; border: 1px solid var(--primary); 
+            display: flex; align-items: center; gap: 3px; white-space: nowrap; flex-shrink: 0;
+        }
         .quick-link-item:hover { background: var(--primary); color: white; }
 
-        /* Quiz Widget Frame overrides */
-        .quiz-card { border-radius: var(--radius-xl); display: flex; flex-direction: column; overflow: hidden; height: auto; min-height: 480px; max-height: 85vh; }
-        .widget-header { padding: 12px 15px; border-bottom: 1px solid var(--card-border); display: flex; flex-direction: column; gap: 10px; }
-        @media (min-width: 500px) { .widget-header { flex-direction: row; justify-content: space-between; align-items: center; } }
-        .search-container { position: relative; flex: 1; max-width: 300px; }
-        .search-input { width: 100%; padding: 6px 30px 6px 35px; border: 1px solid var(--card-border); border-radius: 20px; font-size: 0.85rem; background: var(--input-bg); color: var(--text-main); }
-        .search-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-sec); font-size: 0.85rem; }
-        .search-clear { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); color: var(--text-sec); cursor: pointer; display: none; }
-        .search-container.active .search-clear { display: block; }
+        /* QUIZ WIDGET */
+        .quiz-card { border-radius: var(--radius-xl); display: flex; flex-direction: column; overflow: hidden; height: auto; min-height: 480px; background: var(--card-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--card-border); box-shadow: var(--glass-shadow); position: sticky; top: 80px; }
+        .quick-start-ribbon { background: var(--primary); color: #fff; border: none; padding: 12px; font-size: 0.95rem; font-weight: 700; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px; transition: background 0.2s; width: 100%; flex-shrink: 0; min-height: 45px; }
+        .quick-start-ribbon:hover { background: var(--primary-dark); }
         
-        .text-controls { display: flex; gap: 6px; justify-content: center; align-items: center; }
-        .text-controls button { background: var(--input-bg); border: 1px solid var(--card-border); color: var(--text-sec); width: 28px; height: 28px; border-radius: var(--radius-md); cursor: pointer; font-size: 0.85rem; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
-        .text-controls button:hover { background: var(--primary-light); color: var(--text-main); }
+        .widget-header { 
+            padding: 12px 10px; 
+            border-bottom: 1px solid var(--card-border); 
+            display: flex; justify-content: center; align-items: center; 
+            flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; 
+        }
+        .widget-header::-webkit-scrollbar { display: none; }
+        
+        /* ==========================================
+           CLAYMORPHISM BUTTONS (3D Soft UI Toolbar)
+           Shrunk to prevent horizontal overflow on mobile
+           ========================================== */
+        .text-controls { display: flex; gap: 6px; align-items: center; flex-wrap: nowrap; padding: 2px; }
+        
+        .icon-btn, .text-btn { 
+            background: var(--card-bg); 
+            border: none; 
+            color: var(--text-sec); 
+            width: 32px;  
+            height: 32px; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            font-size: 0.85rem; 
+            display: flex; align-items: center; justify-content: center; 
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); 
+            padding: 0; flex-shrink: 0;
+            
+            /* Light Mode 3D Clay Shadows (Subtle & Compact) */
+            box-shadow: 
+                3px 3px 8px rgba(0, 0, 0, 0.06), 
+                -3px -3px 8px rgba(255, 255, 255, 0.8),
+                inset 1px 1px 2px rgba(255, 255, 255, 0.9),
+                inset -1px -1px 2px rgba(0, 0, 0, 0.03);
+        }
+        
+        .icon-btn:hover, .text-btn:hover { 
+            color: var(--primary); 
+            transform: translateY(-2px);
+            box-shadow: 
+                5px 5px 10px rgba(0, 0, 0, 0.08), 
+                -5px -5px 10px rgba(255, 255, 255, 1),
+                inset 1px 1px 2px rgba(255, 255, 255, 0.9),
+                inset -1px -1px 2px rgba(0, 0, 0, 0.03);
+        }
+        
+        .icon-btn.active, .icon-btn:active, .text-btn:active { 
+            color: var(--primary); 
+            background: var(--card-bg);
+            transform: translateY(1px);
+            /* Pushed-in state */
+            box-shadow: 
+                inset 3px 3px 6px rgba(0, 0, 0, 0.06),
+                inset -3px -3px 6px rgba(255, 255, 255, 0.8) !important;
+        }
 
-        .quiz-mcq-container { display: flex; flex-direction: column; flex: 1; overflow: hidden; margin: 4px 15px 15px 15px; border: 1px solid var(--card-border); border-radius: var(--radius-lg); background: var(--input-bg); }
+        /* Dark Mode 3D Clay Shadows */
+        [data-theme="dark"] .icon-btn, [data-theme="dark"] .text-btn {
+            background: var(--card-bg);
+            box-shadow: 
+                3px 3px 8px rgba(0, 0, 0, 0.3), 
+                -2px -2px 6px rgba(255, 255, 255, 0.03),
+                inset 1px 1px 2px rgba(255, 255, 255, 0.05),
+                inset -1px -1px 2px rgba(0, 0, 0, 0.4);
+        }
+
+        [data-theme="dark"] .icon-btn:hover, [data-theme="dark"] .text-btn:hover {
+            box-shadow: 
+                5px 5px 10px rgba(0, 0, 0, 0.4), 
+                -3px -3px 8px rgba(255, 255, 255, 0.04),
+                inset 1px 1px 2px rgba(255, 255, 255, 0.05),
+                inset -1px -1px 2px rgba(0, 0, 0, 0.4);
+        }
+
+        [data-theme="dark"] .icon-btn.active, [data-theme="dark"] .icon-btn:active, [data-theme="dark"] .text-btn:active {
+            box-shadow: 
+                inset 3px 3px 6px rgba(0, 0, 0, 0.5),
+                inset -2px -2px 6px rgba(255, 255, 255, 0.02) !important;
+        }
+        
+        .v-divider { width: 2px; height: 16px; background: var(--card-border); margin: 0 2px; border-radius: 2px; }
+
+        .quiz-mcq-container { display: flex; flex-direction: column; flex: 1; margin: 10px 15px 15px 15px; border: 1px solid rgba(37, 99, 235, 0.25); border-radius: var(--radius-lg); background: var(--input-bg); box-shadow: inset 0 2px 8px rgba(0,0,0,0.03); }
+        [data-theme="dark"] .quiz-mcq-container { border-color: rgba(96, 165, 250, 0.25); }
         
         .stats-dashboard { display: flex; background: rgba(0,0,0,0.03); border-bottom: 1px solid var(--card-border); }
         [data-theme="dark"] .stats-dashboard { background: rgba(255,255,255,0.02); }
@@ -209,34 +349,81 @@
         .stat-value.red { color: var(--wrong-border); }
         .stat-value.accent { color: var(--accent); }
 
-        .quiz-content { flex: 1; padding: 15px; overflow-y: auto; }
-        .widget-controls { padding: 10px 15px; border-top: 1px solid var(--card-border); display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.03); }
-        [data-theme="dark"] .widget-controls { background: rgba(255,255,255,0.02); }
+        .quiz-content { flex: 1; padding: 15px; position: relative; background: transparent; border: none; margin: 0; box-shadow: none; }
+        .q-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; font-size: 0.75rem; font-weight: 700; color: var(--text-sec); border-bottom: 1px dashed var(--card-border); padding-bottom: 6px; }
+        .q-id { font-size: 0.85rem; color: var(--text-main); }
+        .q-actions { display: flex; align-items: center; gap: 12px; font-size: 1rem; }
+        .q-status { font-size: 0.7rem; color: var(--primary); margin-right: 5px; }
+        .q-actions i { cursor: pointer; color: var(--text-sec); transition: transform 0.2s; }
+        .q-actions i:hover { color: var(--primary); transform: scale(1.1); }
+        .bookmark-icon.active { color: var(--accent); }
+        .q-text-en { font-weight: 700; color: var(--text-main); margin-bottom: 6px; line-height: 1.4; font-size: 0.9rem; }
+        .q-text-hi { font-weight: 600; color: var(--text-sec); margin-bottom: 12px; font-family: 'Noto Sans Devanagari', sans-serif; line-height: 1.4; font-size: 0.85rem; }
+        mark.highlight { background: var(--accent); color: #fff; padding: 0 2px; border-radius: 3px; }
         
-        .nav-btn { background: var(--card-bg); border: 1px solid var(--card-border); color: var(--text-main); padding: 6px 12px; border-radius: var(--radius-md); cursor: pointer; font-weight: 600; font-size: 0.85rem; display: flex; align-items: center; gap: 6px; }
-        .nav-btn:hover:not(:disabled) { background: var(--primary); color: #fff; border-color: var(--primary); }
-        .nav-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-        .jump-trigger { display: flex; flex-direction: column; align-items: center; cursor: pointer; padding: 4px 10px; border-radius: var(--radius-md); }
-        .jump-trigger:hover { background: var(--card-border); }
-        .progress-text { font-weight: 800; color: var(--text-main); font-size: 0.85rem; }
-        .jump-label { font-size: 0.65rem; color: var(--text-sec); font-weight: 600; text-transform: uppercase; }
-
-        /* Shared Option Buttons inside logic JS */
-        .options-list { display: flex; flex-direction: column; gap: 8px; }
-        .option-btn { width: 100%; text-align: left; padding: 10px 12px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-md); cursor: pointer; color: var(--text-body); font-weight: 600; transition: all 0.2s; display: flex; justify-content: space-between; align-items: center; }
+        .options-list { display: flex; flex-direction: column; gap: 8px; counter-reset: opt-counter; }
+        .option-btn { width: 100%; text-align: left; padding: 10px 12px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-md); cursor: pointer; color: var(--text-body); font-weight: 600; transition: all 0.2s; display: flex; justify-content: space-between; align-items: center; line-height: 1.3; }
+        .option-btn::before { counter-increment: opt-counter; content: counter(opt-counter, upper-alpha) ". "; color: var(--primary); font-weight: 700; margin-right: 8px; min-width: 20px; }
+        .option-btn span { flex: 1; }
         .option-btn:hover:not(.disabled) { border-color: var(--primary); background: var(--primary-light); }
         .option-btn.disabled { cursor: default; opacity: 0.8; }
         .option-btn.correct { background: var(--correct-bg); border-color: var(--correct-border); color: var(--correct-text); }
         .option-btn.wrong { background: var(--wrong-bg); border-color: var(--wrong-border); color: var(--wrong-text); }
+        
+        .feedback-row { display: flex; gap: 8px; align-items: center; margin-top: 12px; }
+        .feedback-msg { flex: 1; padding: 8px 12px; border-radius: var(--radius-md); font-weight: 700; font-size: 0.85rem; text-align: center; margin: 0; border: 1px solid transparent; }
+        .correct-feed { background: var(--correct-bg); color: var(--correct-text); border-color: var(--correct-border); }
+        .wrong-feed { background: var(--wrong-bg); color: var(--wrong-text); border-color: var(--wrong-border); }
+        
+        .expl-wrapper { position: relative; }
+        .expl-btn { background: var(--card-bg); color: var(--primary); border: 1px solid var(--card-border); width: 34px; height: 34px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1rem; transition: 0.2s; box-shadow: var(--shadow-sm); }
+        .expl-btn:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
+        .explanation-tooltip { position: absolute; bottom: 120%; right: 0; width: 280px; background: var(--tooltip-bg); border: 1px solid var(--card-border); box-shadow: var(--glass-shadow); padding: 15px; border-radius: var(--radius-md); font-size: 0.8rem; color: var(--text-main); z-index: 100; margin-bottom: 10px; display: none; text-align: left; line-height: 1.4; font-weight: 500; }
+        .explanation-tooltip::after { content: ''; position: absolute; top: 100%; right: 12px; border-width: 6px; border-style: solid; border-color: var(--tooltip-bg) transparent transparent transparent; }
+        .explanation-tooltip::before { content: ''; position: absolute; top: 100%; right: 11px; border-width: 7px; border-style: solid; border-color: var(--card-border) transparent transparent transparent; z-index: -1; }
+        .explanation-tooltip.show { display: block; animation: fadeUp 0.2s ease-out; }
+        .explanation-tooltip strong { color: var(--primary); display: block; margin-bottom: 6px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .widget-controls { padding: 10px 15px; border-top: 1px solid var(--card-border); background: rgba(0,0,0,0.03); display: flex; justify-content: space-between; align-items: center; }
+        [data-theme="dark"] .widget-controls { background: rgba(255,255,255,0.02); }
+        .nav-btn { background: var(--card-bg); border: 1px solid var(--card-border); color: var(--text-main); padding: 6px 12px; border-radius: var(--radius-md); cursor: pointer; font-weight: 600; font-size: 0.85rem; display: flex; align-items: center; gap: 5px; transition: 0.2s; }
+        .nav-btn:hover:not(:disabled) { border-color: var(--primary); color: var(--primary); }
+        .nav-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .jump-trigger { display: flex; flex-direction: column; align-items: center; cursor: pointer; padding: 4px 10px; border-radius: var(--radius-md); }
+        .jump-trigger:hover { background: var(--input-bg); }
+        .progress-text { font-weight: 800; color: var(--text-main); font-size: 0.85rem; }
+        .jump-label { font-size: 0.65rem; color: var(--text-sec); font-weight: 600; text-transform: uppercase; }
 
-        .section-separator { height: 1px; background: linear-gradient(90deg, transparent, var(--card-border), transparent); margin: 25px 0; }
+        /* Centralized Modal Styles (Solid background for readability) */
+        .quiz-modal-overlay {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+            z-index: 2000; display: none; align-items: center; justify-content: center; padding: 20px;
+            opacity: 0; transition: opacity 0.2s ease;
+        }
+        .quiz-modal-overlay.show { display: flex; opacity: 1; }
+        .quiz-modal-content {
+            background: var(--tooltip-bg); /* FIXED: Solid background for readability */
+            width: 100%; max-width: 380px;
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-lg); padding: 20px;
+            box-shadow: var(--glass-shadow); transform: translateY(20px); transition: transform 0.2s ease;
+        }
+        .quiz-modal-overlay.show .quiz-modal-content { transform: translateY(0); }
+        .quiz-modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--card-border); padding-bottom: 12px; margin-bottom: 12px; }
+        
+        .section-separator { height: 1px; background: linear-gradient(90deg, transparent, var(--card-border), transparent); margin: 25px 0; width: 100%; }
         
         /* SEO Cards (Compact & Static) */
-        .seo-header { text-align: center; margin-bottom: 20px; }
-        .seo-header h2 { font-size: clamp(1.3rem, 3vw, 1.8rem); margin-bottom: 6px; }
+        .seo-content-wrapper { width: 100%; margin: 0 auto 30px auto; }
+        .seo-header { text-align: center; margin-bottom: 20px; max-width: 800px; margin-inline: auto; }
+        
+        /* Removed margin-top for H2 */
+        .seo-header h2 { font-size: clamp(1.3rem, 3vw, 1.8rem); margin-top: 0; margin-bottom: 6px; }
+        
         .seo-header p { color: var(--text-sec); font-size: 0.9rem; margin: 0; }
         .seo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
-        /* Removed translation hover effects for solid static feel */
         .seo-card { background: var(--card-bg); border: 1px solid var(--card-border); padding: 20px; border-radius: var(--radius-lg); box-shadow: var(--glass-shadow); border-left: 4px solid var(--primary); transition: border-color 0.2s; }
         .seo-card:hover { border-color: var(--primary-light); }
         .seo-card h3 { font-size: 1.1rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; color: var(--text-main); }
@@ -247,9 +434,28 @@
         .seo-list li::before { content: "\f111"; font-family: "Font Awesome 6 Free"; font-weight: 900; color: var(--primary); position: absolute; left: 0; top: 6px; font-size: 0.4rem; }
 
         @media (max-width: 600px) {
-            main { padding: 15px 10px; }
-            .hero-title { font-size: 24px !important; }
-            .quiz-mcq-container { margin: 4px 10px 10px 10px; }
+            /* Restored H1 to natural size but allowed it to wrap correctly */
+            .hero-title { font-size: 26px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
+            .top-meta-bar { flex-wrap: nowrap; justify-content: space-between; }
+            
+            /* Quick Links adjustments for mobile: Inline scrollable row */
+            .quick-links { 
+                flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; 
+                padding-bottom: 4px; justify-content: flex-start; 
+            }
+            .quick-links::-webkit-scrollbar { display: none; }
+            .quick-link-item { font-size: 0.65rem; padding: 4px 10px; }
+            
+            .breadcrumb-item { font-size: 0.6rem; }
+            .hero-badge { font-size: 0.6rem; padding: 2px 6px; }
+            
+            /* Compact Mobile Adjustments for Engine */
+            .widget-header { padding: 10px; gap: 8px; flex-direction: column; align-items: center; }
+            .text-controls { gap: 3px; justify-content: center; width: 100%; padding: 2px 0; }
+            .icon-btn, .text-btn { width: 28px; height: 28px; font-size: 0.75rem; border-radius: 6px; }
+            .v-divider { margin: 0 1px; height: 14px; }
+            
+            .quiz-mcq-container { margin: 8px 10px 10px 10px; } 
             .seo-card { padding: 15px; }
         }
     </style>
@@ -273,35 +479,38 @@
 <!-- Global HPGK Header Placeholder -->
 <div id="site-header"></div>
 
-<main>
+<main style="flex: 1; max-width: var(--site-width); margin: 0 auto; padding: 15px 15px; width: 100%;">
     
-    <!-- Visible Breadcrumb Navigation -->
-    <nav aria-label="breadcrumb" class="breadcrumb-nav">
-        <ol class="breadcrumb-list">
-            <li class="breadcrumb-item"><a href="../../"><i class="fa-solid fa-house"></i> Home</a></li>
-            <li class="breadcrumb-separator"><i class="fa-solid fa-chevron-right"></i></li>
-            <li class="breadcrumb-item active" aria-current="page">Rivers of HP</li>
-        </ol>
-    </nav>
+    <!-- Top Meta Bar: Breadcrumb (Left) & Hero Badge (Right) Inline & Compact -->
+    <div class="top-meta-bar">
+        <nav aria-label="breadcrumb" class="breadcrumb-nav">
+            <ol class="breadcrumb-list">
+                <li class="breadcrumb-item"><a href="../../"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li class="breadcrumb-separator"><i class="fa-solid fa-chevron-right"></i></li>
+                <li class="breadcrumb-item active" aria-current="page">Rivers of HP</li>
+            </ol>
+        </nav>
+        <span class="hero-badge glass-panel">Geography Series</span>
+    </div>
 
     <!-- New Top Page Header (Centers H1 above the columns) -->
     <div class="page-header-top">
-        <span class="hero-badge glass-panel">Geography Series</span>
         <h1 class="hero-title">River System of Himachal Pradesh</h1>
     </div>
 
     <!-- Side-by-Side Two Column Layout -->
     <div class="main-layout">
         
-        <!-- Left Column: Intro Hook (Aligned exactly with the Quiz Widget) -->
+        <!-- Left Column: Intro Hook -->
         <section class="intro-column">
             <div class="intro-grid">
-                <div class="intro-card glass-panel">
-                    <h3><i class="fa-solid fa-star"></i> Why This Matters? (यह महत्वपूर्ण क्यों है?)</h3>
+                <!-- Fixed Heading Hierarchy & Center Aligned Card -->
+                <div class="intro-card glass-panel" style="text-align: center;">
+                    <h2 style="justify-content: center;"><i class="fa-solid fa-star"></i> Why This Matters? (यह महत्वपूर्ण क्यों है?)</h2>
                     <p>The river system is the most high-yielding topic for HPAS and Allied exams. Every year, 3-4 questions appear directly from tributaries, Vedic names, and hydro projects. <br><br>यह विषय HPAS और अन्य परीक्षाओं के लिए सबसे महत्वपूर्ण है। हर साल 3-4 प्रश्न सीधे पूछे जाते हैं।</p>
                     
-                    <!-- Sibling Directory Interlinking -->
-                    <div class="quick-links">
+                    <!-- Sibling Directory Interlinking - Scrollable Inline on Mobile -->
+                    <div class="quick-links" style="justify-content: center;">
                         <a href="../history/" class="quick-link-item"><i class="fa-solid fa-landmark"></i> History</a>
                         <a href="../geography/" class="quick-link-item"><i class="fa-solid fa-mountain"></i> Geography</a>
                         <a href="../district/" class="quick-link-item"><i class="fa-solid fa-map-location-dot"></i> Districts</a>
@@ -310,7 +519,7 @@
                 </div>
 
                 <div class="intro-card glass-panel">
-                    <h3><i class="fa-solid fa-list-check"></i> What this Page Covers (इस पृष्ठ में क्या शामिल है)</h3>
+                    <h2><i class="fa-solid fa-list-check"></i> What this Page Covers (इस पृष्ठ में क्या शामिल है)</h2>
                     <ul class="intro-list">
                         <li><strong>5 Major River Systems (5 प्रमुख नदी तंत्र):</strong> In-depth analysis of Satluj, Beas, Ravi, Chenab, & Yamuna from source to plains. (नदी का उद्गम से मैदानों तक का सफर).</li>
                         <li><strong>Vedic & Sanskrit Nomenclature (वैदिक और संस्कृत नाम):</strong> Master the ancient names (e.g., Sutudri, Vipasha) and Greek records (Hyphasis). (प्राचीन नाम और ग्रीक रिकॉर्ड).</li>
@@ -326,13 +535,49 @@
         <!-- Right Column: Dedicated Quiz Engine (Static, Not Sticky) -->
         <section class="quiz-widget-wrapper">
             <div class="quiz-card glass-panel">
+                
+                <!-- NEW QUICK START RIBBON INJECTED HERE -->
+                <button class="quick-start-ribbon" onclick="toggleQuickMode(true)">
+                    <i class="fa-solid fa-bolt"></i> Start Quick 10 Quiz
+                </button>
+
                 <div class="widget-header">
-                    <div class="search-container" id="searchContainer">
-                        <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                        <input type="text" id="searchInput" class="search-input" placeholder="Search Rivers...">
-                        <i class="fa-solid fa-xmark search-clear" id="searchClear" onclick="clearSearch()"></i>
-                    </div>
+                    <!-- NEW HARDCODED TEXT CONTROLS (Removed from JS injection for CLS prevention) -->
                     <div class="text-controls">
+                        <button class="icon-btn" onclick="toggleHelpModal()" title="Help Guide">
+                            <i class="fa-solid fa-circle-question"></i>
+                        </button>
+                        <div class="v-divider"></div>
+                        
+                        <button class="icon-btn" onclick="exportProgress()" title="Backup Progress">
+                            <i class="fa-solid fa-download"></i>
+                        </button>
+                        <label for="importFile" class="icon-btn" title="Restore Progress" style="margin:0; cursor:pointer;">
+                            <i class="fa-solid fa-upload"></i>
+                        </label>
+                        <input type="file" id="importFile" style="display: none;" accept=".json" onchange="importProgress(this)">
+                        
+                        <button class="icon-btn" onclick="resetProgress()" title="Reset Progress">
+                            <i class="fa-solid fa-rotate-right"></i>
+                        </button>
+                        
+                        <div class="v-divider"></div>
+
+                        <button class="icon-btn" id="quickModeBtn" onclick="toggleQuickMode()" title="Quick 10 Quiz">
+                            <i class="fa-solid fa-bolt"></i>
+                        </button>
+                        <button class="icon-btn" id="shuffleBtn" onclick="toggleShuffle()" title="Shuffle Questions">
+                            <i class="fa-solid fa-shuffle"></i>
+                        </button>
+                        <button class="icon-btn" id="mistakeFilterBtn" onclick="toggleMistakeFilter()" title="Review Mistakes">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                        </button>
+                        <button class="icon-btn" id="bookmarkFilterBtn" onclick="toggleBookmarkFilter()" title="Saved Bookmarks">
+                            <i class="fa-regular fa-bookmark"></i>
+                        </button>
+                        
+                        <div class="v-divider"></div>
+                        
                         <button class="text-btn" onclick="adjustFont(-1)" title="Decrease Font">A-</button>
                         <button class="text-btn" onclick="adjustFont(1)" title="Increase Font">A+</button>
                     </div>
@@ -372,143 +617,167 @@
     <div class="section-separator"></div>
 
     <!-- Full Width Bilingual Content -->
-    <div class="main-layout" style="display: block;">
-        <section class="seo-content-wrapper" style="margin: 0 auto;">
-            <div class="seo-header">
-                <h2>Detailed Study Notes (विस्तृत अध्ययन नोट्स)</h2>
-                <p>Comprehensive analysis of the drainage system for competitive exams. <br>(प्रतियोगी परीक्षाओं के लिए अपवाह तंत्र का व्यापक विश्लेषण।)</p>
+    <section class="seo-content-wrapper">
+        <div class="seo-header">
+            <h2>Detailed Study Notes (विस्तृत अध्ययन नोट्स)</h2>
+            <p>Comprehensive analysis of the drainage system for competitive exams. <br>(प्रतियोगी परीक्षाओं के लिए अपवाह तंत्र का व्यापक विश्लेषण।)</p>
+        </div>
+
+        <div class="seo-grid">
+            
+            <!-- River 1: Satluj -->
+            <div class="seo-card glass-panel">
+                <h3><i class="fa-solid fa-water"></i> 1. The Satluj (सतलुज - लाल नदी)</h3>
+                <p>The Satluj is the longest river in HP, cutting across the Great Himalaya and Zaskar ranges. It is an antecedent river. <br>(सतलुज सबसे लंबी और पूर्ववर्ती नदी है।)</p>
+                <ul class="seo-list">
+                    <li><strong>Vedic Name:</strong> Sutudri | <strong>Sanskrit Name:</strong> Shatadru (वैदिक: सुतुद्री | संस्कृत: शतद्रु).</li>
+                    <li><strong>Origin:</strong> Rakas Tal near Mansarovar (Tibet). Known as 'Langqen Zangbo' (Elephant River). (उद्गम: राक्षस ताल).</li>
+                    <li><strong>Entry into HP:</strong> Enters at Shipki La (Pass) in Kinnaur at 6,608 meters. (प्रवेश: शिपकी ला).</li>
+                    <li><strong>Exit from HP:</strong> Leaves HP at Bhakra village (Naila) to enter Punjab (Nangal). (निकास: भाखड़ा गाँव).</li>
+                    <li><strong>Total Length in HP:</strong> 320 km. Catchment Area: 20,000 sq km (Largest in HP). <br>(कुल लंबाई: 320 किमी, जलग्रहण क्षेत्र: 20,000 वर्ग किमी - सबसे बड़ा).</li>
+                    <li><strong>Major Tributaries:</strong> Spiti River (Joins at Namgia), Baspa River (Joins at Karcham), Nogli Khad, Soan River ('River of Sorrows'). <br>(प्रमुख सहायक नदियां: स्पीति, बास्पा, नोगली खड्ड, स्वान नदी).</li>
+                    <li><strong>Hydro Projects:</strong> Bhakra Nangal (1325 MW), Nathpa Jhakri (1500 MW), Karcham Wangtoo (1000 MW). <br>(जलविद्युत परियोजनाएं: भाखड़ा नांगल, नाथपा झाकड़ी, करछम वांगतू).</li>
+                </ul>
             </div>
 
-            <div class="seo-grid">
-                
-                <!-- River 1: Satluj -->
-                <div class="seo-card glass-panel">
-                    <h3><i class="fa-solid fa-water"></i> 1. The Satluj (सतलुज - लाल नदी)</h3>
-                    <p>The Satluj is the longest river in HP, cutting across the Great Himalaya and Zaskar ranges. It is an antecedent river. <br>(सतलुज सबसे लंबी और पूर्ववर्ती नदी है।)</p>
-                    <ul class="seo-list">
-                        <li><strong>Vedic Name:</strong> Sutudri | <strong>Sanskrit Name:</strong> Shatadru (वैदिक: सुतुद्री | संस्कृत: शतद्रु).</li>
-                        <li><strong>Origin:</strong> Rakas Tal near Mansarovar (Tibet). Known as 'Langqen Zangbo' (Elephant River). (उद्गम: राक्षस ताल).</li>
-                        <li><strong>Entry into HP:</strong> Enters at Shipki La (Pass) in Kinnaur at 6,608 meters. (प्रवेश: शिपकी ला).</li>
-                        <li><strong>Exit from HP:</strong> Leaves HP at Bhakra village (Naila) to enter Punjab (Nangal). (निकास: भाखड़ा गाँव).</li>
-                        <li><strong>Total Length in HP:</strong> 320 km. Catchment Area: 20,000 sq km (Largest in HP).</li>
-                        <li><strong>Major Tributaries:</strong> Spiti River (Joins at Namgia), Baspa River (Joins at Karcham), Nogli Khad, Soan River ('River of Sorrows').</li>
-                        <li><strong>Hydro Projects:</strong> Bhakra Nangal (1325 MW), Nathpa Jhakri (1500 MW), Karcham Wangtoo (1000 MW).</li>
-                    </ul>
-                </div>
-
-                <!-- River 2: Beas -->
-                <div class="seo-card glass-panel">
-                    <h3><i class="fa-solid fa-bridge-water"></i> 2. The Beas (व्यास)</h3>
-                    <p>Historically significant, marking the eastern border of Alexander's conquest (326 BC). Flows entirely in India. <br>(सिकंदर की विजय की पूर्वी सीमा, पूरी तरह भारत में बहती है।)</p>
-                    <ul class="seo-list">
-                        <li><strong>Vedic Name:</strong> Arjikiya | <strong>Sanskrit Name:</strong> Vipasha (वैदिक: अर्जीकिया | संस्कृत: विपाशा).</li>
-                        <li><strong>Greek Name:</strong> Hyphasis (हाइपासिस).</li>
-                        <li><strong>Origin:</strong> Beas Kund near Rohtang Pass, Pir Panjal Range. (उद्गम: व्यास कुंड, रोहतांग दर्रा).</li>
-                        <li><strong>Exit from HP:</strong> Leaves at Mirthal (Kathgarh) to enter Punjab. (निकास: मिर्थल).</li>
-                        <li><strong>Total Length in HP:</strong> 256 km. Catchment Area: 12,000 sq km.</li>
-                        <li><strong>Major Tributaries:</strong> Parbati River (Largest, joins at Shamshi), Banganga, Chakki, Sainj, Tirthan, Uhl.</li>
-                        <li><strong>Hydro Projects:</strong> Larji (126 MW), Baner, Neugal, Pong Dam (Maharana Pratap Sagar).</li>
-                    </ul>
-                </div>
-
-                <!-- River 3: Ravi -->
-                <div class="seo-card glass-panel">
-                    <h3><i class="fa-solid fa-droplet"></i> 3. The Ravi (रावी)</h3>
-                    <p>The life-line of the Chamba valley, flowing between Dhauladhar and Pir Panjal. <br>(चंबा घाटी की जीवन रेखा।)</p>
-                    <ul class="seo-list">
-                        <li><strong>Vedic Name:</strong> Parushni | <strong>Sanskrit Name:</strong> Iravati (वैदिक: परुष्णी | संस्कृत: इरावती).</li>
-                        <li><strong>Greek Name:</strong> Hydraotes (हाइड्राओट्स).</li>
-                        <li><strong>Origin:</strong> Bara Banghal (Kangra), formed by Bhadal and Tant Gari glaciers. (उद्गम: बड़ा भंगाल).</li>
-                        <li><strong>Exit from HP:</strong> Leaves Chamba at Kheri to enter J&K (near Madhopur). (निकास: खेड़ी).</li>
-                        <li><strong>Total Length in HP:</strong> 158 km. Catchment Area: 5,451 sq km.</li>
-                        <li><strong>Major Tributaries:</strong> Bhadal, Tant Gari, Siul, Baira, Budhil (Rises from Kugti Pass).</li>
-                        <li><strong>Hydro Projects:</strong> Chamera I (540 MW), Chamera II (300 MW), Chamera III (231 MW), Baira Siul.</li>
-                    </ul>
-                </div>
-
-                <!-- River 4: Chenab -->
-                <div class="seo-card glass-panel">
-                    <h3><i class="fa-solid fa-water"></i> 4. The Chenab (चिनाब / चंद्रभागा)</h3>
-                    <p>The largest river in HP by volume of water. It flows through Lahaul and Pangi valleys. <br>(जल आयतन की दृष्टि से हिमाचल की सबसे बड़ी नदी।)</p>
-                    <ul class="seo-list">
-                        <li><strong>Vedic Name:</strong> Asikni (वैदिक: असिकनी).</li>
-                        <li><strong>Greek Name:</strong> Acesines (अकेसिन्स).</li>
-                        <li><strong>Origin:</strong> Confluence of Chandra and Bhaga at Tandi (Lahaul). Legend says Draupadi breathed her last here. (उद्गम: तांडी में चंद्रा और भागा का संगम).</li>
-                        <li><strong>Exit from HP:</strong> Leaves Pangi at Sansari Nala to enter Paddar (Kashmir). (निकास: संसारी नाला).</li>
-                        <li><strong>Total Length in HP:</strong> 122 km. Catchment Area: 7,500 sq km.</li>
-                        <li><strong>Major Tributaries:</strong> Miyar Nala, Saicher Nala. Gold is found in the sands (Gold River).</li>
-                    </ul>
-                </div>
-
-                <!-- River 5: Yamuna -->
-                <div class="seo-card glass-panel">
-                    <h3><i class="fa-solid fa-faucet-drip"></i> 5. The Yamuna (यमुना)</h3>
-                    <p>The shortest river course in HP, forming the eastern boundary with Uttarakhand. <br>(हिमाचल में सबसे छोटी नदी, उत्तराखंड के साथ पूर्वी सीमा बनाती है।)</p>
-                    <ul class="seo-list">
-                        <li><strong>Vedic Name:</strong> Kalindi (वैदिक: कालिंदी).</li>
-                        <li><strong>Origin:</strong> Yamunotri (Garhwal Hills). (उद्गम: यमुनोत्री).</li>
-                        <li><strong>Entry into HP:</strong> Khodar Majri (Sirmaur). Exit: Tajewala (enters Haryana).</li>
-                        <li><strong>Total Length in HP:</strong> 22 km. Catchment Area: 2,320 sq km.</li>
-                        <li><strong>Major Tributaries:</strong> Tons River (Largest, joins at Kalsi), Giri River (Divides Sirmaur), Pabbar River, Bata River.</li>
-                        <li><strong>Hydro Projects:</strong> Giri Bata, Yamuna Hydel, Renuka Dam (Proposed), Kishau Dam.</li>
-                    </ul>
-                </div>
-
-                <!-- Minor Rivers -->
-                <div class="seo-card glass-panel">
-                    <h3><i class="fa-solid fa-water"></i> 6. Other Important Streams (महत्वपूर्ण खड्ड)</h3>
-                    <p>Smaller streams crucial for local irrigation. <br>(स्थानीय सिंचाई के लिए महत्वपूर्ण छोटी धाराएँ।)</p>
-                    <ul class="seo-list">
-                        <li><strong>Swan River (स्वान):</strong> 'River of Sorrows' in Una. Divides Una into two. (ऊना की 'दुखों की नदी').</li>
-                        <li><strong>Sirsa River (सिरसा):</strong> Flows through Nalagarh (Solan/Baddi). Joins Satluj.</li>
-                        <li><strong>Ghamber Khad (गंभर):</strong> Tributary of Satluj, from Tara Devi.</li>
-                        <li><strong>Chakki Khad (चक्की):</strong> Boundary between HP and Punjab (Pathankot).</li>
-                        <li><strong>Markanda (मारकंडा):</strong> Sirmaur (Kiarda Dun). Suketi Fossil Park located here.</li>
-                        <li><strong>Seer Khad (सीर):</strong> Largest tributary of Satluj in Bilaspur.</li>
-                    </ul>
-                </div>
-
-                <!-- Section 7: Drainage Patterns -->
-                <div class="seo-card glass-panel">
-                    <h3><i class="fa-solid fa-network-wired"></i> 7. Drainage Patterns (अपवाह तंत्र)</h3>
-                    <p>How rivers form their networks across the topography. <br>(नदियों के नेटवर्क कैसे बनते हैं।)</p>
-                    <ul class="seo-list">
-                        <li><strong>Antecedent Drainage (पूर्ववर्ती अपवाह):</strong> Satluj existed before Himalayas rose, cutting deep gorges.</li>
-                        <li><strong>Dendritic Pattern (वृक्षाकार प्रतिरूप):</strong> Beas and Ravi basins resemble tree branches.</li>
-                        <li><strong>Parallel Drainage (समानांतर अपवाह):</strong> Streams in Shivalik hills flow parallel.</li>
-                        <li><strong>Radial Drainage (अरिये अपवाह):</strong> Streams diverging from high peaks.</li>
-                        <li><strong>Trellis Pattern (जालीदार अपवाह):</strong> Giri river tributaries meeting at right angles.</li>
-                    </ul>
-                </div>
-
-                <!-- Section 8: Major Lakes -->
-                <div class="seo-card glass-panel">
-                    <h3><i class="fa-solid fa-water"></i> 8. Lakes & Reservoirs (प्रमुख झीलें)</h3>
-                    <p>Natural and man-made water bodies linked to the river system. <br>(नदी तंत्र से जुड़े प्राकृतिक और कृत्रिम जल निकाय।)</p>
-                    <ul class="seo-list">
-                        <li><strong>Govind Sagar (Bilaspur):</strong> Man-made reservoir on Satluj (Bhakra Dam).</li>
-                        <li><strong>Pong Dam Lake (Kangra):</strong> On Beas. Ramsar wetland.</li>
-                        <li><strong>Chamera Lake (Chamba):</strong> Man-made on Ravi.</li>
-                        <li><strong>Renuka Lake (Sirmaur):</strong> Fed by Giri basin. Largest natural lake.</li>
-                        <li><strong>Chandra Tal & Suraj Tal (Lahaul):</strong> Sources of Chenab.</li>
-                    </ul>
-                </div>
-
-                <!-- Section 9: Environmental Impact -->
-                <div class="seo-card glass-panel">
-                    <h3><i class="fa-solid fa-triangle-exclamation"></i> 9. Environmental Concerns (पर्यावरण मुद्दे)</h3>
-                    <p>Challenges facing the river systems today. <br>(नदी प्रणालियों के सामने आज की चुनौतियां।)</p>
-                    <ul class="seo-list">
-                        <li><strong>Siltation (गाद):</strong> High silt in Satluj affects hydro projects like Nathpa Jhakri.</li>
-                        <li><strong>Glacial Retreat:</strong> Melting of glaciers like Bara Shigri threatens long-term flow.</li>
-                        <li><strong>Pollution:</strong> Industrial waste in Sirsa and Markanda rivers.</li>
-                        <li><strong>Flash Floods:</strong> Steep gradients of Beas/Satluj cause sudden floods.</li>
-                        <li><strong>Cloud Bursts:</strong> Frequent in Kullu and Kinnaur causing rapid discharge.</li>
-                    </ul>
-                </div>
-
+            <!-- River 2: Beas -->
+            <div class="seo-card glass-panel">
+                <h3><i class="fa-solid fa-bridge-water"></i> 2. The Beas (व्यास)</h3>
+                <p>Historically significant, marking the eastern border of Alexander's conquest (326 BC). Flows entirely in India. <br>(सिकंदर की विजय की पूर्वी सीमा, पूरी तरह भारत में बहती है।)</p>
+                <ul class="seo-list">
+                    <li><strong>Vedic Name:</strong> Arjikiya | <strong>Sanskrit Name:</strong> Vipasha (वैदिक: अर्जीकिया | संस्कृत: विपाशा).</li>
+                    <li><strong>Greek Name:</strong> Hyphasis (हाइपासिस).</li>
+                    <li><strong>Origin:</strong> Beas Kund near Rohtang Pass, Pir Panjal Range. (उद्गम: व्यास कुंड, रोहतांग दर्रा).</li>
+                    <li><strong>Exit from HP:</strong> Leaves at Mirthal (Kathgarh) to enter Punjab. (निकास: मिर्थल).</li>
+                    <li><strong>Total Length in HP:</strong> 256 km. Catchment Area: 12,000 sq km. <br>(कुल लंबाई: 256 किमी, जलग्रहण क्षेत्र: 12,000 वर्ग किमी).</li>
+                    <li><strong>Major Tributaries:</strong> Parbati River (Largest, joins at Shamshi), Banganga, Chakki, Sainj, Tirthan, Uhl. <br>(प्रमुख सहायक नदियां: पार्वती - सबसे बड़ी, बाणगंगा, चक्की, सैंज, तीर्थन, ऊहल).</li>
+                    <li><strong>Hydro Projects:</strong> Larji (126 MW), Baner, Neugal, Pong Dam (Maharana Pratap Sagar). <br>(जलविद्युत परियोजनाएं: लार्जी, बनेर, न्यूगल, पोंग बांध).</li>
+                </ul>
             </div>
-        </section>
+
+            <!-- River 3: Ravi -->
+            <div class="seo-card glass-panel">
+                <h3><i class="fa-solid fa-droplet"></i> 3. The Ravi (रावी)</h3>
+                <p>The life-line of the Chamba valley, flowing between Dhauladhar and Pir Panjal. <br>(चंबा घाटी की जीवन रेखा।)</p>
+                <ul class="seo-list">
+                    <li><strong>Vedic Name:</strong> Parushni | <strong>Sanskrit Name:</strong> Iravati (वैदिक: परुष्णी | संस्कृत: इरावती).</li>
+                    <li><strong>Greek Name:</strong> Hydraotes (हाइड्राओट्स).</li>
+                    <li><strong>Origin:</strong> Bara Banghal (Kangra), formed by Bhadal and Tant Gari glaciers. (उद्गम: बड़ा भंगाल).</li>
+                    <li><strong>Exit from HP:</strong> Leaves Chamba at Kheri to enter J&K (near Madhopur). (निकास: खेड़ी).</li>
+                    <li><strong>Total Length in HP:</strong> 158 km. Catchment Area: 5,451 sq km. <br>(कुल लंबाई: 158 किमी, जलग्रहण क्षेत्र: 5,451 वर्ग किमी).</li>
+                    <li><strong>Major Tributaries:</strong> Bhadal, Tant Gari, Siul, Baira, Budhil (Rises from Kugti Pass). <br>(प्रमुख सहायक नदियां: भादल, तंत गारी, सियूल, बैरा, बुढिल).</li>
+                    <li><strong>Hydro Projects:</strong> Chamera I (540 MW), Chamera II (300 MW), Chamera III (231 MW), Baira Siul. <br>(जलविद्युत परियोजनाएं: चमेरा I, II, III, बैरा सियूल).</li>
+                </ul>
+            </div>
+
+            <!-- River 4: Chenab -->
+            <div class="seo-card glass-panel">
+                <h3><i class="fa-solid fa-water"></i> 4. The Chenab (चिनाब / चंद्रभागा)</h3>
+                <p>The largest river in HP by volume of water. It flows through Lahaul and Pangi valleys. <br>(जल आयतन की दृष्टि से हिमाचल की सबसे बड़ी नदी।)</p>
+                <ul class="seo-list">
+                    <li><strong>Vedic Name:</strong> Asikni (वैदिक: असिकनी).</li>
+                    <li><strong>Greek Name:</strong> Acesines (अकेसिन्स).</li>
+                    <li><strong>Origin:</strong> Confluence of Chandra and Bhaga at Tandi (Lahaul). Legend says Draupadi breathed her last here. (उद्गम: तांडी में चंद्रा और भागा का संगम).</li>
+                    <li><strong>Exit from HP:</strong> Leaves Pangi at Sansari Nala to enter Paddar (Kashmir). (निकास: संसारी नाला).</li>
+                    <li><strong>Total Length in HP:</strong> 122 km. Catchment Area: 7,500 sq km. <br>(कुल लंबाई: 122 किमी, जलग्रहण क्षेत्र: 7,500 वर्ग किमी).</li>
+                    <li><strong>Major Tributaries:</strong> Miyar Nala, Saicher Nala. Gold is found in the sands (Gold River). <br>(प्रमुख सहायक नदियां: मियार नाला, सेंचर नाला। रेत में सोना पाया जाता है).</li>
+                </ul>
+            </div>
+
+            <!-- River 5: Yamuna -->
+            <div class="seo-card glass-panel">
+                <h3><i class="fa-solid fa-faucet-drip"></i> 5. The Yamuna (यमुना)</h3>
+                <p>The shortest river course in HP, forming the eastern boundary with Uttarakhand. <br>(हिमाचल में सबसे छोटी नदी, उत्तराखंड के साथ पूर्वी सीमा बनाती है।)</p>
+                <ul class="seo-list">
+                    <li><strong>Vedic Name:</strong> Kalindi (वैदिक: कालिंदी).</li>
+                    <li><strong>Origin:</strong> Yamunotri (Garhwal Hills). (उद्गम: यमुनोत्री).</li>
+                    <li><strong>Entry into HP:</strong> Khodar Majri (Sirmaur). Exit: Tajewala (enters Haryana). <br>(प्रवेश: खोदर माजरी - सिरमौर। निकास: ताजेवाला).</li>
+                    <li><strong>Total Length in HP:</strong> 22 km. Catchment Area: 2,320 sq km. <br>(कुल लंबाई: 22 किमी - सबसे छोटी, जलग्रहण क्षेत्र: 2,320 वर्ग किमी).</li>
+                    <li><strong>Major Tributaries:</strong> Tons River (Largest, joins at Kalsi), Giri River (Divides Sirmaur), Pabbar River, Bata River. <br>(प्रमुख सहायक नदियां: टोंस - सबसे बड़ी, गिरि, पब्बर, बाटा).</li>
+                    <li><strong>Hydro Projects:</strong> Giri Bata, Yamuna Hydel, Renuka Dam (Proposed), Kishau Dam. <br>(जलविद्युत परियोजनाएं: गिरि बाटा, यमुना हाइडेल, रेणुका बांध, किशाऊ बांध).</li>
+                </ul>
+            </div>
+
+            <!-- Minor Rivers -->
+            <div class="seo-card glass-panel">
+                <h3><i class="fa-solid fa-water"></i> 6. Other Important Streams (महत्वपूर्ण खड्ड)</h3>
+                <p>Smaller streams crucial for local irrigation. <br>(स्थानीय सिंचाई के लिए महत्वपूर्ण छोटी धाराएँ।)</p>
+                <ul class="seo-list">
+                    <li><strong>Swan River (स्वान):</strong> 'River of Sorrows' in Una. Divides Una into two. <br>(ऊना की 'दुखों की नदी', ऊना को दो भागों में बांटती है).</li>
+                    <li><strong>Sirsa River (सिरसा):</strong> Flows through Nalagarh (Solan/Baddi). Joins Satluj. <br>(सिरसा नदी: नालागढ़/बद्दी से बहती है, सतलुज में मिलती है).</li>
+                    <li><strong>Ghamber Khad (गंभर):</strong> Tributary of Satluj, from Tara Devi. <br>(गंभर खड्ड: सतलुज की सहायक नदी, तारा देवी से निकलती है).</li>
+                    <li><strong>Chakki Khad (चक्की):</strong> Boundary between HP and Punjab (Pathankot). <br>(चक्की खड्ड: हिमाचल और पंजाब के बीच सीमा).</li>
+                    <li><strong>Markanda (मारकंडा):</strong> Sirmaur (Kiarda Dun). Suketi Fossil Park located here. <br>(मारकंडा: सिरमौर, सुकेती जीवाश्म पार्क यहां स्थित है).</li>
+                    <li><strong>Seer Khad (सीर):</strong> Largest tributary of Satluj in Bilaspur. <br>(सीर खड्ड: बिलासपुर में सतलुज की सबसे बड़ी सहायक नदी).</li>
+                </ul>
+            </div>
+
+            <!-- Section 7: Drainage Patterns -->
+            <div class="seo-card glass-panel">
+                <h3><i class="fa-solid fa-network-wired"></i> 7. Drainage Patterns (अपवाह तंत्र)</h3>
+                <p>How rivers form their networks across the topography. <br>(नदियों के नेटवर्क कैसे बनते हैं।)</p>
+                <ul class="seo-list">
+                    <li><strong>Antecedent Drainage (पूर्ववर्ती अपवाह):</strong> Satluj existed before Himalayas rose, cutting deep gorges. <br>(पूर्ववर्ती अपवाह: सतलुज हिमालय के उदय से पहले से मौजूद है).</li>
+                    <li><strong>Dendritic Pattern (वृक्षाकार प्रतिरूप):</strong> Beas and Ravi basins resemble tree branches. <br>(वृक्षाकार प्रतिरूप: ब्यास और रावी का बेसिन पेड़ की शाखाओं जैसा दिखता है).</li>
+                    <li><strong>Parallel Drainage (समानांतर अपवाह):</strong> Streams in Shivalik hills flow parallel. <br>(समानांतर अपवाह: शिवालिक पहाड़ियों में धाराएं समानांतर बहती हैं).</li>
+                    <li><strong>Radial Drainage (अरीय अपवाह):</strong> Streams diverging from high peaks. <br>(अरीय अपवाह: ऊंची चोटियों से अलग होने वाली धाराएं).</li>
+                    <li><strong>Trellis Pattern (जालीदार अपवाह):</strong> Giri river tributaries meeting at right angles. <br>(जालीदार अपवाह: गिरि नदी की सहायक नदियां समकोण पर मिलती हैं).</li>
+                </ul>
+            </div>
+
+            <!-- Section 8: Major Lakes -->
+            <div class="seo-card glass-panel">
+                <h3><i class="fa-solid fa-water"></i> 8. Lakes & Reservoirs (प्रमुख झीलें)</h3>
+                <p>Natural and man-made water bodies linked to the river system. <br>(नदी तंत्र से जुड़े प्राकृतिक और कृत्रिम जल निकाय।)</p>
+                <ul class="seo-list">
+                    <li><strong>Govind Sagar (Bilaspur):</strong> Man-made reservoir on Satluj (Bhakra Dam). <br>(गोविंद सागर: सतलुज पर कृत्रिम जलाशय - भाखड़ा बांध).</li>
+                    <li><strong>Pong Dam Lake (Kangra):</strong> On Beas. Ramsar wetland. <br>(पोंग बांध झील: ब्यास नदी पर, रामसर आर्द्रभूमि).</li>
+                    <li><strong>Chamera Lake (Chamba):</strong> Man-made on Ravi. <br>(चमेरा झील: रावी नदी पर कृत्रिम झील).</li>
+                    <li><strong>Renuka Lake (Sirmaur):</strong> Fed by Giri basin. Largest natural lake. <br>(रेणुका झील: गिरि बेसिन द्वारा पोषित, सबसे बड़ी प्राकृतिक झील).</li>
+                    <li><strong>Chandra Tal & Suraj Tal (Lahaul):</strong> Sources of Chenab. <br>(चंद्र ताल और सूरज ताल: चिनाब के स्रोत).</li>
+                </ul>
+            </div>
+
+            <!-- Section 9: Environmental Impact -->
+            <div class="seo-card glass-panel">
+                <h3><i class="fa-solid fa-triangle-exclamation"></i> 9. Environmental Concerns (पर्यावरण मुद्दे)</h3>
+                <p>Challenges facing the river systems today. <br>(नदी प्रणालियों के सामने आज की चुनौतियां।)</p>
+                <ul class="seo-list">
+                    <li><strong>Siltation (गाद):</strong> High silt in Satluj affects hydro projects like Nathpa Jhakri. <br>(गाद: सतलुज में उच्च गाद नाथपा झाकड़ी जैसी परियोजनाओं को प्रभावित करती है).</li>
+                    <li><strong>Glacial Retreat (ग्लेशियर का पिघलना):</strong> Melting of glaciers like Bara Shigri threatens long-term flow. <br>(बड़ा शिगड़ी जैसे ग्लेशियरों का पिघलना).</li>
+                    <li><strong>Pollution (प्रदूषण):</strong> Industrial waste in Sirsa and Markanda rivers. <br>(सिरसा और मारकंडा नदियों में औद्योगिक कचरा).</li>
+                    <li><strong>Flash Floods (अचानक बाढ़):</strong> Steep gradients of Beas/Satluj cause sudden floods. <br>(ब्यास/सतलुज के तीव्र ढलान के कारण).</li>
+                    <li><strong>Cloud Bursts (बादल फटना):</strong> Frequent in Kullu and Kinnaur causing rapid discharge. <br>(कुल्लू और किन्नौर में आम घटना).</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- HTML HARDCODED HELP MODAL (Solid background for readability) -->
+    <div id="quizHelpModal" class="quiz-modal-overlay" onclick="if(event.target === this) toggleHelpModal()">
+        <div class="quiz-modal-content glass-panel">
+            <div class="quiz-modal-header">
+                <h3 style="margin:0; font-size:1.1rem; display:flex; align-items:center; gap:8px; color:var(--text-main);">
+                    <i class="fa-solid fa-circle-question" style="color:var(--primary)"></i> Toolbar Guide
+                </h3>
+                <button onclick="toggleHelpModal()" style="background:transparent; border:none; font-size:1.2rem; cursor:pointer; color:var(--text-sec); transition:color 0.2s;">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="quiz-modal-body" style="font-size:0.85rem; color:var(--text-body); line-height:1.6; padding-top:10px;">
+                <ul style="list-style:none; padding:0; margin:0; display:grid; gap:12px;">
+                    <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-solid fa-download" style="color:var(--text-sec); font-size:1rem;"></i></span> <span><strong>Backup:</strong> Save your progress to a file.</span></li>
+                    <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-solid fa-upload" style="color:var(--text-sec); font-size:1rem;"></i></span> <span><strong>Restore:</strong> Load your saved progress.</span></li>
+                    <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-solid fa-rotate-right" style="color:var(--wrong-text); font-size:1rem;"></i></span> <span><strong>Reset:</strong> Clear all history for this subject.</span></li>
+                    <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-solid fa-bolt" style="color:var(--accent); font-size:1rem;"></i></span> <span><strong>Quick 10:</strong> Start a fast 10-question session.</span></li>
+                    <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-solid fa-shuffle" style="color:var(--primary); font-size:1rem;"></i></span> <span><strong>Shuffle:</strong> Randomize question order.</span></li>
+                    <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-solid fa-triangle-exclamation" style="color:var(--wrong-text); font-size:1rem;"></i></span> <span><strong>Mistakes:</strong> Review incorrect answers.</span></li>
+                    <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-regular fa-bookmark" style="color:var(--primary); font-size:1rem;"></i></span> <span><strong>Bookmarks:</strong> View saved questions.</span></li>
+                    <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center; font-weight:bold; color:var(--text-sec);">A&plusmn;</span> <span><strong>Text Size:</strong> Adjust font size.</span></li>
+                </ul>
+            </div>
+        </div>
     </div>
 
 </main>
