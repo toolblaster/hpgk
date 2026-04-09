@@ -7,7 +7,7 @@
     <meta name="keywords" content="Himachal Pradesh Districts, HP GK Districts, Shimla District GK, Kangra District GK, Mandi District GK, Kullu District GK, Chamba District GK, HPPSC GK Districts, HPAS District Profile, Allied Services HP GK, District Profiles of HP MCQ">
     <title>District Profiles of HP | Study Notes & 780+ MCQs</title>
     
-    <!-- Canonical Link (Updated for Subfolder Path) -->
+    <!-- Canonical Link -->
     <link rel="canonical" href="https://hpgk.toolblaster.com/himachal-pradesh-gk/district/">
 
     <!-- Open Graph / Facebook -->
@@ -50,7 +50,7 @@
     }
     </script>
 
-    <!-- Assets (Updated for 2-Level Depth: ../../) -->
+    <!-- Assets -->
     <link rel="apple-touch-icon" sizes="180x180" href="../../js/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="512x512" href="../../js/favicon/web-app-manifest-512x512.png">
     <link rel="icon" type="image/png" sizes="192x192" href="../../js/favicon/web-app-manifest-192x192.png">
@@ -66,16 +66,15 @@
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Noto+Sans+Devanagari:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Noto+Sans+Devanagari:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Global CSS (Updated Path) -->
+    <!-- Global CSS -->
     <link rel="stylesheet" href="../../js/style.css">
 
-    <!-- Premium Glassmorphism & Compact UI Stylesheet -->
+    <!-- EXACT VERIFIED CSS COPIED FROM RIVERS/ECONOMY PAGE -->
     <style>
         :root {
-            /* Blue Theme for HPGK Main Hub */
             --primary: #2563eb;       
             --primary-hover: #1d4ed8; 
             --primary-light: rgba(37, 99, 235, 0.1); 
@@ -86,6 +85,7 @@
             --card-bg: rgba(255, 255, 255, 0.65); 
             --card-border: rgba(255, 255, 255, 0.5); 
             --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+            --tooltip-bg: #ffffff;    
             
             --text-main: #0f172a;     
             --text-body: #334155;     
@@ -114,6 +114,7 @@
             --card-bg: rgba(30, 41, 59, 0.5); 
             --card-border: rgba(255, 255, 255, 0.08); 
             --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            --tooltip-bg: #1e293b;    
             
             --text-main: #f8fafc;     
             --text-body: #cbd5e1;     
@@ -136,7 +137,6 @@
             flex-direction: column;
         }
 
-        /* Strictly enforcing Inter font for headings */
         h1, h2, h3, h4 { font-family: 'Inter', sans-serif !important; color: var(--text-main); }
 
         .glass-panel {
@@ -147,57 +147,165 @@
             box-shadow: var(--glass-shadow);
         }
 
-        main { flex: 1; max-width: 1200px; margin: 0 auto; padding: 15px 15px; width: 100%; }
+        main { flex: 1; width: 100%; padding: 15px 0 !important; }
 
-        /* Compact Breadcrumbs */
-        .breadcrumb-nav { max-width: 1200px; margin: 0 auto 15px auto; display: flex; justify-content: center; }
-        .breadcrumb-list { list-style: none; padding: 6px 16px; margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; background: var(--card-bg); border-radius: 20px; border: 1px solid var(--card-border); backdrop-filter: blur(8px); box-shadow: var(--shadow-sm); }
-        .breadcrumb-item { font-size: 0.75rem; font-weight: 600; color: var(--text-sec); display: flex; align-items: center; }
+        .top-meta-bar { 
+            display: flex; justify-content: space-between; align-items: center; 
+            width: 100%; max-width: var(--site-width); margin: 0 auto 12px auto; 
+            padding: 0 15px; flex-wrap: nowrap; gap: 10px; 
+        }
+
+        .page-header-top, .main-layout, .seo-content-wrapper { 
+            width: 100%; max-width: var(--site-width); margin: 0 auto; padding: 0 15px; 
+        }
+
+        .section-separator { 
+            height: 1px; background: linear-gradient(90deg, transparent, var(--card-border), transparent); 
+            margin: 25px auto; width: 100%; max-width: var(--site-width); 
+        }
+
+        @media (max-width: 480px) {
+            .top-meta-bar, .page-header-top, .main-layout, .seo-content-wrapper {
+                padding: 0 12px !important;
+            }
+        }
+
+        .breadcrumb-nav { margin: 0; flex-shrink: 1; display: flex; align-items: center; height: 24px; }
+        
+        .breadcrumb-list { 
+            list-style: none; padding: 0 10px; margin: 0; display: flex; flex-wrap: nowrap; 
+            align-items: center; gap: 4px; background: var(--card-bg); border-radius: 12px; 
+            border: 1px solid var(--card-border); backdrop-filter: blur(8px); box-shadow: var(--shadow-sm); 
+            height: 100%; box-sizing: border-box;
+        }
+        
+        .breadcrumb-item { font-size: 0.6rem; font-weight: 600; color: var(--text-sec); display: flex; align-items: center; white-space: nowrap; height: 100%; }
         .breadcrumb-item a { color: var(--text-sec); text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 4px; }
         .breadcrumb-item a:hover { color: var(--primary); }
         .breadcrumb-item.active { color: var(--primary); pointer-events: none; }
-        .breadcrumb-separator { font-size: 0.65rem; color: var(--text-sec); opacity: 0.6; }
+        .breadcrumb-separator { font-size: 0.55rem; color: var(--text-sec); opacity: 0.6; margin: 0 2px; }
 
-        /* Top Page Header (Separated from the two columns) */
+        .hero-badge { 
+            display: inline-flex; align-items: center; justify-content: center; height: 24px; 
+            background: var(--primary-light); color: var(--primary); padding: 0 10px; 
+            border-radius: 12px; font-size: 0.6rem; font-weight: 700; text-transform: uppercase; 
+            margin: 0; border: 1px solid var(--primary); letter-spacing: 0.5px; white-space: nowrap; 
+            flex-shrink: 0; box-sizing: border-box;
+        }
+
         .page-header-top { text-align: center; margin-bottom: 20px; }
-        .hero-badge { display: inline-block; background: var(--primary-light); color: var(--primary); padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; margin-bottom: 10px; border: 1px solid var(--primary); }
-        .hero-title { font-size: 32px !important; font-weight: 800 !important; margin: 0; letter-spacing: -0.5px; text-align: center; }
+        .hero-title { 
+            font-size: clamp(1.6rem, 4vw, 2.2rem) !important; 
+            font-weight: 900 !important; 
+            margin: 0; 
+            letter-spacing: -0.5px; 
+            text-align: center; 
+            background: linear-gradient(135deg, var(--text-main) 0%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: var(--primary); 
+            line-height: 1.2;
+        }
         
-        /* Two Column Layout */
         .main-layout { display: flex; flex-direction: column; gap: 20px; }
         @media (min-width: 900px) { 
             .main-layout { flex-direction: row; align-items: flex-start; } 
             .intro-column, .quiz-widget-wrapper { flex: 1; width: 50%; } 
-            /* Sticky behavior removed so card stays static and aligned */
         }
 
-        /* Intro Grid (Compact) */
         .intro-grid { display: grid; gap: 12px; text-align: left; }
         .intro-card { background: var(--input-bg); border: 1px solid var(--card-border); border-radius: var(--radius-lg); padding: 15px; box-shadow: var(--shadow-sm); }
-        .intro-card h3 { font-size: 1.05rem; color: var(--primary); margin: 0 0 8px 0; display: flex; align-items: center; gap: 8px; font-weight: 700; }
+        .intro-card h2 { font-size: 1.05rem; color: var(--primary); margin: 0 0 8px 0; display: flex; align-items: center; gap: 8px; font-weight: 700; }
         .intro-card p { font-size: 0.85rem; color: var(--text-body); margin: 0; line-height: 1.5; }
         .intro-list { margin: 8px 0 0 0; padding-left: 20px; font-size: 0.85rem; color: var(--text-body); line-height: 1.5; }
         .intro-list li { margin-bottom: 4px; }
         
-        .quick-links { margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--card-border); display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-start; }
-        .quick-link-item { font-size: 0.75rem; text-decoration: none; color: var(--primary); background: var(--primary-light); padding: 4px 12px; border-radius: 20px; font-weight: 600; transition: background 0.2s; border: 1px solid var(--primary); display: flex; align-items: center; gap: 4px; }
+        .quick-links { 
+            margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--card-border); 
+            display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; 
+        }
+        .quick-link-item { 
+            font-size: 0.7rem; text-decoration: none; color: var(--primary); 
+            background: var(--primary-light); padding: 3px 10px; border-radius: 15px; 
+            font-weight: 600; transition: background 0.2s; border: 1px solid var(--primary); 
+            display: flex; align-items: center; gap: 3px; white-space: nowrap; flex-shrink: 0;
+        }
         .quick-link-item:hover { background: var(--primary); color: white; }
 
-        /* Quiz Widget Frame overrides */
-        .quiz-card { border-radius: var(--radius-xl); display: flex; flex-direction: column; overflow: hidden; height: auto; min-height: 480px; max-height: 85vh; }
-        .widget-header { padding: 12px 15px; border-bottom: 1px solid var(--card-border); display: flex; flex-direction: column; gap: 10px; }
-        @media (min-width: 500px) { .widget-header { flex-direction: row; justify-content: space-between; align-items: center; } }
-        .search-container { position: relative; flex: 1; max-width: 300px; }
-        .search-input { width: 100%; padding: 6px 30px 6px 35px; border: 1px solid var(--card-border); border-radius: 20px; font-size: 0.85rem; background: var(--input-bg); color: var(--text-main); }
-        .search-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-sec); font-size: 0.85rem; }
-        .search-clear { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); color: var(--text-sec); cursor: pointer; display: none; }
-        .search-container.active .search-clear { display: block; }
+        /* QUIZ WIDGET */
+        .quiz-card { border-radius: var(--radius-xl); display: flex; flex-direction: column; overflow: hidden; height: auto; min-height: 480px; background: var(--card-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--card-border); box-shadow: var(--glass-shadow); position: sticky; top: 80px; }
+        .quick-start-ribbon { background: var(--primary); color: #fff; border: none; padding: 12px; font-size: 0.95rem; font-weight: 700; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px; transition: background 0.2s; width: 100%; flex-shrink: 0; min-height: 45px; }
+        .quick-start-ribbon:hover { background: var(--primary-dark); }
         
-        .text-controls { display: flex; gap: 6px; justify-content: center; align-items: center; }
-        .text-controls button { background: var(--input-bg); border: 1px solid var(--card-border); color: var(--text-sec); width: 28px; height: 28px; border-radius: var(--radius-md); cursor: pointer; font-size: 0.85rem; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
-        .text-controls button:hover { background: var(--primary-light); color: var(--text-main); }
+        /* ==========================================
+           EXACT RIVERS/ECONOMY TOOLBAR STYLES
+           ========================================== */
+        .widget-header { 
+            padding: 12px 10px; 
+            border-bottom: none; 
+            display: flex; justify-content: center; align-items: center; 
+            flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; 
+            background: transparent !important;
+        }
+        .widget-header::-webkit-scrollbar { display: none; }
+        
+        .text-controls { 
+            display: flex; flex-wrap: nowrap; gap: 5px; justify-content: center; align-items: center; 
+            overflow-x: auto; scrollbar-width: none; width: 100%; padding: 2px 0;
+        }
+        .text-controls::-webkit-scrollbar { display: none; }
+        
+        .icon-btn, .text-btn, .text-controls label {
+            background: #ffffff !important; 
+            border: none !important; 
+            color: var(--text-sec) !important;
+            width: 32px !important; /* EXACT 32px FOR DESKTOP */
+            height: 32px !important; 
+            border-radius: 8px !important; 
+            cursor: pointer !important; 
+            font-size: 13.6px !important; /* PERFECT 13.6px ICON SIZE */
+            display: flex !important; align-items: center !important; justify-content: center !important; 
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important; 
+            margin: 0 !important; padding: 0 !important; flex-shrink: 0 !important;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.02) !important; 
+        }
+        
+        .icon-btn:hover, .text-btn:hover, .text-controls label:hover { 
+            color: var(--primary) !important; 
+            transform: translateY(-2px) !important;
+            box-shadow: 0 6px 15px rgba(37, 99, 235, 0.15) !important; 
+        }
+        
+        .icon-btn.active, .icon-btn:active, .text-btn:active, .text-controls label:active { 
+            color: var(--primary) !important; 
+            background: var(--input-bg) !important;
+            transform: translateY(1px) !important;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important; 
+        }
 
-        .quiz-mcq-container { display: flex; flex-direction: column; flex: 1; overflow: hidden; margin: 4px 15px 15px 15px; border: 1px solid var(--card-border); border-radius: var(--radius-lg); background: var(--input-bg); }
+        [data-theme="dark"] .icon-btn, [data-theme="dark"] .text-btn, [data-theme="dark"] .text-controls label { 
+            background: rgba(30, 41, 59, 0.9) !important; 
+            color: var(--text-body) !important;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3) !important;
+        }
+        
+        [data-theme="dark"] .icon-btn:hover, [data-theme="dark"] .text-btn:hover, [data-theme="dark"] .text-controls label:hover { 
+            color: var(--primary) !important; 
+            background: #1e293b !important;
+            box-shadow: 0 6px 15px rgba(96, 165, 250, 0.2) !important;
+        }
+
+        [data-theme="dark"] .icon-btn.active, [data-theme="dark"] .icon-btn:active, [data-theme="dark"] .text-btn:active, [data-theme="dark"] .text-controls label:active {
+            background: rgba(0,0,0,0.3) !important;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.2) !important;
+        }
+
+        /* Narrower Divider line */
+        .v-divider { width: 1px; height: 16px; background: var(--card-border); margin: 0 2px; border-radius: 2px; flex-shrink: 0; }
+
+        .quiz-mcq-container { display: flex; flex-direction: column; flex: 1; margin: 10px 15px 15px 15px; border: 1px solid rgba(37, 99, 235, 0.25); border-radius: var(--radius-lg); background: var(--input-bg); box-shadow: inset 0 2px 8px rgba(0,0,0,0.03); }
+        [data-theme="dark"] .quiz-mcq-container { border-color: rgba(96, 165, 250, 0.25); }
         
         .stats-dashboard { display: flex; background: rgba(0,0,0,0.03); border-bottom: 1px solid var(--card-border); }
         [data-theme="dark"] .stats-dashboard { background: rgba(255,255,255,0.02); }
@@ -209,34 +317,80 @@
         .stat-value.red { color: var(--wrong-border); }
         .stat-value.accent { color: var(--accent); }
 
-        .quiz-content { flex: 1; padding: 15px; overflow-y: auto; }
-        .widget-controls { padding: 10px 15px; border-top: 1px solid var(--card-border); display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.03); }
-        [data-theme="dark"] .widget-controls { background: rgba(255,255,255,0.02); }
+        .quiz-content { flex: 1; padding: 15px; position: relative; background: transparent; border: none; margin: 0; box-shadow: none; overflow-y: auto; }
+        .q-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; font-size: 0.75rem; font-weight: 700; color: var(--text-sec); border-bottom: 1px dashed var(--card-border); padding-bottom: 6px; }
+        .q-id { font-size: 0.85rem; color: var(--text-main); }
+        .q-actions { display: flex; align-items: center; gap: 12px; font-size: 1rem; }
+        .q-status { font-size: 0.7rem; color: var(--primary); margin-right: 5px; }
+        .q-actions i { cursor: pointer; color: var(--text-sec); transition: transform 0.2s; }
+        .q-actions i:hover { color: var(--primary); transform: scale(1.1); }
+        .bookmark-icon.active { color: var(--accent); }
+        .q-text-en { font-weight: 700; color: var(--text-main); margin-bottom: 6px; line-height: 1.4; font-size: 0.9rem; }
+        .q-text-hi { font-weight: 600; color: var(--text-sec); margin-bottom: 12px; font-family: 'Noto Sans Devanagari', sans-serif; line-height: 1.4; font-size: 0.85rem; }
+        mark.highlight { background: var(--accent); color: #fff; padding: 0 2px; border-radius: 3px; }
         
-        .nav-btn { background: var(--card-bg); border: 1px solid var(--card-border); color: var(--text-main); padding: 6px 12px; border-radius: var(--radius-md); cursor: pointer; font-weight: 600; font-size: 0.85rem; display: flex; align-items: center; gap: 6px; }
-        .nav-btn:hover:not(:disabled) { background: var(--primary); color: #fff; border-color: var(--primary); }
-        .nav-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-        .jump-trigger { display: flex; flex-direction: column; align-items: center; cursor: pointer; padding: 4px 10px; border-radius: var(--radius-md); }
-        .jump-trigger:hover { background: var(--card-border); }
-        .progress-text { font-weight: 800; color: var(--text-main); font-size: 0.85rem; }
-        .jump-label { font-size: 0.65rem; color: var(--text-sec); font-weight: 600; text-transform: uppercase; }
-
-        /* Shared Option Buttons inside logic JS */
-        .options-list { display: flex; flex-direction: column; gap: 8px; }
-        .option-btn { width: 100%; text-align: left; padding: 10px 12px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-md); cursor: pointer; color: var(--text-body); font-weight: 600; transition: all 0.2s; display: flex; justify-content: space-between; align-items: center; }
+        .options-list { display: flex; flex-direction: column; gap: 8px; counter-reset: opt-counter; }
+        .option-btn { width: 100%; text-align: left; padding: 10px 12px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-md); cursor: pointer; color: var(--text-body); font-weight: 600; transition: all 0.2s; display: flex; justify-content: space-between; align-items: center; line-height: 1.3; }
+        .option-btn::before { counter-increment: opt-counter; content: counter(opt-counter, upper-alpha) ". "; color: var(--primary); font-weight: 700; margin-right: 8px; min-width: 20px; }
+        .option-btn span { flex: 1; }
         .option-btn:hover:not(.disabled) { border-color: var(--primary); background: var(--primary-light); }
         .option-btn.disabled { cursor: default; opacity: 0.8; }
         .option-btn.correct { background: var(--correct-bg); border-color: var(--correct-border); color: var(--correct-text); }
         .option-btn.wrong { background: var(--wrong-bg); border-color: var(--wrong-border); color: var(--wrong-text); }
+        
+        .feedback-row { display: flex; gap: 8px; align-items: center; margin-top: 12px; }
+        .feedback-msg { flex: 1; padding: 8px 12px; border-radius: var(--radius-md); font-weight: 700; font-size: 0.85rem; text-align: center; margin: 0; border: 1px solid transparent; }
+        .correct-feed { background: var(--correct-bg); color: var(--correct-text); border-color: var(--correct-border); }
+        .wrong-feed { background: var(--wrong-bg); color: var(--wrong-text); border-color: var(--wrong-border); }
+        
+        .expl-wrapper { position: relative; }
+        .expl-btn { background: var(--card-bg); color: var(--primary); border: 1px solid var(--card-border); width: 34px; height: 34px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1rem; transition: 0.2s; box-shadow: var(--shadow-sm); }
+        .expl-btn:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
+        .explanation-tooltip { position: absolute; bottom: 120%; right: 0; width: 280px; background: var(--tooltip-bg); border: 1px solid var(--card-border); box-shadow: var(--glass-shadow); padding: 15px; border-radius: var(--radius-md); font-size: 0.8rem; color: var(--text-main); z-index: 100; margin-bottom: 10px; display: none; text-align: left; line-height: 1.4; font-weight: 500; }
+        .explanation-tooltip::after { content: ''; position: absolute; top: 100%; right: 12px; border-width: 6px; border-style: solid; border-color: var(--tooltip-bg) transparent transparent transparent; }
+        .explanation-tooltip::before { content: ''; position: absolute; top: 100%; right: 11px; border-width: 7px; border-style: solid; border-color: var(--card-border) transparent transparent transparent; z-index: -1; }
+        .explanation-tooltip.show { display: block; animation: fadeUp 0.2s ease-out; }
+        .explanation-tooltip strong { color: var(--primary); display: block; margin-bottom: 6px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .widget-controls { padding: 10px 15px; border-top: 1px solid var(--card-border); background: rgba(0,0,0,0.03); display: flex; justify-content: space-between; align-items: center; }
+        [data-theme="dark"] .widget-controls { background: rgba(255,255,255,0.02); }
+        .nav-btn { background: var(--card-bg); border: 1px solid var(--card-border); color: var(--text-main); padding: 6px 12px; border-radius: var(--radius-md); cursor: pointer; font-weight: 600; font-size: 0.85rem; display: flex; align-items: center; gap: 5px; transition: 0.2s; }
+        .nav-btn:hover:not(:disabled) { border-color: var(--primary); color: var(--primary); }
+        .nav-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .jump-trigger { display: flex; flex-direction: column; align-items: center; cursor: pointer; padding: 4px 10px; border-radius: var(--radius-md); }
+        .jump-trigger:hover { background: var(--input-bg); }
+        .progress-text { font-weight: 800; color: var(--text-main); font-size: 0.85rem; }
+        .jump-label { font-size: 0.65rem; color: var(--text-sec); font-weight: 600; text-transform: uppercase; }
 
-        .section-separator { height: 1px; background: linear-gradient(90deg, transparent, var(--card-border), transparent); margin: 25px 0; }
+        /* Centralized Modal Styles */
+        .quiz-modal-overlay {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+            z-index: 2000; display: none; align-items: center; justify-content: center; padding: 20px;
+            opacity: 0; transition: opacity 0.2s ease;
+        }
+        .quiz-modal-overlay.show { display: flex; opacity: 1; }
+        .quiz-modal-content {
+            background: var(--tooltip-bg); 
+            width: 100%; max-width: 380px;
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-lg); padding: 20px;
+            box-shadow: var(--glass-shadow); transform: translateY(20px); transition: transform 0.2s ease;
+        }
+        .quiz-modal-overlay.show .quiz-modal-content { transform: translateY(0); }
+        .quiz-modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--card-border); padding-bottom: 12px; margin-bottom: 12px; }
+        
+        .section-separator { height: 1px; background: linear-gradient(90deg, transparent, var(--card-border), transparent); margin: 25px 0; width: 100%; }
         
         /* SEO Cards (Compact & Static) */
-        .seo-header { text-align: center; margin-bottom: 20px; }
-        .seo-header h2 { font-size: clamp(1.3rem, 3vw, 1.8rem); margin-bottom: 6px; }
+        .seo-content-wrapper { width: 100%; margin: 0 auto 30px auto; }
+        .seo-header { text-align: center; margin-bottom: 20px; max-width: 800px; margin-inline: auto; }
+        .seo-header h2 { font-size: clamp(1.3rem, 3vw, 1.8rem); margin-top: 0; margin-bottom: 6px; }
         .seo-header p { color: var(--text-sec); font-size: 0.9rem; margin: 0; }
         .seo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
-        .seo-card { background: var(--card-bg); border: 1px solid var(--card-border); padding: 20px; border-radius: var(--radius-lg); box-shadow: var(--glass-shadow); border-left: 4px solid var(--primary); }
+        .seo-card { background: var(--card-bg); border: 1px solid var(--card-border); padding: 20px; border-radius: var(--radius-lg); box-shadow: var(--glass-shadow); border-left: 4px solid var(--primary); transition: border-color 0.2s; }
+        .seo-card:hover { border-color: var(--primary-light); }
         .seo-card h3 { font-size: 1.1rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; color: var(--text-main); }
         .seo-card h3 i { color: var(--primary); }
         .seo-card p { color: var(--text-body); font-size: 0.85rem; margin-bottom: 10px; line-height: 1.5; }
@@ -244,10 +398,33 @@
         .seo-list li { position: relative; padding-left: 18px; margin-bottom: 6px; font-size: 0.85rem; color: var(--text-body); }
         .seo-list li::before { content: "\f111"; font-family: "Font Awesome 6 Free"; font-weight: 900; color: var(--primary); position: absolute; left: 0; top: 6px; font-size: 0.4rem; }
 
+        /* EXACT MOBILE CSS FROM RIVERS/ECONOMY PAGE (Stable & Perfect Proportions) */
         @media (max-width: 600px) {
-            main { padding: 15px 10px; }
-            .hero-title { font-size: 24px !important; }
-            .quiz-mcq-container { margin: 4px 10px 10px 10px; }
+            .hero-title { font-size: 26px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
+            .top-meta-bar { flex-wrap: nowrap; justify-content: space-between; }
+            
+            .quick-links { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; padding-bottom: 4px; justify-content: flex-start; }
+            .quick-links::-webkit-scrollbar { display: none; }
+            .quick-link-item { font-size: 0.65rem; padding: 4px 10px; }
+            
+            .breadcrumb-item { font-size: 0.6rem; }
+            .hero-badge { font-size: 0.6rem; padding: 2px 6px; }
+            
+            .widget-header { padding: 10px; gap: 8px; flex-direction: column; align-items: center; }
+            
+            /* Tighter gap on mobile to prevent overflow */
+            .text-controls { gap: 3px; justify-content: center; width: 100%; padding: 2px 0; }
+            
+            /* EXACT 28px MOBILE TOOLBAR BUTTONS WITH 13.6px ICON */
+            .icon-btn, .text-btn, .text-controls label { 
+                width: 28px !important; 
+                height: 28px !important; 
+                font-size: 13.6px !important; 
+                border-radius: 6px !important; 
+            }
+            .v-divider { margin: 0 1px; height: 14px; }
+            
+            .quiz-mcq-container { margin: 8px 10px 10px 10px; } 
             .seo-card { padding: 15px; }
         }
     </style>
@@ -273,33 +450,35 @@
 
 <main>
     
-    <!-- Visible Breadcrumb Navigation -->
-    <nav aria-label="breadcrumb" class="breadcrumb-nav">
-        <ol class="breadcrumb-list">
-            <li class="breadcrumb-item"><a href="../../"><i class="fa-solid fa-house"></i> Home</a></li>
-            <li class="breadcrumb-separator"><i class="fa-solid fa-chevron-right"></i></li>
-            <li class="breadcrumb-item active" aria-current="page">District Profiles</li>
-        </ol>
-    </nav>
+    <!-- Top Meta Bar: Breadcrumb (Left) & Hero Badge (Right) Inline & Compact -->
+    <div class="top-meta-bar">
+        <nav aria-label="breadcrumb" class="breadcrumb-nav">
+            <ol class="breadcrumb-list">
+                <li class="breadcrumb-item"><a href="../../"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li class="breadcrumb-separator"><i class="fa-solid fa-chevron-right"></i></li>
+                <li class="breadcrumb-item active" aria-current="page">District Profiles</li>
+            </ol>
+        </nav>
+        <span class="hero-badge glass-panel">District Series</span>
+    </div>
 
     <!-- New Top Page Header (Centers H1 above the columns) -->
     <div class="page-header-top">
-        <span class="hero-badge glass-panel">District Series</span>
         <h1 class="hero-title">District Profiles of Himachal Pradesh</h1>
     </div>
 
     <!-- Side-by-Side Two Column Layout -->
     <div class="main-layout">
         
-        <!-- Left Column: Intro Hook (Aligned exactly with the Quiz Widget) -->
+        <!-- Left Column: Intro Hook -->
         <section class="intro-column">
             <div class="intro-grid">
-                <div class="intro-card glass-panel">
-                    <h3><i class="fa-solid fa-star"></i> Why This Matters? (यह महत्वपूर्ण क्यों है?)</h3>
+                <div class="intro-card glass-panel" style="text-align: center;">
+                    <h2 style="justify-content: center;"><i class="fa-solid fa-star"></i> Why This Matters? (यह महत्वपूर्ण क्यों है?)</h2>
                     <p>District-wise knowledge is crucial as 30-40% of HP GK questions are location-specific. Knowing the unique history, geography, and economy of each district is key to cracking HPAS/Allied exams. <br><br>जिला-वार ज्ञान महत्वपूर्ण है क्योंकि 30-40% प्रश्न स्थान-विशिष्ट होते हैं।</p>
                     
                     <!-- Sibling Directory Interlinking -->
-                    <div class="quick-links">
+                    <div class="quick-links" style="justify-content: center;">
                         <a href="../rivers/" class="quick-link-item"><i class="fa-solid fa-water"></i> Rivers</a>
                         <a href="../history/" class="quick-link-item"><i class="fa-solid fa-landmark"></i> History</a>
                         <a href="../geography/" class="quick-link-item"><i class="fa-solid fa-mountain"></i> Geography</a>
@@ -308,7 +487,7 @@
                 </div>
 
                 <div class="intro-card glass-panel">
-                    <h3><i class="fa-solid fa-list-check"></i> What this Page Covers</h3>
+                    <h2><i class="fa-solid fa-list-check"></i> What this Page Covers</h2>
                     <ul class="intro-list">
                         <li><strong>12 Districts:</strong> Comprehensive coverage of Bilaspur, Chamba, Hamirpur, Kangra, Kinnaur, Kullu, Lahaul-Spiti, Mandi, Shimla, Sirmaur, Solan, and Una.</li>
                         <li><strong>History & Formation:</strong> Founder of princely states, merger dates, and formation of modern districts.</li>
@@ -320,18 +499,53 @@
             </div>
         </section>
 
-        <!-- Right Column: Dedicated Quiz Engine (Static, Not Sticky) -->
+        <!-- Right Column: Dedicated Quiz Engine -->
         <section class="quiz-widget-wrapper">
             <div class="quiz-card glass-panel">
+                
+                <button class="quick-start-ribbon" onclick="toggleQuickMode(true)">
+                    <i class="fa-solid fa-bolt"></i> Start Quick 10 Quiz
+                </button>
+
+                <!-- EXACT HTML BUTTONS FROM RIVERS/ECONOMY PAGE TOOLBAR -->
                 <div class="widget-header">
-                    <div class="search-container" id="searchContainer">
-                        <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                        <input type="text" id="searchInput" class="search-input" placeholder="Search Districts...">
-                        <i class="fa-solid fa-xmark search-clear" id="searchClear" onclick="clearSearch()"></i>
-                    </div>
                     <div class="text-controls">
-                        <button class="text-btn" onclick="adjustFont(-1)" title="Decrease Font">A-</button>
-                        <button class="text-btn" onclick="adjustFont(1)" title="Increase Font">A+</button>
+                        <button class="icon-btn" onclick="toggleHelpModal()" title="Help Guide" type="button">
+                            <i class="fa-solid fa-circle-question"></i>
+                        </button>
+                        <div class="v-divider"></div>
+                        
+                        <button class="icon-btn" onclick="exportProgress()" title="Backup Progress" type="button">
+                            <i class="fa-solid fa-download"></i>
+                        </button>
+                        <label for="importFile" class="icon-btn" title="Restore Progress" style="margin:0; cursor:pointer;">
+                            <i class="fa-solid fa-upload"></i>
+                        </label>
+                        <input type="file" id="importFile" style="display: none;" accept=".json" onchange="importProgress(this)">
+                        
+                        <button class="icon-btn" onclick="resetProgress()" title="Reset Progress" type="button">
+                            <i class="fa-solid fa-rotate-right"></i>
+                        </button>
+                        
+                        <div class="v-divider"></div>
+
+                        <button class="icon-btn" id="quickModeBtn" onclick="toggleQuickMode()" title="Quick 10 Quiz" type="button">
+                            <i class="fa-solid fa-bolt"></i>
+                        </button>
+                        <button class="icon-btn" id="shuffleBtn" onclick="toggleShuffle()" title="Shuffle Questions" type="button">
+                            <i class="fa-solid fa-shuffle"></i>
+                        </button>
+                        <button class="icon-btn" id="mistakeFilterBtn" onclick="toggleMistakeFilter()" title="Review Mistakes" type="button">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                        </button>
+                        <button class="icon-btn" id="bookmarkFilterBtn" onclick="toggleBookmarkFilter()" title="Saved Bookmarks" type="button">
+                            <i class="fa-regular fa-bookmark"></i>
+                        </button>
+                        
+                        <div class="v-divider"></div>
+                        
+                        <button class="text-btn" onclick="adjustFont(-1)" title="Decrease Font" type="button">A-</button>
+                        <button class="text-btn" onclick="adjustFont(1)" title="Increase Font" type="button">A+</button>
                     </div>
                 </div>
 
@@ -369,175 +583,199 @@
     <div class="section-separator"></div>
 
     <!-- Full Width Bilingual Content -->
-    <div class="main-layout" style="display: block;">
-        <section class="seo-content-wrapper" style="margin: 0 auto;">
-            <div class="seo-header">
-                <h2>Detailed District Notes (विस्तृत जिला नोट्स)</h2>
-                <p>Key facts and figures for all 12 districts of Himachal Pradesh. (हिमाचल प्रदेश के सभी 12 जिलों के लिए मुख्य तथ्य और आंकड़े।)</p>
+    <section class="seo-content-wrapper">
+        <div class="seo-header">
+            <h2>Detailed District Notes (विस्तृत जिला नोट्स)</h2>
+            <p>Key facts and figures for all 12 districts of Himachal Pradesh. (हिमाचल प्रदेश के सभी 12 जिलों के लिए मुख्य तथ्य और आंकड़े।)</p>
+        </div>
+
+        <div class="seo-grid">
+            
+            <!-- 1. Bilaspur -->
+            <div class="seo-card glass-panel">
+                <h3>1. Bilaspur (बिलासपुर)</h3>
+                <p>Known as 'Kehlur'. Famous for Govind Sagar Lake and Bhakra Dam.</p>
+                <ul class="seo-list">
+                    <li><strong>Formation:</strong> 1st July 1954 (Merged into HP). Earlier a Part-C state.</li>
+                    <li><strong>Area:</strong> 1,167 sq km (Smallest after Hamirpur). HQ: Bilaspur.</li>
+                    <li><strong>History:</strong> Founded by Raja Bir Chand (900 AD). Capital shifted from Sunhani to Bilaspur by Dip Chand (1654).</li>
+                    <li><strong>Geography:</strong> Satluj river divides it. 7 Hill ranges (Sat Dhar) like Naina Devi, Bandla.</li>
+                    <li><strong>Fairs:</strong> Nalwari Fair (Cattle fair) started by W. Goldstein (1889).</li>
+                    <li><strong>Economy:</strong> ACC Cement Plant (Barmana), Bhakra Dam.</li>
+                </ul>
             </div>
 
-            <div class="seo-grid">
-                
-                <!-- 1. Bilaspur -->
-                <div class="seo-card glass-panel">
-                    <h3>1. Bilaspur (बिलासपुर)</h3>
-                    <p>Known as 'Kehlur'. Famous for Govind Sagar Lake and Bhakra Dam.</p>
-                    <ul class="seo-list">
-                        <li><strong>Formation:</strong> 1st July 1954 (Merged into HP). Earlier a Part-C state.</li>
-                        <li><strong>Area:</strong> 1,167 sq km (Smallest after Hamirpur). HQ: Bilaspur.</li>
-                        <li><strong>History:</strong> Founded by Raja Bir Chand (900 AD). Capital shifted from Sunhani to Bilaspur by Dip Chand (1654).</li>
-                        <li><strong>Geography:</strong> Satluj river divides it. 7 Hill ranges (Sat Dhar) like Naina Devi, Bandla.</li>
-                        <li><strong>Fairs:</strong> Nalwari Fair (Cattle fair) started by W. Goldstein (1889).</li>
-                        <li><strong>Economy:</strong> ACC Cement Plant (Barmana), Bhakra Dam.</li>
-                    </ul>
-                </div>
-
-                <!-- 2. Chamba -->
-                <div class="seo-card glass-panel">
-                    <h3>2. Chamba (चंबा)</h3>
-                    <p>The 'Land of Shiva'. Famous for untouched natural beauty and Minjar fair.</p>
-                    <ul class="seo-list">
-                        <li><strong>Formation:</strong> 15 April 1948. HQ: Chamba.</li>
-                        <li><strong>Area:</strong> 6,522 sq km.</li>
-                        <li><strong>History:</strong> Founded by Raja Maru (550 AD) at Bharmour. Sahil Varman shifted capital to Chamba (920 AD).</li>
-                        <li><strong>Geography:</strong> Ravi and Chenab rivers. Pangi and Bharmour tribal areas.</li>
-                        <li><strong>Culture:</strong> Minjar Fair, Sui Fair (Women & Children), Chamba Rumal (GI Tag).</li>
-                        <li><strong>Places:</strong> Khajjiar ('Mini Switzerland'), Dalhousie, Bharmour.</li>
-                    </ul>
-                </div>
-
-                <!-- 3. Hamirpur -->
-                <div class="seo-card glass-panel">
-                    <h3>3. Hamirpur (हमीरपुर)</h3>
-                    <p>The 'Literacy Capital' of HP. Smallest district by area.</p>
-                    <ul class="seo-list">
-                        <li><strong>Formation:</strong> 1 Sept 1972 (Carved out of Kangra). HQ: Hamirpur.</li>
-                        <li><strong>Area:</strong> 1,118 sq km. Highest Literacy Rate. Highest road density.</li>
-                        <li><strong>History:</strong> Part of Katoch dynasty. Town founded by Hamir Chand (1700 AD).</li>
-                        <li><strong>Geography:</strong> Drained by Beas river (North) and Satluj tributaries (Seer, Kunah, Maan).</li>
-                        <li><strong>Places:</strong> Deotsidh (Baba Balak Nath Temple), Sujanpur Tira (Holi festival), NIT Hamirpur.</li>
-                    </ul>
-                </div>
-
-                <!-- 4. Kangra -->
-                <div class="seo-card glass-panel">
-                    <h3>4. Kangra (कांगड़ा)</h3>
-                    <p>Most populous district. Land of Trigarta, Tea, and Temples.</p>
-                    <ul class="seo-list">
-                        <li><strong>Formation:</strong> 1 Nov 1966 (Merged from Punjab). Tri-furcated in 1972. HQ: Dharamshala.</li>
-                        <li><strong>Area:</strong> 5,739 sq km. Highest Population in HP.</li>
-                        <li><strong>History:</strong> Ancient Trigarta. Katoch dynasty. Golden Age under Sansar Chand. Kangra Fort.</li>
-                        <li><strong>Geography:</strong> Dhauladhar range. Beas river. Pong Dam (Maharana Pratap Sagar) wetland.</li>
-                        <li><strong>Places:</strong> Dharamshala (Dalai Lama abode), Palampur (Tea City), Baijnath, Masroor.</li>
-                    </ul>
-                </div>
-
-                <!-- 5. Kinnaur -->
-                <div class="seo-card glass-panel">
-                    <h3>5. Kinnaur (किन्नौर)</h3>
-                    <p>'Land of Gods' (Kinner Desh). Famous for apples and tribal culture.</p>
-                    <ul class="seo-list">
-                        <li><strong>Formation:</strong> 1 May 1960 (Carved out of Mahasu). 6th district of HP. HQ: Reckong Peo.</li>
-                        <li><strong>Area:</strong> 6,401 sq km. Tribal district.</li>
-                        <li><strong>Geography:</strong> Satluj river bisects it. Peaks: Reo Purgyil (Highest in HP), Kinner Kailash.</li>
-                        <li><strong>Culture:</strong> Fulaich (Festival of flowers). Lavi Fair (Trade).</li>
-                        <li><strong>Places:</strong> Kalpa, Sangla Valley (Baspa), Chitkul (Last village), Nako Lake.</li>
-                    </ul>
-                </div>
-
-                <!-- 6. Kullu -->
-                <div class="seo-card glass-panel">
-                    <h3>6. Kullu (कुल्लू)</h3>
-                    <p>'Valley of Gods'. Famous for Dussehra and Tourism.</p>
-                    <ul class="seo-list">
-                        <li><strong>Formation:</strong> 1 Nov 1966 (Merged from Punjab). HQ: Kullu.</li>
-                        <li><strong>Area:</strong> 5,503 sq km.</li>
-                        <li><strong>History:</strong> Founded by Vihangamani Pal. Idol of Raghunath brought from Ayodhya (1651) by Damodar Das.</li>
-                        <li><strong>Geography:</strong> Beas river. Parbati, Tirthan, Sainj valleys. Rohtang Pass.</li>
-                        <li><strong>Places:</strong> Manali, Manikaran (Hot springs), Great Himalayan National Park (UNESCO), Malana.</li>
-                    </ul>
-                </div>
-
-                <!-- 7. Lahaul & Spiti -->
-                <div class="seo-card glass-panel">
-                    <h3>7. Lahaul & Spiti (लाहौल-स्पीति)</h3>
-                    <p>Largest district by area. Cold Desert. Land of Monasteries.</p>
-                    <ul class="seo-list">
-                        <li><strong>Formation:</strong> 1 Nov 1966 (Merged from Punjab). HQ: Keylong.</li>
-                        <li><strong>Area:</strong> 13,835 sq km (Largest - 24.85% of HP). Lowest Population Density.</li>
-                        <li><strong>Geography:</strong> Chenab (Chandra & Bhaga) and Spiti rivers. Baralacha La, Kunzum La.</li>
-                        <li><strong>Culture:</strong> Buddhism dominates. Key Monastery (Largest), Tabo (Ajanta of Himalayas).</li>
-                        <li><strong>Economy:</strong> Seed Potato, Kuth, Peas.</li>
-                    </ul>
-                </div>
-
-                <!-- 8. Mandi -->
-                <div class="seo-card glass-panel">
-                    <h3>8. Mandi (मंडी)</h3>
-                    <p>'Varanasi of Hills' (Chhoti Kashi). Famous for Shivratri Fair.</p>
-                    <ul class="seo-list">
-                        <li><strong>Formation:</strong> 15 April 1948 (Merger of Mandi & Suket states). HQ: Mandi.</li>
-                        <li><strong>Area:</strong> 3,950 sq km.</li>
-                        <li><strong>History:</strong> Mandi founded by Bahu Sen. Town by Ajbar Sen (1527). Suket by Bir Sen.</li>
-                        <li><strong>Geography:</strong> Beas river bisects. Balh Valley (Most fertile). Rewalsar Lake.</li>
-                        <li><strong>Places:</strong> Prashar Lake (Pagoda temple), Janjehli, Jogindernagar (Shanan Power House).</li>
-                    </ul>
-                </div>
-
-                <!-- 9. Shimla -->
-                <div class="seo-card glass-panel">
-                    <h3>9. Shimla (शिमला)</h3>
-                    <p>Capital of HP. Former Summer Capital of British India. 'Queen of Hills'.</p>
-                    <ul class="seo-list">
-                        <li><strong>Formation:</strong> 1 Sept 1972 (Mahasu reorganized into Shimla & Solan). HQ: Shimla.</li>
-                        <li><strong>Area:</strong> 5,131 sq km.</li>
-                        <li><strong>History:</strong> Discovered by Lt. Ross (1819). Summer Capital (1864). Only district with Urban pop > Rural.</li>
-                        <li><strong>Geography:</strong> Satluj, Pabbar, Giri rivers. Chanshal Peak. Hatu Peak.</li>
-                        <li><strong>Places:</strong> Rampur (Lavi Fair), Rohru (Trout), Kufri (Skiing), Hatkoti temple.</li>
-                    </ul>
-                </div>
-
-                <!-- 10. Sirmaur -->
-                <div class="seo-card glass-panel">
-                    <h3>10. Sirmaur (सिरमौर)</h3>
-                    <p>Southernmost district. Famous for Renuka Lake and Paonta Sahib.</p>
-                    <ul class="seo-list">
-                        <li><strong>Formation:</strong> 15 April 1948. HQ: Nahan.</li>
-                        <li><strong>Area:</strong> 2,825 sq km.</li>
-                        <li><strong>History:</strong> Founded by Raja Rasloo. Capital shifted to Nahan by Karam Prakash (1621).</li>
-                        <li><strong>Geography:</strong> Yamuna river (Eastern boundary). Giri river divides it. Churdhar peak.</li>
-                        <li><strong>Places:</strong> Renuka Lake (Largest natural lake), Paonta Sahib, Suketi Fossil Park.</li>
-                    </ul>
-                </div>
-
-                <!-- 11. Solan -->
-                <div class="seo-card glass-panel">
-                    <h3>11. Solan (सोलन)</h3>
-                    <p>'Mushroom City of India'. Industrial hub of HP.</p>
-                    <ul class="seo-list">
-                        <li><strong>Formation:</strong> 1 Sept 1972 (Carved out of Mahasu). HQ: Solan.</li>
-                        <li><strong>Area:</strong> 1,936 sq km.</li>
-                        <li><strong>History:</strong> Named after Shoolini Mata. Baghat state (Solan), Hindur (Nalagarh).</li>
-                        <li><strong>Economy:</strong> Baddi-Barotiwala-Nalagarh (BBN) industrial belt. Mushroom cultivation. Tomato.</li>
-                        <li><strong>Places:</strong> Kasauli, Chail (Highest cricket ground), Arki Fort.</li>
-                    </ul>
-                </div>
-
-                <!-- 12. Una -->
-                <div class="seo-card glass-panel">
-                    <h3>12. Una (ऊना)</h3>
-                    <p>Gateway to Himachal. Plain areas touching Punjab.</p>
-                    <ul class="seo-list">
-                        <li><strong>Formation:</strong> 1 Sept 1972 (Carved out of Kangra). HQ: Una.</li>
-                        <li><strong>Area:</strong> 1,540 sq km.</li>
-                        <li><strong>Geography:</strong> Swan River ('River of Sorrows'). Shivalik hills. Jaswan Dun valley.</li>
-                        <li><strong>History:</strong> Part of Kangra/Jaswan state.</li>
-                        <li><strong>Places:</strong> Chintpurni (Shakti Peeth), Baba Barbhag Singh Mela (Mairi), Mehatpur.</li>
-                    </ul>
-                </div>
-
+            <!-- 2. Chamba -->
+            <div class="seo-card glass-panel">
+                <h3>2. Chamba (चंबा)</h3>
+                <p>The 'Land of Shiva'. Famous for untouched natural beauty and Minjar fair.</p>
+                <ul class="seo-list">
+                    <li><strong>Formation:</strong> 15 April 1948. HQ: Chamba.</li>
+                    <li><strong>Area:</strong> 6,522 sq km.</li>
+                    <li><strong>History:</strong> Founded by Raja Maru (550 AD) at Bharmour. Sahil Varman shifted capital to Chamba (920 AD).</li>
+                    <li><strong>Geography:</strong> Ravi and Chenab rivers. Pangi and Bharmour tribal areas.</li>
+                    <li><strong>Culture:</strong> Minjar Fair, Sui Fair (Women & Children), Chamba Rumal (GI Tag).</li>
+                    <li><strong>Places:</strong> Khajjiar ('Mini Switzerland'), Dalhousie, Bharmour.</li>
+                </ul>
             </div>
-        </section>
+
+            <!-- 3. Hamirpur -->
+            <div class="seo-card glass-panel">
+                <h3>3. Hamirpur (हमीरपुर)</h3>
+                <p>The 'Literacy Capital' of HP. Smallest district by area.</p>
+                <ul class="seo-list">
+                    <li><strong>Formation:</strong> 1 Sept 1972 (Carved out of Kangra). HQ: Hamirpur.</li>
+                    <li><strong>Area:</strong> 1,118 sq km. Highest Literacy Rate. Highest road density.</li>
+                    <li><strong>History:</strong> Part of Katoch dynasty. Town founded by Hamir Chand (1700 AD).</li>
+                    <li><strong>Geography:</strong> Drained by Beas river (North) and Satluj tributaries (Seer, Kunah, Maan).</li>
+                    <li><strong>Places:</strong> Deotsidh (Baba Balak Nath Temple), Sujanpur Tira (Holi festival), NIT Hamirpur.</li>
+                </ul>
+            </div>
+
+            <!-- 4. Kangra -->
+            <div class="seo-card glass-panel">
+                <h3>4. Kangra (कांगड़ा)</h3>
+                <p>Most populous district. Land of Trigarta, Tea, and Temples.</p>
+                <ul class="seo-list">
+                    <li><strong>Formation:</strong> 1 Nov 1966 (Merged from Punjab). Tri-furcated in 1972. HQ: Dharamshala.</li>
+                    <li><strong>Area:</strong> 5,739 sq km. Highest Population in HP.</li>
+                    <li><strong>History:</strong> Ancient Trigarta. Katoch dynasty. Golden Age under Sansar Chand. Kangra Fort.</li>
+                    <li><strong>Geography:</strong> Dhauladhar range. Beas river. Pong Dam (Maharana Pratap Sagar) wetland.</li>
+                    <li><strong>Places:</strong> Dharamshala (Dalai Lama abode), Palampur (Tea City), Baijnath, Masroor.</li>
+                </ul>
+            </div>
+
+            <!-- 5. Kinnaur -->
+            <div class="seo-card glass-panel">
+                <h3>5. Kinnaur (किन्नौर)</h3>
+                <p>'Land of Gods' (Kinner Desh). Famous for apples and tribal culture.</p>
+                <ul class="seo-list">
+                    <li><strong>Formation:</strong> 1 May 1960 (Carved out of Mahasu). 6th district of HP. HQ: Reckong Peo.</li>
+                    <li><strong>Area:</strong> 6,401 sq km. Tribal district.</li>
+                    <li><strong>Geography:</strong> Satluj river bisects it. Peaks: Reo Purgyil (Highest in HP), Kinner Kailash.</li>
+                    <li><strong>Culture:</strong> Fulaich (Festival of flowers). Lavi Fair (Trade).</li>
+                    <li><strong>Places:</strong> Kalpa, Sangla Valley (Baspa), Chitkul (Last village), Nako Lake.</li>
+                </ul>
+            </div>
+
+            <!-- 6. Kullu -->
+            <div class="seo-card glass-panel">
+                <h3>6. Kullu (कुल्लू)</h3>
+                <p>'Valley of Gods'. Famous for Dussehra and Tourism.</p>
+                <ul class="seo-list">
+                    <li><strong>Formation:</strong> 1 Nov 1966 (Merged from Punjab). HQ: Kullu.</li>
+                    <li><strong>Area:</strong> 5,503 sq km.</li>
+                    <li><strong>History:</strong> Founded by Vihangamani Pal. Idol of Raghunath brought from Ayodhya (1651) by Damodar Das.</li>
+                    <li><strong>Geography:</strong> Beas river. Parbati, Tirthan, Sainj valleys. Rohtang Pass.</li>
+                    <li><strong>Places:</strong> Manali, Manikaran (Hot springs), Great Himalayan National Park (UNESCO), Malana.</li>
+                </ul>
+            </div>
+
+            <!-- 7. Lahaul & Spiti -->
+            <div class="seo-card glass-panel">
+                <h3>7. Lahaul & Spiti (लाहौल-स्पीति)</h3>
+                <p>Largest district by area. Cold Desert. Land of Monasteries.</p>
+                <ul class="seo-list">
+                    <li><strong>Formation:</strong> 1 Nov 1966 (Merged from Punjab). HQ: Keylong.</li>
+                    <li><strong>Area:</strong> 13,835 sq km (Largest - 24.85% of HP). Lowest Population Density.</li>
+                    <li><strong>Geography:</strong> Chenab (Chandra & Bhaga) and Spiti rivers. Baralacha La, Kunzum La.</li>
+                    <li><strong>Culture:</strong> Buddhism dominates. Key Monastery (Largest), Tabo (Ajanta of Himalayas).</li>
+                    <li><strong>Economy:</strong> Seed Potato, Kuth, Peas.</li>
+                </ul>
+            </div>
+
+            <!-- 8. Mandi -->
+            <div class="seo-card glass-panel">
+                <h3>8. Mandi (मंडी)</h3>
+                <p>'Varanasi of Hills' (Chhoti Kashi). Famous for Shivratri Fair.</p>
+                <ul class="seo-list">
+                    <li><strong>Formation:</strong> 15 April 1948 (Merger of Mandi & Suket states). HQ: Mandi.</li>
+                    <li><strong>Area:</strong> 3,950 sq km.</li>
+                    <li><strong>History:</strong> Mandi founded by Bahu Sen. Town by Ajbar Sen (1527). Suket by Bir Sen.</li>
+                    <li><strong>Geography:</strong> Beas river bisects. Balh Valley (Most fertile). Rewalsar Lake.</li>
+                    <li><strong>Places:</strong> Prashar Lake (Pagoda temple), Janjehli, Jogindernagar (Shanan Power House).</li>
+                </ul>
+            </div>
+
+            <!-- 9. Shimla -->
+            <div class="seo-card glass-panel">
+                <h3>9. Shimla (शिमला)</h3>
+                <p>Capital of HP. Former Summer Capital of British India. 'Queen of Hills'.</p>
+                <ul class="seo-list">
+                    <li><strong>Formation:</strong> 1 Sept 1972 (Mahasu reorganized into Shimla & Solan). HQ: Shimla.</li>
+                    <li><strong>Area:</strong> 5,131 sq km.</li>
+                    <li><strong>History:</strong> Discovered by Lt. Ross (1819). Summer Capital (1864). Only district with Urban pop > Rural.</li>
+                    <li><strong>Geography:</strong> Satluj, Pabbar, Giri rivers. Chanshal Peak. Hatu Peak.</li>
+                    <li><strong>Places:</strong> Rampur (Lavi Fair), Rohru (Trout), Kufri (Skiing), Hatkoti temple.</li>
+                </ul>
+            </div>
+
+            <!-- 10. Sirmaur -->
+            <div class="seo-card glass-panel">
+                <h3>10. Sirmaur (सिरमौर)</h3>
+                <p>Southernmost district. Famous for Renuka Lake and Paonta Sahib.</p>
+                <ul class="seo-list">
+                    <li><strong>Formation:</strong> 15 April 1948. HQ: Nahan.</li>
+                    <li><strong>Area:</strong> 2,825 sq km.</li>
+                    <li><strong>History:</strong> Founded by Raja Rasloo. Capital shifted to Nahan by Karam Prakash (1621).</li>
+                    <li><strong>Geography:</strong> Yamuna river (Eastern boundary). Giri river divides it. Churdhar peak.</li>
+                    <li><strong>Places:</strong> Renuka Lake (Largest natural lake), Paonta Sahib, Suketi Fossil Park.</li>
+                </ul>
+            </div>
+
+            <!-- 11. Solan -->
+            <div class="seo-card glass-panel">
+                <h3>11. Solan (सोलन)</h3>
+                <p>'Mushroom City of India'. Industrial hub of HP.</p>
+                <ul class="seo-list">
+                    <li><strong>Formation:</strong> 1 Sept 1972 (Carved out of Mahasu). HQ: Solan.</li>
+                    <li><strong>Area:</strong> 1,936 sq km.</li>
+                    <li><strong>History:</strong> Named after Shoolini Mata. Baghat state (Solan), Hindur (Nalagarh).</li>
+                    <li><strong>Economy:</strong> Baddi-Barotiwala-Nalagarh (BBN) industrial belt. Mushroom cultivation. Tomato.</li>
+                    <li><strong>Places:</strong> Kasauli, Chail (Highest cricket ground), Arki Fort.</li>
+                </ul>
+            </div>
+
+            <!-- 12. Una -->
+            <div class="seo-card glass-panel">
+                <h3>12. Una (ऊना)</h3>
+                <p>Gateway to Himachal. Plain areas touching Punjab.</p>
+                <ul class="seo-list">
+                    <li><strong>Formation:</strong> 1 Sept 1972 (Carved out of Kangra). HQ: Una.</li>
+                    <li><strong>Area:</strong> 1,540 sq km.</li>
+                    <li><strong>Geography:</strong> Swan River ('River of Sorrows'). Shivalik hills. Jaswan Dun valley.</li>
+                    <li><strong>History:</strong> Part of Kangra/Jaswan state.</li>
+                    <li><strong>Places:</strong> Chintpurni (Shakti Peeth), Baba Barbhag Singh Mela (Mairi), Mehatpur.</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- HTML HARDCODED HELP MODAL (Solid background for readability) -->
+    <div id="quizHelpModal" class="quiz-modal-overlay" onclick="if(event.target === this) toggleHelpModal()">
+        <div class="quiz-modal-content glass-panel">
+            <div class="quiz-modal-header">
+                <h3 style="margin:0; font-size:1.1rem; display:flex; align-items:center; gap:8px; color:var(--text-main);">
+                    <i class="fa-solid fa-circle-question" style="color:var(--primary)"></i> Toolbar Guide
+                </h3>
+                <button onclick="toggleHelpModal()" style="background:transparent; border:none; font-size:1.2rem; cursor:pointer; color:var(--text-sec); transition:color 0.2s;">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="quiz-modal-body" style="font-size:0.85rem; color:var(--text-body); line-height:1.6; padding-top:10px;">
+                <ul style="list-style:none; padding:0; margin:0; display:grid; gap:12px;">
+                    <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-solid fa-download" style="color:var(--text-sec); font-size:1rem;"></i></span> <span><strong>Backup:</strong> Save your progress to a file.</span></li>
+                    <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-solid fa-upload" style="color:var(--text-sec); font-size:1rem;"></i></span> <span><strong>Restore:</strong> Load your saved progress.</span></li>
+                    <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-solid fa-rotate-right" style="color:var(--wrong-text); font-size:1rem;"></i></span> <span><strong>Reset:</strong> Clear all history for this subject.</span></li>
+                    <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-solid fa-bolt" style="color:var(--accent); font-size:1rem;"></i></span> <span><strong>Quick 10:</strong> Start a fast 10-question session.</span></li>
+                    <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-solid fa-shuffle" style="color:var(--primary); font-size:1rem;"></i></span> <span><strong>Shuffle:</strong> Randomize question order.</span></li>
+                    <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-solid fa-triangle-exclamation" style="color:var(--wrong-text); font-size:1rem;"></i></span> <span><strong>Mistakes:</strong> Review incorrect answers.</span></li>
+                    <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-regular fa-bookmark" style="color:var(--primary); font-size:1rem;"></i></span> <span><strong>Bookmarks:</strong> View saved questions.</span></li>
+                    <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center; font-weight:bold; color:var(--text-sec);">A&plusmn;</span> <span><strong>Text Size:</strong> Adjust font size.</span></li>
+                </ul>
+            </div>
+        </div>
     </div>
 
 </main>
