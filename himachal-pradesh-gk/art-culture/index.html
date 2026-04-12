@@ -179,28 +179,28 @@
         }
 
         /* ==========================================
-           META BAR (Inline Alignment & Matched Sizes)
+           META BAR (Inline Alignment)
            ========================================== */
         
-        .breadcrumb-nav { margin: 0; flex-shrink: 1; display: flex; align-items: center; height: 24px; }
+        .breadcrumb-nav { margin: 0; flex-shrink: 1; display: flex; align-items: center; height: 26px; }
         
         .breadcrumb-list { 
-            list-style: none; padding: 0 10px; margin: 0; display: flex; flex-wrap: nowrap; 
-            align-items: center; gap: 4px; background: var(--card-bg); border-radius: 12px; 
+            list-style: none; padding: 0 12px; margin: 0; display: flex; flex-wrap: nowrap; 
+            align-items: center; gap: 4px; background: var(--card-bg); border-radius: 13px; 
             border: 1px solid var(--card-border); backdrop-filter: blur(8px); box-shadow: var(--shadow-sm); 
             height: 100%; box-sizing: border-box;
         }
         
-        .breadcrumb-item { font-size: 0.6rem; font-weight: 600; color: var(--text-sec); display: flex; align-items: center; white-space: nowrap; height: 100%; }
+        .breadcrumb-item { font-size: 0.65rem; font-weight: 600; color: var(--text-sec); display: flex; align-items: center; white-space: nowrap; height: 100%; }
         .breadcrumb-item a { color: var(--text-sec); text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 4px; }
         .breadcrumb-item a:hover { color: var(--primary); }
         .breadcrumb-item.active { color: var(--primary); pointer-events: none; }
         .breadcrumb-separator { font-size: 0.55rem; color: var(--text-sec); opacity: 0.6; margin: 0 2px; }
 
         .hero-badge { 
-            display: inline-flex; align-items: center; justify-content: center; height: 24px; 
-            background: var(--primary-light); color: var(--primary); padding: 0 10px; 
-            border-radius: 12px; font-size: 0.6rem; font-weight: 700; text-transform: uppercase; 
+            display: inline-flex; align-items: center; justify-content: center; height: 26px; 
+            background: var(--primary-light); color: var(--primary); padding: 0 12px; 
+            border-radius: 13px; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; 
             margin: 0; border: 1px solid var(--primary); letter-spacing: 0.5px; white-space: nowrap; 
             flex-shrink: 0; box-sizing: border-box;
         }
@@ -213,7 +213,6 @@
             margin: 0; 
             letter-spacing: -0.5px; 
             text-align: center; 
-            /* Blackish-to-Blue Gradient. Adapts perfectly to light/dark themes */
             background: linear-gradient(135deg, var(--text-main) 0%, var(--primary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -255,86 +254,68 @@
         .quick-start-ribbon { background: var(--primary); color: #fff; border: none; padding: 12px; font-size: 0.95rem; font-weight: 700; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px; transition: background 0.2s; width: 100%; flex-shrink: 0; min-height: 45px; }
         .quick-start-ribbon:hover { background: var(--primary-dark); }
         
+        /* ==========================================
+           PREMIUM FLOATING 3D TOOLBAR
+           ========================================== */
         .widget-header { 
             padding: 12px 10px; 
             border-bottom: 1px solid var(--card-border); 
             display: flex; justify-content: center; align-items: center; 
-            flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; 
-        }
-        .widget-header::-webkit-scrollbar { display: none; }
-        
-        /* ==========================================
-           CLAYMORPHISM BUTTONS (3D Soft UI Toolbar)
-           Shrunk to prevent horizontal overflow on mobile
-           ========================================== */
-        .text-controls { display: flex; gap: 6px; align-items: center; flex-wrap: nowrap; padding: 2px; }
-        
-        .icon-btn, .text-btn { 
-            background: var(--card-bg); 
-            border: none; 
-            color: var(--text-sec); 
-            width: 32px;  
-            height: 32px; 
-            border-radius: 8px; 
-            cursor: pointer; 
-            font-size: 0.85rem; 
-            display: flex; align-items: center; justify-content: center; 
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); 
-            padding: 0; flex-shrink: 0;
-            
-            /* Light Mode 3D Clay Shadows (Subtle & Compact) */
-            box-shadow: 
-                3px 3px 8px rgba(0, 0, 0, 0.06), 
-                -3px -3px 8px rgba(255, 255, 255, 0.8),
-                inset 1px 1px 2px rgba(255, 255, 255, 0.9),
-                inset -1px -1px 2px rgba(0, 0, 0, 0.03);
+            flex-wrap: nowrap; overflow: visible; 
+            background: transparent !important; 
         }
         
-        .icon-btn:hover, .text-btn:hover { 
-            color: var(--primary); 
-            transform: translateY(-2px);
-            box-shadow: 
-                5px 5px 10px rgba(0, 0, 0, 0.08), 
-                -5px -5px 10px rgba(255, 255, 255, 1),
-                inset 1px 1px 2px rgba(255, 255, 255, 0.9),
-                inset -1px -1px 2px rgba(0, 0, 0, 0.03);
+        .text-controls { 
+            display: flex; flex-wrap: nowrap; gap: 5px; justify-content: center; align-items: center; 
+            width: 100%; padding: 2px 0;
         }
         
-        .icon-btn.active, .icon-btn:active, .text-btn:active { 
-            color: var(--primary); 
-            background: var(--card-bg);
-            transform: translateY(1px);
-            /* Pushed-in state */
-            box-shadow: 
-                inset 3px 3px 6px rgba(0, 0, 0, 0.06),
-                inset -3px -3px 6px rgba(255, 255, 255, 0.8) !important;
+        .icon-btn, .text-btn, .text-controls label {
+            background: #ffffff !important; 
+            border: none !important; 
+            color: var(--text-sec) !important;
+            width: 32px !important; 
+            height: 32px !important; 
+            border-radius: 8px !important; 
+            cursor: pointer !important; 
+            font-size: 13.6px !important; 
+            display: flex !important; align-items: center !important; justify-content: center !important; 
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important; 
+            margin: 0 !important; padding: 0 !important; flex-shrink: 0 !important;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.02) !important; 
+        }
+        
+        .icon-btn:hover, .text-btn:hover, .text-controls label:hover { 
+            color: var(--primary) !important; 
+            transform: translateY(-2px) !important;
+            box-shadow: 0 6px 15px rgba(37, 99, 235, 0.15) !important; 
+        }
+        
+        .icon-btn.active, .icon-btn:active, .text-btn:active, .text-controls label:active { 
+            color: var(--primary) !important; 
+            background: var(--input-bg) !important;
+            transform: translateY(1px) !important;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important; 
         }
 
-        /* Dark Mode 3D Clay Shadows */
-        [data-theme="dark"] .icon-btn, [data-theme="dark"] .text-btn {
-            background: var(--card-bg);
-            box-shadow: 
-                3px 3px 8px rgba(0, 0, 0, 0.3), 
-                -2px -2px 6px rgba(255, 255, 255, 0.03),
-                inset 1px 1px 2px rgba(255, 255, 255, 0.05),
-                inset -1px -1px 2px rgba(0, 0, 0, 0.4);
-        }
-
-        [data-theme="dark"] .icon-btn:hover, [data-theme="dark"] .text-btn:hover {
-            box-shadow: 
-                5px 5px 10px rgba(0, 0, 0, 0.4), 
-                -3px -3px 8px rgba(255, 255, 255, 0.04),
-                inset 1px 1px 2px rgba(255, 255, 255, 0.05),
-                inset -1px -1px 2px rgba(0, 0, 0, 0.4);
-        }
-
-        [data-theme="dark"] .icon-btn.active, [data-theme="dark"] .icon-btn:active, [data-theme="dark"] .text-btn:active {
-            box-shadow: 
-                inset 3px 3px 6px rgba(0, 0, 0, 0.5),
-                inset -2px -2px 6px rgba(255, 255, 255, 0.02) !important;
+        [data-theme="dark"] .icon-btn, [data-theme="dark"] .text-btn, [data-theme="dark"] .text-controls label { 
+            background: rgba(30, 41, 59, 0.9) !important; 
+            color: var(--text-body) !important;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3) !important;
         }
         
-        .v-divider { width: 2px; height: 16px; background: var(--card-border); margin: 0 2px; border-radius: 2px; }
+        [data-theme="dark"] .icon-btn:hover, [data-theme="dark"] .text-btn:hover, [data-theme="dark"] .text-controls label:hover { 
+            color: var(--primary) !important; 
+            background: #1e293b !important;
+            box-shadow: 0 6px 15px rgba(96, 165, 250, 0.2) !important;
+        }
+
+        [data-theme="dark"] .icon-btn.active, [data-theme="dark"] .icon-btn:active, [data-theme="dark"] .text-btn:active, [data-theme="dark"] .text-controls label:active {
+            background: rgba(0,0,0,0.3) !important;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.2) !important;
+        }
+        
+        .v-divider { width: 1px; height: 16px; background: var(--card-border); margin: 0 2px; border-radius: 2px; flex-shrink: 0; }
 
         .quiz-mcq-container { display: flex; flex-direction: column; flex: 1; margin: 10px 15px 15px 15px; border: 1px solid rgba(37, 99, 235, 0.25); border-radius: var(--radius-lg); background: var(--input-bg); box-shadow: inset 0 2px 8px rgba(0,0,0,0.03); }
         [data-theme="dark"] .quiz-mcq-container { border-color: rgba(96, 165, 250, 0.25); }
@@ -349,7 +330,7 @@
         .stat-value.red { color: var(--wrong-border); }
         .stat-value.accent { color: var(--accent); }
 
-        .quiz-content { flex: 1; padding: 15px; position: relative; background: transparent; border: none; margin: 0; box-shadow: none; }
+        .quiz-content { flex: 1; padding: 15px; position: relative; background: transparent; border: none; margin: 0; box-shadow: none; overflow-y: auto; }
         .q-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; font-size: 0.75rem; font-weight: 700; color: var(--text-sec); border-bottom: 1px dashed var(--card-border); padding-bottom: 6px; }
         .q-id { font-size: 0.85rem; color: var(--text-main); }
         .q-actions { display: flex; align-items: center; gap: 12px; font-size: 1rem; }
@@ -361,10 +342,56 @@
         .q-text-hi { font-weight: 600; color: var(--text-sec); margin-bottom: 12px; font-family: 'Noto Sans Devanagari', sans-serif; line-height: 1.4; font-size: 0.85rem; }
         mark.highlight { background: var(--accent); color: #fff; padding: 0 2px; border-radius: 3px; }
         
+        /* ==========================================
+           PERFECT BUG FIX: NO TEXT SHIFTING ON ANSWER SELECTION
+           ========================================== */
         .options-list { display: flex; flex-direction: column; gap: 8px; counter-reset: opt-counter; }
-        .option-btn { width: 100%; text-align: left; padding: 10px 12px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-md); cursor: pointer; color: var(--text-body); font-weight: 600; transition: all 0.2s; display: flex; justify-content: space-between; align-items: center; line-height: 1.3; }
-        .option-btn::before { counter-increment: opt-counter; content: counter(opt-counter, upper-alpha) ". "; color: var(--primary); font-weight: 700; margin-right: 8px; min-width: 20px; }
-        .option-btn span { flex: 1; }
+        
+        .option-btn { 
+            width: 100%; 
+            text-align: left; 
+            padding: 12px 32px 12px 12px; 
+            background: var(--card-bg); 
+            border: 1px solid var(--card-border); 
+            border-radius: var(--radius-md); 
+            cursor: pointer; 
+            color: var(--text-body); 
+            font-weight: 600; 
+            transition: all 0.2s; 
+            display: flex; 
+            align-items: flex-start; 
+            line-height: 1.4; 
+            position: relative; 
+        }
+        
+        .option-btn::before { 
+            counter-increment: opt-counter; 
+            content: counter(opt-counter, upper-alpha) ". "; 
+            color: var(--primary); 
+            font-weight: 800; 
+            margin-right: 8px; 
+            min-width: 20px; 
+            flex-shrink: 0; 
+            margin-top: 1px; 
+        }
+        
+        .option-btn span:not(.status-icon) { 
+            flex: 1; 
+            word-break: break-word; 
+        }
+
+        .option-btn .status-icon {
+            position: absolute !important;
+            right: 10px !important; 
+            top: 50% !important;
+            transform: translateY(-50%) !important;
+            font-size: 1.1rem !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+        }
+
         .option-btn:hover:not(.disabled) { border-color: var(--primary); background: var(--primary-light); }
         .option-btn.disabled { cursor: default; opacity: 0.8; }
         .option-btn.correct { background: var(--correct-bg); border-color: var(--correct-border); color: var(--correct-text); }
@@ -404,7 +431,7 @@
         }
         .quiz-modal-overlay.show { display: flex; opacity: 1; }
         .quiz-modal-content {
-            background: var(--tooltip-bg); /* Solid background for readability */
+            background: var(--tooltip-bg); 
             width: 100%; max-width: 380px;
             border: 1px solid var(--card-border);
             border-radius: var(--radius-lg); padding: 20px;
@@ -418,10 +445,7 @@
         /* SEO Cards (Compact & Static) */
         .seo-content-wrapper { width: 100%; margin: 0 auto 30px auto; }
         .seo-header { text-align: center; margin-bottom: 20px; max-width: 800px; margin-inline: auto; }
-        
-        /* Removed margin-top for H2 */
         .seo-header h2 { font-size: clamp(1.3rem, 3vw, 1.8rem); margin-top: 0; margin-bottom: 6px; }
-        
         .seo-header p { color: var(--text-sec); font-size: 0.9rem; margin: 0; }
         .seo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
         .seo-card { background: var(--card-bg); border: 1px solid var(--card-border); padding: 20px; border-radius: var(--radius-lg); box-shadow: var(--glass-shadow); border-left: 4px solid var(--primary); transition: border-color 0.2s; }
@@ -434,11 +458,9 @@
         .seo-list li::before { content: "\f111"; font-family: "Font Awesome 6 Free"; font-weight: 900; color: var(--primary); position: absolute; left: 0; top: 6px; font-size: 0.4rem; }
 
         @media (max-width: 600px) {
-            /* Restored H1 to natural size but allowed it to wrap correctly */
             .hero-title { font-size: 26px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
             .top-meta-bar { flex-wrap: nowrap; justify-content: space-between; }
             
-            /* Quick Links adjustments for mobile: Inline scrollable row */
             .quick-links { 
                 flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; 
                 padding-bottom: 4px; justify-content: flex-start; 
@@ -449,10 +471,9 @@
             .breadcrumb-item { font-size: 0.6rem; }
             .hero-badge { font-size: 0.6rem; padding: 2px 6px; }
             
-            /* Compact Mobile Adjustments for Engine */
             .widget-header { padding: 10px; gap: 8px; flex-direction: column; align-items: center; }
             .text-controls { gap: 3px; justify-content: center; width: 100%; padding: 2px 0; }
-            .icon-btn, .text-btn { width: 28px; height: 28px; font-size: 0.75rem; border-radius: 6px; }
+            .icon-btn, .text-btn, .text-controls label { width: 28px !important; height: 28px !important; font-size: 13.6px !important; border-radius: 6px !important; }
             .v-divider { margin: 0 1px; height: 14px; }
             
             .quiz-mcq-container { margin: 8px 10px 10px 10px; } 
@@ -536,13 +557,11 @@
         <section class="quiz-widget-wrapper">
             <div class="quiz-card glass-panel">
                 
-                <!-- NEW QUICK START RIBBON INJECTED HERE -->
                 <button class="quick-start-ribbon" onclick="toggleQuickMode(true)">
                     <i class="fa-solid fa-bolt"></i> Start Quick 10 Quiz
                 </button>
 
                 <div class="widget-header">
-                    <!-- NEW HARDCODED TEXT CONTROLS (Removed from JS injection for CLS prevention) -->
                     <div class="text-controls">
                         <button class="icon-btn" onclick="toggleHelpModal()" title="Help Guide">
                             <i class="fa-solid fa-circle-question"></i>
