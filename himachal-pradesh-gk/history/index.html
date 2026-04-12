@@ -264,7 +264,6 @@
         
         /* ==========================================
            CLAYMORPHISM BUTTONS (3D Soft UI Toolbar)
-           Shrunk to prevent horizontal overflow on mobile
            ========================================== */
         .text-controls { display: flex; gap: 6px; align-items: center; flex-wrap: nowrap; padding: 2px; }
         
@@ -281,7 +280,6 @@
             transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); 
             padding: 0; flex-shrink: 0;
             
-            /* Light Mode 3D Clay Shadows (Subtle & Compact) */
             box-shadow: 
                 3px 3px 8px rgba(0, 0, 0, 0.06), 
                 -3px -3px 8px rgba(255, 255, 255, 0.8),
@@ -303,7 +301,6 @@
             color: var(--primary); 
             background: var(--card-bg);
             transform: translateY(1px);
-            /* Pushed-in state */
             box-shadow: 
                 inset 3px 3px 6px rgba(0, 0, 0, 0.06),
                 inset -3px -3px 6px rgba(255, 255, 255, 0.8) !important;
@@ -360,10 +357,56 @@
         .q-text-hi { font-weight: 600; color: var(--text-sec); margin-bottom: 12px; font-family: 'Noto Sans Devanagari', sans-serif; line-height: 1.4; font-size: 0.85rem; }
         mark.highlight { background: var(--accent); color: #fff; padding: 0 2px; border-radius: 3px; }
         
+        /* ==========================================
+           PERFECT BUG FIX: NO TEXT SHIFTING ON ANSWER SELECTION
+           ========================================== */
         .options-list { display: flex; flex-direction: column; gap: 8px; counter-reset: opt-counter; }
-        .option-btn { width: 100%; text-align: left; padding: 10px 12px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-md); cursor: pointer; color: var(--text-body); font-weight: 600; transition: all 0.2s; display: flex; justify-content: space-between; align-items: center; line-height: 1.3; }
-        .option-btn::before { counter-increment: opt-counter; content: counter(opt-counter, upper-alpha) ". "; color: var(--primary); font-weight: 700; margin-right: 8px; min-width: 20px; }
-        .option-btn span { flex: 1; }
+        
+        .option-btn { 
+            width: 100%; 
+            text-align: left; 
+            padding: 12px 32px 12px 12px; /* Fixed: 32px padding to ALWAYS reserve space for absolute icon */
+            background: var(--card-bg); 
+            border: 1px solid var(--card-border); 
+            border-radius: var(--radius-md); 
+            cursor: pointer; 
+            color: var(--text-body); 
+            font-weight: 600; 
+            transition: all 0.2s; 
+            display: flex; 
+            align-items: flex-start; /* Keeps "A. " aligned to the top if text wraps */
+            line-height: 1.4; 
+            position: relative; /* Required to hold the absolute status icon */
+        }
+        
+        .option-btn::before { 
+            counter-increment: opt-counter; 
+            content: counter(opt-counter, upper-alpha) ". "; 
+            color: var(--primary); 
+            font-weight: 800; 
+            margin-right: 8px; 
+            min-width: 20px; 
+            flex-shrink: 0; 
+            margin-top: 1px; 
+        }
+        
+        .option-btn span:not(.status-icon) { 
+            flex: 1; 
+            word-break: break-word; 
+        }
+
+        .option-btn .status-icon {
+            position: absolute !important;
+            right: 10px !important; 
+            top: 50% !important;
+            transform: translateY(-50%) !important;
+            font-size: 1.1rem !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+        }
+
         .option-btn:hover:not(.disabled) { border-color: var(--primary); background: var(--primary-light); }
         .option-btn.disabled { cursor: default; opacity: 0.8; }
         .option-btn.correct { background: var(--correct-bg); border-color: var(--correct-border); color: var(--correct-text); }
@@ -403,7 +446,7 @@
         }
         .quiz-modal-overlay.show { display: flex; opacity: 1; }
         .quiz-modal-content {
-            background: var(--tooltip-bg); /* FIXED: Solid background for readability */
+            background: var(--tooltip-bg); /* Solid background for readability */
             width: 100%; max-width: 380px;
             border: 1px solid var(--card-border);
             border-radius: var(--radius-lg); padding: 20px;
@@ -478,7 +521,7 @@
 <!-- Global HPGK Header Placeholder -->
 <div id="site-header"></div>
 
-<main style="flex: 1; max-width: var(--site-width); margin: 0 auto; padding: 15px 15px; width: 100%;">
+<main>
     
     <!-- Top Meta Bar: Breadcrumb (Left) & Hero Badge (Right) Inline & Compact -->
     <div class="top-meta-bar">
