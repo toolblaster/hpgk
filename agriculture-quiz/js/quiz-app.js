@@ -7,7 +7,9 @@
     let currentIndex = 0;
     let historyState = { lastIndex: 0, answers: {}, bookmarks: [] };
     
-    let fontLevel = -1; 
+    // Default font size strictly set to 12px as requested
+    let currentFontSizePx = 12; 
+    
     let currentSearchTerm = '';
     let isBookmarkFilterActive = false;
     let isMistakesFilterActive = false;
@@ -104,22 +106,25 @@
         input.value = ''; // Reset input
     }
 
-    // Font Adjustments
+    // Font Adjustments (Strictly clamped between 12px and 15px)
     window.adjustFont = function(dir) {
-        fontLevel += dir;
-        if(fontLevel > 3) fontLevel = 3;
-        if(fontLevel < -3) fontLevel = -3;
+        currentFontSizePx += dir;
+        if (currentFontSizePx > 15) currentFontSizePx = 15;
+        if (currentFontSizePx < 12) currentFontSizePx = 12;
         loadQuestion(currentIndex);
     }
 
     function getFontSize() {
-        // Base size shrink for mobile compact view
-        const isMobile = window.innerWidth <= 600;
-        const baseSize = isMobile ? 0.65 : 0.75; 
-        const step = 0.1; 
-        const offset = fontLevel + 1; 
-        return `${baseSize + (offset * step)}rem`;
+        return `${currentFontSizePx}px`;
     }
+
+    // Explanation Tooltip Toggle (Synced with main.js)
+    window.toggleExpl = function(qId) {
+        const tooltip = document.getElementById(`expl-${qId}`);
+        if (tooltip) {
+            tooltip.classList.toggle('show');
+        }
+    };
 
     // Update Statistics
     function updateStats() {
@@ -160,10 +165,9 @@
         if (isQuickModeActive && index >= currentList.length) {
             cardArea.innerHTML = `
                 <div class="empty-state">
-                    <i class="fa-solid fa-trophy" style="color:var(--accent)"></i>
-                    <p style="font-size:1rem; font-weight:700;">Session Complete!</p>
+                    <i class="fa-solid fa-trophy" style="color:var(--accent); font-size:2.5rem; margin-bottom:10px;"></i>
+                    <p style="font-size:1rem; font-weight:700; margin:0;">Quick Session Complete!</p>
                     <div class="summary-score">${quickSessionScore} / ${currentList.length}</div>
-                    <p style="margin-bottom:15px; color:var(--text-sec)">Questions mastered in this quick session.</p>
                     <button class="summary-btn" onclick="continueQuickMode()">Next 10 <i class="fa-solid fa-arrow-right"></i></button>
                     <br><br>
                     <button style="background:transparent; color:var(--text-sec); font-size:0.75rem; border:none; cursor:pointer;" onclick="toggleQuickMode(false)">Exit Quick Mode</button>
@@ -193,11 +197,11 @@
 
             cardArea.innerHTML = `
                 <div class="empty-state">
-                    <i class="fa-solid fa-file-circle-question"></i>
+                    <i class="fa-solid fa-file-circle-question" style="font-size:2.5rem; color:var(--border-color); margin-bottom:10px;"></i>
                     <p>${message}</p>
                     ${subMsg ? `<p>${subMsg}</p>` : ''}
-                    ${currentSearchTerm ? '<button onclick="clearSearch()" style="margin-top: 10px;">Clear Search</button>' : ''}
-                    ${isQuickModeActive ? '<br><button onclick="toggleQuickMode(false)" style="margin-top: 10px;">Exit Quick Mode</button>' : ''}
+                    ${currentSearchTerm ? '<button class="nav-btn" onclick="clearSearch()" style="margin-top: 10px; margin-inline:auto;">Clear Search</button>' : ''}
+                    ${isQuickModeActive ? '<br><button class="nav-btn" onclick="toggleQuickMode(false)" style="margin-top: 10px; margin-inline:auto;">Exit Quick Mode</button>' : ''}
                 </div>`;
             updateControls();
             return;
@@ -239,14 +243,34 @@
             `;
         }).join('');
 
-        // Feedback HTML
+        // Dynamic Feedback & Tooltip HTML
         let feedbackHtml = '';
         if (isAnswered) {
             const isCorrect = savedAnswer === q.answer;
-            const bg = isCorrect ? 'var(--correct-bg)' : 'var(--wrong-bg)';
-            const color = isCorrect ? 'var(--correct-text)' : 'var(--wrong-text)';
             const text = isCorrect ? 'Correct!' : `Correct: ${q.options[q.answer]}`;
-            feedbackHtml = `<div class="feedback-msg" style="display:block; background:${bg}; color:${color}">${text}</div>`;
+            const bgClass = isCorrect ? 'correct-feed' : 'wrong-feed';
+            
+            // Explanation Tooltip Logic
+            let explToggleBtn = '';
+            if (q.explanation) {
+                explToggleBtn = `
+                <div class="expl-wrapper">
+                    <button class="expl-btn" onclick="toggleExpl('${q.id}')" title="View Explanation">
+                        <i class="fa-solid fa-lightbulb"></i>
+                    </button>
+                    <div id="expl-${q.id}" class="explanation-tooltip" style="font-size: ${fontSize};">
+                        <strong>Explanation</strong>
+                        ${q.explanation.replace(/\n/g, '<br>')}
+                    </div>
+                </div>`;
+            }
+
+            // Wrapping the feedback message and matching the dynamic font-size
+            feedbackHtml = `
+            <div class="feedback-row">
+                <div class="feedback-msg ${bgClass}" style="font-size: ${fontSize};">${text}</div>
+                ${explToggleBtn}
+            </div>`;
         }
 
         // Status & Bookmark classes
@@ -259,10 +283,10 @@
         // Main HTML Assignment
         cardArea.innerHTML = `
             <div class="q-meta">
-                <span>Q. ${q.id}</span>
+                <span class="q-id">Q. ${q.id}</span>
                 <span class="q-actions">
-                    <span style="color:var(--primary)">${statusDisplay}</span>
-                    <i class="fa-solid fa-share-from-square share-icon" onclick="shareQuestion('${q.id}')" title="Share Question"></i>
+                    <span class="q-status">${statusDisplay}</span>
+                    <i class="fa-solid fa-share-nodes share-icon" onclick="shareQuestion('${q.id}')" title="Share Question"></i>
                     <i class="${bookmarkIconClass} bookmark-icon" onclick="toggleBookmark('${q.id}')" title="Bookmark Question"></i>
                 </span>
             </div>
@@ -284,6 +308,21 @@
     }
 
     // Toggle logic functions
+    window.clearAllFilters = function() {
+        isBookmarkFilterActive = false; 
+        isMistakesFilterActive = false; 
+        isShuffleActive = false; 
+        isQuickModeActive = false;
+        if(bookmarkFilterBtn) {
+            bookmarkFilterBtn.classList.remove('active');
+            bookmarkFilterBtn.innerHTML = '<i class="fa-regular fa-bookmark"></i>';
+        }
+        if(mistakeFilterBtn) mistakeFilterBtn.classList.remove('active');
+        if(shuffleBtn) shuffleBtn.classList.remove('active');
+        if(quickModeBtn) quickModeBtn.classList.remove('active');
+        applyFilters(true);
+    };
+
     window.toggleBookmark = function(qId) {
         qId = parseInt(qId); 
         const idx = historyState.bookmarks.indexOf(qId);
@@ -357,6 +396,7 @@
 
     // Apply all active filters
     function applyFilters(resetIndex = false) {
+        if (!window.quizData) return;
         let filtered = [...window.quizData];
         
         // Shuffle
@@ -450,7 +490,17 @@
     // Event Listeners for Navigation
     if (nextBtn) {
         nextBtn.addEventListener('click', () => { 
-            if (isQuickModeActive && currentIndex === currentList.length - 1) { 
+            const currentQ = currentList[currentIndex];
+            const isAnswered = currentQ && historyState.answers[currentQ.id] !== undefined;
+            if (!isAnswered && !isQuickModeActive) {
+                if(cardArea) { 
+                    cardArea.classList.remove('apply-shake'); 
+                    void cardArea.offsetWidth; 
+                    cardArea.classList.add('apply-shake'); 
+                }
+                return; 
+            }
+            if (isQuickModeActive && currentIndex === currentList.length - 1 && isAnswered) { 
                 currentIndex++; 
                 loadQuestion(currentIndex); 
             } else if (currentIndex < currentList.length - 1) { 
@@ -486,8 +536,19 @@
     }
 
     document.addEventListener('keydown', (e) => {
-        if (document.activeElement !== searchInput) {
-            if (e.key === 'ArrowRight' && nextBtn && !nextBtn.disabled) nextBtn.click();
+        const isSearchFocused = searchInput && document.activeElement === searchInput;
+        if (!isSearchFocused) {
+            if (e.key === 'ArrowRight') {
+                const currentQ = currentList[currentIndex];
+                const isAnswered = currentQ && historyState.answers[currentQ.id] !== undefined;
+                if (nextBtn && !nextBtn.disabled && (isAnswered || isQuickModeActive)) { 
+                    nextBtn.click(); 
+                } else if (cardArea && !isAnswered) { 
+                    cardArea.classList.remove('apply-shake'); 
+                    void cardArea.offsetWidth; 
+                    cardArea.classList.add('apply-shake'); 
+                }
+            }
             if (e.key === 'ArrowLeft' && prevBtn && !prevBtn.disabled) prevBtn.click();
         }
     });
