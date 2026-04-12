@@ -72,9 +72,10 @@
     <!-- Global CSS -->
     <link rel="stylesheet" href="../../js/style.css">
 
-    <!-- EXACT CSS COPIED FROM ECONOMY PAGE (Verified Proportions & Gaps) -->
+    <!-- Premium Glassmorphism & Compact UI Stylesheet -->
     <style>
         :root {
+            /* Blue Theme for HPGK Main Hub */
             --primary: #2563eb;       
             --primary-hover: #1d4ed8; 
             --primary-light: rgba(37, 99, 235, 0.1); 
@@ -137,6 +138,7 @@
             flex-direction: column;
         }
 
+        /* Strictly enforcing Inter font for headings */
         h1, h2, h3, h4 { font-family: 'Inter', sans-serif !important; color: var(--text-main); }
 
         .glass-panel {
@@ -147,6 +149,10 @@
             box-shadow: var(--glass-shadow);
         }
 
+        /* ==========================================
+           MAIN LAYOUT & ALIGNMENT FIXES (var(--site-width))
+           ========================================== */
+        
         main { flex: 1; width: 100%; padding: 15px 0 !important; }
 
         .top-meta-bar { 
@@ -170,6 +176,10 @@
             }
         }
 
+        /* ==========================================
+           META BAR
+           ========================================== */
+        
         .breadcrumb-nav { margin: 0; flex-shrink: 1; display: flex; align-items: center; height: 24px; }
         
         .breadcrumb-list { 
@@ -233,88 +243,70 @@
         }
         .quick-link-item:hover { background: var(--primary); color: white; }
 
-        /* QUIZ WIDGET */
+        /* ==========================================
+           QUIZ WIDGET & PREMIUM TOOLBAR
+           ========================================== */
         .quiz-card { border-radius: var(--radius-xl); display: flex; flex-direction: column; overflow: hidden; height: auto; min-height: 480px; background: var(--card-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--card-border); box-shadow: var(--glass-shadow); position: sticky; top: 80px; }
         .quick-start-ribbon { background: var(--primary); color: #fff; border: none; padding: 12px; font-size: 0.95rem; font-weight: 700; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px; transition: background 0.2s; width: 100%; flex-shrink: 0; min-height: 45px; }
         .quick-start-ribbon:hover { background: var(--primary-dark); }
         
-        /* ==========================================
-           EXACT CSS FROM ECONOMY PAGE TOOLBAR
-           Perfect gaps (6px), no wrapping issues.
-           ========================================== */
         .widget-header { 
             padding: 12px 10px; 
             border-bottom: 1px solid var(--card-border); 
             display: flex; justify-content: center; align-items: center; 
             flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; 
+            background: transparent !important;
         }
         .widget-header::-webkit-scrollbar { display: none; }
         
         .text-controls { display: flex; gap: 6px; align-items: center; flex-wrap: nowrap; padding: 2px; }
         
-        .icon-btn, .text-btn { 
-            background: var(--card-bg); 
-            border: none; 
-            color: var(--text-sec); 
-            width: 32px;  
-            height: 32px; 
-            border-radius: 8px; 
-            cursor: pointer; 
-            font-size: 0.85rem; 
-            display: flex; align-items: center; justify-content: center; 
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); 
-            padding: 0; flex-shrink: 0;
-            
-            box-shadow: 
-                3px 3px 8px rgba(0, 0, 0, 0.06), 
-                -3px -3px 8px rgba(255, 255, 255, 0.8),
-                inset 1px 1px 2px rgba(255, 255, 255, 0.9),
-                inset -1px -1px 2px rgba(0, 0, 0, 0.03);
+        .icon-btn, .text-btn, .text-controls label {
+            background: #ffffff !important; 
+            border: none !important; 
+            color: var(--text-sec) !important;
+            width: 32px !important; 
+            height: 32px !important; 
+            border-radius: 8px !important; 
+            cursor: pointer !important; 
+            font-size: 13.6px !important; 
+            display: flex !important; align-items: center !important; justify-content: center !important; 
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important; 
+            margin: 0 !important; padding: 0 !important; flex-shrink: 0 !important;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.02) !important; 
         }
         
-        .icon-btn:hover, .text-btn:hover { 
-            color: var(--primary); 
-            transform: translateY(-2px);
-            box-shadow: 
-                5px 5px 10px rgba(0, 0, 0, 0.08), 
-                -5px -5px 10px rgba(255, 255, 255, 1),
-                inset 1px 1px 2px rgba(255, 255, 255, 0.9),
-                inset -1px -1px 2px rgba(0, 0, 0, 0.03);
+        .icon-btn:hover, .text-btn:hover, .text-controls label:hover { 
+            color: var(--primary) !important; 
+            transform: translateY(-2px) !important;
+            box-shadow: 0 6px 15px rgba(37, 99, 235, 0.15) !important; 
         }
         
-        .icon-btn.active, .icon-btn:active, .text-btn:active { 
-            color: var(--primary); 
-            background: var(--card-bg);
-            transform: translateY(1px);
-            box-shadow: 
-                inset 3px 3px 6px rgba(0, 0, 0, 0.06),
-                inset -3px -3px 6px rgba(255, 255, 255, 0.8) !important;
+        .icon-btn.active, .icon-btn:active, .text-btn:active, .text-controls label:active { 
+            color: var(--primary) !important; 
+            background: var(--input-bg) !important;
+            transform: translateY(1px) !important;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important; 
         }
 
-        [data-theme="dark"] .icon-btn, [data-theme="dark"] .text-btn {
-            background: var(--card-bg);
-            box-shadow: 
-                3px 3px 8px rgba(0, 0, 0, 0.3), 
-                -2px -2px 6px rgba(255, 255, 255, 0.03),
-                inset 1px 1px 2px rgba(255, 255, 255, 0.05),
-                inset -1px -1px 2px rgba(0, 0, 0, 0.4);
-        }
-
-        [data-theme="dark"] .icon-btn:hover, [data-theme="dark"] .text-btn:hover {
-            box-shadow: 
-                5px 5px 10px rgba(0, 0, 0, 0.4), 
-                -3px -3px 8px rgba(255, 255, 255, 0.04),
-                inset 1px 1px 2px rgba(255, 255, 255, 0.05),
-                inset -1px -1px 2px rgba(0, 0, 0, 0.4);
-        }
-
-        [data-theme="dark"] .icon-btn.active, [data-theme="dark"] .icon-btn:active, [data-theme="dark"] .text-btn:active {
-            box-shadow: 
-                inset 3px 3px 6px rgba(0, 0, 0, 0.5),
-                inset -2px -2px 6px rgba(255, 255, 255, 0.02) !important;
+        [data-theme="dark"] .icon-btn, [data-theme="dark"] .text-btn, [data-theme="dark"] .text-controls label { 
+            background: rgba(30, 41, 59, 0.9) !important; 
+            color: var(--text-body) !important;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3) !important;
         }
         
-        .v-divider { width: 2px; height: 16px; background: var(--card-border); margin: 0 2px; border-radius: 2px; }
+        [data-theme="dark"] .icon-btn:hover, [data-theme="dark"] .text-btn:hover, [data-theme="dark"] .text-controls label:hover { 
+            color: var(--primary) !important; 
+            background: #1e293b !important;
+            box-shadow: 0 6px 15px rgba(96, 165, 250, 0.2) !important;
+        }
+
+        [data-theme="dark"] .icon-btn.active, [data-theme="dark"] .icon-btn:active, [data-theme="dark"] .text-btn:active, [data-theme="dark"] .text-controls label:active {
+            background: rgba(0,0,0,0.3) !important;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.2) !important;
+        }
+
+        .v-divider { width: 1px; height: 16px; background: var(--card-border); margin: 0 2px; border-radius: 2px; flex-shrink: 0; }
 
         .quiz-mcq-container { display: flex; flex-direction: column; flex: 1; margin: 10px 15px 15px 15px; border: 1px solid rgba(37, 99, 235, 0.25); border-radius: var(--radius-lg); background: var(--input-bg); box-shadow: inset 0 2px 8px rgba(0,0,0,0.03); }
         [data-theme="dark"] .quiz-mcq-container { border-color: rgba(96, 165, 250, 0.25); }
@@ -341,10 +333,56 @@
         .q-text-hi { font-weight: 600; color: var(--text-sec); margin-bottom: 12px; font-family: 'Noto Sans Devanagari', sans-serif; line-height: 1.4; font-size: 0.85rem; }
         mark.highlight { background: var(--accent); color: #fff; padding: 0 2px; border-radius: 3px; }
         
+        /* ==========================================
+           PERFECT BUG FIX: NO TEXT SHIFTING ON ANSWER SELECTION
+           ========================================== */
         .options-list { display: flex; flex-direction: column; gap: 8px; counter-reset: opt-counter; }
-        .option-btn { width: 100%; text-align: left; padding: 10px 12px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-md); cursor: pointer; color: var(--text-body); font-weight: 600; transition: all 0.2s; display: flex; justify-content: space-between; align-items: center; line-height: 1.3; }
-        .option-btn::before { counter-increment: opt-counter; content: counter(opt-counter, upper-alpha) ". "; color: var(--primary); font-weight: 700; margin-right: 8px; min-width: 20px; }
-        .option-btn span { flex: 1; }
+        
+        .option-btn { 
+            width: 100%; 
+            text-align: left; 
+            padding: 12px 32px 12px 12px; 
+            background: var(--card-bg); 
+            border: 1px solid var(--card-border); 
+            border-radius: var(--radius-md); 
+            cursor: pointer; 
+            color: var(--text-body); 
+            font-weight: 600; 
+            transition: all 0.2s; 
+            display: flex; 
+            align-items: flex-start; 
+            line-height: 1.4; 
+            position: relative; 
+        }
+        
+        .option-btn::before { 
+            counter-increment: opt-counter; 
+            content: counter(opt-counter, upper-alpha) ". "; 
+            color: var(--primary); 
+            font-weight: 800; 
+            margin-right: 8px; 
+            min-width: 20px; 
+            flex-shrink: 0; 
+            margin-top: 1px; 
+        }
+        
+        .option-btn span:not(.status-icon) { 
+            flex: 1; 
+            word-break: break-word; 
+        }
+
+        .option-btn .status-icon {
+            position: absolute !important;
+            right: 10px !important; 
+            top: 50% !important;
+            transform: translateY(-50%) !important;
+            font-size: 1.1rem !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+        }
+
         .option-btn:hover:not(.disabled) { border-color: var(--primary); background: var(--primary-light); }
         .option-btn.disabled { cursor: default; opacity: 0.8; }
         .option-btn.correct { background: var(--correct-bg); border-color: var(--correct-border); color: var(--correct-text); }
@@ -375,7 +413,7 @@
         .progress-text { font-weight: 800; color: var(--text-main); font-size: 0.85rem; }
         .jump-label { font-size: 0.65rem; color: var(--text-sec); font-weight: 600; text-transform: uppercase; }
 
-        /* Centralized Modal Styles (Solid background for readability) */
+        /* Centralized Modal Styles */
         .quiz-modal-overlay {
             position: fixed; top: 0; left: 0; right: 0; bottom: 0;
             background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
@@ -384,7 +422,7 @@
         }
         .quiz-modal-overlay.show { display: flex; opacity: 1; }
         .quiz-modal-content {
-            background: var(--tooltip-bg); /* Solid background for readability */
+            background: var(--tooltip-bg); 
             width: 100%; max-width: 380px;
             border: 1px solid var(--card-border);
             border-radius: var(--radius-lg); padding: 20px;
@@ -395,7 +433,7 @@
         
         .section-separator { height: 1px; background: linear-gradient(90deg, transparent, var(--card-border), transparent); margin: 25px 0; width: 100%; }
         
-        /* SEO Cards (Compact & Static) */
+        /* SEO Cards */
         .seo-content-wrapper { width: 100%; margin: 0 auto 30px auto; }
         .seo-header { text-align: center; margin-bottom: 20px; max-width: 800px; margin-inline: auto; }
         .seo-header h2 { font-size: clamp(1.3rem, 3vw, 1.8rem); margin-top: 0; margin-bottom: 6px; }
@@ -410,7 +448,7 @@
         .seo-list li { position: relative; padding-left: 18px; margin-bottom: 6px; font-size: 0.85rem; color: var(--text-body); }
         .seo-list li::before { content: "\f111"; font-family: "Font Awesome 6 Free"; font-weight: 900; color: var(--primary); position: absolute; left: 0; top: 6px; font-size: 0.4rem; }
 
-        /* EXACT CSS FROM ECONOMY PAGE MOBILE (Stable & Perfect Proportions) */
+        /* EXACT MOBILE CSS COMPACTNESS */
         @media (max-width: 600px) {
             .hero-title { font-size: 26px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
             .top-meta-bar { flex-wrap: nowrap; justify-content: space-between; }
@@ -424,7 +462,7 @@
             
             .widget-header { padding: 10px; gap: 8px; flex-direction: column; align-items: center; }
             .text-controls { gap: 3px; justify-content: center; width: 100%; padding: 2px 0; }
-            .icon-btn, .text-btn { width: 28px; height: 28px; font-size: 0.75rem; border-radius: 6px; }
+            .icon-btn, .text-btn, .text-controls label { width: 28px !important; height: 28px !important; font-size: 13.6px !important; border-radius: 6px !important; }
             .v-divider { margin: 0 1px; height: 14px; }
             
             .quiz-mcq-container { margin: 8px 10px 10px 10px; } 
@@ -512,15 +550,14 @@
                     <i class="fa-solid fa-bolt"></i> Start Quick 10 Quiz
                 </button>
 
-                <!-- EXACT HTML FROM ECONOMY PAGE TOOLBAR (NO SEARCH BOX) -->
                 <div class="widget-header">
                     <div class="text-controls">
-                        <button class="icon-btn" onclick="toggleHelpModal()" title="Help Guide">
+                        <button class="icon-btn" onclick="toggleHelpModal()" title="Help Guide" type="button">
                             <i class="fa-solid fa-circle-question"></i>
                         </button>
                         <div class="v-divider"></div>
                         
-                        <button class="icon-btn" onclick="exportProgress()" title="Backup Progress">
+                        <button class="icon-btn" onclick="exportProgress()" title="Backup Progress" type="button">
                             <i class="fa-solid fa-download"></i>
                         </button>
                         <label for="importFile" class="icon-btn" title="Restore Progress" style="margin:0; cursor:pointer;">
@@ -528,29 +565,29 @@
                         </label>
                         <input type="file" id="importFile" style="display: none;" accept=".json" onchange="importProgress(this)">
                         
-                        <button class="icon-btn" onclick="resetProgress()" title="Reset Progress">
+                        <button class="icon-btn" onclick="resetProgress()" title="Reset Progress" type="button">
                             <i class="fa-solid fa-rotate-right"></i>
                         </button>
                         
                         <div class="v-divider"></div>
 
-                        <button class="icon-btn" id="quickModeBtn" onclick="toggleQuickMode()" title="Quick 10 Quiz">
+                        <button class="icon-btn" id="quickModeBtn" onclick="toggleQuickMode()" title="Quick 10 Quiz" type="button">
                             <i class="fa-solid fa-bolt"></i>
                         </button>
-                        <button class="icon-btn" id="shuffleBtn" onclick="toggleShuffle()" title="Shuffle Questions">
+                        <button class="icon-btn" id="shuffleBtn" onclick="toggleShuffle()" title="Shuffle Questions" type="button">
                             <i class="fa-solid fa-shuffle"></i>
                         </button>
-                        <button class="icon-btn" id="mistakeFilterBtn" onclick="toggleMistakeFilter()" title="Review Mistakes">
+                        <button class="icon-btn" id="mistakeFilterBtn" onclick="toggleMistakeFilter()" title="Review Mistakes" type="button">
                             <i class="fa-solid fa-triangle-exclamation"></i>
                         </button>
-                        <button class="icon-btn" id="bookmarkFilterBtn" onclick="toggleBookmarkFilter()" title="Saved Bookmarks">
+                        <button class="icon-btn" id="bookmarkFilterBtn" onclick="toggleBookmarkFilter()" title="Saved Bookmarks" type="button">
                             <i class="fa-regular fa-bookmark"></i>
                         </button>
                         
                         <div class="v-divider"></div>
                         
-                        <button class="text-btn" onclick="adjustFont(-1)" title="Decrease Font">A-</button>
-                        <button class="text-btn" onclick="adjustFont(1)" title="Increase Font">A+</button>
+                        <button class="text-btn" onclick="adjustFont(-1)" title="Decrease Font" type="button">A-</button>
+                        <button class="text-btn" onclick="adjustFont(1)" title="Increase Font" type="button">A+</button>
                     </div>
                 </div>
 
