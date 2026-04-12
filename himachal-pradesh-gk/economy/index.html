@@ -213,7 +213,6 @@
             margin: 0; 
             letter-spacing: -0.5px; 
             text-align: center; 
-            /* Blackish-to-Blue Gradient. Adapts perfectly to light/dark themes */
             background: linear-gradient(135deg, var(--text-main) 0%, var(--primary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -255,18 +254,18 @@
         .quick-start-ribbon { background: var(--primary); color: #fff; border: none; padding: 12px; font-size: 0.95rem; font-weight: 700; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px; transition: background 0.2s; width: 100%; flex-shrink: 0; min-height: 45px; }
         .quick-start-ribbon:hover { background: var(--primary-dark); }
         
+        /* ==========================================
+           PREMIUM FLOATING 3D TOOLBAR
+           ========================================== */
         .widget-header { 
             padding: 12px 10px; 
             border-bottom: 1px solid var(--card-border); 
             display: flex; justify-content: center; align-items: center; 
             flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; 
+            background: transparent !important;
         }
         .widget-header::-webkit-scrollbar { display: none; }
         
-        /* ==========================================
-           CLAYMORPHISM BUTTONS (3D Soft UI Toolbar)
-           Shrunk to prevent horizontal overflow on mobile
-           ========================================== */
         .text-controls { display: flex; gap: 6px; align-items: center; flex-wrap: nowrap; padding: 2px; }
         
         .icon-btn, .text-btn { 
@@ -282,7 +281,6 @@
             transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); 
             padding: 0; flex-shrink: 0;
             
-            /* Light Mode 3D Clay Shadows (Subtle & Compact) */
             box-shadow: 
                 3px 3px 8px rgba(0, 0, 0, 0.06), 
                 -3px -3px 8px rgba(255, 255, 255, 0.8),
@@ -304,13 +302,11 @@
             color: var(--primary); 
             background: var(--card-bg);
             transform: translateY(1px);
-            /* Pushed-in state */
             box-shadow: 
                 inset 3px 3px 6px rgba(0, 0, 0, 0.06),
                 inset -3px -3px 6px rgba(255, 255, 255, 0.8) !important;
         }
 
-        /* Dark Mode 3D Clay Shadows */
         [data-theme="dark"] .icon-btn, [data-theme="dark"] .text-btn {
             background: var(--card-bg);
             box-shadow: 
@@ -334,7 +330,7 @@
                 inset -2px -2px 6px rgba(255, 255, 255, 0.02) !important;
         }
         
-        .v-divider { width: 2px; height: 16px; background: var(--card-border); margin: 0 2px; border-radius: 2px; }
+        .v-divider { width: 1px; height: 16px; background: var(--card-border); margin: 0 2px; border-radius: 2px; flex-shrink: 0; }
 
         .quiz-mcq-container { display: flex; flex-direction: column; flex: 1; margin: 10px 15px 15px 15px; border: 1px solid rgba(37, 99, 235, 0.25); border-radius: var(--radius-lg); background: var(--input-bg); box-shadow: inset 0 2px 8px rgba(0,0,0,0.03); }
         [data-theme="dark"] .quiz-mcq-container { border-color: rgba(96, 165, 250, 0.25); }
@@ -349,7 +345,7 @@
         .stat-value.red { color: var(--wrong-border); }
         .stat-value.accent { color: var(--accent); }
 
-        .quiz-content { flex: 1; padding: 15px; position: relative; background: transparent; border: none; margin: 0; box-shadow: none; }
+        .quiz-content { flex: 1; padding: 15px; position: relative; background: transparent; border: none; margin: 0; box-shadow: none; overflow-y: auto; }
         .q-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; font-size: 0.75rem; font-weight: 700; color: var(--text-sec); border-bottom: 1px dashed var(--card-border); padding-bottom: 6px; }
         .q-id { font-size: 0.85rem; color: var(--text-main); }
         .q-actions { display: flex; align-items: center; gap: 12px; font-size: 1rem; }
@@ -361,10 +357,56 @@
         .q-text-hi { font-weight: 600; color: var(--text-sec); margin-bottom: 12px; font-family: 'Noto Sans Devanagari', sans-serif; line-height: 1.4; font-size: 0.85rem; }
         mark.highlight { background: var(--accent); color: #fff; padding: 0 2px; border-radius: 3px; }
         
+        /* ==========================================
+           PERFECT BUG FIX: NO TEXT SHIFTING ON ANSWER SELECTION
+           ========================================== */
         .options-list { display: flex; flex-direction: column; gap: 8px; counter-reset: opt-counter; }
-        .option-btn { width: 100%; text-align: left; padding: 10px 12px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-md); cursor: pointer; color: var(--text-body); font-weight: 600; transition: all 0.2s; display: flex; justify-content: space-between; align-items: center; line-height: 1.3; }
-        .option-btn::before { counter-increment: opt-counter; content: counter(opt-counter, upper-alpha) ". "; color: var(--primary); font-weight: 700; margin-right: 8px; min-width: 20px; }
-        .option-btn span { flex: 1; }
+        
+        .option-btn { 
+            width: 100%; 
+            text-align: left; 
+            padding: 12px 32px 12px 12px; 
+            background: var(--card-bg); 
+            border: 1px solid var(--card-border); 
+            border-radius: var(--radius-md); 
+            cursor: pointer; 
+            color: var(--text-body); 
+            font-weight: 600; 
+            transition: all 0.2s; 
+            display: flex; 
+            align-items: flex-start; 
+            line-height: 1.4; 
+            position: relative; 
+        }
+        
+        .option-btn::before { 
+            counter-increment: opt-counter; 
+            content: counter(opt-counter, upper-alpha) ". "; 
+            color: var(--primary); 
+            font-weight: 800; 
+            margin-right: 8px; 
+            min-width: 20px; 
+            flex-shrink: 0; 
+            margin-top: 1px; 
+        }
+        
+        .option-btn span:not(.status-icon) { 
+            flex: 1; 
+            word-break: break-word; 
+        }
+
+        .option-btn .status-icon {
+            position: absolute !important;
+            right: 10px !important; 
+            top: 50% !important;
+            transform: translateY(-50%) !important;
+            font-size: 1.1rem !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+        }
+
         .option-btn:hover:not(.disabled) { border-color: var(--primary); background: var(--primary-light); }
         .option-btn.disabled { cursor: default; opacity: 0.8; }
         .option-btn.correct { background: var(--correct-bg); border-color: var(--correct-border); color: var(--correct-text); }
@@ -415,13 +457,10 @@
         
         .section-separator { height: 1px; background: linear-gradient(90deg, transparent, var(--card-border), transparent); margin: 25px 0; width: 100%; }
         
-        /* SEO Cards (Compact & Static) */
+        /* SEO Cards */
         .seo-content-wrapper { width: 100%; margin: 0 auto 30px auto; }
         .seo-header { text-align: center; margin-bottom: 20px; max-width: 800px; margin-inline: auto; }
-        
-        /* Removed margin-top for H2 */
         .seo-header h2 { font-size: clamp(1.3rem, 3vw, 1.8rem); margin-top: 0; margin-bottom: 6px; }
-        
         .seo-header p { color: var(--text-sec); font-size: 0.9rem; margin: 0; }
         .seo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
         .seo-card { background: var(--card-bg); border: 1px solid var(--card-border); padding: 20px; border-radius: var(--radius-lg); box-shadow: var(--glass-shadow); border-left: 4px solid var(--primary); transition: border-color 0.2s; }
@@ -433,26 +472,21 @@
         .seo-list li { position: relative; padding-left: 18px; margin-bottom: 6px; font-size: 0.85rem; color: var(--text-body); }
         .seo-list li::before { content: "\f111"; font-family: "Font Awesome 6 Free"; font-weight: 900; color: var(--primary); position: absolute; left: 0; top: 6px; font-size: 0.4rem; }
 
+        /* EXACT MOBILE CSS COMPACTNESS */
         @media (max-width: 600px) {
-            /* Restored H1 to natural size but allowed it to wrap correctly */
             .hero-title { font-size: 26px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
             .top-meta-bar { flex-wrap: nowrap; justify-content: space-between; }
             
-            /* Quick Links adjustments for mobile: Inline scrollable row */
-            .quick-links { 
-                flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; 
-                padding-bottom: 4px; justify-content: flex-start; 
-            }
+            .quick-links { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; padding-bottom: 4px; justify-content: flex-start; }
             .quick-links::-webkit-scrollbar { display: none; }
             .quick-link-item { font-size: 0.65rem; padding: 4px 10px; }
             
             .breadcrumb-item { font-size: 0.6rem; }
             .hero-badge { font-size: 0.6rem; padding: 2px 6px; }
             
-            /* Compact Mobile Adjustments for Engine */
             .widget-header { padding: 10px; gap: 8px; flex-direction: column; align-items: center; }
             .text-controls { gap: 3px; justify-content: center; width: 100%; padding: 2px 0; }
-            .icon-btn, .text-btn { width: 28px; height: 28px; font-size: 0.75rem; border-radius: 6px; }
+            .icon-btn, .text-btn, .text-controls label { width: 28px !important; height: 28px !important; font-size: 13.6px !important; border-radius: 6px !important; }
             .v-divider { margin: 0 1px; height: 14px; }
             
             .quiz-mcq-container { margin: 8px 10px 10px 10px; } 
@@ -532,17 +566,15 @@
             </div>
         </section>
 
-        <!-- Right Column: Dedicated Quiz Engine (Static, Not Sticky) -->
+        <!-- Right Column: Dedicated Quiz Engine -->
         <section class="quiz-widget-wrapper">
             <div class="quiz-card glass-panel">
                 
-                <!-- NEW QUICK START RIBBON INJECTED HERE -->
                 <button class="quick-start-ribbon" onclick="toggleQuickMode(true)">
                     <i class="fa-solid fa-bolt"></i> Start Quick 10 Quiz
                 </button>
 
                 <div class="widget-header">
-                    <!-- NEW HARDCODED TEXT CONTROLS (Removed from JS injection for CLS prevention) -->
                     <div class="text-controls">
                         <button class="icon-btn" onclick="toggleHelpModal()" title="Help Guide">
                             <i class="fa-solid fa-circle-question"></i>
