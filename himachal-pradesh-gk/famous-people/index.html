@@ -72,10 +72,8 @@
     <!-- Global CSS -->
     <link rel="stylesheet" href="../../js/style.css">
 
-    <!-- Premium Glassmorphism & Compact UI Stylesheet -->
     <style>
         :root {
-            /* Blue Theme for HPGK Main Hub */
             --primary: #2563eb;       
             --primary-hover: #1d4ed8; 
             --primary-light: rgba(37, 99, 235, 0.1); 
@@ -138,7 +136,6 @@
             flex-direction: column;
         }
 
-        /* Strictly enforcing Inter font for headings */
         h1, h2, h3, h4 { font-family: 'Inter', sans-serif !important; color: var(--text-main); }
 
         .glass-panel {
@@ -149,10 +146,6 @@
             box-shadow: var(--glass-shadow);
         }
 
-        /* ==========================================
-           MAIN LAYOUT & ALIGNMENT FIXES (var(--site-width))
-           ========================================== */
-        
         main { flex: 1; width: 100%; padding: 15px 0 !important; }
 
         .top-meta-bar { 
@@ -176,10 +169,6 @@
             }
         }
 
-        /* ==========================================
-           META BAR
-           ========================================== */
-        
         .breadcrumb-nav { margin: 0; flex-shrink: 1; display: flex; align-items: center; height: 24px; }
         
         .breadcrumb-list { 
@@ -204,8 +193,10 @@
         }
 
         .page-header-top { text-align: center; margin-bottom: 20px; }
+        
+        /* EXACT DESKTOP H1 FONT SIZE: 32px */
         .hero-title { 
-            font-size: clamp(1.6rem, 4vw, 2.2rem) !important; 
+            font-size: 32px !important; 
             font-weight: 900 !important; 
             margin: 0; 
             letter-spacing: -0.5px; 
@@ -226,7 +217,7 @@
 
         .intro-grid { display: grid; gap: 12px; text-align: left; }
         .intro-card { background: var(--input-bg); border: 1px solid var(--card-border); border-radius: var(--radius-lg); padding: 15px; box-shadow: var(--shadow-sm); }
-        .intro-card h2 { font-size: 1.05rem; color: var(--primary); margin: 0 0 8px 0; display: flex; align-items: center; gap: 8px; font-weight: 700; }
+        .intro-card h2 { font-size: 1.05rem; color: var(--primary); margin: 0 0 8px 0; display: flex; align-items: center; gap: 8px; font-weight: 700; justify-content: center; }
         .intro-card p { font-size: 0.85rem; color: var(--text-body); margin: 0; line-height: 1.5; }
         .intro-list { margin: 8px 0 0 0; padding-left: 20px; font-size: 0.85rem; color: var(--text-body); line-height: 1.5; }
         .intro-list li { margin-bottom: 4px; }
@@ -243,19 +234,17 @@
         }
         .quick-link-item:hover { background: var(--primary); color: white; }
 
-        /* ==========================================
-           QUIZ WIDGET & PREMIUM TOOLBAR
-           ========================================== */
+        /* QUIZ WIDGET */
         .quiz-card { border-radius: var(--radius-xl); display: flex; flex-direction: column; overflow: hidden; height: auto; min-height: 480px; background: var(--card-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--card-border); box-shadow: var(--glass-shadow); position: sticky; top: 80px; }
         .quick-start-ribbon { background: var(--primary); color: #fff; border: none; padding: 12px; font-size: 0.95rem; font-weight: 700; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px; transition: background 0.2s; width: 100%; flex-shrink: 0; min-height: 45px; }
         .quick-start-ribbon:hover { background: var(--primary-dark); }
         
         .widget-header { 
             padding: 12px 10px; 
-            border-bottom: 1px solid var(--card-border); 
+            border-bottom: none; 
             display: flex; justify-content: center; align-items: center; 
             flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; 
-            background: transparent !important;
+            background: transparent !important; 
         }
         .widget-header::-webkit-scrollbar { display: none; }
         
@@ -265,6 +254,7 @@
         }
         .text-controls::-webkit-scrollbar { display: none; }
         
+        /* Toolbar Icons 13.6px */
         .icon-btn, .text-btn, .text-controls label {
             background: #ffffff !important; 
             border: none !important; 
@@ -293,7 +283,6 @@
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important; 
         }
 
-        /* FIXED: Missing [data-theme="dark"] prefix before .text-btn resolved */
         [data-theme="dark"] .icon-btn, [data-theme="dark"] .text-btn, [data-theme="dark"] .text-controls label { 
             background: rgba(30, 41, 59, 0.9) !important; 
             color: var(--text-body) !important;
@@ -303,7 +292,7 @@
         [data-theme="dark"] .icon-btn:hover, [data-theme="dark"] .text-btn:hover, [data-theme="dark"] .text-controls label:hover { 
             color: var(--primary) !important; 
             background: #1e293b !important;
-            box-shadow: 0 6px 15px rgba(96, 165, 250, 0.2) !important;
+            box-shadow: 0 6px 15px rgba(96, 165, 250, 0.2) !important; 
         }
 
         [data-theme="dark"] .icon-btn.active, [data-theme="dark"] .icon-btn:active, [data-theme="dark"] .text-btn:active, [data-theme="dark"] .text-controls label:active {
@@ -313,40 +302,56 @@
 
         .v-divider { width: 1px; height: 16px; background: var(--card-border); margin: 0 2px; border-radius: 2px; flex-shrink: 0; }
 
-        .quiz-mcq-container { display: flex; flex-direction: column; flex: 1; margin: 10px 15px 15px 15px; border: 1px solid rgba(37, 99, 235, 0.25); border-radius: var(--radius-lg); background: var(--input-bg); box-shadow: inset 0 2px 8px rgba(0,0,0,0.03); }
+        .quiz-mcq-container {
+            display: flex; flex-direction: column; flex: 1; overflow: hidden; margin: 10px 15px 15px 15px; 
+            border: 1px solid rgba(37, 99, 235, 0.25); border-radius: var(--radius-lg); background: var(--input-bg); 
+            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.03);
+        }
         [data-theme="dark"] .quiz-mcq-container { border-color: rgba(96, 165, 250, 0.25); }
-        
-        .stats-dashboard { display: flex; background: rgba(0,0,0,0.03); border-bottom: 1px solid var(--card-border); }
+
+        /* ==========================================
+           FIXED: ULTRA-COMPACT DASHBOARD STATS BAR (Strict 10.4px)
+           ========================================== */
+        .stats-dashboard { 
+            display: flex; flex-wrap: nowrap; background: rgba(0,0,0,0.03); 
+            border-bottom: 1px solid var(--card-border); align-items: center;
+        }
         [data-theme="dark"] .stats-dashboard { background: rgba(255,255,255,0.02); }
-        .stat-item { flex: 1; padding: 6px 4px; text-align: center; border-right: 1px solid var(--card-border); display: flex; flex-direction: column; }
+        
+        .stat-item { 
+            flex: 1; padding: 8px 4px; text-align: center; border-right: 1px solid var(--card-border); 
+            display: flex; flex-direction: row; justify-content: center; align-items: baseline; gap: 6px; 
+        }
         .stat-item:last-child { border-right: none; }
-        .stat-label { font-size: 0.65rem; text-transform: uppercase; color: var(--text-sec); font-weight: 700; margin-bottom: 2px; }
-        .stat-value { font-size: 0.95rem; font-weight: 800; color: var(--text-main); }
+        
+        .stat-label { font-size: 10.4px !important; text-transform: uppercase; color: var(--text-sec); font-weight: 700; margin: 0; }
+        .stat-value { font-size: 10.4px !important; font-weight: 800; color: var(--text-main); line-height: 1; }
+        
         .stat-value.green { color: var(--correct-border); }
         .stat-value.red { color: var(--wrong-border); }
         .stat-value.accent { color: var(--accent); }
 
         .quiz-content { flex: 1; padding: 15px; position: relative; background: transparent; border: none; margin: 0; box-shadow: none; overflow-y: auto; }
-        .q-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; font-size: 0.75rem; font-weight: 700; color: var(--text-sec); border-bottom: 1px dashed var(--card-border); padding-bottom: 6px; }
+        
+        .q-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-size: 0.75rem; font-weight: 700; color: var(--text-sec); border-bottom: 1px dashed var(--card-border); padding-bottom: 4px; }
         .q-id { font-size: 0.85rem; color: var(--text-main); }
         .q-actions { display: flex; align-items: center; gap: 12px; font-size: 1rem; }
         .q-status { font-size: 0.7rem; color: var(--primary); margin-right: 5px; }
-        .q-actions i { cursor: pointer; color: var(--text-sec); transition: transform 0.2s; }
-        .q-actions i:hover { color: var(--primary); transform: scale(1.1); }
+        .share-icon, .bookmark-icon { cursor: pointer; color: var(--text-sec); transition: transform 0.2s; }
+        .share-icon:hover { color: var(--primary); transform: scale(1.1); }
+        .bookmark-icon:hover { color: var(--accent); transform: scale(1.1); }
         .bookmark-icon.active { color: var(--accent); }
         .q-text-en { font-weight: 700; color: var(--text-main); margin-bottom: 6px; line-height: 1.4; font-size: 0.9rem; }
         .q-text-hi { font-weight: 600; color: var(--text-sec); margin-bottom: 12px; font-family: 'Noto Sans Devanagari', sans-serif; line-height: 1.4; font-size: 0.85rem; }
         mark.highlight { background: var(--accent); color: #fff; padding: 0 2px; border-radius: 3px; }
-        
-        /* ==========================================
-           PERFECT BUG FIX: NO TEXT SHIFTING ON ANSWER SELECTION
-           ========================================== */
+
+        /* PERFECT BUG FIX: NO TEXT SHIFTING ON ANSWER SELECTION */
         .options-list { display: flex; flex-direction: column; gap: 8px; counter-reset: opt-counter; }
         
         .option-btn { 
             width: 100%; 
             text-align: left; 
-            padding: 12px 32px 12px 12px; 
+            padding: 12px 40px 12px 12px; 
             background: var(--card-bg); 
             border: 1px solid var(--card-border); 
             border-radius: var(--radius-md); 
@@ -378,7 +383,7 @@
 
         .option-btn .status-icon {
             position: absolute !important;
-            right: 10px !important; 
+            right: 12px !important; 
             top: 50% !important;
             transform: translateY(-50%) !important;
             font-size: 1.1rem !important;
@@ -392,12 +397,15 @@
         .option-btn.disabled { cursor: default; opacity: 0.8; }
         .option-btn.correct { background: var(--correct-bg); border-color: var(--correct-border); color: var(--correct-text); }
         .option-btn.wrong { background: var(--wrong-bg); border-color: var(--wrong-border); color: var(--wrong-text); }
-        
+
         .feedback-row { display: flex; gap: 8px; align-items: center; margin-top: 12px; }
+        
+        /* FIXED: No fadeIn animation to prevent blinking */
         .feedback-msg { flex: 1; padding: 8px 12px; border-radius: var(--radius-md); font-weight: 700; font-size: 0.85rem; text-align: center; margin: 0; border: 1px solid transparent; }
+        
         .correct-feed { background: var(--correct-bg); color: var(--correct-text); border-color: var(--correct-border); }
         .wrong-feed { background: var(--wrong-bg); color: var(--wrong-text); border-color: var(--wrong-border); }
-        
+
         .expl-wrapper { position: relative; }
         .expl-btn { background: var(--card-bg); color: var(--primary); border: 1px solid var(--card-border); width: 34px; height: 34px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1rem; transition: 0.2s; box-shadow: var(--shadow-sm); }
         .expl-btn:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
@@ -407,70 +415,89 @@
         .explanation-tooltip.show { display: block; animation: fadeUp 0.2s ease-out; }
         .explanation-tooltip strong { color: var(--primary); display: block; margin-bottom: 6px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; }
         @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        
+
         .widget-controls { padding: 10px 15px; border-top: 1px solid var(--card-border); background: rgba(0,0,0,0.03); display: flex; justify-content: space-between; align-items: center; }
         [data-theme="dark"] .widget-controls { background: rgba(255,255,255,0.02); }
         .nav-btn { background: var(--card-bg); border: 1px solid var(--card-border); color: var(--text-main); padding: 6px 12px; border-radius: var(--radius-md); cursor: pointer; font-weight: 600; font-size: 0.85rem; display: flex; align-items: center; gap: 5px; transition: 0.2s; }
         .nav-btn:hover:not(:disabled) { border-color: var(--primary); color: var(--primary); }
         .nav-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-        .jump-trigger { display: flex; flex-direction: column; align-items: center; cursor: pointer; padding: 4px 10px; border-radius: var(--radius-md); }
-        .jump-trigger:hover { background: var(--input-bg); }
+        
+        .progress-display { display: flex; align-items: center; justify-content: center; padding: 4px 10px; }
         .progress-text { font-weight: 800; color: var(--text-main); font-size: 0.85rem; }
-        .jump-label { font-size: 0.65rem; color: var(--text-sec); font-weight: 600; text-transform: uppercase; }
 
-        /* Centralized Modal Styles */
+        /* ==========================================
+           FIXED: EXTREME LOCK FOR MODAL (Center Screen Popup Guaranteed)
+           ========================================== */
         .quiz-modal-overlay {
-            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
-            z-index: 2000; display: none; align-items: center; justify-content: center; padding: 20px;
+            position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important;
+            width: 100vw !important; height: 100vh !important;
+            background: rgba(0,0,0,0.5) !important; backdrop-filter: blur(4px) !important; -webkit-backdrop-filter: blur(4px) !important;
+            z-index: 999999 !important; display: none; align-items: center !important; justify-content: center !important; padding: 20px;
             opacity: 0; transition: opacity 0.2s ease;
         }
-        .quiz-modal-overlay.show { display: flex; opacity: 1; }
+        .quiz-modal-overlay.show { display: flex !important; opacity: 1; }
         .quiz-modal-content {
-            background: var(--tooltip-bg); 
-            width: 100%; max-width: 380px;
+            background: var(--tooltip-bg) !important; 
+            width: 100%; max-width: 380px; margin: auto !important;
             border: 1px solid var(--card-border);
             border-radius: var(--radius-lg); padding: 20px;
             box-shadow: var(--glass-shadow); transform: translateY(20px); transition: transform 0.2s ease;
+            position: relative !important; z-index: 1000000 !important;
         }
         .quiz-modal-overlay.show .quiz-modal-content { transform: translateY(0); }
         .quiz-modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--card-border); padding-bottom: 12px; margin-bottom: 12px; }
-        
+
         .section-separator { height: 1px; background: linear-gradient(90deg, transparent, var(--card-border), transparent); margin: 25px 0; width: 100%; }
-        
-        /* SEO Cards */
-        .seo-content-wrapper { width: 100%; margin: 0 auto 30px auto; }
-        .seo-header { text-align: center; margin-bottom: 20px; max-width: 800px; margin-inline: auto; }
-        .seo-header h2 { font-size: clamp(1.3rem, 3vw, 1.8rem); margin-top: 0; margin-bottom: 6px; }
-        .seo-header p { color: var(--text-sec); font-size: 0.9rem; margin: 0; }
-        .seo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
+        .seo-content-wrapper { margin-bottom: 30px; }
+        .seo-header { text-align: center; margin-bottom: 20px; }
+        .seo-header h2 { font-size: clamp(1.2rem, 3vw, 1.6rem); margin-bottom: 8px; }
+        .seo-header p { color: var(--text-sec); max-width: 600px; margin: 0 auto; font-size: 0.85rem; }
+        .seo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
         .seo-card { background: var(--card-bg); border: 1px solid var(--card-border); padding: 20px; border-radius: var(--radius-lg); box-shadow: var(--glass-shadow); border-left: 4px solid var(--primary); transition: border-color 0.2s; }
         .seo-card:hover { border-color: var(--primary-light); }
-        .seo-card h3 { font-size: 1.1rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; color: var(--text-main); }
+        .seo-card h3 { font-size: 1rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; color: var(--text-main) !important; }
         .seo-card h3 i { color: var(--primary); }
-        .seo-card p { color: var(--text-body); font-size: 0.85rem; margin-bottom: 10px; line-height: 1.5; }
-        .seo-list { list-style: none; padding-left: 0; margin: 0; }
-        .seo-list li { position: relative; padding-left: 18px; margin-bottom: 6px; font-size: 0.85rem; color: var(--text-body); }
-        .seo-list li::before { content: "\f111"; font-family: "Font Awesome 6 Free"; font-weight: 900; color: var(--primary); position: absolute; left: 0; top: 6px; font-size: 0.4rem; }
+        .seo-card p { color: var(--text-body) !important; font-size: 0.85rem; margin-bottom: 10px; }
+        
+        .seo-list { list-style: none; padding-left: 0; }
+        .seo-list li { position: relative; padding-left: 18px; margin-bottom: 5px; font-size: 0.8rem; color: var(--text-body) !important; }
+        .seo-list li::before { 
+            content: "\f111"; 
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            color: var(--primary); 
+            position: absolute; 
+            left: 0; 
+            top: 5px; 
+            font-size: 0.4rem; 
+        }
 
+        /* ==========================================
+           EXACT MOBILE CSS COMPACTNESS 
+           ========================================== */
         @media (max-width: 600px) {
-            .hero-title { font-size: 26px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
+            /* EXACT MOBILE H1 FONT SIZE: 23px */
+            .hero-title { font-size: 23px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
             .top-meta-bar { flex-wrap: nowrap; justify-content: space-between; }
             
-            .quick-links { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; padding-bottom: 4px; justify-content: flex-start; }
-            .quick-links::-webkit-scrollbar { display: none; }
-            .quick-link-item { font-size: 0.65rem; padding: 4px 10px; }
+            .widget-header { padding: 10px; align-items: center; }
+            .text-controls { justify-content: center; gap: 3px; padding: 2px 0; }
             
-            .breadcrumb-item { font-size: 0.6rem; }
-            .hero-badge { font-size: 0.6rem; padding: 2px 6px; }
-            
-            .widget-header { padding: 10px; gap: 8px; flex-direction: column; align-items: center; }
-            .text-controls { gap: 3px; justify-content: center; width: 100%; padding: 2px 0; }
+            /* Toolbar Icons 13.6px for mobile too */
             .icon-btn, .text-btn, .text-controls label { width: 28px !important; height: 28px !important; font-size: 13.6px !important; border-radius: 6px !important; }
             .v-divider { margin: 0 1px; height: 14px; }
             
-            .quiz-mcq-container { margin: 8px 10px 10px 10px; } 
+            /* COMPACT DASHBOARD STATS FOR MOBILE (Strict 10.4px) */
+            .stat-item { flex-direction: column; gap: 1px; padding: 4px 1px; align-items: center; }
+            .stat-label { font-size: 10.4px !important; letter-spacing: -0.2px; margin: 0; }
+            .stat-value { font-size: 10.4px !important; }
+
+            .quiz-mcq-container { margin: 8px 10px 10px 10px; border-width: 1.5px; }
             .seo-card { padding: 15px; }
+            
+            .nav-btn { padding: 4px 8px; font-size: 0.7rem; min-width: 55px; }
+            .progress-display { padding: 2px 6px; }
+            .progress-text { font-size: 0.7rem; }
         }
     </style>
 
@@ -613,10 +640,12 @@
 
                     <div class="widget-controls">
                         <button id="prevBtn" class="nav-btn"><i class="fa-solid fa-arrow-left"></i> Prev</button>
-                        <div class="jump-trigger" id="jumpTrigger" title="Jump to question">
+                        
+                        <!-- PROGRESS DISPLAY (JUMP REMOVED) -->
+                        <div class="progress-display">
                             <span class="progress-text" id="progressText">0 / 0</span>
-                            <span class="jump-label"><i class="fa-solid fa-location-crosshairs"></i> Jump</span>
                         </div>
+
                         <button id="nextBtn" class="nav-btn">Next <i class="fa-solid fa-arrow-right"></i></button>
                     </div>
                 </div>
@@ -750,33 +779,33 @@
         </section>
     </div>
 
-    <!-- HTML HARDCODED HELP MODAL (Solid background for readability) -->
-    <div id="quizHelpModal" class="quiz-modal-overlay" onclick="if(event.target === this) toggleHelpModal()">
-        <div class="quiz-modal-content glass-panel">
-            <div class="quiz-modal-header">
-                <h3 style="margin:0; font-size:1.1rem; display:flex; align-items:center; gap:8px; color:var(--text-main);">
-                    <i class="fa-solid fa-circle-question" style="color:var(--primary)"></i> Toolbar Guide
-                </h3>
-                <button onclick="toggleHelpModal()" style="background:transparent; border:none; font-size:1.2rem; cursor:pointer; color:var(--text-sec); transition:color 0.2s;">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-            </div>
-            <div class="quiz-modal-body" style="font-size:0.85rem; color:var(--text-body); line-height:1.6; padding-top:10px;">
-                <ul style="list-style:none; padding:0; margin:0; display:grid; gap:12px;">
-                    <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-solid fa-download" style="color:var(--text-sec); font-size:1rem;"></i></span> <span><strong>Backup:</strong> Save your progress to a file.</span></li>
-                    <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-solid fa-upload" style="color:var(--text-sec); font-size:1rem;"></i></span> <span><strong>Restore:</strong> Load your saved progress.</span></li>
-                    <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-solid fa-rotate-right" style="color:var(--wrong-text); font-size:1rem;"></i></span> <span><strong>Reset:</strong> Clear all history for this subject.</span></li>
-                    <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-solid fa-bolt" style="color:var(--accent); font-size:1rem;"></i></span> <span><strong>Quick 10:</strong> Start a fast 10-question session.</span></li>
-                    <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-solid fa-shuffle" style="color:var(--primary); font-size:1rem;"></i></span> <span><strong>Shuffle:</strong> Randomize question order.</span></li>
-                    <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-solid fa-triangle-exclamation" style="color:var(--wrong-text); font-size:1rem;"></i></span> <span><strong>Mistakes:</strong> Review incorrect answers.</span></li>
-                    <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-regular fa-bookmark" style="color:var(--primary); font-size:1rem;"></i></span> <span><strong>Bookmarks:</strong> View saved questions.</span></li>
-                    <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center; font-weight:bold; color:var(--text-sec);">A&plusmn;</span> <span><strong>Text Size:</strong> Adjust font size.</span></li>
-                </ul>
-            </div>
+</main>
+
+<!-- HTML HARDCODED HELP MODAL - EXTREME LOCK FOR CENTER POPUP -->
+<div id="quizHelpModal" class="quiz-modal-overlay" onclick="if(event.target === this) toggleHelpModal()">
+    <div class="quiz-modal-content glass-panel">
+        <div class="quiz-modal-header">
+            <h3 style="margin:0; font-size:1.1rem; display:flex; align-items:center; gap:8px; color:var(--text-main);">
+                <i class="fa-solid fa-circle-question" style="color:var(--primary)"></i> Toolbar Guide
+            </h3>
+            <button onclick="toggleHelpModal()" style="background:transparent; border:none; font-size:1.2rem; cursor:pointer; color:var(--text-sec); transition:color 0.2s;">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="quiz-modal-body" style="font-size:0.85rem; color:var(--text-body); line-height:1.6; padding-top:10px;">
+            <ul style="list-style:none; padding:0; margin:0; display:grid; gap:12px;">
+                <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-solid fa-download" style="color:var(--text-sec); font-size:1rem;"></i></span> <span><strong>Backup:</strong> Save your progress to a file.</span></li>
+                <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-solid fa-upload" style="color:var(--text-sec); font-size:1rem;"></i></span> <span><strong>Restore:</strong> Load your saved progress.</span></li>
+                <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-solid fa-rotate-right" style="color:var(--wrong-text); font-size:1rem;"></i></span> <span><strong>Reset:</strong> Clear all history for this subject.</span></li>
+                <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-solid fa-bolt" style="color:var(--accent); font-size:1rem;"></i></span> <span><strong>Quick 10:</strong> Start a fast 10-question session.</span></li>
+                <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-solid fa-shuffle" style="color:var(--primary); font-size:1rem;"></i></span> <span><strong>Shuffle:</strong> Randomize question order.</span></li>
+                <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-solid fa-triangle-exclamation" style="color:var(--wrong-text); font-size:1rem;"></i></span> <span><strong>Mistakes:</strong> Review incorrect answers.</span></li>
+                <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-regular fa-bookmark" style="color:var(--primary); font-size:1rem;"></i></span> <span><strong>Bookmarks:</strong> View saved questions.</span></li>
+                <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center; font-weight:bold; color:var(--text-sec);">A&plusmn;</span> <span><strong>Text Size:</strong> Adjust font size.</span></li>
+            </ul>
         </div>
     </div>
-
-</main>
+</div>
 
 <!-- Dynamic Footer Container -->
 <div id="site-footer"></div>
