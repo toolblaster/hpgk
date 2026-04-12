@@ -221,6 +221,7 @@
             flex-direction: column;
         }
 
+        /* Strictly enforcing Inter font for all headings to remove Devanagari mix */
         h1, h2, h3, h4 { 
             color: var(--text-main); 
             line-height: 1.25; 
@@ -254,6 +255,7 @@
             .quiz-widget-wrapper { position: relative; }
         }
 
+        /* Centered Hero Section alignment */
         .hero-section {
             text-align: center;
         }
@@ -306,6 +308,7 @@
 
         .subjects-title { font-size: 1rem; margin-bottom: 10px; border-bottom: 1px solid var(--card-border); padding-bottom: 4px; display: inline-block; }
         
+        /* Centered tags */
         .subject-tags { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
         .subject-tag { padding: 4px 8px; border-radius: 20px; font-size: 0.75rem; color: var(--text-sec); display: flex; align-items: center; gap: 5px; }
         .subject-tag i { color: var(--primary); }
@@ -321,6 +324,9 @@
         }
         .quick-start-ribbon:hover { background: var(--primary-hover); }
 
+        /* ==========================================
+           PREMIUM FLOATING 3D TOOLBAR
+           ========================================== */
         .widget-header { 
             padding: 12px 10px; 
             border-bottom: none; 
@@ -334,6 +340,7 @@
             width: 100%; padding: 2px 0;
         }
         
+        /* RESTORED: Toolbar Icons strictly back to 13.6px size as requested */
         .icon-btn, .text-btn, .text-controls label {
             background: #ffffff !important; 
             border: none !important; 
@@ -382,24 +389,37 @@
         .v-divider { width: 1px; height: 16px; background: var(--card-border); margin: 0 2px; border-radius: 2px; flex-shrink: 0; }
 
         .quiz-mcq-container {
-            display: flex; flex-direction: column; flex: 1; overflow: hidden; margin: 10px 15px 15px 15px; 
+            display: flex; flex-direction: column; flex: 1; overflow: hidden; margin: 8px 12px 12px 12px; 
             border: 1px solid rgba(4, 120, 87, 0.25); border-radius: var(--radius-lg); background: var(--input-bg); 
             box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.03);
         }
         [data-theme="dark"] .quiz-mcq-container { border-color: rgba(52, 211, 153, 0.25); }
 
-        .stats-dashboard { display: flex; background: rgba(0,0,0,0.03); border-bottom: 1px solid var(--card-border); }
+        /* ==========================================
+           FIXED: ULTRA-COMPACT DASHBOARD STATS BAR (Strict 10.4px)
+           ========================================== */
+        .stats-dashboard { 
+            display: flex; flex-wrap: nowrap; background: rgba(0,0,0,0.03); 
+            border-bottom: 1px solid var(--card-border); align-items: center;
+        }
         [data-theme="dark"] .stats-dashboard { background: rgba(255,255,255,0.02); }
-        .stat-item { flex: 1; padding: 6px 4px; text-align: center; border-right: 1px solid var(--card-border); display: flex; flex-direction: column; }
+        
+        .stat-item { 
+            flex: 1; padding: 8px 4px; text-align: center; border-right: 1px solid var(--card-border); 
+            display: flex; flex-direction: row; justify-content: center; align-items: baseline; gap: 6px; 
+        }
         .stat-item:last-child { border-right: none; }
-        .stat-label { font-size: 0.65rem; text-transform: uppercase; color: var(--text-sec); font-weight: 700; margin-bottom: 2px; }
-        .stat-value { font-size: 0.95rem; font-weight: 800; color: var(--text-main); }
+        
+        .stat-label { font-size: 10.4px !important; text-transform: uppercase; color: var(--text-sec); font-weight: 700; margin: 0; }
+        .stat-value { font-size: 10.4px !important; font-weight: 800; color: var(--text-main); line-height: 1; }
+        
         .stat-value.green { color: var(--correct-border); }
         .stat-value.red { color: var(--wrong-border); }
         .stat-value.accent { color: var(--accent); }
 
         .quiz-content { flex: 1; padding: 15px; position: relative; background: transparent; border: none; margin: 0; box-shadow: none; overflow-y: auto; }
-        .q-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; font-size: 0.75rem; font-weight: 700; color: var(--text-sec); border-bottom: 1px dashed var(--card-border); padding-bottom: 6px; }
+        
+        .q-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-size: 0.75rem; font-weight: 700; color: var(--text-sec); border-bottom: 1px dashed var(--card-border); padding-bottom: 4px; }
         .q-id { font-size: 0.85rem; color: var(--text-main); }
         .q-actions { display: flex; align-items: center; gap: 12px; font-size: 1rem; }
         .q-status { font-size: 0.7rem; color: var(--primary); margin-right: 5px; }
@@ -488,24 +508,27 @@
         .nav-btn:hover:not(:disabled) { border-color: var(--primary); color: var(--primary); }
         .nav-btn:disabled { opacity: 0.5; cursor: not-allowed; }
         
-        /* JUMP FEATURE REMOVED - Using simple progress display instead */
         .progress-display { display: flex; align-items: center; justify-content: center; padding: 4px 10px; }
         .progress-text { font-weight: 800; color: var(--text-main); font-size: 0.85rem; }
 
-        /* FIXED: CENTRALIZED MODAL STYLES */
+        /* ==========================================
+           FIXED: EXTREME LOCK FOR MODAL (Center Screen Popup Guaranteed)
+           ========================================== */
         .quiz-modal-overlay {
-            position: fixed !important; top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
-            z-index: 9999 !important; display: none; align-items: center; justify-content: center; padding: 20px;
+            position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important;
+            width: 100vw !important; height: 100vh !important;
+            background: rgba(0,0,0,0.5) !important; backdrop-filter: blur(4px) !important; -webkit-backdrop-filter: blur(4px) !important;
+            z-index: 999999 !important; display: none; align-items: center !important; justify-content: center !important; padding: 20px;
             opacity: 0; transition: opacity 0.2s ease;
         }
-        .quiz-modal-overlay.show { display: flex; opacity: 1; }
+        .quiz-modal-overlay.show { display: flex !important; opacity: 1; }
         .quiz-modal-content {
             background: var(--tooltip-bg) !important; 
-            width: 100%; max-width: 380px;
+            width: 100%; max-width: 380px; margin: auto !important;
             border: 1px solid var(--card-border);
             border-radius: var(--radius-lg); padding: 20px;
             box-shadow: var(--glass-shadow); transform: translateY(20px); transition: transform 0.2s ease;
+            position: relative !important; z-index: 1000000 !important;
         }
         .quiz-modal-overlay.show .quiz-modal-content { transform: translateY(0); }
         .quiz-modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--card-border); padding-bottom: 12px; margin-bottom: 12px; }
@@ -535,16 +558,25 @@
             font-size: 0.4rem; 
         }
 
-        /* EXACT MOBILE CSS COMPACTNESS */
+        /* ==========================================
+           EXACT MOBILE CSS COMPACTNESS 
+           ========================================== */
         @media (max-width: 600px) {
             .hero-title { font-size: 26px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
             main { padding: 10px; }
             
             .widget-header { padding: 10px; align-items: center; }
             .text-controls { justify-content: center; gap: 3px; padding: 2px 0; }
+            
+            /* RESTORED: Toolbar Icons back to 13.6px for mobile too */
             .icon-btn, .text-btn, .text-controls label { width: 28px !important; height: 28px !important; font-size: 13.6px !important; border-radius: 6px !important; }
             .v-divider { margin: 0 1px; height: 14px; }
             
+            /* COMPACT DASHBOARD STATS FOR MOBILE (Strict 10.4px) */
+            .stat-item { flex-direction: column; gap: 1px; padding: 4px 1px; align-items: center; }
+            .stat-label { font-size: 10.4px !important; letter-spacing: -0.2px; margin: 0; }
+            .stat-value { font-size: 10.4px !important; }
+
             .quiz-mcq-container { margin: 8px 10px 10px 10px; border-width: 1.5px; }
             .seo-card { padding: 12px; }
             
@@ -674,7 +706,6 @@
                     <div class="widget-controls">
                         <button id="prevBtn" class="nav-btn" aria-label="Previous"><i class="fa-solid fa-arrow-left"></i> Prev</button>
                         
-                        <!-- JUMP FEATURE REMOVED: Now just a clean static progress display -->
                         <div class="progress-display">
                             <span class="progress-text" id="progressText">0 / 0</span>
                         </div>
@@ -846,7 +877,7 @@
 
 </main>
 
-<!-- HTML HARDCODED HELP MODAL MOVED OUTSIDE MAIN TO PREVENT CLIPPING -->
+<!-- HTML HARDCODED HELP MODAL - EXTREME LOCK FOR CENTER POPUP -->
 <div id="quizHelpModal" class="quiz-modal-overlay" onclick="if(event.target === this) toggleHelpModal()">
     <div class="quiz-modal-content glass-panel">
         <div class="quiz-modal-header">
