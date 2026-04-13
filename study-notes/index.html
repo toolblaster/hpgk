@@ -85,7 +85,7 @@
     <!-- Load Global Style First -->
     <link rel="stylesheet" href="../js/style.css">
 
-    <!-- PAGE SPECIFIC STYLESHEET (Clean & Natural) -->
+    <!-- PAGE SPECIFIC STYLESHEET (Clean, Compact, 4-Column) -->
     <style>
         :root {
             /* Blue Theme for HPGK Main Hub */
@@ -137,7 +137,6 @@
             padding: 0; flex-wrap: nowrap; gap: 10px; 
         }
 
-        /* PERFECTLY MATCHED HERO BADGE AND BREADCRUMB (24px height) */
         .breadcrumb-nav { margin: 0; flex-shrink: 1; display: flex; align-items: center; height: 24px; }
         .breadcrumb-list { 
             list-style: none; padding: 0 10px; margin: 0; display: flex; flex-wrap: nowrap; 
@@ -199,57 +198,44 @@
             margin-top: 4px;
         }
 
-        /* STRICTLY LOCKED H2 to 25px */
-        .section-sub-heading {
-            font-family: 'Inter', sans-serif !important;
-            font-size: 25px !important;
-            font-weight: 800 !important;
-            color: var(--text-main);
-            text-align: center;
-            margin: 0 auto 15px auto; 
-            width: 100%;
-            display: block;
-        }
-
         /* ==========================================================================
-           ORIGINAL 6-COLUMN GRID FOR NOTES (Natural styling restored)
+           4-COLUMN COMPACT GRID FOR NOTES CARDS
            ========================================================================== */
         .notes-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            margin-bottom: 25px;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        @media (min-width: 500px) {
+            .notes-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
         @media (min-width: 768px) {
-            .notes-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
+            .notes-grid { grid-template-columns: repeat(3, 1fr); gap: 15px; }
         }
 
-        /* Restored original 6 columns */
-        @media (min-width: 1200px) {
-            .notes-grid {
-                grid-template-columns: repeat(6, 1fr);
-            }
+        /* Enforcing 4 cards in a row for larger screens */
+        @media (min-width: 1024px) {
+            .notes-grid { grid-template-columns: repeat(4, 1fr); }
         }
 
-        /* Solid, natural card styling - NO forced glassmorphism */
+        /* Solid, compact card styling */
         .note-card {
             background: #ffffff;
             border: 1px solid #e2e8f0;
-            border-radius: 10px;
-            padding: 12px 10px; 
-            text-align: center;
+            border-radius: var(--radius-lg);
+            padding: 15px; /* Tighter padding */
+            text-align: left;
             cursor: pointer;
             transition: all 0.2s ease;
             text-decoration: none; 
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100px;
+            min-height: 130px; /* Reduced min-height */
             box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            position: relative;
         }
 
         [data-theme="dark"] .note-card {
@@ -260,22 +246,21 @@
 
         .note-card.active {
             border-color: var(--primary);
-            background: var(--primary-light);
-            box-shadow: 0 0 0 1px var(--primary-light);
+            background: var(--bg-gradient); 
         }
 
         [data-theme="dark"] .note-card.active {
-            background: rgba(37, 99, 235, 0.15);
+            background: rgba(37, 99, 235, 0.05);
         }
 
         .note-card:hover:not(.disabled) {
-            transform: translateY(-2px);
+            transform: translateY(-3px);
             border-color: var(--primary);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 6px 15px rgba(37, 99, 235, 0.1);
         }
 
         .note-card.disabled {
-            opacity: 0.6;
+            opacity: 0.75;
             cursor: not-allowed;
             background: #f8fafc;
         }
@@ -284,15 +269,36 @@
             background: #0f172a; 
         }
 
+        /* Inline, compact header */
+        .note-header {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
         .note-icon {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: var(--primary);
-            margin-bottom: 5px;
+            background: var(--primary-light);
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .note-title-wrapper {
+            display: flex;
+            flex-direction: column;
         }
 
         .note-title {
-            font-size: 0.85rem;
-            font-weight: 700;
+            font-size: 0.9rem;
+            font-weight: 800;
             color: var(--text-main);
             line-height: 1.2;
             font-family: 'Inter', sans-serif;
@@ -302,9 +308,42 @@
             display: block;
             font-family: 'Noto Sans Devanagari', sans-serif;
             font-size: 0.7rem;
-            font-weight: 400;
+            font-weight: 500;
             color: var(--text-sec);
             margin-top: 2px;
+        }
+
+        .note-desc {
+            font-size: 0.75rem;
+            color: var(--text-sec);
+            line-height: 1.35;
+            margin-bottom: 12px;
+            flex-grow: 1;
+        }
+
+        .note-status {
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border-radius: 20px;
+            background: #e2e8f0;
+            color: var(--text-sec);
+            align-self: flex-start;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            letter-spacing: 0.5px;
+        }
+
+        [data-theme="dark"] .note-status {
+            background: #334155;
+            color: #94a3b8;
+        }
+
+        .note-card.active .note-status {
+            background: var(--primary);
+            color: #ffffff;
         }
 
         /* Section Separator */
@@ -323,14 +362,14 @@
         @media (max-width: 600px) {
             main { padding: 15px 10px; }
             .top-meta-bar { flex-wrap: nowrap; justify-content: space-between; }
-            
-            /* PERFECTLY MATCHED MOBILE SIZING */
             .breadcrumb-nav, .hero-badge { height: 26px; }
             .breadcrumb-list { padding: 0 10px; border-radius: 13px; }
             .hero-badge { padding: 0 10px; border-radius: 13px; font-size: 0.6rem; }
             .breadcrumb-item { font-size: 0.6rem; }
-            
             .section-separator { margin-top: 20px; margin-bottom: 20px; }
+            
+            .note-card { padding: 12px; min-height: 120px; }
+            .note-icon { width: 32px; height: 32px; font-size: 1rem; border-radius: 6px; }
         }
     </style>
 
@@ -375,115 +414,241 @@
             </p>
         </section>
 
-        <!-- Navigation Grid for Notes -->
+        <!-- Compact Navigation Grid for Notes (4-Column Layout) -->
         <div class="notes-grid">
             
-            <!-- 1. Govt Schemes (Updated to Folder URL) -->
+            <!-- 1. Govt Schemes -->
             <a href="govt-schemes/" class="note-card active">
-                <div class="note-icon"><i class="fa-solid fa-hands-holding-circle"></i></div>
-                <div class="note-title">Govt. Schemes<span class="hi-title">सरकारी योजनाएं</span></div>
+                <div class="note-header">
+                    <div class="note-icon"><i class="fa-solid fa-hands-holding-circle"></i></div>
+                    <div class="note-title-wrapper">
+                        <div class="note-title">Govt. Schemes</div>
+                        <span class="hi-title">सरकारी योजनाएं</span>
+                    </div>
+                </div>
+                <div class="note-desc">Welfare schemes by HP Govt. Essential for HPAS & state exams.</div>
+                <div class="note-status"><i class="fa-solid fa-book-open"></i> Read</div>
             </a>
             
-            <!-- 2. Latest Budget (Evergreen) -->
+            <!-- 2. Latest Budget -->
             <div class="note-card disabled" title="Coming Soon">
-                <div class="note-icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
-                <div class="note-title">Latest Budget<span class="hi-title">बजट (जल्द आ रहा है)</span></div>
+                <div class="note-header">
+                    <div class="note-icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+                    <div class="note-title-wrapper">
+                        <div class="note-title">Latest Budget</div>
+                        <span class="hi-title">बजट</span>
+                    </div>
+                </div>
+                <div class="note-desc">Highlights & sector-wise allocations of the HP State Budget.</div>
+                <div class="note-status"><i class="fa-solid fa-lock"></i> Soon</div>
             </div>
             
             <!-- 3. Eco Survey -->
             <div class="note-card disabled" title="Coming Soon">
-                <div class="note-icon"><i class="fa-solid fa-chart-line"></i></div>
-                <div class="note-title">Eco Survey<span class="hi-title">आर्थिक सर्वेक्षण</span></div>
+                <div class="note-header">
+                    <div class="note-icon"><i class="fa-solid fa-chart-line"></i></div>
+                    <div class="note-title-wrapper">
+                        <div class="note-title">Economic Survey</div>
+                        <span class="hi-title">आर्थिक सर्वेक्षण</span>
+                    </div>
+                </div>
+                <div class="note-desc">Analysis of HP's GDP, agriculture & industrial growth.</div>
+                <div class="note-status"><i class="fa-solid fa-lock"></i> Soon</div>
             </div>
             
             <!-- 4. One Liners -->
             <div class="note-card disabled" title="Coming Soon">
-                <div class="note-icon"><i class="fa-solid fa-bolt"></i></div>
-                <div class="note-title">One Liners<span class="hi-title">महत्वपूर्ण तथ्य</span></div>
+                <div class="note-header">
+                    <div class="note-icon"><i class="fa-solid fa-bolt"></i></div>
+                    <div class="note-title-wrapper">
+                        <div class="note-title">Exam One Liners</div>
+                        <span class="hi-title">महत्वपूर्ण तथ्य</span>
+                    </div>
+                </div>
+                <div class="note-desc">Quick revision points & high-yield facts for HPPSC.</div>
+                <div class="note-status"><i class="fa-solid fa-lock"></i> Soon</div>
             </div>
             
             <!-- 5. Rivers -->
             <div class="note-card disabled" title="Coming Soon">
-                <div class="note-icon"><i class="fa-solid fa-water"></i></div>
-                <div class="note-title">HP Rivers<span class="hi-title">नदियाँ</span></div>
+                <div class="note-header">
+                    <div class="note-icon"><i class="fa-solid fa-water"></i></div>
+                    <div class="note-title-wrapper">
+                        <div class="note-title">Rivers of HP</div>
+                        <span class="hi-title">हिमाचल की नदियाँ</span>
+                    </div>
+                </div>
+                <div class="note-desc">Major river systems: Satluj, Beas, Ravi, Chenab & Yamuna.</div>
+                <div class="note-status"><i class="fa-solid fa-lock"></i> Soon</div>
             </div>
             
             <!-- 6. Culture -->
             <div class="note-card disabled" title="Coming Soon">
-                <div class="note-icon"><i class="fa-solid fa-gopuram"></i></div>
-                <div class="note-title">Art & Culture<span class="hi-title">कला और संस्कृति</span></div>
+                <div class="note-header">
+                    <div class="note-icon"><i class="fa-solid fa-gopuram"></i></div>
+                    <div class="note-title-wrapper">
+                        <div class="note-title">Art & Culture</div>
+                        <span class="hi-title">कला और संस्कृति</span>
+                    </div>
+                </div>
+                <div class="note-desc">Temple architecture, famous fairs, folk dances & paintings.</div>
+                <div class="note-status"><i class="fa-solid fa-lock"></i> Soon</div>
             </div>
 
             <!-- 7. Economy -->
             <div class="note-card disabled" title="Coming Soon">
-                <div class="note-icon"><i class="fa-solid fa-sack-dollar"></i></div>
-                <div class="note-title">HP Economy<span class="hi-title">अर्थव्यवस्था</span></div>
+                <div class="note-header">
+                    <div class="note-icon"><i class="fa-solid fa-sack-dollar"></i></div>
+                    <div class="note-title-wrapper">
+                        <div class="note-title">HP Economy</div>
+                        <span class="hi-title">अर्थव्यवस्था</span>
+                    </div>
+                </div>
+                <div class="note-desc">Agriculture, horticulture, hydropower & major industries.</div>
+                <div class="note-status"><i class="fa-solid fa-lock"></i> Soon</div>
             </div>
 
             <!-- 8. Districts -->
             <div class="note-card disabled" title="Coming Soon">
-                <div class="note-icon"><i class="fa-solid fa-map-location-dot"></i></div>
-                <div class="note-title">District Profile<span class="hi-title">जिला प्रोफाइल</span></div>
+                <div class="note-header">
+                    <div class="note-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+                    <div class="note-title-wrapper">
+                        <div class="note-title">District Profiles</div>
+                        <span class="hi-title">जिला प्रोफाइल</span>
+                    </div>
+                </div>
+                <div class="note-desc">History, geography & economy of all 12 districts.</div>
+                <div class="note-status"><i class="fa-solid fa-lock"></i> Soon</div>
             </div>
 
             <!-- 9. Polity -->
             <div class="note-card disabled" title="Coming Soon">
-                <div class="note-icon"><i class="fa-solid fa-scale-balanced"></i></div>
-                <div class="note-title">Polity<span class="hi-title">राजनीति</span></div>
+                <div class="note-header">
+                    <div class="note-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+                    <div class="note-title-wrapper">
+                        <div class="note-title">Polity & Admin</div>
+                        <span class="hi-title">राजनीति और प्रशासन</span>
+                    </div>
+                </div>
+                <div class="note-desc">Administrative setup, Vidhan Sabha & constitutional bodies.</div>
+                <div class="note-status"><i class="fa-solid fa-lock"></i> Soon</div>
             </div>
 
             <!-- 10. Famous People -->
             <div class="note-card disabled" title="Coming Soon">
-                <div class="note-icon"><i class="fa-solid fa-user-graduate"></i></div>
-                <div class="note-title">Famous People<span class="hi-title">प्रसिद्ध व्यक्तित्व</span></div>
+                <div class="note-header">
+                    <div class="note-icon"><i class="fa-solid fa-user-graduate"></i></div>
+                    <div class="note-title-wrapper">
+                        <div class="note-title">Famous People</div>
+                        <span class="hi-title">प्रसिद्ध व्यक्तित्व</span>
+                    </div>
+                </div>
+                <div class="note-desc">Biographies of freedom fighters, writers & award winners.</div>
+                <div class="note-status"><i class="fa-solid fa-lock"></i> Soon</div>
             </div>
 
             <!-- 11. Environment -->
             <div class="note-card disabled" title="Coming Soon">
-                <div class="note-icon"><i class="fa-solid fa-tree"></i></div>
-                <div class="note-title">Environment<span class="hi-title">पर्यावरण</span></div>
+                <div class="note-header">
+                    <div class="note-icon"><i class="fa-solid fa-tree"></i></div>
+                    <div class="note-title-wrapper">
+                        <div class="note-title">Environment</div>
+                        <span class="hi-title">पर्यावरण</span>
+                    </div>
+                </div>
+                <div class="note-desc">National Parks, Wildlife Sanctuaries & State symbols.</div>
+                <div class="note-status"><i class="fa-solid fa-lock"></i> Soon</div>
             </div>
 
             <!-- 12. Tourism -->
             <div class="note-card disabled" title="Coming Soon">
-                <div class="note-icon"><i class="fa-solid fa-person-hiking"></i></div>
-                <div class="note-title">Tourism<span class="hi-title">पर्यटन</span></div>
+                <div class="note-header">
+                    <div class="note-icon"><i class="fa-solid fa-person-hiking"></i></div>
+                    <div class="note-title-wrapper">
+                        <div class="note-title">Tourism in HP</div>
+                        <span class="hi-title">पर्यटन</span>
+                    </div>
+                </div>
+                <div class="note-desc">Hill stations, religious sites & adventure sports.</div>
+                <div class="note-status"><i class="fa-solid fa-lock"></i> Soon</div>
             </div>
 
             <!-- 13. HP History -->
             <div class="note-card disabled" title="Coming Soon">
-                <div class="note-icon"><i class="fa-solid fa-landmark"></i></div>
-                <div class="note-title">HP History<span class="hi-title">हिमाचल इतिहास</span></div>
+                <div class="note-header">
+                    <div class="note-icon"><i class="fa-solid fa-landmark"></i></div>
+                    <div class="note-title-wrapper">
+                        <div class="note-title">History of HP</div>
+                        <span class="hi-title">हिमाचल का इतिहास</span>
+                    </div>
+                </div>
+                <div class="note-desc">Ancient Janapadas, Gorkha wars & the freedom struggle.</div>
+                <div class="note-status"><i class="fa-solid fa-lock"></i> Soon</div>
             </div>
 
             <!-- 14. HP Geography -->
             <div class="note-card disabled" title="Coming Soon">
-                <div class="note-icon"><i class="fa-solid fa-mountain"></i></div>
-                <div class="note-title">HP Geography<span class="hi-title">हिमाचल भूगोल</span></div>
+                <div class="note-header">
+                    <div class="note-icon"><i class="fa-solid fa-mountain"></i></div>
+                    <div class="note-title-wrapper">
+                        <div class="note-title">Geography of HP</div>
+                        <span class="hi-title">हिमाचल का भूगोल</span>
+                    </div>
+                </div>
+                <div class="note-desc">Mountain ranges, peaks, passes, glaciers & valleys.</div>
+                <div class="note-status"><i class="fa-solid fa-lock"></i> Soon</div>
             </div>
 
             <!-- 15. HP Census 2011 -->
             <div class="note-card disabled" title="Coming Soon">
-                <div class="note-icon"><i class="fa-solid fa-users"></i></div>
-                <div class="note-title">HP Census 2011<span class="hi-title">जनगणना 2011</span></div>
+                <div class="note-header">
+                    <div class="note-icon"><i class="fa-solid fa-users"></i></div>
+                    <div class="note-title-wrapper">
+                        <div class="note-title">Census 2011</div>
+                        <span class="hi-title">जनगणना 2011</span>
+                    </div>
+                </div>
+                <div class="note-desc">Population density, literacy rate, sex ratio & growth.</div>
+                <div class="note-status"><i class="fa-solid fa-lock"></i> Soon</div>
             </div>
 
             <!-- 16. Forests & Wildlife -->
             <div class="note-card disabled" title="Coming Soon">
-                <div class="note-icon"><i class="fa-solid fa-paw"></i></div>
-                <div class="note-title">Forests & Wildlife<span class="hi-title">वन और वन्यजीव</span></div>
+                <div class="note-header">
+                    <div class="note-icon"><i class="fa-solid fa-paw"></i></div>
+                    <div class="note-title-wrapper">
+                        <div class="note-title">Forests & Wildlife</div>
+                        <span class="hi-title">वन और वन्यजीव</span>
+                    </div>
+                </div>
+                <div class="note-desc">Forest cover classifications & vital wildlife stats.</div>
+                <div class="note-status"><i class="fa-solid fa-lock"></i> Soon</div>
             </div>
 
             <!-- 17. HP Agriculture -->
             <div class="note-card disabled" title="Coming Soon">
-                <div class="note-icon"><i class="fa-solid fa-seedling"></i></div>
-                <div class="note-title">HP Agriculture<span class="hi-title">कृषि</span></div>
+                <div class="note-header">
+                    <div class="note-icon"><i class="fa-solid fa-seedling"></i></div>
+                    <div class="note-title-wrapper">
+                        <div class="note-title">Agriculture</div>
+                        <span class="hi-title">कृषि</span>
+                    </div>
+                </div>
+                <div class="note-desc">Crop patterns, irrigation projects & agro-climatic zones.</div>
+                <div class="note-status"><i class="fa-solid fa-lock"></i> Soon</div>
             </div>
 
             <!-- 18. HP Administration -->
             <div class="note-card disabled" title="Coming Soon">
-                <div class="note-icon"><i class="fa-solid fa-building-columns"></i></div>
-                <div class="note-title">HP Administration<span class="hi-title">प्रशासन</span></div>
+                <div class="note-header">
+                    <div class="note-icon"><i class="fa-solid fa-building-columns"></i></div>
+                    <div class="note-title-wrapper">
+                        <div class="note-title">Administration</div>
+                        <span class="hi-title">प्रशासनिक ढांचा</span>
+                    </div>
+                </div>
+                <div class="note-desc">Evolution from a Chief Commissioner's province to statehood.</div>
+                <div class="note-status"><i class="fa-solid fa-lock"></i> Soon</div>
             </div>
 
         </div>
