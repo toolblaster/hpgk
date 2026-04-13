@@ -114,9 +114,9 @@
             
             --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #020617 100%);
             
-            --text-main: #f8fafc;     
-            --text-body: #cbd5e1;     
-            --text-sec: #94a3b8;      
+            --text-main: #ffffff;     
+            --text-body: #e2e8f0;     
+            --text-sec: #cbd5e1;      
         }
 
         body {
@@ -195,6 +195,10 @@
             color: var(--text-sec);
             display: block;
             margin-top: 4px;
+        }
+
+        [data-theme="dark"] .hero-desc span.hi-desc {
+            color: #e2e8f0; /* Boost contrast in dark mode for Hindi intro */
         }
 
         /* ==========================================================================
@@ -302,13 +306,20 @@
             font-family: 'Inter', sans-serif;
         }
 
-        .note-title span.hi-title {
+        /* FIXED SELECTOR: Now targets the span properly */
+        .hi-title {
             display: block;
             font-family: 'Noto Sans Devanagari', sans-serif;
-            font-size: 0.7rem;
+            font-size: 0.75rem; /* Increased slightly for better legibility */
             font-weight: 500;
             color: var(--text-sec);
-            margin-top: 2px;
+            margin-top: 3px;
+        }
+
+        /* Fix for Hindi Text Contrast in Dark Mode */
+        [data-theme="dark"] .hi-title {
+            font-weight: 600;
+            color: #f8fafc !important; /* Pure white/light grey for maximum contrast */
         }
 
         .note-desc {
@@ -336,12 +347,12 @@
 
         [data-theme="dark"] .note-status {
             background: #334155;
-            color: #94a3b8;
+            color: #e2e8f0;
         }
 
         .note-card.active .note-status {
             background: var(--primary);
-            color: #ffffff;
+            color: #ffffff !important;
         }
 
         /* --- SEO Content Blocks --- */
@@ -441,7 +452,7 @@
                 <div class="note-status"><i class="fa-solid fa-book-open"></i> Read</div>
             </a>
             
-            <!-- 2. Latest Budget (UPDATED TO HP-BUDGET FOLDER) -->
+            <!-- 2. Latest Budget -->
             <a href="hp-budget/" class="note-card active">
                 <div class="note-header">
                     <div class="note-icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
