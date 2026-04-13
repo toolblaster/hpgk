@@ -104,7 +104,7 @@
     }
     </script>
 
-    <!-- Assets (Favicon path updated to js/favicon) -->
+    <!-- Assets -->
     <link rel="apple-touch-icon" sizes="180x180" href="js/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="512x512" href="js/favicon/web-app-manifest-512x512.png">
     <link rel="icon" type="image/png" sizes="192x192" href="js/favicon/web-app-manifest-192x192.png">
@@ -133,7 +133,7 @@
             --primary-dark: #1e3a8a;  
             --accent: #ea580c;        
             
-            /* Glassmorphism Variables (Vibrant Blue/Purple tint) */
+            /* Glassmorphism Variables */
             --bg-gradient: linear-gradient(135deg, #eff6ff 0%, #dbeafe 50%, #f3e8ff 100%);
             --card-bg: rgba(255, 255, 255, 0.65); 
             --card-border: rgba(255, 255, 255, 0.5); 
@@ -177,7 +177,6 @@
             color: var(--text-body);
         }
 
-        /* Glassmorphism Utility Class */
         .glass-panel {
             background: var(--card-bg);
             backdrop-filter: blur(16px);
@@ -186,22 +185,15 @@
             box-shadow: var(--glass-shadow);
         }
 
-        .progress-container {
-            position: fixed; top: 0; left: 0; width: 100%; height: 3px; 
-            background: rgba(0,0,0,0.1); z-index: 1000;
-        }
-
-        .progress-fill { height: 100%; background: var(--primary); width: 0%; transition: width 0.3s ease-out; }
-
-        /* Main Layout */
-        main { flex: 1; max-width: 1200px; margin: 0 auto; padding: 25px 15px; width: 100%; }
-        .main-layout { display: flex; flex-direction: column; gap: 10px; } 
+        /* Main Layout - Removing gap to control spacing with margins natively */
+        main { flex: 1; max-width: 1200px; margin: 0 auto; padding: 20px 15px; width: 100%; }
+        .main-layout { display: flex; flex-direction: column; gap: 0; } 
 
         /* Compact Hero Section */
         .hub-hero { 
             text-align: center; 
             max-width: 800px; 
-            margin: 0 auto;
+            margin: 0 auto 12px auto; /* Reduced margin slightly to fit ticker compactly */
             padding: 5px 15px;
         }
         
@@ -216,32 +208,94 @@
             border: 1px solid var(--primary);
         }
 
+        /* STRICTLY LOCKED H1 to 32px */
         .hero-title {
             font-family: 'Inter', sans-serif !important;
-            font-size: 30px !important; 
+            font-size: 32px !important; 
             font-weight: 800 !important;
             margin: 0 0 6px 0; 
             line-height: 1.2;
             letter-spacing: -0.5px;
             color: var(--text-main);
+            text-align: center; 
         }
 
         .hero-desc {
             font-size: 0.95rem;
             color: var(--text-sec);
             line-height: 1.5;
-            margin: 0 auto 5px auto; 
+            margin: 0 auto; 
             max-width: 650px;
         }
 
-        /* Section Headings & Descriptions */
-        .section-sub-heading {
-            font-family: 'Inter', sans-serif;
-            font-size: 1.25rem;
+        /* --- TICKER SECTION (Compact & Smooth) --- */
+        .news-ticker-container {
+            width: 100%;
+            background: var(--primary-light);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            padding: 4px 8px;
+            margin: 0 auto 18px auto; /* Perfect gap between hero and grid */
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.03);
+            max-width: 1200px;
+        }
+        [data-theme="dark"] .news-ticker-container {
+            background: rgba(96, 165, 250, 0.08); /* Softer background in dark mode */
+        }
+        .ticker-badge {
+            background: var(--primary);
+            color: white;
+            font-size: 0.65rem;
             font-weight: 800;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-right: 8px;
+            z-index: 2;
+            text-transform: uppercase;
+            white-space: nowrap;
+            letter-spacing: 0.5px;
+            box-shadow: var(--shadow-sm);
+        }
+        .ticker-wrap {
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+            mask-image: linear-gradient(to right, transparent, black 2%, black 98%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 2%, black 98%, transparent);
+        }
+        .ticker-text {
+            display: inline-block;
+            white-space: nowrap;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-main);
+            animation: tickerScroll 25s linear infinite;
+            padding-left: 100%; /* Start off-screen */
+        }
+        .ticker-text span {
+            color: var(--primary); /* Highlight specific words */
+        }
+        .news-ticker-container:hover .ticker-text {
+            animation-play-state: paused;
+        }
+        @keyframes tickerScroll {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-100%, 0, 0); }
+        }
+
+        /* STRICTLY LOCKED H2 to 25px */
+        .section-sub-heading {
+            font-family: 'Inter', sans-serif !important;
+            font-size: 25px !important;
+            font-weight: 800 !important;
             color: var(--text-main);
             text-align: center;
-            margin: 0 auto 6px auto; 
+            margin: 0 auto 5px auto; 
             width: 100%;
             display: block;
         }
@@ -255,12 +309,16 @@
             text-align: center;
         }
 
-        /* Main Topics Grid */
+        /* ==========================================================================
+           ORIGINAL, PERFECTLY SIZED GRID LAYOUT (Match exactly 208px for bottom)
+           ========================================================================== */
+        
         .topic-grid { 
             display: grid; 
             grid-template-columns: repeat(2, 1fr); 
             gap: 12px; 
             margin-bottom: 0; 
+            width: 100%;
         }
 
         @media (min-width: 600px) {
@@ -274,23 +332,31 @@
             .topic-grid { grid-template-columns: repeat(5, 1fr); }
         }
 
-        /* Bulletproof Centered Grid for 2 Cards */
-        .topic-grid.centered {
+        /* Centered Bottom Grid (LOCKED to 208px for uniform size/hierarchy) */
+        .topic-grid.centered { 
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(2, 1fr); /* Mobile keeps 50% */
             gap: 12px;
             justify-content: center;
-            margin-bottom: 5px;
+            margin: 0 auto 10px auto; 
+            width: 100%;
         }
         
-        @media (min-width: 600px) {
-            .topic-grid.centered {
-                grid-template-columns: repeat(2, minmax(180px, 240px)); 
+        @media (min-width: 600px) { 
+            .topic-grid.centered { 
+                /* Strict lock to 208px as requested to match top grid perfectly */
+                grid-template-columns: repeat(2, 208px); 
                 gap: 15px;
-            }
+            } 
         }
 
-        .topic-card { 
+        /* Original compact card style - Using specific selector to ignore style.css margins */
+        .main-layout .topic-card { 
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--card-border);
+            box-shadow: var(--glass-shadow);
             border-radius: var(--radius-lg); 
             padding: 15px 10px; 
             text-decoration: none; 
@@ -300,10 +366,11 @@
             flex-direction: column; 
             align-items: center; 
             text-align: center; 
-            min-height: 100%;
+            margin: 0; /* Ensures external margins don't break the grid */
+            box-sizing: border-box;
         }
         
-        .topic-card:hover { 
+        .main-layout .topic-card:hover { 
             border-color: var(--primary); 
             transform: translateY(-2px);
         }
@@ -326,6 +393,7 @@
             font-weight: 700; 
             margin-bottom: 5px; 
             line-height: 1.2;
+            font-family: 'Inter', sans-serif;
         }
         
         .topic-desc { 
@@ -333,6 +401,7 @@
             color: var(--text-sec); 
             margin-bottom: 8px; 
             line-height: 1.3; 
+            flex-grow: 1;
         }
         
         .topic-badge { 
@@ -344,33 +413,108 @@
             border-radius: 10px; 
             font-weight: 600; 
             border: 1px solid var(--card-border);
+            white-space: nowrap;
         }
         .topic-badge.active { background: var(--correct-bg); color: var(--correct-text); border-color: transparent; }
 
         /* Agriculture Specialized Card (Dark Mode Compatible) */
-        .agri-card { border-color: #059669 !important; }
-        .agri-card .topic-icon { color: #059669 !important; background: rgba(5, 150, 105, 0.1) !important; }
-        .agri-card .topic-badge { background: rgba(5, 150, 105, 0.15) !important; color: #065f46 !important; border: none !important; }
+        .main-layout .agri-card { border-color: #059669; }
+        .agri-card .topic-icon { color: #059669; background: rgba(5, 150, 105, 0.1); }
+        .agri-card .topic-badge { background: rgba(5, 150, 105, 0.15); color: #065f46; border: none; }
         
-        [data-theme="dark"] .agri-card { border-color: #34d399 !important; }
-        [data-theme="dark"] .agri-card .topic-icon { color: #34d399 !important; background: rgba(52, 211, 153, 0.15) !important; }
-        [data-theme="dark"] .agri-card .topic-badge { background: rgba(52, 211, 153, 0.2) !important; color: #6ee7b7 !important; }
+        [data-theme="dark"] .main-layout .agri-card { border-color: #34d399; }
+        [data-theme="dark"] .agri-card .topic-icon { color: #34d399; background: rgba(52, 211, 153, 0.15); }
+        [data-theme="dark"] .agri-card .topic-badge { background: rgba(52, 211, 153, 0.2); color: #6ee7b7; border-color: transparent;}
 
         /* Install Button Style */
         .install-float { position: fixed; bottom: 20px; right: 20px; z-index: 1000; display: none; background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 50px; font-weight: 600; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4); cursor: pointer; align-items: center; gap: 8px; animation: slideUp 0.3s ease-out; }
         @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
+        /* --- SEO Content Blocks (Matching Internal Pages) --- */
         .section-separator {
-            margin-top: 15px; 
-            margin-bottom: 15px; 
+            margin-top: 30px; 
+            margin-bottom: 30px; 
             height: 1px;
+            width: 100%;
             background: linear-gradient(90deg, transparent, var(--card-border), transparent);
+        }
+
+        .seo-content-wrapper { 
+            width: 100%; 
+            max-width: 1100px; 
+            margin: 0 auto 30px auto; 
+            padding: 0 15px; 
+        }
+        
+        .seo-header { 
+            text-align: center; 
+            margin-bottom: 25px; 
+        }
+        
+        /* H2 strictly 25px */
+        .seo-header h2 { 
+            font-family: 'Inter', sans-serif !important;
+            font-size: 25px !important; 
+            font-weight: 800 !important;
+            margin-bottom: 8px; 
+            color: var(--text-main);
+        }
+        
+        .seo-header p { 
+            color: var(--text-sec); 
+            max-width: 700px; 
+            margin: 0 auto; 
+            font-size: 0.9rem; 
+        }
+        
+        .seo-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 15px; 
+        }
+        
+        .seo-card { 
+            background: var(--card-bg); 
+            border: 1px solid var(--card-border); 
+            padding: 20px; 
+            border-radius: var(--radius-lg); 
+            box-shadow: var(--glass-shadow); 
+            border-left: 4px solid var(--primary); 
+            transition: border-color 0.2s; 
+        }
+        
+        .seo-card:hover { 
+            border-color: var(--primary-light); 
+        }
+        
+        .seo-card h3 { 
+            font-size: 1.05rem; 
+            margin-bottom: 10px; 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            color: var(--text-main); 
+        }
+        
+        .seo-card h3 i { 
+            color: var(--primary); 
+        }
+        
+        .seo-card p { 
+            color: var(--text-body); 
+            font-size: 0.85rem; 
+            margin-bottom: 0; 
+            line-height: 1.6; 
         }
         
         @media (max-width: 600px) {
-            main { padding: 20px 10px; }
-            .section-sub-heading { font-size: 1.15rem; }
+            main { padding: 15px 10px; }
             .section-desc { font-size: 0.8rem; margin-bottom: 12px; padding: 0 10px; }
+            .section-separator { margin-top: 20px; margin-bottom: 20px; }
+            .seo-card { padding: 15px; }
+            .news-ticker-container { padding: 3px 6px; margin-bottom: 15px; }
+            .ticker-badge { font-size: 0.6rem; padding: 2px 4px; }
+            .ticker-text { font-size: 0.7rem; }
         }
     </style>
 
@@ -410,63 +554,73 @@
             </p>
         </section>
 
+        <!-- Compact Fast Scrolling Ticker -->
+        <div class="news-ticker-container glass-panel">
+            <span class="ticker-badge"><i class="fa-solid fa-bolt" style="margin-right:2px;"></i> Updates</span>
+            <div class="ticker-wrap">
+                <span class="ticker-text">
+                    🔥 <span>New:</span> General Agriculture 507+ MCQs Added &nbsp;&nbsp; | &nbsp;&nbsp; 🎯 <span>Target HPAS 2026:</span> Topic-wise Quizzes Live &nbsp;&nbsp; | &nbsp;&nbsp; 📚 <span>Updated:</span> Detailed District Profiles with Latest Economic Survey Stats &nbsp;&nbsp; | &nbsp;&nbsp; 🚀 Start practicing for free!
+                </span>
+            </div>
+        </div>
+
         <!-- Main HP GK Topics Grid -->
         <div class="topic-grid">
-            <a href="himachal-pradesh-gk/rivers/" class="topic-card glass-panel">
+            <a href="himachal-pradesh-gk/rivers/" class="topic-card">
                 <div class="topic-icon"><i class="fa-solid fa-water"></i></div>
                 <div class="topic-title">Rivers System</div>
                 <div class="topic-desc">Satluj, Beas, Ravi, Chenab & Yamuna.</div>
                 <div class="topic-badge active">290+ MCQs</div>
             </a>
-            <a href="himachal-pradesh-gk/history/" class="topic-card glass-panel">
+            <a href="himachal-pradesh-gk/history/" class="topic-card">
                 <div class="topic-icon"><i class="fa-solid fa-landmark"></i></div>
                 <div class="topic-title">History of HP</div>
                 <div class="topic-desc">Ancient Trigarta, British Rule & Statehood.</div>
                 <div class="topic-badge active">480+ MCQs</div>
             </a>
-            <a href="himachal-pradesh-gk/geography/" class="topic-card glass-panel">
+            <a href="himachal-pradesh-gk/geography/" class="topic-card">
                 <div class="topic-icon"><i class="fa-solid fa-mountain"></i></div>
                 <div class="topic-title">Geography</div>
                 <div class="topic-desc">Peaks, Passes, Glaciers & Valleys.</div>
                 <div class="topic-badge active">440+ MCQs</div>
             </a>
-            <a href="himachal-pradesh-gk/art-culture/" class="topic-card glass-panel">
+            <a href="himachal-pradesh-gk/art-culture/" class="topic-card">
                 <div class="topic-icon"><i class="fa-solid fa-gopuram"></i></div>
                 <div class="topic-title">Art & Culture</div>
                 <div class="topic-desc">Temple architecture, Fairs & Folk Dances.</div>
                 <div class="topic-badge active">680+ MCQs</div>
             </a>
-            <a href="himachal-pradesh-gk/economy/" class="topic-card glass-panel">
+            <a href="himachal-pradesh-gk/economy/" class="topic-card">
                 <div class="topic-icon"><i class="fa-solid fa-bolt"></i></div>
                 <div class="topic-title">Economy</div>
                 <div class="topic-desc">Hydropower, Agriculture & Apple production.</div>
                 <div class="topic-badge active">510+ MCQs</div>
             </a>
-             <a href="himachal-pradesh-gk/district/" class="topic-card glass-panel">
+             <a href="himachal-pradesh-gk/district/" class="topic-card">
                 <div class="topic-icon"><i class="fa-solid fa-map-location-dot"></i></div>
                 <div class="topic-title">District Profile</div>
                 <div class="topic-desc">Specific GK for Kangra, Mandi, Shimla, etc.</div>
                 <div class="topic-badge active">1300+ MCQs</div>
             </a>
-            <a href="himachal-pradesh-gk/polity/" class="topic-card glass-panel">
+            <a href="himachal-pradesh-gk/polity/" class="topic-card">
                 <div class="topic-icon"><i class="fa-solid fa-scale-balanced"></i></div>
                 <div class="topic-title">Polity</div>
                 <div class="topic-desc">Administrative structure & Vidhan Sabha.</div>
                 <div class="topic-badge active">810+ MCQs</div>
             </a>
-            <a href="himachal-pradesh-gk/famous-people/" class="topic-card glass-panel">
+            <a href="himachal-pradesh-gk/famous-people/" class="topic-card">
                 <div class="topic-icon"><i class="fa-solid fa-user-graduate"></i></div>
                 <div class="topic-title">Famous People</div>
                 <div class="topic-desc">Freedom fighters, PVC awardees & Artists.</div>
                 <div class="topic-badge active">600+ MCQs</div>
             </a>
-            <a href="himachal-pradesh-gk/environment/" class="topic-card glass-panel">
+            <a href="himachal-pradesh-gk/environment/" class="topic-card">
                 <div class="topic-icon"><i class="fa-solid fa-tree"></i></div>
                 <div class="topic-title">Environment</div>
                 <div class="topic-desc">National Parks, Sanctuaries & Symbols.</div>
                 <div class="topic-badge active">390+ MCQs</div>
             </a>
-            <a href="himachal-pradesh-gk/tourism/" class="topic-card glass-panel">
+            <a href="himachal-pradesh-gk/tourism/" class="topic-card">
                 <div class="topic-icon"><i class="fa-solid fa-person-hiking"></i></div>
                 <div class="topic-title">Tourism</div>
                 <div class="topic-desc">Hill Stations, Treks & Religious Circuit.</div>
@@ -479,12 +633,12 @@
         <!-- Specialized Subject Quizzes & Resources -->
         <h2 class="section-sub-heading">Specialized Quizzes & Resources</h2>
         <p class="section-desc">
-            Target high-weightage subjects with focused mock tests. Includes latest HP Govt schemes, budget highlights, and a dedicated <strong>General Agriculture</strong> module (507+ bilingual MCQs) tailored for ICAR JRF, IBPS AFO, NABARD & State ADO/RAEO exams.
+            Target high-weightage subjects with focused mock tests. Includes latest HP Govt schemes, budget highlights, and a dedicated <strong>General Agriculture</strong> module tailored for ICAR JRF, IBPS AFO & State ADO exams.
         </p>
         
         <div class="topic-grid centered">
-            <!-- Agriculture Quiz Card (Dark Mode Fixed) -->
-            <a href="agriculture-quiz/" class="topic-card glass-panel agri-card">
+            <!-- Agriculture Quiz Card -->
+            <a href="agriculture-quiz/" class="topic-card agri-card">
                 <div class="topic-icon"><i class="fa-solid fa-seedling"></i></div>
                 <div class="topic-title">General Agriculture</div>
                 <div class="topic-desc">Ideal for ICAR JRF, IBPS AFO & NABARD.</div>
@@ -492,7 +646,7 @@
             </a>
 
             <!-- Study Notes Card -->
-            <a href="study-notes/" class="topic-card glass-panel" style="border-color: var(--primary);">
+            <a href="study-notes/" class="topic-card" style="border-color: var(--primary);">
                 <div class="topic-icon"><i class="fa-solid fa-book-open"></i></div>
                 <div class="topic-title">HP Study Notes</div>
                 <div class="topic-desc">Govt Schemes, Budget & Economic Survey.</div>
@@ -501,6 +655,37 @@
         </div>
 
     </div>
+    
+    <div class="section-separator"></div>
+
+    <!-- Natural SEO Content Section for Search Engines -->
+    <section class="seo-content-wrapper">
+        <div class="seo-header">
+            <h2>Your Ultimate Guide to HP General Knowledge</h2>
+            <p>Comprehensive study material and free mock tests for all Himachal Pradesh competitive exams.</p>
+        </div>
+
+        <div class="seo-grid">
+            <!-- Card 1: Targeting English & Hindi combo -->
+            <div class="seo-card glass-panel">
+                <h3><i class="fa-solid fa-language"></i> Bilingual Learning</h3>
+                <p>Welcome to the most trusted platform to master <strong>himachal pradesh gk in english</strong> as well as <strong>himachal pradesh gk in hindi</strong>. Our dual-language approach ensures that language is never a barrier to your success in state-level exams.</p>
+            </div>
+
+            <!-- Card 2: Targeting "latest questions" & Hindi -->
+            <div class="seo-card glass-panel">
+                <h3><i class="fa-solid fa-clipboard-question"></i> Latest Question Bank</h3>
+                <p>Stay ahead of the competition with our regularly updated database. We provide the <strong>latest hp gk questions with answers in hindi</strong> and English, covering high-weightage topics like History, Geography, Polity, and the state Economy.</p>
+            </div>
+
+            <!-- Card 3: Targeting general Hindi queries -->
+            <div class="seo-card glass-panel">
+                <h3><i class="fa-solid fa-bullseye"></i> Targeted Practice</h3>
+                <p>Looking for reliable practice material? Attempting our <strong>hp gk questions in hindi</strong> and English through our interactive mock tests helps you evaluate your preparation for HPAS, HPPSC, Naib Tehsildar, and Allied Services—all for free and without any login.</p>
+            </div>
+        </div>
+    </section>
+
 </main>
 
 <!-- Dynamic Footer Container -->
