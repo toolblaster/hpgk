@@ -88,7 +88,6 @@
     <!-- PAGE SPECIFIC STYLESHEET (Clean, Compact, 4-Column) -->
     <style>
         :root {
-            /* Blue Theme for HPGK Main Hub */
             --primary: #2563eb;       
             --primary-hover: #1d4ed8; 
             --primary-light: rgba(37, 99, 235, 0.1); 
@@ -216,7 +215,6 @@
             .notes-grid { grid-template-columns: repeat(3, 1fr); gap: 15px; }
         }
 
-        /* Enforcing 4 cards in a row for larger screens */
         @media (min-width: 1024px) {
             .notes-grid { grid-template-columns: repeat(4, 1fr); }
         }
@@ -233,7 +231,7 @@
             text-decoration: none; 
             display: flex;
             flex-direction: column;
-            min-height: 130px; /* Reduced min-height */
+            min-height: 130px; 
             box-shadow: 0 1px 3px rgba(0,0,0,0.05);
             position: relative;
         }
@@ -346,6 +344,18 @@
             color: #ffffff;
         }
 
+        /* --- SEO Content Blocks --- */
+        .seo-content-wrapper { margin-top: 30px; margin-bottom: 30px; width: 100%; max-width: 1200px; margin-inline: auto; }
+        .seo-header { text-align: center; margin-bottom: 20px; }
+        .seo-header h2 { font-size: clamp(1.2rem, 3vw, 1.6rem); margin-bottom: 8px; color: var(--text-main); font-weight: 800; }
+        .seo-header p { color: var(--text-sec); max-width: 600px; margin: 0 auto; font-size: 0.85rem; }
+        .seo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
+        .seo-card { background: var(--card-bg); border: 1px solid var(--card-border); padding: 20px; border-radius: var(--radius-lg); box-shadow: var(--glass-shadow); border-left: 4px solid var(--primary); transition: border-color 0.2s; }
+        .seo-card:hover { border-color: var(--primary-light); }
+        .seo-card h3 { font-size: 1.05rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; color: var(--text-main); font-weight: 700; }
+        .seo-card h3 i { color: var(--primary); }
+        .seo-card p { color: var(--text-body); font-size: 0.85rem; margin-bottom: 0; line-height: 1.5; }
+
         /* Section Separator */
         .section-separator {
             margin-top: 30px; 
@@ -370,6 +380,7 @@
             
             .note-card { padding: 12px; min-height: 120px; }
             .note-icon { width: 32px; height: 32px; font-size: 1rem; border-radius: 6px; }
+            .seo-card { padding: 15px; }
         }
     </style>
 
@@ -393,7 +404,7 @@
 <main>
     <div class="main-layout">
         
-        <!-- Top Meta Bar: Breadcrumb (Left) & Hero Badge (Right) -->
+        <!-- Top Meta Bar -->
         <div class="top-meta-bar">
             <nav aria-label="breadcrumb" class="breadcrumb-nav">
                 <ol class="breadcrumb-list">
@@ -402,7 +413,7 @@
                     <li class="breadcrumb-item active" aria-current="page">Study Notes</li>
                 </ol>
             </nav>
-            <span class="hero-badge">Study Material</span>
+            <span class="hero-badge">Study Hub</span>
         </div>
 
         <!-- Hero Section -->
@@ -654,6 +665,37 @@
         </div>
 
     </div>
+
+    <div class="section-separator"></div>
+
+    <!-- Natural SEO Content Section for Search Engines -->
+    <section class="seo-content-wrapper">
+        <div class="seo-header">
+            <h2>Your Ultimate Guide to HPGK Study Notes</h2>
+            <p>Comprehensive study material, latest government schemes, and topic-wise revision insights for all Himachal Pradesh competitive exams.</p>
+        </div>
+
+        <div class="seo-grid">
+            <!-- Card 1: Govt Schemes -->
+            <div class="seo-card glass-panel">
+                <h3><i class="fa-solid fa-hands-holding-circle"></i> HP Govt Welfare Schemes</h3>
+                <p>Mastering the latest <strong>Himachal Pradesh Government Schemes</strong> is crucial for HPAS, Allied Services, and HP Police exams. We provide in-depth, bilingual notes on flagship initiatives like <strong>HIMCARE, Mukhya Mantri Swavalamban Yojana, Sahara Yojana, and Pyari Behna Samman Nidhi</strong> to help you secure maximum marks in the GK section.</p>
+            </div>
+
+            <!-- Card 2: Budget & Eco Survey -->
+            <div class="seo-card glass-panel">
+                <h3><i class="fa-solid fa-chart-line"></i> HP Budget & Economic Survey</h3>
+                <p>Stay updated with the latest fiscal data. Our concise notes cover the <strong>HP State Budget</strong> and the <strong>Economic Survey</strong>, breaking down complex data on GSDP, agricultural growth, industrial performance, and sector-wise fund allocations into easy-to-understand, exam-oriented points.</p>
+            </div>
+
+            <!-- Card 3: District Profiles & More -->
+            <div class="seo-card glass-panel">
+                <h3><i class="fa-solid fa-book-open"></i> Topic-wise Revision Material</h3>
+                <p>Beyond schemes, access targeted study material on <strong>HP Geography, History, Art & Culture, and District Profiles</strong>. Our structured approach ensures you focus exactly on what search engines and exam patterns prioritize, making your revision fast, accurate, and completely syllabus-aligned.</p>
+            </div>
+        </div>
+    </section>
+
 </main>
 
 <!-- Dynamic Footer Container -->
