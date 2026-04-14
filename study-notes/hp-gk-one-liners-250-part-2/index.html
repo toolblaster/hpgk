@@ -8,16 +8,16 @@
     <title>HP GK One Liners Part 2 | 501-750 Facts for HPPSC</title>
     
     <!-- Clean Canonical Link -->
-    <link rel="canonical" href="https://hpgk.toolblaster.com/study-notes/hp-gk-one-liners-250-part-2/">
+    <link rel="canonical" href="https://hpgk.toolblaster.com/study-notes/hp-gk-one-liners-2/">
 
     <!-- Open Graph & Meta Tags -->
     <meta property="og:title" content="HP GK One Liners Part 2 | 501-750 Facts for HPPSC">
     <meta property="og:description" content="Master Himachal Pradesh GK with Part 2 of our One Liners. Read facts 501-750 covering history, geography, and culture for HPPSC and HPRCA exams.">
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://hpgk.toolblaster.com/study-notes/hp-gk-one-liners-250-part-2/">
+    <meta property="og:url" content="https://hpgk.toolblaster.com/study-notes/hp-gk-one-liners-2/">
     <meta property="og:image" content="https://hpgk.toolblaster.com/js/favicon/web-app-manifest-512x512.png">
     <meta property="twitter:card" content="summary">
-    <meta property="twitter:url" content="https://hpgk.toolblaster.com/study-notes/hp-gk-one-liners-250-part-2/">
+    <meta property="twitter:url" content="https://hpgk.toolblaster.com/study-notes/hp-gk-one-liners-2/">
     <meta property="twitter:title" content="HP GK One Liners Part 2 | 501-750 Facts for HPPSC">
     <meta property="twitter:description" content="Master Himachal Pradesh GK with Part 2 of our One Liners. Read facts 501-750 covering history, geography, and culture for HPPSC and HPRCA exams.">
     <meta property="twitter:image" content="https://hpgk.toolblaster.com/js/favicon/web-app-manifest-512x512.png">
@@ -44,7 +44,7 @@
       },
       "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "https://hpgk.toolblaster.com/study-notes/hp-gk-one-liners-250-part-2/"
+        "@id": "https://hpgk.toolblaster.com/study-notes/hp-gk-one-liners-2/"
       }
     }
     </script>
@@ -68,7 +68,7 @@
         "@type": "ListItem",
         "position": 3,
         "name": "HP GK One Liners Part 2",
-        "item": "https://hpgk.toolblaster.com/study-notes/hp-gk-one-liners-250-part-2/"
+        "item": "https://hpgk.toolblaster.com/study-notes/hp-gk-one-liners-2/"
       }]
     }
     </script>
@@ -266,7 +266,7 @@
            1100px 2-COLUMN LIST LAYOUT
            ========================================== */
         .one-liner-container {
-            max-width: 1100px;
+            max-width: 1100px; /* Locked to 1100px */
             margin: 0 auto;
             padding: 0 15px 40px 15px;
             width: 100%;
@@ -274,10 +274,11 @@
 
         .one-liner-grid {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: 1fr; /* Mobile view: 1 column */
             gap: 12px;
         }
 
+        /* Desktop view: 50% split (approx 550px each) */
         @media (min-width: 900px) {
             .one-liner-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -285,6 +286,7 @@
             }
         }
 
+        /* Compact, clean Row Design (Hover effect removed for performance) */
         .fact-row {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
@@ -293,14 +295,7 @@
             display: flex;
             flex-direction: column;
             box-shadow: 0 1px 3px rgba(0,0,0,0.03);
-            transition: border-color 0.2s, transform 0.2s;
             position: relative;
-        }
-
-        .fact-row:hover {
-            border-color: var(--primary);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
 
         .fact-id {
@@ -313,17 +308,19 @@
             position: absolute;
             top: 12px;
             right: 15px;
-            z-index: 2;
+            z-index: 2; /* Ensure it stays on top */
         }
 
+        /* English Content */
         .content-en {
             margin-bottom: 8px;
-            padding-right: 50px; 
+            padding-right: 50px; /* Added substantial padding to force text wrap before overlapping with the absolute ID badge */
         }
         .q-en { font-size: 0.9rem; font-weight: 700; color: var(--text-main); margin-bottom: 4px; line-height: 1.4; }
         .a-en { font-size: 0.85rem; font-weight: 700; color: var(--primary); }
         [data-theme="dark"] .a-en { color: #60a5fa; }
 
+        /* Hindi Content */
         .content-hi {
             padding-top: 8px;
             border-top: 1px dashed var(--card-border);
@@ -334,19 +331,33 @@
         [data-theme="dark"] .a-hi { color: #fbbf24; }
 
         @media (max-width: 600px) {
-            .hero-title { font-size: 23px !important; padding: 0 10px; white-space: normal; line-height: 1.2; }
+            .hero-title { font-size: 23px !important; padding: 0 10px; white-space: normal; line-height: 1.2; } /* Exact match to other pages */
             .fact-row { padding: 10px 12px; }
-            .content-en { padding-right: 45px; } 
+            .content-en { padding-right: 45px; } /* Ensures text wraps correctly on mobile to avoid overlapping */
             .q-en { font-size: 0.85rem; }
             .q-hi { font-size: 0.8rem; }
             .a-en { font-size: 0.8rem; }
             .a-hi { font-size: 0.8rem; }
             .fact-id { top: 10px; right: 12px; font-size: 0.6rem; }
             
-            .hero-interlinks { flex-direction: row; flex-wrap: wrap; gap: 6px; padding: 8px 12px; border-radius: 30px; }
-            .hero-interlinks .dot { display: inline; font-size: 0.7rem; }
-            .hero-interlinks a { font-size: 0.8rem; }
-            .hero-interlinks .interlink-label { font-size: 0.75rem; }
+            /* FIXED MOBILE INTERLINKS: Horizontal wrap, restored dots, proper sizing */
+            .hero-interlinks { 
+                flex-direction: row; 
+                flex-wrap: wrap; 
+                gap: 6px; 
+                padding: 8px 12px; 
+                border-radius: 30px; 
+            }
+            .hero-interlinks .dot { 
+                display: inline; 
+                font-size: 0.7rem; 
+            }
+            .hero-interlinks a { 
+                font-size: 0.8rem; 
+            }
+            .hero-interlinks .interlink-label { 
+                font-size: 0.75rem; 
+            }
         }
     </style>
 
@@ -396,7 +407,7 @@
                 Read Part 3 (751-1000) <i class="fa-solid fa-arrow-right"></i>
             </a>
         </div>
-
+        
         <!-- High-Contrast Interlinking Hook -->
         <div class="hero-interlinks">
             <span class="interlink-label"><i class="fa-solid fa-layer-group"></i> Deep Dive:</span>
@@ -537,6 +548,121 @@
         { id: 608, qHi: "पार्वती ग्लेशियर किस नदी को जल प्रदान करता है?", aHi: "पार्वती नदी (कुल्लू)।", qEn: "Parvati Glacier feeds which river?", aEn: "Parvati River (Kullu)." },
         { id: 609, qHi: "दूधोन और पार्वती ग्लेशियर किस जिले में हैं?", aHi: "कुल्लू।", qEn: "Dudhon and Parvati glaciers are in which district?", aEn: "Kullu." },
         { id: 610, qHi: "कौन सा ग्लेशियर पब्बर नदी का स्रोत माना जाता है?", aHi: "चंद्रनाहन ग्लेशियर (शिमला)।", qEn: "Which glacier is considered the source of the Pabbar River?", aEn: "Chandranahan Glacier (Shimla)." },
+        { id: 611, qHi: "कौन सा दर्रा कुल्लू को लाहौल से जोड़ता है?", aHi: "रोहतांग दर्रा।", qEn: "Which pass connects Kullu with Lahaul?", aEn: "Rohtang Pass." },
+        { id: 612, qHi: "रोहतांग दर्रे की ऊंचाई कितनी है?", aHi: "3978 मीटर।", qEn: "What is the altitude of Rohtang Pass?", aEn: "3978 meters." },
+        { id: 613, qHi: "किस दर्रे को 'चौराहे वाला दर्रा' कहा जाता है?", aHi: "बारालाचा ला।", qEn: "Which pass is known as the 'Pass with crossroads on summit'?", aEn: "Baralacha La." },
+        { id: 614, qHi: "बारालाचा ला किन दो स्थानों को जोड़ता है?", aHi: "लाहौल को लद्दाख से।", qEn: "Baralacha La connects which two places?", aEn: "Lahaul with Ladakh." },
+        { id: 615, qHi: "कौन सा दर्रा लाहौल को स्पीति से जोड़ता है?", aHi: "कुंजुम दर्रा।", qEn: "Which pass connects Lahaul with Spiti?", aEn: "Kunzum Pass." },
+        { id: 616, qHi: "कुंजुम दर्रे की ऊंचाई कितनी है?", aHi: "4551 मीटर।", qEn: "What is the altitude of Kunzum Pass?", aEn: "4551 meters." },
+        { id: 617, qHi: "कौन सा दर्रा किन्नौर को तिब्बत से जोड़ता है?", aHi: "शिपकी ला।", qEn: "Which pass connects Kinnaur with Tibet?", aEn: "Shipki La." },
+        { id: 618, qHi: "शिपकी ला से होकर कौन सी नदी भारत में प्रवेश करती है?", aHi: "सतलुज।", qEn: "Which river enters India through Shipki La?", aEn: "Satluj." },
+        { id: 619, qHi: "कौन सा दर्रा चंबा को पांगी घाटी से जोड़ता है?", aHi: "साच दर्रा।", qEn: "Which pass connects Chamba with Pangi Valley?", aEn: "Sach Pass." },
+        { id: 620, qHi: "इंद्रहार दर्रा किन दो जिलों को जोड़ता है?", aHi: "कांगड़ा और चंबा।", qEn: "Indrahar Pass connects which two districts?", aEn: "Kangra and Chamba (Bharmour)." },
+        { id: 621, qHi: "पिन पार्वती दर्रा किन दो घाटियों को जोड़ता है?", aHi: "कुल्लू और स्पीति।", qEn: "Pin Parvati Pass connects which two valleys?", aEn: "Kullu and Spiti." },
+        { id: 622, qHi: "हम्प्टा दर्रा किन दो स्थानों को जोड़ता है?", aHi: "कुल्लू और लाहौल।", qEn: "Hampta Pass connects which two places?", aEn: "Kullu and Lahaul." },
+        { id: 623, qHi: "चांशल दर्रा किन दो स्थानों को जोड़ता है?", aHi: "रोहड़ू और डोडरा क्वार।", qEn: "Chanshal Pass connects which two places?", aEn: "Rohru and Dodra Kawar (Shimla)." },
+        { id: 624, qHi: "जलोड़ी दर्रा किन दो स्थानों को जोड़ता है?", aHi: "आंतरिक सिराज और बाहरी सिराज।", qEn: "Jalori Pass connects which two places?", aEn: "Inner Seraj and Outer Seraj (Kullu)." },
+        { id: 625, qHi: "दुलाची दर्रा किन दो जिलों को जोड़ता है?", aHi: "मंडी और कुल्लू।", qEn: "Dulachi Pass connects which two districts?", aEn: "Mandi and Kullu." },
+        { id: 626, qHi: "हिमाचल प्रदेश की सबसे ऊँची पर्वत चोटी कौन सी है?", aHi: "रियो पुरग्यिल।", qEn: "Which is the highest mountain peak in Himachal Pradesh?", aEn: "Reo Purgyil." },
+        { id: 627, qHi: "रियो पुरग्यिल चोटी की ऊंचाई कितनी है?", aHi: "6816 मीटर।", qEn: "What is the altitude of Reo Purgyil peak?", aEn: "6816 meters." },
+        { id: 628, qHi: "रियो पुरग्यिल चोटी किस जिले में स्थित है?", aHi: "किन्नौर।", qEn: "Reo Purgyil peak is located in which district?", aEn: "Kinnaur." },
+        { id: 629, qHi: "शिला चोटी किस जिले में स्थित है?", aHi: "किन्नौर।", qEn: "Shilla peak is located in which district?", aEn: "Kinnaur." },
+        { id: 630, qHi: "मनीरंग चोटी किस जिले में स्थित है?", aHi: "लाहौल-स्पीति।", qEn: "Manirang peak is located in which district?", aEn: "Lahaul-Spiti." },
+        { id: 631, qHi: "किन्नर कैलाश चोटी किस जिले में स्थित है?", aHi: "किन्नौर।", qEn: "Kinner Kailash peak is located in which district?", aEn: "Kinnaur." },
+        { id: 632, qHi: "हनुमान टिब्बा किस पर्वत श्रृंखला की सबसे ऊँची चोटी है?", aHi: "धौलाधार श्रृंखला।", qEn: "Hanuman Tibba is the highest peak of which mountain range?", aEn: "Dhauladhar range." },
+        { id: 633, qHi: "मणिमहेश कैलाश चोटी किस जिले में स्थित है?", aHi: "चंबा (भरमौर)।", qEn: "Manimahesh Kailash peak is located in which district?", aEn: "Chamba (Bharmour)." },
+        { id: 634, qHi: "चूड़धार चोटी किस जिले में स्थित है?", aHi: "सिरमौर।", qEn: "Churdhar peak is located in which district?", aEn: "Sirmaur." },
+        { id: 635, qHi: "चूड़धार किस पर्वत श्रृंखला की सबसे ऊँची चोटी है?", aHi: "शिवालिक (बाहरी हिमालय)।", qEn: "Churdhar is the highest peak of which mountain range?", aEn: "Shivalik (Outer Himalayas)." },
+        { id: 636, qHi: "देव टिब्बा चोटी किस जिले में स्थित है?", aHi: "कुल्लू।", qEn: "Deo Tibba peak is located in which district?", aEn: "Kullu." },
+        { id: 637, qHi: "इंद्रासन चोटी किस जिले में स्थित है?", aHi: "कुल्लू।", qEn: "Indrasan peak is located in which district?", aEn: "Kullu." },
+        { id: 638, qHi: "हाटु चोटी किस जिले में स्थित है?", aHi: "शिमला (नारकंडा)।", qEn: "Hatu peak is located in which district?", aEn: "Shimla (Narkanda)." },
+        { id: 639, qHi: "चूड़धार चोटी को और किस नाम से जाना जाता है?", aHi: "चूड़ चांदनी।", qEn: "Choordhar peak is also known as?", aEn: "Chur Chandni." },
+        { id: 640, qHi: "गेफांग चोटी किस जिले में स्थित है?", aHi: "लाहौल-स्पीति।", qEn: "Gyephang peak is located in which district?", aEn: "Lahaul-Spiti." },
+        { id: 641, qHi: "हिमाचल प्रदेश की सबसे बड़ी प्राकृतिक झील कौन सी है?", aHi: "रेणुका झील।", qEn: "Which is the largest natural lake in Himachal Pradesh?", aEn: "Renuka Lake." },
+        { id: 642, qHi: "रेणुका झील किस जिले में स्थित है?", aHi: "सिरमौर।", qEn: "Renuka Lake is located in which district?", aEn: "Sirmaur." },
+        { id: 643, qHi: "हिमाचल प्रदेश की सबसे बड़ी कृत्रिम झील कौन सी है?", aHi: "गोविंद सागर झील।", qEn: "Which is the largest artificial lake in Himachal Pradesh?", aEn: "Govind Sagar Lake." },
+        { id: 644, qHi: "गोविंद सागर झील किस बांध से बनी है?", aHi: "भाखड़ा बांध।", qEn: "Govind Sagar Lake is formed by which dam?", aEn: "Bhakra Dam." },
+        { id: 645, qHi: "पोंग बांध झील को और किस नाम से जाना जाता है?", aHi: "महाराणा प्रताप सागर।", qEn: "Pong Dam Lake is also known as?", aEn: "Maharana Pratap Sagar." },
+        { id: 646, qHi: "पोंग बांध झील किस नदी पर स्थित है?", aHi: "ब्यास।", qEn: "Pong Dam Lake is located on which river?", aEn: "Beas." },
+        { id: 647, qHi: "रिवालसर झील किस जिले में स्थित है?", aHi: "मंडी।", qEn: "Rewalsar Lake is located in which district?", aEn: "Mandi." },
+        { id: 648, qHi: "कौन सी झील अपने तैरते हुए द्वीपों के लिए जानी जाती है?", aHi: "रिवालसर झील।", qEn: "Which lake is known for its floating islands?", aEn: "Rewalsar Lake." },
+        { id: 649, qHi: "रिवालसर झील किन तीन धर्मों द्वारा पवित्र मानी जाती है?", aHi: "हिंदू, सिख और बौद्ध।", qEn: "Rewalsar Lake is considered sacred by which three religions?", aEn: "Hindus, Sikhs, and Buddhists." },
+        { id: 650, qHi: "पराशर झील किस जिले में स्थित है?", aHi: "मंडी।", qEn: "Prashar Lake is located in which district?", aEn: "Mandi." },
+        { id: 651, qHi: "खज्जियार झील किस जिले में स्थित है?", aHi: "चंबा।", qEn: "Khajjiar Lake is located in which district?", aEn: "Chamba." },
+        { id: 652, qHi: "चंद्रताल झील किस जिले में स्थित है?", aHi: "लाहौल-स्पीति।", qEn: "Chandratal Lake is located in which district?", aEn: "Lahaul-Spiti." },
+        { id: 653, qHi: "किस झील को 'चंद्रमा की झील' कहा जाता है?", aHi: "चंद्रताल झील।", qEn: "Which lake is known as the 'Lake of the Moon'?", aEn: "Chandratal Lake." },
+        { id: 654, qHi: "सूरजताल झील किस जिले में स्थित है?", aHi: "लाहौल-स्पीति।", qEn: "Surajtal Lake is located in which district?", aEn: "Lahaul-Spiti." },
+        { id: 655, qHi: "किस झील को 'सूर्य की झील' कहा जाता है?", aHi: "सूरजताल झील।", qEn: "Which lake is known as the 'Lake of the Sun'?", aEn: "Surajtal Lake." },
+        { id: 656, qHi: "नाको झील किस जिले में स्थित है?", aHi: "किन्नौर।", qEn: "Nako Lake is located in which district?", aEn: "Kinnaur." },
+        { id: 657, qHi: "दशर झील किस जिले में स्थित है?", aHi: "कुल्लू।", qEn: "Dashir Lake is located in which district?", aEn: "Kullu." },
+        { id: 658, qHi: "करेरी झील किस जिले में स्थित है?", aHi: "कांगड़ा।", qEn: "Kareri Lake is located in which district?", aEn: "Kangra." },
+        { id: 659, qHi: "हिमाचल प्रदेश की डल झील कहाँ स्थित है?", aHi: "कांगड़ा (धर्मशाला)।", qEn: "Dal Lake of Himachal Pradesh is located in?", aEn: "Kangra (Dharamshala)." },
+        { id: 660, qHi: "मणिमहेश झील किस जिले में स्थित है?", aHi: "चंबा।", qEn: "Manimahesh Lake is located in which district?", aEn: "Chamba." },
+        { id: 661, qHi: "चंद्रनाहन झील किस जिले में स्थित है?", aHi: "शिमला।", qEn: "Chandranahan Lake is located in which district?", aEn: "Shimla." },
+        { id: 662, qHi: "चंद्रनाहन झील से कौन सी नदी निकलती है?", aHi: "पब्बर नदी।", qEn: "Which river originates from Chandranahan Lake?", aEn: "Pabbar River." },
+        { id: 663, qHi: "भृगु झील किस जिले में स्थित है?", aHi: "कुल्लू।", qEn: "Bhrigu Lake is located in which district?", aEn: "Kullu." },
+        { id: 664, qHi: "हिमाचल प्रदेश की सबसे लंबी नदी कौन सी है?", aHi: "सतलुज।", qEn: "Which is the longest river in Himachal Pradesh?", aEn: "Satluj." },
+        { id: 665, qHi: "हिमाचल प्रदेश में किस नदी का जलग्रहण क्षेत्र सबसे बड़ा है?", aHi: "सतलुज।", qEn: "Which river has the largest catchment area in Himachal Pradesh?", aEn: "Satluj." },
+        { id: 666, qHi: "किस नदी को 'सोने की नदी' कहा जाता है?", aHi: "चिनाब (चंद्रभागा)।", qEn: "Which river is known as the 'River of Gold'?", aEn: "Chenab (Chandra-Bhaga)." },
+        { id: 667, qHi: "हिमाचल प्रदेश की सबसे छोटी नदी कौन सी है?", aHi: "यमुना।", qEn: "Which is the shortest river in Himachal Pradesh?", aEn: "Yamuna." },
+        { id: 668, qHi: "सतलुज नदी का वैदिक नाम क्या है?", aHi: "सुतुद्री।", qEn: "What is the Vedic name of river Satluj?", aEn: "Sutudri." },
+        { id: 669, qHi: "ब्यास नदी का संस्कृत नाम क्या है?", aHi: "विपाशा।", qEn: "What is the Sanskrit name of river Beas?", aEn: "Vipasha." },
+        { id: 670, qHi: "रावी नदी का वैदिक नाम क्या है?", aHi: "परुष्णी।", qEn: "What is the Vedic name of river Ravi?", aEn: "Parushni." },
+        { id: 671, qHi: "कांगड़ा के कटोच वंश की स्थापना किसने की थी?", aHi: "सुशर्मा चंद।", qEn: "Who founded the Katoch dynasty of Kangra?", aEn: "Susharma Chand." },
+        { id: 672, qHi: "1009 ई. में किस आक्रमणकारी ने कांगड़ा किले को लूटा था?", aHi: "महमूद गजनवी।", qEn: "Which invader looted the Kangra Fort in 1009 AD?", aEn: "Mahmud of Ghazni." },
+        { id: 673, qHi: "महमूद गजनवी के आक्रमण के समय कांगड़ा का शासक कौन था?", aHi: "जयचंद (जगदीश चंद)।", qEn: "Who was the ruler of Kangra during Mahmud Ghazni's invasion?", aEn: "Jaichand (Jagdish Chand)." },
+        { id: 674, qHi: "किस मुगल सम्राट ने कांगड़ा किले के अंदर एक मस्जिद का निर्माण करवाया था?", aHi: "जहांगीर (1620 में)।", qEn: "Which Mughal emperor built a mosque inside the Kangra Fort?", aEn: "Jahangir (in 1620)." },
+        { id: 675, qHi: "कटो वंश का सबसे शक्तिशाली राजा कौन था?", aHi: "महाराजा संसार चंद।", qEn: "Who was the most powerful king of the Katoch dynasty?", aEn: "Maharaja Sansar Chand." },
+        { id: 676, qHi: "महल मोरियां का युद्ध (1806) किनके बीच लड़ा गया था?", aHi: "संसार चंद और अमर सिंह थापा (गोरखा)।", qEn: "The Battle of Mahal Morian (1806) was fought between?", aEn: "Sansar Chand and Amar Singh Thapa (Gorkhas)." },
+        { id: 677, qHi: "महल मोरियां में संसार चंद को किसने हराया?", aHi: "अमर सिंह थापा।", qEn: "Who defeated Sansar Chand at Mahal Morian?", aEn: "Amar Singh Thapa." },
+        { id: 678, qHi: "ज्वालामुखी की संधि (1809) किनके बीच हुई थी?", aHi: "संसार चंद और महाराजा रणजीत सिंह।", qEn: "The Treaty of Jwalamukhi (1809) was signed between?", aEn: "Sansar Chand and Maharaja Ranjit Singh." },
+        { id: 679, qHi: "ज्वालामुखी की संधि का परिणाम क्या था?", aHi: "रणजीत सिंह ने गोरखाओं को हराया और कांगड़ा किले पर अधिकार कर लिया।", qEn: "What was the outcome of the Treaty of Jwalamukhi?", aEn: "Ranjit Singh defeated Gorkhas and took control of Kangra Fort." },
+        { id: 680, qHi: "सुगौली की संधि (1815) किनके बीच हुई थी?", aHi: "अंग्रेज और गोरखा (नेपाल)।", qEn: "The Treaty of Sugauli (1815) was signed between?", aEn: "British (East India Company) and Gorkhas (Nepal)." },
+        { id: 681, qHi: "एंग्लो-गोरखा युद्ध में गोरखाओं के खिलाफ ब्रिटिश सेना का नेतृत्व किसने किया?", aHi: "जनरल डेविड ओक्टरलोनी।", qEn: "Who led the British forces against the Gorkhas in the Anglo-Gorkha War?", aEn: "General David Ochterlony." },
+        { id: 682, qHi: "अमृतसर की संधि (1846) किनके बीच हुई थी?", aHi: "अंग्रेज और गुलाब सिंह।", qEn: "The Treaty of Amritsar (1846) was signed between?", aEn: "British and Gulab Singh (Dogra)." },
+        { id: 683, qHi: "सुकेत रियासत की स्थापना किसने की थी?", aHi: "बीर सेन।", qEn: "Who founded the princely state of Suket?", aEn: "Bir Sen." },
+        { id: 684, qHi: "मंडी रियासत की स्थापना किसने की थी?", aHi: "बाहु सेन।", qEn: "Who founded the princely state of Mandi?", aEn: "Bahu Sen." },
+        { id: 685, qHi: "मंडी शहर की स्थापना किसने की थी?", aHi: "अजबर सेन (1527 में)।", qEn: "Who founded the town of Mandi?", aEn: "Ajbar Sen (in 1527)." },
+        { id: 686, qHi: "चंबा रियासत की स्थापना किसने की थी?", aHi: "मारू वर्मन।", qEn: "Who founded the princely state of Chamba?", aEn: "Maru Varman." },
+        { id: 687, qHi: "चंबा की राजधानी को भरमौर से चंबा शहर किसने स्थानांतरित किया?", aHi: "साहिल वर्मन।", qEn: "Who shifted the capital of Chamba from Bharmour to Chamba town?", aEn: "Sahil Varman." },
+        { id: 688, qHi: "बिलासपुर (कहलूर) रियासत की स्थापना किसने की थी?", aHi: "बीर चंद।", qEn: "Who founded the princely state of Bilaspur (Kahlur)?", aEn: "Bir Chand." },
+        { id: 689, qHi: "बिलासपुर की राजधानी को सुनहानी से बिलासपुर शहर किसने स्थानांतरित किया?", aHi: "दीप चंद।", qEn: "Who shifted the capital of Bilaspur from Sunhani to Bilaspur town?", aEn: "Dip Chand." },
+        { id: 690, qHi: "सिरमौर रियासत की स्थापना किसने की थी?", aHi: "राजा रसालू।", qEn: "Who founded the princely state of Sirmaur?", aEn: "Raja Rasalu." },
+        { id: 691, qHi: "नाहन शहर की स्थापना किसने की थी?", aHi: "करम प्रकाश।", qEn: "Who founded the town of Nahan?", aEn: "Karam Prakash." },
+        { id: 692, qHi: "हिंडूर (नालागढ़) रियासत की स्थापना किसने की थी?", aHi: "अजय चंद।", qEn: "Who founded the princely state of Hindur (Nalagarh)?", aEn: "Ajai Chand." },
+        { id: 693, qHi: "बुशहर रियासत की स्थापना किसने की थी?", aHi: "प्रद्युम्न।", qEn: "Who founded the princely state of Bushahr?", aEn: "Pradyumna." },
+        { id: 694, qHi: "बुशहर के किस राजा को औरंगजेब ने 'छत्रपति' की उपाधि दी थी?", aHi: "केहरी सिंह।", qEn: "Which king of Bushahr was given the title 'Chhatrapati' by Aurangzeb?", aEn: "Kehri Singh." },
+        { id: 695, qHi: "धामी गोलीकांड किस वर्ष हुआ था?", aHi: "1939 (16 जुलाई)।", qEn: "The Dhami firing incident took place in which year?", aEn: "1939 (16th July)." },
+        { id: 696, qHi: "धामी प्रजामंडल आंदोलन का नेतृत्व किसने किया?", aHi: "भागमल सौठा।", qEn: "Who led the Dhami Prajamandal movement?", aEn: "Bhagmal Sautha." },
+        { id: 697, qHi: "पझौता आंदोलन किस वर्ष हुआ था?", aHi: "1942।", qEn: "The Pajhota agitation took place in which year?", aEn: "1942." },
+        { id: 698, qHi: "पझौता आंदोलन किस रियासत में हुआ था?", aHi: "सिरमौर।", qEn: "The Pajhota agitation took place in which princely state?", aEn: "Sirmaur." },
+        { id: 699, qHi: "सुकेत सत्याग्रह (1948) के नेता कौन थे?", aHi: "पं. पदम देव।", qEn: "Who was the leader of the Suket Satyagraha (1948)?", aEn: "Pt. Padam Dev." },
+        { id: 700, qHi: "हिमाचल प्रदेश का गठन मुख्य आयुक्त प्रांत के रूप में कब हुआ?", aHi: "15 अप्रैल 1948।", qEn: "When was Himachal Pradesh formed as a Chief Commissioner's Province?", aEn: "15 April 1948." },
+        { id: 701, qHi: "मिंजर मेला किस जिले में मनाया जाता है?", aHi: "चंबा।", qEn: "Minjar fair is celebrated in which district?", aEn: "Chamba." },
+        { id: 702, qHi: "मिंजर मेले में वरुण/रावी नदी को कौन सा फूल चढ़ाया जाता है?", aHi: "मक्के का फूल (मिंजर)।", qEn: "In Minjar fair, which flower is offered to River Varuna/Ravi?", aEn: "Maize flower (Minjar)." },
+        { id: 703, qHi: "कुल्लू दशहरा किस दिन शुरू होता है?", aHi: "विजयादशमी।", qEn: "Kullu Dussehra starts on which day?", aEn: "Vijaya Dashami." },
+        { id: 704, qHi: "कुल्लू दशहरा किस देवता की रथ यात्रा के इर्द-गिर्द घूमता है?", aHi: "भगवान रघुनाथ।", qEn: "Kullu Dussehra revolves around the chariot journey of which deity?", aEn: "Lord Raghunath." },
+        { id: 705, qHi: "लवी मेला कहाँ मनाया जाता है?", aHi: "रामपुर (शिमला)।", qEn: "Lavi fair is celebrated in which place?", aEn: "Rampur (Shimla)." },
+        { id: 706, qHi: "लवी मेला बुशहर और किस क्षेत्र के बीच एक प्राचीन व्यापारिक मेला है?", aHi: "तिब्बत।", qEn: "Lavi fair is an ancient trade fair between Bushahr and which region?", aEn: "Tibet." },
+        { id: 707, qHi: "मंडी का शिवरात्रि मेला किस राजा ने शुरू किया था?", aHi: "राजा अजबर सेन।", qEn: "Shivratri fair of Mandi was started by which king?", aEn: "Raja Ajbar Sen." },
+        { id: 708, qHi: "रेणुका मेला किस जिले में मनाया जाता है?", aHi: "सिरमौर।", qEn: "Renuka fair is celebrated in which district?", aEn: "Sirmaur." },
+        { id: 709, qHi: "बिलासपुर का नलवाड़ी मेला किसने शुरू किया था?", aHi: "डब्ल्यू. गोल्डस्टीन (1889)।", qEn: "Nalwari fair of Bilaspur was started by?", aEn: "W. Goldstein (1889)." },
+        { id: 710, qHi: "नलवाड़ी मेला किसके व्यापार के लिए प्रसिद्ध है?", aHi: "मवेशी (बैल)।", qEn: "Nalwari fair is famous for the trade of?", aEn: "Cattle (Bullocks)." },
+        { id: 711, qHi: "सूई मेला किस जिले में मनाया जाता है?", aHi: "चंबा।", qEn: "Sui fair is celebrated in which district?", aEn: "Chamba." },
+        { id: 712, qHi: "सूई मेला विशेष रूप से किनके लिए है?", aHi: "महिलाओं और बच्चों के लिए।", qEn: "Sui fair is exclusively for?", aEn: "Women and Children." },
+        { id: 713, qHi: "फुलाइच (उख्यांग) त्योहार किस जिले में मनाया जाता है?", aHi: "किन्नौर।", qEn: "Fulaich (Ukhyang) festival is celebrated in which district?", aEn: "Kinnaur." },
+        { id: 714, qHi: "फुलाइच को किसके त्योहार के रूप में जाना जाता है?", aHi: "फूलों का त्योहार।", qEn: "Fulaich is famously known as the festival of?", aEn: "Flowers." },
+        { id: 715, qHi: "लोसर नव वर्ष का त्योहार है, यह कहाँ मनाया जाता है?", aHi: "लाहौल-स्पीति और किन्नौर।", qEn: "Losar is the New Year festival celebrated in?", aEn: "Lahaul-Spiti and Kinnaur." },
+        { id: 716, qHi: "हाल्दा त्योहार किस जिले में मनाया जाता है?", aHi: "लाहौल-स्पीति (लाहौल घाटी)।", qEn: "Halda festival is celebrated in which district?", aEn: "Lahaul-Spiti (Lahaul valley)." },
+        { id: 717, qHi: "हाल्दा त्योहार किस भारतीय त्योहार के समान है?", aHi: "दिवाली।", qEn: "Halda festival is similar to which Indian festival?", aEn: "Diwali." },
+        { id: 718, qHi: "गोची त्योहार किस जिले में मनाया जाता है?", aHi: "लाहौल-स्पीति (भागा घाटी)।", qEn: "Gochi festival is celebrated in which district?", aEn: "Lahaul-Spiti (Bhaga valley)." },
+        { id: 719, qHi: "सैर त्योहार किस मौसम के अंत का प्रतीक है?", aHi: "बरसात/मानसून के मौसम का अंत।", qEn: "Sair festival marks the end of which season?", aEn: "Rainy/Monsoon season." },
+        { id: 720, qHi: "नवाला किस जनजाति का पारंपरिक त्योहार है?", aHi: "गद्दी जनजाति।", qEn: "Nawala is a traditional festival of which tribe?", aEn: "Gaddi tribe." },
+        { id: 721, qHi: "मनाली में डूंगरी मेला किसके सम्मान में मनाया जाता है?", aHi: "देवी हिडिम्बा।", qEn: "Doongri fair is celebrated in Manali in honor of?", aEn: "Goddess Hidimba." },
+        { id: 722, qHi: "शूलिनी मेला किस जिले में मनाया जाता है?", aHi: "सोलन।", qEn: "Shoolini fair is celebrated in which district?", aEn: "Solan." },
+        { id: 723, qHi: "माहूनाग मेला किस जिले में मनाया जाता है?", aHi: "मंडी (करसोग)।", qEn: "Mahunag fair is celebrated in which district?", aEn: "Mandi (Karsog)." },
+        { id: 724, qHi: "बाबा बड़भाग सिंह मेला किस जिले में मनाया जाता है?", aHi: "ऊना (मैड़ी)।", qEn: "Baba Badbhag Singh fair is celebrated in which district?", aEn: "Una (Mairi)." },
+        { id: 725, qHi: "बावन द्वादशी मेला कहाँ मनाया जाता है?", aHi: "नाहन (सिरमौर)।", qEn: "Bawan Dwadashi fair is celebrated at?", aEn: "Nahan (Sirmaur)." },
         { id: 726, qHi: "2011 की जनगणना के अनुसार हिमाचल प्रदेश की कुल जनसंख्या कितनी है?", aHi: "68,64,602।", qEn: "What is the total population of Himachal Pradesh as per 2011 census?", aEn: "68,64,602." },
         { id: 727, qHi: "किस जिले की जनसंख्या सबसे अधिक है?", aHi: "कांगड़ा।", qEn: "Which district has the highest population?", aEn: "Kangra." },
         { id: 728, qHi: "किस जिले की जनसंख्या सबसे कम है?", aHi: "लाहौल-स्पीति।", qEn: "Which district has the lowest population?", aEn: "Lahaul-Spiti." },
