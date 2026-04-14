@@ -85,7 +85,7 @@
     <!-- Load Global Style First -->
     <link rel="stylesheet" href="../js/style.css">
 
-    <!-- PAGE SPECIFIC STYLESHEET (Clean, Compact, 4-Column) -->
+    <!-- PAGE SPECIFIC STYLESHEET -->
     <style>
         :root {
             --primary: #2563eb;       
@@ -95,6 +95,9 @@
             --accent: #ea580c;        
             
             --bg-gradient: linear-gradient(135deg, #eff6ff 0%, #dbeafe 50%, #f3e8ff 100%);
+            --card-bg: rgba(255, 255, 255, 0.65); 
+            --card-border: rgba(255, 255, 255, 0.5); 
+            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
             
             --text-main: #0f172a;     
             --text-body: #334155;     
@@ -113,6 +116,9 @@
             --accent: #fbbf24;        
             
             --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #020617 100%);
+            --card-bg: rgba(30, 41, 59, 0.5); 
+            --card-border: rgba(255, 255, 255, 0.08); 
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
             
             --text-main: #ffffff;     
             --text-body: #e2e8f0;     
@@ -166,7 +172,6 @@
             padding: 10px 15px;
         }
 
-        /* STRICTLY LOCKED H1 to 32px */
         .hero-title {
             font-family: 'Inter', sans-serif !important;
             font-size: 32px !important; 
@@ -198,11 +203,11 @@
         }
 
         [data-theme="dark"] .hero-desc span.hi-desc {
-            color: #e2e8f0; /* Boost contrast in dark mode for Hindi intro */
+            color: #e2e8f0; 
         }
 
         /* ==========================================================================
-           4-COLUMN COMPACT GRID FOR NOTES CARDS
+           COMPACT GRID FOR NOTES CARDS (4 Columns)
            ========================================================================== */
         .notes-grid {
             display: grid;
@@ -271,7 +276,6 @@
             background: #0f172a; 
         }
 
-        /* Inline, compact header */
         .note-header {
             display: flex;
             flex-direction: row;
@@ -306,20 +310,18 @@
             font-family: 'Inter', sans-serif;
         }
 
-        /* FIXED SELECTOR: Now targets the span properly */
         .hi-title {
             display: block;
             font-family: 'Noto Sans Devanagari', sans-serif;
-            font-size: 0.75rem; /* Increased slightly for better legibility */
+            font-size: 0.75rem; 
             font-weight: 500;
             color: var(--text-sec);
             margin-top: 3px;
         }
 
-        /* Fix for Hindi Text Contrast in Dark Mode */
         [data-theme="dark"] .hi-title {
             font-weight: 600;
-            color: #f8fafc !important; /* Pure white/light grey for maximum contrast */
+            color: #f8fafc !important; 
         }
 
         .note-desc {
@@ -367,7 +369,6 @@
         .seo-card h3 i { color: var(--primary); }
         .seo-card p { color: var(--text-body); font-size: 0.85rem; margin-bottom: 0; line-height: 1.5; }
 
-        /* Section Separator */
         .section-separator {
             margin-top: 30px; 
             margin-bottom: 30px; 
@@ -429,14 +430,14 @@
 
         <!-- Hero Section -->
         <section class="hub-hero">
-            <h1 class="hero-title">HPGK Study Notes & Detailed Insights</h1>
+            <h1 class="hero-title">HPGK Premium Notes Hub</h1>
             <p class="hero-desc">
-                Curated notes for HPAS & Allied exams. Bilingual content for better understanding.
-                <span class="hi-desc">HPAS और Allied परीक्षाओं के लिए विस्तृत नोट्स। बेहतर समझ के लिए द्विभाषी सामग्री।</span>
+                Exclusive, highly-curated study material for HPAS & Allied exams. Focus on high-yield topics without distractions.
+                <span class="hi-desc">HPAS और Allied परीक्षाओं के लिए विशेष नोट्स। बिना भटकाव के महत्वपूर्ण विषयों पर ध्यान दें।</span>
             </p>
         </section>
 
-        <!-- Compact Navigation Grid for Notes (4-Column Layout) -->
+        <!-- Compact Navigation Grid for Notes (8 Core Cards - 2 Rows of 4) -->
         <div class="notes-grid">
             
             <!-- 1. Govt Schemes -->
@@ -465,20 +466,33 @@
                 <div class="note-status"><i class="fa-solid fa-book-open"></i> Read</div>
             </a>
 
-            <!-- 3. HP GK One Liners (UPDATED FOLDER LINK) -->
+            <!-- 3. HP GK One Liners Part 1 -->
             <a href="hp-gk-one-liners/" class="note-card active">
                 <div class="note-header">
                     <div class="note-icon"><i class="fa-solid fa-bolt"></i></div>
                     <div class="note-title-wrapper">
-                        <div class="note-title">HP GK One Liner</div>
-                        <span class="hi-title">महत्वपूर्ण तथ्य</span>
+                        <div class="note-title">One Liners (Part 1)</div>
+                        <span class="hi-title">तथ्य (1-500)</span>
                     </div>
                 </div>
-                <div class="note-desc">500+ rapid revision points & high-yield HP GK facts for HPPSC.</div>
-                <div class="note-status"><i class="fa-solid fa-book-open"></i> Read</div>
+                <div class="note-desc">First 500 rapid revision points & high-yield HP GK facts for HPPSC.</div>
+                <div class="note-status"><i class="fa-solid fa-book-open"></i> Read Part 1</div>
+            </a>
+
+            <!-- 4. HP GK One Liners Part 2 -->
+            <a href="hp-gk-one-liners-500-part-2/" class="note-card active">
+                <div class="note-header">
+                    <div class="note-icon" style="background: rgba(16, 185, 129, 0.1); color: #10b981;"><i class="fa-solid fa-bolt"></i></div>
+                    <div class="note-title-wrapper">
+                        <div class="note-title">One Liners (Part 2)</div>
+                        <span class="hi-title">तथ्य (501-1000)</span>
+                    </div>
+                </div>
+                <div class="note-desc">Next 500 premium revision facts covering history, geography & culture.</div>
+                <div class="note-status" style="background: #10b981; color: #fff;"><i class="fa-solid fa-book-open"></i> Read Part 2</div>
             </a>
             
-            <!-- 4. Eco Survey (Swapped) -->
+            <!-- 5. Eco Survey -->
             <div class="note-card disabled" title="Coming Soon">
                 <div class="note-header">
                     <div class="note-icon"><i class="fa-solid fa-chart-line"></i></div>
@@ -488,189 +502,46 @@
                     </div>
                 </div>
                 <div class="note-desc">Analysis of HP's GDP, agriculture & industrial growth.</div>
-                <div class="note-status"><i class="fa-solid fa-lock"></i> Soon</div>
-            </div>
-            
-            <!-- 5. Rivers -->
-            <div class="note-card disabled" title="Coming Soon">
-                <div class="note-header">
-                    <div class="note-icon"><i class="fa-solid fa-water"></i></div>
-                    <div class="note-title-wrapper">
-                        <div class="note-title">Rivers of HP</div>
-                        <span class="hi-title">हिमाचल की नदियाँ</span>
-                    </div>
-                </div>
-                <div class="note-desc">Major river systems: Satluj, Beas, Ravi, Chenab & Yamuna.</div>
-                <div class="note-status"><i class="fa-solid fa-lock"></i> Soon</div>
-            </div>
-            
-            <!-- 6. Culture -->
-            <div class="note-card disabled" title="Coming Soon">
-                <div class="note-header">
-                    <div class="note-icon"><i class="fa-solid fa-gopuram"></i></div>
-                    <div class="note-title-wrapper">
-                        <div class="note-title">Art & Culture</div>
-                        <span class="hi-title">कला और संस्कृति</span>
-                    </div>
-                </div>
-                <div class="note-desc">Temple architecture, famous fairs, folk dances & paintings.</div>
-                <div class="note-status"><i class="fa-solid fa-lock"></i> Soon</div>
+                <div class="note-status"><i class="fa-solid fa-hourglass-half"></i> Soon</div>
             </div>
 
-            <!-- 7. Economy -->
-            <div class="note-card disabled" title="Coming Soon">
-                <div class="note-header">
-                    <div class="note-icon"><i class="fa-solid fa-sack-dollar"></i></div>
-                    <div class="note-title-wrapper">
-                        <div class="note-title">HP Economy</div>
-                        <span class="hi-title">अर्थव्यवस्था</span>
-                    </div>
-                </div>
-                <div class="note-desc">Agriculture, horticulture, hydropower & major industries.</div>
-                <div class="note-status"><i class="fa-solid fa-lock"></i> Soon</div>
-            </div>
-
-            <!-- 8. Districts -->
-            <div class="note-card disabled" title="Coming Soon">
-                <div class="note-header">
-                    <div class="note-icon"><i class="fa-solid fa-map-location-dot"></i></div>
-                    <div class="note-title-wrapper">
-                        <div class="note-title">District Profiles</div>
-                        <span class="hi-title">जिला प्रोफाइल</span>
-                    </div>
-                </div>
-                <div class="note-desc">History, geography & economy of all 12 districts.</div>
-                <div class="note-status"><i class="fa-solid fa-lock"></i> Soon</div>
-            </div>
-
-            <!-- 9. Polity -->
-            <div class="note-card disabled" title="Coming Soon">
-                <div class="note-header">
-                    <div class="note-icon"><i class="fa-solid fa-scale-balanced"></i></div>
-                    <div class="note-title-wrapper">
-                        <div class="note-title">Polity & Admin</div>
-                        <span class="hi-title">राजनीति और प्रशासन</span>
-                    </div>
-                </div>
-                <div class="note-desc">Administrative setup, Vidhan Sabha & constitutional bodies.</div>
-                <div class="note-status"><i class="fa-solid fa-lock"></i> Soon</div>
-            </div>
-
-            <!-- 10. Famous People -->
-            <div class="note-card disabled" title="Coming Soon">
-                <div class="note-header">
-                    <div class="note-icon"><i class="fa-solid fa-user-graduate"></i></div>
-                    <div class="note-title-wrapper">
-                        <div class="note-title">Famous People</div>
-                        <span class="hi-title">प्रसिद्ध व्यक्तित्व</span>
-                    </div>
-                </div>
-                <div class="note-desc">Biographies of freedom fighters, writers & award winners.</div>
-                <div class="note-status"><i class="fa-solid fa-lock"></i> Soon</div>
-            </div>
-
-            <!-- 11. Environment -->
-            <div class="note-card disabled" title="Coming Soon">
-                <div class="note-header">
-                    <div class="note-icon"><i class="fa-solid fa-tree"></i></div>
-                    <div class="note-title-wrapper">
-                        <div class="note-title">Environment</div>
-                        <span class="hi-title">पर्यावरण</span>
-                    </div>
-                </div>
-                <div class="note-desc">National Parks, Wildlife Sanctuaries & State symbols.</div>
-                <div class="note-status"><i class="fa-solid fa-lock"></i> Soon</div>
-            </div>
-
-            <!-- 12. Tourism -->
-            <div class="note-card disabled" title="Coming Soon">
-                <div class="note-header">
-                    <div class="note-icon"><i class="fa-solid fa-person-hiking"></i></div>
-                    <div class="note-title-wrapper">
-                        <div class="note-title">Tourism in HP</div>
-                        <span class="hi-title">पर्यटन</span>
-                    </div>
-                </div>
-                <div class="note-desc">Hill stations, religious sites & adventure sports.</div>
-                <div class="note-status"><i class="fa-solid fa-lock"></i> Soon</div>
-            </div>
-
-            <!-- 13. HP History -->
-            <div class="note-card disabled" title="Coming Soon">
-                <div class="note-header">
-                    <div class="note-icon"><i class="fa-solid fa-landmark"></i></div>
-                    <div class="note-title-wrapper">
-                        <div class="note-title">History of HP</div>
-                        <span class="hi-title">हिमाचल का इतिहास</span>
-                    </div>
-                </div>
-                <div class="note-desc">Ancient Janapadas, Gorkha wars & the freedom struggle.</div>
-                <div class="note-status"><i class="fa-solid fa-lock"></i> Soon</div>
-            </div>
-
-            <!-- 14. HP Geography -->
-            <div class="note-card disabled" title="Coming Soon">
-                <div class="note-header">
-                    <div class="note-icon"><i class="fa-solid fa-mountain"></i></div>
-                    <div class="note-title-wrapper">
-                        <div class="note-title">Geography of HP</div>
-                        <span class="hi-title">हिमाचल का भूगोल</span>
-                    </div>
-                </div>
-                <div class="note-desc">Mountain ranges, peaks, passes, glaciers & valleys.</div>
-                <div class="note-status"><i class="fa-solid fa-lock"></i> Soon</div>
-            </div>
-
-            <!-- 15. HP Census 2011 -->
+            <!-- 6. HP Census 2011 -->
             <div class="note-card disabled" title="Coming Soon">
                 <div class="note-header">
                     <div class="note-icon"><i class="fa-solid fa-users"></i></div>
                     <div class="note-title-wrapper">
-                        <div class="note-title">Census 2011</div>
+                        <div class="note-title">Census 2011 Data</div>
                         <span class="hi-title">जनगणना 2011</span>
                     </div>
                 </div>
-                <div class="note-desc">Population density, literacy rate, sex ratio & growth.</div>
-                <div class="note-status"><i class="fa-solid fa-lock"></i> Soon</div>
+                <div class="note-desc">Population density, literacy rate, sex ratio & demographic growth.</div>
+                <div class="note-status"><i class="fa-solid fa-hourglass-half"></i> Soon</div>
             </div>
 
-            <!-- 16. Forests & Wildlife -->
+            <!-- 7. Current Affairs -->
             <div class="note-card disabled" title="Coming Soon">
                 <div class="note-header">
-                    <div class="note-icon"><i class="fa-solid fa-paw"></i></div>
+                    <div class="note-icon"><i class="fa-regular fa-newspaper"></i></div>
                     <div class="note-title-wrapper">
-                        <div class="note-title">Forests & Wildlife</div>
-                        <span class="hi-title">वन और वन्यजीव</span>
+                        <div class="note-title">Current Affairs</div>
+                        <span class="hi-title">करेंट अफेयर्स</span>
                     </div>
                 </div>
-                <div class="note-desc">Forest cover classifications & vital wildlife stats.</div>
-                <div class="note-status"><i class="fa-solid fa-lock"></i> Soon</div>
+                <div class="note-desc">Monthly compilation of HP specific current events and news.</div>
+                <div class="note-status"><i class="fa-solid fa-hourglass-half"></i> Soon</div>
             </div>
 
-            <!-- 17. HP Agriculture -->
+            <!-- 8. HP Land Laws -->
             <div class="note-card disabled" title="Coming Soon">
                 <div class="note-header">
-                    <div class="note-icon"><i class="fa-solid fa-seedling"></i></div>
+                    <div class="note-icon"><i class="fa-solid fa-gavel"></i></div>
                     <div class="note-title-wrapper">
-                        <div class="note-title">Agriculture</div>
-                        <span class="hi-title">कृषि</span>
+                        <div class="note-title">HP Land Laws</div>
+                        <span class="hi-title">हिमाचल भूमि कानून</span>
                     </div>
                 </div>
-                <div class="note-desc">Crop patterns, irrigation projects & agro-climatic zones.</div>
-                <div class="note-status"><i class="fa-solid fa-lock"></i> Soon</div>
-            </div>
-
-            <!-- 18. HP Administration -->
-            <div class="note-card disabled" title="Coming Soon">
-                <div class="note-header">
-                    <div class="note-icon"><i class="fa-solid fa-building-columns"></i></div>
-                    <div class="note-title-wrapper">
-                        <div class="note-title">Administration</div>
-                        <span class="hi-title">प्रशासनिक ढांचा</span>
-                    </div>
-                </div>
-                <div class="note-desc">Evolution from a Chief Commissioner's province to statehood.</div>
-                <div class="note-status"><i class="fa-solid fa-lock"></i> Soon</div>
+                <div class="note-desc">HP Tenancy and Land Reforms Act, and crucial revenue notes.</div>
+                <div class="note-status"><i class="fa-solid fa-hourglass-half"></i> Soon</div>
             </div>
 
         </div>
@@ -701,8 +572,8 @@
 
             <!-- Card 3: District Profiles & More -->
             <div class="seo-card glass-panel">
-                <h3><i class="fa-solid fa-book-open"></i> Topic-wise Revision Material</h3>
-                <p>Beyond schemes, access targeted study material on <strong>HP Geography, History, Art & Culture, and District Profiles</strong>. Our structured approach ensures you focus exactly on what search engines and exam patterns prioritize, making your revision fast, accurate, and completely syllabus-aligned.</p>
+                <h3><i class="fa-solid fa-bolt"></i> Rapid Revision Series</h3>
+                <p>Beyond standard notes, access our <strong>1000+ One Liners</strong> covering HP Geography, History, Art & Culture, and District Profiles. Our structured approach ensures you focus exactly on what search engines and exam patterns prioritize, making your revision fast, accurate, and completely syllabus-aligned.</p>
             </div>
         </div>
     </section>
