@@ -1,99 +1,128 @@
-HPGK Quiz Platform
+HPGK Quiz Hub & Agriculture Prep
 
-1. Project Overview
+A comprehensive, bilingual (English & Hindi), and highly interactive web application designed to help aspirants prepare for Himachal Pradesh Competitive Exams (HPAS, HPPSC, Allied Services, Naib Tehsildar) and Agriculture Exams (ICAR JRF, IBPS AFO, NABARD).
 
-HPGK Quiz (Himachal Pradesh General Knowledge) is a specialized educational web application designed for students preparing for competitive exams in Himachal Pradesh (HPAS, HPPSC, Allied Services, etc.).
+🚀 Features
 
-It operates as a Hub-and-Spoke model:
+Bilingual Interface: All questions and study notes are available simultaneously in English and Hindi to break language barriers.
 
-Hub: The homepage (index.html) serves as a central directory/dashboard linking to specific study topics.
+Interactive Quiz Engine: - Instant visual feedback (Green/Red) upon selecting an answer.
 
-Spokes: Dedicated sub-folders (e.g., rivers/, history/) containing deep-dive content and specialized quiz engines.
+Active Recall methodology to enhance memory retention.
 
-The platform is built as a Static Web App (SPA-like feel) using vanilla HTML, CSS, and JavaScript, ensuring high performance, zero backend dependency, and offline capability via browser caching.
+Mistake review and Bookmark filtering.
 
-2. Directory Structure
+Privacy First (No Login Required): All quiz progress, bookmarks, and statistics are saved locally on the user's device using localStorage.
 
-toolblaster/hpgk/
-├── index.html              # Main Hub/Landing Page (Directory of Topics)
-├── favicon.svg             # Custom SVG Icon (Sun & Mountain theme)
+Backup & Restore: Users can export their progress as a .json file and restore it across different devices.
+
+Premium UI/UX: - Mobile-first, fully responsive design.
+
+Modern Glassmorphism aesthetics.
+
+High contrast WCAG AA compliant color palettes.
+
+Built-in Dark / Light Mode toggle.
+
+Rich Study Material: - Comprehensive notes on HP Budget, Govt Schemes, and District Profiles.
+
+1000+ Rapid Revision One-Liners (Split into optimized pages for lightning-fast loading).
+
+📁 Project Structure
+
+The project is built using pure HTML5, CSS3, and Vanilla JavaScript with no heavy frontend frameworks, ensuring maximum speed and SEO friendliness.
+
+/
+├── index.html                  # Main Homepage
+├── css/
+│   └── style.css               # Global Stylesheet (Variables, Dark Mode, Utility Classes)
 ├── js/
-│   ├── style.css           # Global Styles (Locked width, variables, dark mode)
-│   ├── layout.js           # Shared Layout Logic (Header, Footer injection)
-│   └── main.js             # Core Quiz Engine Logic (State, rendering, scoring)
-├── rivers/                 # Spoke: Rivers Category
-│   ├── index.html          # Content Page + Quiz Interface
-│   ├── river-part-1.js     # Data Chunk 1 (Questions 1-50)
-│   └── river-part-2.js     # Data Chunk 2 (Questions 51-110+)
-├── favicon/                # Standard Favicon assets (PNG, ICO, Manifest)
-└── legal/                  # Legal Pages
+│   ├── main.js                 # Global Quiz Engine Logic
+│   └── layout.js               # Dynamic Header/Footer rendering
+├── himachal-pradesh-gk/        # HP GK Quiz Modules
+│   ├── history/
+│   ├── geography/
+│   ├── polity/
+│   ├── economy/
+│   ├── art-culture/
+│   ├── district/
+│   ├── rivers/
+│   ├── tourism/
+│   ├── environment/
+│   └── famous-people/
+├── agriculture-quiz/           # Specialized Agriculture Module
+│   └── index.html
+├── study-notes/                # Premium Notes Section
+│   ├── index.html              # Study Notes Hub
+│   ├── govt-schemes/
+│   ├── hp-budget/
+│   ├── hp-gk-one-liners-500-part-1/
+│   ├── hp-gk-one-liners-250-part-2/
+│   └── hp-gk-one-liners-250-part-3/
+└── legal/                      # Legal & Meta Pages
     ├── about.html
     ├── privacy.html
     └── terms.html
 
 
-3. Technical Architecture
+🛠️ Technology Stack
 
-A. The Quiz Engine (js/main.js)
+Frontend: HTML5, CSS3 (CSS Variables, Flexbox, Grid)
 
-Data Driven: Questions are loaded from separate JS files (river-part-1.js, etc.) into a global window.quizData array.
+Logic & State: Vanilla JavaScript (ES6+), Web Storage API (localStorage)
 
-State Management: User progress (answers selected, last question index) is saved to localStorage.
+Icons: FontAwesome 6
 
-Dynamic Storage Keys: The storage key is generated dynamically based on the page configuration (window.QUIZ_CONFIG.category), allowing separate progress tracking for "Rivers", "History", etc.
+Typography: Google Fonts (Inter for English, Noto Sans Devanagari for Hindi)
 
-Features:
+SEO: Semantic HTML, JSON-LD Structured Data, Open Graph Tags, Custom Meta Descriptions.
 
-Bilingual Support (English & Hindi question text).
+⚙️ Installation & Deployment
 
-Instant Feedback (Correct/Wrong status).
+Since this is a fully static client-side application, no complex build steps or backend servers are required.
 
-Explanation Display (Rich text explanations).
+Clone the repository:
 
-Search/Filter functionality within the quiz.
+git clone [https://github.com/your-username/hpgk-quiz-hub.git](https://github.com/your-username/hpgk-quiz-hub.git)
 
-Backup & Restore progress (JSON file).
 
-B. Global Layout (js/layout.js)
+Run locally:
+Simply open the index.html file in any modern web browser, or use an extension like VS Code Live Server for a better development experience.
 
-Client-Side Injection: The Header and Footer are injected via JavaScript to maintain consistency across all pages without duplicating HTML code.
+Deployment:
+Host the directory on any static file hosting service such as GitHub Pages, Netlify, Vercel, or Cloudflare Pages.
 
-Sticky/Relative Positioning:
+🎯 Quiz Engine Usage
 
-Header: Positioned relative (scrolls away with content) to maximize reading space.
+The core quiz logic is maintained in js/main.js. Each specific category folder contains an index.html page and multiple .js files containing the question arrays.
 
-Footer: Pushed to the bottom using Flexbox (body { min-height: 100vh; flex-direction: column; } and main { flex: 1; }).
+To add new questions:
 
-Theme Management: Handles Light/Dark mode toggling and persistence via localStorage.
+Navigate to the specific topic folder (e.g., himachal-pradesh-gk/history/).
 
-C. Design System (js/style.css)
+Open or create a data file (e.g., history-part-1.js).
 
-Variables: Uses CSS Custom Properties (--primary, --bg-color, etc.) for easy theming.
+Append objects to the quizData array:
 
-Typography: Inter for English, Noto Sans Devanagari for Hindi. Base font size is 14px (0.875rem).
+quizData.push({
+    id: "hist-001",
+    qEn: "Question in English?",
+    qHi: "प्रश्न हिंदी में?",
+    options: ["Option 1", "Option 2", "Option 3", "Option 4"],
+    answer: 0, // Index of the correct option (0-based)
+    explEn: "Explanation in English.",
+    explHi: "हिंदी में स्पष्टीकरण।"
+});
 
-Layout Lock: The entire site content is constrained to a maximum width of 1100px (--site-width) to prevent layout stretching on large screens.
 
-Compact & Dense: The UI is designed to be information-dense with reduced padding and margins (p { font-size: 12px; }), catering to serious study sessions.
+🤝 Contributing
 
-Responsiveness: Mobile-first approach with specific tweaks for tablet and desktop grids.
+Contributions are welcome! If you find any factual errors in the GK questions, layout bugs, or have feature requests, please open an issue or submit a pull request.
 
-4. Key Features
+📄 License
 
-Dual Mode: Works as both a Study Guide (text content) and a Quiz App (interactive widget) on the same page.
+This project and its original content are developed and maintained by ToolBlaster.
 
-High Contrast: Visual design prioritized for readability (WCAG AA standards), especially in Dark Mode.
+Educational content provided is for exam preparation purposes.
 
-No Login: 100% client-side; no user accounts required.
-
-SEO Optimized: Rich structured data (Schema.org), semantic HTML, and extensive text content for search indexing.
-
-5. Development Guidelines
-
-Adding Questions: Create a new JS file (e.g., history-part-1.js) following the quizData structure and include it in the relevant HTML page before main.js.
-
-New Categories: Duplicate the rivers/ folder structure, rename the category in window.QUIZ_CONFIG, and update the content.
-
-Icons: Use Font Awesome 6 Free (referenced via CDN).
-
-Images: Avoid heavy images; prefer CSS styling and Font Awesome icons for visual flair to keep load times fast.
+Empowering Aspirants with Knowledge - HPGK Quiz Hub
