@@ -133,44 +133,31 @@
             font-family: 'Inter', 'Noto Sans Devanagari', sans-serif;
         }
 
-        /* ==========================================================================
-           MAIN LAYOUT FIX: Bounding inner containers to match Global Header exactly
-           ========================================================================== */
+        /* Main Layout - Strictly Bounded to align perfectly with Header/Footer */
+        main { 
+            flex: 1; 
+            max-width: var(--site-width); 
+            margin: 0 auto; 
+            padding: 20px 0; /* 0px horizontal padding to ensure exact 1100px content width */
+            width: 100%; 
+            box-sizing: border-box;
+        }
         
-        main { flex: 1; width: 100%; padding: 15px 0 !important; box-sizing: border-box; }
+        /* Add padding back for smaller screens so content doesn't touch the edges */
+        @media (max-width: 1130px) {
+            main { padding: 20px 15px !important; }
+        }
+        
+        .main-layout { display: block; width: 100%; } 
+        .seo-content-wrapper { width: 100%; }
 
+        /* Breadcrumb & Top Bar */
         .top-meta-bar { 
             display: flex; justify-content: space-between; align-items: center; 
-            width: 100%; max-width: var(--site-width); margin: 0 auto 15px auto; 
-            padding: 0 15px; flex-wrap: nowrap; gap: 10px; box-sizing: border-box;
+            width: 100%; margin: 0 auto 15px auto; 
+            padding: 0; flex-wrap: nowrap; gap: 10px; 
         }
 
-        .main-layout { 
-            display: block; 
-            width: 100%; max-width: var(--site-width); margin: 0 auto; 
-            padding: 0 15px; box-sizing: border-box;
-        } 
-        
-        .seo-content-wrapper { 
-            width: 100%; max-width: var(--site-width); margin: 30px auto; 
-            padding: 0 15px; box-sizing: border-box;
-        }
-
-        .section-separator {
-            height: 1px; background: linear-gradient(90deg, transparent, var(--card-border), transparent);
-            width: 100%; max-width: var(--site-width); margin: 25px auto;
-        }
-
-        /* Responsive overrides for smaller screens */
-        @media (max-width: 480px) {
-            .top-meta-bar, .main-layout, .seo-content-wrapper {
-                padding: 0 12px !important;
-            }
-        }
-
-        /* ==========================================================================
-           BREADCRUMB & HERO STYLES
-           ========================================================================== */
         .breadcrumb-nav { margin: 0; flex-shrink: 1; display: flex; align-items: center; height: 24px; }
         .breadcrumb-list { 
             list-style: none; padding: 0 10px; margin: 0; display: flex; flex-wrap: nowrap; 
@@ -193,6 +180,7 @@
             flex-shrink: 0; box-sizing: border-box;
         }
 
+        /* Compact Hero Section */
         .hub-hero { 
             text-align: center; 
             max-width: 800px; 
@@ -253,6 +241,7 @@
             .notes-grid { grid-template-columns: repeat(4, 1fr); }
         }
 
+        /* Solid, compact card styling */
         .note-card {
             background: #ffffff;
             border: 1px solid #e2e8f0;
@@ -381,11 +370,10 @@
             color: #ffffff !important;
         }
 
-        /* ==========================================================================
-           SEO CONTENT BLOCKS
-           ========================================================================== */
+        /* --- SEO Content Blocks --- */
         .seo-header { text-align: center; margin-bottom: 20px; }
         
+        /* STRICTLY LOCKED H2 to 25px */
         .seo-header h2 { 
             font-size: 25px !important; 
             margin-bottom: 8px; 
@@ -398,6 +386,7 @@
         .seo-card { background: var(--card-bg); border: 1px solid var(--card-border); padding: 20px; border-radius: var(--radius-lg); box-shadow: var(--glass-shadow); border-left: 4px solid var(--primary); transition: border-color 0.2s; }
         .seo-card:hover { border-color: var(--primary-light); }
         
+        /* STRICTLY LOCKED H3 to 16px */
         .seo-card h3 { 
             font-size: 16px !important; 
             margin-bottom: 10px; 
@@ -411,15 +400,25 @@
         .seo-card h3 i { color: var(--primary); }
         .seo-card p { color: var(--text-body); font-size: 0.85rem; margin-bottom: 0; line-height: 1.5; }
 
+        .section-separator {
+            margin-top: 30px; 
+            margin-bottom: 30px; 
+            height: 1px;
+            width: 100%;
+            background: linear-gradient(90deg, transparent, #e2e8f0, transparent);
+        }
+
         [data-theme="dark"] .section-separator {
             background: linear-gradient(90deg, transparent, #334155, transparent);
         }
         
         @media (max-width: 600px) {
-            .hero-title { font-size: 26px !important; }
+            /* Main handles padding perfectly now */
+            main { padding: 15px 12px !important; }
+            .top-meta-bar { flex-wrap: nowrap; justify-content: space-between; }
             .breadcrumb-nav, .hero-badge { height: 26px; }
-            .breadcrumb-list { border-radius: 13px; }
-            .hero-badge { border-radius: 13px; font-size: 0.6rem; }
+            .breadcrumb-list { padding: 0 10px; border-radius: 13px; }
+            .hero-badge { padding: 0 10px; border-radius: 13px; font-size: 0.6rem; }
             .breadcrumb-item { font-size: 0.6rem; }
             .section-separator { margin-top: 20px; margin-bottom: 20px; }
             
@@ -447,19 +446,20 @@
 <div id="site-header"></div>
 
 <main>
-    <!-- Top Meta Bar -->
-    <div class="top-meta-bar">
-        <nav aria-label="breadcrumb" class="breadcrumb-nav">
-            <ol class="breadcrumb-list">
-                <li class="breadcrumb-item"><a href="../"><i class="fa-solid fa-house"></i> Home</a></li>
-                <li class="breadcrumb-separator"><i class="fa-solid fa-chevron-right"></i></li>
-                <li class="breadcrumb-item active" aria-current="page">Study Notes</li>
-            </ol>
-        </nav>
-        <span class="hero-badge">Study Hub</span>
-    </div>
-
     <div class="main-layout">
+        
+        <!-- Top Meta Bar -->
+        <div class="top-meta-bar">
+            <nav aria-label="breadcrumb" class="breadcrumb-nav">
+                <ol class="breadcrumb-list">
+                    <li class="breadcrumb-item"><a href="../"><i class="fa-solid fa-house"></i> Home</a></li>
+                    <li class="breadcrumb-separator"><i class="fa-solid fa-chevron-right"></i></li>
+                    <li class="breadcrumb-item active" aria-current="page">Study Notes</li>
+                </ol>
+            </nav>
+            <span class="hero-badge">Study Hub</span>
+        </div>
+
         <!-- Hero Section -->
         <section class="hub-hero">
             <h1 class="hero-title">HPGK Premium Notes Hub</h1>
@@ -469,7 +469,7 @@
             </p>
         </section>
 
-        <!-- Compact Navigation Grid for Notes (10 Core Cards) -->
+        <!-- Compact Navigation Grid for Notes (Perfect 8 Cards) -->
         <div class="notes-grid">
             
             <!-- 1. Govt Schemes -->
@@ -563,20 +563,7 @@
                 <div class="note-status"><i class="fa-solid fa-hourglass-half"></i> Soon</div>
             </div>
 
-            <!-- 8. Current Affairs -->
-            <div class="note-card disabled" title="Coming Soon">
-                <div class="note-header">
-                    <div class="note-icon"><i class="fa-regular fa-newspaper"></i></div>
-                    <div class="note-title-wrapper">
-                        <div class="note-title">Current Affairs</div>
-                        <span class="hi-title">करेंट अफेयर्स</span>
-                    </div>
-                </div>
-                <div class="note-desc">Monthly compilation of HP specific current events and news.</div>
-                <div class="note-status"><i class="fa-solid fa-hourglass-half"></i> Soon</div>
-            </div>
-
-            <!-- 9. HP Land Laws -->
+            <!-- 8. HP Land Laws -->
             <div class="note-card disabled" title="Coming Soon">
                 <div class="note-header">
                     <div class="note-icon"><i class="fa-solid fa-gavel"></i></div>
@@ -589,20 +576,8 @@
                 <div class="note-status"><i class="fa-solid fa-hourglass-half"></i> Soon</div>
             </div>
 
-            <!-- 10. Previous Papers -->
-            <div class="note-card disabled" title="Coming Soon">
-                <div class="note-header">
-                    <div class="note-icon"><i class="fa-solid fa-file-pdf"></i></div>
-                    <div class="note-title-wrapper">
-                        <div class="note-title">Previous Papers</div>
-                        <span class="hi-title">पिछले वर्ष के प्रश्न पत्र</span>
-                    </div>
-                </div>
-                <div class="note-desc">Downloadable PDFs of HPAS, Naib Tehsildar, and Allied exams.</div>
-                <div class="note-status"><i class="fa-solid fa-hourglass-half"></i> Soon</div>
-            </div>
-
         </div>
+
     </div>
 
     <div class="section-separator"></div>
