@@ -96,6 +96,8 @@
     <!-- PAGE SPECIFIC STYLESHEET (Clean & Natural) -->
     <style>
         :root {
+            --site-width: 1100px;
+            
             --primary: #2563eb;       
             --primary-hover: #1d4ed8; 
             --primary-light: rgba(37, 99, 235, 0.1); 
@@ -105,6 +107,7 @@
             --bg-gradient: linear-gradient(135deg, #eff6ff 0%, #dbeafe 50%, #f3e8ff 100%);
             --card-bg: rgba(255, 255, 255, 0.65); 
             --card-border: rgba(255, 255, 255, 0.5); 
+            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
             
             --text-main: #0f172a;     
             --text-body: #334155;     
@@ -112,6 +115,7 @@
             
             --radius-md: 8px;
             --radius-lg: 12px;
+            --radius-xl: 16px;
         }
 
         [data-theme="dark"] {
@@ -124,10 +128,11 @@
             --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #020617 100%);
             --card-bg: rgba(30, 41, 59, 0.5); 
             --card-border: rgba(255, 255, 255, 0.08); 
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
             
-            --text-main: #f8fafc;     
-            --text-body: #cbd5e1;     
-            --text-sec: #94a3b8;      
+            --text-main: #ffffff;     
+            --text-body: #e2e8f0;     
+            --text-sec: #cbd5e1;      
         }
 
         body {
@@ -136,17 +141,44 @@
             font-family: 'Inter', 'Noto Sans Devanagari', sans-serif;
         }
 
-        /* Main Layout */
-        main { flex: 1; max-width: 1200px; margin: 0 auto; padding: 20px 15px; width: 100%; }
-        .main-layout { display: block; } 
+        /* ==========================================================================
+           MAIN LAYOUT FIX: Bounding inner containers to match Global Header exactly
+           ========================================================================== */
+        
+        main { 
+            flex: 1; 
+            max-width: var(--site-width); 
+            margin: 0 auto; 
+            padding: 20px 0; /* 0px horizontal padding to ensure exact 1100px content width */
+            width: 100%; 
+            box-sizing: border-box;
+        }
+        
+        @media (max-width: 1130px) {
+            main { padding: 20px 15px !important; }
+        }
+        
+        .main-layout { 
+            display: block; 
+            width: 100%; max-width: var(--site-width); margin: 0 auto; 
+            padding: 0 15px; box-sizing: border-box;
+        } 
 
-        /* Breadcrumb & Top Bar (Matched to 24px) */
         .top-meta-bar { 
             display: flex; justify-content: space-between; align-items: center; 
-            width: 100%; margin: 0 auto 15px auto; 
-            padding: 0; flex-wrap: nowrap; gap: 10px; 
+            width: 100%; max-width: var(--site-width); margin: 0 auto 15px auto; 
+            padding: 0 15px; flex-wrap: nowrap; gap: 10px; box-sizing: border-box;
         }
 
+        @media (max-width: 480px) {
+            .top-meta-bar, .main-layout {
+                padding: 0 12px !important;
+            }
+        }
+
+        /* ==========================================================================
+           BREADCRUMB & HERO STYLES
+           ========================================================================== */
         .breadcrumb-nav { margin: 0; flex-shrink: 1; display: flex; align-items: center; height: 24px; }
         .breadcrumb-list { 
             list-style: none; padding: 0 10px; margin: 0; display: flex; flex-wrap: nowrap; 
@@ -169,12 +201,11 @@
             flex-shrink: 0; box-sizing: border-box;
         }
 
-        /* Compact Hero Section */
         .hub-hero { 
             text-align: center; 
             max-width: 800px; 
             margin: 0 auto 20px auto;
-            padding: 10px 15px;
+            padding: 10px 0;
         }
 
         /* STRICTLY LOCKED H1 to 32px */
@@ -208,16 +239,62 @@
             margin-top: 4px;
         }
 
-        /* STRICTLY LOCKED H2 to 25px */
-        .section-sub-heading {
-            font-family: 'Inter', sans-serif !important;
-            font-size: 25px !important;
-            font-weight: 800 !important;
-            color: var(--text-main);
-            text-align: center;
-            margin: 0 auto 15px auto; 
-            width: 100%;
-            display: block;
+        /* ==========================================
+           HIGH-CONTRAST INTERLINKING PILL
+           ========================================== */
+        .hero-interlinks {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        
+        [data-theme="dark"] .hero-interlinks {
+            background: #1e293b;
+            border-color: #334155;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .hero-interlinks .interlink-label {
+            font-size: 0.8rem;
+            font-weight: 800;
+            color: var(--text-sec);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .hero-interlinks .interlink-label i { 
+            color: var(--primary); 
+            margin-right: 4px;
+        }
+        
+        .hero-interlinks a {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        
+        .hero-interlinks a:hover {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+        
+        [data-theme="dark"] .hero-interlinks a { color: #93c5fd; }
+        [data-theme="dark"] .hero-interlinks a:hover { color: #60a5fa; }
+        
+        .hero-interlinks .dot {
+            color: var(--text-sec);
+            font-size: 0.8rem;
+            opacity: 0.6;
         }
 
         /* ==========================================================================
@@ -228,6 +305,7 @@
             grid-template-columns: repeat(1, 1fr);
             gap: 15px;
             margin-bottom: 25px; 
+            width: 100%;
         }
 
         @media (min-width: 640px) {
@@ -364,8 +442,20 @@
         }
 
         @media (max-width: 600px) {
-            main { padding: 15px 10px; }
+            /* EXACT MOBILE H1 FONT SIZE: 23px */
+            .hero-title { font-size: 23px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
+            main { padding: 15px 12px !important; }
             .top-meta-bar { flex-wrap: nowrap; justify-content: space-between; }
+            .breadcrumb-nav, .hero-badge { height: 26px; }
+            .breadcrumb-list { padding: 0 10px; border-radius: 13px; }
+            .hero-badge { padding: 0 10px; border-radius: 13px; font-size: 0.6rem; }
+            .breadcrumb-item { font-size: 0.6rem; }
+            
+            /* Responsive interlinks for mobile */
+            .hero-interlinks { flex-direction: row; flex-wrap: wrap; gap: 6px; padding: 8px 12px; border-radius: 30px; }
+            .hero-interlinks .dot { display: inline; font-size: 0.7rem; }
+            .hero-interlinks a { font-size: 0.8rem; }
+            .hero-interlinks .interlink-label { font-size: 0.75rem; }
         }
     </style>
 
@@ -387,22 +477,21 @@
 <div id="site-header"></div>
 
 <main>
-    <div class="main-layout">
-        
-        <!-- Top Meta Bar: Breadcrumb (Left) & Hero Badge (Right) -->
-        <div class="top-meta-bar">
-            <nav aria-label="breadcrumb" class="breadcrumb-nav">
-                <ol class="breadcrumb-list">
-                    <li class="breadcrumb-item"><a href="../../"><i class="fa-solid fa-house"></i> Home</a></li>
-                    <li class="breadcrumb-separator"><i class="fa-solid fa-chevron-right"></i></li>
-                    <li class="breadcrumb-item"><a href="../">Study Notes</a></li>
-                    <li class="breadcrumb-separator"><i class="fa-solid fa-chevron-right"></i></li>
-                    <li class="breadcrumb-item active" aria-current="page">Govt Schemes</li>
-                </ol>
-            </nav>
-            <span class="hero-badge">Updated</span>
-        </div>
+    <!-- Top Meta Bar: Breadcrumb (Left) & Hero Badge (Right) -->
+    <div class="top-meta-bar">
+        <nav aria-label="breadcrumb" class="breadcrumb-nav">
+            <ol class="breadcrumb-list">
+                <li class="breadcrumb-item"><a href="../../"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li class="breadcrumb-separator"><i class="fa-solid fa-chevron-right"></i></li>
+                <li class="breadcrumb-item"><a href="../">Study Notes</a></li>
+                <li class="breadcrumb-separator"><i class="fa-solid fa-chevron-right"></i></li>
+                <li class="breadcrumb-item active" aria-current="page">Govt Schemes</li>
+            </ol>
+        </nav>
+        <span class="hero-badge">Updated</span>
+    </div>
 
+    <div class="main-layout">
         <!-- Hero Section -->
         <section class="hub-hero">
             <h1 class="hero-title">HP Govt. Welfare Schemes</h1>
@@ -410,6 +499,16 @@
                 Comprehensive list of welfare schemes launched by HP Government. Essential for HPAS, Allied Services, and other state exams.
                 <span class="hi-desc">हिमाचल प्रदेश सरकार की कल्याणकारी योजनाओं की विस्तृत सूची।</span>
             </p>
+            
+            <!-- High-Contrast Interlinking Hook -->
+            <div class="hero-interlinks">
+                <span class="interlink-label"><i class="fa-solid fa-layer-group"></i> Deep Dive:</span>
+                <a href="../hp-budget/">Budget 2026-27</a>
+                <span class="dot">•</span>
+                <a href="../../himachal-pradesh-gk/economy/">Economy</a>
+                <span class="dot">•</span>
+                <a href="../hp-gk-one-liners-500-part-1/">One Liners</a>
+            </div>
         </section>
 
         <!-- Content Area: Govt Schemes -->
