@@ -185,7 +185,7 @@
             box-shadow: var(--glass-shadow);
         }
 
-        /* Main Layout - Removing gap to control spacing with margins natively */
+        /* Main Layout */
         main { flex: 1; max-width: 1200px; margin: 0 auto; padding: 20px 15px; width: 100%; }
         .main-layout { display: flex; flex-direction: column; gap: 0; } 
 
@@ -193,7 +193,7 @@
         .hub-hero { 
             text-align: center; 
             max-width: 800px; 
-            margin: 0 auto 12px auto; /* Reduced margin slightly to fit ticker compactly */
+            margin: 0 auto 12px auto;
             padding: 5px 15px;
         }
         
@@ -238,12 +238,12 @@
             display: flex;
             align-items: center;
             padding: 4px 8px;
-            margin: 0 auto 18px auto; /* Perfect gap between hero and grid */
+            margin: 0 auto 18px auto;
             box-shadow: inset 0 2px 4px rgba(0,0,0,0.03);
             max-width: 1200px;
         }
         [data-theme="dark"] .news-ticker-container {
-            background: rgba(96, 165, 250, 0.08); /* Softer background in dark mode */
+            background: rgba(96, 165, 250, 0.08);
         }
         .ticker-badge {
             background: var(--primary);
@@ -275,10 +275,10 @@
             font-weight: 600;
             color: var(--text-main);
             animation: tickerScroll 25s linear infinite;
-            padding-left: 100%; /* Start off-screen */
+            padding-left: 100%;
         }
         .ticker-text span {
-            color: var(--primary); /* Highlight specific words */
+            color: var(--primary);
         }
         .news-ticker-container:hover .ticker-text {
             animation-play-state: paused;
@@ -310,14 +310,13 @@
         }
 
         /* ==========================================================================
-           ORIGINAL, PERFECTLY SIZED GRID LAYOUT (Match exactly 208px for bottom)
+           UNIFORM GRID LAYOUT (5 Columns on Desktop)
            ========================================================================== */
-        
         .topic-grid { 
             display: grid; 
             grid-template-columns: repeat(2, 1fr); 
             gap: 12px; 
-            margin-bottom: 0; 
+            margin-bottom: 10px; 
             width: 100%;
         }
 
@@ -332,25 +331,7 @@
             .topic-grid { grid-template-columns: repeat(5, 1fr); }
         }
 
-        /* Centered Bottom Grid (LOCKED to 208px for uniform size/hierarchy) */
-        .topic-grid.centered { 
-            display: grid;
-            grid-template-columns: repeat(2, 1fr); /* Mobile keeps 50% */
-            gap: 12px;
-            justify-content: center;
-            margin: 0 auto 10px auto; 
-            width: 100%;
-        }
-        
-        @media (min-width: 600px) { 
-            .topic-grid.centered { 
-                /* Strict lock to 208px as requested to match top grid perfectly */
-                grid-template-columns: repeat(2, 208px); 
-                gap: 15px;
-            } 
-        }
-
-        /* Original compact card style - Using specific selector to ignore style.css margins */
+        /* Uniform card style */
         .main-layout .topic-card { 
             background: var(--card-bg);
             backdrop-filter: blur(16px);
@@ -366,13 +347,22 @@
             flex-direction: column; 
             align-items: center; 
             text-align: center; 
-            margin: 0; /* Ensures external margins don't break the grid */
+            margin: 0;
             box-sizing: border-box;
         }
         
-        .main-layout .topic-card:hover { 
+        .main-layout .topic-card:hover:not(.disabled) { 
             border-color: var(--primary); 
             transform: translateY(-2px);
+        }
+
+        .main-layout .topic-card.disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            background: rgba(0, 0, 0, 0.02);
+        }
+        [data-theme="dark"] .main-layout .topic-card.disabled {
+            background: rgba(0, 0, 0, 0.2);
         }
         
         .topic-icon { 
@@ -417,20 +407,11 @@
         }
         .topic-badge.active { background: var(--correct-bg); color: var(--correct-text); border-color: transparent; }
 
-        /* Agriculture Specialized Card (Dark Mode Compatible) */
-        .main-layout .agri-card { border-color: #059669; }
-        .agri-card .topic-icon { color: #059669; background: rgba(5, 150, 105, 0.1); }
-        .agri-card .topic-badge { background: rgba(5, 150, 105, 0.15); color: #065f46; border: none; }
-        
-        [data-theme="dark"] .main-layout .agri-card { border-color: #34d399; }
-        [data-theme="dark"] .agri-card .topic-icon { color: #34d399; background: rgba(52, 211, 153, 0.15); }
-        [data-theme="dark"] .agri-card .topic-badge { background: rgba(52, 211, 153, 0.2); color: #6ee7b7; border-color: transparent;}
-
         /* Install Button Style */
         .install-float { position: fixed; bottom: 20px; right: 20px; z-index: 1000; display: none; background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 50px; font-weight: 600; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4); cursor: pointer; align-items: center; gap: 8px; animation: slideUp 0.3s ease-out; }
         @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
-        /* --- SEO Content Blocks (Matching Internal Pages) --- */
+        /* --- SEO Content Blocks --- */
         .section-separator {
             margin-top: 30px; 
             margin-bottom: 30px; 
@@ -564,7 +545,7 @@
             </div>
         </div>
 
-        <!-- Main HP GK Topics Grid -->
+        <!-- Main HP GK Topics Grid (Top 10) -->
         <div class="topic-grid">
             <a href="himachal-pradesh-gk/rivers/" class="topic-card">
                 <div class="topic-icon"><i class="fa-solid fa-water"></i></div>
@@ -636,22 +617,49 @@
             Target high-weightage subjects with focused mock tests. Includes latest HP Govt schemes, budget highlights, and a dedicated <strong>General Agriculture</strong> module tailored for ICAR JRF, IBPS AFO & State ADO exams.
         </p>
         
-        <div class="topic-grid centered">
-            <!-- Agriculture Quiz Card -->
-            <a href="agriculture-quiz/" class="topic-card agri-card">
+        <!-- Bottom Uniform Grid (5 Columns) -->
+        <div class="topic-grid">
+            
+            <!-- 1. Agriculture -->
+            <a href="agriculture-quiz/" class="topic-card">
                 <div class="topic-icon"><i class="fa-solid fa-seedling"></i></div>
-                <div class="topic-title">General Agriculture</div>
-                <div class="topic-desc">Ideal for ICAR JRF, IBPS AFO & NABARD.</div>
-                <div class="topic-badge">507+ MCQs</div>
+                <div class="topic-title">Agriculture</div>
+                <div class="topic-desc">ICAR JRF, IBPS AFO & NABARD.</div>
+                <div class="topic-badge active">507+ MCQs</div>
             </a>
 
-            <!-- Study Notes Card -->
-            <a href="study-notes/" class="topic-card" style="border-color: var(--primary);">
+            <!-- 2. Study Notes -->
+            <a href="study-notes/" class="topic-card">
                 <div class="topic-icon"><i class="fa-solid fa-book-open"></i></div>
                 <div class="topic-title">HP Study Notes</div>
-                <div class="topic-desc">Govt Schemes, Budget & Economic Survey.</div>
-                <div class="topic-badge active">Updated Notes</div>
+                <div class="topic-desc">Govt Schemes & Budget Survey.</div>
+                <div class="topic-badge active">Updated</div>
             </a>
+
+            <!-- 3. Computer / IT -->
+            <div class="topic-card disabled" title="Coming Soon">
+                <div class="topic-icon"><i class="fa-solid fa-computer"></i></div>
+                <div class="topic-title">Computer / IT</div>
+                <div class="topic-desc">JOA IT, Clerk & Comp Operator.</div>
+                <div class="topic-badge">Soon</div>
+            </div>
+
+            <!-- 4. Current Affairs -->
+            <div class="topic-card disabled" title="Coming Soon">
+                <div class="topic-icon"><i class="fa-regular fa-newspaper"></i></div>
+                <div class="topic-title">Current Affairs</div>
+                <div class="topic-desc">Latest HP & National Events.</div>
+                <div class="topic-badge">Soon</div>
+            </div>
+
+            <!-- 5. Previous Papers -->
+            <div class="topic-card disabled" title="Coming Soon">
+                <div class="topic-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                <div class="topic-title">Previous Papers</div>
+                <div class="topic-desc">HPAS, Naib Tehsildar & Allied.</div>
+                <div class="topic-badge">Soon</div>
+            </div>
+
         </div>
 
     </div>
