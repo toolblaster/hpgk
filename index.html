@@ -21,12 +21,12 @@
     <meta property="twitter:description" content="Master Himachal Pradesh GK with HPGK Quiz! Free mock tests for HPAS, HPPSC, Allied Services, and specialized Agriculture Mock Tests for ICAR, IBPS AFO & NABARD.">
     <meta property="twitter:image" content="https://hpgk.toolblaster.com/js/favicon/web-app-manifest-512x512.png">
 
-    <!-- Clean URL Script: Removes index.html from address bar -->
+    <!-- Clean URL Script -->
     <script>
         if (window.history.replaceState) {
             const path = window.location.pathname;
             if (path.endsWith('index.html')) {
-                const newPath = path.substring(0, path.length - 10); // Remove 'index.html'
+                const newPath = path.substring(0, path.length - 10); 
                 window.history.replaceState(null, '', newPath);
             }
         }
@@ -46,7 +46,6 @@
     }
     </script>
 
-    <!-- Breadcrumb Schema -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -60,7 +59,6 @@
     }
     </script>
 
-    <!-- FAQ Schema -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -126,14 +124,14 @@
     <!-- HOMEPAGE SPECIFIC STYLESHEET -->
     <style>
         :root {
-            /* Blue Theme for HPGK Main Hub */
+            --site-width: 1100px;
+            
             --primary: #2563eb;       
             --primary-hover: #1d4ed8; 
             --primary-light: rgba(37, 99, 235, 0.1); 
             --primary-dark: #1e3a8a;  
             --accent: #ea580c;        
             
-            /* Glassmorphism Variables */
             --bg-gradient: linear-gradient(135deg, #eff6ff 0%, #dbeafe 50%, #f3e8ff 100%);
             --card-bg: rgba(255, 255, 255, 0.65); 
             --card-border: rgba(255, 255, 255, 0.5); 
@@ -158,7 +156,6 @@
             --primary-dark: #bfdbfe;  
             --accent: #fbbf24;        
             
-            /* Dark Glassmorphism Variables */
             --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #020617 100%);
             --card-bg: rgba(30, 41, 59, 0.5); 
             --card-border: rgba(255, 255, 255, 0.08); 
@@ -185,16 +182,46 @@
             box-shadow: var(--glass-shadow);
         }
 
-        /* Main Layout */
-        main { flex: 1; max-width: 1200px; margin: 0 auto; padding: 20px 15px; width: 100%; }
-        .main-layout { display: flex; flex-direction: column; gap: 0; } 
+        /* ==========================================================================
+           FIXED: RENAMED TO .page-layout TO AVOID CONFLICT WITH GLOBAL CSS ROW FLEX
+           ========================================================================== */
+        main { 
+            flex: 1; 
+            width: 100%; 
+            padding: 15px 0 !important; 
+            box-sizing: border-box; 
+        }
+
+        .page-layout, .seo-content-wrapper, .news-ticker-container { 
+            width: 100%; 
+            max-width: var(--site-width); 
+            margin: 0 auto; 
+            padding: 0 15px; 
+            box-sizing: border-box;
+            display: block !important; /* Forces vertical stacking, overriding any global flex rows */
+        }
+
+        .section-separator { 
+            height: 1px; 
+            background: linear-gradient(90deg, transparent, var(--card-border), transparent); 
+            margin: 30px auto; 
+            width: 100%; 
+            max-width: var(--site-width); 
+        }
+
+        @media (max-width: 480px) {
+            .page-layout, .seo-content-wrapper, .news-ticker-container {
+                padding: 0 12px !important;
+            }
+        }
 
         /* Compact Hero Section */
         .hub-hero { 
             text-align: center; 
             max-width: 800px; 
             margin: 0 auto 12px auto;
-            padding: 5px 15px;
+            padding: 5px 0;
+            display: block;
         }
         
         .hero-badge {
@@ -228,19 +255,17 @@
             max-width: 650px;
         }
 
-        /* --- TICKER SECTION (Compact & Smooth) --- */
+        /* --- TICKER SECTION --- */
         .news-ticker-container {
-            width: 100%;
             background: var(--primary-light);
             border: 1px solid var(--card-border);
             border-radius: var(--radius-md);
             overflow: hidden;
-            display: flex;
+            display: flex !important; /* Ticker needs flex internally */
             align-items: center;
             padding: 4px 8px;
-            margin: 0 auto 18px auto;
+            margin-bottom: 25px;
             box-shadow: inset 0 2px 4px rgba(0,0,0,0.03);
-            max-width: 1200px;
         }
         [data-theme="dark"] .news-ticker-container {
             background: rgba(96, 165, 250, 0.08);
@@ -304,35 +329,36 @@
             font-size: 0.85rem;
             color: var(--text-sec);
             line-height: 1.5;
-            margin: 0 auto 15px auto;
+            margin: 0 auto 20px auto;
             max-width: 700px;
             text-align: center;
         }
 
         /* ==========================================================================
-           UNIFORM GRID LAYOUT (5 Columns on Desktop)
+           UNIFORM GRID LAYOUT (Pure CSS Grid for robust 5-column alignment)
            ========================================================================== */
         .topic-grid { 
-            display: grid; 
-            grid-template-columns: repeat(2, 1fr); 
-            gap: 12px; 
-            margin-bottom: 10px; 
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
             width: 100%;
         }
 
         @media (min-width: 600px) {
             .topic-grid {
-                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+                grid-template-columns: repeat(3, 1fr);
                 gap: 15px;
             }
         }
 
         @media (min-width: 1024px) {
-            .topic-grid { grid-template-columns: repeat(5, 1fr); }
+            .topic-grid { 
+                grid-template-columns: repeat(5, 1fr); 
+            }
         }
 
         /* Uniform card style */
-        .main-layout .topic-card { 
+        .topic-card { 
             background: var(--card-bg);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
@@ -347,21 +373,21 @@
             flex-direction: column; 
             align-items: center; 
             text-align: center; 
-            margin: 0;
             box-sizing: border-box;
+            width: 100%;
         }
         
-        .main-layout .topic-card:hover:not(.disabled) { 
+        .topic-card:hover:not(.disabled) { 
             border-color: var(--primary); 
             transform: translateY(-2px);
         }
 
-        .main-layout .topic-card.disabled {
+        .topic-card.disabled {
             opacity: 0.7;
             cursor: not-allowed;
             background: rgba(0, 0, 0, 0.02);
         }
-        [data-theme="dark"] .main-layout .topic-card.disabled {
+        [data-theme="dark"] .topic-card.disabled {
             background: rgba(0, 0, 0, 0.2);
         }
         
@@ -412,21 +438,6 @@
         @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
         /* --- SEO Content Blocks --- */
-        .section-separator {
-            margin-top: 30px; 
-            margin-bottom: 30px; 
-            height: 1px;
-            width: 100%;
-            background: linear-gradient(90deg, transparent, var(--card-border), transparent);
-        }
-
-        .seo-content-wrapper { 
-            width: 100%; 
-            max-width: 1100px; 
-            margin: 0 auto 30px auto; 
-            padding: 0 15px; 
-        }
-        
         .seo-header { 
             text-align: center; 
             margin-bottom: 25px; 
@@ -468,13 +479,15 @@
             border-color: var(--primary-light); 
         }
         
+        /* H3 strictly 16px */
         .seo-card h3 { 
-            font-size: 1.05rem; 
+            font-size: 16px !important; 
             margin-bottom: 10px; 
             display: flex; 
             align-items: center; 
             gap: 8px; 
             color: var(--text-main); 
+            font-weight: 700; 
         }
         
         .seo-card h3 i { 
@@ -489,9 +502,8 @@
         }
         
         @media (max-width: 600px) {
-            main { padding: 15px 10px; }
-            .section-desc { font-size: 0.8rem; margin-bottom: 12px; padding: 0 10px; }
-            .section-separator { margin-top: 20px; margin-bottom: 20px; }
+            .hero-title { font-size: 26px !important; }
+            .section-desc { font-size: 0.8rem; margin-bottom: 12px; }
             .seo-card { padding: 15px; }
             .news-ticker-container { padding: 3px 6px; margin-bottom: 15px; }
             .ticker-badge { font-size: 0.6rem; padding: 2px 4px; }
@@ -513,8 +525,6 @@
     </div>
 </noscript>
 
-<div class="progress-container"><div class="progress-fill" id="progressFill"></div></div>
-
 <!-- Global HPGK Header Placeholder -->
 <div id="site-header"></div>
 
@@ -524,8 +534,7 @@
 </button>
 
 <main>
-    <div class="main-layout">
-        
+    <div class="page-layout">
         <!-- Hero Section -->
         <section class="hub-hero">
             <span class="hero-badge glass-panel" style="border-color: var(--primary); color: var(--primary);">Devbhoomi Edition</span>
@@ -534,17 +543,19 @@
                 The ultimate study companion for HPAS (HAS), HPPSC, Allied Services, Naib Tehsildar, and HP Police. Select a topic below to start practicing.
             </p>
         </section>
+    </div>
 
-        <!-- Compact Fast Scrolling Ticker -->
-        <div class="news-ticker-container glass-panel">
-            <span class="ticker-badge"><i class="fa-solid fa-bolt" style="margin-right:2px;"></i> Updates</span>
-            <div class="ticker-wrap">
-                <span class="ticker-text">
-                    🔥 <span>New:</span> General Agriculture 507+ MCQs Added &nbsp;&nbsp; | &nbsp;&nbsp; 🎯 <span>Target HPAS 2026:</span> Topic-wise Quizzes Live &nbsp;&nbsp; | &nbsp;&nbsp; 📚 <span>Updated:</span> Detailed District Profiles with Latest Economic Survey Stats &nbsp;&nbsp; | &nbsp;&nbsp; 🚀 Start practicing for free!
-                </span>
-            </div>
+    <!-- Compact Fast Scrolling Ticker -->
+    <div class="news-ticker-container glass-panel">
+        <span class="ticker-badge"><i class="fa-solid fa-bolt" style="margin-right:2px;"></i> Updates</span>
+        <div class="ticker-wrap">
+            <span class="ticker-text">
+                🔥 <span>New:</span> General Agriculture 507+ MCQs Added &nbsp;&nbsp; | &nbsp;&nbsp; 🎯 <span>Target HPAS 2026:</span> Topic-wise Quizzes Live &nbsp;&nbsp; | &nbsp;&nbsp; 📚 <span>Updated:</span> Detailed District Profiles with Latest Economic Survey Stats &nbsp;&nbsp; | &nbsp;&nbsp; 🚀 Start practicing for free!
+            </span>
         </div>
+    </div>
 
+    <div class="page-layout">
         <!-- Main HP GK Topics Grid (Top 10) -->
         <div class="topic-grid">
             <a href="himachal-pradesh-gk/rivers/" class="topic-card">
@@ -608,9 +619,11 @@
                 <div class="topic-badge active">390+ MCQs</div>
             </a>
         </div>
+    </div>
 
-        <div class="section-separator"></div>
+    <div class="section-separator"></div>
 
+    <div class="page-layout">
         <!-- Specialized Subject Quizzes & Resources -->
         <h2 class="section-sub-heading">Specialized Quizzes & Resources</h2>
         <p class="section-desc">
@@ -661,13 +674,12 @@
             </div>
 
         </div>
-
     </div>
     
     <div class="section-separator"></div>
 
     <!-- Natural SEO Content Section for Search Engines -->
-    <section class="seo-content-wrapper">
+    <div class="seo-content-wrapper">
         <div class="seo-header">
             <h2>Your Ultimate Guide to HP General Knowledge</h2>
             <p>Comprehensive study material and free mock tests for all Himachal Pradesh competitive exams.</p>
@@ -692,7 +704,7 @@
                 <p>Looking for reliable practice material? Attempting our <strong>hp gk questions in hindi</strong> and English through our interactive mock tests helps you evaluate your preparation for HPAS, HPPSC, Naib Tehsildar, and Allied Services—all for free and without any login.</p>
             </div>
         </div>
-    </section>
+    </div>
 
 </main>
 
