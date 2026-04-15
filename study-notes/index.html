@@ -85,7 +85,6 @@
     <!-- Load Global Style First -->
     <link rel="stylesheet" href="../js/style.css">
 
-    <!-- PAGE SPECIFIC STYLESHEET -->
     <style>
         :root {
             --site-width: 1100px;
@@ -133,29 +132,46 @@
             font-family: 'Inter', 'Noto Sans Devanagari', sans-serif;
         }
 
-        /* Main Layout - Strictly Bounded to align perfectly with Header/Footer */
+        /* ==========================================================================
+           FIXED: RENAMED TO .page-layout TO AVOID CONFLICT WITH GLOBAL CSS ROW FLEX
+           ========================================================================== */
         main { 
             flex: 1; 
+            width: 100%; 
+            padding: 15px 0 !important; 
+            box-sizing: border-box; 
+        }
+
+        .page-layout, .top-meta-bar, .seo-content-wrapper { 
+            width: 100%; 
             max-width: var(--site-width); 
             margin: 0 auto; 
-            padding: 20px 0; /* 0px horizontal padding to ensure exact 1100px content width */
-            width: 100%; 
+            padding: 0 15px; 
             box-sizing: border-box;
+            display: block !important; /* Forces vertical stacking */
         }
-        
-        /* Add padding back for smaller screens so content doesn't touch the edges */
-        @media (max-width: 1130px) {
-            main { padding: 20px 15px !important; }
-        }
-        
-        .main-layout { display: block; width: 100%; } 
-        .seo-content-wrapper { width: 100%; }
 
-        /* Breadcrumb & Top Bar */
+        .section-separator { 
+            height: 1px; 
+            background: linear-gradient(90deg, transparent, var(--card-border), transparent); 
+            margin: 25px auto; 
+            width: 100%; 
+            max-width: var(--site-width); 
+        }
+
+        @media (max-width: 480px) {
+            .page-layout, .top-meta-bar, .seo-content-wrapper {
+                padding: 0 12px !important;
+            }
+        }
+
         .top-meta-bar { 
-            display: flex; justify-content: space-between; align-items: center; 
-            width: 100%; margin: 0 auto 15px auto; 
-            padding: 0; flex-wrap: nowrap; gap: 10px; 
+            display: flex !important; /* Let this one be a flex container for the breadcrumb */
+            justify-content: space-between; 
+            align-items: center; 
+            margin-bottom: 15px; 
+            flex-wrap: nowrap; 
+            gap: 10px; 
         }
 
         .breadcrumb-nav { margin: 0; flex-shrink: 1; display: flex; align-items: center; height: 24px; }
@@ -180,12 +196,12 @@
             flex-shrink: 0; box-sizing: border-box;
         }
 
-        /* Compact Hero Section */
         .hub-hero { 
             text-align: center; 
             max-width: 800px; 
             margin: 0 auto 20px auto;
             padding: 10px 0;
+            display: block;
         }
 
         .hero-title {
@@ -218,9 +234,7 @@
             margin-top: 4px;
         }
 
-        /* ==========================================================================
-           COMPACT GRID FOR NOTES CARDS (4 Columns)
-           ========================================================================== */
+        /* 4 Columns Note Grid */
         .notes-grid {
             display: grid;
             grid-template-columns: repeat(1, 1fr);
@@ -241,7 +255,6 @@
             .notes-grid { grid-template-columns: repeat(4, 1fr); }
         }
 
-        /* Solid, compact card styling */
         .note-card {
             background: #ffffff;
             border: 1px solid #e2e8f0;
@@ -370,23 +383,23 @@
             color: #ffffff !important;
         }
 
-        /* --- SEO Content Blocks --- */
-        .seo-header { text-align: center; margin-bottom: 20px; }
+        /* SEO Content Blocks */
+        .seo-header { text-align: center; margin-bottom: 20px; display: block; }
         
-        /* STRICTLY LOCKED H2 to 25px */
         .seo-header h2 { 
             font-size: 25px !important; 
             margin-bottom: 8px; 
             color: var(--text-main); 
             font-weight: 800; 
+            font-family: 'Inter', sans-serif !important;
         }
         
         .seo-header p { color: var(--text-sec); max-width: 600px; margin: 0 auto; font-size: 0.85rem; }
+        
         .seo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
         .seo-card { background: var(--card-bg); border: 1px solid var(--card-border); padding: 20px; border-radius: var(--radius-lg); box-shadow: var(--glass-shadow); border-left: 4px solid var(--primary); transition: border-color 0.2s; }
         .seo-card:hover { border-color: var(--primary-light); }
         
-        /* STRICTLY LOCKED H3 to 16px */
         .seo-card h3 { 
             font-size: 16px !important; 
             margin-bottom: 10px; 
@@ -399,29 +412,9 @@
         
         .seo-card h3 i { color: var(--primary); }
         .seo-card p { color: var(--text-body); font-size: 0.85rem; margin-bottom: 0; line-height: 1.5; }
-
-        .section-separator {
-            margin-top: 30px; 
-            margin-bottom: 30px; 
-            height: 1px;
-            width: 100%;
-            background: linear-gradient(90deg, transparent, #e2e8f0, transparent);
-        }
-
-        [data-theme="dark"] .section-separator {
-            background: linear-gradient(90deg, transparent, #334155, transparent);
-        }
         
         @media (max-width: 600px) {
-            /* Main handles padding perfectly now */
-            main { padding: 15px 12px !important; }
-            .top-meta-bar { flex-wrap: nowrap; justify-content: space-between; }
-            .breadcrumb-nav, .hero-badge { height: 26px; }
-            .breadcrumb-list { padding: 0 10px; border-radius: 13px; }
-            .hero-badge { padding: 0 10px; border-radius: 13px; font-size: 0.6rem; }
-            .breadcrumb-item { font-size: 0.6rem; }
-            .section-separator { margin-top: 20px; margin-bottom: 20px; }
-            
+            .hero-title { font-size: 26px !important; }
             .note-card { padding: 12px; min-height: 120px; }
             .note-icon { width: 32px; height: 32px; font-size: 1rem; border-radius: 6px; }
             .seo-card { padding: 15px; }
@@ -446,20 +439,18 @@
 <div id="site-header"></div>
 
 <main>
-    <div class="main-layout">
-        
-        <!-- Top Meta Bar -->
-        <div class="top-meta-bar">
-            <nav aria-label="breadcrumb" class="breadcrumb-nav">
-                <ol class="breadcrumb-list">
-                    <li class="breadcrumb-item"><a href="../"><i class="fa-solid fa-house"></i> Home</a></li>
-                    <li class="breadcrumb-separator"><i class="fa-solid fa-chevron-right"></i></li>
-                    <li class="breadcrumb-item active" aria-current="page">Study Notes</li>
-                </ol>
-            </nav>
-            <span class="hero-badge">Study Hub</span>
-        </div>
+    <div class="top-meta-bar">
+        <nav aria-label="breadcrumb" class="breadcrumb-nav">
+            <ol class="breadcrumb-list">
+                <li class="breadcrumb-item"><a href="../"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li class="breadcrumb-separator"><i class="fa-solid fa-chevron-right"></i></li>
+                <li class="breadcrumb-item active" aria-current="page">Study Notes</li>
+            </ol>
+        </nav>
+        <span class="hero-badge">Study Hub</span>
+    </div>
 
+    <div class="page-layout">
         <!-- Hero Section -->
         <section class="hub-hero">
             <h1 class="hero-title">HPGK Premium Notes Hub</h1>
