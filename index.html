@@ -223,6 +223,28 @@
             padding: 5px 0;
             display: block;
         }
+
+        /* Isolated Homepage Main Title - No link with global style.css */
+        .hp-main-title {
+            font-family: 'Inter', sans-serif !important;
+            font-size: 32px !important; 
+            font-weight: 800 !important;
+            margin: 0 0 6px 0 !important; 
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+            color: var(--text-main);
+            text-align: center; 
+        }
+
+        /* Isolated Homepage Hero Description */
+        .hp-hero-desc {
+            font-size: 0.95rem;
+            color: var(--text-sec);
+            line-height: 1.5;
+            margin: 0 auto; 
+            max-width: 650px;
+            text-align: center;
+        }
         
         .hero-badge {
             font-size: 0.75rem;
@@ -233,26 +255,6 @@
             margin-bottom: 8px; 
             color: var(--primary);
             border: 1px solid var(--primary);
-        }
-
-        /* STRICTLY LOCKED H1 to 32px */
-        .hero-title {
-            font-family: 'Inter', sans-serif !important;
-            font-size: 32px !important; 
-            font-weight: 800 !important;
-            margin: 0 0 6px 0; 
-            line-height: 1.2;
-            letter-spacing: -0.5px;
-            color: var(--text-main);
-            text-align: center; 
-        }
-
-        .hero-desc {
-            font-size: 0.95rem;
-            color: var(--text-sec);
-            line-height: 1.5;
-            margin: 0 auto; 
-            max-width: 650px;
         }
 
         /* --- TICKER SECTION --- */
@@ -443,15 +445,6 @@
             margin-bottom: 25px; 
         }
         
-        /* H2 strictly 25px */
-        .seo-header h2 { 
-            font-family: 'Inter', sans-serif !important;
-            font-size: 25px !important; 
-            font-weight: 800 !important;
-            margin-bottom: 8px; 
-            color: var(--text-main);
-        }
-        
         .seo-header p { 
             color: var(--text-sec); 
             max-width: 700px; 
@@ -502,7 +495,9 @@
         }
         
         @media (max-width: 600px) {
-            .hero-title { font-size: 26px !important; }
+            /* Applied to isolated titles - ensuring extra bold feel */
+            .hp-main-title { font-size: 26px !important; font-weight: 800 !important; }
+            .section-sub-heading { font-size: 22px !important; font-weight: 800 !important; }
             .section-desc { font-size: 0.8rem; margin-bottom: 12px; }
             .seo-card { padding: 15px; }
             .news-ticker-container { padding: 3px 6px; margin-bottom: 15px; }
@@ -538,8 +533,10 @@
         <!-- Hero Section -->
         <section class="hub-hero">
             <span class="hero-badge glass-panel" style="border-color: var(--primary); color: var(--primary);">Devbhoomi Edition</span>
-            <h1 class="hero-title">Master Himachal Pradesh General Knowledge</h1>
-            <p class="hero-desc">
+            <!-- Changed class to isolated hp-main-title -->
+            <h1 class="hp-main-title">Master Himachal Pradesh General Knowledge</h1>
+            <!-- Changed class to isolated hp-hero-desc -->
+            <p class="hp-hero-desc">
                 The ultimate study companion for HPAS (HAS), HPPSC, Allied Services, Naib Tehsildar, and HP Police. Select a topic below to start practicing.
             </p>
         </section>
@@ -550,7 +547,7 @@
         <span class="ticker-badge"><i class="fa-solid fa-bolt" style="margin-right:2px;"></i> Updates</span>
         <div class="ticker-wrap">
             <span class="ticker-text">
-                🔥 <span>New:</span> General Agriculture 507+ MCQs Added &nbsp;&nbsp; | &nbsp;&nbsp; 🎯 <span>Target HPAS 2026:</span> Topic-wise Quizzes Live &nbsp;&nbsp; | &nbsp;&nbsp; 📚 <span>Updated:</span> Detailed District Profiles with Latest Economic Survey Stats &nbsp;&nbsp; | &nbsp;&nbsp; 🚀 Start practicing for free!
+                🔥 <span>New:</span> 6000+ Bilingual MCQs for HPAS & Allied Exams &nbsp;&nbsp; | &nbsp;&nbsp; 🎯 <span>Trending:</span> 1300+ District Profile Questions &nbsp;&nbsp; | &nbsp;&nbsp; 📚 <span>Updated:</span> Study Notes & Agriculture Quiz Live &nbsp;&nbsp; | &nbsp;&nbsp; 🚀 Start practicing for free!
             </span>
         </div>
     </div>
@@ -681,7 +678,7 @@
     <!-- Natural SEO Content Section for Search Engines -->
     <div class="seo-content-wrapper">
         <div class="seo-header">
-            <h2>Your Ultimate Guide to HP General Knowledge</h2>
+            <h2 class="section-sub-heading">Your Ultimate Guide to HP General Knowledge</h2>
             <p>Comprehensive study material and free mock tests for all Himachal Pradesh competitive exams.</p>
         </div>
 
