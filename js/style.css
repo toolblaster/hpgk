@@ -344,26 +344,26 @@ main {
 
 .text-controls {
     display: flex;
-    border: 1px solid var(--border-color);
+    /* Removed the border from the container to get rid of the light outline */
     border-radius: 6px;
     overflow: hidden;
     height: 32px; /* match search container */
+    background: var(--input-bg); /* Add background to the container if buttons don't have it */
 }
 .text-btn {
-    background: var(--card-bg);
+    background: transparent; /* Changed from var(--card-bg) to transparent */
     border: none;
     padding: 0 10px;
     cursor: pointer;
     font-size: 0.75rem;
     font-weight: 600;
     color: var(--text-sec);
-    border-left: 1px solid var(--border-color);
+    /* Removed the left border to remove internal lines */
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.text-btn:first-child { border-left: none; }
-.text-btn:hover { background: var(--bg-color); color: var(--primary); }
+.text-btn:hover { background: var(--border-color); color: var(--primary); }
 
 /* Injected Quiz Actions (Backup/Restore/Reset) */
 .quiz-actions {
@@ -374,7 +374,7 @@ main {
 }
 .quiz-action-btn {
     background: var(--input-bg);
-    border: 1px solid var(--border-color);
+    border: none; /* Removed the border here as well */
     color: var(--text-sec);
     width: 32px;
     height: 32px;
@@ -393,7 +393,7 @@ main {
 .quiz-action-btn.reset {
     color: var(--wrong-text);
     background: #fee2e2;
-    border-color: #fca5a5;
+    /* Removed border color setting */
 }
 .quiz-action-btn.reset:hover {
     background: #fca5a5;
