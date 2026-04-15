@@ -295,11 +295,9 @@ main {
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    /* Responsive height adjustment */
-    height: 600px; 
-    max-height: 80vh; /* Ensure it fits on smaller screens without scrolling the whole page too much */
-    position: sticky;
-    top: 75px; /* Stick on scroll */
+    /* Changed height to auto to prevent inner scroll completely */
+    height: auto; 
+    position: relative;
 }
 
 /* Widget Header */
@@ -437,9 +435,8 @@ main {
 /* Quiz Content Area */
 .quiz-content {
     flex: 1;
-    overflow-y: auto;
+    overflow: visible; /* Prevents inner scroll, forces container to expand naturally */
     padding: 12px 15px; /* Comfortable but compact padding */
-    scroll-behavior: smooth;
     background: var(--card-bg);
 }
 .empty-state {
