@@ -72,6 +72,7 @@
     <!-- Global CSS -->
     <link rel="stylesheet" href="../../js/style.css">
 
+    <!-- Premium Glassmorphism & Compact UI Stylesheet -->
     <style>
         :root {
             --primary: #2563eb;       
@@ -146,21 +147,20 @@
             box-shadow: var(--glass-shadow);
         }
 
-        main { flex: 1; width: 100%; padding: 15px 0 !important; }
+        main { flex: 1; width: 100%; padding: 15px 0 !important; box-sizing: border-box; }
 
         .top-meta-bar { 
             display: flex; justify-content: space-between; align-items: center; 
             width: 100%; max-width: var(--site-width); margin: 0 auto 5px auto; 
-            padding: 0 15px; flex-wrap: nowrap; gap: 10px; 
+            padding: 0 15px; flex-wrap: nowrap; gap: 10px; box-sizing: border-box;
         }
 
         .page-header-top, .main-layout, .seo-content-wrapper { 
-            width: 100%; max-width: var(--site-width); margin: 0 auto; padding: 0 15px; 
+            width: 100%; max-width: var(--site-width); margin: 0 auto; padding: 0 15px; box-sizing: border-box;
         }
 
         .page-header-top { text-align: center; margin-bottom: 25px; }
 
-        /* HERO DESC FIX: Force Center Alignment and Margin Auto */
         .hero-desc {
             margin: 0 auto;
             text-align: center;
@@ -202,7 +202,6 @@
             flex-shrink: 0; box-sizing: border-box;
         }
         
-        /* Clean H1 styling (no bottom line) */
         .hero-title { 
             background: linear-gradient(135deg, var(--text-main) 0%, var(--primary) 100%);
             -webkit-background-clip: text;
@@ -216,19 +215,19 @@
         .main-layout { display: flex; flex-direction: column; gap: 20px; }
         @media (min-width: 900px) { 
             .main-layout { flex-direction: row; align-items: flex-start; } 
-            .intro-column, .quiz-widget-wrapper { flex: 1; width: 50%; } 
+            .intro-column, .quiz-widget-wrapper { flex: 1; width: 50%; box-sizing: border-box; } 
         }
 
         .intro-grid { display: grid; gap: 12px; text-align: left; }
-        .intro-card { background: var(--input-bg); border: 1px solid var(--card-border); border-radius: var(--radius-lg); padding: 15px; box-shadow: var(--shadow-sm); }
+        .intro-card { background: var(--input-bg); border: 1px solid var(--card-border); border-radius: var(--radius-lg); padding: 15px; box-shadow: var(--shadow-sm); box-sizing: border-box; width: 100%; }
         .intro-card h2 { font-size: 1.05rem; color: var(--primary); margin: 0 0 8px 0; display: flex; align-items: center; gap: 8px; font-weight: 700; justify-content: center; }
         .intro-card p { font-size: 0.85rem; color: var(--text-body); margin: 0; line-height: 1.5; }
         .intro-list { margin: 8px 0 0 0; padding-left: 20px; font-size: 0.85rem; color: var(--text-body); line-height: 1.5; }
-        .intro-list li { margin-bottom: 6px; } /* Increased spacing between list items for readability */
+        .intro-list li { margin-bottom: 6px; } 
         
         .quick-links { 
             margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--card-border); 
-            display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; 
+            display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; width: 100%; box-sizing: border-box;
         }
         .quick-link-item { 
             font-size: 0.7rem; text-decoration: none; color: var(--primary); 
@@ -239,8 +238,8 @@
         .quick-link-item:hover { background: var(--primary); color: white; }
 
         /* QUIZ WIDGET */
-        .quiz-card { border-radius: var(--radius-xl); display: flex; flex-direction: column; overflow: hidden; height: auto; min-height: 480px; background: var(--card-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--card-border); box-shadow: var(--glass-shadow); position: sticky; top: 80px; }
-        .quick-start-ribbon { background: var(--primary); color: #fff; border: none; padding: 12px; font-size: 0.95rem; font-weight: 700; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px; transition: background 0.2s; width: 100%; flex-shrink: 0; min-height: 45px; }
+        .quiz-card { border-radius: var(--radius-xl); display: flex; flex-direction: column; overflow: hidden; height: auto; min-height: 480px; background: var(--card-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--card-border); box-shadow: var(--glass-shadow); position: sticky; top: 80px; box-sizing: border-box; width: 100%; }
+        .quick-start-ribbon { background: var(--primary); color: #fff; border: none; padding: 12px; font-size: 0.95rem; font-weight: 700; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px; transition: background 0.2s; width: 100%; flex-shrink: 0; min-height: 45px; box-sizing: border-box; }
         .quick-start-ribbon:hover { background: var(--primary-dark); }
         
         .widget-header { 
@@ -258,11 +257,11 @@
         }
         .text-controls::-webkit-scrollbar { display: none; }
         
-        /* Toolbar Icons 13.6px */
+        /* Toolbar Icons 13.6px - Fixed !important color issue so inline styles work */
         .icon-btn, .text-btn, .text-controls label {
             background: #ffffff !important; 
             border: none !important; 
-            color: var(--text-sec) !important;
+            color: var(--text-sec);
             width: 32px !important; 
             height: 32px !important; 
             border-radius: 8px !important; 
@@ -289,7 +288,7 @@
 
         [data-theme="dark"] .icon-btn, [data-theme="dark"] .text-btn, [data-theme="dark"] .text-controls label { 
             background: rgba(30, 41, 59, 0.9) !important; 
-            color: var(--text-body) !important;
+            color: var(--text-body);
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3) !important;
         }
         
@@ -310,15 +309,13 @@
             display: flex; flex-direction: column; flex: 1; overflow: hidden; margin: 10px 15px 15px 15px; 
             border: 1px solid rgba(37, 99, 235, 0.25); border-radius: var(--radius-lg); background: var(--input-bg); 
             box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.03);
+            box-sizing: border-box;
         }
         [data-theme="dark"] .quiz-mcq-container { border-color: rgba(96, 165, 250, 0.25); }
 
-        /* ==========================================
-           FIXED: ULTRA-COMPACT DASHBOARD STATS BAR (Strict 10.4px)
-           ========================================== */
         .stats-dashboard { 
             display: flex; flex-wrap: nowrap; background: rgba(0,0,0,0.03); 
-            border-bottom: 1px solid var(--card-border); align-items: center;
+            border-bottom: 1px solid var(--card-border); align-items: center; width: 100%; box-sizing: border-box;
         }
         [data-theme="dark"] .stats-dashboard { background: rgba(255,255,255,0.02); }
         
@@ -335,7 +332,7 @@
         .stat-value.red { color: var(--wrong-border); }
         .stat-value.accent { color: var(--accent); }
 
-        .quiz-content { flex: 1; padding: 15px; position: relative; background: transparent; border: none; margin: 0; box-shadow: none; overflow-y: auto; }
+        .quiz-content { flex: 1; padding: 15px; position: relative; background: transparent; border: none; margin: 0; box-shadow: none; overflow-y: auto; box-sizing: border-box; width: 100%; }
         
         .q-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-size: 0.75rem; font-weight: 700; color: var(--text-sec); border-bottom: 1px dashed var(--card-border); padding-bottom: 4px; }
         .q-id { font-size: 0.85rem; color: var(--text-main); }
@@ -349,8 +346,7 @@
         .q-text-hi { font-weight: 600; color: var(--text-sec); margin-bottom: 12px; font-family: 'Noto Sans Devanagari', sans-serif; line-height: 1.4; font-size: 0.85rem; }
         mark.highlight { background: var(--accent); color: #fff; padding: 0 2px; border-radius: 3px; }
 
-        /* PERFECT BUG FIX: NO TEXT SHIFTING ON ANSWER SELECTION */
-        .options-list { display: flex; flex-direction: column; gap: 8px; counter-reset: opt-counter; }
+        .options-list { display: flex; flex-direction: column; gap: 8px; counter-reset: opt-counter; width: 100%; box-sizing: border-box; }
         
         .option-btn { 
             width: 100%; 
@@ -367,6 +363,7 @@
             align-items: flex-start; 
             line-height: 1.4; 
             position: relative; 
+            box-sizing: border-box;
         }
         
         .option-btn::before { 
@@ -402,10 +399,9 @@
         .option-btn.correct { background: var(--correct-bg); border-color: var(--correct-border); color: var(--correct-text); }
         .option-btn.wrong { background: var(--wrong-bg); border-color: var(--wrong-border); color: var(--wrong-text); }
 
-        .feedback-row { display: flex; gap: 8px; align-items: center; margin-top: 12px; }
+        .feedback-row { display: flex; gap: 8px; align-items: center; margin-top: 12px; width: 100%; box-sizing: border-box; }
         
-        /* FIXED: No fadeIn animation to prevent blinking */
-        .feedback-msg { flex: 1; padding: 8px 12px; border-radius: var(--radius-md); font-weight: 700; font-size: 0.85rem; text-align: center; margin: 0; border: 1px solid transparent; }
+        .feedback-msg { flex: 1; padding: 8px 12px; border-radius: var(--radius-md); font-weight: 700; font-size: 0.85rem; text-align: center; margin: 0; border: 1px solid transparent; box-sizing: border-box; }
         
         .correct-feed { background: var(--correct-bg); color: var(--correct-text); border-color: var(--correct-border); }
         .wrong-feed { background: var(--wrong-bg); color: var(--wrong-text); border-color: var(--wrong-border); }
@@ -413,14 +409,14 @@
         .expl-wrapper { position: relative; }
         .expl-btn { background: var(--card-bg); color: var(--primary); border: 1px solid var(--card-border); width: 34px; height: 34px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1rem; transition: 0.2s; box-shadow: var(--shadow-sm); }
         .expl-btn:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
-        .explanation-tooltip { position: absolute; bottom: 120%; right: 0; width: 280px; background: var(--tooltip-bg); border: 1px solid var(--card-border); box-shadow: var(--glass-shadow); padding: 15px; border-radius: var(--radius-md); font-size: 0.8rem; color: var(--text-main); z-index: 100; margin-bottom: 10px; display: none; text-align: left; line-height: 1.4; font-weight: 500; }
+        .explanation-tooltip { position: absolute; bottom: 120%; right: 0; width: 280px; background: var(--tooltip-bg); border: 1px solid var(--card-border); box-shadow: var(--glass-shadow); padding: 15px; border-radius: var(--radius-md); font-size: 0.8rem; color: var(--text-main); z-index: 100; margin-bottom: 10px; display: none; text-align: left; line-height: 1.4; font-weight: 500; box-sizing: border-box; }
         .explanation-tooltip::after { content: ''; position: absolute; top: 100%; right: 12px; border-width: 6px; border-style: solid; border-color: var(--tooltip-bg) transparent transparent transparent; }
         .explanation-tooltip::before { content: ''; position: absolute; top: 100%; right: 11px; border-width: 7px; border-style: solid; border-color: var(--card-border) transparent transparent transparent; z-index: -1; }
         .explanation-tooltip.show { display: block; animation: fadeUp 0.2s ease-out; }
         .explanation-tooltip strong { color: var(--primary); display: block; margin-bottom: 6px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; }
         @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        .widget-controls { padding: 10px 15px; border-top: 1px solid var(--card-border); background: rgba(0,0,0,0.03); display: flex; justify-content: space-between; align-items: center; }
+        .widget-controls { padding: 10px 15px; border-top: 1px solid var(--card-border); background: rgba(0,0,0,0.03); display: flex; justify-content: space-between; align-items: center; width: 100%; box-sizing: border-box; }
         [data-theme="dark"] .widget-controls { background: rgba(255,255,255,0.02); }
         .nav-btn { background: var(--card-bg); border: 1px solid var(--card-border); color: var(--text-main); padding: 6px 12px; border-radius: var(--radius-md); cursor: pointer; font-weight: 600; font-size: 0.85rem; display: flex; align-items: center; gap: 5px; transition: 0.2s; }
         .nav-btn:hover:not(:disabled) { border-color: var(--primary); color: var(--primary); }
@@ -429,7 +425,25 @@
         .progress-display { display: flex; align-items: center; justify-content: center; padding: 4px 10px; }
         .progress-text { font-weight: 800; color: var(--text-main); font-size: 0.85rem; }
 
-        /* Local overrides removed to use global CSS */
+        /* SEO Card Styles - Adjusted for clean, non-bloated look */
+        .seo-content-wrapper { margin-bottom: 30px; }
+        .seo-header { text-align: center; margin-bottom: 20px; }
+        .seo-header h2 { font-size: clamp(1.2rem, 3vw, 1.6rem); margin-bottom: 8px; }
+        .seo-header p { color: var(--text-sec); max-width: 600px; margin: 0 auto; font-size: 0.85rem; }
+        
+        /* Grid Alignment */
+        .seo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 15px; align-items: stretch; width: 100%; }
+        
+        .seo-card { background: var(--card-bg); border: 1px solid var(--card-border); padding: 20px; border-radius: var(--radius-lg); box-shadow: var(--glass-shadow); border-left: 4px solid var(--primary); transition: border-color 0.2s; display: flex; flex-direction: column; box-sizing: border-box; width: 100%; }
+        .seo-card:hover { border-color: var(--primary-light); }
+        .seo-card h3 { font-size: 1rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; color: var(--text-main) !important; }
+        .seo-card h3 i { color: var(--primary); }
+        .seo-card p { color: var(--text-body) !important; font-size: 0.85rem; margin-bottom: 15px; }
+        
+        .seo-list { list-style: none; padding-left: 0; margin-top: 0; }
+        
+        /* Dense, concise list items */
+        .seo-list li { position: relative; padding-left: 18px; margin-bottom: 6px; font-size: 0.8rem; color: var(--text-body) !important; line-height: 1.35; }
         .seo-list li::before { 
             content: "\f111"; 
             font-family: "Font Awesome 6 Free";
@@ -444,27 +458,27 @@
         /* Modal specific styles */
         .quiz-modal-overlay {
             position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important;
-            width: 100vw !important; height: 100vh !important;
             background: rgba(0,0,0,0.5) !important; backdrop-filter: blur(4px) !important; -webkit-backdrop-filter: blur(4px) !important;
             z-index: 999999 !important; display: none; align-items: center !important; justify-content: center !important; padding: 20px;
             opacity: 0; transition: opacity 0.2s ease;
         }
         .quiz-modal-overlay.show { display: flex !important; opacity: 1; }
+        
+        /* Solid background for the modal content */
         .quiz-modal-content {
-            background: var(--card-bg) !important; 
-            width: 100%; max-width: 380px; margin: auto !important;
+            background: var(--tooltip-bg) !important; 
+            width: 100%; max-width: 320px; margin: auto !important;
             border: 1px solid var(--border-color);
-            border-radius: 12px; padding: 20px;
+            border-radius: 12px; padding: 15px;
             box-shadow: var(--glass-shadow); transform: translateY(20px); transition: transform 0.2s ease;
             position: relative !important; z-index: 1000000 !important;
+            box-sizing: border-box;
         }
         .quiz-modal-overlay.show .quiz-modal-content { transform: translateY(0); }
-        .quiz-modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; margin-bottom: 12px; }
+        .quiz-modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; margin-bottom: 10px; }
 
-        /* ==========================================
-           EXACT MOBILE CSS COMPACTNESS 
-           ========================================== */
         @media (max-width: 600px) {
+            .hero-title { font-size: 25px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
             .top-meta-bar { flex-wrap: nowrap; justify-content: space-between; }
             .widget-header { padding: 10px; align-items: center; }
             .text-controls { justify-content: center; gap: 3px; padding: 2px 0; }
@@ -491,13 +505,13 @@
                 scrollbar-width: none;
                 justify-content: flex-start !important;
                 padding-bottom: 5px;
+                max-width: 100%;
             }
             .quick-links::-webkit-scrollbar { display: none; }
             .quick-link-item { font-size: 0.65rem; padding: 4px 10px; }
         }
     </style>
 
-    <!-- Theme Initialization Script -->
     <script>
         const savedTheme = localStorage.getItem('theme') || 'light';
         document.documentElement.setAttribute('data-theme', savedTheme);
@@ -549,12 +563,12 @@
                 <div class="intro-card glass-panel" style="text-align: center;">
                     <h2 style="justify-content: center; margin-bottom: 12px; font-size: 1rem;"><i class="fa-solid fa-link"></i> Quick Study Links</h2>
                     
-                    <!-- Sibling Directory Interlinking -->
-                    <div class="quick-links" style="justify-content: center; border-top: none; padding-top: 0; margin-top: 0;">
+                    <!-- Exactly 4 Sibling Directory Interlinking -->
+                    <div class="quick-links">
                         <a href="../history/" class="quick-link-item"><i class="fa-solid fa-landmark"></i> History</a>
                         <a href="../geography/" class="quick-link-item"><i class="fa-solid fa-mountain"></i> Geography</a>
+                        <a href="../economy/" class="quick-link-item"><i class="fa-solid fa-chart-line"></i> Economy</a>
                         <a href="../district/" class="quick-link-item"><i class="fa-solid fa-map-location-dot"></i> Districts</a>
-                        <a href="../economy/" class="quick-link-item"><i class="fa-solid fa-bolt"></i> Economy</a>
                     </div>
                 </div>
 
@@ -583,12 +597,12 @@
 
                 <div class="widget-header">
                     <div class="text-controls" style="margin: 0 auto;">
-                        <button class="icon-btn" onclick="toggleHelpModal()" title="Help Guide">
+                        <button class="icon-btn" onclick="toggleHelpModal()" title="Help Guide" type="button">
                             <i class="fa-solid fa-circle-question"></i>
                         </button>
                         <div class="v-divider" style="width: 1px; height: 16px; background: var(--border-color); margin: 0 4px;"></div>
                         
-                        <button class="icon-btn" onclick="exportProgress()" title="Backup Progress">
+                        <button class="icon-btn" onclick="exportProgress()" title="Backup Progress" type="button">
                             <i class="fa-solid fa-download"></i>
                         </button>
                         <label for="importFile" class="icon-btn" title="Restore Progress" style="margin:0; cursor:pointer;">
@@ -596,29 +610,29 @@
                         </label>
                         <input type="file" id="importFile" style="display: none;" accept=".json" onchange="importProgress(this)">
                         
-                        <button class="icon-btn reset" onclick="resetProgress()" title="Reset Progress" style="color: var(--wrong-text);">
+                        <button class="icon-btn reset" onclick="resetProgress()" title="Reset Progress" type="button" style="color: var(--wrong-text);">
                             <i class="fa-solid fa-rotate-right"></i>
                         </button>
                         
                         <div class="v-divider" style="width: 1px; height: 16px; background: var(--border-color); margin: 0 4px;"></div>
 
-                        <button class="icon-btn" id="quickModeBtn" onclick="toggleQuickMode()" title="Quick 10 Quiz">
+                        <button class="icon-btn" id="quickModeBtn" onclick="toggleQuickMode()" title="Quick 10 Quiz" type="button" style="color: var(--accent);">
                             <i class="fa-solid fa-bolt"></i>
                         </button>
-                        <button class="icon-btn" id="shuffleBtn" onclick="toggleShuffle()" title="Shuffle Questions">
+                        <button class="icon-btn" id="shuffleBtn" onclick="toggleShuffle()" title="Shuffle Questions" type="button" style="color: var(--primary);">
                             <i class="fa-solid fa-shuffle"></i>
                         </button>
-                        <button class="icon-btn" id="mistakeFilterBtn" onclick="toggleMistakeFilter()" title="Review Mistakes">
+                        <button class="icon-btn" id="mistakeFilterBtn" onclick="toggleMistakeFilter()" title="Review Mistakes" type="button" style="color: var(--wrong-text);">
                             <i class="fa-solid fa-triangle-exclamation"></i>
                         </button>
-                        <button class="icon-btn" id="bookmarkFilterBtn" onclick="toggleBookmarkFilter()" title="Saved Bookmarks">
+                        <button class="icon-btn" id="bookmarkFilterBtn" onclick="toggleBookmarkFilter()" title="Saved Bookmarks" type="button" style="color: var(--primary);">
                             <i class="fa-regular fa-bookmark"></i>
                         </button>
                         
                         <div class="v-divider" style="width: 1px; height: 16px; background: var(--border-color); margin: 0 4px;"></div>
                         
-                        <button class="text-btn" onclick="adjustFont(-1)" title="Decrease Font">A-</button>
-                        <button class="text-btn" onclick="adjustFont(1)" title="Increase Font">A+</button>
+                        <button class="text-btn" onclick="adjustFont(-1)" title="Decrease Font" type="button">A-</button>
+                        <button class="text-btn" onclick="adjustFont(1)" title="Increase Font" type="button">A+</button>
                     </div>
                 </div>
 
@@ -656,7 +670,7 @@
     
     <div class="section-separator"></div>
 
-    <!-- Full Width Bilingual Content -->
+    <!-- Full Width Bilingual Content: Expanded to 9 Detailed Bullet-Point Sections -->
     <section class="seo-content-wrapper">
         <div class="seo-header">
             <h2>Detailed Study Notes (विस्तृत अध्ययन नोट्स)</h2>
@@ -668,165 +682,177 @@
             <!-- River 1: Satluj -->
             <div class="seo-card glass-panel">
                 <h3><i class="fa-solid fa-water"></i> 1. The Satluj (सतलुज - लाल नदी)</h3>
-                <p>The Satluj is the longest river in HP (320 km). It is a classic example of an antecedent river, meaning it existed before the Himalayas were fully formed, slowly cutting deep gorges (like at Shipki La) as the mountains rose. <br>(सतलुज हिमाचल की सबसे लंबी (320 किमी) और पूर्ववर्ती नदी है, जो हिमालय के निर्माण से पहले भी मौजूद थी।)</p>
+                <p>The Satluj is the longest river in HP (320 km). It is a classic example of an antecedent river, slowly cutting deep gorges. <br>(सतलुज हिमाचल की सबसे लंबी (320 किमी) और पूर्ववर्ती नदी है।)</p>
                 <ul class="seo-list">
-                    <li><strong>Vedic Name:</strong> Sutudri | <strong>Sanskrit Name:</strong> Shatadru (वैदिक: सुतुद्री | संस्कृत: शतद्रु).</li>
-                    <li><strong>Origin:</strong> Rakas Tal near Mansarovar Lake in Tibet. It is known locally in Tibet as 'Langqen Zangbo' or the Elephant River. (उद्गम: राक्षस ताल, तिब्बत। इसे 'हाथी नदी' भी कहा जाता है).</li>
-                    <li><strong>Entry & Exit:</strong> Enters HP at Shipki La Pass (Kinnaur) at an altitude of 6,608 meters. It leaves HP at Bhakra village (Una/Bilaspur border) to enter Punjab at Nangal. (प्रवेश: शिपकी ला, किन्नौर। निकास: भाखड़ा गाँव).</li>
-                    <li><strong>Catchment Area:</strong> 20,000 sq km (Largest catchment area in HP). <br>(जलग्रहण क्षेत्र: 20,000 वर्ग किमी - हिमाचल में सबसे बड़ा).</li>
-                    <li><strong>Major Tributaries:</strong> Spiti River (Largest tributary, joins at Khab/Namgia), Baspa River (Joins at Karcham), Nogli Khad (Joins at Rampur), Gambhar, Seer Khad (Bilaspur), Ali Khad, and Soan River (Una). <br>(प्रमुख सहायक नदियां: स्पीति (खाब में मिलती है), बास्पा, नोगली खड्ड, गंभर, सीर, और स्वान नदी).</li>
-                    <li><strong>Key Settlements & Bridges:</strong> Namgia, Kalpa, Rampur Bushahr, Tattapani, Bilaspur. The famous Kandror Bridge (once Asia's highest) is built across it. <br>(प्रमुख शहर और पुल: रामपुर बुशहर, तत्तापानी, बिलासपुर। प्रसिद्ध कंदरौर पुल इसी पर बना है).</li>
-                    <li><strong>Hydro Projects:</strong> Bhakra Nangal Dam (1325 MW, completed 1963, creating Govind Sagar), Nathpa Jhakri (1500 MW - India's largest underground project), Karcham Wangtoo (1000 MW), Kol Dam (800 MW by NTPC). <br>(जलविद्युत परियोजनाएं: भाखड़ा नांगल, नाथपा झाकड़ी - सबसे बड़ी भूमिगत परियोजना, करछम वांगतू, कोल डैम).</li>
+                    <li><strong>Longest River:</strong> Longest river in HP (320 km), acting as a classic antecedent river cutting deep gorges. (हिमाचल की सबसे लंबी (320 किमी) और पूर्ववर्ती नदी).</li>
+                    <li><strong>Names:</strong> Vedic name is Sutudri and Sanskrit name is Shatadru. Known in Tibet as Langqen Zangbo. (वैदिक नाम सुतुद्री और संस्कृत नाम शतद्रु).</li>
+                    <li><strong>Origin:</strong> Originates from Rakas Tal near Mansarovar Lake in Tibet. (तिब्बत में मानसरोवर झील के पास राक्षस ताल से उद्गम).</li>
+                    <li><strong>Entry/Exit:</strong> Enters HP at Shipki La (Kinnaur) and exits at Bhakra village to enter Punjab. (शिपकी ला से प्रवेश और भाखड़ा गांव से निकास).</li>
+                    <li><strong>Catchment Area:</strong> Largest catchment area in HP spanning approximately 20,000 sq km. (20,000 वर्ग किमी का सबसे बड़ा जलग्रहण क्षेत्र).</li>
+                    <li><strong>Spiti Tributary:</strong> Spiti is its largest tributary, meeting Satluj perfectly at Namgia/Khab. (स्पीति सबसे बड़ी सहायक नदी है, जो खाब में मिलती है).</li>
+                    <li><strong>Other Tributaries:</strong> Baspa (joins at Karcham), Nogli Khad, Gambhar, and Seer Khad (Bilaspur). (बास्पा, नोगली खड्ड, गंभर और सीर खड्ड).</li>
+                    <li><strong>Hydro Projects:</strong> Hosts mega projects like Bhakra Dam, Nathpa Jhakri (1500MW), and Karcham Wangtoo. (भाखड़ा बांध और नाथपा झाकड़ी जैसी बड़ी परियोजनाएं).</li>
                 </ul>
             </div>
 
             <!-- River 2: Beas -->
             <div class="seo-card glass-panel">
                 <h3><i class="fa-solid fa-bridge-water"></i> 2. The Beas (व्यास)</h3>
-                <p>Historically significant, the Beas river marked the easternmost border of Alexander the Great's conquests in 326 BC, where his troops mutinied. Unlike Satluj or Chenab, the Beas flows entirely within India. <br>(सिकंदर महान की विजय की पूर्वी सीमा, जहां उसकी सेना ने विद्रोह कर दिया था। यह नदी पूरी तरह से भारत की सीमाओं के भीतर बहती है।)</p>
+                <p>Historically significant, the Beas river marked the easternmost border of Alexander the Great's conquests in 326 BC. <br>(सिकंदर महान की विजय की पूर्वी सीमा, जहां उसकी सेना ने विद्रोह कर दिया था।)</p>
                 <ul class="seo-list">
-                    <li><strong>Vedic Name:</strong> Arjikiya | <strong>Sanskrit Name:</strong> Vipasha (वैदिक: अर्जीकिया | संस्कृत: विपाशा).</li>
-                    <li><strong>Greek Name:</strong> Hyphasis (ग्रीक नाम: हाइपासिस).</li>
-                    <li><strong>Origin:</strong> Beas Kund near Rohtang Pass (Pir Panjal Range) at an altitude of 4,361 meters, close to the Bhrigu Lake. (उद्गम: रोहतांग दर्रे के पास व्यास कुंड).</li>
-                    <li><strong>Entry & Exit:</strong> Enters Kangra district at Sandhol. Leaves HP at Mirthal (Kathgarh) to enter the plains of Punjab. (कांगड़ा में प्रवेश: संधोल। हिमाचल से निकास: मिर्थल).</li>
-                    <li><strong>Total Length in HP:</strong> 256 km. Catchment Area: 12,000 sq km. <br>(हिमाचल में कुल लंबाई: 256 किमी, जलग्रहण क्षेत्र: 12,000 वर्ग किमी).</li>
-                    <li><strong>Major Tributaries:</strong> Parbati River (Largest tributary, meets Beas at Shamshi), Banganga, Chakki, Sainj, Tirthan, Uhl (Mandi), Luni, Baner Khad. <br>(प्रमुख सहायक नदियां: पार्वती - सबसे बड़ी सहायक नदी, बाणगंगा, चक्की, सैंज, तीर्थन, ऊहल, लूनी).</li>
-                    <li><strong>Key Settlements:</strong> Manali, Kullu, Bajaura, Pandoh, Mandi town, Sujanpur Tira, Nadaun, Dehra Gopipur. <br>(प्रमुख शहर: मनाली, कुल्लू, मंडी, सुजानपुर टीरा, नादौन, देहरा गोपीपुर).</li>
-                    <li><strong>Hydro Projects:</strong> Larji (126 MW), Pandoh Dam (diverts Beas water to Satluj at Slapper), Pong Dam (Maharana Pratap Sagar, completed 1975). <br>(परियोजनाएं: लार्जी, पंडोह बांध - जो व्यास का पानी सतलुज में मिलाता है, पोंग बांध).</li>
+                    <li><strong>Historical Border:</strong> Marked the easternmost limit of Alexander the Great's Indian invasion in 326 BC. (326 ईसा पूर्व में सिकंदर के आक्रमण की पूर्वी सीमा).</li>
+                    <li><strong>Names:</strong> Vedic name is Arjikiya, Sanskrit is Vipasha, and Greek name is Hyphasis. (वैदिक नाम अर्जीकिया, संस्कृत विपाशा और ग्रीक हाइपासिस).</li>
+                    <li><strong>Origin:</strong> Rises from Beas Kund near the strategic Rohtang Pass in the Pir Panjal range. (पीर पंजाल श्रृंखला में रोहतांग दर्रे के पास व्यास कुंड से उद्गम).</li>
+                    <li><strong>Entry/Exit:</strong> Enters Kangra at Sandhol and leaves HP entirely at Mirthal to enter Punjab. (संधोल में कांगड़ा प्रवेश और मिर्थल से पंजाब में निकास).</li>
+                    <li><strong>Dimensions:</strong> Flows for 256 km within HP with a catchment area of 12,000 sq km. (हिमाचल में 256 किमी की लंबाई और 12,000 वर्ग किमी जलग्रहण क्षेत्र).</li>
+                    <li><strong>Parbati River:</strong> Parbati is its absolute largest tributary, joining the Beas at Shamshi (Kullu). (पार्वती सबसे बड़ी सहायक नदी है, जो शमशी में मिलती है).</li>
+                    <li><strong>Other Tributaries:</strong> Tirthan, Sainj, Uhl (Mandi), Banganga, Luni, and Chakki Khad. (तीर्थन, सैंज, ऊहल, बाणगंगा और चक्की खड्ड).</li>
+                    <li><strong>Hydro Projects:</strong> Hosts major projects like Larji, Pandoh Dam, and the massive Pong Dam. (लार्जी, पंडोह बांध और पोंग बांध परियोजनाएं).</li>
                 </ul>
             </div>
 
             <!-- River 3: Ravi -->
             <div class="seo-card glass-panel">
                 <h3><i class="fa-solid fa-droplet"></i> 3. The Ravi (रावी)</h3>
-                <p>Considered the life-line of the beautiful Chamba valley, the Ravi river flows through a narrow, picturesque gorge between the Dhauladhar and Pir Panjal mountain ranges. <br>(चंबा घाटी की जीवन रेखा, जो धौलाधार और पीर पंजाल पर्वतमालाओं के बीच एक संकरी घाटी से होकर बहती है।)</p>
+                <p>Considered the life-line of the beautiful Chamba valley, flowing between the Dhauladhar and Pir Panjal ranges. <br>(चंबा घाटी की जीवन रेखा, जो धौलाधार और पीर पंजाल पर्वतमालाओं के बीच बहती है।)</p>
                 <ul class="seo-list">
-                    <li><strong>Vedic Name:</strong> Parushni | <strong>Sanskrit Name:</strong> Iravati (वैदिक: परुष्णी | संस्कृत: इरावती).</li>
-                    <li><strong>Greek Name:</strong> Hydraotes (ग्रीक नाम: हाइड्राओट्स).</li>
-                    <li><strong>Origin:</strong> Bara Banghal region of Kangra district, formed by the confluence of the Bhadal and Tant Gari glacier-fed streams. (उद्गम: बड़ा भंगाल, कांगड़ा - भादल और तंत गारी ग्लेशियरों के संगम से).</li>
-                    <li><strong>Exit from HP:</strong> Leaves Chamba district at Kheri to enter Jammu & Kashmir (near Madhopur). (निकास: चंबा के खेड़ी नामक स्थान से J&K में प्रवेश).</li>
-                    <li><strong>Total Length in HP:</strong> 158 km. Catchment Area: 5,451 sq km. <br>(कुल लंबाई: 158 किमी, जलग्रहण क्षेत्र: 5,451 वर्ग किमी).</li>
-                    <li><strong>Major Tributaries:</strong> Bhadal, Tant Gari, Siul, Baira, Budhil (which rises from Kugti Pass and Manimahesh Lake), Chirchind Nala. <br>(प्रमुख सहायक नदियां: भादल, तंत गारी, सियूल, बैरा, बुढिल - जो कुगती दर्रे से निकलती है, चिरचिंड).</li>
-                    <li><strong>Key Settlements & Culture:</strong> Chamba town is situated on its right bank. Bharmaur is located near the Budhil stream. The famous Minjar fair is celebrated on the banks of its tributaries. <br>(शहर और संस्कृति: चंबा शहर रावी के दाहिने तट पर स्थित है। प्रसिद्ध मिंजर मेला इसी के आसपास मनाया जाता है).</li>
-                    <li><strong>Hydro Projects:</strong> Chamera I (540 MW), Chamera II (300 MW), Chamera III (231 MW), Baira Siul (198 MW - the very first NHPC project in India). <br>(परियोजनाएं: चमेरा I, II, III और बैरा सियूल - भारत का पहला NHPC प्रोजेक्ट).</li>
+                    <li><strong>Cultural Lifeline:</strong> Universally considered the vital life-line of the picturesque Chamba valley. (सुरम्य चंबा घाटी की महत्वपूर्ण जीवन रेखा माना जाता है).</li>
+                    <li><strong>Names:</strong> Vedic name is Parushni, Sanskrit is Iravati, and Greek name is Hydraotes. (वैदिक नाम परुष्णी, संस्कृत इरावती और ग्रीक हाइड्राओट्स).</li>
+                    <li><strong>Origin:</strong> Formed by the confluence of Bhadal and Tant Gari glaciers in Bara Banghal (Kangra). (बड़ा भंगाल में भादल और तंत गारी ग्लेशियरों के संगम से निर्मित).</li>
+                    <li><strong>Entry/Exit:</strong> Leaves Chamba district entirely at Kheri to enter Jammu & Kashmir. (खेड़ी नामक स्थान पर चंबा छोड़कर जम्मू-कश्मीर में प्रवेश).</li>
+                    <li><strong>Dimensions:</strong> Flows for approximately 158 km in HP with a 5,451 sq km catchment area. (हिमाचल में 158 किमी की लंबाई और 5,451 वर्ग किमी जलग्रहण क्षेत्र).</li>
+                    <li><strong>Major Tributaries:</strong> Budhil (rises from Manimahesh), Tundah, Baira, and the Siul river. (बुढिल, टुंडाह, बैरा और सियूल इसकी प्रमुख सहायक नदियां हैं).</li>
+                    <li><strong>Key Settlements:</strong> The historic Chamba town and Bharmaur are situated precisely on its banks. (ऐतिहासिक चंबा शहर और भरमौर इसके तट पर स्थित हैं).</li>
+                    <li><strong>Hydro Projects:</strong> Hosts the massive Chamera I, II, III series and the historic Baira Siul project. (चमेरा I, II, III श्रृंखला और ऐतिहासिक बैरा सियूल परियोजना).</li>
                 </ul>
             </div>
 
             <!-- River 4: Chenab -->
             <div class="seo-card glass-panel">
                 <h3><i class="fa-solid fa-water"></i> 4. The Chenab (चिनाब / चंद्रभागा)</h3>
-                <p>The Chenab is the largest river in Himachal Pradesh in terms of volume of water (discharge). It flows through the rugged, remote terrains of the Lahaul and Pangi valleys. <br>(जल आयतन (Volume) की दृष्टि से यह हिमाचल की सबसे बड़ी नदी है, जो लाहौल और पांगी की दुर्गम घाटियों से गुजरती है।)</p>
+                <p>The Chenab is the largest river in Himachal Pradesh in terms of volume of water (discharge). <br>(जल आयतन (Volume) की दृष्टि से यह हिमाचल की सबसे बड़ी नदी है।)</p>
                 <ul class="seo-list">
-                    <li><strong>Vedic Name:</strong> Asikni (वैदिक नाम: असिकनी).</li>
-                    <li><strong>Greek Name:</strong> Acesines (ग्रीक नाम: अकेसिन्स).</li>
-                    <li><strong>Origin:</strong> Formed by the confluence of two streams, Chandra (from Chandra Tal) and Bhaga (from Suraj Tal), at Tandi (Lahaul) at an elevation of 2,286m. Mythologically, Draupadi breathed her last near Tandi. (उद्गम: तांडी में चंद्रा और भागा नदियों का संगम).</li>
-                    <li><strong>Exit from HP:</strong> Leaves the Pangi valley at Sansari Nala to enter the Paddar area of Kashmir. (निकास: पांगी के संसारी नाला से कश्मीर में प्रवेश).</li>
-                    <li><strong>Total Length in HP:</strong> 122 km. Catchment Area: 7,500 sq km. <br>(कुल लंबाई: 122 किमी, जलग्रहण क्षेत्र: 7,500 वर्ग किमी).</li>
-                    <li><strong>Major Tributaries:</strong> Miyar Nala (joins in Lahaul), Saicher Nala (joins in Pangi). Gold particles are historically found in its sandy beds. <br>(प्रमुख सहायक नदियां: मियार नाला, सेंचर नाला। ऐतिहासिक रूप से इसकी रेत में सोने के कण पाए जाते हैं).</li>
-                    <li><strong>Key Settlements:</strong> Keylong (located on the banks of Bhaga), Tandi, Udaipur, Killar (Pangi). <br>(शहर: केलांग, तांडी, उदयपुर, किलाड़).</li>
-                    <li><strong>Hydro Projects:</strong> Thirot, Seli, and several under-construction mega projects (like Reoli Dugli) due to its massive untapped hydel potential. <br>(परियोजनाएं: थिरोट, सेली और अन्य उच्च क्षमता वाली प्रस्तावित परियोजनाएं).</li>
+                    <li><strong>Largest by Volume:</strong> Stands officially as the absolute largest river in HP by total volume of water discharge. (जल के कुल आयतन (Volume) के हिसाब से हिमाचल की सबसे बड़ी नदी).</li>
+                    <li><strong>Names:</strong> Vedic name is Asikni and Greek historical records refer to it as Acesines. (वैदिक नाम असिकनी और ग्रीक ऐतिहासिक रिकॉर्ड में इसे अकेसिन्स कहा गया है).</li>
+                    <li><strong>Origin (Tandi):</strong> Formed by the confluence of Chandra and Bhaga rivers at Tandi in Lahaul. (लाहौल के तांडी में चंद्रा और भागा नदियों के संगम से निर्मित).</li>
+                    <li><strong>Chandra & Bhaga:</strong> Chandra originates from Chandra Tal, and Bhaga from Suraj Tal (Baralacha La). (चंद्रा का उद्गम चंद्र ताल से और भागा का सूरज ताल से होता है).</li>
+                    <li><strong>Exit Route:</strong> Leaves the rugged Pangi valley at Sansari Nala to enter the Paddar region of Kashmir. (संसारी नाला से पांगी घाटी छोड़कर कश्मीर के पद्दार क्षेत्र में प्रवेश).</li>
+                    <li><strong>Dimensions:</strong> Covers a length of 122 km in HP with a catchment area of 7,500 sq km. (हिमाचल में 122 किमी की लंबाई और 7,500 वर्ग किमी जलग्रहण क्षेत्र).</li>
+                    <li><strong>Major Tributaries:</strong> Miyar Nala (joins in Lahaul) and Saicher Nala (joins in Pangi valley). (मियार नाला (लाहौल) और सेंचर नाला (पांगी) प्रमुख सहायक नदियां हैं).</li>
+                    <li><strong>Gold River:</strong> Historically, minute gold particles have been uniquely found in its deep sandy beds. (ऐतिहासिक रूप से इसके रेतीले तलों में सोने के छोटे कण पाए गए हैं).</li>
                 </ul>
             </div>
 
             <!-- River 5: Yamuna -->
             <div class="seo-card glass-panel">
                 <h3><i class="fa-solid fa-faucet-drip"></i> 5. The Yamuna (यमुना)</h3>
-                <p>The Yamuna has the shortest river course in HP, mostly skirting the state's south-eastern border and acting as a natural divider between Sirmaur (HP) and Dehradun (Uttarakhand). <br>(हिमाचल में सबसे छोटा नदी मार्ग (22 किमी), जो मुख्य रूप से सिरमौर और उत्तराखंड के बीच प्राकृतिक सीमा बनाता है।)</p>
+                <p>The Yamuna has the shortest river course in HP, mostly skirting the state's south-eastern border. <br>(हिमाचल में सबसे छोटा नदी मार्ग (22 किमी), जो मुख्य रूप से सिरमौर को छूती है।)</p>
                 <ul class="seo-list">
-                    <li><strong>Vedic Name:</strong> Kalindi, owing to its deep mythological association with the Sun god (Surya) and the Kalind mountain. (वैदिक नाम: कालिंदी - सूर्य देव और कालिंद पर्वत से जुड़ा पौराणिक महत्व).</li>
-                    <li><strong>Origin:</strong> Yamunotri Glacier in the Garhwal Hills of Uttarakhand. (उद्गम: यमुनोत्री ग्लेशियर, उत्तराखंड).</li>
-                    <li><strong>Entry & Exit:</strong> Enters HP at Khodar Majri (Sirmaur). Exits HP at Tajewala to enter the plains of Haryana. <br>(प्रवेश: खोदर माजरी, सिरमौर। निकास: ताजेवाला).</li>
-                    <li><strong>Total Length in HP:</strong> 22 km. Catchment Area: 2,320 sq km. <br>(कुल लंबाई: 22 किमी - हिमाचल में सबसे कम, जलग्रहण क्षेत्र: 2,320 वर्ग किमी).</li>
-                    <li><strong>Major Tributaries:</strong> Tons River (Largest tributary, brings more water than Yamuna itself, joins at Kalsi), Giri River (Divides Sirmaur into Cis-Giri and Trans-Giri parts), Pabbar River, Bata River, Jalal River. <br>(प्रमुख सहायक नदियां: टोंस - सबसे बड़ी, गिरि - जो सिरमौर को दो भागों में बांटती है, पब्बर, बाटा, जलाल).</li>
-                    <li><strong>Key Settlements:</strong> Paonta Sahib (A highly revered Sikh pilgrimage site situated on its right bank). <br>(शहर: पौंटा साहिब).</li>
-                    <li><strong>Hydro Projects:</strong> Giri Bata (60 MW - HP's first state-owned project), Yamuna Hydel, Renuka Dam (Proposed national project on Giri), Kishau Dam (on Tons). <br>(परियोजनाएं: गिरि बाटा - हिमाचल सरकार की पहली परियोजना, रेणुका बांध, किशाऊ बांध).</li>
+                    <li><strong>Shortest River:</strong> Has the absolute shortest course in HP (only 22 km) touching the Sirmaur district. (हिमाचल में सबसे छोटी नदी (केवल 22 किमी), जो सिरमौर जिले को छूती है).</li>
+                    <li><strong>Natural Boundary:</strong> Forms a highly distinct, natural eastern geographical border with Uttarakhand. (उत्तराखंड के साथ एक अत्यधिक विशिष्ट, प्राकृतिक पूर्वी भौगोलिक सीमा बनाती है).</li>
+                    <li><strong>Names & Origin:</strong> Vedic name is Kalindi; originates from the Yamunotri glacier in Garhwal hills. (वैदिक नाम कालिंदी; गढ़वाल पहाड़ियों में यमुनोत्री ग्लेशियर से उद्गम).</li>
+                    <li><strong>Entry/Exit:</strong> Enters HP at Khodar Majri (Sirmaur) and firmly exits at Tajewala into Haryana. (खोदर माजरी (सिरमौर) में प्रवेश और ताजेवाला से हरियाणा में निकास).</li>
+                    <li><strong>Catchment Area:</strong> Covers a minor catchment area of roughly 2,320 sq km entirely within HP. (हिमाचल में लगभग 2,320 वर्ग किमी के छोटे जलग्रहण क्षेत्र को कवर करती है).</li>
+                    <li><strong>Tons River:</strong> Its absolute largest tributary, bringing significantly more water than the Yamuna itself. (टोंस नदी: इसकी सबसे बड़ी सहायक नदी, जो यमुना से भी अधिक जल लाती है).</li>
+                    <li><strong>Giri River:</strong> A major tributary that famously divides the Sirmaur district into Cis-Giri and Trans-Giri. (गिरि नदी: एक प्रमुख सहायक नदी जो सिरमौर को सिस-गिरि और ट्रांस-गिरि में बांटती है).</li>
+                    <li><strong>Other Tributaries:</strong> Pabbar (originates from Chandranahan), Bata, and Jalal rivers are key feeders. (पब्बर, बाटा और जलाल नदियां इसके अन्य प्रमुख जल स्रोत हैं).</li>
                 </ul>
             </div>
 
             <!-- Minor Rivers -->
             <div class="seo-card glass-panel">
                 <h3><i class="fa-solid fa-water"></i> 6. Crucial Minor Streams (महत्वपूर्ण खड्ड और धाराएँ)</h3>
-                <p>While not major rivers, these smaller streams are crucial for local agriculture, define district boundaries, and frequently appear as trick questions in state exams. <br>(यद्यपि ये प्रमुख नदियां नहीं हैं, फिर भी स्थानीय कृषि और परीक्षा के दृष्टिकोण से ये धाराएँ अत्यंत महत्वपूर्ण हैं।)</p>
+                <p>While not major rivers, these smaller streams are crucial for local agriculture and district boundaries. <br>(यद्यपि ये प्रमुख नदियां नहीं हैं, फिर भी स्थानीय कृषि और सीमाओं के लिए ये धाराएँ महत्वपूर्ण हैं।)</p>
                 <ul class="seo-list">
-                    <li><strong>Swan River (स्वान नदी):</strong> Known as the 'River of Sorrows' in Una district because of its devastating monsoon floods before it was heavily channelized. It divides Una into two roughly equal parts. <br>(स्वान: ऊना की 'दुखों की नदी', जो ऊना को दो भागों में बांटती है। अब इसका तटीकरण कर दिया गया है).</li>
-                    <li><strong>Sirsa River (सिरसा):</strong> Originates near Kalka, flows through the industrial belt of Nalagarh and Baddi, and eventually joins the Satluj. High industrial pollution is a major environmental concern here. <br>(सिरसा: बद्दी-नालागढ़ औद्योगिक क्षेत्र से बहती है और सतलुज में मिलती है).</li>
-                    <li><strong>Ghamber Khad (गंभर खड्ड):</strong> A critical tributary of the Satluj that originates from the Tara Devi hills in Shimla. <br>(गंभर: तारा देवी पहाड़ियों से निकलकर सतलुज में मिलती है).</li>
-                    <li><strong>Chakki Khad (चक्की खड्ड):</strong> Forms a vital natural boundary between Himachal Pradesh (Kangra) and Punjab (Pathankot). It ultimately joins the Beas river. <br>(चक्की: हिमाचल और पंजाब (पठानकोट) के बीच सीमा बनाती है).</li>
-                    <li><strong>Markanda River (मारकंडा):</strong> Flows through the fertile Kiarda Dun valley in Sirmaur. The famous Suketi Fossil Park (Shivalik Fossil Park) is located on its left bank. <br>(मारकंडा: सिरमौर के क्यारदा दून से बहती है, सुकेती जीवाश्म पार्क इसी के तट पर है).</li>
-                    <li><strong>Seer Khad (सीर खड्ड):</strong> The absolute largest tributary of the Satluj river within the Bilaspur district. <br>(सीर: बिलासपुर जिले में सतलुज की सबसे बड़ी सहायक खड्ड).</li>
+                    <li><strong>Swan River:</strong> Historically termed the 'River of Sorrows' due to massive monsoon floods in Una. (स्वान नदी: भीषण मानसूनी बाढ़ के कारण ऐतिहासिक रूप से ऊना की 'दुखों की नदी').</li>
+                    <li><strong>Sirsa River:</strong> Flows strategically through the industrial Baddi-Nalagarh belt, eventually joining Satluj. (सिरसा नदी: औद्योगिक बद्दी-नालागढ़ बेल्ट से बहते हुए सतलुज में मिलती है).</li>
+                    <li><strong>Chakki Khad:</strong> Acts as a highly critical natural boundary explicitly between Kangra and Pathankot (Punjab). (चक्की खड्ड: कांगड़ा और पठानकोट (पंजाब) के बीच एक अत्यंत महत्वपूर्ण प्राकृतिक सीमा).</li>
+                    <li><strong>Gambhar Khad:</strong> A crucial tributary of the Satluj that powerfully originates near the Tara Devi hills. (गंभर खड्ड: सतलुज की एक महत्वपूर्ण सहायक नदी जो तारा देवी पहाड़ियों से निकलती है).</li>
+                    <li><strong>Markanda River:</strong> Flows beautifully through the fertile Kiarda Dun valley; Suketi Fossil Park lies on its bank. (मारकांडा नदी: क्यारदा दून घाटी से बहती है; सुकेती जीवाश्म पार्क इसके तट पर है).</li>
+                    <li><strong>Seer Khad:</strong> Officially recorded as the absolute largest tributary of the Satluj strictly within Bilaspur. (सीर खड्ड: बिलासपुर के भीतर सतलुज की सबसे बड़ी सहायक नदी के रूप में दर्ज).</li>
+                    <li><strong>Banganga:</strong> A highly historic stream flowing explicitly through the ancient Kangra valley, joining the Beas. (बाणगंगा: प्राचीन कांगड़ा घाटी से बहने वाली एक ऐतिहासिक धारा, जो ब्यास में मिलती है).</li>
+                    <li><strong>Uhl River:</strong> Feeds the historic Shanan power house in Mandi, originating deep in the Dhauladhar range. (ऊहल नदी: धौलाधार से निकलती है और मंडी में ऐतिहासिक शानन पावर हाउस को जल देती है).</li>
                 </ul>
             </div>
 
             <!-- Section 7: Drainage Patterns -->
             <div class="seo-card glass-panel">
                 <h3><i class="fa-solid fa-network-wired"></i> 7. Drainage Patterns (अपवाह तंत्र के प्रकार)</h3>
-                <p>The rugged topography of Himachal creates diverse river network shapes (drainage patterns) which are a staple topic in the HPPSC physical geography sections. <br>(हिमाचल की भौगोलिक संरचना विभिन्न प्रकार के नदी नेटवर्क बनाती है।)</p>
+                <p>The rugged topography of Himachal creates diverse river network shapes (drainage patterns). <br>(हिमाचल की भौगोलिक संरचना विभिन्न प्रकार के नदी नेटवर्क बनाती है।)</p>
                 <ul class="seo-list">
-                    <li><strong>Antecedent Drainage (पूर्ववर्ती अपवाह):</strong> Rivers that existed before the uplifting of the Himalayas. Satluj is the prime example; as the mountains rose, the river continuously eroded its bed to maintain its original course, creating extremely deep V-shaped gorges. <br>(पूर्ववर्ती: हिमालय के उदय से पहले से मौजूद नदियां, जैसे सतलुज, जो गहरी खाइयां (गॉर्ज) बनाती हैं).</li>
-                    <li><strong>Dendritic Pattern (वृक्षाकार प्रतिरूप):</strong> The network looks like the branching of a tree. This is the most common pattern found in the Beas and Ravi basins where the underlying rock terrain is relatively uniform. <br>(वृक्षाकार: पेड़ की शाखाओं जैसा प्रतिरूप, जो ब्यास और रावी बेसिन में आम तौर पर देखा जाता है).</li>
-                    <li><strong>Parallel Drainage (समानांतर अपवाह):</strong> Fast-flowing streams in the steep, narrow Shivalik hills that run almost parallel to each other before joining a larger river. <br>(समानांतर: शिवालिक पहाड़ियों में तेजी से बहने वाली धाराएं जो एक दूसरे के समानांतर बहती हैं).</li>
-                    <li><strong>Radial Drainage (अरीय अपवाह):</strong> Streams diverging outward from a central high peak or dome, looking like spokes on a bicycle wheel. <br>(अरीय: ऊंची चोटियों से चारों ओर (विपरीत दिशाओं में) फैलने वाली धाराएं).</li>
-                    <li><strong>Trellis Pattern (जालीदार अपवाह):</strong> A pattern where primary tributaries join the main river at roughly right angles. Commonly seen in the structural and fault valleys of the Giri river basin in Sirmaur. <br>(जालीदार: जहां सहायक नदियां मुख्य नदी से लगभग समकोण (90 डिग्री) पर मिलती हैं, जैसे गिरि नदी बेसिन में).</li>
+                    <li><strong>Antecedent Drainage:</strong> Rivers like Satluj existed before the Himalayas, deeply cutting V-shaped gorges as mountains rose. (पूर्ववर्ती अपवाह: सतलुज जैसी नदियां हिमालय से पहले मौजूद थीं, जो गहरी खाइयां बनाती हैं).</li>
+                    <li><strong>Dendritic Pattern:</strong> The highly common tree-branch-like river network observed perfectly in the Beas and Ravi basins. (वृक्षाकार प्रतिरूप: ब्यास और रावी बेसिन में देखा जाने वाला पेड़ की शाखाओं जैसा नेटवर्क).</li>
+                    <li><strong>Parallel Drainage:</strong> Characterized by fast-flowing streams in the Shivalik hills running strictly parallel to each other. (समानांतर अपवाह: शिवालिक पहाड़ियों में एक-दूसरे के समानांतर बहने वाली तेज धाराएं).</li>
+                    <li><strong>Radial Drainage:</strong> Streams visibly diverging outward from a central high peak (like spokes on a wheel). (अरीय अपवाह: एक केंद्रीय ऊंची चोटी से बाहर की ओर (पहिये की तीलियों की तरह) फैलने वाली धाराएं).</li>
+                    <li><strong>Trellis Pattern:</strong> A geometric pattern where minor tributaries join the main river exactly at right angles (e.g., Giri basin). (जालीदार अपवाह: सहायक नदियां मुख्य नदी से समकोण पर मिलती हैं (जैसे गिरि बेसिन)).</li>
+                    <li><strong>Centripetal Drainage:</strong> Streams flowing directly inward toward a central depression, creating local lake basins. (अभिकेंद्री अपवाह: धाराएं एक केंद्रीय गर्त की ओर अंदर की ओर बहती हैं, जिससे झील बेसिन बनते हैं).</li>
+                    <li><strong>Shivalik River Beds:</strong> Known locally as 'Cho', these seasonal streams cause massive soil erosion during intense monsoons. (शिवालिक नदी तल: 'चो' कहलाने वाली ये मौसमी धाराएं मानसून में भारी मिट्टी का कटाव करती हैं).</li>
+                    <li><strong>Glacial Fed Systems:</strong> Over 80% of HP's major river water exclusively originates from highly active, melting Himalayan glaciers. (ग्लेशियर पोषित प्रणालियां: हिमाचल की नदियों का 80% से अधिक जल सक्रिय ग्लेशियरों से आता है).</li>
                 </ul>
             </div>
 
             <!-- Section 8: Major Lakes -->
             <div class="seo-card glass-panel">
                 <h3><i class="fa-solid fa-water"></i> 8. River-Linked Lakes & Reservoirs (नदी से जुड़ी प्रमुख झीलें)</h3>
-                <p>The damming of Himachal's major rivers for hydroelectricity has created vast man-made reservoirs. Alongside these, natural high-altitude glacial lakes act as the very source for these rivers. <br>(प्रमुख नदियों पर बने बांधों ने विशाल कृत्रिम झीलों का निर्माण किया है, इसके अतिरिक्त उच्च हिमालयी प्राकृतिक झीलें नदियों का उद्गम स्थल हैं।)</p>
+                <p>The damming of Himachal's major rivers for hydroelectricity has created vast man-made reservoirs. <br>(प्रमुख नदियों पर बने बांधों ने विशाल कृत्रिम झीलों का निर्माण किया है।)</p>
                 <ul class="seo-list">
-                    <li><strong>Govind Sagar (Bilaspur):</strong> The largest man-made reservoir in HP, created by the monumental Bhakra Dam on the Satluj river. It was named in honor of the 10th Sikh Guru, Guru Gobind Singh Ji. <br>(गोविंद सागर: सतलुज पर भाखड़ा बांध द्वारा निर्मित हिमाचल की सबसे बड़ी कृत्रिम झील).</li>
-                    <li><strong>Pong Dam Lake / Maharana Pratap Sagar (Kangra):</strong> Created on the Beas river. It is a designated Ramsar wetland of international importance, famous for hosting thousands of migratory birds, especially the Bar-headed Geese from Siberia. <br>(पोंग बांध झील: ब्यास नदी पर, यह एक अंतरराष्ट्रीय रामसर आर्द्रभूमि है जो साइबेरियन प्रवासी पक्षियों के लिए प्रसिद्ध है).</li>
-                    <li><strong>Pandoh Lake (Mandi):</strong> The smallest man-made lake in HP, built on the Beas river specifically to divert its waters into the Satluj river at Slapper. <br>(पंडोह झील: ब्यास नदी पर बनी सबसे छोटी कृत्रिम झील, जिसका मुख्य उद्देश्य पानी को सतलुज में मोड़ना है).</li>
-                    <li><strong>Chamera Lake (Chamba):</strong> A highly scenic and tourist-frequented man-made reservoir created by the Chamera Dam on the Ravi river. <br>(चमेरा झील: रावी नदी पर निर्मित एक सुंदर कृत्रिम जलाशय).</li>
-                    <li><strong>Renuka Lake (Sirmaur):</strong> The largest natural lake in HP (2.5 km long), fed by underground springs and ecologically linked to the Giri river basin. It is shaped remarkably like a sleeping woman. <br>(रेणुका झील: हिमाचल की सबसे बड़ी प्राकृतिक झील, जो एक सोई हुई महिला के आकार की है).</li>
-                    <li><strong>Chandra Tal & Suraj Tal (Lahaul):</strong> High-altitude glacial lakes that serve as the primary sources for the Chandra and Bhaga streams, which ultimately form the mighty Chenab. <br>(चंद्र ताल और सूरज ताल: लाहौल-स्पीति में चिनाब नदी की मुख्य धाराओं के स्रोत).</li>
+                    <li><strong>Govind Sagar:</strong> The absolute largest man-made lake in HP, created precisely by damming the Satluj river at Bhakra. (गोविंद सागर: सतलुज नदी पर भाखड़ा बांध द्वारा निर्मित हिमाचल की सबसे बड़ी कृत्रिम झील).</li>
+                    <li><strong>Pong Dam Lake:</strong> An immense reservoir uniquely created on the Beas river, recognized globally as a Ramsar wetland. (पोंग बांध झील: ब्यास नदी पर निर्मित एक विशाल जलाशय, जिसे रामसर आर्द्रभूमि के रूप में मान्यता प्राप्त है).</li>
+                    <li><strong>Pandoh Lake:</strong> A smaller, highly strategic reservoir in Mandi explicitly designed to divert Beas water into the Satluj. (पंडोह झील: मंडी में एक रणनीतिक जलाशय जिसे ब्यास का पानी सतलुज में मोड़ने के लिए बनाया गया है).</li>
+                    <li><strong>Chamera Lake:</strong> A spectacular, serpentine man-made reservoir successfully created by the Chamera Dam on the Ravi river. (चमेरा झील: रावी नदी पर चमेरा बांध द्वारा सफलतापूर्वक निर्मित एक शानदार, सर्पीला कृत्रिम जलाशय).</li>
+                    <li><strong>Renuka Lake:</strong> The absolute largest naturally formed lake in HP, directly and ecologically linked to the Giri river basin. (रेणुका झील: हिमाचल की सबसे बड़ी प्राकृतिक झील, जो सीधे गिरि नदी बेसिन से जुड़ी है).</li>
+                    <li><strong>Chandra Tal:</strong> A pristine high-altitude lake functioning effectively as the direct geographic source of the Chandra river. (चंद्र ताल: एक प्राचीन उच्च ऊंचाई वाली झील जो चंद्रा नदी के प्रत्यक्ष स्रोत के रूप में कार्य करती है).</li>
+                    <li><strong>Suraj Tal:</strong> Situated right at Baralacha La, this freezing lake serves proudly as the primary origin of the Bhaga river. (सूरज ताल: बारालाचा ला में स्थित यह जमा देने वाली झील भागा नदी का प्राथमिक उद्गम है).</li>
+                    <li><strong>Chandranahan Lake:</strong> Located on the Chanshal peak, it acts as the pure, untouched natural source of the Pabbar river. (चंद्रनाहन झील: चांसल चोटी पर स्थित, यह पब्बर नदी का अछूता प्राकृतिक स्रोत है).</li>
                 </ul>
             </div>
 
             <!-- Section 9: Environmental Impact -->
             <div class="seo-card glass-panel">
-                <h3><i class="fa-solid fa-triangle-exclamation"></i> 9. Environmental Challenges (वर्तमान पर्यावरण संबंधी चुनौतियां)</h3>
-                <p>Modern infrastructural development and rapid climate change pose severe threats to the delicate Himalayan river ecosystems, affecting both the state's economy and biodiversity. <br>(आधुनिक विकास और जलवायु परिवर्तन हिमालयी नदी पारिस्थितिकी तंत्र के लिए गंभीर खतरे पैदा कर रहे हैं।)</p>
+                <h3><i class="fa-solid fa-triangle-exclamation"></i> 9. Environmental Challenges (पर्यावरण संबंधी चुनौतियां)</h3>
+                <p>Modern infrastructural development poses severe threats to the delicate Himalayan river ecosystems. <br>(आधुनिक विकास और जलवायु परिवर्तन हिमालयी नदी पारिस्थितिकी तंत्र के लिए गंभीर खतरे पैदा कर रहे हैं।)</p>
                 <ul class="seo-list">
-                    <li><strong>Severe Siltation (अत्यधिक गाद):</strong> High silt levels in the fast-flowing Satluj river frequently force the immediate closure of mega hydro projects like Nathpa Jhakri during the monsoon season to prevent turbine damage. <br>(गाद: सतलुज में उच्च गाद के कारण मानसून के दौरान नाथपा झाकड़ी जैसी बड़ी परियोजनाओं को टरबाइन डैमेज से बचाने के लिए बंद करना पड़ता है).</li>
-                    <li><strong>Glacial Retreat (ग्लेशियरों का पिघलना):</strong> The rapid and alarming shrinking of major glaciers like Bara Shigri (Lahaul) threatens the long-term perennial water flow of the Chenab and other major snow-fed rivers. <br>(ग्लेशियरों का सिकुड़ना: बड़ा शिगड़ी जैसे ग्लेशियरों के पिघलने से नदियों के भविष्य के जल स्तर पर गंभीर खतरा मंडरा रहा है).</li>
-                    <li><strong>Industrial Pollution (औद्योगिक प्रदूषण):</strong> Rivers like Sirsa (in Baddi) and Markanda face severe degradation due to the discharge of untreated chemical effluents from pharmaceutical and industrial hubs. <br>(प्रदूषण: बद्दी और नालागढ़ में फार्मा उद्योगों के रासायनिक कचरे के कारण सिरसा नदी में भारी प्रदूषण).</li>
-                    <li><strong>Flash Floods & Cloud Bursts (अचानक बाढ़):</strong> The exceptionally steep gradients of the Beas and Satluj basins, combined with frequent cloud bursts in Kullu and Kinnaur, lead to catastrophic and highly destructive flash floods. <br>(अचानक बाढ़: कुल्लू और किन्नौर में बादल फटने और नदियों के तीव्र ढलान के कारण अक्सर विनाशकारी बाढ़ आती है).</li>
-                    <li><strong>Unregulated Sand Mining (अवैध खनन):</strong> Excessive riverbed sand mining in rivers like Swan, Beas, and Chakki is continuously altering the natural course of the rivers, causing bank erosion and destroying aquatic habitats. <br>(अवैध खनन: स्वान और चक्की खड्ड में भारी रेत खनन से नदियों का प्राकृतिक मार्ग बदल रहा है और किनारों का क्षरण हो रहा है).</li>
+                    <li><strong>Severe Siltation:</strong> The exceptionally high silt content in the Satluj forces immediate, costly shutdowns of the Nathpa Jhakri project. (अत्यधिक गाद: सतलुज में उच्च गाद सामग्री नाथपा झाकड़ी परियोजना को तुरंत बंद करने के लिए मजबूर करती है).</li>
+                    <li><strong>Glacial Retreat:</strong> Alarming and rapid shrinking of major glaciers (like Bara Shigri) severely threatens perennial river flows. (ग्लेशियरों का पिघलना: बड़ा शिगड़ी जैसे प्रमुख ग्लेशियरों का तेजी से सिकुड़ना बारहमासी नदी प्रवाह के लिए खतरा है).</li>
+                    <li><strong>Industrial Pollution:</strong> The Sirsa and Markanda rivers face massive, unchecked degradation from highly toxic chemical effluents. (औद्योगिक प्रदूषण: सिरसा और मारकंडा नदियां अत्यधिक जहरीले रासायनिक अपशिष्टों से भारी गिरावट का सामना कर रही हैं).</li>
+                    <li><strong>Flash Floods:</strong> Steep geographical gradients heavily amplify the sudden, catastrophic destructive power of monsoon flash floods. (अचानक बाढ़: खड़ी भौगोलिक ढलानें मानसूनी अचानक बाढ़ की विनाशकारी शक्ति को भारी रूप से बढ़ा देती हैं).</li>
+                    <li><strong>Unregulated Sand Mining:</strong> Rampant, completely illegal riverbed mining is tragically and permanently destroying vital aquatic habitats. (अवैध रेत खनन: बड़े पैमाने पर अवैध खनन महत्वपूर्ण जलीय आवासों को स्थायी रूप से नष्ट कर रहा है).</li>
+                    <li><strong>Dam Ecosystem Alteration:</strong> Massive hydro projects deeply fragment natural river continuity, strictly disrupting fish migrations. (बांध पारिस्थितिकी तंत्र में बदलाव: विशाल जलविद्युत परियोजनाएं नदी की निरंतरता को तोड़कर मछली प्रवास को बाधित करती हैं).</li>
+                    <li><strong>Deforestation Run-off:</strong> Reduced forest cover along river catchments dramatically accelerates heavy, highly damaging topsoil erosion. (वनों की कटाई: नदी के जलग्रहण क्षेत्रों में कम वनावरण भारी रूप से ऊपरी मिट्टी के कटाव को तेज करता है).</li>
+                    <li><strong>Water Treaty Limits:</strong> The Indus Water Treaty (1960) strictly dictates and limits India's structural usage of the Chenab and Ravi waters. (जल संधि सीमाएं: सिंधु जल संधि (1960) चिनाब और रावी के पानी के भारत के उपयोग को सख्ती से नियंत्रित करती है).</li>
                 </ul>
             </div>
 
         </div>
     </section>
 
-    <!-- HTML HARDCODED HELP MODAL - EXTREME LOCK FOR CENTER POPUP -->
-    <div id="quizHelpModal" class="quiz-modal-overlay" onclick="if(event.target === this) toggleHelpModal()">
-        <div class="quiz-modal-content glass-panel">
-            <div class="quiz-modal-header">
-                <h3 style="margin:0; font-size:1.1rem; display:flex; align-items:center; gap:8px; color:var(--text-main);">
-                    <i class="fa-solid fa-circle-question" style="color:var(--primary)"></i> Toolbar Guide
-                </h3>
-                <button onclick="toggleHelpModal()" style="background:transparent; border:none; font-size:1.2rem; cursor:pointer; color:var(--text-sec); transition:color 0.2s;">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-            </div>
-            <div class="quiz-modal-body" style="font-size:0.85rem; color:var(--text-body); line-height:1.6; padding-top:10px;">
-                <ul style="list-style:none; padding:0; margin:0; display:grid; gap:12px;">
-                    <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-solid fa-download" style="color:var(--text-sec); font-size:1rem;"></i></span> <span><strong>Backup:</strong> Save your progress to a file.</span></li>
-                    <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-solid fa-upload" style="color:var(--text-sec); font-size:1rem;"></i></span> <span><strong>Restore:</strong> Load your saved progress.</span></li>
-                    <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-solid fa-rotate-right" style="color:var(--wrong-text); font-size:1rem;"></i></span> <span><strong>Reset:</strong> Clear all history for this subject.</span></li>
-                    <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-solid fa-bolt" style="color:var(--accent); font-size:1rem;"></i></span> <span><strong>Quick 10:</strong> Start a fast 10-question session.</span></li>
-                    <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-solid fa-shuffle" style="color:var(--primary); font-size:1rem;"></i></span> <span><strong>Shuffle:</strong> Randomize question order.</span></li>
-                    <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-solid fa-triangle-exclamation" style="color:var(--wrong-text); font-size:1rem;"></i></span> <span><strong>Mistakes:</strong> Review incorrect answers.</span></li>
-                    <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-regular fa-bookmark" style="color:var(--primary); font-size:1rem;"></i></span> <span><strong>Bookmarks:</strong> View saved questions.</span></li>
-                    <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center; font-weight:bold; color:var(--text-sec);">A&plusmn;</span> <span><strong>Text Size:</strong> Adjust font size.</span></li>
-                </ul>
-            </div>
+</main>
+
+<!-- HTML HARDCODED HELP MODAL - EXTREME LOCK FOR CENTER POPUP -->
+<div id="quizHelpModal" class="quiz-modal-overlay" onclick="if(event.target === this) toggleHelpModal()">
+    <div class="quiz-modal-content glass-panel">
+        <div class="quiz-modal-header">
+            <h3 style="margin:0; font-size:1.1rem; display:flex; align-items:center; gap:8px; color:var(--text-main);">
+                <i class="fa-solid fa-circle-question" style="color:var(--primary)"></i> Toolbar Guide
+            </h3>
+            <button onclick="toggleHelpModal()" style="background:transparent; border:none; font-size:1.2rem; cursor:pointer; color:var(--text-sec); transition:color 0.2s;">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="quiz-modal-body" style="font-size:0.75rem; color:var(--text-body); line-height:1.4; padding-top:10px;">
+            <ul style="list-style:none; padding:0; margin:0; display:grid; gap:8px;">
+                <li style="display:flex; gap:8px; align-items:center;"><span style="width:20px; text-align:center;"><i class="fa-solid fa-download" style="color:var(--text-sec); font-size:0.9rem;"></i></span> <span><strong>Backup:</strong> Save your progress.</span></li>
+                <li style="display:flex; gap:8px; align-items:center;"><span style="width:20px; text-align:center;"><i class="fa-solid fa-upload" style="color:var(--text-sec); font-size:0.9rem;"></i></span> <span><strong>Restore:</strong> Load saved progress.</span></li>
+                <li style="display:flex; gap:8px; align-items:center;"><span style="width:20px; text-align:center;"><i class="fa-solid fa-rotate-right" style="color:var(--wrong-text); font-size:0.9rem;"></i></span> <span><strong>Reset:</strong> Clear all history.</span></li>
+                <li style="display:flex; gap:8px; align-items:center;"><span style="width:20px; text-align:center;"><i class="fa-solid fa-bolt" style="color:var(--accent); font-size:0.9rem;"></i></span> <span><strong>Quick 10:</strong> Start fast 10-Q session.</span></li>
+                <li style="display:flex; gap:8px; align-items:center;"><span style="width:20px; text-align:center;"><i class="fa-solid fa-shuffle" style="color:var(--primary); font-size:0.9rem;"></i></span> <span><strong>Shuffle:</strong> Randomize questions.</span></li>
+                <li style="display:flex; gap:8px; align-items:center;"><span style="width:20px; text-align:center;"><i class="fa-solid fa-triangle-exclamation" style="color:var(--wrong-text); font-size:0.9rem;"></i></span> <span><strong>Mistakes:</strong> Review incorrect answers.</span></li>
+                <li style="display:flex; gap:8px; align-items:center;"><span style="width:20px; text-align:center;"><i class="fa-regular fa-bookmark" style="color:var(--primary); font-size:0.9rem;"></i></span> <span><strong>Bookmarks:</strong> View saved questions.</span></li>
+                <li style="display:flex; gap:8px; align-items:center;"><span style="width:20px; text-align:center; font-weight:bold; color:var(--text-sec); font-size:0.9rem;">A&plusmn;</span> <span><strong>Text Size:</strong> Adjust font size.</span></li>
+            </ul>
         </div>
     </div>
-
-</main>
+</div>
 
 <!-- Dynamic Footer Container -->
 <div id="site-footer"></div>
