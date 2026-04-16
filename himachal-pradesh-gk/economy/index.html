@@ -72,6 +72,7 @@
     <!-- Global CSS -->
     <link rel="stylesheet" href="../../js/style.css">
 
+    <!-- Premium Glassmorphism & Compact UI Stylesheet -->
     <style>
         :root {
             --primary: #2563eb;       
@@ -146,16 +147,24 @@
             box-shadow: var(--glass-shadow);
         }
 
-        main { flex: 1; width: 100%; padding: 15px 0 !important; }
+        main { flex: 1; width: 100%; padding: 15px 0 !important; box-sizing: border-box; }
 
         .top-meta-bar { 
             display: flex; justify-content: space-between; align-items: center; 
-            width: 100%; max-width: var(--site-width); margin: 0 auto 12px auto; 
-            padding: 0 15px; flex-wrap: nowrap; gap: 10px; 
+            width: 100%; max-width: var(--site-width); margin: 0 auto 5px auto; 
+            padding: 0 15px; flex-wrap: nowrap; gap: 10px; box-sizing: border-box;
         }
 
         .page-header-top, .main-layout, .seo-content-wrapper { 
-            width: 100%; max-width: var(--site-width); margin: 0 auto; padding: 0 15px; 
+            width: 100%; max-width: var(--site-width); margin: 0 auto; padding: 0 15px; box-sizing: border-box;
+        }
+
+        .page-header-top { text-align: center; margin-bottom: 25px; }
+
+        .hero-desc {
+            margin: 0 auto;
+            text-align: center;
+            max-width: 800px;
         }
 
         .section-separator { 
@@ -167,6 +176,7 @@
             .top-meta-bar, .page-header-top, .main-layout, .seo-content-wrapper {
                 padding: 0 12px !important;
             }
+            .page-header-top { margin-bottom: 20px; }
         }
 
         .breadcrumb-nav { margin: 0; flex-shrink: 1; display: flex; align-items: center; height: 24px; }
@@ -191,40 +201,33 @@
             margin: 0; border: 1px solid var(--primary); letter-spacing: 0.5px; white-space: nowrap; 
             flex-shrink: 0; box-sizing: border-box;
         }
-
-        .page-header-top { text-align: center; margin-bottom: 20px; }
         
-        /* EXACT DESKTOP H1 FONT SIZE: 32px */
         .hero-title { 
-            font-size: 32px !important; 
-            font-weight: 900 !important; 
-            margin: 0; 
-            letter-spacing: -0.5px; 
-            text-align: center; 
             background: linear-gradient(135deg, var(--text-main) 0%, var(--primary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             color: var(--primary); 
-            line-height: 1.2;
+            letter-spacing: -0.8px;
+            margin-bottom: 8px !important;
         }
         
         .main-layout { display: flex; flex-direction: column; gap: 20px; }
         @media (min-width: 900px) { 
             .main-layout { flex-direction: row; align-items: flex-start; } 
-            .intro-column, .quiz-widget-wrapper { flex: 1; width: 50%; } 
+            .intro-column, .quiz-widget-wrapper { flex: 1; width: 50%; box-sizing: border-box; } 
         }
 
         .intro-grid { display: grid; gap: 12px; text-align: left; }
-        .intro-card { background: var(--input-bg); border: 1px solid var(--card-border); border-radius: var(--radius-lg); padding: 15px; box-shadow: var(--shadow-sm); }
+        .intro-card { background: var(--input-bg); border: 1px solid var(--card-border); border-radius: var(--radius-lg); padding: 15px; box-shadow: var(--shadow-sm); box-sizing: border-box; width: 100%; }
         .intro-card h2 { font-size: 1.05rem; color: var(--primary); margin: 0 0 8px 0; display: flex; align-items: center; gap: 8px; font-weight: 700; justify-content: center; }
         .intro-card p { font-size: 0.85rem; color: var(--text-body); margin: 0; line-height: 1.5; }
         .intro-list { margin: 8px 0 0 0; padding-left: 20px; font-size: 0.85rem; color: var(--text-body); line-height: 1.5; }
-        .intro-list li { margin-bottom: 4px; }
+        .intro-list li { margin-bottom: 6px; } 
         
         .quick-links { 
             margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--card-border); 
-            display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; 
+            display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; width: 100%; box-sizing: border-box;
         }
         .quick-link-item { 
             font-size: 0.7rem; text-decoration: none; color: var(--primary); 
@@ -235,8 +238,8 @@
         .quick-link-item:hover { background: var(--primary); color: white; }
 
         /* QUIZ WIDGET */
-        .quiz-card { border-radius: var(--radius-xl); display: flex; flex-direction: column; overflow: hidden; height: auto; min-height: 480px; background: var(--card-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--card-border); box-shadow: var(--glass-shadow); position: sticky; top: 80px; }
-        .quick-start-ribbon { background: var(--primary); color: #fff; border: none; padding: 12px; font-size: 0.95rem; font-weight: 700; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px; transition: background 0.2s; width: 100%; flex-shrink: 0; min-height: 45px; }
+        .quiz-card { border-radius: var(--radius-xl); display: flex; flex-direction: column; overflow: hidden; height: auto; min-height: 480px; background: var(--card-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--card-border); box-shadow: var(--glass-shadow); position: sticky; top: 80px; box-sizing: border-box; width: 100%; }
+        .quick-start-ribbon { background: var(--primary); color: #fff; border: none; padding: 12px; font-size: 0.95rem; font-weight: 700; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px; transition: background 0.2s; width: 100%; flex-shrink: 0; min-height: 45px; box-sizing: border-box; }
         .quick-start-ribbon:hover { background: var(--primary-dark); }
         
         .widget-header { 
@@ -254,11 +257,10 @@
         }
         .text-controls::-webkit-scrollbar { display: none; }
         
-        /* Toolbar Icons 13.6px */
         .icon-btn, .text-btn, .text-controls label {
             background: #ffffff !important; 
             border: none !important; 
-            color: var(--text-sec) !important;
+            color: var(--text-sec);
             width: 32px !important; 
             height: 32px !important; 
             border-radius: 8px !important; 
@@ -285,7 +287,7 @@
 
         [data-theme="dark"] .icon-btn, [data-theme="dark"] .text-btn, [data-theme="dark"] .text-controls label { 
             background: rgba(30, 41, 59, 0.9) !important; 
-            color: var(--text-body) !important;
+            color: var(--text-body);
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3) !important;
         }
         
@@ -306,15 +308,13 @@
             display: flex; flex-direction: column; flex: 1; overflow: hidden; margin: 10px 15px 15px 15px; 
             border: 1px solid rgba(37, 99, 235, 0.25); border-radius: var(--radius-lg); background: var(--input-bg); 
             box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.03);
+            box-sizing: border-box;
         }
         [data-theme="dark"] .quiz-mcq-container { border-color: rgba(96, 165, 250, 0.25); }
 
-        /* ==========================================
-           FIXED: ULTRA-COMPACT DASHBOARD STATS BAR (Strict 10.4px)
-           ========================================== */
         .stats-dashboard { 
             display: flex; flex-wrap: nowrap; background: rgba(0,0,0,0.03); 
-            border-bottom: 1px solid var(--card-border); align-items: center;
+            border-bottom: 1px solid var(--card-border); align-items: center; width: 100%; box-sizing: border-box;
         }
         [data-theme="dark"] .stats-dashboard { background: rgba(255,255,255,0.02); }
         
@@ -331,7 +331,7 @@
         .stat-value.red { color: var(--wrong-border); }
         .stat-value.accent { color: var(--accent); }
 
-        .quiz-content { flex: 1; padding: 15px; position: relative; background: transparent; border: none; margin: 0; box-shadow: none; overflow-y: auto; }
+        .quiz-content { flex: 1; padding: 15px; position: relative; background: transparent; border: none; margin: 0; box-shadow: none; overflow-y: auto; box-sizing: border-box; width: 100%; }
         
         .q-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-size: 0.75rem; font-weight: 700; color: var(--text-sec); border-bottom: 1px dashed var(--card-border); padding-bottom: 4px; }
         .q-id { font-size: 0.85rem; color: var(--text-main); }
@@ -345,8 +345,7 @@
         .q-text-hi { font-weight: 600; color: var(--text-sec); margin-bottom: 12px; font-family: 'Noto Sans Devanagari', sans-serif; line-height: 1.4; font-size: 0.85rem; }
         mark.highlight { background: var(--accent); color: #fff; padding: 0 2px; border-radius: 3px; }
 
-        /* PERFECT BUG FIX: NO TEXT SHIFTING ON ANSWER SELECTION */
-        .options-list { display: flex; flex-direction: column; gap: 8px; counter-reset: opt-counter; }
+        .options-list { display: flex; flex-direction: column; gap: 8px; counter-reset: opt-counter; width: 100%; box-sizing: border-box; }
         
         .option-btn { 
             width: 100%; 
@@ -363,6 +362,7 @@
             align-items: flex-start; 
             line-height: 1.4; 
             position: relative; 
+            box-sizing: border-box;
         }
         
         .option-btn::before { 
@@ -398,10 +398,9 @@
         .option-btn.correct { background: var(--correct-bg); border-color: var(--correct-border); color: var(--correct-text); }
         .option-btn.wrong { background: var(--wrong-bg); border-color: var(--wrong-border); color: var(--wrong-text); }
 
-        .feedback-row { display: flex; gap: 8px; align-items: center; margin-top: 12px; }
+        .feedback-row { display: flex; gap: 8px; align-items: center; margin-top: 12px; width: 100%; box-sizing: border-box; }
         
-        /* FIXED: No fadeIn animation to prevent blinking */
-        .feedback-msg { flex: 1; padding: 8px 12px; border-radius: var(--radius-md); font-weight: 700; font-size: 0.85rem; text-align: center; margin: 0; border: 1px solid transparent; }
+        .feedback-msg { flex: 1; padding: 8px 12px; border-radius: var(--radius-md); font-weight: 700; font-size: 0.85rem; text-align: center; margin: 0; border: 1px solid transparent; box-sizing: border-box; }
         
         .correct-feed { background: var(--correct-bg); color: var(--correct-text); border-color: var(--correct-border); }
         .wrong-feed { background: var(--wrong-bg); color: var(--wrong-text); border-color: var(--wrong-border); }
@@ -409,14 +408,14 @@
         .expl-wrapper { position: relative; }
         .expl-btn { background: var(--card-bg); color: var(--primary); border: 1px solid var(--card-border); width: 34px; height: 34px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1rem; transition: 0.2s; box-shadow: var(--shadow-sm); }
         .expl-btn:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
-        .explanation-tooltip { position: absolute; bottom: 120%; right: 0; width: 280px; background: var(--tooltip-bg); border: 1px solid var(--card-border); box-shadow: var(--glass-shadow); padding: 15px; border-radius: var(--radius-md); font-size: 0.8rem; color: var(--text-main); z-index: 100; margin-bottom: 10px; display: none; text-align: left; line-height: 1.4; font-weight: 500; }
+        .explanation-tooltip { position: absolute; bottom: 120%; right: 0; width: 280px; background: var(--tooltip-bg); border: 1px solid var(--card-border); box-shadow: var(--glass-shadow); padding: 15px; border-radius: var(--radius-md); font-size: 0.8rem; color: var(--text-main); z-index: 100; margin-bottom: 10px; display: none; text-align: left; line-height: 1.4; font-weight: 500; box-sizing: border-box; }
         .explanation-tooltip::after { content: ''; position: absolute; top: 100%; right: 12px; border-width: 6px; border-style: solid; border-color: var(--tooltip-bg) transparent transparent transparent; }
         .explanation-tooltip::before { content: ''; position: absolute; top: 100%; right: 11px; border-width: 7px; border-style: solid; border-color: var(--card-border) transparent transparent transparent; z-index: -1; }
         .explanation-tooltip.show { display: block; animation: fadeUp 0.2s ease-out; }
         .explanation-tooltip strong { color: var(--primary); display: block; margin-bottom: 6px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; }
         @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        .widget-controls { padding: 10px 15px; border-top: 1px solid var(--card-border); background: rgba(0,0,0,0.03); display: flex; justify-content: space-between; align-items: center; }
+        .widget-controls { padding: 10px 15px; border-top: 1px solid var(--card-border); background: rgba(0,0,0,0.03); display: flex; justify-content: space-between; align-items: center; width: 100%; box-sizing: border-box; }
         [data-theme="dark"] .widget-controls { background: rgba(255,255,255,0.02); }
         .nav-btn { background: var(--card-bg); border: 1px solid var(--card-border); color: var(--text-main); padding: 6px 12px; border-radius: var(--radius-md); cursor: pointer; font-weight: 600; font-size: 0.85rem; display: flex; align-items: center; gap: 5px; transition: 0.2s; }
         .nav-btn:hover:not(:disabled) { border-color: var(--primary); color: var(--primary); }
@@ -425,42 +424,25 @@
         .progress-display { display: flex; align-items: center; justify-content: center; padding: 4px 10px; }
         .progress-text { font-weight: 800; color: var(--text-main); font-size: 0.85rem; }
 
-        /* ==========================================
-           FIXED: EXTREME LOCK FOR MODAL (Center Screen Popup Guaranteed)
-           ========================================== */
-        .quiz-modal-overlay {
-            position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important;
-            width: 100vw !important; height: 100vh !important;
-            background: rgba(0,0,0,0.5) !important; backdrop-filter: blur(4px) !important; -webkit-backdrop-filter: blur(4px) !important;
-            z-index: 999999 !important; display: none; align-items: center !important; justify-content: center !important; padding: 20px;
-            opacity: 0; transition: opacity 0.2s ease;
-        }
-        .quiz-modal-overlay.show { display: flex !important; opacity: 1; }
-        .quiz-modal-content {
-            background: var(--tooltip-bg) !important; 
-            width: 100%; max-width: 380px; margin: auto !important;
-            border: 1px solid var(--card-border);
-            border-radius: var(--radius-lg); padding: 20px;
-            box-shadow: var(--glass-shadow); transform: translateY(20px); transition: transform 0.2s ease;
-            position: relative !important; z-index: 1000000 !important;
-        }
-        .quiz-modal-overlay.show .quiz-modal-content { transform: translateY(0); }
-        .quiz-modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--card-border); padding-bottom: 12px; margin-bottom: 12px; }
-
-        .section-separator { height: 1px; background: linear-gradient(90deg, transparent, var(--card-border), transparent); margin: 25px 0; width: 100%; }
+        /* SEO Card Styles - Adjusted for clean, non-bloated look */
         .seo-content-wrapper { margin-bottom: 30px; }
         .seo-header { text-align: center; margin-bottom: 20px; }
         .seo-header h2 { font-size: clamp(1.2rem, 3vw, 1.6rem); margin-bottom: 8px; }
         .seo-header p { color: var(--text-sec); max-width: 600px; margin: 0 auto; font-size: 0.85rem; }
-        .seo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
-        .seo-card { background: var(--card-bg); border: 1px solid var(--card-border); padding: 20px; border-radius: var(--radius-lg); box-shadow: var(--glass-shadow); border-left: 4px solid var(--primary); transition: border-color 0.2s; }
+        
+        /* Grid Alignment */
+        .seo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 15px; align-items: stretch; width: 100%; }
+        
+        .seo-card { background: var(--card-bg); border: 1px solid var(--card-border); padding: 20px; border-radius: var(--radius-lg); box-shadow: var(--glass-shadow); border-left: 4px solid var(--primary); transition: border-color 0.2s; display: flex; flex-direction: column; box-sizing: border-box; width: 100%; }
         .seo-card:hover { border-color: var(--primary-light); }
         .seo-card h3 { font-size: 1rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; color: var(--text-main) !important; }
         .seo-card h3 i { color: var(--primary); }
-        .seo-card p { color: var(--text-body) !important; font-size: 0.85rem; margin-bottom: 10px; }
+        .seo-card p { color: var(--text-body) !important; font-size: 0.85rem; margin-bottom: 15px; }
         
-        .seo-list { list-style: none; padding-left: 0; }
-        .seo-list li { position: relative; padding-left: 18px; margin-bottom: 5px; font-size: 0.8rem; color: var(--text-body) !important; }
+        .seo-list { list-style: none; padding-left: 0; margin-top: 0; }
+        
+        /* Dense, concise list items */
+        .seo-list li { position: relative; padding-left: 18px; margin-bottom: 6px; font-size: 0.8rem; color: var(--text-body) !important; line-height: 1.35; }
         .seo-list li::before { 
             content: "\f111"; 
             font-family: "Font Awesome 6 Free";
@@ -472,22 +454,35 @@
             font-size: 0.4rem; 
         }
 
-        /* ==========================================
-           EXACT MOBILE CSS COMPACTNESS 
-           ========================================== */
+        /* Modal specific styles */
+        .quiz-modal-overlay {
+            position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important;
+            background: rgba(0,0,0,0.5) !important; backdrop-filter: blur(4px) !important; -webkit-backdrop-filter: blur(4px) !important;
+            z-index: 999999 !important; display: none; align-items: center !important; justify-content: center !important; padding: 20px;
+            opacity: 0; transition: opacity 0.2s ease;
+        }
+        .quiz-modal-overlay.show { display: flex !important; opacity: 1; }
+        .quiz-modal-content {
+            background: var(--tooltip-bg) !important; 
+            width: 100%; max-width: 320px; margin: auto !important;
+            border: 1px solid var(--border-color);
+            border-radius: 12px; padding: 15px;
+            box-shadow: var(--glass-shadow); transform: translateY(20px); transition: transform 0.2s ease;
+            position: relative !important; z-index: 1000000 !important;
+            box-sizing: border-box;
+        }
+        .quiz-modal-overlay.show .quiz-modal-content { transform: translateY(0); }
+        .quiz-modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; margin-bottom: 10px; }
+
         @media (max-width: 600px) {
-            /* EXACT MOBILE H1 FONT SIZE: 23px */
-            .hero-title { font-size: 23px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
+            .hero-title { font-size: 25px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
             .top-meta-bar { flex-wrap: nowrap; justify-content: space-between; }
-            
             .widget-header { padding: 10px; align-items: center; }
             .text-controls { justify-content: center; gap: 3px; padding: 2px 0; }
             
-            /* Toolbar Icons 13.6px for mobile too */
             .icon-btn, .text-btn, .text-controls label { width: 28px !important; height: 28px !important; font-size: 13.6px !important; border-radius: 6px !important; }
             .v-divider { margin: 0 1px; height: 14px; }
             
-            /* COMPACT DASHBOARD STATS FOR MOBILE (Strict 10.4px) */
             .stat-item { flex-direction: column; gap: 1px; padding: 4px 1px; align-items: center; }
             .stat-label { font-size: 10.4px !important; letter-spacing: -0.2px; margin: 0; }
             .stat-value { font-size: 10.4px !important; }
@@ -498,10 +493,22 @@
             .nav-btn { padding: 4px 8px; font-size: 0.7rem; min-width: 55px; }
             .progress-display { padding: 2px 6px; }
             .progress-text { font-size: 0.7rem; }
+            
+            /* Quick Links Mobile Fix: Inline & Scrollable without breaking width */
+            .quick-links {
+                flex-wrap: nowrap !important;
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                justify-content: flex-start !important;
+                padding-bottom: 5px;
+                max-width: 100%;
+            }
+            .quick-links::-webkit-scrollbar { display: none; }
+            .quick-link-item { font-size: 0.65rem; padding: 4px 10px; }
         }
     </style>
 
-    <!-- Theme Initialization Script -->
     <script>
         const savedTheme = localStorage.getItem('theme') || 'light';
         document.documentElement.setAttribute('data-theme', savedTheme);
@@ -537,6 +544,10 @@
     <!-- New Top Page Header (Centers H1 above the columns) -->
     <div class="page-header-top">
         <h1 class="hero-title">Economy of Himachal Pradesh</h1>
+        <!-- Descriptive content acting as hero sub-heading -->
+        <p class="hero-desc">
+            Economy is the most dynamic section of HP GK. Around 25% of questions in HPAS and Allied exams come directly from Economic Survey data, Budgets, Hydropower projects, and Horticulture. <br>अर्थव्यवस्था हिमाचल जीके का सबसे गतिशील खंड है। HPAS/Allied परीक्षाओं में लगभग 25% प्रश्न आर्थिक सर्वेक्षण डेटा, बजट, जलविद्युत परियोजनाओं और बागवानी से आते हैं।
+        </p>
     </div>
 
     <!-- Side-by-Side Two Column Layout -->
@@ -545,29 +556,29 @@
         <!-- Left Column: Intro Hook -->
         <section class="intro-column">
             <div class="intro-grid">
+                <!-- Cleaned up left card: Now just holds Quick Links -->
                 <div class="intro-card glass-panel" style="text-align: center;">
-                    <h2 style="justify-content: center;"><i class="fa-solid fa-star"></i> Why This Matters? (यह महत्वपूर्ण क्यों है?)</h2>
-                    <p>Economy is the most dynamic section of HP GK. Around 25% of questions in HPAS/Allied exams come from Economic Survey data, Budget, Hydro projects, and Agriculture. <br><br>अर्थव्यवस्था हिमाचल जीके का सबसे गतिशील खंड है। HPAS/Allied परीक्षाओं में लगभग 25% प्रश्न आर्थिक सर्वेक्षण डेटा, बजट, जलविद्युत परियोजनाओं और कृषि से आते हैं।</p>
+                    <h2 style="justify-content: center; margin-bottom: 12px; font-size: 1rem;"><i class="fa-solid fa-link"></i> Quick Study Links</h2>
                     
-                    <!-- Sibling Directory Interlinking -->
-                    <div class="quick-links" style="justify-content: center;">
+                    <!-- Exactly 4 Sibling Directory Interlinking -->
+                    <div class="quick-links">
                         <a href="../rivers/" class="quick-link-item"><i class="fa-solid fa-water"></i> Rivers</a>
                         <a href="../history/" class="quick-link-item"><i class="fa-solid fa-landmark"></i> History</a>
-                        <a href="../district/" class="quick-link-item"><i class="fa-solid fa-map-location-dot"></i> Districts</a>
                         <a href="../geography/" class="quick-link-item"><i class="fa-solid fa-mountain"></i> Geography</a>
+                        <a href="../art-culture/" class="quick-link-item"><i class="fa-solid fa-palette"></i> Art & Culture</a>
                     </div>
                 </div>
 
                 <div class="intro-card glass-panel">
                     <h2><i class="fa-solid fa-list-check"></i> What this Page Covers (इस पृष्ठ में क्या शामिल है)</h2>
                     <ul class="intro-list">
-                        <li><strong>Agriculture:</strong> Cropping patterns, Seed farms, Kangra Tea (GI Tag), and Kuth cultivation.</li>
-                        <li><strong>Horticulture:</strong> 'Apple State of India', Floriculture, Mushroom City (Solan).</li>
-                        <li><strong>Hydropower:</strong> Major projects like Bhakra, Nathpa Jhakri, Karcham Wangtoo, and HIMURJA.</li>
-                        <li><strong>Industries:</strong> Pharma hub (Baddi), Cement plants, and Industrial areas (Mehatpur, Kala Amb).</li>
-                        <li><strong>Tourism:</strong> Eco-tourism, Religious tourism, and Skiing destinations.</li>
-                        <li><strong>Economic Survey:</strong> Key indicators like GSDP growth, Per Capita Income.</li>
-                        <li><strong>Interactive Quiz:</strong> Master data-driven facts through 510+ bilingual MCQs.</li>
+                        <li><strong>Agriculture (कृषि):</strong> Deep dive into major crops, seed farms, the GI-tagged Kangra Tea, and Kuth cultivation. (प्रमुख फसलें, बीज फार्म, कांगड़ा चाय (GI टैग) और कुठ की खेती).</li>
+                        <li><strong>Horticulture (बागवानी):</strong> Understand why HP is the 'Apple State of India', explore Floriculture, and the Mushroom City. (भारत का 'सेब राज्य', पुष्पकृषि और मशरूम शहर का अध्ययन).</li>
+                        <li><strong>Hydropower (जलविद्युत क्षमता):</strong> Major mega-projects like Bhakra, Nathpa Jhakri, Karcham Wangtoo, and the role of HIMURJA. (भाखड़ा, नाथपा झाकड़ी जैसी बड़ी परियोजनाएं और हिमूर्जा की भूमिका).</li>
+                        <li><strong>Industries (उद्योग):</strong> Explore the Pharma hub (Baddi), mega Cement plants, and key Industrial areas like Mehatpur. (फार्मा हब बद्दी, सीमेंट प्लांट और प्रमुख औद्योगिक क्षेत्र).</li>
+                        <li><strong>Tourism (पर्यटन):</strong> Eco-tourism spots, Paragliding (Bir Billing), Skiing destinations, and Religious tourism. (ईको-पर्यटन, पैराग्लाइडिंग, स्कीइंग और धार्मिक पर्यटन स्थल).</li>
+                        <li><strong>Economic Survey (आर्थिक सर्वेक्षण):</strong> Crucial socio-economic indicators like GSDP growth, Per Capita Income, and State Budget highlights. (GSDP विकास दर और प्रति व्यक्ति आय जैसे प्रमुख आर्थिक संकेतक).</li>
+                        <li><strong>Interactive Testing (संवादात्मक प्रश्नोत्तरी):</strong> Master heavily data-driven facts through our dedicated quiz engine featuring 510+ bilingual MCQs. (510+ बहुविकल्पीय प्रश्नों के साथ डेटा-आधारित तथ्यों का अभ्यास).</li>
                     </ul>
                 </div>
             </div>
@@ -582,11 +593,11 @@
                 </button>
 
                 <div class="widget-header">
-                    <div class="text-controls">
+                    <div class="text-controls" style="margin: 0 auto;">
                         <button class="icon-btn" onclick="toggleHelpModal()" title="Help Guide" type="button">
                             <i class="fa-solid fa-circle-question"></i>
                         </button>
-                        <div class="v-divider"></div>
+                        <div class="v-divider" style="width: 1px; height: 16px; background: var(--border-color); margin: 0 4px;"></div>
                         
                         <button class="icon-btn" onclick="exportProgress()" title="Backup Progress" type="button">
                             <i class="fa-solid fa-download"></i>
@@ -596,26 +607,26 @@
                         </label>
                         <input type="file" id="importFile" style="display: none;" accept=".json" onchange="importProgress(this)">
                         
-                        <button class="icon-btn" onclick="resetProgress()" title="Reset Progress" type="button">
+                        <button class="icon-btn reset" onclick="resetProgress()" title="Reset Progress" type="button" style="color: var(--wrong-text);">
                             <i class="fa-solid fa-rotate-right"></i>
                         </button>
                         
-                        <div class="v-divider"></div>
+                        <div class="v-divider" style="width: 1px; height: 16px; background: var(--border-color); margin: 0 4px;"></div>
 
-                        <button class="icon-btn" id="quickModeBtn" onclick="toggleQuickMode()" title="Quick 10 Quiz" type="button">
+                        <button class="icon-btn" id="quickModeBtn" onclick="toggleQuickMode()" title="Quick 10 Quiz" type="button" style="color: var(--accent);">
                             <i class="fa-solid fa-bolt"></i>
                         </button>
-                        <button class="icon-btn" id="shuffleBtn" onclick="toggleShuffle()" title="Shuffle Questions" type="button">
+                        <button class="icon-btn" id="shuffleBtn" onclick="toggleShuffle()" title="Shuffle Questions" type="button" style="color: var(--primary);">
                             <i class="fa-solid fa-shuffle"></i>
                         </button>
-                        <button class="icon-btn" id="mistakeFilterBtn" onclick="toggleMistakeFilter()" title="Review Mistakes" type="button">
+                        <button class="icon-btn" id="mistakeFilterBtn" onclick="toggleMistakeFilter()" title="Review Mistakes" type="button" style="color: var(--wrong-text);">
                             <i class="fa-solid fa-triangle-exclamation"></i>
                         </button>
-                        <button class="icon-btn" id="bookmarkFilterBtn" onclick="toggleBookmarkFilter()" title="Saved Bookmarks" type="button">
+                        <button class="icon-btn" id="bookmarkFilterBtn" onclick="toggleBookmarkFilter()" title="Saved Bookmarks" type="button" style="color: var(--primary);">
                             <i class="fa-regular fa-bookmark"></i>
                         </button>
                         
-                        <div class="v-divider"></div>
+                        <div class="v-divider" style="width: 1px; height: 16px; background: var(--border-color); margin: 0 4px;"></div>
                         
                         <button class="text-btn" onclick="adjustFont(-1)" title="Decrease Font" type="button">A-</button>
                         <button class="text-btn" onclick="adjustFont(1)" title="Increase Font" type="button">A+</button>
@@ -642,7 +653,6 @@
                     <div class="widget-controls">
                         <button id="prevBtn" class="nav-btn"><i class="fa-solid fa-arrow-left"></i> Prev</button>
                         
-                        <!-- PROGRESS DISPLAY (JUMP REMOVED) -->
                         <div class="progress-display">
                             <span class="progress-text" id="progressText">0 / 0</span>
                         </div>
@@ -657,11 +667,11 @@
     
     <div class="section-separator"></div>
 
-    <!-- Full Width Bilingual Content -->
+    <!-- Full Width Bilingual Content: Expanded to 9 Detailed Bullet-Point Sections -->
     <section class="seo-content-wrapper">
         <div class="seo-header">
             <h2>Detailed Economy Notes (विस्तृत अर्थव्यवस्था नोट्स)</h2>
-            <p>Comprehensive guide to the economic landscape of Himachal Pradesh. (हिमाचल प्रदेश के आर्थिक परिदृश्य का व्यापक गाइड।)</p>
+            <p>Comprehensive guide to the economic landscape of Himachal Pradesh. Explore detailed data on hydro projects, agriculture, and state budgets. <br>(हिमाचल प्रदेश के आर्थिक परिदृश्य का व्यापक गाइड। जलविद्युत परियोजनाओं, कृषि और राज्य के बजट पर विस्तृत आंकड़े देखें।)</p>
         </div>
 
         <div class="seo-grid">
@@ -669,110 +679,144 @@
             <!-- 1. Agriculture -->
             <div class="seo-card glass-panel">
                 <h3><i class="fa-solid fa-wheat-awn"></i> 1. Agriculture (कृषि)</h3>
-                <p>Agriculture supports 70% of the population. Share in GSDP is ~13.5% (2022-23).</p>
+                <p>Agriculture is the absolute backbone of the state, supporting the direct livelihood of over 70% of the rural population. <br>(कृषि राज्य की पूर्ण रीढ़ है, जो 70% से अधिक ग्रामीण आबादी की आजीविका का समर्थन करती है।)</p>
                 <ul class="seo-list">
-                    <li><strong>Major Crops:</strong> Maize (Highest prod.), Wheat, Rice. Seed potato from Lahaul is virus-free.</li>
-                    <li><strong>Tea Cultivation:</strong> By Dr. Jameson in Kangra (1849). 'Kangra Tea' got GI tag (2005) & European GI tag (2023).</li>
-                    <li><strong>Kuth & Hops:</strong> Kuth cultivation started in Lahaul-Spiti (1925). Hops (for beer) grown in Lahaul.</li>
-                    <li><strong>Cash Crops:</strong> Ginger (Sirmaur is largest producer). Tomato, Capsicum in Solan/Shimla.</li>
-                    <li><strong>Key Schemes:</strong> Mukhya Mantri Khet Sanrakshan Yojana (80% subsidy for Solar Fencing).</li>
+                    <li><strong>GSDP Contribution:</strong> Agriculture and its allied sectors contribute approximately 13.5% to the state's Gross State Domestic Product. (GSDP योगदान: कृषि और संबद्ध क्षेत्रों का राज्य के GSDP में लगभग 13.5% योगदान है).</li>
+                    <li><strong>Major Food Crops:</strong> Maize holds the highest production volume, followed closely by Wheat and Rice as staple crops. (प्रमुख फसलें: मक्का का उत्पादन सबसे अधिक है, उसके बाद गेहूं और चावल मुख्य फसलें हैं).</li>
+                    <li><strong>Kangra Tea (GI Tag):</strong> Introduced by Dr. Jameson in 1849. It received the Indian GI Tag in 2005 and recently the prestigious European GI Tag in 2023. (कांगड़ा चाय: 1849 में डॉ. जेमिसन द्वारा शुरू, इसे 2005 में भारतीय और 2023 में यूरोपीय GI टैग मिला).</li>
+                    <li><strong>Seed Potato:</strong> The cold, isolated Lahaul-Spiti valley is extremely famous for producing high-quality, virus-free seed potatoes. (बीज आलू: लाहौल-स्पीति उच्च गुणवत्ता वाले, रोग-मुक्त बीज आलू के उत्पादन के लिए प्रसिद्ध है).</li>
+                    <li><strong>Kuth Cultivation:</strong> A highly profitable medicinal plant. Its organized commercial cultivation started in the Lahaul valley back in 1925. (कुठ की खेती: लाहौल में 1925 में शुरू, यह एक अत्यधिक लाभदायक औषधीय पौधा है).</li>
+                    <li><strong>Ginger Production:</strong> Sirmaur district stands as the absolute largest producer of ginger in the entire state. (अदरक उत्पादन: सिरमौर जिला पूरे राज्य में अदरक का सबसे बड़ा उत्पादक है).</li>
+                    <li><strong>Solar Fencing Scheme:</strong> The 'Mukhya Mantri Khet Sanrakshan Yojana' heavily subsidizes (up to 80%) solar fencing to protect crops from wild animals. (खेत संरक्षण योजना: जंगली जानवरों से फसलों को बचाने के लिए सौर बाड़ पर 80% तक सब्सिडी).</li>
+                    <li><strong>Irrigation Focus:</strong> Only about 19% of the total cultivated area receives assured irrigation, making agriculture largely rain-fed. (सिंचाई: कुल खेती वाले क्षेत्र का केवल 19% ही सिंचित है, जिससे कृषि मुख्य रूप से वर्षा पर निर्भर है).</li>
                 </ul>
             </div>
 
             <!-- 2. Horticulture -->
             <div class="seo-card glass-panel">
                 <h3><i class="fa-solid fa-apple-whole"></i> 2. Horticulture (बागवानी)</h3>
-                <p>Himachal is the 'Apple State of India' and 'Fruit Bowl'.</p>
+                <p>Himachal is celebrated nationally as the 'Apple State of India' and the thriving 'Fruit Bowl' of the North. <br>(हिमाचल को राष्ट्रीय स्तर पर 'भारत का सेब राज्य' और उत्तर के संपन्न 'फलों के कटोरे' के रूप में जाना जाता है।)</p>
                 <ul class="seo-list">
-                    <li><strong>Apple History:</strong> First British orchard by Capt. R.C. Lee (Kullu - 1870). First American variety by Satyanand Stokes (1918). Shimla leads.</li>
-                    <li><strong>Mushroom:</strong> Solan is the 'Mushroom City of India'. NRCM is at Chambaghat.</li>
-                    <li><strong>Floriculture:</strong> Solan, Shimla, Sirmaur. 'Pushp Kranti Yojana' supports polyhouses.</li>
-                    <li><strong>Projects:</strong> SHIVA project ($130M ADB loan) for lower hills (Orange, Guava).</li>
+                    <li><strong>Apple Dominance:</strong> Apples absolutely dominate the sector, contributing over 80% of the state's total fruit production annually. (सेब का प्रभुत्व: राज्य के कुल फल उत्पादन में सेब का 80% से अधिक का भारी योगदान है).</li>
+                    <li><strong>First Apple Orchard:</strong> Historically planted by the British officer Capt. R.C. Lee in the Kullu valley around 1870. (पहला सेब बागान: 1870 के आसपास कुल्लू घाटी में ब्रिटिश अधिकारी कैप्टन आर.सी. ली द्वारा लगाया गया).</li>
+                    <li><strong>American Apple Introduction:</strong> Samuel Evans Stokes (later Satyanand Stokes) revolutionized the economy by introducing American apple varieties in Kotgarh (1918). (अमेरिकी सेब: सत्यानंद स्टोक्स ने 1918 में कोटगढ़ में अमेरिकी सेब की किस्में पेश कर क्रांति ला दी).</li>
+                    <li><strong>Mushroom City of India:</strong> Solan holds this prestigious title. The National Research Centre for Mushroom (NRCM) is located at Chambaghat (Solan). (भारत का मशरूम शहर: सोलन को यह उपाधि प्राप्त है। राष्ट्रीय मशरूम अनुसंधान केंद्र चंबाघाट में है).</li>
+                    <li><strong>Floriculture Push:</strong> The 'Pushp Kranti Yojana' strongly financially supports farmers to build polyhouses for cultivating highly profitable exotic flowers. (पुष्पकृषि: 'पुष्प क्रांति योजना' विदेशी फूलों की खेती के लिए पॉलीहाउस बनाने में भारी समर्थन देती है).</li>
+                    <li><strong>Citrus Fruit Belt:</strong> Lower altitude districts like Kangra, Una, and Sirmaur heavily dominate in the production of citrus fruits (Oranges, Kinnow). (खट्टे फल: कांगड़ा, ऊना और सिरमौर जैसे निचले जिले खट्टे फलों के उत्पादन में प्रमुख हैं).</li>
+                    <li><strong>HP SHIVA Project:</strong> A massive Asian Development Bank (ADB) funded project ($130M) specifically designed to boost subtropical horticulture like Guava and Litchi. (एचपी शिवा प्रोजेक्ट: उपोष्णकटिबंधीय बागवानी (अमरूद, लीची) को बढ़ावा देने के लिए ADB द्वारा वित्त पोषित).</li>
+                    <li><strong>HPMC Formation:</strong> Established in 1974 to systematically process and effectively market the state's massive horticultural produce globally. (HPMC: राज्य के बागवानी उत्पादों को संसाधित करने और बाजार में उतारने के लिए 1974 में स्थापित).</li>
                 </ul>
             </div>
 
             <!-- 3. Hydropower -->
             <div class="seo-card glass-panel">
-                <h3><i class="fa-solid fa-bolt"></i> 3. Hydropower Potential</h3>
-                <p>Five river basins with an identified potential of 27,436 MW. Known as 'White Coal'.</p>
+                <h3><i class="fa-solid fa-bolt"></i> 3. Hydropower Potential (जलविद्युत क्षमता)</h3>
+                <p>Himachal's five mighty river basins hold an identified potential of 27,436 MW, often termed as the state's 'White Coal'. <br>(हिमाचल के पांच विशाल नदी बेसिनों में 27,436 मेगावाट की क्षमता है, जिसे राज्य का 'सफेद कोयला' कहा जाता है।)</p>
                 <ul class="seo-list">
-                    <li><strong>Bhakra Dam (1325 MW):</strong> On Satluj (Bilaspur). 'Temple of Modern India'. Completed 1963.</li>
-                    <li><strong>Nathpa Jhakri (1500 MW):</strong> On Satluj. Largest underground project in India (SJVN).</li>
-                    <li><strong>Karcham Wangtoo (1091 MW):</strong> On Satluj. Largest Private sector (JSW) project.</li>
-                    <li><strong>Giri Bata (60 MW):</strong> First project executed by HP Govt (1966) in Sirmaur.</li>
-                    <li><strong>HIMURJA:</strong> State nodal agency formed in 1989 for renewable energy.</li>
+                    <li><strong>Bhakra Dam (1325 MW):</strong> A monumental concrete gravity dam built on the Satluj river in Bilaspur; successfully completed and dedicated to the nation in 1963. (भाखड़ा बांध: बिलासपुर में सतलुज नदी पर बना 1325 मेगावाट का गुरुत्वाकर्षण बांध, 1963 में पूरा हुआ).</li>
+                    <li><strong>Temple of Modern India:</strong> Recognizing its sheer scale and importance, Pt. Jawaharlal Nehru famously called the Bhakra Dam the "Temple of resurgent India". (आधुनिक भारत का मंदिर: नेहरू जी ने भाखड़ा बांध के महत्व को देखते हुए इसे यह उपाधि दी थी).</li>
+                    <li><strong>Nathpa Jhakri (1500 MW):</strong> India's absolute largest underground hydroelectric project, built on the Satluj river and operated by SJVN. (नाथपा झाकड़ी: सतलुज नदी पर स्थित भारत की सबसे बड़ी (1500 MW) भूमिगत जलविद्युत परियोजना).</li>
+                    <li><strong>Karcham Wangtoo (1091 MW):</strong> Also on the Satluj river, this is notably the largest fully private sector hydro project in India, executed by JSW Energy. (करछम वांगतू: यह भारत की सबसे बड़ी (1091 MW) निजी क्षेत्र (JSW) की जलविद्युत परियोजना है).</li>
+                    <li><strong>Giri Bata (60 MW):</strong> Historically significant as the very first hydro project entirely executed by the Himachal Pradesh Government (completed in 1966). (गिरि बाटा: हिमाचल सरकार द्वारा पूरी तरह से निष्पादित पहली (60 MW) जलविद्युत परियोजना).</li>
+                    <li><strong>Parbati Project (2051 MW):</strong> Currently, NHPC's largest ongoing and most ambitious multi-stage hydro project located in the Kullu valley. (पार्वती परियोजना: कुल्लू घाटी में स्थित यह NHPC की सबसे बड़ी (2051 MW) बहु-चरणीय परियोजना है).</li>
+                    <li><strong>HIMURJA's Role:</strong> The dedicated state nodal agency established in 1989 specifically for heavily promoting renewable, solar, and micro-hydel energy. (हिमूर्जा की भूमिका: 1989 में स्थापित, यह सौर और सूक्ष्म-जलविद्युत ऊर्जा को बढ़ावा देने वाली नोडल एजेंसी है).</li>
+                    <li><strong>Shanan Project (110 MW):</strong> The oldest hydro project in North India (1932) situated in Jogindernagar, currently under Punjab's operational control. (शानन परियोजना: जोगिंदरनगर में उत्तर भारत की सबसे पुरानी (1932) जलविद्युत परियोजना).</li>
                 </ul>
             </div>
 
             <!-- 4. Industries -->
             <div class="seo-card glass-panel">
-                <h3><i class="fa-solid fa-industry"></i> 4. Industrial Development</h3>
-                <p>Shift from agrarian to industrial economy. Baddi-Barotiwala-Nalagarh (BBN) is the hub.</p>
+                <h3><i class="fa-solid fa-industry"></i> 4. Industrial Development (औद्योगिक विकास)</h3>
+                <p>The state is rapidly shifting from a purely agrarian base to a heavily industrialized economy, led by the BBN corridor. <br>(राज्य तेजी से एक विशुद्ध कृषि आधार से भारी औद्योगीकृत अर्थव्यवस्था की ओर बढ़ रहा है, जिसका नेतृत्व BBN कॉरिडोर कर रहा है।)</p>
                 <ul class="seo-list">
-                    <li><strong>Pharmaceuticals:</strong> Baddi (Solan) is 'Pharma Hub of Asia'. Manufactures 35% of Asia's medicines.</li>
-                    <li><strong>Cement Plants:</strong> Barmana (ACC), Darlaghat (Ambuja), Rajban (CCI - First plant 1980).</li>
-                    <li><strong>Electronic Complex:</strong> Chambaghat (Solan). STPI in Shimla.</li>
-                    <li><strong>Industrial Areas:</strong> Mehatpur (Una), Kala Amb (Sirmaur), Paonta Sahib.</li>
+                    <li><strong>Pharma Hub of Asia:</strong> The Baddi-Barotiwala-Nalagarh (BBN) industrial corridor in Solan manufactures over 35% of Asia's total pharmaceutical medicines. (एशिया का फार्मा हब: सोलन का BBN कॉरिडोर एशिया की 35% से अधिक दवाओं का निर्माण करता है).</li>
+                    <li><strong>Cement Industry Backbone:</strong> Abundant, high-quality limestone deposits deeply support massive cement production across multiple districts. (सीमेंट उद्योग: प्रचुर और उच्च गुणवत्ता वाले चूना पत्थर भंडार सीमेंट उत्पादन का मजबूत आधार हैं).</li>
+                    <li><strong>Major Cement Plants:</strong> Large-scale operations include ACC in Barmana (Bilaspur), Ambuja in Darlaghat (Solan), and UltraTech in Baga. (प्रमुख सीमेंट संयंत्र: बरमाणा (ACC), दारलाघाट (Ambuja) और बागा (UltraTech) में बड़े पैमाने पर उत्पादन).</li>
+                    <li><strong>First Cement Plant:</strong> The historic first cement plant was established by the Cement Corporation of India (CCI) at Rajban (Sirmaur) in 1980. (पहला सीमेंट प्लांट: 1980 में राजबन (सिरमौर) में भारतीय सीमेंट निगम (CCI) द्वारा स्थापित किया गया).</li>
+                    <li><strong>Electronic Complex:</strong> A highly specialized and strategically located electronic manufacturing complex operates at Chambaghat in the Solan district. (इलेक्ट्रॉनिक कॉम्प्लेक्स: सोलन जिले के चंबाघाट में एक उच्च विशिष्ट इलेक्ट्रॉनिक विनिर्माण परिसर स्थित है).</li>
+                    <li><strong>Key Industrial Areas:</strong> Major industrial growth is concentrated in Mehatpur (Una), Kala Amb (Sirmaur), Paonta Sahib, and Parwanoo. (प्रमुख औद्योगिक क्षेत्र: मैहतपुर, काला अंब, पौंटा साहिब और परवाणू में मुख्य औद्योगिक विकास केंद्रित है).</li>
+                    <li><strong>Traditional Silk & Textile:</strong> Nurpur and Kangra remain historically well-known for their thriving traditional silk weaving and fine textile industries. (पारंपरिक रेशम और कपड़ा: नूरपुर और कांगड़ा पारंपरिक रेशम बुनाई और कपड़ा उद्योगों के लिए प्रसिद्ध हैं).</li>
+                    <li><strong>Single Window Clearance:</strong> The state government actively introduced this to massively facilitate ease of doing business and fast-track industrial approvals. (सिंगल विंडो क्लीयरेंस: व्यापार करने में आसानी और औद्योगिक मंजूरी में तेजी लाने के लिए सरकार की पहल).</li>
                 </ul>
             </div>
 
             <!-- 5. Tourism -->
             <div class="seo-card glass-panel">
-                <h3><i class="fa-solid fa-mountain-sun"></i> 5. Tourism Sector</h3>
-                <p>Contributes approx 7% to GDP. Tagline: 'Unforgettable Himachal'.</p>
+                <h3><i class="fa-solid fa-mountain-sun"></i> 5. Tourism Sector (पर्यटन क्षेत्र)</h3>
+                <p>Tourism is an economic powerhouse, consistently contributing approximately 7% to the state's GDP under the 'Unforgettable Himachal' banner. <br>(पर्यटन एक आर्थिक महाशक्ति है, जो लगातार राज्य की जीडीपी में लगभग 7% का योगदान देता है।)</p>
                 <ul class="seo-list">
-                    <li><strong>Religious Tourism:</strong> Shakti Peeths, Baijnath, Bhimakali, Tabo Monastery.</li>
-                    <li><strong>Adventure Tourism:</strong> Paragliding (Bir Billing), Skiing (Solang, Kufri), River Rafting (Tattapani).</li>
-                    <li><strong>Heritage Tourism:</strong> Kalka-Shimla Railway (UNESCO), Kangra Fort.</li>
-                    <li><strong>Atal Tunnel:</strong> 9.02 km long, world's longest highway tunnel above 10,000 ft.</li>
+                    <li><strong>Atal Tunnel (Rohtang):</strong> The world's absolute longest highway tunnel (9.02 km) constructed above 10,000 feet, which drastically boosted year-round tourism in Lahaul. (अटल टनल: 10,000 फीट से ऊपर दुनिया की सबसे लंबी (9.02 किमी) राजमार्ग सुरंग, जिसने लाहौल में साल भर पर्यटन को बढ़ावा दिया).</li>
+                    <li><strong>Adventure Tourism Capital:</strong> Bir-Billing (Kangra) is a globally recognized and highly sought-after premier destination for Paragliding world cups. (एडवेंचर पर्यटन: बीड़-बिलिंग (कांगड़ा) पैराग्लाइडिंग विश्व कप के लिए विश्व स्तर पर मान्यता प्राप्त गंतव्य है).</li>
+                    <li><strong>Winter Sports Hubs:</strong> Solang Nallah (Manali) and Kufri (Shimla) are the state's premier, heavily visited destinations for skiing and extreme winter sports. (सर्दियों के खेल: सोलांग नाला (मनाली) और कुफरी (शिमला) स्कीइंग के लिए प्रमुख और भारी भीड़ वाले गंतव्य हैं).</li>
+                    <li><strong>Heritage Tourism:</strong> The engineering marvel Kalka-Shimla Railway is an officially designated UNESCO World Heritage site attracting heavy global tourist footfall. (विरासत पर्यटन: इंजीनियरिंग का चमत्कार कालका-शिमला रेलवे एक यूनेस्को विश्व धरोहर स्थल है).</li>
+                    <li><strong>Religious Tourism (Shakti Peeths):</strong> Millions of devoted pilgrims annually visit the revered 'Shakti Peeths' like Chintpurni, Jwalamukhi, and Chamunda Devi. (धार्मिक पर्यटन: हर साल लाखों श्रद्धालु चिंतपूर्णी, ज्वालामुखी और चामुंडा देवी जैसे 'शक्तिपीठों' के दर्शन करते हैं).</li>
+                    <li><strong>Buddhist Circuits:</strong> Ancient monasteries like Tabo (Ajanta of the Himalayas) and Key in Spiti heavily drive international cultural tourism. (बौद्ध सर्किट: स्पीति में ताबो (हिमालय का अजंता) और की जैसे प्राचीन मठ अंतरराष्ट्रीय सांस्कृतिक पर्यटन को बढ़ावा देते हैं).</li>
+                    <li><strong>Parvat Mala Scheme:</strong> A central scheme aimed at developing extensive, modern ropeway networks (e.g., Dharamshala to McLeodganj) to boost hill connectivity. (पर्वतमाला योजना: पहाड़ी कनेक्टिविटी को बढ़ावा देने के लिए व्यापक और आधुनिक रोपवे नेटवर्क विकसित करने की केंद्रीय योजना).</li>
+                    <li><strong>Eco-Tourism Parks:</strong> The government is heavily promoting dense forest reserves like Great Himalayan National Park for sustainable eco-tourism. (ईको-टूरिज्म: सरकार ग्रेट हिमालयन नेशनल पार्क जैसे घने वन भंडारों को स्थायी ईको-टूरिज्म के लिए भारी बढ़ावा दे रही है).</li>
                 </ul>
             </div>
 
             <!-- 6. Animal Husbandry -->
             <div class="seo-card glass-panel">
-                <h3><i class="fa-solid fa-cow"></i> 6. Animal Husbandry</h3>
-                <p>Livestock is integral to the rural economy.</p>
+                <h3><i class="fa-solid fa-cow"></i> 6. Animal Husbandry & Fisheries (पशुपालन और मत्स्य पालन)</h3>
+                <p>Livestock rearing and modern fisheries are deeply integral to sustaining and growing the rural economy of Himachal. <br>(पशुपालन और आधुनिक मत्स्य पालन हिमाचल की ग्रामीण अर्थव्यवस्था को बनाए रखने और बढ़ाने के लिए गहराई से अभिन्न हैं।)</p>
                 <ul class="seo-list">
-                    <li><strong>Sheep Breeding:</strong> Jeori (Shimla), Tal (Hamirpur), Karcham, Sarol.</li>
-                    <li><strong>Angora Rabbit Farms:</strong> Kandwari (Kangra), Nagwain (Mandi).</li>
-                    <li><strong>Yak & Horse Breeding:</strong> Lari (Lahaul-Spiti) for Chamurthi Horse.</li>
-                    <li><strong>Fisheries:</strong> Trout farming in Kullu/Mandi. Carp farming in Bilaspur/Una.</li>
+                    <li><strong>Sheep Breeding Farms:</strong> Major government-run sheep breeding farms are strategically located at Jeori (Shimla), Tal (Hamirpur), Karcham (Kinnaur), and Sarol (Chamba). (भेड़ प्रजनन फार्म: प्रमुख सरकारी फार्म ज्यूरी (शिमला), ताल (हमीरपुर), करछम (किन्नौर) और सरोल (चंबा) में स्थित हैं).</li>
+                    <li><strong>Angora Rabbit Farms:</strong> Highly famous farms producing extremely fine, expensive wool are located at Kandwari (Kangra) and Nagwain (Mandi). (अंगोरा खरगोश फार्म: बेहद महीन ऊन का उत्पादन करने वाले प्रसिद्ध फार्म कंडवाड़ी (कांगड़ा) और नगवाईं (मंडी) में हैं).</li>
+                    <li><strong>Chamurthi Horse Breeding:</strong> The rare and highly resilient Chamurthi horse (known as the Ship of the cold desert) is systematically bred at Lari in Lahaul-Spiti. (चमूरथी घोड़े: इन दुर्लभ और लचीले घोड़ों का लाहौल-स्पीति के लरी में व्यवस्थित रूप से प्रजनन किया जाता है).</li>
+                    <li><strong>Yak Rearing:</strong> Yaks are traditionally reared as essential beasts of burden and milk producers in the high-altitude tribal areas of Kinnaur and Spiti. (याक पालन: याक को पारंपरिक रूप से किन्नौर और स्पीति के ऊंचाई वाले क्षेत्रों में पाला जाता है).</li>
+                    <li><strong>Poultry Farming Push:</strong> Widely and aggressively promoted by the state to rapidly supplement rural household incomes, particularly in Solan and Kangra districts. (पोल्ट्री फार्मिंग: ग्रामीण घरेलू आय को तेजी से बढ़ाने के लिए विशेष रूप से सोलन और कांगड़ा में इसका भारी प्रचार किया जाता है).</li>
+                    <li><strong>Trout Farming (Cold Water):</strong> Highly lucrative cold-water Brown and Rainbow Trout fish farming is booming in Kullu (Patlikuhal) and Mandi (Barot) valleys. (ट्राउट मछली पालन: कुल्लू और मंडी की ठंडे पानी की घाटियों में अत्यधिक लाभदायक ट्राउट मछली पालन फल-फूल रहा है).</li>
+                    <li><strong>Carp Farming (Warm Water):</strong> Warm-water commercial Carp fisheries have been proven highly successful and sustainable in the vast Govind Sagar lake (Bilaspur). (कार्प मछली पालन: विशाल गोविंद सागर झील (बिलासपुर) में गर्म पानी की व्यावसायिक कार्प मत्स्य पालन अत्यधिक सफल रहा है).</li>
+                    <li><strong>Mahseer Conservation:</strong> The state fisheries department heavily focuses on the strict conservation of the endangered Golden Mahseer in the Pong Dam reservoir. (महाशीर संरक्षण: मत्स्य विभाग पोंग बांध जलाशय में लुप्तप्राय गोल्डन महाशीर के सख्त संरक्षण पर भारी ध्यान केंद्रित करता है).</li>
                 </ul>
             </div>
 
             <!-- 7. Transport -->
             <div class="seo-card glass-panel">
-                <h3><i class="fa-solid fa-bus"></i> 7. Transport & Comm.</h3>
-                <p>Road density is highest in Hamirpur, lowest in Lahaul-Spiti.</p>
+                <h3><i class="fa-solid fa-bus"></i> 7. Transport & Communication (परिवहन और संचार)</h3>
+                <p>Due to the extraordinarily difficult hilly terrain, well-maintained roads remain the absolute lifeline of HP's entire transport sector. <br>(असाधारण रूप से कठिन पहाड़ी इलाके के कारण, अच्छी तरह से बनाए रखी गई सड़कें हिमाचल के परिवहन क्षेत्र की पूर्ण जीवन रेखा बनी हुई हैं।)</p>
                 <ul class="seo-list">
-                    <li><strong>Roads:</strong> HRTC formed in 1974. NH-5 (Hindustan-Tibet) is strategic.</li>
-                    <li><strong>Railways:</strong> Kalka-Shimla (UNESCO), Pathankot-Jogindernagar (Narrow gauge).</li>
-                    <li><strong>Airports:</strong> Jubbar Hatti (Shimla), Bhuntar (Kullu), Gaggal (Kangra).</li>
-                    <li><strong>Ropeways:</strong> Jakhu, Dharamshala-McLeodganj. 'Parvat Mala' scheme.</li>
+                    <li><strong>Road Density Disparity:</strong> Geographically, Hamirpur boasts the absolute highest road density, while the vast, barren Lahaul-Spiti inevitably has the lowest. (सड़क घनत्व: भौगोलिक रूप से हमीरपुर में सड़क घनत्व सबसे अधिक है, जबकि विशाल लाहौल-स्पीति में सबसे कम है).</li>
+                    <li><strong>HRTC Formation:</strong> The heavily relied upon Himachal Road Transport Corporation (HRTC) was officially established in 1974 to connect remote villages. (HRTC का गठन: दूरदराज के गांवों को जोड़ने के लिए 1974 में हिमाचल पथ परिवहन निगम की आधिकारिक स्थापना की गई).</li>
+                    <li><strong>Strategic Highway (NH-5):</strong> The historic National Highway 5 (formerly Hindustan-Tibet Road) is a highly strategic, heavily guarded route connecting the Chinese border. (रणनीतिक राजमार्ग (NH-5): ऐतिहासिक हिंदुस्तान-तिब्बत सड़क चीन सीमा को जोड़ने वाला एक अत्यधिक रणनीतिक मार्ग है).</li>
+                    <li><strong>Narrow Gauge Railways:</strong> The state's rail network relies almost entirely on the historic Kalka-Shimla (UNESCO) and Pathankot-Jogindernagar narrow-gauge lines. (नैरो गेज रेलवे: राज्य का रेल नेटवर्क लगभग पूरी तरह से कालका-शिमला और पठानकोट-जोगिंदरनगर नैरो-गेज लाइनों पर निर्भर है).</li>
+                    <li><strong>Broad Gauge Expansion:</strong> The massive, under-construction Bhanupali-Bilaspur-Beri broad gauge railway line aims to revolutionize industrial freight transport. (ब्रॉड गेज: निर्माणाधीन भानुपाली-बिलासपुर-बेरी रेलवे लाइन का उद्देश्य औद्योगिक माल परिवहन में क्रांति लाना है).</li>
+                    <li><strong>Major Airports:</strong> Jubbar Hatti (Shimla), Bhuntar (Kullu), and Gaggal (Kangra) operate as the state's three primary, strategically located airports. (प्रमुख हवाई अड्डे: जुब्बरहट्टी (शिमला), भुंतर (कुल्लू) और गग्गल (कांगड़ा) राज्य के तीन प्राथमिक हवाई अड्डे हैं).</li>
+                    <li><strong>Ropeway Network Expansion:</strong> To heavily reduce severe traffic congestion, massive aerial ropeways like the Dharamshala-McLeodganj line are being rapidly developed. (रोपवे नेटवर्क: भारी ट्रैफिक जाम को कम करने के लिए धर्मशाला-मैक्लोडगंज जैसी हवाई रज्जुमार्ग (Ropeways) तेजी से विकसित किए जा रहे हैं).</li>
+                    <li><strong>Telecommunication Reach:</strong> The government is aggressively expanding high-speed optical fiber networks directly to remote, high-altitude tribal belts like Spiti. (दूरसंचार: सरकार स्पीति जैसे दूरस्थ जनजातीय क्षेत्रों में उच्च गति वाले ऑप्टिकल फाइबर नेटवर्क का आक्रामक रूप से विस्तार कर रही है).</li>
                 </ul>
             </div>
 
             <!-- 8. Planning -->
             <div class="seo-card glass-panel">
-                <h3><i class="fa-solid fa-chart-line"></i> 8. Planning & Survey</h3>
-                <p>Key indicators based on the latest Economic Survey.</p>
+                <h3><i class="fa-solid fa-chart-line"></i> 8. State Budget & Planning (बजट और योजना)</h3>
+                <p>Crucial macro-economic indicators, budgetary schemes, and planning data heavily based on the latest state Economic Survey. <br>(नवीनतम राज्य आर्थिक सर्वेक्षण पर आधारित महत्वपूर्ण व्यापक-आर्थिक संकेतक, बजटीय योजनाएं और डेटा।)</p>
                 <ul class="seo-list">
-                    <li><strong>Growth Rate:</strong> HP GSDP growth ~6.4%. Per Capita Income > ₹2.22 Lakh.</li>
-                    <li><strong>Social Security:</strong> 'Old Age Pension' lowered to 60 yrs. 'Indira Gandhi Pyari Behna Sukh-Samman Nidhi' (₹1500).</li>
-                    <li><strong>Flagship Schemes:</strong> Himcare, Sahara, Grihini Suvidha.</li>
-                    <li><strong>SDG Index:</strong> HP ranks in Top 3 in NITI Aayog SDG India Index.</li>
+                    <li><strong>Economic Survey Authority:</strong> The annual Economic Survey is universally considered the most authoritative, data-rich document detailing the state's macroeconomic health. (आर्थिक सर्वेक्षण: वार्षिक आर्थिक सर्वेक्षण को राज्य के आर्थिक स्वास्थ्य का विवरण देने वाला सबसे प्रामाणिक दस्तावेज माना जाता है).</li>
+                    <li><strong>GSDP Growth Rate:</strong> Despite harsh topographies, Himachal Pradesh usually targets and successfully maintains a consistent GSDP growth rate hovering around 6-7%. (GSDP विकास दर: कठिन भौगोलिक परिस्थितियों के बावजूद, हिमाचल आमतौर पर 6-7% की निरंतर GSDP विकास दर बनाए रखता है).</li>
+                    <li><strong>High Per Capita Income:</strong> HP boasts a remarkably high Per Capita Income, consistently staying well above the national average (frequently reported over ₹2.22 Lakhs). (उच्च प्रति व्यक्ति आय: हिमाचल की प्रति व्यक्ति आय लगातार राष्ट्रीय औसत से काफी ऊपर (₹2.22 लाख से अधिक) बनी हुई है).</li>
+                    <li><strong>SDG India Index Leader:</strong> HP proudly and consistently ranks among the absolute Top 3 performing states in the prestigious NITI Aayog's Sustainable Development Goals index. (SDG इंडेक्स लीडर: हिमाचल गर्व से नीति आयोग के सतत विकास लक्ष्य सूचकांक में लगातार शीर्ष 3 राज्यों में शुमार है).</li>
+                    <li><strong>Pension Age Lowered:</strong> To heavily support the elderly population, the qualifying age limit for the state 'Old Age Pension' scheme was significantly lowered to 60 years. (पेंशन आयु में कमी: बुजुर्ग आबादी का समर्थन करने के लिए, 'वृद्धावस्था पेंशन' योजना के लिए अर्हक आयु सीमा 60 वर्ष कर दी गई है).</li>
+                    <li><strong>Women Empowerment Scheme:</strong> The newly launched 'Indira Gandhi Pyari Behna Sukh-Samman Nidhi' confidently offers ₹1500 monthly as direct financial aid to eligible women. (महिला सशक्तिकरण योजना: 'इंदिरा गांधी प्यारी बहना सुख-सम्मान निधि' पात्र महिलाओं को ₹1500 मासिक प्रत्यक्ष वित्तीय सहायता प्रदान करती है).</li>
+                    <li><strong>HIMCARE Health Scheme:</strong> A highly successful, state-funded scheme providing totally free health insurance specifically to families not covered under the central Ayushman Bharat. (हिमकेयर स्वास्थ्य योजना: एक अत्यधिक सफल राज्य-वित्त पोषित योजना जो आयुष्मान भारत के अंतर्गत न आने वाले परिवारों को मुफ्त स्वास्थ्य बीमा प्रदान करती है).</li>
+                    <li><strong>Sahara Scheme Relief:</strong> Provides critical, direct monthly financial assistance to exceptionally poor patients suffering from specified severe or life-threatening fatal diseases. (सहारा योजना: यह योजना निर्दिष्ट गंभीर या जानलेवा बीमारियों से पीड़ित बेहद गरीब मरीजों को महत्वपूर्ण मासिक वित्तीय सहायता प्रदान करती है).</li>
                 </ul>
             </div>
 
             <!-- 9. Co-operative & Banking -->
             <div class="seo-card glass-panel">
-                <h3><i class="fa-solid fa-building-columns"></i> 9. Banking & Co-ops</h3>
-                <p>Financial inclusion and rural credit backbone.</p>
+                <h3><i class="fa-solid fa-building-columns"></i> 9. Banking & Co-operatives (बैंकिंग और सहकारिता)</h3>
+                <p>A deeply entrenched cooperative banking structure forms the absolute backbone of financial inclusion and rural credit across Himachal. <br>(एक गहराई से स्थापित सहकारी बैंकिंग संरचना पूरे हिमाचल में वित्तीय समावेशन और ग्रामीण ऋण की पूर्ण रीढ़ बनाती है।)</p>
                 <ul class="seo-list">
-                    <li><strong>Lead Bank:</strong> UCO Bank holds lead responsibility in 10 districts.</li>
-                    <li><strong>Kangra Central Co-op Bank (KCCB):</strong> Largest cooperative bank in HP.</li>
-                    <li><strong>Jogindra Central Co-op Bank:</strong> First registered society (1892) was at Panjawar (Una).</li>
-                    <li><strong>H.P. State Co-operative Bank:</strong> Apex bank. HQ: Shimla.</li>
+                    <li><strong>Cooperative Backbone:</strong> The vast, interconnected cooperative banking structure is universally recognized as the absolute backbone of rural credit distribution in Himachal. (सहकारी रीढ़: विशाल सहकारी बैंकिंग संरचना को हिमाचल में ग्रामीण ऋण वितरण की पूर्ण रीढ़ के रूप में सार्वभौमिक रूप से मान्यता प्राप्त है).</li>
+                    <li><strong>UCO Bank's Lead Role:</strong> UCO Bank officially holds the primary, highly critical "Lead Bank" responsibility in 10 out of the 12 districts in the state. (यूको बैंक की प्रमुख भूमिका: यूको बैंक आधिकारिक तौर पर राज्य के 12 में से 10 जिलों में "लीड बैंक" की अत्यधिक महत्वपूर्ण जिम्मेदारी निभाता है).</li>
+                    <li><strong>Apex State Bank:</strong> The H.P. State Co-operative Bank acts as the supreme apex banking institution for cooperatives, operating with its headquarters located in Shimla. (शीर्ष राज्य बैंक: एच.पी. राज्य सहकारी बैंक सहकारी समितियों के लिए सर्वोच्च शीर्ष संस्थान के रूप में कार्य करता है, जिसका मुख्यालय शिमला में है).</li>
+                    <li><strong>Kangra Central (KCCB):</strong> Based in Dharamshala, the Kangra Central Co-operative Bank is functionally and financially the absolute largest cooperative bank in the state. (कांगड़ा सेंट्रल (KCCB): धर्मशाला स्थित कांगड़ा केंद्रीय सहकारी बैंक कार्यात्मक और वित्तीय रूप से राज्य का सबसे बड़ा सहकारी बैंक है).</li>
+                    <li><strong>First Cooperative Society:</strong> The very first officially registered cooperative society in the state (1892) was historically started at Panjawar village in the Una district. (पहली सहकारी समिति: राज्य में पहली आधिकारिक रूप से पंजीकृत सहकारी समिति (1892) ऐतिहासिक रूप से ऊना के पंजवार गांव में शुरू की गई थी).</li>
+                    <li><strong>Jogindra Central Bank:</strong> A highly prominent and trusted central cooperative bank heavily serving the region with its central headquarters located in Solan. (जोगिंद्रा सेंट्रल बैंक: सोलन में मुख्यालय वाला एक अत्यधिक प्रमुख और विश्वसनीय केंद्रीय सहकारी बैंक जो क्षेत्र की भारी सेवा कर रहा है).</li>
+                    <li><strong>NABARD Infrastructure Support:</strong> The National Bank for Agriculture and Rural Development (NABARD) extensively funds massive Rural Infrastructure Development Fund (RIDF) projects across HP. (नाबार्ड (NABARD) का समर्थन: यह बैंक पूरे हिमाचल में विशाल ग्रामीण बुनियादी ढांचा विकास निधि (RIDF) परियोजनाओं को व्यापक रूप से वित्त पोषित करता है).</li>
+                    <li><strong>Kisan Credit Card (KCC) Push:</strong> KCCs are widely and aggressively distributed to remote farmers to guarantee timely, highly subsidized, and adequate credit for vital agricultural inputs. (किसान क्रेडिट कार्ड (KCC): दूरदराज के किसानों को महत्वपूर्ण कृषि आदानों के लिए समय पर और पर्याप्त ऋण की गारंटी देने के लिए बड़े पैमाने पर वितरित किए जाते हैं).</li>
                 </ul>
             </div>
 
@@ -792,16 +836,16 @@
                 <i class="fa-solid fa-xmark"></i>
             </button>
         </div>
-        <div class="quiz-modal-body" style="font-size:0.85rem; color:var(--text-body); line-height:1.6; padding-top:10px;">
-            <ul style="list-style:none; padding:0; margin:0; display:grid; gap:12px;">
-                <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-solid fa-download" style="color:var(--text-sec); font-size:1rem;"></i></span> <span><strong>Backup:</strong> Save your progress to a file.</span></li>
-                <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-solid fa-upload" style="color:var(--text-sec); font-size:1rem;"></i></span> <span><strong>Restore:</strong> Load your saved progress.</span></li>
-                <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-solid fa-rotate-right" style="color:var(--wrong-text); font-size:1rem;"></i></span> <span><strong>Reset:</strong> Clear all history for this subject.</span></li>
-                <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-solid fa-bolt" style="color:var(--accent); font-size:1rem;"></i></span> <span><strong>Quick 10:</strong> Start a fast 10-question session.</span></li>
-                <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-solid fa-shuffle" style="color:var(--primary); font-size:1rem;"></i></span> <span><strong>Shuffle:</strong> Randomize question order.</span></li>
-                <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-solid fa-triangle-exclamation" style="color:var(--wrong-text); font-size:1rem;"></i></span> <span><strong>Mistakes:</strong> Review incorrect answers.</span></li>
-                <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-regular fa-bookmark" style="color:var(--primary); font-size:1rem;"></i></span> <span><strong>Bookmarks:</strong> View saved questions.</span></li>
-                <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center; font-weight:bold; color:var(--text-sec);">A&plusmn;</span> <span><strong>Text Size:</strong> Adjust font size.</span></li>
+        <div class="quiz-modal-body" style="font-size:0.75rem; color:var(--text-body); line-height:1.4; padding-top:10px;">
+            <ul style="list-style:none; padding:0; margin:0; display:grid; gap:8px;">
+                <li style="display:flex; gap:8px; align-items:center;"><span style="width:20px; text-align:center;"><i class="fa-solid fa-download" style="color:var(--text-sec); font-size:0.9rem;"></i></span> <span><strong>Backup:</strong> Save your progress.</span></li>
+                <li style="display:flex; gap:8px; align-items:center;"><span style="width:20px; text-align:center;"><i class="fa-solid fa-upload" style="color:var(--text-sec); font-size:0.9rem;"></i></span> <span><strong>Restore:</strong> Load saved progress.</span></li>
+                <li style="display:flex; gap:8px; align-items:center;"><span style="width:20px; text-align:center;"><i class="fa-solid fa-rotate-right" style="color:var(--wrong-text); font-size:0.9rem;"></i></span> <span><strong>Reset:</strong> Clear all history.</span></li>
+                <li style="display:flex; gap:8px; align-items:center;"><span style="width:20px; text-align:center;"><i class="fa-solid fa-bolt" style="color:var(--accent); font-size:0.9rem;"></i></span> <span><strong>Quick 10:</strong> Start fast 10-Q session.</span></li>
+                <li style="display:flex; gap:8px; align-items:center;"><span style="width:20px; text-align:center;"><i class="fa-solid fa-shuffle" style="color:var(--primary); font-size:0.9rem;"></i></span> <span><strong>Shuffle:</strong> Randomize questions.</span></li>
+                <li style="display:flex; gap:8px; align-items:center;"><span style="width:20px; text-align:center;"><i class="fa-solid fa-triangle-exclamation" style="color:var(--wrong-text); font-size:0.9rem;"></i></span> <span><strong>Mistakes:</strong> Review incorrect answers.</span></li>
+                <li style="display:flex; gap:8px; align-items:center;"><span style="width:20px; text-align:center;"><i class="fa-regular fa-bookmark" style="color:var(--primary); font-size:0.9rem;"></i></span> <span><strong>Bookmarks:</strong> View saved questions.</span></li>
+                <li style="display:flex; gap:8px; align-items:center;"><span style="width:20px; text-align:center; font-weight:bold; color:var(--text-sec); font-size:0.9rem;">A&plusmn;</span> <span><strong>Text Size:</strong> Adjust font size.</span></li>
             </ul>
         </div>
     </div>
