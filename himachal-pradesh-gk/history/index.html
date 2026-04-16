@@ -150,12 +150,21 @@
 
         .top-meta-bar { 
             display: flex; justify-content: space-between; align-items: center; 
-            width: 100%; max-width: var(--site-width); margin: 0 auto 12px auto; 
+            width: 100%; max-width: var(--site-width); margin: 0 auto 5px auto; 
             padding: 0 15px; flex-wrap: nowrap; gap: 10px; 
         }
 
         .page-header-top, .main-layout, .seo-content-wrapper { 
             width: 100%; max-width: var(--site-width); margin: 0 auto; padding: 0 15px; 
+        }
+
+        .page-header-top { text-align: center; margin-bottom: 25px; }
+
+        /* HERO DESC FIX: Force Center Alignment and Margin Auto */
+        .hero-desc {
+            margin: 0 auto;
+            text-align: center;
+            max-width: 800px;
         }
 
         .section-separator { 
@@ -167,6 +176,7 @@
             .top-meta-bar, .page-header-top, .main-layout, .seo-content-wrapper {
                 padding: 0 12px !important;
             }
+            .page-header-top { margin-bottom: 20px; }
         }
 
         .breadcrumb-nav { margin: 0; flex-shrink: 1; display: flex; align-items: center; height: 24px; }
@@ -191,22 +201,16 @@
             margin: 0; border: 1px solid var(--primary); letter-spacing: 0.5px; white-space: nowrap; 
             flex-shrink: 0; box-sizing: border-box;
         }
-
-        .page-header-top { text-align: center; margin-bottom: 20px; }
         
-        /* EXACT DESKTOP H1 FONT SIZE: 32px */
+        /* Clean H1 styling */
         .hero-title { 
-            font-size: 32px !important; 
-            font-weight: 900 !important; 
-            margin: 0; 
-            letter-spacing: -0.5px; 
-            text-align: center; 
             background: linear-gradient(135deg, var(--text-main) 0%, var(--primary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             color: var(--primary); 
-            line-height: 1.2;
+            letter-spacing: -0.8px;
+            margin-bottom: 8px !important;
         }
         
         .main-layout { display: flex; flex-direction: column; gap: 20px; }
@@ -220,7 +224,7 @@
         .intro-card h2 { font-size: 1.05rem; color: var(--primary); margin: 0 0 8px 0; display: flex; align-items: center; gap: 8px; font-weight: 700; justify-content: center; }
         .intro-card p { font-size: 0.85rem; color: var(--text-body); margin: 0; line-height: 1.5; }
         .intro-list { margin: 8px 0 0 0; padding-left: 20px; font-size: 0.85rem; color: var(--text-body); line-height: 1.5; }
-        .intro-list li { margin-bottom: 4px; }
+        .intro-list li { margin-bottom: 6px; } 
         
         .quick-links { 
             margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--card-border); 
@@ -309,9 +313,6 @@
         }
         [data-theme="dark"] .quiz-mcq-container { border-color: rgba(96, 165, 250, 0.25); }
 
-        /* ==========================================
-           FIXED: ULTRA-COMPACT DASHBOARD STATS BAR (Strict 10.4px)
-           ========================================== */
         .stats-dashboard { 
             display: flex; flex-wrap: nowrap; background: rgba(0,0,0,0.03); 
             border-bottom: 1px solid var(--card-border); align-items: center;
@@ -345,7 +346,6 @@
         .q-text-hi { font-weight: 600; color: var(--text-sec); margin-bottom: 12px; font-family: 'Noto Sans Devanagari', sans-serif; line-height: 1.4; font-size: 0.85rem; }
         mark.highlight { background: var(--accent); color: #fff; padding: 0 2px; border-radius: 3px; }
 
-        /* PERFECT BUG FIX: NO TEXT SHIFTING ON ANSWER SELECTION */
         .options-list { display: flex; flex-direction: column; gap: 8px; counter-reset: opt-counter; }
         
         .option-btn { 
@@ -400,7 +400,6 @@
 
         .feedback-row { display: flex; gap: 8px; align-items: center; margin-top: 12px; }
         
-        /* FIXED: No fadeIn animation to prevent blinking */
         .feedback-msg { flex: 1; padding: 8px 12px; border-radius: var(--radius-md); font-weight: 700; font-size: 0.85rem; text-align: center; margin: 0; border: 1px solid transparent; }
         
         .correct-feed { background: var(--correct-bg); color: var(--correct-text); border-color: var(--correct-border); }
@@ -425,42 +424,26 @@
         .progress-display { display: flex; align-items: center; justify-content: center; padding: 4px 10px; }
         .progress-text { font-weight: 800; color: var(--text-main); font-size: 0.85rem; }
 
-        /* ==========================================
-           FIXED: EXTREME LOCK FOR MODAL (Center Screen Popup Guaranteed)
-           ========================================== */
-        .quiz-modal-overlay {
-            position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important;
-            width: 100vw !important; height: 100vh !important;
-            background: rgba(0,0,0,0.5) !important; backdrop-filter: blur(4px) !important; -webkit-backdrop-filter: blur(4px) !important;
-            z-index: 999999 !important; display: none; align-items: center !important; justify-content: center !important; padding: 20px;
-            opacity: 0; transition: opacity 0.2s ease;
-        }
-        .quiz-modal-overlay.show { display: flex !important; opacity: 1; }
-        .quiz-modal-content {
-            background: var(--tooltip-bg) !important; 
-            width: 100%; max-width: 380px; margin: auto !important;
-            border: 1px solid var(--card-border);
-            border-radius: var(--radius-lg); padding: 20px;
-            box-shadow: var(--glass-shadow); transform: translateY(20px); transition: transform 0.2s ease;
-            position: relative !important; z-index: 1000000 !important;
-        }
-        .quiz-modal-overlay.show .quiz-modal-content { transform: translateY(0); }
-        .quiz-modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--card-border); padding-bottom: 12px; margin-bottom: 12px; }
-
-        .section-separator { height: 1px; background: linear-gradient(90deg, transparent, var(--card-border), transparent); margin: 25px 0; width: 100%; }
+        /* SEO Card Styles - Adjusted for clean, non-bloated look */
         .seo-content-wrapper { margin-bottom: 30px; }
         .seo-header { text-align: center; margin-bottom: 20px; }
         .seo-header h2 { font-size: clamp(1.2rem, 3vw, 1.6rem); margin-bottom: 8px; }
         .seo-header p { color: var(--text-sec); max-width: 600px; margin: 0 auto; font-size: 0.85rem; }
-        .seo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
-        .seo-card { background: var(--card-bg); border: 1px solid var(--card-border); padding: 20px; border-radius: var(--radius-lg); box-shadow: var(--glass-shadow); border-left: 4px solid var(--primary); transition: border-color 0.2s; }
+        
+        /* Grid Alignment */
+        .seo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 15px; align-items: stretch; }
+        
+        /* Removed fixed 100% height to let content define height naturally, avoiding huge empty spaces */
+        .seo-card { background: var(--card-bg); border: 1px solid var(--card-border); padding: 20px; border-radius: var(--radius-lg); box-shadow: var(--glass-shadow); border-left: 4px solid var(--primary); transition: border-color 0.2s; display: flex; flex-direction: column; box-sizing: border-box; }
         .seo-card:hover { border-color: var(--primary-light); }
         .seo-card h3 { font-size: 1rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; color: var(--text-main) !important; }
         .seo-card h3 i { color: var(--primary); }
-        .seo-card p { color: var(--text-body) !important; font-size: 0.85rem; margin-bottom: 10px; }
+        .seo-card p { color: var(--text-body) !important; font-size: 0.85rem; margin-bottom: 15px; }
         
-        .seo-list { list-style: none; padding-left: 0; }
-        .seo-list li { position: relative; padding-left: 18px; margin-bottom: 5px; font-size: 0.8rem; color: var(--text-body) !important; }
+        .seo-list { list-style: none; padding-left: 0; margin-top: 0; }
+        
+        /* Dense, concise list items */
+        .seo-list li { position: relative; padding-left: 18px; margin-bottom: 6px; font-size: 0.8rem; color: var(--text-body) !important; line-height: 1.35; }
         .seo-list li::before { 
             content: "\f111"; 
             font-family: "Font Awesome 6 Free";
@@ -472,22 +455,34 @@
             font-size: 0.4rem; 
         }
 
-        /* ==========================================
-           EXACT MOBILE CSS COMPACTNESS 
-           ========================================== */
+        /* Modal specific styles */
+        .quiz-modal-overlay {
+            position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important;
+            width: 100vw !important; height: 100vh !important;
+            background: rgba(0,0,0,0.5) !important; backdrop-filter: blur(4px) !important; -webkit-backdrop-filter: blur(4px) !important;
+            z-index: 999999 !important; display: none; align-items: center !important; justify-content: center !important; padding: 20px;
+            opacity: 0; transition: opacity 0.2s ease;
+        }
+        .quiz-modal-overlay.show { display: flex !important; opacity: 1; }
+        .quiz-modal-content {
+            background: var(--card-bg) !important; 
+            width: 100%; max-width: 380px; margin: auto !important;
+            border: 1px solid var(--border-color);
+            border-radius: 12px; padding: 20px;
+            box-shadow: var(--glass-shadow); transform: translateY(20px); transition: transform 0.2s ease;
+            position: relative !important; z-index: 1000000 !important;
+        }
+        .quiz-modal-overlay.show .quiz-modal-content { transform: translateY(0); }
+        .quiz-modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; margin-bottom: 12px; }
+
         @media (max-width: 600px) {
-            /* EXACT MOBILE H1 FONT SIZE: 23px */
-            .hero-title { font-size: 23px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
             .top-meta-bar { flex-wrap: nowrap; justify-content: space-between; }
-            
             .widget-header { padding: 10px; align-items: center; }
             .text-controls { justify-content: center; gap: 3px; padding: 2px 0; }
             
-            /* Toolbar Icons 13.6px for mobile too */
             .icon-btn, .text-btn, .text-controls label { width: 28px !important; height: 28px !important; font-size: 13.6px !important; border-radius: 6px !important; }
             .v-divider { margin: 0 1px; height: 14px; }
             
-            /* COMPACT DASHBOARD STATS FOR MOBILE (Strict 10.4px) */
             .stat-item { flex-direction: column; gap: 1px; padding: 4px 1px; align-items: center; }
             .stat-label { font-size: 10.4px !important; letter-spacing: -0.2px; margin: 0; }
             .stat-value { font-size: 10.4px !important; }
@@ -498,10 +493,21 @@
             .nav-btn { padding: 4px 8px; font-size: 0.7rem; min-width: 55px; }
             .progress-display { padding: 2px 6px; }
             .progress-text { font-size: 0.7rem; }
+            
+            /* Quick Links Mobile Fix */
+            .quick-links {
+                flex-wrap: nowrap !important;
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                justify-content: flex-start !important;
+                padding-bottom: 5px;
+            }
+            .quick-links::-webkit-scrollbar { display: none; }
+            .quick-link-item { font-size: 0.65rem; padding: 4px 10px; }
         }
     </style>
 
-    <!-- Theme Initialization Script -->
     <script>
         const savedTheme = localStorage.getItem('theme') || 'light';
         document.documentElement.setAttribute('data-theme', savedTheme);
@@ -537,6 +543,10 @@
     <!-- New Top Page Header (Centers H1 above the columns) -->
     <div class="page-header-top">
         <h1 class="hero-title">History of Himachal Pradesh</h1>
+        <!-- Descriptive content acting as hero sub-heading -->
+        <p class="hero-desc" style="margin: 10px auto 0; max-width: 800px; color: var(--text-sec); font-size: 0.95rem; line-height: 1.5;">
+            History forms the backbone of HP GK. Around 25-30% of questions in HPAS/Allied exams come directly from ancient lineages, Gorkha wars, and the freedom struggle. <br>इतिहास हिमाचल जीके की रीढ़ है। HPAS/Allied परीक्षाओं में लगभग 25-30% प्रश्न प्राचीन वंशों, गोरखा युद्धों और स्वतंत्रता संग्राम से आते हैं।
+        </p>
     </div>
 
     <!-- Side-by-Side Two Column Layout -->
@@ -545,13 +555,12 @@
         <!-- Left Column: Intro Hook -->
         <section class="intro-column">
             <div class="intro-grid">
-                <!-- Fixed Heading Hierarchy & Center Aligned Card -->
+                <!-- Cleaned up left card: Now just holds Quick Links -->
                 <div class="intro-card glass-panel" style="text-align: center;">
-                    <h2 style="justify-content: center;"><i class="fa-solid fa-star"></i> Why This Matters? (यह महत्वपूर्ण क्यों है?)</h2>
-                    <p>History forms the backbone of HP GK. Around 25-30% of questions in HPAS/Allied exams come from ancient lineages, Gorkha wars, and the freedom struggle. <br><br>इतिहास हिमाचल जीके की रीढ़ है। HPAS/Allied परीक्षाओं में लगभग 25-30% प्रश्न प्राचीन वंशों, गोरखा युद्धों और स्वतंत्रता संग्राम से आते हैं।</p>
+                    <h2 style="justify-content: center; margin-bottom: 12px; font-size: 1rem;"><i class="fa-solid fa-link"></i> Quick Study Links</h2>
                     
-                    <!-- Sibling Directory Interlinking - Scrollable Inline on Mobile -->
-                    <div class="quick-links" style="justify-content: center;">
+                    <!-- Sibling Directory Interlinking -->
+                    <div class="quick-links" style="justify-content: center; border-top: none; padding-top: 0; margin-top: 0;">
                         <a href="../rivers/" class="quick-link-item"><i class="fa-solid fa-water"></i> Rivers</a>
                         <a href="../geography/" class="quick-link-item"><i class="fa-solid fa-mountain"></i> Geography</a>
                         <a href="../district/" class="quick-link-item"><i class="fa-solid fa-map-location-dot"></i> Districts</a>
@@ -562,13 +571,14 @@
                 <div class="intro-card glass-panel">
                     <h2><i class="fa-solid fa-list-check"></i> What this Page Covers (इस पृष्ठ में क्या शामिल है)</h2>
                     <ul class="intro-list">
-                        <li><strong>Ancient History (प्राचीन इतिहास):</strong> Trigarta (Kangra), Kuluta (Kullu), Audumbaras, and Kunindas. (त्रिगर्त, कुलूत, औदुम्बर और कुनिंद).</li>
-                        <li><strong>Medieval Period (मध्यकालीन काल):</strong> Muslim invasions (Mahmud Ghazni, Timurlane), Sansar Chand's reign, and Hill States relations. (मुस्लिम आक्रमण, संसार चंद का शासन).</li>
-                        <li><strong>Gorkha Invasion (गोरखा आक्रमण):</strong> Amar Singh Thapa vs Sansar Chand, Battle of Mahal Morian, and Treaty of Jwalamukhi. (महल मोरियां की लड़ाई).</li>
-                        <li><strong>British Rule (ब्रिटिश शासन):</strong> Anglo-Gorkha War (1814-15), Treaty of Sugauli, and establishment of cantonments. (एंग्लो-गोरखा युद्ध, सुगौली की संधि).</li>
-                        <li><strong>Freedom Struggle (स्वतंत्रता संग्राम):</strong> Prajamandal Movement, Dhami Firing (1939), Pajhota Andolan (1942), and leaders like Dr. Y.S. Parmar. (प्रजामंडल आंदोलन, धामी गोलीकांड).</li>
-                        <li><strong>Formation of State (राज्य का गठन):</strong> 1948 (Chief Commissioner's Province) to 1971 (18th State). (1948 से 1971 तक का सफर).</li>
-                        <li><strong>Interactive Quiz (संवादात्मक प्रश्नोत्तरी):</strong> Test your mastery over dates, treaties, and dynasties through 480+ bilingual MCQs.</li>
+                        <li><strong>Ancient Janapadas (प्राचीन जनपद):</strong> Deep dive into Trigarta, Kuluta, Audumbaras, and Kunindas along with their numismatic history. (प्राचीन जनपद और उनका मुद्राशास्त्रीय इतिहास).</li>
+                        <li><strong>Medieval Invasions (मध्यकालीन आक्रमण):</strong> Impact of Mahmud Ghazni, Timur, and the Tughlaqs on Kangra and Sirmaur. (मुस्लिम आक्रमण और उनका प्रभाव).</li>
+                        <li><strong>Mughal Era (मुगल काल):</strong> Jahangir's historic capture of the Kangra fort and Aurangzeb's royal farmans. (मुगल काल और कांगड़ा किले पर अधिकार).</li>
+                        <li><strong>Katoch Dynasty's Peak (संसार चंद का युग):</strong> The golden age under Maharaja Sansar Chand and his immense cultural contributions. (संसार चंद के अधीन कांगड़ा का स्वर्ण युग).</li>
+                        <li><strong>Gorkha & British Wars (गोरखा और ब्रिटिश युद्ध):</strong> Battle of Mahal Morian, Treaty of Sugauli (1815), and the controversial Sanad system. (गोरखा युद्ध और सुगौली की संधि).</li>
+                        <li><strong>Prajamandal Movement (प्रजामंडल आंदोलन):</strong> Key freedom struggles including Dhami firing (1939), Pajhota Andolan (1942), and Suket Satyagraha. (प्रजामंडल आंदोलन और धामी गोलीकांड).</li>
+                        <li><strong>Statehood Journey (राज्यत्व की यात्रा):</strong> The political evolution from a Chief Commissioner's province in 1948 to full statehood in 1971. (1948 से पूर्ण राज्यत्व 1971 तक का सफर).</li>
+                        <li><strong>Interactive Testing (संवादात्मक प्रश्नोत्तरी):</strong> Test your mastery over dates, treaties, and dynasties through 480+ highly curated bilingual MCQs. (480+ बहुविकल्पीय प्रश्नों के साथ अभ्यास).</li>
                     </ul>
                 </div>
             </div>
@@ -583,11 +593,11 @@
                 </button>
 
                 <div class="widget-header">
-                    <div class="text-controls">
+                    <div class="text-controls" style="margin: 0 auto;">
                         <button class="icon-btn" onclick="toggleHelpModal()" title="Help Guide" type="button">
                             <i class="fa-solid fa-circle-question"></i>
                         </button>
-                        <div class="v-divider"></div>
+                        <div class="v-divider" style="width: 1px; height: 16px; background: var(--border-color); margin: 0 4px;"></div>
                         
                         <button class="icon-btn" onclick="exportProgress()" title="Backup Progress" type="button">
                             <i class="fa-solid fa-download"></i>
@@ -597,11 +607,11 @@
                         </label>
                         <input type="file" id="importFile" style="display: none;" accept=".json" onchange="importProgress(this)">
                         
-                        <button class="icon-btn" onclick="resetProgress()" title="Reset Progress" type="button">
+                        <button class="icon-btn reset" onclick="resetProgress()" title="Reset Progress" type="button" style="color: var(--wrong-text);">
                             <i class="fa-solid fa-rotate-right"></i>
                         </button>
                         
-                        <div class="v-divider"></div>
+                        <div class="v-divider" style="width: 1px; height: 16px; background: var(--border-color); margin: 0 4px;"></div>
 
                         <button class="icon-btn" id="quickModeBtn" onclick="toggleQuickMode()" title="Quick 10 Quiz" type="button">
                             <i class="fa-solid fa-bolt"></i>
@@ -616,7 +626,7 @@
                             <i class="fa-regular fa-bookmark"></i>
                         </button>
                         
-                        <div class="v-divider"></div>
+                        <div class="v-divider" style="width: 1px; height: 16px; background: var(--border-color); margin: 0 4px;"></div>
                         
                         <button class="text-btn" onclick="adjustFont(-1)" title="Decrease Font" type="button">A-</button>
                         <button class="text-btn" onclick="adjustFont(1)" title="Increase Font" type="button">A+</button>
@@ -643,7 +653,6 @@
                     <div class="widget-controls">
                         <button id="prevBtn" class="nav-btn"><i class="fa-solid fa-arrow-left"></i> Prev</button>
                         
-                        <!-- PROGRESS DISPLAY (JUMP REMOVED) -->
                         <div class="progress-display">
                             <span class="progress-text" id="progressText">0 / 0</span>
                         </div>
@@ -658,11 +667,11 @@
     
     <div class="section-separator"></div>
 
-    <!-- Full Width Bilingual Content -->
+    <!-- Full Width Bilingual Content: Converted from Bloated Paragraphs to Crisp Bullet Points -->
     <section class="seo-content-wrapper">
         <div class="seo-header">
             <h2>Detailed History Notes (विस्तृत इतिहास नोट्स)</h2>
-            <p>From ancient tribes to modern statehood - a chronological journey. <br>(प्राचीन जनजातियों से आधुनिक राज्य तक - एक कालानुक्रमिक यात्रा।)</p>
+            <p>From ancient tribes to modern statehood - a chronological journey encompassing empires, wars, and social reforms. <br>(प्राचीन जनजातियों से आधुनिक राज्य तक - साम्राज्यों, युद्धों और सामाजिक सुधारों को समेटे एक कालानुक्रमिक यात्रा।)</p>
         </div>
 
         <div class="seo-grid">
@@ -670,111 +679,143 @@
             <!-- 1. Ancient History -->
             <div class="seo-card glass-panel">
                 <h3><i class="fa-solid fa-scroll"></i> 1. Ancient Janapadas & Tribes (प्राचीन जनपद)</h3>
-                <p>Before kingdoms, Himachal was inhabited by tribes like Kols, Kiratas, Kinnars, and Yakshas. The region was divided into Janapadas mentioned in Sanskrit literature. <br>(साम्राज्यों से पहले, हिमाचल में कोल, किरात, किन्नर और यक्ष निवास करते थे।)</p>
+                <p>Before modern kingdoms, Himachal was home to ancient aboriginal tribes. <br>(आधुनिक साम्राज्यों से पहले, हिमालय में प्राचीन जनजातियां निवास करती थीं।)</p>
                 <ul class="seo-list">
-                    <li><strong>Trigarta (Kangra):</strong> Oldest Kingdom founded by Susharma Chand (Ally of Kauravas in Mahabharata). 'Land of three rivers' (Ravi, Beas, Satluj). Capital at Jalandhar/Nagarkot. <br>(त्रिगर्त: सबसे पुराना साम्राज्य, संस्थापक सुशर्मा चंद, कांगड़ा)</li>
-                    <li><strong>Audumbaras:</strong> Located in Pathankot/Kangra region. Famous for wool trade and worship of Shiva/Vishvamitra. Coins depict Trident/Tree (2nd Century BC). <br>(औदुम्बर: पठानकोट/कांगड़ा क्षेत्र, शिव/विश्वामित्र की पूजा, त्रिशूल/वृक्ष वाले सिक्के)</li>
-                    <li><strong>Kuluta (Kullu):</strong> Founded by Vihangamani Pal. Mentioned in Ramayana and Mahabharata. Ancient capital at Naggar. Oldest democracy at Malana (Jamlu Devta). <br>(कुलूत: संस्थापक विहंगमणि पाल, कुल्लू, मलाणा लोकतंत्र)</li>
-                    <li><strong>Kunindas:</strong> Inhabited region between Yamuna, Satluj, and Beas (Shimla/Sirmaur). Famous King Amoghabhuti (1st Century BC) issued silver/copper coins. <br>(कुनिंद: शिमला/सिरमौर, राजा अमोघभूति, चांदी/तांबे के सिक्के)</li>
+                    <li><strong>Aboriginal Tribes:</strong> Kols, Kiratas, Kinnars, and Yakshas were the earliest inhabitants before Vedic tribes arrived. (कोल, किरात, किन्नर और यक्ष सबसे प्रारंभिक निवासी थे).</li>
+                    <li><strong>Trigarta (Kangra):</strong> Founded by Susharma Chand, who fought for the Kauravas in the Mahabharata. (सुशर्मा चंद द्वारा स्थापित, महाभारत में कौरवों का साथ दिया).</li>
+                    <li><strong>Trigarta Meaning:</strong> Translates to 'land of three rivers' (Ravi, Beas, Satluj). Capital was Jalandhar/Nagarkot. (तीन नदियों का क्षेत्र, राजधानी जालंधर/नगरकोट).</li>
+                    <li><strong>Audumbaras:</strong> Pathankot/Kangra region. Prospered heavily through cross-border wool trade. (पठानकोट/कांगड़ा क्षेत्र, ऊन व्यापार के लिए प्रसिद्ध).</li>
+                    <li><strong>Audumbara Coins:</strong> Copper/silver coins depict the Trident and Tree (worship of Lord Shiva/Vishvamitra). (सिक्कों पर त्रिशूल और वृक्ष, शिव की पूजा).</li>
+                    <li><strong>Kuluta (Kullu):</strong> Founded by Vihangamani Pal. Mentioned in Ramayana and Vishnu Purana. (विहंगमणि पाल द्वारा स्थापित, रामायण में उल्लेख).</li>
+                    <li><strong>Kunindas:</strong> Located between Yamuna, Satluj, and Beas rivers (modern Shimla/Sirmaur). (शिमला/सिरमौर क्षेत्र में स्थित).</li>
+                    <li><strong>Kuninda Coins:</strong> Amoghabhuti (1st Century BC) was their most powerful king who issued distinctive silver coins. (प्रतापी राजा अमोघभूति, चांदी के सिक्के).</li>
                 </ul>
             </div>
 
             <!-- 2. Medieval Invasions -->
             <div class="seo-card glass-panel">
                 <h3><i class="fa-solid fa-shield-halved"></i> 2. Medieval Invasions (मध्यकालीन आक्रमण)</h3>
-                <p>The wealth of hill temples attracted plunderers from the plains, reshaping the political landscape. <br>(पहाड़ी मंदिरों की संपत्ति ने मैदानी इलाकों से लुटेरों को आकर्षित किया।)</p>
+                <p>The wealth of the hill temples attracted ruthless plunderers from the plains. <br>(पहाड़ी मंदिरों की अपार संपत्ति ने मैदानी लुटेरों को आकर्षित किया।)</p>
                 <ul class="seo-list">
-                    <li><strong>Mahmud Ghazni (1009 AD):</strong> Invaded and looted the Nagarkot (Kangra) Fort and Brajeshwari Temple, taking immense gold and silver. Remained under Ghaznavids till 1043 AD. <br>(महमूद गजनवी: 1009 ई., कांगड़ा किला और ब्रजेश्वरी मंदिर लूटा)</li>
-                    <li><strong>Muhammad bin Tughlaq (1337 AD):</strong> Captured Nagarkot fort during his expedition towards China (Qarachil expedition). Raja Prithvi Chand was the ruler. <br>(मुहम्मद बिन तुगलक: 1337 ई., कांगड़ा किला पर कब्जा, राजा पृथ्वी चंद)</li>
-                    <li><strong>Firoz Shah Tughlaq (1365 AD):</strong> Besieged Kangra for 6 months. Took 1300 Sanskrit books from Jwalamukhi for translation into Persian (Dalail-i-Firozshahi) by Izz-ud-din Khalid Khani. <br>(फिरोज शाह तुगलक: 1365 ई., ज्वालामुखी से 1300 संस्कृत पुस्तकें)</li>
-                    <li><strong>Timur (1398 AD):</strong> Invaded Shivalik hills while retreating from Delhi. Opposed by Raja Ratan Sen of Sirmaur and Raja Alam Chand of Hindur (Nalagarh). <br>(तैमूर: 1398 ई., शिवालिक आक्रमण, राजा रतन सेन और आलम चंद का विरोध)</li>
+                    <li><strong>Mahmud Ghazni (1009 AD):</strong> Looted the Nagarkot (Kangra) Fort and Brajeshwari Temple. (1009 ई. में कांगड़ा किला और ब्रजेश्वरी मंदिर लूटा).</li>
+                    <li><strong>Ghaznavid Control:</strong> The Kangra fort remained under Ghaznavid control until 1043 AD. (किला 1043 ई. तक गजनवियों के अधीन रहा).</li>
+                    <li><strong>Muhammad bin Tughlaq (1337 AD):</strong> Captured the Nagarkot fort during his Qarachil expedition towards China. (1337 ई. में कराचील अभियान के दौरान कांगड़ा पर कब्जा).</li>
+                    <li><strong>Raja Prithvi Chand:</strong> He was the ruler of Kangra during Muhammad bin Tughlaq's devastating invasion. (तुगलक के आक्रमण के समय कांगड़ा के शासक).</li>
+                    <li><strong>Firoz Shah Tughlaq (1365 AD):</strong> Besieged the Kangra fort for 6 long and arduous months. (1365 ई. में कांगड़ा की 6 महीने तक घेराबंदी).</li>
+                    <li><strong>Dalail-i-Firozshahi:</strong> Firoz Shah took 1300 Sanskrit books from Jwalamukhi for Persian translation. (ज्वालामुखी से 1300 पुस्तकों का फारसी अनुवाद).</li>
+                    <li><strong>Timur's Invasion (1398 AD):</strong> Plundered Shivalik hills while retreating from his sack of Delhi. (1398 ई. में दिल्ली से लौटते समय शिवालिक पहाड़ियों पर आक्रमण).</li>
+                    <li><strong>Resistance to Timur:</strong> Bravely opposed by Raja Ratan Sen (Sirmaur) and Raja Alam Chand (Hindur). (सिरमौर और हिंडूर के राजाओं द्वारा कड़ा विरोध).</li>
                 </ul>
             </div>
 
             <!-- 3. Mughal Era -->
             <div class="seo-card glass-panel">
                 <h3><i class="fa-brands fa-fort-awesome"></i> 3. The Mughal Era (मुगल काल)</h3>
-                <p>A period of subjugation and cultural exchange. Mughals controlled forts but allowed Rajas internal autonomy. <br>(अधीनता और सांस्कृतिक आदान-प्रदान का काल।)</p>
+                <p>A period characterized by both military subjugation and cultural exchange. <br>(यह सैन्य अधीनता और सांस्कृतिक आदान-प्रदान का काल था।)</p>
                 <ul class="seo-list">
-                    <li><strong>Akbar:</strong> Sent Todar Mal to measure land in Kangra. First siege of Kangra Fort attempted (1572) under Khan Jahan. Dharam Chand submitted to Akbar. <br>(अकबर: टोडरमल द्वारा भूमि माप, 1572 में कांगड़ा किले की पहली घेराबंदी)</li>
-                    <li><strong>Jahangir (1620 AD):</strong> First Mughal Emperor to successfully capture the impregnable Kangra Fort (Nov 16, 1620). Built a mosque inside. Visited with Nur Jahan (Dhameri renamed Nurpur in her honor). <br>(जहांगीर: 1620 ई., कांगड़ा किले पर पहला सफल कब्जा, नूरपुर का नामकरण)</li>
-                    <li><strong>Shah Jahan:</strong> Appointed Nawab Asadullah Khan as first Mughal Governor of Kangra. Raja Jagat Singh of Nurpur (Faujdar of Bangash) revolted against him in 1640. <br>(शाहजहां: नवाब असदुल्ला खान पहले गवर्नर, 1640 में जगत सिंह का विद्रोह)</li>
-                    <li><strong>Aurangzeb:</strong> Raja Chattar Singh of Chamba bravely refused his direct order (1678) to demolish Hindu temples and instead put gilded pinnacles on them. <br>(औरंगजेब: चंबा के राजा चतर सिंह ने मंदिर तोड़ने का आदेश मानने से इनकार किया)</li>
+                    <li><strong>Akbar's Expansion:</strong> Sent Todar Mal to systematically measure and revenue-map land in Kangra. (टोडरमल द्वारा कांगड़ा में भूमि का मापन).</li>
+                    <li><strong>First Mughal Siege:</strong> Attempted in 1572 under Khan Jahan. Raja Dharam Chand submitted to Akbar. (1572 में कांगड़ा किले की पहली घेराबंदी का प्रयास).</li>
+                    <li><strong>Jahangir's Victory (1620 AD):</strong> Became the first Mughal Emperor to successfully capture the Kangra Fort. (1620 ई. में कांगड़ा किले पर पहला सफल कब्जा).</li>
+                    <li><strong>Nurpur Renaming:</strong> Dhameri state was renamed 'Nurpur' in honor of Jahangir's wife, Nur Jahan. (नूरजहां के सम्मान में धमेरी का नाम 'नूरपुर' रखा गया).</li>
+                    <li><strong>Mughal Governors:</strong> Nawab Asadullah Khan was appointed as the first official Mughal Governor of Kangra. (नवाब असदुल्ला खान कांगड़ा के पहले मुगल गवर्नर बने).</li>
+                    <li><strong>Jagat Singh's Revolt (1640):</strong> Raja Jagat Singh of Nurpur led a massive but unsuccessful revolt against Shah Jahan. (1640 में नूरपुर के राजा जगत सिंह का बड़ा विद्रोह).</li>
+                    <li><strong>Aurangzeb's Intolerance (1678):</strong> Ordered the strict demolition of Hindu temples across the hill states. (1678 में हिंदू मंदिरों को नष्ट करने का आदेश).</li>
+                    <li><strong>Chamba's Defiance:</strong> Raja Chattar Singh of Chamba bravely refused Aurangzeb's orders and added gilded pinnacles to his temples instead. (चंबा के राजा चतर सिंह ने आदेश मानने से इनकार किया).</li>
                 </ul>
             </div>
 
             <!-- 4. Katoch Dynasty & Sansar Chand -->
             <div class="seo-card glass-panel">
                 <h3><i class="fa-solid fa-crown"></i> 4. Rise of Sansar Chand (संसार चंद का उदय)</h3>
-                <p>The decline of Mughals led to the rise of Maharaja Sansar Chand, marking the golden age of Kangra. <br>(मुगलों के पतन से महाराजा संसार चंद का उदय हुआ, जो कांगड़ा का स्वर्ण युग था।)</p>
+                <p>The decline of the Mughals led to the ultimate golden age of Kangra. <br>(मुगल पतन से कांगड़ा के स्वर्ण युग की शुरुआत हुई।)</p>
                 <ul class="seo-list">
-                    <li><strong>Maharaja Sansar Chand (1775-1823):</strong> Ascended throne at age 10. Liberated Kangra Fort from Mughals (1786) with help of Jai Singh Kanhaiya. <br>(महाराजा संसार चंद: 1786 में कांगड़ा किला मुगलों से मुक्त कराया)</li>
-                    <li><strong>Expansionist Policy:</strong> Invaded Mandi (Ishwari Sen imprisoned at Nadaun for 12 years), Chamba (Battle of Nerti - Raja Raj Singh killed), and annexed Bilaspur territories. <br>(विस्तारवादी नीति: मंडी के ईश्वरी सेन को 12 साल कैद, चंबा के राज सिंह की हत्या)</li>
-                    <li><strong>Cultural Patron:</strong> Great patron of Kangra School of Pahari Painting. Built courts at Sujanpur Tira and Alampur. Patronized artist Fattu and Padma. <br>(सांस्कृतिक संरक्षक: कांगड़ा चित्रकला शैली, सुजानपुर टीरा में दरबार)</li>
-                    <li><strong>Downfall:</strong> His aggression forced Raja Mahan Chand of Bilaspur to form a coalition and invite Gorkhas (Amar Singh Thapa), leading to his decline. <br>(पतन: बिलासपुर के राजा महान चंद ने गोरखाओं को आमंत्रित किया)</li>
+                    <li><strong>Early Ascension:</strong> Maharaja Sansar Chand ascended the Kangra throne at the young age of 10. (महाराजा संसार चंद मात्र 10 वर्ष की आयु में सिंहासन पर बैठे).</li>
+                    <li><strong>Liberation of Kangra (1786):</strong> Captured the Kangra Fort from the last Mughal governor with Jai Singh Kanhaiya's help. (1786 में कांगड़ा किला मुगलों से मुक्त कराया).</li>
+                    <li><strong>Mandi Invasion:</strong> Invaded Mandi and brutally imprisoned Raja Ishwari Sen at Nadaun for 12 years. (मंडी पर आक्रमण कर ईश्वरी सेन को 12 साल कैद रखा).</li>
+                    <li><strong>Chamba Conflict:</strong> Defeated and killed Raja Raj Singh of Chamba at the historic Battle of Nerti. (नेरटी के युद्ध में चंबा के राजा राज सिंह की हत्या).</li>
+                    <li><strong>Pahari Painting Patron:</strong> Regarded as the greatest patron of the exquisite Kangra School of miniature painting. (कांगड़ा चित्रकला शैली के सबसे बड़े संरक्षक).</li>
+                    <li><strong>Royal Courts:</strong> Built magnificent royal courts at Sujanpur Tira and Alampur. (सुजानपुर टीरा और आलमपुर में भव्य दरबार बनाए).</li>
+                    <li><strong>Coalition Against Him:</strong> His unchecked aggression forced Raja Mahan Chand of Bilaspur to form a coalition of hill chiefs. (बिलासपुर के राजा महान चंद ने उनके खिलाफ गठबंधन बनाया).</li>
+                    <li><strong>Gorkha Invitation:</strong> The coalition invited Amar Singh Thapa (Gorkhas), leading directly to Sansar Chand's tragic decline. (गठबंधन ने गोरखाओं को आमंत्रित किया, जो पतन का कारण बना).</li>
                 </ul>
             </div>
 
             <!-- 5. Gorkha Wars -->
             <div class="seo-card glass-panel">
                 <h3><i class="fa-solid fa-khanda"></i> 5. Gorkha Wars (गोरखा युद्ध)</h3>
-                <p>The fierce conflict between Nepal's Gorkhas, Hill States, and eventually the British. <br>(नेपाल के गोरखाओं, पहाड़ी राज्यों और अंततः अंग्रेजों के बीच भीषण संघर्ष।)</p>
+                <p>The fierce conflict between Nepal's expanding Gorkhas, Hill States, and the British. <br>(नेपाल के गोरखाओं, पहाड़ी राज्यों और अंग्रेजों के बीच भीषण संघर्ष।)</p>
                 <ul class="seo-list">
-                    <li><strong>Amar Singh Thapa:</strong> Gorkha commander invited by Bilaspur/Mandi/Chamba coalition. Defeated Sansar Chand at Battle of Mahal Morian (Hamirpur) in 1806. <br>(अमर सिंह थापा: 1806 में महल मोरियां की लड़ाई में संसार चंद को हराया)</li>
-                    <li><strong>Siege of Kangra (1806-1809):</strong> Gorkhas besieged Kangra fort for 4 years. Sansar Chand sought Maharaja Ranjit Singh's help (Treaty of Jwalamukhi 1809 - Fort given to Sikhs). <br>(कांगड़ा की घेराबंदी: 1809 में ज्वालामुखी की संधि, किला सिखों को दिया)</li>
-                    <li><strong>Anglo-Gorkha War (1814-15):</strong> British (under Ochterlony) defeated Gorkhas at battles of Jaitak (Sirmaur), Malaon (Bilaspur), and Sabathu. <br>(एंग्लो-गोरखा युद्ध: 1814-15, जेतक और मलौन की लड़ाई में गोरखा पराजित)</li>
-                    <li><strong>Treaty of Sugauli (1815):</strong> Signed between British and Nepal. Gorkhas ceded territories west of Kali river. <br>(सुगौली की संधि: 1815, गोरखाओं ने काली नदी के पश्चिम के क्षेत्र छोड़े)</li>
+                    <li><strong>Amar Singh Thapa:</strong> Legendary Gorkha commander invited by the Bilaspur-led coalition of hill states. (महान गोरखा कमांडर, बिलासपुर गठबंधन द्वारा आमंत्रित).</li>
+                    <li><strong>Battle of Mahal Morian (1806):</strong> Gorkhas decisively defeated Sansar Chand's forces in present-day Hamirpur. (1806 में महल मोरियां की लड़ाई में संसार चंद को हराया).</li>
+                    <li><strong>Siege of Kangra:</strong> Gorkhas relentlessly besieged the Kangra fort for 4 long years (1806-1809). (कांगड़ा किले की 4 साल तक गोरखा घेराबंदी).</li>
+                    <li><strong>Treaty of Jwalamukhi (1809):</strong> Sansar Chand gave the Kangra Fort and 66 villages to Maharaja Ranjit Singh for protection. (1809 में ज्वालामुखी की संधि, किला सिखों को सौंपा).</li>
+                    <li><strong>Anglo-Gorkha War (1814-15):</strong> British forces declared war on the Gorkhas due to escalating border disputes. (एंग्लो-गोरखा युद्ध: सीमा विवादों के कारण 1814-15 में युद्ध).</li>
+                    <li><strong>Key Battles:</strong> British (under David Ochterlony) defeated Gorkhas at Jaitak, Malaon, and Sabathu. (अंग्रेजों ने गोरखाओं को जेतक और मलौन के युद्धों में हराया).</li>
+                    <li><strong>Treaty of Sugauli (1815):</strong> Gorkhas permanently ceded all conquered territories west of the Kali river to the British. (सुगौली की संधि: गोरखाओं ने काली नदी के पश्चिम के क्षेत्र अंग्रेजों को सौंपे).</li>
                 </ul>
             </div>
 
             <!-- 6. British Rule -->
             <div class="seo-card glass-panel">
-                <h3><i class="fa-solid fa-train-tram"></i> 6. British Rule & 1857 (ब्रिटिश शासन और 1857)</h3>
-                <p>After expelling Gorkhas, British became paramount power, establishing cantonments and hill stations. <br>(गोरखाओं को निकालने के बाद, अंग्रेज सर्वोच्च शक्ति बन गए।)</p>
+                <h3><i class="fa-solid fa-train-tram"></i> 6. British Rule & 1857 Revolt (ब्रिटिश शासन)</h3>
+                <p>The British swiftly became the paramount power, establishing famous hill stations. <br>(अंग्रेज सर्वोच्च शक्ति बन गए और हिल स्टेशनों की स्थापना की।)</p>
                 <ul class="seo-list">
-                    <li><strong>Sanads:</strong> British granted 'Sanads' to hill chiefs (1815 onwards) confirming their territories in exchange for allegiance, tribute and Begar (forced labor). <br>(सनद: 1815 से पहाड़ी राजाओं को क्षेत्र की पुष्टि, बेगार प्रथा)</li>
-                    <li><strong>Hill Stations:</strong> Shimla discovered by Lt. Ross (1819), first house 'Kennedy House' (1822). Dalhousie established by Lord Dalhousie (1854) on land from Chamba Raja. <br>(हिल स्टेशन: 1819 में शिमला की खोज, 1854 में डलहौजी की स्थापना)</li>
-                    <li><strong>Revolt of 1857:</strong> Ram Prasad Bairagi executed at Ambala. Subedar Bhim Singh led revolt at Jutogh. Raja Shamsher Singh of Bushahr was the only ruler to remain hostile/neutral to British. <br>(1857 का विद्रोह: राम प्रसाद बैरागी को फांसी, बुशहर के राजा शमशेर सिंह का विरोध)</li>
-                    <li><strong>Viceregal Lodge:</strong> Shimla became Summer Capital of India in 1864 under John Lawrence. Kalka-Shimla Railway started in 1903. <br>(वायसराय लॉज: 1864 में शिमला ग्रीष्मकालीन राजधानी, 1903 में कालका-शिमला रेलवे)</li>
+                    <li><strong>The Sanad System (1815):</strong> British granted 'Sanads' to loyal hill chiefs, legally confirming their territories. (1815 से वफादार पहाड़ी राजाओं को उनके क्षेत्रों की पुष्टि करते हुए 'सनद' दी).</li>
+                    <li><strong>Begar System:</strong> In exchange for Sanads, chiefs pledged allegiance and provided 'Begar' (forced unpaid labor). (सनद के बदले राजाओं को अंग्रेजों को 'बेगार' देना पड़ता था).</li>
+                    <li><strong>Discovery of Shimla (1819):</strong> Accidentally discovered by Lt. Ross. The very first house 'Kennedy House' was built in 1822. (1819 में शिमला की खोज, 1822 में 'कैनेडी हाउस' का निर्माण).</li>
+                    <li><strong>Founding of Dalhousie (1854):</strong> Established by Lord Dalhousie on pristine land acquired from the Raja of Chamba. (1854 में चंबा के राजा से भूमि लेकर डलहौजी की स्थापना).</li>
+                    <li><strong>1857 Revolt - Local Uprising:</strong> Ram Prasad Bairagi was executed, and Subedar Bhim Singh led a revolt at Jutogh. (राम प्रसाद बैरागी को फांसी, जतोग छावनी में सूबेदार भीम सिंह का विद्रोह).</li>
+                    <li><strong>Bushahr's Defiance:</strong> Raja Shamsher Singh of Bushahr was the only major ruler who remained totally hostile to the British in 1857. (बुशहर के राजा शमशेर सिंह ने 1857 में अंग्रेजों का कड़ा विरोध किया).</li>
+                    <li><strong>Summer Capital (1864):</strong> Shimla was officially declared the Summer Capital of British India by John Lawrence. (1864 में शिमला भारत की ग्रीष्मकालीन राजधानी बनी).</li>
+                    <li><strong>Kalka-Shimla Railway:</strong> This architectural marvel (now a UNESCO World Heritage site) was started in 1903. (1903 में ऐतिहासिक कालका-शिमला रेलवे की शुरुआत).</li>
                 </ul>
             </div>
 
             <!-- 7. Prajamandal -->
             <div class="seo-card glass-panel">
-                <h3><i class="fa-solid fa-people-group"></i> 7. Prajamandal Movement (प्रजामंडल आंदोलन)</h3>
-                <p>The people's fight against feudal oppression (Begar system) and for democratic rights in Princely States. <br>(रियासतों में सामंती उत्पीड़न के खिलाफ और लोकतांत्रिक अधिकारों के लिए लोगों की लड़ाई।)</p>
+                <h3><i class="fa-solid fa-people-group"></i> 7. Prajamandal Movement (प्रजामंडल)</h3>
+                <p>The grassroots fight of the common people against horrific feudal oppression. <br>(रियासतों में सामंती उत्पीड़न के खिलाफ आम लोगों का संघर्ष।)</p>
                 <ul class="seo-list">
-                    <li><strong>Dhami Firing (1939):</strong> Led by Bhagmal Sautha against Raja of Dhami. Police firing killed 2 people (Durga Das & Shiva Dutt). Turning point in freedom struggle. <br>(धामी गोलीकांड: 1939, भागमल सौठा के नेतृत्व में, 2 लोग शहीद)</li>
-                    <li><strong>Pajhota Andolan (1942):</strong> Extension of Quit India Movement in Sirmaur against Raja Rajendra Prakash. Leaders: Vaid Surat Singh, Mian Chu-Chu. Slogan: "Bhai do na pai". <br>(पझोता आंदोलन: 1942, सिरमौर, 'भाई दो ना पाई' का नारा)</li>
-                    <li><strong>Suket Satyagraha (1948):</strong> Led by Pt. Padam Dev. 25,000 people marched to Suket capital Sundernagar, forcing Raja Laxman Sen to surrender (Feb 1948). <br>(सुकेत सत्याग्रह: 1948, पं. पदम देव के नेतृत्व में, राजा लक्ष्मण सेन का आत्मसमर्पण)</li>
-                    <li><strong>Himalayan Hill States Regional Council (1946):</strong> Formed at Udaipur to coordinate the movement. President: Swami Purnanand. Dr. Y.S. Parmar was General Secretary. <br>(हिमालयन हिल स्टेट्स रीजनल काउंसिल: 1946, उदयपुर में गठन)</li>
+                    <li><strong>Core Objective:</strong> Grassroots fight against feudal oppression (Begar) and for democratic rights in Princely States. (रियासतों में सामंती उत्पीड़न और बेगार के खिलाफ आम लोगों का संघर्ष).</li>
+                    <li><strong>Dhami Firing (1939):</strong> A massive protest led by Bhagmal Sautha against the cruel Raja of Dhami state. (1939 में भागमल सौठा के नेतृत्व में धामी के राजा के खिलाफ विरोध).</li>
+                    <li><strong>Martyrs of Dhami:</strong> Police fired on peaceful protesters, tragically killing Durga Das & Shiva Dutt. (पुलिस फायरिंग में दुर्गा दास और शिव दत्त शहीद हुए).</li>
+                    <li><strong>Pajhota Andolan (1942):</strong> A direct extension of the national Quit India Movement in Sirmaur against Raja Rajendra Prakash. (1942 में सिरमौर में 'भारत छोड़ो आंदोलन' का विस्तार).</li>
+                    <li><strong>Pajhota Leaders & Slogan:</strong> Led bravely by Vaid Surat Singh. Their famous slogan was "Bhai do na pai". (नेता: वैद्य सूरत सिंह। नारा: "भाई दो ना पाई").</li>
+                    <li><strong>Suket Satyagraha (1948):</strong> A historic bloodless revolution led by Pt. Padam Dev with over 25,000 armed marchers. (1948 में पं. पदम देव के नेतृत्व में सुकेत में रक्तहीन क्रांति).</li>
+                    <li><strong>Suket Surrender:</strong> Forced Raja Laxman Sen to formally surrender his state to the Indian Government at Sundernagar. (सुंदरनगर में राजा लक्ष्मण सेन को आत्मसमर्पण के लिए मजबूर किया).</li>
+                    <li><strong>Regional Council (1946):</strong> Himalayan Hill States Regional Council formed at Udaipur (President: Swami Purnanand). (1946 में उदयपुर में काउंसिल का गठन, अध्यक्ष: स्वामी पूर्णानंद).</li>
                 </ul>
             </div>
 
             <!-- 8. Statehood Journey -->
             <div class="seo-card glass-panel">
-                <h3><i class="fa-solid fa-flag"></i> 8. Journey to Statehood (पूर्ण राज्यत्व की यात्रा)</h3>
-                <p>Evolution from a Chief Commissioner's Province to the 18th State of the Indian Union. <br>(चीफ कमिश्नर प्रांत से भारतीय संघ के 18वें राज्य तक का विकास।)</p>
+                <h3><i class="fa-solid fa-flag"></i> 8. Journey to Full Statehood (पूर्ण राज्यत्व)</h3>
+                <p>The political evolution from a Chief Commissioner's Province to the 18th State. <br>(चीफ कमिश्नर प्रांत से 18वें राज्य तक का राजनीतिक विकास।)</p>
                 <ul class="seo-list">
-                    <li><strong>15 April 1948:</strong> Himachal Pradesh formed by merging 30 Princely States (4 districts: Chamba, Mandi, Mahasu, Sirmour). N.C. Mehta became first Chief Commissioner. <br>(15 अप्रैल 1948: हिमाचल का गठन, 30 रियासतों का विलय, 4 जिले)</li>
-                    <li><strong>1951:</strong> Became a Part 'C' State with 36 member legislative assembly. Dr. Y.S. Parmar became first Chief Minister (24 March 1952). <br>(1951: पार्ट 'सी' राज्य, डॉ. वाई.एस. परमार पहले मुख्यमंत्री)</li>
-                    <li><strong>1 Nov 1956:</strong> Became Union Territory (UT). Bajrang Bahadur Singh first Lt. Governor. Territorial Council formed under Thakur Karam Singh. <br>(1 नवंबर 1956: केंद्र शासित प्रदेश, बजरंग बहादुर सिंह पहले उपराज्यपाल)</li>
-                    <li><strong>1 Nov 1966:</strong> Punjab Reorganization. Kangra, Kullu, Shimla, Lahaul-Spiti, and Nalagarh merged into HP (Vishal Himachal). Area increased to 55,673 sq km. <br>(1 नवंबर 1966: पंजाब पुनर्गठन, विशाल हिमाचल का निर्माण)</li>
-                    <li><strong>25 Jan 1971:</strong> Full Statehood granted. Inaugurated by PM Indira Gandhi at Ridge, Shimla amidst heavy snowfall. S. Chakravarti first Governor. <br>(25 जनवरी 1971: पूर्ण राज्यत्व, 18वां राज्य, इंदिरा गांधी द्वारा उद्घाटन)</li>
+                    <li><strong>Formation (15 April 1948):</strong> HP formed as a Chief Commissioner's Province by merging 30 distinct Princely States. (30 रियासतों का विलय करके हिमाचल प्रदेश का गठन).</li>
+                    <li><strong>Initial Districts:</strong> Started with only 4 districts: Chamba, Mandi, Mahasu, and Sirmour. (शुरुआत में केवल 4 जिले थे: चंबा, मंडी, महासू, सिरमौर).</li>
+                    <li><strong>First Commissioner:</strong> N.C. Mehta became the very first Chief Commissioner of HP. (एन.सी. मेहता हिमाचल के पहले मुख्य आयुक्त बने).</li>
+                    <li><strong>Part C State (1951):</strong> Upgraded to a Part 'C' State. Dr. Y.S. Parmar became the first Chief Minister in 1952. (पार्ट 'सी' राज्य का दर्जा, डॉ. वाई.एस. परमार पहले मुख्यमंत्री).</li>
+                    <li><strong>Union Territory (1956):</strong> Demoted to a UT. Bajrang Bahadur Singh became the first Lt. Governor. (केंद्र शासित प्रदेश (UT) बना, बजरंग बहादुर सिंह पहले उपराज्यपाल).</li>
+                    <li><strong>Vishal Himachal (1966):</strong> Kangra, Kullu, Shimla, and Lahaul-Spiti merged into HP after the Punjab Reorganization Act. (पंजाब पुनर्गठन के बाद 'विशाल हिमाचल' का निर्माण).</li>
+                    <li><strong>Full Statehood (25 Jan 1971):</strong> Officially inaugurated by PM Indira Gandhi at the historic Ridge, Shimla. (प्रधानमंत्री इंदिरा गांधी द्वारा रिज मैदान पर पूर्ण राज्यत्व का उद्घाटन).</li>
+                    <li><strong>18th State:</strong> Himachal Pradesh proudly became the 18th State of the Indian Union. S. Chakravarti was the first Governor. (हिमाचल भारतीय संघ का 18वां राज्य बना, एस. चक्रवर्ती पहले राज्यपाल).</li>
                 </ul>
             </div>
 
             <!-- 9. Historical Sources -->
             <div class="seo-card glass-panel">
                 <h3><i class="fa-solid fa-book-open"></i> 9. Sources & Architecture (स्रोत और वास्तुकला)</h3>
-                <p>Key literary sources, inscriptions, and architectural styles that define HP's rich history. <br>(हिमाचल के समृद्ध इतिहास को परिभाषित करने वाले प्रमुख साहित्यिक स्रोत, शिलालेख और स्थापत्य शैली।)</p>
+                <p>Key literary sources, ancient inscriptions, and architectural styles. <br>(प्रमुख साहित्यिक स्रोत, प्राचीन शिलालेख और स्थापत्य शैली।)</p>
                 <ul class="seo-list">
-                    <li><strong>Literary Sources:</strong> 'Tarikh-i-Riasat Sirmour' (Ranzor Singh), 'Mukhtasar Tarikh-i-Riasat Chamba' (Gharib Khan), 'Travels in Himalayan Provinces' (William Moorcroft - 1820). <br>(साहित्यिक स्रोत: तारीख-ए-रियासत सिरमौर, आदि)</li>
-                    <li><strong>Coins & Inscriptions:</strong> Audumbara coins (Pathankot) with Trident symbol. Kuninda coins (Amoghabhuti). Nirmand Copper Plate (Samudrasena - 7th Century), Pathyar & Kanihara rock inscriptions (Kangra - Brahmi/Kharosthi). <br>(सिक्के और शिलालेख: औदुम्बर और कुनिंद सिक्के, निर्मंड ताम्रपत्र)</li>
-                    <li><strong>Architecture Styles (वास्तुकला शैलियाँ):</strong> 
-                        <br>• <strong>Pent-roof:</strong> Shakti Devi (Chatrari), Lakshana Devi (Bharmour). (बंद छत शैली)
-                        <br>• <strong>Pagoda:</strong> Hidimba (Manali), Parashar (Mandi), Sungra Maheshwar (Kinnaur). (पैगोडा शैली)
-                        <br>• <strong>Nagara:</strong> Masroor Rock Cut (Kangra - 'Ellora of Himalayas', 8th Century), Baijnath. (नागर शैली: मसरूर रॉक कट मंदिर)</li>
+                    <li><strong>Literary Source - Sirmour:</strong> 'Tarikh-i-Riasat Sirmour' is a crucial historical text written by Ranzor Singh. ('तारीख-ए-रियासत सिरमौर' पुस्तक रणजोर सिंह द्वारा लिखी गई).</li>
+                    <li><strong>Literary Source - Chamba:</strong> 'Mukhtasar Tarikh-i-Riasat Chamba' was comprehensively authored by Gharib Khan. ('मुख्तसर तारीख-ए-रियासत चंबा' गरीब खान द्वारा रचित).</li>
+                    <li><strong>Foreign Accounts:</strong> 'Travels in Himalayan Provinces' by William Moorcroft (1820) provides vital historical insights. (विलियम मूरक्राफ्ट का 1820 का यात्रा वृतांत).</li>
+                    <li><strong>Ancient Inscriptions:</strong> Pathyar & Kanihara rock inscriptions in Kangra are written in ancient Brahmi and Kharosthi scripts. (कांगड़ा के पठ्यार और कनिहारा रॉक शिलालेख ब्राह्मी और खरोष्ठी लिपि में हैं).</li>
+                    <li><strong>Copper Plates:</strong> The famous Nirmand Copper Plate was issued by Maharaja Samudrasena in the 7th Century. (7वीं सदी का निर्मंड ताम्रपत्र महाराजा समुद्रसेन द्वारा जारी).</li>
+                    <li><strong>Pent-roof Architecture:</strong> Ancient closed-roof style seen in Lakshana Devi (Bharmour) and Shakti Devi (Chatrari) temples. (बंद छत शैली: लक्षणा देवी और शक्ति देवी मंदिर).</li>
+                    <li><strong>Pagoda Architecture:</strong> Multi-tiered roof style seen in Hidimba (Manali) and Parashar (Mandi) temples. (पैगोडा शैली: हिडिम्बा और पराशर मंदिर).</li>
+                    <li><strong>Nagara Architecture:</strong> Stone-carved style seen at Baijnath and Masroor Rock Cut Temple (Ellora of the Himalayas). (नागर शैली: बैजनाथ और मसरूर रॉक कट मंदिर - हिमालय का एलोरा).</li>
                 </ul>
             </div>
 
