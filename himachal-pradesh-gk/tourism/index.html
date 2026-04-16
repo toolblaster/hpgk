@@ -72,6 +72,7 @@
     <!-- Global CSS -->
     <link rel="stylesheet" href="../../js/style.css">
 
+    <!-- Premium Glassmorphism & Compact UI Stylesheet -->
     <style>
         :root {
             --primary: #2563eb;       
@@ -146,16 +147,24 @@
             box-shadow: var(--glass-shadow);
         }
 
-        main { flex: 1; width: 100%; padding: 15px 0 !important; }
+        main { flex: 1; width: 100%; padding: 15px 0 !important; box-sizing: border-box; }
 
         .top-meta-bar { 
             display: flex; justify-content: space-between; align-items: center; 
-            width: 100%; max-width: var(--site-width); margin: 0 auto 12px auto; 
-            padding: 0 15px; flex-wrap: nowrap; gap: 10px; 
+            width: 100%; max-width: var(--site-width); margin: 0 auto 5px auto; 
+            padding: 0 15px; flex-wrap: nowrap; gap: 10px; box-sizing: border-box;
         }
 
         .page-header-top, .main-layout, .seo-content-wrapper { 
-            width: 100%; max-width: var(--site-width); margin: 0 auto; padding: 0 15px; 
+            width: 100%; max-width: var(--site-width); margin: 0 auto; padding: 0 15px; box-sizing: border-box;
+        }
+
+        .page-header-top { text-align: center; margin-bottom: 25px; }
+
+        .hero-desc {
+            margin: 0 auto;
+            text-align: center;
+            max-width: 800px;
         }
 
         .section-separator { 
@@ -167,6 +176,7 @@
             .top-meta-bar, .page-header-top, .main-layout, .seo-content-wrapper {
                 padding: 0 12px !important;
             }
+            .page-header-top { margin-bottom: 20px; }
         }
 
         .breadcrumb-nav { margin: 0; flex-shrink: 1; display: flex; align-items: center; height: 24px; }
@@ -191,40 +201,33 @@
             margin: 0; border: 1px solid var(--primary); letter-spacing: 0.5px; white-space: nowrap; 
             flex-shrink: 0; box-sizing: border-box;
         }
-
-        .page-header-top { text-align: center; margin-bottom: 20px; }
         
-        /* EXACT DESKTOP H1 FONT SIZE: 32px */
         .hero-title { 
-            font-size: 32px !important; 
-            font-weight: 900 !important; 
-            margin: 0; 
-            letter-spacing: -0.5px; 
-            text-align: center; 
             background: linear-gradient(135deg, var(--text-main) 0%, var(--primary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             color: var(--primary); 
-            line-height: 1.2;
+            letter-spacing: -0.8px;
+            margin-bottom: 8px !important;
         }
         
         .main-layout { display: flex; flex-direction: column; gap: 20px; }
         @media (min-width: 900px) { 
             .main-layout { flex-direction: row; align-items: flex-start; } 
-            .intro-column, .quiz-widget-wrapper { flex: 1; width: 50%; } 
+            .intro-column, .quiz-widget-wrapper { flex: 1; width: 50%; box-sizing: border-box; } 
         }
 
         .intro-grid { display: grid; gap: 12px; text-align: left; }
-        .intro-card { background: var(--input-bg); border: 1px solid var(--card-border); border-radius: var(--radius-lg); padding: 15px; box-shadow: var(--shadow-sm); }
+        .intro-card { background: var(--input-bg); border: 1px solid var(--card-border); border-radius: var(--radius-lg); padding: 15px; box-shadow: var(--shadow-sm); box-sizing: border-box; width: 100%; }
         .intro-card h2 { font-size: 1.05rem; color: var(--primary); margin: 0 0 8px 0; display: flex; align-items: center; gap: 8px; font-weight: 700; justify-content: center; }
         .intro-card p { font-size: 0.85rem; color: var(--text-body); margin: 0; line-height: 1.5; }
         .intro-list { margin: 8px 0 0 0; padding-left: 20px; font-size: 0.85rem; color: var(--text-body); line-height: 1.5; }
-        .intro-list li { margin-bottom: 4px; }
+        .intro-list li { margin-bottom: 6px; } 
         
         .quick-links { 
             margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--card-border); 
-            display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; 
+            display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; width: 100%; box-sizing: border-box;
         }
         .quick-link-item { 
             font-size: 0.7rem; text-decoration: none; color: var(--primary); 
@@ -235,8 +238,8 @@
         .quick-link-item:hover { background: var(--primary); color: white; }
 
         /* QUIZ WIDGET */
-        .quiz-card { border-radius: var(--radius-xl); display: flex; flex-direction: column; overflow: hidden; height: auto; min-height: 480px; background: var(--card-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--card-border); box-shadow: var(--glass-shadow); position: sticky; top: 80px; }
-        .quick-start-ribbon { background: var(--primary); color: #fff; border: none; padding: 12px; font-size: 0.95rem; font-weight: 700; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px; transition: background 0.2s; width: 100%; flex-shrink: 0; min-height: 45px; }
+        .quiz-card { border-radius: var(--radius-xl); display: flex; flex-direction: column; overflow: hidden; height: auto; min-height: 480px; background: var(--card-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--card-border); box-shadow: var(--glass-shadow); position: sticky; top: 80px; box-sizing: border-box; width: 100%; }
+        .quick-start-ribbon { background: var(--primary); color: #fff; border: none; padding: 12px; font-size: 0.95rem; font-weight: 700; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px; transition: background 0.2s; width: 100%; flex-shrink: 0; min-height: 45px; box-sizing: border-box; }
         .quick-start-ribbon:hover { background: var(--primary-dark); }
         
         .widget-header { 
@@ -254,11 +257,10 @@
         }
         .text-controls::-webkit-scrollbar { display: none; }
         
-        /* Toolbar Icons 13.6px */
         .icon-btn, .text-btn, .text-controls label {
             background: #ffffff !important; 
             border: none !important; 
-            color: var(--text-sec) !important;
+            color: var(--text-sec);
             width: 32px !important; 
             height: 32px !important; 
             border-radius: 8px !important; 
@@ -285,7 +287,7 @@
 
         [data-theme="dark"] .icon-btn, [data-theme="dark"] .text-btn, [data-theme="dark"] .text-controls label { 
             background: rgba(30, 41, 59, 0.9) !important; 
-            color: var(--text-body) !important;
+            color: var(--text-body);
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3) !important;
         }
         
@@ -306,15 +308,13 @@
             display: flex; flex-direction: column; flex: 1; overflow: hidden; margin: 10px 15px 15px 15px; 
             border: 1px solid rgba(37, 99, 235, 0.25); border-radius: var(--radius-lg); background: var(--input-bg); 
             box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.03);
+            box-sizing: border-box;
         }
         [data-theme="dark"] .quiz-mcq-container { border-color: rgba(96, 165, 250, 0.25); }
 
-        /* ==========================================
-           FIXED: ULTRA-COMPACT DASHBOARD STATS BAR (Strict 10.4px)
-           ========================================== */
         .stats-dashboard { 
             display: flex; flex-wrap: nowrap; background: rgba(0,0,0,0.03); 
-            border-bottom: 1px solid var(--card-border); align-items: center;
+            border-bottom: 1px solid var(--card-border); align-items: center; width: 100%; box-sizing: border-box;
         }
         [data-theme="dark"] .stats-dashboard { background: rgba(255,255,255,0.02); }
         
@@ -331,7 +331,7 @@
         .stat-value.red { color: var(--wrong-border); }
         .stat-value.accent { color: var(--accent); }
 
-        .quiz-content { flex: 1; padding: 15px; position: relative; background: transparent; border: none; margin: 0; box-shadow: none; overflow-y: auto; }
+        .quiz-content { flex: 1; padding: 15px; position: relative; background: transparent; border: none; margin: 0; box-shadow: none; overflow-y: auto; box-sizing: border-box; width: 100%; }
         
         .q-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-size: 0.75rem; font-weight: 700; color: var(--text-sec); border-bottom: 1px dashed var(--card-border); padding-bottom: 4px; }
         .q-id { font-size: 0.85rem; color: var(--text-main); }
@@ -345,8 +345,7 @@
         .q-text-hi { font-weight: 600; color: var(--text-sec); margin-bottom: 12px; font-family: 'Noto Sans Devanagari', sans-serif; line-height: 1.4; font-size: 0.85rem; }
         mark.highlight { background: var(--accent); color: #fff; padding: 0 2px; border-radius: 3px; }
 
-        /* PERFECT BUG FIX: NO TEXT SHIFTING ON ANSWER SELECTION */
-        .options-list { display: flex; flex-direction: column; gap: 8px; counter-reset: opt-counter; }
+        .options-list { display: flex; flex-direction: column; gap: 8px; counter-reset: opt-counter; width: 100%; box-sizing: border-box; }
         
         .option-btn { 
             width: 100%; 
@@ -363,6 +362,7 @@
             align-items: flex-start; 
             line-height: 1.4; 
             position: relative; 
+            box-sizing: border-box;
         }
         
         .option-btn::before { 
@@ -398,10 +398,9 @@
         .option-btn.correct { background: var(--correct-bg); border-color: var(--correct-border); color: var(--correct-text); }
         .option-btn.wrong { background: var(--wrong-bg); border-color: var(--wrong-border); color: var(--wrong-text); }
 
-        .feedback-row { display: flex; gap: 8px; align-items: center; margin-top: 12px; }
+        .feedback-row { display: flex; gap: 8px; align-items: center; margin-top: 12px; width: 100%; box-sizing: border-box; }
         
-        /* FIXED: No fadeIn animation to prevent blinking */
-        .feedback-msg { flex: 1; padding: 8px 12px; border-radius: var(--radius-md); font-weight: 700; font-size: 0.85rem; text-align: center; margin: 0; border: 1px solid transparent; }
+        .feedback-msg { flex: 1; padding: 8px 12px; border-radius: var(--radius-md); font-weight: 700; font-size: 0.85rem; text-align: center; margin: 0; border: 1px solid transparent; box-sizing: border-box; }
         
         .correct-feed { background: var(--correct-bg); color: var(--correct-text); border-color: var(--correct-border); }
         .wrong-feed { background: var(--wrong-bg); color: var(--wrong-text); border-color: var(--wrong-border); }
@@ -409,14 +408,14 @@
         .expl-wrapper { position: relative; }
         .expl-btn { background: var(--card-bg); color: var(--primary); border: 1px solid var(--card-border); width: 34px; height: 34px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1rem; transition: 0.2s; box-shadow: var(--shadow-sm); }
         .expl-btn:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
-        .explanation-tooltip { position: absolute; bottom: 120%; right: 0; width: 280px; background: var(--tooltip-bg); border: 1px solid var(--card-border); box-shadow: var(--glass-shadow); padding: 15px; border-radius: var(--radius-md); font-size: 0.8rem; color: var(--text-main); z-index: 100; margin-bottom: 10px; display: none; text-align: left; line-height: 1.4; font-weight: 500; }
+        .explanation-tooltip { position: absolute; bottom: 120%; right: 0; width: 280px; background: var(--tooltip-bg); border: 1px solid var(--card-border); box-shadow: var(--glass-shadow); padding: 15px; border-radius: var(--radius-md); font-size: 0.8rem; color: var(--text-main); z-index: 100; margin-bottom: 10px; display: none; text-align: left; line-height: 1.4; font-weight: 500; box-sizing: border-box; }
         .explanation-tooltip::after { content: ''; position: absolute; top: 100%; right: 12px; border-width: 6px; border-style: solid; border-color: var(--tooltip-bg) transparent transparent transparent; }
         .explanation-tooltip::before { content: ''; position: absolute; top: 100%; right: 11px; border-width: 7px; border-style: solid; border-color: var(--card-border) transparent transparent transparent; z-index: -1; }
         .explanation-tooltip.show { display: block; animation: fadeUp 0.2s ease-out; }
         .explanation-tooltip strong { color: var(--primary); display: block; margin-bottom: 6px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; }
         @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        .widget-controls { padding: 10px 15px; border-top: 1px solid var(--card-border); background: rgba(0,0,0,0.03); display: flex; justify-content: space-between; align-items: center; }
+        .widget-controls { padding: 10px 15px; border-top: 1px solid var(--card-border); background: rgba(0,0,0,0.03); display: flex; justify-content: space-between; align-items: center; width: 100%; box-sizing: border-box; }
         [data-theme="dark"] .widget-controls { background: rgba(255,255,255,0.02); }
         .nav-btn { background: var(--card-bg); border: 1px solid var(--card-border); color: var(--text-main); padding: 6px 12px; border-radius: var(--radius-md); cursor: pointer; font-weight: 600; font-size: 0.85rem; display: flex; align-items: center; gap: 5px; transition: 0.2s; }
         .nav-btn:hover:not(:disabled) { border-color: var(--primary); color: var(--primary); }
@@ -425,42 +424,25 @@
         .progress-display { display: flex; align-items: center; justify-content: center; padding: 4px 10px; }
         .progress-text { font-weight: 800; color: var(--text-main); font-size: 0.85rem; }
 
-        /* ==========================================
-           FIXED: EXTREME LOCK FOR MODAL (Center Screen Popup Guaranteed)
-           ========================================== */
-        .quiz-modal-overlay {
-            position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important;
-            width: 100vw !important; height: 100vh !important;
-            background: rgba(0,0,0,0.5) !important; backdrop-filter: blur(4px) !important; -webkit-backdrop-filter: blur(4px) !important;
-            z-index: 999999 !important; display: none; align-items: center !important; justify-content: center !important; padding: 20px;
-            opacity: 0; transition: opacity 0.2s ease;
-        }
-        .quiz-modal-overlay.show { display: flex !important; opacity: 1; }
-        .quiz-modal-content {
-            background: var(--tooltip-bg) !important; 
-            width: 100%; max-width: 380px; margin: auto !important;
-            border: 1px solid var(--card-border);
-            border-radius: var(--radius-lg); padding: 20px;
-            box-shadow: var(--glass-shadow); transform: translateY(20px); transition: transform 0.2s ease;
-            position: relative !important; z-index: 1000000 !important;
-        }
-        .quiz-modal-overlay.show .quiz-modal-content { transform: translateY(0); }
-        .quiz-modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--card-border); padding-bottom: 12px; margin-bottom: 12px; }
-
-        .section-separator { height: 1px; background: linear-gradient(90deg, transparent, var(--card-border), transparent); margin: 25px 0; width: 100%; }
+        /* SEO Card Styles - Adjusted for clean, non-bloated look */
         .seo-content-wrapper { margin-bottom: 30px; }
         .seo-header { text-align: center; margin-bottom: 20px; }
         .seo-header h2 { font-size: clamp(1.2rem, 3vw, 1.6rem); margin-bottom: 8px; }
         .seo-header p { color: var(--text-sec); max-width: 600px; margin: 0 auto; font-size: 0.85rem; }
-        .seo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
-        .seo-card { background: var(--card-bg); border: 1px solid var(--card-border); padding: 20px; border-radius: var(--radius-lg); box-shadow: var(--glass-shadow); border-left: 4px solid var(--primary); transition: border-color 0.2s; }
+        
+        /* Grid Alignment */
+        .seo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 15px; align-items: stretch; width: 100%; }
+        
+        .seo-card { background: var(--card-bg); border: 1px solid var(--card-border); padding: 20px; border-radius: var(--radius-lg); box-shadow: var(--glass-shadow); border-left: 4px solid var(--primary); transition: border-color 0.2s; display: flex; flex-direction: column; box-sizing: border-box; width: 100%; }
         .seo-card:hover { border-color: var(--primary-light); }
         .seo-card h3 { font-size: 1rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; color: var(--text-main) !important; }
         .seo-card h3 i { color: var(--primary); }
-        .seo-card p { color: var(--text-body) !important; font-size: 0.85rem; margin-bottom: 10px; }
+        .seo-card p { color: var(--text-body) !important; font-size: 0.85rem; margin-bottom: 15px; }
         
-        .seo-list { list-style: none; padding-left: 0; }
-        .seo-list li { position: relative; padding-left: 18px; margin-bottom: 5px; font-size: 0.8rem; color: var(--text-body) !important; }
+        .seo-list { list-style: none; padding-left: 0; margin-top: 0; }
+        
+        /* Dense, concise list items */
+        .seo-list li { position: relative; padding-left: 18px; margin-bottom: 6px; font-size: 0.8rem; color: var(--text-body) !important; line-height: 1.35; }
         .seo-list li::before { 
             content: "\f111"; 
             font-family: "Font Awesome 6 Free";
@@ -472,22 +454,35 @@
             font-size: 0.4rem; 
         }
 
-        /* ==========================================
-           EXACT MOBILE CSS COMPACTNESS 
-           ========================================== */
+        /* Modal specific styles */
+        .quiz-modal-overlay {
+            position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important;
+            background: rgba(0,0,0,0.5) !important; backdrop-filter: blur(4px) !important; -webkit-backdrop-filter: blur(4px) !important;
+            z-index: 999999 !important; display: none; align-items: center !important; justify-content: center !important; padding: 20px;
+            opacity: 0; transition: opacity 0.2s ease;
+        }
+        .quiz-modal-overlay.show { display: flex !important; opacity: 1; }
+        .quiz-modal-content {
+            background: var(--tooltip-bg) !important; 
+            width: 100%; max-width: 320px; margin: auto !important;
+            border: 1px solid var(--border-color);
+            border-radius: 12px; padding: 15px;
+            box-shadow: var(--glass-shadow); transform: translateY(20px); transition: transform 0.2s ease;
+            position: relative !important; z-index: 1000000 !important;
+            box-sizing: border-box;
+        }
+        .quiz-modal-overlay.show .quiz-modal-content { transform: translateY(0); }
+        .quiz-modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; margin-bottom: 10px; }
+
         @media (max-width: 600px) {
-            /* EXACT MOBILE H1 FONT SIZE: 23px */
-            .hero-title { font-size: 23px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
+            .hero-title { font-size: 25px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
             .top-meta-bar { flex-wrap: nowrap; justify-content: space-between; }
-            
             .widget-header { padding: 10px; align-items: center; }
             .text-controls { justify-content: center; gap: 3px; padding: 2px 0; }
             
-            /* RESTORED: Toolbar Icons back to 13.6px for mobile too */
             .icon-btn, .text-btn, .text-controls label { width: 28px !important; height: 28px !important; font-size: 13.6px !important; border-radius: 6px !important; }
             .v-divider { margin: 0 1px; height: 14px; }
             
-            /* COMPACT DASHBOARD STATS FOR MOBILE (Strict 10.4px) */
             .stat-item { flex-direction: column; gap: 1px; padding: 4px 1px; align-items: center; }
             .stat-label { font-size: 10.4px !important; letter-spacing: -0.2px; margin: 0; }
             .stat-value { font-size: 10.4px !important; }
@@ -498,10 +493,22 @@
             .nav-btn { padding: 4px 8px; font-size: 0.7rem; min-width: 55px; }
             .progress-display { padding: 2px 6px; }
             .progress-text { font-size: 0.7rem; }
+            
+            /* Quick Links Mobile Fix: Inline & Scrollable without breaking width */
+            .quick-links {
+                flex-wrap: nowrap !important;
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                justify-content: flex-start !important;
+                padding-bottom: 5px;
+                max-width: 100%;
+            }
+            .quick-links::-webkit-scrollbar { display: none; }
+            .quick-link-item { font-size: 0.65rem; padding: 4px 10px; }
         }
     </style>
 
-    <!-- Theme Initialization Script -->
     <script>
         const savedTheme = localStorage.getItem('theme') || 'light';
         document.documentElement.setAttribute('data-theme', savedTheme);
@@ -537,6 +544,10 @@
     <!-- New Top Page Header (Centers H1 above the columns) -->
     <div class="page-header-top">
         <h1 class="hero-title">Tourism in Himachal Pradesh</h1>
+        <!-- Descriptive content acting as hero sub-heading -->
+        <p class="hero-desc">
+            Tourism is a massive pillar of HP's economy, contributing heavily (~7%) to the GSDP. Questions on heritage sites, religious places, and government eco-tourism schemes are common in state exams. <br>पर्यटन हिमाचल की अर्थव्यवस्था का एक प्रमुख स्तंभ है। धरोहर स्थलों, धार्मिक स्थलों और सरकारी योजनाओं पर प्रश्न परीक्षाओं में अक्सर पूछे जाते हैं।
+        </p>
     </div>
 
     <!-- Side-by-Side Two Column Layout -->
@@ -545,30 +556,29 @@
         <!-- Left Column: Intro Hook -->
         <section class="intro-column">
             <div class="intro-grid">
-                <!-- Fixed Heading Hierarchy & Center Aligned Card -->
+                <!-- Cleaned up left card: Now just holds Quick Links -->
                 <div class="intro-card glass-panel" style="text-align: center;">
-                    <h2 style="justify-content: center;"><i class="fa-solid fa-star"></i> Why This Matters? (यह महत्वपूर्ण क्यों है?)</h2>
-                    <p>Tourism is a major pillar of HP's economy (approx 7% of GSDP). Questions on heritage sites, religious places, and government schemes like 'Nai Raahein Nai Manzilein' are common in exams. <br><br>पर्यटन हिमाचल की अर्थव्यवस्था का एक प्रमुख स्तंभ है। धरोहर स्थलों, धार्मिक स्थलों और सरकारी योजनाओं पर प्रश्न परीक्षाओं में सामान्य हैं।</p>
+                    <h2 style="justify-content: center; margin-bottom: 12px; font-size: 1rem;"><i class="fa-solid fa-link"></i> Quick Study Links</h2>
                     
-                    <!-- Sibling Directory Interlinking -->
-                    <div class="quick-links" style="justify-content: center;">
-                        <a href="../rivers/" class="quick-link-item"><i class="fa-solid fa-water"></i> Rivers</a>
+                    <!-- Exactly 4 Sibling Directory Interlinking -->
+                    <div class="quick-links">
                         <a href="../history/" class="quick-link-item"><i class="fa-solid fa-landmark"></i> History</a>
-                        <a href="../district/" class="quick-link-item"><i class="fa-solid fa-map-location-dot"></i> Districts</a>
-                        <a href="../economy/" class="quick-link-item"><i class="fa-solid fa-bolt"></i> Economy</a>
+                        <a href="../geography/" class="quick-link-item"><i class="fa-solid fa-mountain"></i> Geography</a>
+                        <a href="../art-culture/" class="quick-link-item"><i class="fa-solid fa-palette"></i> Art & Culture</a>
+                        <a href="../economy/" class="quick-link-item"><i class="fa-solid fa-chart-line"></i> Economy</a>
                     </div>
                 </div>
 
                 <div class="intro-card glass-panel">
                     <h2><i class="fa-solid fa-list-check"></i> What this Page Covers (इस पृष्ठ में क्या शामिल है)</h2>
                     <ul class="intro-list">
-                        <li><strong>Hill Stations (हिल स्टेशन):</strong> Shimla (Queen of Hills), Manali, Dalhousie, Dharamshala, and Kasauli. (शिमला, मनाली, डलहौजी).</li>
-                        <li><strong>Religious Tourism (धार्मिक पर्यटन):</strong> Shakti Peeths (Jwalamukhi, Naina Devi), Monasteries (Tabo, Key), Sikh Shrines. (शक्तिपीठ, मठ, गुरुद्वारे).</li>
-                        <li><strong>Adventure Sports (साहसिक खेल):</strong> Paragliding (Bir Billing), River Rafting (Beas, Satluj), Skiing (Solang, Kufri), Trekking. (पैराग्लाइडिंग, राफ्टिंग, स्कीइंग).</li>
-                        <li><strong>Heritage Sites (धरोहर स्थल):</strong> UNESCO Sites (Kalka-Shimla Railway, GHNP), Kangra Fort, Naggar Castle, Viceregal Lodge. (यूनेस्को स्थल, कांगड़ा किला).</li>
-                        <li><strong>Lakes & Hot Springs (झीलें और गर्म झरने):</strong> Prashar, Chandratal, Renuka. Hot springs at Tattapani, Manikaran, Vashisht. (पराशर, चंद्रताल, मणिकर्ण).</li>
-                        <li><strong>Government Initiatives (सरकारी पहल):</strong> 'Nai Raahein Nai Manzilein', Eco-Tourism Policy, Home Stay Scheme. (नई राहें नई मंजिलें, होम स्टे).</li>
-                        <li><strong>Interactive Quiz (संवादात्मक प्रश्नोत्तरी):</strong> Test your knowledge on tourism destinations and facts through 350+ bilingual MCQs.</li>
+                        <li><strong>Popular Hill Stations (प्रसिद्ध हिल स्टेशन):</strong> Shimla, Manali, Dalhousie, and Dharamshala – their historical significance and top attractions. (शिमला, मनाली, डलहौजी और धर्मशाला के मुख्य आकर्षण).</li>
+                        <li><strong>Religious Tourism (धार्मिक पर्यटन):</strong> Ancient Shakti Peeths, deeply revered Buddhist Monasteries (Tabo, Key), and prominent Sikh Shrines. (शक्तिपीठ, बौद्ध मठ और सिख गुरुद्वारे).</li>
+                        <li><strong>Adventure Sports (साहसिक खेल):</strong> World-class Paragliding at Bir Billing, River Rafting in Kullu, and extreme Winter Sports. (पैराग्लाइडिंग, राफ्टिंग और शीतकालीन खेल).</li>
+                        <li><strong>Heritage Sites (विरासत स्थल):</strong> UNESCO World Heritage Sites (Kalka-Shimla Railway), Kangra Fort, and Naggar Castle. (यूनेस्को स्थल, कांगड़ा किला और नग्गर कैसल).</li>
+                        <li><strong>Lakes & Hot Springs (झीलें और गर्म झरने):</strong> Mystical lakes like Prashar/Chandratal and therapeutic hot springs like Manikaran/Tattapani. (पराशर, चंद्रताल झीलें और मणिकर्ण के गर्म झरने).</li>
+                        <li><strong>Government Policies (सरकारी योजनाएं):</strong> The transformative 'Nai Raahein Nai Manzilein' scheme, Eco-Tourism policies, and the Home Stay Scheme. (नई राहें नई मंजिलें और होम स्टे योजनाएं).</li>
+                        <li><strong>Interactive Testing (संवादात्मक प्रश्नोत्तरी):</strong> Test your knowledge of tourism destinations, geographic facts, and schemes through 350+ bilingual MCQs. (350+ बहुविकल्पीय प्रश्नों के माध्यम से अभ्यास).</li>
                     </ul>
                 </div>
             </div>
@@ -583,13 +593,13 @@
                 </button>
 
                 <div class="widget-header">
-                    <div class="text-controls">
-                        <button class="icon-btn" onclick="toggleHelpModal()" title="Help Guide">
+                    <div class="text-controls" style="margin: 0 auto;">
+                        <button class="icon-btn" onclick="toggleHelpModal()" title="Help Guide" type="button">
                             <i class="fa-solid fa-circle-question"></i>
                         </button>
-                        <div class="v-divider"></div>
+                        <div class="v-divider" style="width: 1px; height: 16px; background: var(--border-color); margin: 0 4px;"></div>
                         
-                        <button class="icon-btn" onclick="exportProgress()" title="Backup Progress">
+                        <button class="icon-btn" onclick="exportProgress()" title="Backup Progress" type="button">
                             <i class="fa-solid fa-download"></i>
                         </button>
                         <label for="importFile" class="icon-btn" title="Restore Progress" style="margin:0; cursor:pointer;">
@@ -597,29 +607,29 @@
                         </label>
                         <input type="file" id="importFile" style="display: none;" accept=".json" onchange="importProgress(this)">
                         
-                        <button class="icon-btn" onclick="resetProgress()" title="Reset Progress">
+                        <button class="icon-btn reset" onclick="resetProgress()" title="Reset Progress" type="button" style="color: var(--wrong-text);">
                             <i class="fa-solid fa-rotate-right"></i>
                         </button>
                         
-                        <div class="v-divider"></div>
+                        <div class="v-divider" style="width: 1px; height: 16px; background: var(--border-color); margin: 0 4px;"></div>
 
-                        <button class="icon-btn" id="quickModeBtn" onclick="toggleQuickMode()" title="Quick 10 Quiz">
+                        <button class="icon-btn" id="quickModeBtn" onclick="toggleQuickMode()" title="Quick 10 Quiz" type="button" style="color: var(--accent);">
                             <i class="fa-solid fa-bolt"></i>
                         </button>
-                        <button class="icon-btn" id="shuffleBtn" onclick="toggleShuffle()" title="Shuffle Questions">
+                        <button class="icon-btn" id="shuffleBtn" onclick="toggleShuffle()" title="Shuffle Questions" type="button" style="color: var(--primary);">
                             <i class="fa-solid fa-shuffle"></i>
                         </button>
-                        <button class="icon-btn" id="mistakeFilterBtn" onclick="toggleMistakeFilter()" title="Review Mistakes">
+                        <button class="icon-btn" id="mistakeFilterBtn" onclick="toggleMistakeFilter()" title="Review Mistakes" type="button" style="color: var(--wrong-text);">
                             <i class="fa-solid fa-triangle-exclamation"></i>
                         </button>
-                        <button class="icon-btn" id="bookmarkFilterBtn" onclick="toggleBookmarkFilter()" title="Saved Bookmarks">
+                        <button class="icon-btn" id="bookmarkFilterBtn" onclick="toggleBookmarkFilter()" title="Saved Bookmarks" type="button" style="color: var(--primary);">
                             <i class="fa-regular fa-bookmark"></i>
                         </button>
                         
-                        <div class="v-divider"></div>
+                        <div class="v-divider" style="width: 1px; height: 16px; background: var(--border-color); margin: 0 4px;"></div>
                         
-                        <button class="text-btn" onclick="adjustFont(-1)" title="Decrease Font">A-</button>
-                        <button class="text-btn" onclick="adjustFont(1)" title="Increase Font">A+</button>
+                        <button class="text-btn" onclick="adjustFont(-1)" title="Decrease Font" type="button">A-</button>
+                        <button class="text-btn" onclick="adjustFont(1)" title="Increase Font" type="button">A+</button>
                     </div>
                 </div>
 
@@ -643,7 +653,6 @@
                     <div class="widget-controls">
                         <button id="prevBtn" class="nav-btn"><i class="fa-solid fa-arrow-left"></i> Prev</button>
                         
-                        <!-- REPLACED JUMP WITH SIMPLE PROGRESS TEXT -->
                         <div class="progress-display">
                             <span class="progress-text" id="progressText">0 / 0</span>
                         </div>
@@ -658,130 +667,189 @@
     
     <div class="section-separator"></div>
 
-    <!-- Full Width Bilingual Content -->
+    <!-- Full Width Bilingual Content: Expanded to 9 Detailed Bullet-Point Sections -->
     <section class="seo-content-wrapper">
         <div class="seo-header">
             <h2>Detailed Tourism Notes (विस्तृत पर्यटन नोट्स)</h2>
-            <p>Guide to the beautiful destinations and tourism potential of Dev Bhumi. <br>(देवभूमि के सुंदर स्थलों और पर्यटन क्षमता का गाइड।)</p>
+            <p>A comprehensive guide to the breathtaking destinations, extreme adventure sports, and tourism potential of Dev Bhumi. <br>(देवभूमि के लुभावने स्थलों, साहसिक खेलों और पर्यटन क्षमता का एक व्यापक गाइड।)</p>
         </div>
 
         <div class="seo-grid">
             
-            <!-- 1. Famous Hill Stations -->
+            <!-- 1. Popular Hill Stations -->
             <div class="seo-card glass-panel">
-                <h3><i class="fa-solid fa-mountain-sun"></i> 1. Famous Hill Stations (प्रसिद्ध हिल स्टेशन)</h3>
-                <p>British-era retreats and scenic towns. <br>(ब्रिटिश कालीन आश्रय स्थल और सुंदर शहर।)</p>
+                <h3><i class="fa-solid fa-mountain-sun"></i> 1. Popular Hill Stations (प्रसिद्ध हिल स्टेशन)</h3>
+                <p>Historic British-era retreats and globally renowned scenic mountain towns. <br>(ऐतिहासिक ब्रिटिश कालीन आश्रय स्थल और विश्व स्तर पर प्रसिद्ध सुरम्य पहाड़ी शहर।)</p>
                 <ul class="seo-list">
-                    <li><strong>Shimla:</strong> 'Queen of Hills'. Former Summer Capital. The Ridge, Mall Road, Jakhu Temple. (शिमला: पहाड़ों की रानी, रिज, जाखू).</li>
-                    <li><strong>Manali:</strong> Gateway to Lahaul-Spiti. Hadimba Temple, Solang Valley, Rohtang Pass. Honeymoon destination. (मनाली: हिडिम्बा मंदिर, सोलंग).</li>
-                    <li><strong>Dalhousie:</strong> Established by Lord Dalhousie (1854). Colonial architecture. Mini Switzerland (Khajjiar) nearby. (डलहौजी: औपनिवेशिक वास्तुकला, खज्जियार).</li>
-                    <li><strong>Dharamshala:</strong> Winter Capital of HP. McLeodganj (Little Lhasa) - Home of Dalai Lama. Cricket Stadium. (धर्मशाला: शीतकालीन राजधानी, मैक्लोडगंज).</li>
-                    <li><strong>Kasauli:</strong> Quiet cantonment town. Monkey Point, Christ Church. (कसौली: शांत छावनी).</li>
+                    <li><strong>Shimla:</strong> Globally celebrated as the 'Queen of Hills'. It was the historic Summer Capital of British India (1864). (शिमला: 'पहाड़ियों की रानी' के रूप में विश्व स्तर पर विख्यात, ब्रिटिश भारत की पूर्व ग्रीष्मकालीन राजधानी).</li>
+                    <li><strong>Manali:</strong> The ultimate gateway to Lahaul-Spiti. It is heavily famous as a premier honeymoon destination worldwide. (मनाली: लाहौल-स्पीति का प्रवेश द्वार, दुनिया भर में एक प्रमुख हनीमून गंतव्य के रूप में बेहद प्रसिद्ध).</li>
+                    <li><strong>Dalhousie:</strong> Established strategically by Lord Dalhousie in 1854. It is widely renowned for its pristine Scottish colonial architecture. (डलहौजी: 1854 में स्थापित, अपनी स्कॉटिश औपनिवेशिक वास्तुकला के लिए व्यापक रूप से प्रसिद्ध).</li>
+                    <li><strong>Dharamshala:</strong> Officially declared the Winter Capital of HP. The upper part (McLeodganj) is the permanent home of the Dalai Lama. (धर्मशाला: शीतकालीन राजधानी, इसका ऊपरी भाग (मैक्लोडगंज) दलाई लामा का स्थायी घर है).</li>
+                    <li><strong>Kasauli:</strong> A remarkably quiet, highly scenic, and historically preserved military cantonment town located in the Solan district. (कसौली: सोलन जिले में स्थित एक बेहद शांत, प्राकृतिक और ऐतिहासिक रूप से संरक्षित सैन्य छावनी शहर).</li>
+                    <li><strong>Chail:</strong> Formerly the majestic summer capital of the Patiala Kings. It proudly boasts the world's absolute highest cricket ground. (चायल: पूर्व में पटियाला के राजाओं की ग्रीष्मकालीन राजधानी, यहाँ दुनिया का सबसे ऊँचा क्रिकेट मैदान है).</li>
+                    <li><strong>Khajjiar:</strong> A spectacular saucer-shaped green meadow in Chamba, officially recognized globally as the 'Mini Switzerland of India'. (खज्जियार: चंबा का तश्तरी के आकार का हरा-भरा मैदान, जिसे 'भारत का मिनी स्विट्जरलैंड' कहा जाता है).</li>
+                    <li><strong>Palampur:</strong> Widely known as the 'Tea Capital of North India', surrounded by lush green Kangra tea gardens and the Dhauladhar range. (पालमपुर: 'उत्तर भारत की चाय की राजधानी' के रूप में जाना जाता है, जो हरे-भरे चाय बागानों से घिरा है).</li>
                 </ul>
             </div>
 
             <!-- 2. Religious Tourism -->
             <div class="seo-card glass-panel">
                 <h3><i class="fa-solid fa-om"></i> 2. Religious Tourism (धार्मिक पर्यटन)</h3>
-                <p>'Land of Gods' attracts pilgrims year-round. <br>('देवताओं की भूमि' साल भर तीर्थयात्रियों को आकर्षित करती है।)</p>
+                <p>The 'Land of Gods' attracts millions of devoted pilgrims year-round to its ancient temples and monasteries. <br>('देवताओं की भूमि' अपने प्राचीन मंदिरों और मठों में साल भर लाखों श्रद्धालुओं को आकर्षित करती है।)</p>
                 <ul class="seo-list">
-                    <li><strong>Shakti Peeths:</strong> Jwalamukhi (Eternal flame), Naina Devi (Bilaspur), Chintpurni (Una - Headless deity), Chamunda Devi (Kangra), Brajeshwari Devi. (शक्तिपीठ: ज्वालामुखी, नैना देवी, आदि).</li>
-                    <li><strong>Hindu Temples:</strong> Baijnath (Shiva - Ravana worshiped here), Bhimakali (Sarahan - Gateway to Kinnaur), Hatkoti (Shimla). (बैजनाथ, भीमाकाली).</li>
-                    <li><strong>Buddhist Monasteries:</strong> Tabo (Ajanta of Himalayas - Spiti, 996 AD), Key Gompa (Largest in Spiti), Dhankar. (ताबो, की, धनकर मठ).</li>
-                    <li><strong>Sikh Shrines:</strong> Paonta Sahib (Guru Gobind Singh stayed), Manikaran Sahib (Guru Nanak visited). (पांवटा साहिब, मणिकर्ण).</li>
+                    <li><strong>Shakti Peeths:</strong> HP hosts highly revered Shakti Peeths like Jwalamukhi (Eternal flame), Naina Devi (Bilaspur), and Chintpurni (Una). (शक्तिपीठ: हिमाचल में ज्वालामुखी (शाश्वत ज्वाला), नैना देवी और चिंतपूर्णी जैसे अत्यधिक श्रद्धेय शक्तिपीठ हैं).</li>
+                    <li><strong>Baijnath Temple:</strong> An incredibly ancient, profoundly sacred 13th-century stone temple specifically dedicated to Lord Shiva (Vaidyanath) in Kangra. (बैजनाथ मंदिर: कांगड़ा में विशेष रूप से भगवान शिव को समर्पित 13वीं सदी का प्राचीन और पवित्र पत्थर का मंदिर).</li>
+                    <li><strong>Bhimakali Temple:</strong> A stunning, towering multi-story temple in Sarahan (Shimla), uniquely blending Hindu and Buddhist architectural styles. (भीमाकाली मंदिर: सराहन (शिमला) में हिंदू और बौद्ध स्थापत्य शैली का अनूठा मिश्रण वाला एक शानदार बहुमंजिला मंदिर).</li>
+                    <li><strong>Tabo Monastery:</strong> Located in Spiti, it was founded in 996 AD. It is famously known globally as the 'Ajanta of the Himalayas'. (ताबो मठ: स्पीति में स्थित (स्थापना 996 ई.), इसे विश्व स्तर पर 'हिमालय का अजंता' कहा जाता है).</li>
+                    <li><strong>Key Gompa:</strong> The absolute largest and most spectacularly situated high-altitude Buddhist monastery in the Spiti Valley. (की गोम्पा: स्पीति घाटी में स्थित सबसे बड़ा और सबसे शानदार उच्च ऊंचाई वाला बौद्ध मठ).</li>
+                    <li><strong>Paonta Sahib:</strong> A highly significant and revered Sikh pilgrimage center in Sirmaur where Guru Gobind Singh lived for over four years. (पौंटा साहिब: सिरमौर में एक अत्यधिक महत्वपूर्ण सिख तीर्थस्थल जहां गुरु गोबिंद सिंह चार साल से अधिक समय तक रहे).</li>
+                    <li><strong>Manikaran Sahib:</strong> A highly holy site for both Sikhs and Hindus in Kullu, heavily famous for its natural boiling hot water springs. (मणिकर्ण साहिब: कुल्लू में सिखों और हिंदुओं दोनों के लिए एक पवित्र स्थल, जो उबलते गर्म पानी के झरनों के लिए प्रसिद्ध है).</li>
+                    <li><strong>Rewalsar Lake:</strong> A deeply sacred and completely unique pilgrimage destination in Mandi, highly revered by Hindus, Sikhs, and Buddhists equally. (रिवालसर झील: मंडी में एक पवित्र तीर्थस्थल, जो हिंदू, सिख और बौद्धों द्वारा समान रूप से पूजनीय है).</li>
                 </ul>
             </div>
 
-            <!-- 3. Adventure Tourism -->
+            <!-- 3. Adventure & Extreme Sports -->
             <div class="seo-card glass-panel">
-                <h3><i class="fa-solid fa-parachute-box"></i> 3. Adventure Tourism (साहसिक पर्यटन)</h3>
-                <p>Thrilling activities for adrenaline junkies. <br>(रोमांच चाहने वालों के लिए गतिविधियाँ।)</p>
+                <h3><i class="fa-solid fa-parachute-box"></i> 3. Adventure & Extreme Sports (साहसिक खेल)</h3>
+                <p>Thrilling, world-class outdoor activities explicitly designed for global adrenaline junkies. <br>(दुनिया भर के रोमांच चाहने वालों के लिए स्पष्ट रूप से डिज़ाइन की गई विश्व स्तरीय बाहरी गतिविधियाँ।)</p>
                 <ul class="seo-list">
-                    <li><strong>Paragliding:</strong> Bir Billing (Kangra) - World's 2nd best site. Hosted Paragliding World Cup (2015). (बीर बिलिंग: विश्व का दूसरा सर्वश्रेष्ठ स्थल).</li>
-                    <li><strong>River Rafting:</strong> Beas (Shamshi to Jhiri), Satluj (Tattapani), Ravi (Chamba), Chenab (Pangi). (राफ्टिंग: ब्यास, सतलुज).</li>
-                    <li><strong>Skiing:</strong> Solang Nala (Manali), Kufri (Shimla), Narkanda (Hatu Peak). Heli-skiing in Hanuman Tibba. (स्कीइंग: सोलंग, कुफरी, नारकंडा).</li>
-                    <li><strong>Trekking:</strong> Hampta Pass, Pin Parvati, Triund (Dharamshala), Kinner Kailash Parikrama. (ट्रैकिंग: हम्प्टा पास, त्रिउंड).</li>
-                    <li><strong>Ice Skating:</strong> Shimla Ice Skating Rink (Asia's only natural open-air rink). (आइस स्केटिंग: शिमला).</li>
+                    <li><strong>Paragliding (Bir Billing):</strong> Officially ranked as the World's 2nd best paragliding site. It proudly hosted the AAI Paragliding World Cup in 2015. (पैराग्लाइडिंग (बीड़ बिलिंग): दुनिया का दूसरा सबसे अच्छा साइट, जिसने 2015 में पैराग्लाइडिंग विश्व कप की मेजबानी की थी).</li>
+                    <li><strong>River Rafting:</strong> Highly popular and thrilling white-water rafting is conducted on the Beas (Kullu) and Satluj (Tattapani) rivers. (रिवर राफ्टिंग: ब्यास (कुल्लू) और सतलुज (तत्तापानी) नदियों पर अत्यधिक लोकप्रिय और रोमांचक व्हाइट-वाटर राफ्टिंग).</li>
+                    <li><strong>Heli-Skiing:</strong> Extreme, high-altitude Heli-skiing is actively conducted at Hanuman Tibba and Rohtang Pass in the Kullu district. (हेली-स्कीइंग: कुल्लू जिले में हनुमान टिब्बा और रोहतांग दर्रे पर उच्च ऊंचाई वाली चरम हेली-स्कीइंग की जाती है).</li>
+                    <li><strong>Mountaineering Institute:</strong> The premier Atal Bihari Vajpayee Institute of Mountaineering and Allied Sports (ABVIMAS) is located in Manali. (पर्वतारोहण संस्थान: प्रमुख 'अटल बिहारी वाजपेयी पर्वतारोहण और संबद्ध खेल संस्थान' मनाली में स्थित है).</li>
+                    <li><strong>Ice Skating:</strong> The historic Shimla Ice Skating Rink operates as Asia's absolute oldest and only naturally formed open-air ice skating rink. (आइस स्केटिंग: ऐतिहासिक शिमला आइस स्केटिंग रिंक एशिया का सबसे पुराना प्राकृतिक ओपन-एयर रिंक है).</li>
+                    <li><strong>Zorbing & ATVs:</strong> The lush, expansive Solang Valley near Manali is the ultimate state hub for Zorbing, ATVs, and summer paragliding. (ज़ोर्बिंग और एटीवी: मनाली के पास सोलंग घाटी ज़ोर्बिंग, एटीवी और ग्रीष्मकालीन पैराग्लाइडिंग का प्रमुख केंद्र है).</li>
+                    <li><strong>Mountain Biking:</strong> HP successfully hosts the internationally acclaimed "MTB Himalaya" – one of the toughest mountain biking races globally. (माउंटेन बाइकिंग: हिमाचल विश्व की सबसे कठिन माउंटेन बाइकिंग रेस में से एक "MTB हिमालया" की मेजबानी करता है).</li>
+                    <li><strong>Kayaking & Canoeing:</strong> Safely conducted in the vast, calm waters of the massive Pong Dam (Maharana Pratap Sagar) reservoir in Kangra. (कयाकिंग और कैनोइंग: कांगड़ा में पोंग बांध (महाराणा प्रताप सागर) के शांत पानी में सुरक्षित रूप से आयोजित किया जाता है).</li>
                 </ul>
             </div>
 
-            <!-- 4. Heritage & Culture -->
+            <!-- 4. Heritage & Historical Sites -->
             <div class="seo-card glass-panel">
-                <h3><i class="fa-solid fa-monument"></i> 4. Heritage & Culture (विरासत और संस्कृति)</h3>
-                <p>Preserving the rich history and architecture. <br>(समृद्ध इतिहास और वास्तुकला का संरक्षण।)</p>
+                <h3><i class="fa-solid fa-monument"></i> 4. Heritage & Historical Sites (विरासत स्थल)</h3>
+                <p>Preserving the state's incredibly rich, diverse history, colonial architecture, and ancient royal forts. <br>(राज्य के अविश्वसनीय रूप से समृद्ध इतिहास, औपनिवेशिक वास्तुकला और प्राचीन शाही किलों का संरक्षण।)</p>
                 <ul class="seo-list">
-                    <li><strong>UNESCO World Heritage Sites:</strong> 
-                        <br>- Kalka-Shimla Railway (Declared 2008). 96 km, 103 tunnels.
-                        <br>- Great Himalayan National Park (Declared 2014). Biodiversity hotspot. (यूनेस्को स्थल: कालका-शिमला रेलवे, GHNP).
-                    </li>
-                    <li><strong>Forts & Palaces:</strong> Kangra Fort (Oldest), Naggar Castle (Kullu - Roerich Art Gallery), Arki Fort, Sujanpur Tira. (कांगड़ा किला, नग्गर कैसल).</li>
-                    <li><strong>Museums:</strong> State Museum (Shimla), Bhuri Singh Museum (Chamba - 1908), Sobha Singh Art Gallery (Andretta). (संग्रहालय: भूरी सिंह, सोभा सिंह).</li>
+                    <li><strong>Kalka-Shimla Railway:</strong> An absolute engineering marvel (96 km long, 103 tunnels) officially declared a prestigious UNESCO World Heritage Site in 2008. (कालका-शिमला रेलवे: एक इंजीनियरिंग चमत्कार जिसे 2008 में यूनेस्को विश्व धरोहर स्थल घोषित किया गया था).</li>
+                    <li><strong>Kangra Fort:</strong> Built originally by the Katoch dynasty, it is officially recorded as the absolute oldest and largest fort in the entire Himalayas. (कांगड़ा किला: कटोच वंश द्वारा निर्मित, हिमालय का सबसे पुराना और सबसे बड़ा किला).</li>
+                    <li><strong>Naggar Castle:</strong> A stunning, medieval wood-and-stone castle in Kullu that currently houses the incredible Roerich Art Gallery. (नग्गर कैसल: कुल्लू में एक शानदार लकड़ी और पत्थर का महल जहाँ अब रोरिक आर्ट गैलरी है).</li>
+                    <li><strong>Viceregal Lodge:</strong> Also known as Rashtrapati Niwas in Shimla, a majestic colonial structure that now houses the Indian Institute of Advanced Study. (वायसराय लॉज: शिमला में एक राजसी औपनिवेशिक संरचना जिसमें अब भारतीय उन्नत अध्ययन संस्थान है).</li>
+                    <li><strong>Padam Palace:</strong> Located perfectly in Rampur Bushahr, it beautifully showcases a highly unique blend of colonial and traditional wooden architecture. (पदम पैलेस: रामपुर बुशहर में स्थित, जो औपनिवेशिक और पारंपरिक लकड़ी की वास्तुकला का एक अनूठा मिश्रण है).</li>
+                    <li><strong>State Museum (Shimla):</strong> Housed in a historic colonial building ('Inverarm'), it extensively preserves incredibly rare Himachali artifacts and sculptures. (राज्य संग्रहालय (शिमला): ऐतिहासिक इमारत ('इनवरार्म') में स्थित, यह दुर्लभ हिमाचली कलाकृतियों को संरक्षित करता है).</li>
+                    <li><strong>Bhuri Singh Museum:</strong> Established historically in 1908 in Chamba, it is specifically famous worldwide for preserving rare Pahari miniature paintings. (भूरी सिंह संग्रहालय: 1908 में चंबा में स्थापित, दुर्लभ पहाड़ी लघु चित्रों को संरक्षित करने के लिए विश्व स्तर पर प्रसिद्ध).</li>
+                    <li><strong>Kamlah Fort:</strong> A highly strategic, heavily fortified ancient structure brilliantly built by Raja Suraj Sen in the Mandi state. (कमलाह किला: मंडी राज्य में राजा सूरज सेन द्वारा शानदार ढंग से निर्मित एक अत्यधिक रणनीतिक, भारी गढ़ वाली प्राचीन संरचना).</li>
                 </ul>
             </div>
 
             <!-- 5. Lakes & Hot Springs -->
             <div class="seo-card glass-panel">
                 <h3><i class="fa-solid fa-hot-tub-person"></i> 5. Lakes & Hot Springs (झीलें और गर्म झरने)</h3>
-                <p>Natural wonders with medicinal properties. <br>(औषधीय गुणों वाले प्राकृतिक चमत्कार।)</p>
+                <p>Breathtaking natural aquatic wonders strongly endowed with deeply revered medicinal and spiritual properties. <br>(गहरे औषधीय और आध्यात्मिक गुणों से संपन्न लुभावने प्राकृतिक जलीय चमत्कार।)</p>
                 <ul class="seo-list">
-                    <li><strong>Lakes:</strong> 
-                        <br>- Renuka (Largest natural - Sirmaur).
-                        <br>- Govind Sagar (Largest man-made - Bilaspur).
-                        <br>- Chandratal (Spiti - Moon Lake).
-                        <br>- Prashar (Mandi - Floating Island). (झीलें: रेणुका, गोविंद सागर, चंद्रताल).
-                    </li>
-                    <li><strong>Hot Springs:</strong> 
-                        <br>- Manikaran (Kullu - Parvati river).
-                        <br>- Vashisht (Manali - Beas).
-                        <br>- Tattapani (Mandi - Satluj - Sulfur water cures skin diseases).
-                        <br>- Jeori (Shimla). (गर्म झरने: मणिकर्ण, तत्तापानी).
-                    </li>
+                    <li><strong>Renuka Lake:</strong> Located in Sirmaur, it is completely uniquely shaped like a sleeping woman and is the largest natural lake in HP. (रेणुका झील: सिरमौर में स्थित, सोई हुई महिला के आकार की यह हिमाचल की सबसे बड़ी प्राकृतिक झील है).</li>
+                    <li><strong>Chandratal Lake:</strong> Meaning 'Lake of the Moon', this pristine high-altitude glacial lake in Spiti is a designated Ramsar Wetland site. (चंद्रताल झील: स्पीति में स्थित यह प्राचीन हिमनद झील एक नामित रामसर आर्द्रभूमि स्थल है).</li>
+                    <li><strong>Prashar Lake:</strong> Located in Mandi, it is highly mysterious and famous globally for its constantly moving floating circular island. (पराशर झील: मंडी में स्थित, यह रहस्यमय झील अपने तैरते हुए गोलाकार द्वीप के लिए विश्व स्तर पर प्रसिद्ध है).</li>
+                    <li><strong>Govind Sagar:</strong> The absolute largest man-made artificial lake in the state, massively formed by the Bhakra Dam on the Satluj river. (गोविंद सागर: सतलुज नदी पर भाखड़ा बांध द्वारा निर्मित राज्य की सबसे बड़ी मानव निर्मित कृत्रिम झील).</li>
+                    <li><strong>Manikaran Hot Springs:</strong> Situated on the Parvati river, these naturally boiling springs are extremely famous for cooking community langar food directly. (मणिकर्ण के गर्म झरने: पार्वती नदी पर स्थित, ये उबलते झरने लंगर का खाना सीधे पकाने के लिए प्रसिद्ध हैं).</li>
+                    <li><strong>Tattapani Hot Springs:</strong> Located right on the sandy banks of the Satluj in Mandi; its hot sulfur water is known to cure serious skin diseases. (तत्तापानी के गर्म झरने: मंडी में सतलुज के तट पर स्थित; इसका सल्फर युक्त पानी त्वचा रोगों को ठीक करता है).</li>
+                    <li><strong>Vashisht Springs:</strong> Highly therapeutic, heavily visited hot water springs located beautifully on the left bank of the Beas river near Manali. (वशिष्ठ झरने: मनाली के पास ब्यास नदी के बाएं किनारे पर स्थित अत्यधिक चिकित्सीय गर्म पानी के झरने).</li>
+                    <li><strong>Jeori Hot Springs:</strong> A very prominent natural hot water spring located exactly on the strategic Hindustan-Tibet road (NH-5) in Shimla. (ज्यूरी गर्म झरने: शिमला में रणनीतिक हिंदुस्तान-तिब्बत रोड (NH-5) पर स्थित एक प्रमुख प्राकृतिक गर्म पानी का झरना).</li>
                 </ul>
             </div>
 
-            <!-- 6. Government Initiatives -->
+            <!-- 6. Famous Trekking Routes -->
             <div class="seo-card glass-panel">
-                <h3><i class="fa-solid fa-bullhorn"></i> 6. Schemes & Initiatives (योजनाएं और पहल)</h3>
-                <p>Steps to boost tourism infrastructure. <br>(पर्यटन बुनियादी ढांचे को बढ़ावा देने के लिए कदम।)</p>
+                <h3><i class="fa-solid fa-person-hiking"></i> 6. Famous Trekking Routes (प्रमुख ट्रैकिंग मार्ग)</h3>
+                <p>Extreme, world-renowned trails explicitly offering unparalleled access into the deepest, hidden parts of the Himalayas. <br>(चरम, विश्व-प्रसिद्ध मार्ग जो हिमालय के सबसे गहरे, छिपे हुए हिस्सों तक अद्वितीय पहुंच प्रदान करते हैं।)</p>
                 <ul class="seo-list">
-                    <li><strong>'Nai Raahein Nai Manzilein':</strong> To develop unexplored areas. Focus on Janjehli (Mandi - Eco-tourism), Chanshal (Shimla - Skiing), Bir Billing (Kangra - Aero sports). (नई राहें नई मंजिलें).</li>
-                    <li><strong>Home Stay Scheme:</strong> Launched 2008. Encourages locals to host tourists. 'Atithi Devo Bhava'. Tax exemptions provided. (होम स्टे योजना - 2008).</li>
-                    <li><strong>Shiv Dham:</strong> Being developed in Mandi (Replica of 12 Jyotirlingas). (शिव धाम - मंडी).</li>
-                    <li><strong>Ropeways:</strong> 'Parvat Mala' scheme. Dharamshala-McLeodganj ropeway (Mono-cable). Proposed: Bijli Mahadev. (रोपवे: पर्वत माला).</li>
-                    <li><strong>Sustainable Tourism:</strong> Ban on plastic in high altitudes. Rohtang Pass permit system to control pollution. (सतत पर्यटन).</li>
+                    <li><strong>Hampta Pass Trek:</strong> A massively popular, highly dramatic crossover trek seamlessly bridging the lush green Kullu valley with the barren Lahaul valley. (हम्पटा पास ट्रेक: हरी-भरी कुल्लू घाटी को बंजर लाहौल घाटी से जोड़ने वाला एक बेहद लोकप्रिय और नाटकीय ट्रेक).</li>
+                    <li><strong>Pin Parvati Pass:</strong> An incredibly tough, high-altitude expedition trek directly connecting the dense Parvati valley to the arid Pin valley in Spiti. (पिन पार्वती पास: घनी पार्वती घाटी को स्पीति की शुष्क पिन घाटी से सीधे जोड़ने वाला एक बेहद कठिन ट्रेक).</li>
+                    <li><strong>Kinner Kailash Parikrama:</strong> An extremely challenging, deeply sacred high-altitude pilgrimage trek completely circling the holy Kinner Kailash peak in Kinnaur. (किन्नर कैलाश परिक्रमा: किन्नौर में पवित्र किन्नर कैलाश चोटी की परिक्रमा करने वाला एक अत्यंत चुनौतीपूर्ण और पवित्र ट्रेक).</li>
+                    <li><strong>Triund Trek:</strong> A very popular, highly accessible beginner-friendly weekend trek prominently located right behind McLeodganj in Dharamshala. (त्रिउंड ट्रेक: धर्मशाला में मैक्लोडगंज के ठीक पीछे स्थित एक बहुत लोकप्रिय और शुरुआती लोगों के अनुकूल ट्रेक).</li>
+                    <li><strong>Shrikhand Mahadev:</strong> Officially known as one of the toughest, most rigorous religious pilgrimage treks in India, located deep in the Kullu district. (श्रीखंड महादेव: कुल्लू जिले में स्थित, भारत के सबसे कठिन और कठोर धार्मिक तीर्थयात्रा मार्गों में से एक).</li>
+                    <li><strong>Kheerganga Trek:</strong> A heavily visited, scenic trek in the Parvati Valley highly famous for reaching therapeutic natural hot water springs at the summit. (खीरगंगा ट्रेक: पार्वती घाटी में एक सुरम्य ट्रेक जो शिखर पर प्राकृतिक गर्म पानी के झरनों तक पहुंचने के लिए प्रसिद्ध है).</li>
+                    <li><strong>Chanderkhani Pass:</strong> A highly culturally significant, breathtaking trek specifically known as the definitive 'Passage of the Gods' in the Kullu valley. (चंद्रखनी दर्रा: कुल्लू घाटी में विशेष रूप से 'देवताओं के मार्ग' के रूप में जाना जाने वाला एक सांस्कृतिक रूप से महत्वपूर्ण ट्रेक).</li>
+                    <li><strong>Indrahar Pass:</strong> A spectacular, tough high-altitude pass actively used to cross the mighty Dhauladhar range directly from Kangra into Chamba. (इंद्रहार पास: कांगड़ा से चंबा में विशाल धौलाधार श्रृंखला को पार करने के लिए इस्तेमाल किया जाने वाला एक शानदार, कठिन दर्रा).</li>
+                </ul>
+            </div>
+
+            <!-- 7. Eco-Tourism & Wildlife -->
+            <div class="seo-card glass-panel">
+                <h3><i class="fa-solid fa-leaf"></i> 7. Eco-Tourism & Wildlife (ईको-टूरिज्म)</h3>
+                <p>State-led eco-friendly tourism heavily promoting strictly sustainable travel inside massive protected biodiversity zones. <br>(पर्यावरण के अनुकूल पर्यटन जो संरक्षित जैव विविधता क्षेत्रों के भीतर स्थायी यात्रा को भारी बढ़ावा देता है।)</p>
+                <ul class="seo-list">
+                    <li><strong>GHNP Ecotourism:</strong> The Great Himalayan National Park heavily strictly promotes highly sustainable trekking deeply inside its globally protected UNESCO boundaries. (GHNP ईको-टूरिज्म: ग्रेट हिमालयन नेशनल पार्क अपनी यूनेस्को सीमाओं के भीतर स्थायी ट्रेकिंग को सख्ती से बढ़ावा देता है).</li>
+                    <li><strong>Pong Dam Bird Watching:</strong> Globally famous specifically for winter bird watching, hosting nearly 100,000 massive migratory birds from Siberia annually. (पोंग बांध बर्ड वाचिंग: साइबेरिया से आने वाले 100,000 प्रवासी पक्षियों की शीतकालीन पक्षी-दर्शन के लिए विश्व स्तर पर प्रसिद्ध).</li>
+                    <li><strong>Pin Valley Safaris:</strong> Exclusively organized, specialized winter wildlife safaris actively target spotting the highly elusive, camouflaged Snow Leopard. (पिन वैली सफारी: विशेष रूप से आयोजित शीतकालीन सफारी जो मायावी हिम तेंदुए को देखने पर लक्षित होती हैं).</li>
+                    <li><strong>Renuka Wildlife Sanctuary:</strong> Offers a highly serene, lush environment uniquely combined perfectly with a beautifully maintained mini zoo and a lion safari. (रेणुका वन्यजीव अभयारण्य: यह मिनी चिड़ियाघर और लायन सफारी के साथ एक बेहद शांत और हरा-भरा वातावरण प्रदान करता है).</li>
+                    <li><strong>Potter's Hill (Shimla):</strong> An explicitly developed, premier Eco-Tourism park successfully managed directly by the state Forest Department. (पॉटर हिल (शिमला): राज्य वन विभाग द्वारा सीधे प्रबंधित एक स्पष्ट रूप से विकसित, प्रमुख ईको-टूरिज्म पार्क).</li>
+                    <li><strong>Pabbar Valley Camps:</strong> Highly promoted exclusively for eco-friendly riverside camping and catching premium world-class Brown Trout fish. (पब्बर घाटी कैंप: पर्यावरण के अनुकूल रिवरसाइड कैंपिंग और विश्व स्तरीय ब्राउन ट्राउट मछली पकड़ने के लिए प्रचारित).</li>
+                    <li><strong>Eco-Tourism Policy (2017):</strong> The government comprehensively revised the policy to heavily involve local communities strictly in preserving local forests for tourism. (ईको-टूरिज्म नीति (2017): पर्यटन के लिए स्थानीय वनों को संरक्षित करने में स्थानीय समुदायों को शामिल करने की संशोधित नीति).</li>
+                    <li><strong>Nature Parks:</strong> Over 50 incredibly beautiful minor Nature Parks have been systematically developed specifically to promote responsible local day tourism. (नेचर पार्क: जिम्मेदार स्थानीय पर्यटन को बढ़ावा देने के लिए विशेष रूप से 50 से अधिक छोटे नेचर पार्क विकसित किए गए हैं).</li>
+                </ul>
+            </div>
+
+            <!-- 8. Winter Sports & Ropeways -->
+            <div class="seo-card glass-panel">
+                <h3><i class="fa-solid fa-snowflake"></i> 8. Winter Sports & Ropeways (शीतकालीन खेल)</h3>
+                <p>The state is aggressively upgrading massive modern aerial infrastructure strictly to heavily boost extreme winter tourism. <br>(राज्य चरम शीतकालीन पर्यटन को भारी बढ़ावा देने के लिए आक्रामक रूप से विशाल आधुनिक हवाई बुनियादी ढांचे को उन्नत कर रहा है।)</p>
+                <ul class="seo-list">
+                    <li><strong>Solang Valley:</strong> The absolute mega-hub of winter sports in HP, actively hosting intense national-level skiing and snowboarding championships. (सोलंग घाटी: हिमाचल में शीतकालीन खेलों का मेगा-हब, जहां राष्ट्रीय स्तर की स्कीइंग और स्नोबोर्डिंग चैंपियनशिप होती है).</li>
+                    <li><strong>Kufri (Shimla):</strong> A highly historic, globally famous winter sports destination known precisely for its ancient ski slopes and yak rides. (कुफरी (शिमला): एक ऐतिहासिक और विश्व प्रसिद्ध शीतकालीन खेल गंतव्य जो अपनी स्की ढलानों और याक की सवारी के लिए जाना जाता है).</li>
+                    <li><strong>Narkanda (Hatu Peak):</strong> Offers some of the absolute steepest, most thrilling, and oldest skiing slopes available in the entire country. (नारकंडा (हाटू पीक): पूरे देश में उपलब्ध कुछ सबसे तेज, सबसे रोमांचक और सबसे पुरानी स्कीइंग ढलान प्रदान करता है).</li>
+                    <li><strong>Rohtang Pass Snow:</strong> Remains an extremely massive year-round attraction specifically for tourists aiming to experience pure high-altitude snow. (रोहतांग दर्रा स्नो: उच्च ऊंचाई वाली बर्फ का अनुभव करने के इच्छुक पर्यटकों के लिए साल भर का एक बड़ा आकर्षण बना हुआ है).</li>
+                    <li><strong>Dharamshala Ropeway:</strong> A recently completed, highly advanced modern mono-cable ropeway explicitly connecting Dharamshala directly to McLeodganj. (धर्मशाला रोपवे: हाल ही में पूरा हुआ एक अत्यधिक उन्नत आधुनिक मोनो-केबल रोपवे जो धर्मशाला को मैक्लोडगंज से जोड़ता है).</li>
+                    <li><strong>Jakhu Ropeway:</strong> A spectacular aerial ropeway successfully allowing rapid, scenic access directly to the highest peak located in Shimla town. (जाखू रोपवे: एक शानदार हवाई रोपवे जो शिमला शहर में स्थित सबसे ऊंची चोटी तक तेजी से पहुंचने की अनुमति देता है).</li>
+                    <li><strong>Parvat Mala Scheme:</strong> A highly aggressive central government scheme planning massive new ropeways (like Bijli Mahadev) to quickly decongest hill roads. (पर्वत माला योजना: पहाड़ी सड़कों को भीड़भाड़ से मुक्त करने के लिए नए रोपवे (जैसे बिजली महादेव) की योजना बनाने वाली एक केंद्रीय योजना).</li>
+                    <li><strong>Sethan Igloo Village:</strong> A totally unique, newly popularized winter destination explicitly offering actual real snow igloo stays near Manali. (सेथान इग्लू विलेज: मनाली के पास एक पूरी तरह से अनूठा शीतकालीन गंतव्य जो स्पष्ट रूप से असली बर्फ के इग्लू में रहने की पेशकश करता है).</li>
+                </ul>
+            </div>
+
+            <!-- 9. Govt Schemes & Tourism Policy -->
+            <div class="seo-card glass-panel">
+                <h3><i class="fa-solid fa-bullhorn"></i> 9. Govt Schemes & Policies (सरकारी योजनाएं)</h3>
+                <p>Strategic, heavily funded initiatives proactively aimed at rigorously dispersing tourist crowds into deeply unexplored areas. <br>(रणनीतिक, भारी वित्त पोषित पहलें जिनका उद्देश्य सक्रिय रूप से पर्यटक भीड़ को गहरे अस्पष्टीकृत क्षेत्रों में फैलाना है।)</p>
+                <ul class="seo-list">
+                    <li><strong>Nai Raahein Nai Manzilein:</strong> A flagship state scheme rigorously aimed at heavily developing entirely new, completely unexplored tourist destinations. (नई राहें नई मंजिलें: पूरी तरह से नए, अस्पष्टीकृत पर्यटन स्थलों को विकसित करने के उद्देश्य से एक प्रमुख राज्य योजना).</li>
+                    <li><strong>Focus Areas (NRNM):</strong> Explicitly targets Janjehli (Mandi) for eco-tourism, Chanshal (Shimla) for skiing, and Bir Billing (Kangra) for aero-sports. (फोकस क्षेत्र: जंजैहली (ईको-टूरिज्म), चांसल (स्कीइंग), और बीड़-बिलिंग (एयरो-स्पोर्ट्स) को स्पष्ट रूप से लक्षित करता है).</li>
+                    <li><strong>Home Stay Scheme (2008):</strong> Actively encourages local villagers to host tourists to authentically experience rural life, officially guided by 'Atithi Devo Bhava'. (होम स्टे योजना (2008): ग्रामीणों को 'अतिथि देवो भव' के तहत ग्रामीण जीवन का अनुभव कराने के लिए पर्यटकों की मेजबानी करने के लिए प्रोत्साहित करता है).</li>
+                    <li><strong>Shiv Dham (Mandi):</strong> A massive, under-construction religious mega-project rigorously building exact replicas of all 12 Jyotirlingas in Mandi. (शिव धाम (मंडी): मंडी में सभी 12 ज्योतिर्लिंगों की सटीक प्रतिकृतियां बनाने वाली एक विशाल निर्माणाधीन धार्मिक मेगा-परियोजना).</li>
+                    <li><strong>Swadesh Darshan:</strong> A heavily centrally funded scheme explicitly developing targeted, theme-based highly specialized tourist circuits across the state. (स्वदेश दर्शन: एक भारी केंद्रीय वित्त पोषित योजना जो राज्य भर में थीम-आधारित विशेष पर्यटन सर्किट विकसित कर रही है).</li>
+                    <li><strong>Sustainable Tourism:</strong> Includes highly strict measures like banning single-use plastics and rigorously capping vehicle permits specifically for Rohtang Pass. (सतत पर्यटन: रोहतांग पास के लिए वाहनों के परमिट को सीमित करने और प्लास्टिक पर प्रतिबंध लगाने जैसे अत्यधिक सख्त उपाय शामिल हैं).</li>
+                    <li><strong>ADB Funded Projects:</strong> Receiving massive multi-million dollar loans from the Asian Development Bank explicitly to upgrade tourism infrastructure rigorously. (ADB वित्तपोषित परियोजनाएं: पर्यटन बुनियादी ढांचे को उन्नत करने के लिए एशियाई विकास बैंक से भारी बहु-करोड़ डॉलर का ऋण प्राप्त करना).</li>
+                    <li><strong>HPTDC Role:</strong> The Himachal Pradesh Tourism Development Corporation strongly manages a massive network of premium state-owned luxury hotels and transport. (HPTDC की भूमिका: यह निगम प्रीमियम राज्य के स्वामित्व वाले लक्जरी होटलों और परिवहन के एक विशाल नेटवर्क का दृढ़ता से प्रबंधन करता है).</li>
                 </ul>
             </div>
 
         </div>
     </section>
 
-    <!-- HTML HARDCODED HELP MODAL - EXTREME LOCK FOR CENTER POPUP -->
-    <div id="quizHelpModal" class="quiz-modal-overlay" onclick="if(event.target === this) toggleHelpModal()">
-        <div class="quiz-modal-content glass-panel">
-            <div class="quiz-modal-header">
-                <h3 style="margin:0; font-size:1.1rem; display:flex; align-items:center; gap:8px; color:var(--text-main);">
-                    <i class="fa-solid fa-circle-question" style="color:var(--primary)"></i> Toolbar Guide
-                </h3>
-                <button onclick="toggleHelpModal()" style="background:transparent; border:none; font-size:1.2rem; cursor:pointer; color:var(--text-sec); transition:color 0.2s;">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-            </div>
-            <div class="quiz-modal-body" style="font-size:0.85rem; color:var(--text-body); line-height:1.6; padding-top:10px;">
-                <ul style="list-style:none; padding:0; margin:0; display:grid; gap:12px;">
-                    <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-solid fa-download" style="color:var(--text-sec); font-size:1rem;"></i></span> <span><strong>Backup:</strong> Save your progress to a file.</span></li>
-                    <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-solid fa-upload" style="color:var(--text-sec); font-size:1rem;"></i></span> <span><strong>Restore:</strong> Load your saved progress.</span></li>
-                    <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-solid fa-rotate-right" style="color:var(--wrong-text); font-size:1rem;"></i></span> <span><strong>Reset:</strong> Clear all history for this subject.</span></li>
-                    <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-solid fa-bolt" style="color:var(--accent); font-size:1rem;"></i></span> <span><strong>Quick 10:</strong> Start a fast 10-question session.</span></li>
-                    <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-solid fa-shuffle" style="color:var(--primary); font-size:1rem;"></i></span> <span><strong>Shuffle:</strong> Randomize question order.</span></li>
-                    <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-solid fa-triangle-exclamation" style="color:var(--wrong-text); font-size:1rem;"></i></span> <span><strong>Mistakes:</strong> Review incorrect answers.</span></li>
-                    <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-regular fa-bookmark" style="color:var(--primary); font-size:1rem;"></i></span> <span><strong>Bookmarks:</strong> View saved questions.</span></li>
-                    <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center; font-weight:bold; color:var(--text-sec);">A&plusmn;</span> <span><strong>Text Size:</strong> Adjust font size.</span></li>
-                </ul>
-            </div>
+</main>
+
+<!-- HTML HARDCODED HELP MODAL - EXTREME LOCK FOR CENTER POPUP -->
+<div id="quizHelpModal" class="quiz-modal-overlay" onclick="if(event.target === this) toggleHelpModal()">
+    <div class="quiz-modal-content glass-panel">
+        <div class="quiz-modal-header">
+            <h3 style="margin:0; font-size:1.1rem; display:flex; align-items:center; gap:8px; color:var(--text-main);">
+                <i class="fa-solid fa-circle-question" style="color:var(--primary)"></i> Toolbar Guide
+            </h3>
+            <button onclick="toggleHelpModal()" style="background:transparent; border:none; font-size:1.2rem; cursor:pointer; color:var(--text-sec); transition:color 0.2s;">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="quiz-modal-body" style="font-size:0.75rem; color:var(--text-body); line-height:1.4; padding-top:10px;">
+            <ul style="list-style:none; padding:0; margin:0; display:grid; gap:8px;">
+                <li style="display:flex; gap:8px; align-items:center;"><span style="width:20px; text-align:center;"><i class="fa-solid fa-download" style="color:var(--text-sec); font-size:0.9rem;"></i></span> <span><strong>Backup:</strong> Save your progress.</span></li>
+                <li style="display:flex; gap:8px; align-items:center;"><span style="width:20px; text-align:center;"><i class="fa-solid fa-upload" style="color:var(--text-sec); font-size:0.9rem;"></i></span> <span><strong>Restore:</strong> Load saved progress.</span></li>
+                <li style="display:flex; gap:8px; align-items:center;"><span style="width:20px; text-align:center;"><i class="fa-solid fa-rotate-right" style="color:var(--wrong-text); font-size:0.9rem;"></i></span> <span><strong>Reset:</strong> Clear all history.</span></li>
+                <li style="display:flex; gap:8px; align-items:center;"><span style="width:20px; text-align:center;"><i class="fa-solid fa-bolt" style="color:var(--accent); font-size:0.9rem;"></i></span> <span><strong>Quick 10:</strong> Start fast 10-Q session.</span></li>
+                <li style="display:flex; gap:8px; align-items:center;"><span style="width:20px; text-align:center;"><i class="fa-solid fa-shuffle" style="color:var(--primary); font-size:0.9rem;"></i></span> <span><strong>Shuffle:</strong> Randomize questions.</span></li>
+                <li style="display:flex; gap:8px; align-items:center;"><span style="width:20px; text-align:center;"><i class="fa-solid fa-triangle-exclamation" style="color:var(--wrong-text); font-size:0.9rem;"></i></span> <span><strong>Mistakes:</strong> Review incorrect answers.</span></li>
+                <li style="display:flex; gap:8px; align-items:center;"><span style="width:20px; text-align:center;"><i class="fa-regular fa-bookmark" style="color:var(--primary); font-size:0.9rem;"></i></span> <span><strong>Bookmarks:</strong> View saved questions.</span></li>
+                <li style="display:flex; gap:8px; align-items:center;"><span style="width:20px; text-align:center; font-weight:bold; color:var(--text-sec); font-size:0.9rem;">A&plusmn;</span> <span><strong>Text Size:</strong> Adjust font size.</span></li>
+            </ul>
         </div>
     </div>
-
-</main>
+</div>
 
 <!-- Dynamic Footer Container -->
 <div id="site-footer"></div>
