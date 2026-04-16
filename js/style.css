@@ -201,13 +201,21 @@ main {
     margin-bottom: 10px;
     letter-spacing: 0.5px;
 }
+
+/* --- Title Font Size Adjustments --- */
+/* Inner Pages H1 (Matches Homepage Look but keeps original colors) */
 .hero-title {
-    font-size: 1.75rem; /* Reduced from 2rem */
-    font-weight: 800;
-    color: var(--text-main);
-    margin: 0 0 10px 0;
-    line-height: 1.1;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 32px !important;
+    font-weight: 900 !important;
+    margin: 0 0 6px 0 !important;
+    padding: 0 !important;
+    line-height: 1.2 !important;
+    letter-spacing: -0.5px !important;
+    text-align: center !important;
+    /* Color property intentionally excluded to not override inline gradients */
 }
+
 .hero-desc {
     color: var(--text-sec);
     margin-bottom: 15px; /* Reduced margin */
@@ -295,7 +303,7 @@ main {
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    /* Changed height to auto to prevent inner scroll completely */
+    /* Responsive height adjustment */
     height: auto; 
     position: relative;
 }
@@ -344,21 +352,19 @@ main {
 
 .text-controls {
     display: flex;
-    /* Removed the border from the container to get rid of the light outline */
     border-radius: 6px;
     overflow: hidden;
     height: 32px; /* match search container */
-    background: var(--input-bg); /* Add background to the container if buttons don't have it */
+    background: var(--input-bg);
 }
 .text-btn {
-    background: transparent; /* Changed from var(--card-bg) to transparent */
+    background: transparent;
     border: none;
     padding: 0 10px;
     cursor: pointer;
     font-size: 0.75rem;
     font-weight: 600;
     color: var(--text-sec);
-    /* Removed the left border to remove internal lines */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -374,7 +380,7 @@ main {
 }
 .quiz-action-btn {
     background: var(--input-bg);
-    border: none; /* Removed the border here as well */
+    border: none;
     color: var(--text-sec);
     width: 32px;
     height: 32px;
@@ -393,7 +399,6 @@ main {
 .quiz-action-btn.reset {
     color: var(--wrong-text);
     background: #fee2e2;
-    /* Removed border color setting */
 }
 .quiz-action-btn.reset:hover {
     background: #fca5a5;
@@ -435,7 +440,7 @@ main {
 /* Quiz Content Area */
 .quiz-content {
     flex: 1;
-    overflow: visible; /* Prevents inner scroll, forces container to expand naturally */
+    overflow: visible;
     padding: 12px 15px; /* Comfortable but compact padding */
     background: var(--card-bg);
 }
@@ -886,7 +891,14 @@ main {
 }
 
 @media (max-width: 768px) {
-    .hero-title { font-size: 1.5rem; }
+    /* Mobile Font Size Updates */
+    .hero-title { 
+        font-size: 25px !important; 
+        font-weight: 900 !important;
+        margin: 0 0 6px 0 !important; 
+        padding: 0 !important; 
+    }
+    
     .widget-controls { padding: 8px 10px; }
     .nav-btn { padding: 6px 10px; font-size: 0.8rem; }
     
