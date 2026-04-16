@@ -72,6 +72,7 @@
     <!-- Global CSS -->
     <link rel="stylesheet" href="../../js/style.css">
 
+    <!-- Premium Glassmorphism & Compact UI Stylesheet -->
     <style>
         :root {
             --primary: #2563eb;       
@@ -146,16 +147,24 @@
             box-shadow: var(--glass-shadow);
         }
 
-        main { flex: 1; width: 100%; padding: 15px 0 !important; }
+        main { flex: 1; width: 100%; padding: 15px 0 !important; box-sizing: border-box; }
 
         .top-meta-bar { 
             display: flex; justify-content: space-between; align-items: center; 
-            width: 100%; max-width: var(--site-width); margin: 0 auto 12px auto; 
-            padding: 0 15px; flex-wrap: nowrap; gap: 10px; 
+            width: 100%; max-width: var(--site-width); margin: 0 auto 5px auto; 
+            padding: 0 15px; flex-wrap: nowrap; gap: 10px; box-sizing: border-box;
         }
 
         .page-header-top, .main-layout, .seo-content-wrapper { 
-            width: 100%; max-width: var(--site-width); margin: 0 auto; padding: 0 15px; 
+            width: 100%; max-width: var(--site-width); margin: 0 auto; padding: 0 15px; box-sizing: border-box;
+        }
+
+        .page-header-top { text-align: center; margin-bottom: 25px; }
+
+        .hero-desc {
+            margin: 0 auto;
+            text-align: center;
+            max-width: 800px;
         }
 
         .section-separator { 
@@ -167,6 +176,7 @@
             .top-meta-bar, .page-header-top, .main-layout, .seo-content-wrapper {
                 padding: 0 12px !important;
             }
+            .page-header-top { margin-bottom: 20px; }
         }
 
         .breadcrumb-nav { margin: 0; flex-shrink: 1; display: flex; align-items: center; height: 24px; }
@@ -191,40 +201,33 @@
             margin: 0; border: 1px solid var(--primary); letter-spacing: 0.5px; white-space: nowrap; 
             flex-shrink: 0; box-sizing: border-box;
         }
-
-        .page-header-top { text-align: center; margin-bottom: 20px; }
         
-        /* EXACT DESKTOP H1 FONT SIZE: 32px */
         .hero-title { 
-            font-size: 32px !important; 
-            font-weight: 900 !important; 
-            margin: 0; 
-            letter-spacing: -0.5px; 
-            text-align: center; 
             background: linear-gradient(135deg, var(--text-main) 0%, var(--primary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             color: var(--primary); 
-            line-height: 1.2;
+            letter-spacing: -0.8px;
+            margin-bottom: 8px !important;
         }
         
         .main-layout { display: flex; flex-direction: column; gap: 20px; }
         @media (min-width: 900px) { 
             .main-layout { flex-direction: row; align-items: flex-start; } 
-            .intro-column, .quiz-widget-wrapper { flex: 1; width: 50%; } 
+            .intro-column, .quiz-widget-wrapper { flex: 1; width: 50%; box-sizing: border-box; } 
         }
 
         .intro-grid { display: grid; gap: 12px; text-align: left; }
-        .intro-card { background: var(--input-bg); border: 1px solid var(--card-border); border-radius: var(--radius-lg); padding: 15px; box-shadow: var(--shadow-sm); }
+        .intro-card { background: var(--input-bg); border: 1px solid var(--card-border); border-radius: var(--radius-lg); padding: 15px; box-shadow: var(--shadow-sm); box-sizing: border-box; width: 100%; }
         .intro-card h2 { font-size: 1.05rem; color: var(--primary); margin: 0 0 8px 0; display: flex; align-items: center; gap: 8px; font-weight: 700; justify-content: center; }
         .intro-card p { font-size: 0.85rem; color: var(--text-body); margin: 0; line-height: 1.5; }
         .intro-list { margin: 8px 0 0 0; padding-left: 20px; font-size: 0.85rem; color: var(--text-body); line-height: 1.5; }
-        .intro-list li { margin-bottom: 4px; }
+        .intro-list li { margin-bottom: 6px; } 
         
         .quick-links { 
             margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--card-border); 
-            display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; 
+            display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; width: 100%; box-sizing: border-box;
         }
         .quick-link-item { 
             font-size: 0.7rem; text-decoration: none; color: var(--primary); 
@@ -235,8 +238,8 @@
         .quick-link-item:hover { background: var(--primary); color: white; }
 
         /* QUIZ WIDGET */
-        .quiz-card { border-radius: var(--radius-xl); display: flex; flex-direction: column; overflow: hidden; height: auto; min-height: 480px; background: var(--card-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--card-border); box-shadow: var(--glass-shadow); position: sticky; top: 80px; }
-        .quick-start-ribbon { background: var(--primary); color: #fff; border: none; padding: 12px; font-size: 0.95rem; font-weight: 700; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px; transition: background 0.2s; width: 100%; flex-shrink: 0; min-height: 45px; }
+        .quiz-card { border-radius: var(--radius-xl); display: flex; flex-direction: column; overflow: hidden; height: auto; min-height: 480px; background: var(--card-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--card-border); box-shadow: var(--glass-shadow); position: sticky; top: 80px; box-sizing: border-box; width: 100%; }
+        .quick-start-ribbon { background: var(--primary); color: #fff; border: none; padding: 12px; font-size: 0.95rem; font-weight: 700; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px; transition: background 0.2s; width: 100%; flex-shrink: 0; min-height: 45px; box-sizing: border-box; }
         .quick-start-ribbon:hover { background: var(--primary-dark); }
         
         .widget-header { 
@@ -254,11 +257,10 @@
         }
         .text-controls::-webkit-scrollbar { display: none; }
         
-        /* Toolbar Icons 13.6px */
         .icon-btn, .text-btn, .text-controls label {
             background: #ffffff !important; 
             border: none !important; 
-            color: var(--text-sec) !important;
+            color: var(--text-sec);
             width: 32px !important; 
             height: 32px !important; 
             border-radius: 8px !important; 
@@ -285,7 +287,7 @@
 
         [data-theme="dark"] .icon-btn, [data-theme="dark"] .text-btn, [data-theme="dark"] .text-controls label { 
             background: rgba(30, 41, 59, 0.9) !important; 
-            color: var(--text-body) !important;
+            color: var(--text-body);
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3) !important;
         }
         
@@ -306,15 +308,13 @@
             display: flex; flex-direction: column; flex: 1; overflow: hidden; margin: 10px 15px 15px 15px; 
             border: 1px solid rgba(37, 99, 235, 0.25); border-radius: var(--radius-lg); background: var(--input-bg); 
             box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.03);
+            box-sizing: border-box;
         }
         [data-theme="dark"] .quiz-mcq-container { border-color: rgba(96, 165, 250, 0.25); }
 
-        /* ==========================================
-           FIXED: ULTRA-COMPACT DASHBOARD STATS BAR (Strict 10.4px)
-           ========================================== */
         .stats-dashboard { 
             display: flex; flex-wrap: nowrap; background: rgba(0,0,0,0.03); 
-            border-bottom: 1px solid var(--card-border); align-items: center;
+            border-bottom: 1px solid var(--card-border); align-items: center; width: 100%; box-sizing: border-box;
         }
         [data-theme="dark"] .stats-dashboard { background: rgba(255,255,255,0.02); }
         
@@ -331,7 +331,7 @@
         .stat-value.red { color: var(--wrong-border); }
         .stat-value.accent { color: var(--accent); }
 
-        .quiz-content { flex: 1; padding: 15px; position: relative; background: transparent; border: none; margin: 0; box-shadow: none; overflow-y: auto; }
+        .quiz-content { flex: 1; padding: 15px; position: relative; background: transparent; border: none; margin: 0; box-shadow: none; overflow-y: auto; box-sizing: border-box; width: 100%; }
         
         .q-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-size: 0.75rem; font-weight: 700; color: var(--text-sec); border-bottom: 1px dashed var(--card-border); padding-bottom: 4px; }
         .q-id { font-size: 0.85rem; color: var(--text-main); }
@@ -345,8 +345,7 @@
         .q-text-hi { font-weight: 600; color: var(--text-sec); margin-bottom: 12px; font-family: 'Noto Sans Devanagari', sans-serif; line-height: 1.4; font-size: 0.85rem; }
         mark.highlight { background: var(--accent); color: #fff; padding: 0 2px; border-radius: 3px; }
 
-        /* PERFECT BUG FIX: NO TEXT SHIFTING ON ANSWER SELECTION */
-        .options-list { display: flex; flex-direction: column; gap: 8px; counter-reset: opt-counter; }
+        .options-list { display: flex; flex-direction: column; gap: 8px; counter-reset: opt-counter; width: 100%; box-sizing: border-box; }
         
         .option-btn { 
             width: 100%; 
@@ -363,6 +362,7 @@
             align-items: flex-start; 
             line-height: 1.4; 
             position: relative; 
+            box-sizing: border-box;
         }
         
         .option-btn::before { 
@@ -398,10 +398,9 @@
         .option-btn.correct { background: var(--correct-bg); border-color: var(--correct-border); color: var(--correct-text); }
         .option-btn.wrong { background: var(--wrong-bg); border-color: var(--wrong-border); color: var(--wrong-text); }
 
-        .feedback-row { display: flex; gap: 8px; align-items: center; margin-top: 12px; }
+        .feedback-row { display: flex; gap: 8px; align-items: center; margin-top: 12px; width: 100%; box-sizing: border-box; }
         
-        /* FIXED: No fadeIn animation to prevent blinking */
-        .feedback-msg { flex: 1; padding: 8px 12px; border-radius: var(--radius-md); font-weight: 700; font-size: 0.85rem; text-align: center; margin: 0; border: 1px solid transparent; }
+        .feedback-msg { flex: 1; padding: 8px 12px; border-radius: var(--radius-md); font-weight: 700; font-size: 0.85rem; text-align: center; margin: 0; border: 1px solid transparent; box-sizing: border-box; }
         
         .correct-feed { background: var(--correct-bg); color: var(--correct-text); border-color: var(--correct-border); }
         .wrong-feed { background: var(--wrong-bg); color: var(--wrong-text); border-color: var(--wrong-border); }
@@ -409,14 +408,14 @@
         .expl-wrapper { position: relative; }
         .expl-btn { background: var(--card-bg); color: var(--primary); border: 1px solid var(--card-border); width: 34px; height: 34px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1rem; transition: 0.2s; box-shadow: var(--shadow-sm); }
         .expl-btn:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
-        .explanation-tooltip { position: absolute; bottom: 120%; right: 0; width: 280px; background: var(--tooltip-bg); border: 1px solid var(--card-border); box-shadow: var(--glass-shadow); padding: 15px; border-radius: var(--radius-md); font-size: 0.8rem; color: var(--text-main); z-index: 100; margin-bottom: 10px; display: none; text-align: left; line-height: 1.4; font-weight: 500; }
+        .explanation-tooltip { position: absolute; bottom: 120%; right: 0; width: 280px; background: var(--tooltip-bg); border: 1px solid var(--card-border); box-shadow: var(--glass-shadow); padding: 15px; border-radius: var(--radius-md); font-size: 0.8rem; color: var(--text-main); z-index: 100; margin-bottom: 10px; display: none; text-align: left; line-height: 1.4; font-weight: 500; box-sizing: border-box; }
         .explanation-tooltip::after { content: ''; position: absolute; top: 100%; right: 12px; border-width: 6px; border-style: solid; border-color: var(--tooltip-bg) transparent transparent transparent; }
         .explanation-tooltip::before { content: ''; position: absolute; top: 100%; right: 11px; border-width: 7px; border-style: solid; border-color: var(--card-border) transparent transparent transparent; z-index: -1; }
         .explanation-tooltip.show { display: block; animation: fadeUp 0.2s ease-out; }
         .explanation-tooltip strong { color: var(--primary); display: block; margin-bottom: 6px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; }
         @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        .widget-controls { padding: 10px 15px; border-top: 1px solid var(--card-border); background: rgba(0,0,0,0.03); display: flex; justify-content: space-between; align-items: center; }
+        .widget-controls { padding: 10px 15px; border-top: 1px solid var(--card-border); background: rgba(0,0,0,0.03); display: flex; justify-content: space-between; align-items: center; width: 100%; box-sizing: border-box; }
         [data-theme="dark"] .widget-controls { background: rgba(255,255,255,0.02); }
         .nav-btn { background: var(--card-bg); border: 1px solid var(--card-border); color: var(--text-main); padding: 6px 12px; border-radius: var(--radius-md); cursor: pointer; font-weight: 600; font-size: 0.85rem; display: flex; align-items: center; gap: 5px; transition: 0.2s; }
         .nav-btn:hover:not(:disabled) { border-color: var(--primary); color: var(--primary); }
@@ -425,42 +424,25 @@
         .progress-display { display: flex; align-items: center; justify-content: center; padding: 4px 10px; }
         .progress-text { font-weight: 800; color: var(--text-main); font-size: 0.85rem; }
 
-        /* ==========================================
-           FIXED: EXTREME LOCK FOR MODAL (Center Screen Popup Guaranteed)
-           ========================================== */
-        .quiz-modal-overlay {
-            position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important;
-            width: 100vw !important; height: 100vh !important;
-            background: rgba(0,0,0,0.5) !important; backdrop-filter: blur(4px) !important; -webkit-backdrop-filter: blur(4px) !important;
-            z-index: 999999 !important; display: none; align-items: center !important; justify-content: center !important; padding: 20px;
-            opacity: 0; transition: opacity 0.2s ease;
-        }
-        .quiz-modal-overlay.show { display: flex !important; opacity: 1; }
-        .quiz-modal-content {
-            background: var(--tooltip-bg) !important; 
-            width: 100%; max-width: 380px; margin: auto !important;
-            border: 1px solid var(--card-border);
-            border-radius: var(--radius-lg); padding: 20px;
-            box-shadow: var(--glass-shadow); transform: translateY(20px); transition: transform 0.2s ease;
-            position: relative !important; z-index: 1000000 !important;
-        }
-        .quiz-modal-overlay.show .quiz-modal-content { transform: translateY(0); }
-        .quiz-modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--card-border); padding-bottom: 12px; margin-bottom: 12px; }
-
-        .section-separator { height: 1px; background: linear-gradient(90deg, transparent, var(--card-border), transparent); margin: 25px 0; width: 100%; }
+        /* SEO Card Styles - Adjusted for clean, non-bloated look */
         .seo-content-wrapper { margin-bottom: 30px; }
         .seo-header { text-align: center; margin-bottom: 20px; }
         .seo-header h2 { font-size: clamp(1.2rem, 3vw, 1.6rem); margin-bottom: 8px; }
         .seo-header p { color: var(--text-sec); max-width: 600px; margin: 0 auto; font-size: 0.85rem; }
-        .seo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
-        .seo-card { background: var(--card-bg); border: 1px solid var(--card-border); padding: 20px; border-radius: var(--radius-lg); box-shadow: var(--glass-shadow); border-left: 4px solid var(--primary); transition: border-color 0.2s; }
+        
+        /* Grid Alignment */
+        .seo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 15px; align-items: stretch; width: 100%; }
+        
+        .seo-card { background: var(--card-bg); border: 1px solid var(--card-border); padding: 20px; border-radius: var(--radius-lg); box-shadow: var(--glass-shadow); border-left: 4px solid var(--primary); transition: border-color 0.2s; display: flex; flex-direction: column; box-sizing: border-box; width: 100%; }
         .seo-card:hover { border-color: var(--primary-light); }
         .seo-card h3 { font-size: 1rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; color: var(--text-main) !important; }
         .seo-card h3 i { color: var(--primary); }
-        .seo-card p { color: var(--text-body) !important; font-size: 0.85rem; margin-bottom: 10px; }
+        .seo-card p { color: var(--text-body) !important; font-size: 0.85rem; margin-bottom: 15px; }
         
-        .seo-list { list-style: none; padding-left: 0; }
-        .seo-list li { position: relative; padding-left: 18px; margin-bottom: 5px; font-size: 0.8rem; color: var(--text-body) !important; }
+        .seo-list { list-style: none; padding-left: 0; margin-top: 0; }
+        
+        /* Dense, concise list items */
+        .seo-list li { position: relative; padding-left: 18px; margin-bottom: 6px; font-size: 0.8rem; color: var(--text-body) !important; line-height: 1.35; }
         .seo-list li::before { 
             content: "\f111"; 
             font-family: "Font Awesome 6 Free";
@@ -472,22 +454,35 @@
             font-size: 0.4rem; 
         }
 
-        /* ==========================================
-           EXACT MOBILE CSS COMPACTNESS 
-           ========================================== */
+        /* Modal specific styles */
+        .quiz-modal-overlay {
+            position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important;
+            background: rgba(0,0,0,0.5) !important; backdrop-filter: blur(4px) !important; -webkit-backdrop-filter: blur(4px) !important;
+            z-index: 999999 !important; display: none; align-items: center !important; justify-content: center !important; padding: 20px;
+            opacity: 0; transition: opacity 0.2s ease;
+        }
+        .quiz-modal-overlay.show { display: flex !important; opacity: 1; }
+        .quiz-modal-content {
+            background: var(--tooltip-bg) !important; 
+            width: 100%; max-width: 320px; margin: auto !important;
+            border: 1px solid var(--border-color);
+            border-radius: 12px; padding: 15px;
+            box-shadow: var(--glass-shadow); transform: translateY(20px); transition: transform 0.2s ease;
+            position: relative !important; z-index: 1000000 !important;
+            box-sizing: border-box;
+        }
+        .quiz-modal-overlay.show .quiz-modal-content { transform: translateY(0); }
+        .quiz-modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; margin-bottom: 10px; }
+
         @media (max-width: 600px) {
-            /* EXACT MOBILE H1 FONT SIZE: 23px */
-            .hero-title { font-size: 23px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
+            .hero-title { font-size: 25px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
             .top-meta-bar { flex-wrap: nowrap; justify-content: space-between; }
-            
             .widget-header { padding: 10px; align-items: center; }
             .text-controls { justify-content: center; gap: 3px; padding: 2px 0; }
             
-            /* Toolbar Icons 13.6px for mobile too */
             .icon-btn, .text-btn, .text-controls label { width: 28px !important; height: 28px !important; font-size: 13.6px !important; border-radius: 6px !important; }
             .v-divider { margin: 0 1px; height: 14px; }
             
-            /* COMPACT DASHBOARD STATS FOR MOBILE (Strict 10.4px) */
             .stat-item { flex-direction: column; gap: 1px; padding: 4px 1px; align-items: center; }
             .stat-label { font-size: 10.4px !important; letter-spacing: -0.2px; margin: 0; }
             .stat-value { font-size: 10.4px !important; }
@@ -498,10 +493,22 @@
             .nav-btn { padding: 4px 8px; font-size: 0.7rem; min-width: 55px; }
             .progress-display { padding: 2px 6px; }
             .progress-text { font-size: 0.7rem; }
+            
+            /* Quick Links Mobile Fix: Inline & Scrollable without breaking width */
+            .quick-links {
+                flex-wrap: nowrap !important;
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                justify-content: flex-start !important;
+                padding-bottom: 5px;
+                max-width: 100%;
+            }
+            .quick-links::-webkit-scrollbar { display: none; }
+            .quick-link-item { font-size: 0.65rem; padding: 4px 10px; }
         }
     </style>
 
-    <!-- Theme Initialization Script -->
     <script>
         const savedTheme = localStorage.getItem('theme') || 'light';
         document.documentElement.setAttribute('data-theme', savedTheme);
@@ -537,6 +544,10 @@
     <!-- New Top Page Header (Centers H1 above the columns) -->
     <div class="page-header-top">
         <h1 class="hero-title">Polity & Administration of Himachal Pradesh</h1>
+        <!-- Descriptive content acting as hero sub-heading -->
+        <p class="hero-desc">
+            Polity forms the framework of the state. Expect 20-25% of questions in HPAS and Allied exams to cover constitutional history, administrative setup, and key public appointments. <br>राजनीति राज्य का ढांचा है। HPAS/Allied परीक्षाओं में लगभग 20-25% प्रश्न संवैधानिक इतिहास, प्रशासनिक व्यवस्था और प्रमुख नियुक्तियों से आते हैं।
+        </p>
     </div>
 
     <!-- Side-by-Side Two Column Layout -->
@@ -545,15 +556,15 @@
         <!-- Left Column: Intro Hook -->
         <section class="intro-column">
             <div class="intro-grid">
+                <!-- Cleaned up left card: Now just holds Quick Links -->
                 <div class="intro-card glass-panel" style="text-align: center;">
-                    <h2 style="justify-content: center;"><i class="fa-solid fa-star"></i> Why This Matters? (यह महत्वपूर्ण क्यों है?)</h2>
-                    <p>Polity is the framework of the state. Around 20-25% of questions in HPAS/Allied exams cover the constitutional history, administrative setup, and key appointments. <br><br>राजनीति राज्य का ढांचा है। HPAS/Allied परीक्षाओं में लगभग 20-25% प्रश्न संवैधानिक इतिहास, प्रशासनिक व्यवस्था और प्रमुख नियुक्तियों से आते हैं।</p>
+                    <h2 style="justify-content: center; margin-bottom: 12px; font-size: 1rem;"><i class="fa-solid fa-link"></i> Quick Study Links</h2>
                     
-                    <!-- Sibling Directory Interlinking -->
-                    <div class="quick-links" style="justify-content: center;">
+                    <!-- Exactly 4 Sibling Directory Interlinking -->
+                    <div class="quick-links">
                         <a href="../rivers/" class="quick-link-item"><i class="fa-solid fa-water"></i> Rivers</a>
                         <a href="../history/" class="quick-link-item"><i class="fa-solid fa-landmark"></i> History</a>
-                        <a href="../district/" class="quick-link-item"><i class="fa-solid fa-map-location-dot"></i> Districts</a>
+                        <a href="../geography/" class="quick-link-item"><i class="fa-solid fa-mountain"></i> Geography</a>
                         <a href="../economy/" class="quick-link-item"><i class="fa-solid fa-chart-line"></i> Economy</a>
                     </div>
                 </div>
@@ -561,13 +572,13 @@
                 <div class="intro-card glass-panel">
                     <h2><i class="fa-solid fa-list-check"></i> What this Page Covers (इस पृष्ठ में क्या शामिल है)</h2>
                     <ul class="intro-list">
-                        <li><strong>Constitutional Framework (संवैधानिक ढांचा):</strong> Formation of HP (1948-1971), Statehood Act 1970, and key amendments. (राज्य गठन, 1970 अधिनियम).</li>
-                        <li><strong>Legislature (विधायिका):</strong> Vidhan Sabha history (Council Chamber to Kennedy House), first election (1951), and Speakers. (विधानसभा इतिहास, पहला चुनाव).</li>
-                        <li><strong>Executive (कार्यपालिका):</strong> Governors (S. Chakravarti to present), Chief Ministers (Y.S. Parmar to present), and their tenures. (राज्यपाल, मुख्यमंत्री).</li>
-                        <li><strong>Judiciary (न्यायपालिका):</strong> HP High Court (Est. 1971), First Chief Justice (M.H. Beg), Lokayukta (TVR Tatachari). (हाईकोर्ट, लोकायुक्त).</li>
-                        <li><strong>Local Self Govt (स्थानीय स्वशासन):</strong> Panchayati Raj Act (1994), Urban Local Bodies, Shimla Municipal Corporation. (पंचायती राज, नगर निगम).</li>
-                        <li><strong>Key Institutions (प्रमुख संस्थान):</strong> HPPSC (Shimla), HPPWD, HPSSEB (Hamirpur), and HIPA (Fairlawn). (लोक सेवा आयोग, हिपा).</li>
-                        <li><strong>Interactive Quiz (संवादात्मक प्रश्नोत्तरी):</strong> Master the articles, dates, and personalities through 580+ bilingual MCQs.</li>
+                        <li><strong>Constitutional Framework (संवैधानिक ढांचा):</strong> Formation of HP from a Chief Commissioner's province (1948) to gaining full Statehood (1971). (चीफ कमिश्नर प्रांत से पूर्ण राज्य बनने तक का सफर).</li>
+                        <li><strong>Legislature (विधायिका):</strong> History of the Vidhan Sabha, first general elections (1951), and details of key legislative assemblies. (विधानसभा का इतिहास, पहला चुनाव 1951).</li>
+                        <li><strong>Executive (कार्यपालिका):</strong> Tenure and roles of Governors (S. Chakravarti onwards) and Chief Ministers (Dr. Y.S. Parmar onwards). (राज्यपालों और मुख्यमंत्रियों का कार्यकाल और भूमिकाएं).</li>
+                        <li><strong>Judiciary (न्यायपालिका):</strong> Establishment of the HP High Court, Administrative Tribunals, and the Lokayukta. (हाईकोर्ट, प्रशासनिक न्यायाधिकरण और लोकायुक्त की स्थापना).</li>
+                        <li><strong>Local Self Govt (स्थानीय स्वशासन):</strong> Evolution of the 3-tier Panchayati Raj system, Municipal Corporations, and the 1994 Act. (त्रिस्तरीय पंचायती राज प्रणाली और नगर निगम).</li>
+                        <li><strong>Key Institutions (प्रमुख संस्थान):</strong> Study bodies like HPPSC, Staff Selection Commission, and HIPA. (लोक सेवा आयोग (HPPSC) और हिपा (HIPA) जैसे प्रमुख निकाय).</li>
+                        <li><strong>Interactive Testing (संवादात्मक प्रश्नोत्तरी):</strong> Master constitutional articles, exact dates, and administrative personalities through 580+ bilingual MCQs. (580+ बहुविकल्पीय प्रश्नों के माध्यम से अभ्यास).</li>
                     </ul>
                 </div>
             </div>
@@ -582,11 +593,11 @@
                 </button>
 
                 <div class="widget-header">
-                    <div class="text-controls">
+                    <div class="text-controls" style="margin: 0 auto;">
                         <button class="icon-btn" onclick="toggleHelpModal()" title="Help Guide" type="button">
                             <i class="fa-solid fa-circle-question"></i>
                         </button>
-                        <div class="v-divider"></div>
+                        <div class="v-divider" style="width: 1px; height: 16px; background: var(--border-color); margin: 0 4px;"></div>
                         
                         <button class="icon-btn" onclick="exportProgress()" title="Backup Progress" type="button">
                             <i class="fa-solid fa-download"></i>
@@ -596,26 +607,26 @@
                         </label>
                         <input type="file" id="importFile" style="display: none;" accept=".json" onchange="importProgress(this)">
                         
-                        <button class="icon-btn" onclick="resetProgress()" title="Reset Progress" type="button">
+                        <button class="icon-btn reset" onclick="resetProgress()" title="Reset Progress" type="button" style="color: var(--wrong-text);">
                             <i class="fa-solid fa-rotate-right"></i>
                         </button>
                         
-                        <div class="v-divider"></div>
+                        <div class="v-divider" style="width: 1px; height: 16px; background: var(--border-color); margin: 0 4px;"></div>
 
-                        <button class="icon-btn" id="quickModeBtn" onclick="toggleQuickMode()" title="Quick 10 Quiz" type="button">
+                        <button class="icon-btn" id="quickModeBtn" onclick="toggleQuickMode()" title="Quick 10 Quiz" type="button" style="color: var(--accent);">
                             <i class="fa-solid fa-bolt"></i>
                         </button>
-                        <button class="icon-btn" id="shuffleBtn" onclick="toggleShuffle()" title="Shuffle Questions" type="button">
+                        <button class="icon-btn" id="shuffleBtn" onclick="toggleShuffle()" title="Shuffle Questions" type="button" style="color: var(--primary);">
                             <i class="fa-solid fa-shuffle"></i>
                         </button>
-                        <button class="icon-btn" id="mistakeFilterBtn" onclick="toggleMistakeFilter()" title="Review Mistakes" type="button">
+                        <button class="icon-btn" id="mistakeFilterBtn" onclick="toggleMistakeFilter()" title="Review Mistakes" type="button" style="color: var(--wrong-text);">
                             <i class="fa-solid fa-triangle-exclamation"></i>
                         </button>
-                        <button class="icon-btn" id="bookmarkFilterBtn" onclick="toggleBookmarkFilter()" title="Saved Bookmarks" type="button">
+                        <button class="icon-btn" id="bookmarkFilterBtn" onclick="toggleBookmarkFilter()" title="Saved Bookmarks" type="button" style="color: var(--primary);">
                             <i class="fa-regular fa-bookmark"></i>
                         </button>
                         
-                        <div class="v-divider"></div>
+                        <div class="v-divider" style="width: 1px; height: 16px; background: var(--border-color); margin: 0 4px;"></div>
                         
                         <button class="text-btn" onclick="adjustFont(-1)" title="Decrease Font" type="button">A-</button>
                         <button class="text-btn" onclick="adjustFont(1)" title="Increase Font" type="button">A+</button>
@@ -642,7 +653,6 @@
                     <div class="widget-controls">
                         <button id="prevBtn" class="nav-btn"><i class="fa-solid fa-arrow-left"></i> Prev</button>
                         
-                        <!-- PROGRESS DISPLAY (JUMP REMOVED) -->
                         <div class="progress-display">
                             <span class="progress-text" id="progressText">0 / 0</span>
                         </div>
@@ -657,11 +667,11 @@
     
     <div class="section-separator"></div>
 
-    <!-- Full Width Bilingual Content -->
+    <!-- Full Width Bilingual Content: Expanded to 9 Detailed Bullet-Point Sections -->
     <section class="seo-content-wrapper">
         <div class="seo-header">
             <h2>Detailed Polity Notes (विस्तृत राजनीति नोट्स)</h2>
-            <p>Comprehensive guide to the administrative structure of Himachal Pradesh. <br>(हिमाचल प्रदेश की प्रशासनिक संरचना का व्यापक गाइड।)</p>
+            <p>Comprehensive guide to the historical administrative structure and constitutional journey of Himachal Pradesh. <br>(हिमाचल प्रदेश की ऐतिहासिक प्रशासनिक संरचना और संवैधानिक यात्रा का व्यापक गाइड।)</p>
         </div>
 
         <div class="seo-grid">
@@ -669,116 +679,144 @@
             <!-- 1. Administrative History -->
             <div class="seo-card glass-panel">
                 <h3><i class="fa-solid fa-clock-rotate-left"></i> 1. Administrative History (प्रशासनिक इतिहास)</h3>
-                <p>The journey from a Chief Commissioner's Province to a full-fledged State. <br>(चीफ कमिश्नर प्रांत से पूर्ण राज्य तक की यात्रा।)</p>
+                <p>The complex historical journey from a small Chief Commissioner's Province to acquiring full-fledged Statehood. <br>(एक छोटे चीफ कमिश्नर प्रांत से पूर्ण राज्य का दर्जा प्राप्त करने तक की जटिल ऐतिहासिक यात्रा।)</p>
                 <ul class="seo-list">
-                    <li><strong>15 April 1948:</strong> Chief Commissioner's Province. N.C. Mehta was the first Chief Commissioner. 30 Princely states merged. (चीफ कमिश्नर प्रांत, एनसी मेहता).</li>
-                    <li><strong>1951:</strong> Part-C State under Part C States Act 1951. 36-member Legislative Assembly created. (पार्ट-सी राज्य, 36 सदस्य).</li>
-                    <li><strong>1 March 1952:</strong> Major General Himmat Singh became the first Lt. Governor. (मेजर जनरल हिम्मत सिंह - पहले उपराज्यपाल).</li>
-                    <li><strong>1 Nov 1956:</strong> Union Territory (UT) under States Reorganization Act. Vidhan Sabha replaced by Territorial Council. (केंद्र शासित प्रदेश, क्षेत्रीय परिषद).</li>
-                    <li><strong>1 July 1963:</strong> Territorial Council converted back to Vidhan Sabha. (क्षेत्रीय परिषद वापस विधानसभा बनी).</li>
-                    <li><strong>25 Jan 1971:</strong> 18th State of India. S. Chakravarti became the first Governor. (18वां राज्य, एस. चक्रवर्ती - पहले राज्यपाल).</li>
+                    <li><strong>Chief Commissioner's Province (1948):</strong> HP was officially formed on 15 April 1948 by merging 30 princely states. N.C. Mehta became the very first Chief Commissioner. (15 अप्रैल 1948: 30 रियासतों को मिलाकर चीफ कमिश्नर प्रांत बना। एनसी मेहता पहले मुख्य आयुक्त बने).</li>
+                    <li><strong>Part-C State (1951):</strong> HP was upgraded to a Part-C State under the Part C States Act of 1951, introducing a 36-member Legislative Assembly. (पार्ट-सी राज्य (1951): पार्ट सी स्टेट्स एक्ट 1951 के तहत अपग्रेड किया गया, 36 सदस्यीय विधानसभा बनी).</li>
+                    <li><strong>First Lt. Governor (1952):</strong> Major General Himmat Singh was officially appointed as the first Lieutenant Governor of HP on 1 March 1952. (पहले उपराज्यपाल (1952): 1 मार्च 1952 को मेजर जनरल हिम्मत सिंह पहले उपराज्यपाल नियुक्त हुए).</li>
+                    <li><strong>Union Territory (1956):</strong> Reclassified as a Union Territory on 1 Nov 1956 under the States Reorganization Act. (केंद्र शासित प्रदेश (1956): 1 नवंबर 1956 को राज्य पुनर्गठन अधिनियम के तहत UT के रूप में पुनर्वर्गीकृत किया गया).</li>
+                    <li><strong>Territorial Council:</strong> After becoming a UT, the Vidhan Sabha was replaced by a Territorial Council headed by Thakur Karam Singh. (क्षेत्रीय परिषद: UT बनने के बाद, विधानसभा की जगह क्षेत्रीय परिषद (ठाकुर करम सिंह के नेतृत्व में) ने ले ली).</li>
+                    <li><strong>Restoration of Assembly (1963):</strong> The Territorial Council was successfully converted back into a functioning Vidhan Sabha on 1 July 1963. (विधानसभा की बहाली (1963): 1 जुलाई 1963 को क्षेत्रीय परिषद को वापस विधानसभा में बदल दिया गया).</li>
+                    <li><strong>Vishal Himachal (1966):</strong> On 1 Nov 1966, Punjab was reorganized, adding hilly areas like Kangra and Shimla to HP, doubling its size. (विशाल हिमाचल (1966): 1 नवंबर 1966 को पंजाब के पहाड़ी क्षेत्रों को हिमाचल में जोड़ा गया, जिससे इसका आकार दोगुना हो गया).</li>
+                    <li><strong>Full Statehood (1971):</strong> HP became the 18th State of the Indian Union on 25 Jan 1971. S. Chakravarti became the first Governor. (पूर्ण राज्य (1971): 25 जनवरी 1971 को हिमाचल 18वां राज्य बना। एस. चक्रवर्ती पहले राज्यपाल बने).</li>
                 </ul>
             </div>
 
             <!-- 2. Legislature -->
             <div class="seo-card glass-panel">
-                <h3><i class="fa-solid fa-landmark-dome"></i> 2. Legislature (Vidhan Sabha) (विधायिका - विधानसभा)</h3>
-                <p>Unicameral legislature. Initially 36 seats, increased to 68. <br>(एकसदनीय विधायिका। शुरुआत में 36 सीटें, अब 68।)</p>
+                <h3><i class="fa-solid fa-landmark-dome"></i> 2. Legislature (Vidhan Sabha) (विधायिका)</h3>
+                <p>Himachal features a unicameral legislature that evolved from 36 initial seats to the current 68. <br>(हिमाचल में एकसदनीय विधायिका है जो 36 शुरुआती सीटों से बढ़कर वर्तमान में 68 हो गई है।)</p>
                 <ul class="seo-list">
-                    <li><strong>First Election:</strong> 1951. Congress won 24 seats. Dr. Y.S. Parmar became first CM (24 March 1952). (पहला चुनाव 1951, परमार पहले सीएम).</li>
-                    <li><strong>Vidhan Sabha Buildings:</strong> 
-                        <br>• <strong>Council Chamber:</strong> Current Vidhan Sabha (Built 1925, inaugurated by Lord Reading). (काउंसिल चैंबर - वर्तमान विधानसभा)
-                        <br>• <strong>Kennedy House:</strong> First temporary assembly. (कैनेडी हाउस - पहली अस्थायी)
-                    </li>
-                    <li><strong>Speakers:</strong> First Speaker: Jaiwant Ram (1952). First Woman Speaker: Vidya Stokes. (जयवंत राम, विद्या स्टोक्स).</li>
-                    <li><strong>Seats:</strong> Total 68. Kangra has max (15), Lahaul-Spiti/Kinnaur min (1 each). (कुल 68, कांगड़ा 15, लाहौल/किन्नौर 1).</li>
-                    <li><strong>E-Vidhan:</strong> HP Vidhan Sabha became India's first paperless assembly. (भारत की पहली कागज रहित विधानसभा).</li>
+                    <li><strong>Unicameral System:</strong> Himachal Pradesh operates with a Unicameral (single-chamber) state legislature, officially known as the Vidhan Sabha. (एकसदनीय प्रणाली: हिमाचल प्रदेश में एकसदनीय (सिंगल-चैंबर) राज्य विधायिका है, जिसे विधानसभा कहा जाता है).</li>
+                    <li><strong>First General Election (1951):</strong> Held in November 1951. The Indian National Congress won 24 out of the 36 available seats. (पहला आम चुनाव (1951): नवंबर 1951 में हुआ। कांग्रेस ने 36 में से 24 सीटें जीतीं).</li>
+                    <li><strong>Assembly Seats:</strong> Currently, the Vidhan Sabha has exactly 68 seats. Kangra district has the absolute highest (15), while Kinnaur and Lahaul-Spiti have the lowest (1 each). (विधानसभा सीटें: वर्तमान में 68 सीटें हैं। कांगड़ा में सबसे अधिक (15) और किन्नौर/लाहौल-स्पीति में सबसे कम (1 प्रत्येक) हैं).</li>
+                    <li><strong>Council Chamber Building:</strong> The current Vidhan Sabha is housed in the historic Council Chamber (built in 1925), originally inaugurated by Viceroy Lord Reading. (काउंसिल चैंबर भवन: वर्तमान विधानसभा ऐतिहासिक काउंसिल चैंबर (1925 में निर्मित) में है, जिसका उद्घाटन लॉर्ड रीडिंग ने किया था).</li>
+                    <li><strong>First Speaker:</strong> Pandit Jaiwant Ram was elected as the very first Speaker of the HP Legislative Assembly in 1952. (पहले अध्यक्ष: पंडित जयवंत राम 1952 में हिमाचल प्रदेश विधानसभा के पहले अध्यक्ष चुने गए).</li>
+                    <li><strong>First Woman Speaker:</strong> Smt. Vidya Stokes holds the distinction of being the first woman Speaker of the HP Vidhan Sabha. (पहली महिला अध्यक्ष: श्रीमती विद्या स्टोक्स हिमाचल विधानसभा की पहली महिला अध्यक्ष होने का गौरव रखती हैं).</li>
+                    <li><strong>e-Vidhan Pioneer:</strong> The HP Vidhan Sabha made history by becoming India's absolute first fully paperless and digitized legislative assembly. (ई-विधान पायनियर: हिमाचल विधानसभा भारत की पहली पूरी तरह से कागज रहित और डिजिटल विधानसभा बनकर इतिहास रच चुकी है).</li>
+                    <li><strong>Rajya Sabha & Lok Sabha:</strong> Himachal Pradesh sends 4 elected representatives to the Lok Sabha and 3 to the Rajya Sabha. (राज्यसभा और लोकसभा: हिमाचल प्रदेश लोकसभा में 4 और राज्यसभा में 3 निर्वाचित प्रतिनिधि भेजता है).</li>
                 </ul>
             </div>
 
             <!-- 3. Executive -->
             <div class="seo-card glass-panel">
-                <h3><i class="fa-solid fa-user-tie"></i> 3. Executive (Governor & CM) (कार्यपालिका)</h3>
-                <p>The Governor is the constitutional head, CM is the real head. <br>(राज्यपाल संवैधानिक प्रमुख, मुख्यमंत्री वास्तविक प्रमुख।)</p>
+                <h3><i class="fa-solid fa-user-tie"></i> 3. Executive (कार्यपालिका)</h3>
+                <p>The Governor acts as the constitutional head, while the Chief Minister functions as the real executive head. <br>(राज्यपाल संवैधानिक प्रमुख के रूप में कार्य करते हैं, जबकि मुख्यमंत्री वास्तविक कार्यकारी प्रमुख के रूप में कार्य करते हैं।)</p>
                 <ul class="seo-list">
-                    <li><strong>First Governor:</strong> S. Chakravarti (1971). (एस. चक्रवर्ती).</li>
-                    <li><strong>First Chief Minister:</strong> Dr. Y.S. Parmar (1952). Architect of HP. (डॉ. वाई.एस. परमार - हिमाचल निर्माता).</li>
-                    <li><strong>President's Rule:</strong> Imposed twice. 1977 (Shanta Kumar govt dismissed) & 1992 (Shanta Kumar govt dismissed post-Babri). (राष्ट्रपति शासन: 1977, 1992).</li>
-                    <li><strong>Secretariat:</strong> Ellerslie Building (Shimla) houses the HP Secretariat. (एलर्सली बिल्डिंग - सचिवालय).</li>
-                    <li><strong>Summer Capital:</strong> Dharamshala declared second capital (Winter Capital) in 2017. (धर्मशाला - शीतकालीन राजधानी).</li>
+                    <li><strong>First Governor:</strong> S. Chakravarti was appointed as the very first Governor of HP immediately after achieving statehood in 1971. (पहले राज्यपाल: एस. चक्रवर्ती को 1971 में पूर्ण राज्य का दर्जा मिलने के तुरंत बाद पहले राज्यपाल के रूप में नियुक्त किया गया था).</li>
+                    <li><strong>First Chief Minister:</strong> Dr. Y.S. Parmar took oath as the first CM on 24 March 1952. He is universally known as the 'Architect of Himachal Pradesh'. (पहले मुख्यमंत्री: डॉ. वाई.एस. परमार (हिमाचल के निर्माता) ने 24 मार्च 1952 को पहले सीएम के रूप में शपथ ली).</li>
+                    <li><strong>President's Rule (1977):</strong> Imposed for the first time in April 1977 when the Shanta Kumar-led government was abruptly dismissed. (राष्ट्रपति शासन (1977): पहली बार अप्रैल 1977 में लगाया गया जब शांता कुमार के नेतृत्व वाली सरकार को बर्खास्त कर दिया गया था).</li>
+                    <li><strong>President's Rule (1992):</strong> Imposed for the second time in December 1992 following the Babri Masjid demolition, again dismissing Shanta Kumar's government. (राष्ट्रपति शासन (1992): बाबरी मस्जिद विध्वंस के बाद दिसंबर 1992 में दूसरी बार लगाया गया).</li>
+                    <li><strong>State Secretariat:</strong> The historic 'Ellerslie Building' in Shimla officially houses the main Secretariat of the Himachal Pradesh Government. (राज्य सचिवालय: शिमला की ऐतिहासिक 'एलर्सली बिल्डिंग' में हिमाचल प्रदेश सरकार का मुख्य सचिवालय है).</li>
+                    <li><strong>Winter Capital:</strong> Dharamshala (Kangra) was officially declared as the second capital (Winter Capital) of the state in 2017. (शीतकालीन राजधानी: धर्मशाला (कांगड़ा) को 2017 में आधिकारिक तौर पर राज्य की दूसरी राजधानी (शीतकालीन राजधानी) घोषित किया गया था).</li>
+                    <li><strong>Longest Serving CM:</strong> Late Shri Virbhadra Singh holds the remarkable record of being the Chief Minister for an unprecedented 6 terms. (सबसे लंबे समय तक रहने वाले सीएम: स्वर्गीय श्री वीरभद्र सिंह के पास 6 बार मुख्यमंत्री रहने का उल्लेखनीय रिकॉर्ड है).</li>
+                    <li><strong>First Non-Congress CM:</strong> Shanta Kumar became the first non-Congress Chief Minister of the state, representing the Janata Party in 1977. (पहले गैर-कांग्रेसी सीएम: 1977 में जनता पार्टी का प्रतिनिधित्व करते हुए शांता कुमार पहले गैर-कांग्रेसी मुख्यमंत्री बने).</li>
                 </ul>
             </div>
 
             <!-- 4. Judiciary -->
             <div class="seo-card glass-panel">
                 <h3><i class="fa-solid fa-scale-balanced"></i> 4. Judiciary (High Court) (न्यायपालिका)</h3>
-                <p>Guardian of the Constitution in the state. <br>(राज्य में संविधान का संरक्षक।)</p>
+                <p>The state's highest judicial authority, acting as the ultimate guardian of the Constitution in the hills. <br>(राज्य का सर्वोच्च न्यायिक प्राधिकरण, जो पहाड़ियों में संविधान के अंतिम संरक्षक के रूप में कार्य करता है।)</p>
                 <ul class="seo-list">
-                    <li><strong>HP High Court:</strong> Established on 25 Jan 1971. Located at Ravenswood, Shimla. (स्थापना: 1971, रेवेन्सवुड).</li>
-                    <li><strong>First Chief Justice:</strong> Justice M.H. Beg (Mirza Hameedullah Beg). (न्यायमूर्ति एम.एच. बेग).</li>
-                    <li><strong>First Woman Chief Justice:</strong> Justice Leila Seth (First woman CJ of any High Court in India). (लीला सेठ - भारत की पहली महिला CJ).</li>
-                    <li><strong>Judicial Commissioner's Court:</strong> Existed from 1948-1971. Replaced by High Court. (न्यायिक आयुक्त न्यायालय - 1948-71).</li>
-                    <li><strong>HP Administrative Tribunal (HPAT):</strong> Established 1986. First Chairman: Justice H.S. Thakur. Abolished and re-established multiple times. (प्रशासनिक न्यायाधिकरण - 1986).</li>
+                    <li><strong>HP High Court Formation:</strong> Officially established on 25 January 1971, coinciding precisely with the granting of full Statehood. (एचपी उच्च न्यायालय का गठन: 25 जनवरी 1971 को पूर्ण राज्य का दर्जा मिलने के साथ ही आधिकारिक रूप से स्थापित).</li>
+                    <li><strong>High Court Location:</strong> The High Court complex is historically and beautifully situated at 'Ravenswood' in Shimla. (उच्च न्यायालय का स्थान: उच्च न्यायालय परिसर ऐतिहासिक रूप से शिमला के 'रेवेन्सवुड' में स्थित है).</li>
+                    <li><strong>First Chief Justice:</strong> Justice M.H. Beg (Mirza Hameedullah Beg) was appointed as the very first Chief Justice of the HP High Court. (पहले मुख्य न्यायाधीश: न्यायमूर्ति एम.एच. बेग को हिमाचल उच्च न्यायालय का पहला मुख्य न्यायाधीश नियुक्त किया गया था).</li>
+                    <li><strong>First Woman Chief Justice:</strong> Justice Leila Seth achieved the distinction of being the first woman Chief Justice of the HP High Court (and of any state in India). (पहली महिला मुख्य न्यायाधीश: न्यायमूर्ति लीला सेठ (जो भारत के किसी भी राज्य की पहली महिला CJ थीं)).</li>
+                    <li><strong>Judicial Commissioner's Court:</strong> Before the High Court, the Judicial Commissioner's Court operated from 1948 to 1971. J.N. Banerjee was the first Judicial Commissioner. (न्यायिक आयुक्त न्यायालय: उच्च न्यायालय से पहले (1948 से 1971 तक)। जे.एन. बनर्जी पहले न्यायिक आयुक्त थे).</li>
+                    <li><strong>HP Administrative Tribunal:</strong> HPAT was officially established in 1986. Justice H.S. Thakur was appointed as its first Chairman. It was later abolished. (प्रशासनिक न्यायाधिकरण: 1986 में स्थापित। न्यायमूर्ति एच.एस. ठाकुर इसके पहले अध्यक्ष थे। बाद में इसे समाप्त कर दिया गया).</li>
+                    <li><strong>National Law University:</strong> The prestigious Himachal Pradesh National Law University (HPNLU) is located at Ghandal, near Shimla. (राष्ट्रीय विधि विश्वविद्यालय: प्रतिष्ठित हिमाचल प्रदेश राष्ट्रीय विधि विश्वविद्यालय (HPNLU) शिमला के पास घंडल में स्थित है).</li>
+                    <li><strong>Subordinate Courts:</strong> The state features a well-structured hierarchy of District and Sessions Courts functioning directly under the High Court's superintendence. (अधीनस्थ न्यायालय: राज्य में जिला और सत्र न्यायालयों का एक सुव्यवस्थित पदानुक्रम है जो सीधे उच्च न्यायालय के अधीन कार्य करता है).</li>
                 </ul>
             </div>
 
             <!-- 5. Panchayati Raj -->
             <div class="seo-card glass-panel">
-                <h3><i class="fa-solid fa-users-gear"></i> 5. Panchayati Raj & Local Bodies (पंचायती राज)</h3>
-                <p>Three-tier system functioning effectively. <br>(त्रिस्तरीय प्रणाली प्रभावी रूप से कार्य कर रही है।)</p>
+                <h3><i class="fa-solid fa-users-gear"></i> 5. Local Self Government (स्थानीय स्वशासन)</h3>
+                <p>A robust three-tier Panchayati Raj system functioning effectively to ensure total decentralized grassroots governance. <br>(पूर्ण विकेन्द्रीकृत जमीनी शासन सुनिश्चित करने के लिए एक मजबूत त्रिस्तरीय पंचायती राज प्रणाली प्रभावी ढंग से कार्य कर रही है।)</p>
                 <ul class="seo-list">
-                    <li><strong>HP Panchayati Raj Act:</strong> Passed in 1994 (Conformity with 73rd Amendment). Replaced 1968 Act. (1994 अधिनियम).</li>
-                    <li><strong>Structure:</strong> Gram Panchayat (Village), Panchayat Samiti (Block), Zila Parishad (District). (ग्राम पंचायत, पंचायत समिति, जिला परिषद).</li>
-                    <li><strong>Reservation:</strong> 50% reservation for women in Panchayats (First state to do so). (महिलाओं के लिए 50% आरक्षण).</li>
-                    <li><strong>Municipal Corporation:</strong> Shimla MC is one of the oldest in India (Est. 1851). Now 5 MCs: Shimla, Dharamshala, Solan, Mandi, Palampur. (शिमला एमसी - 1851, 5 नगर निगम).</li>
+                    <li><strong>HP Panchayati Raj Act (1994):</strong> Enacted to be in strict conformity with the 73rd Constitutional Amendment, completely replacing the older 1968 Act. (पंचायती राज अधिनियम (1994): 73वें संवैधानिक संशोधन के अनुरूप अधिनियमित, पुराने 1968 के अधिनियम की जगह ली).</li>
+                    <li><strong>Three-Tier Structure:</strong> Operates exactly with a Gram Panchayat (at Village level), Panchayat Samiti (at Block level), and Zila Parishad (at District level). (त्रिस्तरीय संरचना: ग्राम पंचायत (ग्राम स्तर पर), पंचायत समिति (ब्लॉक स्तर पर), और जिला परिषद (जिला स्तर पर)).</li>
+                    <li><strong>Women's Reservation:</strong> HP made history by being the first state to strictly provide 50% reservation for women in all Panchayati Raj Institutions (PRIs). (महिलाओं का आरक्षण: हिमाचल सभी पंचायती राज संस्थाओं में महिलाओं के लिए 50% आरक्षण देने वाला पहला राज्य बना).</li>
+                    <li><strong>Oldest Municipal Corporation:</strong> The Shimla Municipal Corporation is historically one of the oldest municipalities in India, originally established in 1851. (सबसे पुराना नगर निगम: शिमला नगर निगम ऐतिहासिक रूप से भारत की सबसे पुरानी नगर पालिकाओं (1851 में स्थापित) में से एक है).</li>
+                    <li><strong>Number of Municipal Corporations:</strong> Currently, HP has exactly 5 Municipal Corporations: Shimla, Dharamshala, Solan, Mandi, and Palampur. (नगर निगमों की संख्या: वर्तमान में 5 नगर निगम हैं - शिमला, धर्मशाला, सोलन, मंडी और पालमपुर).</li>
+                    <li><strong>Gram Sabha Meetings:</strong> By law, the Gram Sabha (consisting of all registered voters in a village) must mandatorily meet at least 4 times a year. (ग्राम सभा की बैठकें: कानूनन, ग्राम सभा (गाँव के सभी पंजीकृत मतदाता) को वर्ष में कम से कम 4 बार अनिवार्य रूप से मिलना चाहिए).</li>
+                    <li><strong>State Election Commission:</strong> A dedicated constitutional body solely responsible for strictly conducting free and fair elections for all local bodies. (राज्य चुनाव आयोग: सभी स्थानीय निकायों के लिए स्वतंत्र और निष्पक्ष चुनाव कराने के लिए जिम्मेदार एक समर्पित संवैधानिक निकाय).</li>
+                    <li><strong>State Finance Commission:</strong> Constituted strictly under Article 243-I to routinely review the financial position of the Panchayats and municipalities. (राज्य वित्त आयोग: पंचायतों और नगर पालिकाओं की वित्तीय स्थिति की नियमित समीक्षा करने के लिए अनुच्छेद 243-I के तहत गठित).</li>
                 </ul>
             </div>
 
             <!-- 6. Constitutional Bodies -->
             <div class="seo-card glass-panel">
-                <h3><i class="fa-solid fa-building-columns"></i> 6. Constitutional & Statutory Bodies (निकाय)</h3>
-                <p>Key institutions ensuring transparency and recruitment. <br>(पारदर्शिता और भर्ती सुनिश्चित करने वाले प्रमुख संस्थान।)</p>
+                <h3><i class="fa-solid fa-building-columns"></i> 6. Statutory Bodies & Commissions (निकाय)</h3>
+                <p>Highly specialized key institutions ensuring strict transparency, systematic recruitment, and rigorous civil servant training. <br>(कड़ी पारदर्शिता, व्यवस्थित भर्ती और कठोर सिविल सेवक प्रशिक्षण सुनिश्चित करने वाले अत्यधिक विशिष्ट प्रमुख संस्थान।)</p>
                 <ul class="seo-list">
-                    <li><strong>HP Public Service Commission (HPPSC):</strong> Established 1971. Located at Nigam Vihar, Shimla. First Chairman: Lt. Gen K.S. Katoch. (लोक सेवा आयोग - 1971, के.एस. कटोच).</li>
-                    <li><strong>HP Staff Selection Commission (HPSSC):</strong> Hamirpur (Est 1998). Dissolved in 2023 due to irregularities. Replaced by Rajya Chayan Aayog. (कर्मचारी चयन आयोग - हमीरपुर, भंग).</li>
-                    <li><strong>Lokayukta:</strong> Act passed in 1983. First Lokayukta: Justice T.V.R. Tatachari. (लोकायुक्त - 1983, टीवीआर टाटाचारी).</li>
-                    <li><strong>HIPA:</strong> HP Institute of Public Administration. Located at Fairlawn, Shimla (1974). Training for civil servants. (हिपा - फेयरलॉन, 1974).</li>
+                    <li><strong>HP Public Service Commission (HPPSC):</strong> Established formally in April 1971 at Nigam Vihar, Shimla. Lt. Gen K.S. Katoch was its first Chairman. (लोक सेवा आयोग (HPPSC): अप्रैल 1971 में शिमला में स्थापित। लेफ्टिनेंट जनरल के.एस. कटोच इसके पहले अध्यक्ष थे).</li>
+                    <li><strong>HP Staff Selection Commission:</strong> Originally established in Hamirpur (1998). It was completely dissolved in 2023 due to severe paper leak irregularities. (कर्मचारी चयन आयोग: 1998 में हमीरपुर में स्थापित। 2023 में पेपर लीक अनियमितताओं के कारण इसे पूरी तरह से भंग कर दिया गया था).</li>
+                    <li><strong>Rajya Chayan Aayog:</strong> Officially constituted recently in Hamirpur to permanently replace the dissolved Staff Selection Commission for Class-III recruitments. (राज्य चयन आयोग: भंग किए गए कर्मचारी चयन आयोग (कक्षा-III भर्ती) की जगह हाल ही में हमीरपुर में आधिकारिक रूप से गठित किया गया).</li>
+                    <li><strong>Institution of Lokayukta:</strong> The HP Lokayukta Act was passed in 1983 to probe corruption. Justice T.V.R. Tatachari was appointed as the first Lokayukta. (लोकायुक्त संस्था: भ्रष्टाचार की जांच के लिए 1983 में अधिनियम पारित। न्यायमूर्ति टी.वी.आर. टाटाचारी पहले लोकायुक्त नियुक्त किए गए).</li>
+                    <li><strong>State Information Commission:</strong> Established legally under the Right to Information (RTI) Act of 2005 to strictly ensure total transparency in state governance. (राज्य सूचना आयोग: शासन में पूर्ण पारदर्शिता सुनिश्चित करने के लिए सूचना का अधिकार (RTI) अधिनियम 2005 के तहत स्थापित).</li>
+                    <li><strong>HIPA (Fairlawn):</strong> The Himachal Pradesh Institute of Public Administration was established in 1974 at the historic Fairlawn building in Shimla. (हिपा (फेयरलॉन): हिमाचल प्रदेश लोक प्रशासन संस्थान की स्थापना 1974 में शिमला के ऐतिहासिक फेयरलॉन भवन में की गई थी).</li>
+                    <li><strong>First HIPA Director:</strong> Shri B.K. Sharma was appointed as the very first Director of HIPA, which provides rigorous training to all state civil servants. (पहले HIPA निदेशक: श्री बी.के. शर्मा को HIPA का पहला निदेशक नियुक्त किया गया था, जो सिविल सेवकों को प्रशिक्षण प्रदान करता है).</li>
+                    <li><strong>State Human Rights Commission:</strong> A highly crucial statutory body explicitly tasked with strictly ensuring the protection of fundamental human rights within the state. (राज्य मानवाधिकार आयोग: राज्य के भीतर मौलिक मानवाधिकारों की सुरक्षा सुनिश्चित करने का काम सौंपा गया एक महत्वपूर्ण वैधानिक निकाय).</li>
                 </ul>
             </div>
 
             <!-- 7. Key Residences -->
             <div class="seo-card glass-panel">
                 <h3><i class="fa-solid fa-house-flag"></i> 7. Official Residences (आधिकारिक निवास)</h3>
-                <p>Historical buildings serving as residences for dignitaries. <br>(मान्यवरों के निवास के रूप में ऐतिहासिक इमारतें।)</p>
+                <p>Magnificent historical heritage buildings currently serving as official residences for the state's highest dignitaries. <br>(शानदार ऐतिहासिक विरासत इमारतें जो वर्तमान में राज्य के सर्वोच्च गणमान्य व्यक्तियों के आधिकारिक निवास के रूप में काम कर रही हैं।)</p>
                 <ul class="seo-list">
-                    <li><strong>Barnes Court:</strong> Official residence of the Governor (Raj Bhavan). Site of Simla Agreement (1972). (बार्न्स कोर्ट - राजभवन, शिमला समझौता).</li>
-                    <li><strong>Oakover:</strong> Official residence of the Chief Minister. (ओकओवर - मुख्यमंत्री निवास).</li>
-                    <li><strong>Peterhoff:</strong> Former Raj Bhavan (Burnt in 1981). Site of Nathuram Godse's trial (1948-49). Now a luxury hotel. (पीटरहॉफ - गोडसे मुकदमा).</li>
-                    <li><strong>Viceregal Lodge:</strong> Rashtrapati Niwas. Now Institute of Advanced Study. (वायसराय लॉज - राष्ट्रपति निवास).</li>
-                    <li><strong>Retreat Building (Mashobra):</strong> President of India's summer retreat. (रिट्रीट बिल्डिंग - राष्ट्रपति का ग्रीष्मकालीन आवास).</li>
+                    <li><strong>Barnes Court:</strong> Serves currently as the official 'Raj Bhavan' (Governor's residence). It was the historic site of the famous Simla Agreement (1972) between India and Pakistan. (बार्न्स कोर्ट: वर्तमान में आधिकारिक 'राजभवन' (राज्यपाल का निवास)। यह भारत और पाकिस्तान के बीच शिमला समझौते (1972) का ऐतिहासिक स्थल था).</li>
+                    <li><strong>Oakover:</strong> The highly secured, beautiful heritage building designated strictly as the official residence of the Chief Minister of Himachal Pradesh. (ओकओवर: हिमाचल प्रदेश के मुख्यमंत्री के आधिकारिक निवास के रूप में कड़ाई से नामित एक अत्यधिक सुरक्षित, सुंदर विरासत इमारत).</li>
+                    <li><strong>Peterhoff:</strong> The former Raj Bhavan. It hosted the famous trial of Nathuram Godse (1948-49). It tragically burnt down in 1981 and is now a luxury state hotel. (पीटरहॉफ: पूर्व राजभवन। इसने नाथूराम गोडसे (1948-49) के प्रसिद्ध परीक्षण की मेजबानी की। 1981 में जल गया और अब एक लक्जरी राज्य होटल है).</li>
+                    <li><strong>Viceregal Lodge:</strong> Also known as Rashtrapati Niwas, it formerly housed British Viceroys. It now successfully houses the Indian Institute of Advanced Study (IIAS). (वायसराय लॉज: इसे राष्ट्रपति निवास भी कहा जाता है, यह पूर्व में ब्रिटिश वाइसराय का घर था। अब यहाँ भारतीय उन्नत अध्ययन संस्थान (IIAS) है).</li>
+                    <li><strong>The Retreat (Mashobra):</strong> A highly exclusive wooden structured building operating as the official summer retreat of the President of India. (द रिट्रीट (मशोबरा): भारत के राष्ट्रपति के आधिकारिक ग्रीष्मकालीन विश्राम स्थल के रूप में काम करने वाली एक अत्यंत विशिष्ट लकड़ी की इमारत).</li>
+                    <li><strong>Kennedy House:</strong> Officially recorded as the very first permanent British house built in Shimla (1822). It housed the very first temporary legislative assembly. (कैनेडी हाउस: आधिकारिक तौर पर शिमला (1822) में निर्मित पहला स्थायी ब्रिटिश घर। इसने पहली अस्थायी विधानसभा को आश्रय दिया).</li>
+                    <li><strong>Gorton Castle:</strong> A massive, spectacular neo-Gothic building currently functioning as the official workplace of the Accountant General (AG) of HP. (गॉर्टन कैसल: एक विशाल, शानदार नव-गॉथिक इमारत जो वर्तमान में हिमाचल के महालेखाकार (AG) के आधिकारिक कार्यस्थल के रूप में काम कर रही है).</li>
+                    <li><strong>Rothney Castle:</strong> The highly historical former residence of A.O. Hume, who famously founded the Indian National Congress (INC) here in Shimla. (रॉथनी कैसल: ए.ओ. ह्यूम का अत्यधिक ऐतिहासिक पूर्व निवास, जिन्होंने प्रसिद्ध रूप से यहीं शिमला में भारतीय राष्ट्रीय कांग्रेस (INC) की स्थापना की थी).</li>
                 </ul>
             </div>
 
             <!-- 8. Police & Services -->
             <div class="seo-card glass-panel">
-                <h3><i class="fa-solid fa-shield-halved"></i> 8. Police & Public Services (पुलिस और सार्वजनिक सेवाएं)</h3>
-                <p>Law enforcement and essential services. <br>(कानून प्रवर्तन और आवश्यक सेवाएं।)</p>
+                <h3><i class="fa-solid fa-shield-halved"></i> 8. Police & e-Governance (पुलिस और ई-गवर्नेंस)</h3>
+                <p>The state's dedicated law enforcement structure and rapid transition towards digital essential public services. <br>(राज्य की समर्पित कानून प्रवर्तन संरचना और डिजिटल आवश्यक सार्वजनिक सेवाओं की ओर तेजी से संक्रमण।)</p>
                 <ul class="seo-list">
-                    <li><strong>HP Police:</strong> Formed in 1948. First IGP: S.R. Chaudhary. HQ: Shimla. (हिमाचल पुलिस - 1948, एस.आर. चौधरी).</li>
-                    <li><strong>Right to Service Act:</strong> HP Public Service Guarantee Act 2011 ensures time-bound delivery of services. (लोक सेवा गारंटी अधिनियम 2011).</li>
-                    <li><strong>e-Governance:</strong> Him-Bhoomi (Land records), e-District (Certificates), CM Helpline (1100). (ई-गवर्नेंस - हिम-भूमि, सीएम हेल्पलाइन).</li>
+                    <li><strong>HP Police Formation:</strong> The Himachal Pradesh Police was formally constituted in 1948. S.R. Chaudhary was officially appointed as the first Inspector General of Police (IGP). (एचपी पुलिस का गठन: हिमाचल पुलिस का औपचारिक रूप से 1948 में गठन हुआ था। एस.आर. चौधरी पहले पुलिस महानिरीक्षक (IGP) नियुक्त हुए).</li>
+                    <li><strong>Police Training College:</strong> The premier State Police Training College (PTC) is strategically located at Daroh in the Kangra district. (पुलिस प्रशिक्षण कॉलेज: प्रमुख राज्य पुलिस प्रशिक्षण कॉलेज (PTC) कांगड़ा जिले के डरोह में रणनीतिक रूप से स्थित है).</li>
+                    <li><strong>Right to Service Act:</strong> The HP Public Service Guarantee Act (2011) legally ensures the strict time-bound delivery of essential government services to citizens. (सेवा का अधिकार अधिनियम: लोक सेवा गारंटी अधिनियम (2011) नागरिकों को आवश्यक सरकारी सेवाओं की समयबद्ध डिलीवरी सुनिश्चित करता है).</li>
+                    <li><strong>e-District Project:</strong> A massive digital initiative allowing citizens to rapidly obtain income, caste, and domicile certificates completely online. (ई-डिस्ट्रिक्ट परियोजना: एक डिजिटल पहल जो नागरिकों को आय, जाति और अधिवास प्रमाण पत्र पूरी तरह से ऑनलाइन प्राप्त करने की अनुमति देती है).</li>
+                    <li><strong>Him-Bhoomi:</strong> An exceptionally highly successful e-governance project strictly dedicated to the complete computerization and digital access of land records. (हिम-भूमि: एक अत्यंत सफल ई-गवर्नेंस परियोजना जो पूरी तरह से भूमि रिकॉर्ड के कम्प्यूटरीकरण और डिजिटल पहुंच को समर्पित है).</li>
+                    <li><strong>CM Sewa Sankalp (1100):</strong> A highly effective, centralized toll-free helpline number explicitly created for rapid, direct public grievance redressal. (सीएम सेवा संकल्प (1100): एक अत्यधिक प्रभावी, केंद्रीकृत टोल-फ्री हेल्पलाइन नंबर जो स्पष्ट रूप से तेजी से सार्वजनिक शिकायत निवारण के लिए बनाया गया है).</li>
+                    <li><strong>CCTNS Implementation:</strong> The state successfully implemented the Crime and Criminal Tracking Network & Systems to heavily digitize all local police station records. (CCTNS कार्यान्वयन: राज्य ने सभी स्थानीय पुलिस स्टेशन रिकॉर्ड को भारी रूप से डिजिटाइज़ करने के लिए इस प्रणाली को सफलतापूर्वक लागू किया).</li>
+                    <li><strong>SDMA Formation:</strong> The State Disaster Management Authority (SDMA) proactively manages emergency responses, primarily focusing on extreme earthquakes and flash floods. (SDMA का गठन: राज्य आपदा प्रबंधन प्राधिकरण मुख्य रूप से भूकंप और अचानक आई बाढ़ पर ध्यान केंद्रित करते हुए आपातकालीन प्रतिक्रियाओं का प्रबंधन करता है).</li>
                 </ul>
             </div>
 
             <!-- 9. Administrative Divisions -->
             <div class="seo-card glass-panel">
-                <h3><i class="fa-solid fa-sitemap"></i> 9. Administrative Structure (प्रशासनिक संरचना)</h3>
-                <p>Hierarchy of administration for governance. <br>(शासन के लिए प्रशासन का पदानुक्रम।)</p>
+                <h3><i class="fa-solid fa-sitemap"></i> 9. Administrative Divisions (प्रशासनिक संरचना)</h3>
+                <p>The structured geographical hierarchy of state administration created expressly for highly effective local governance. <br>(अत्यधिक प्रभावी स्थानीय शासन के लिए स्पष्ट रूप से बनाया गया राज्य प्रशासन का संरचित भौगोलिक पदानुक्रम।)</p>
                 <ul class="seo-list">
-                    <li><strong>Divisions:</strong> 3 (Shimla, Mandi, Kangra). Mandi is the largest division. (3 मंडल - शिमला, मंडी, कांगड़ा).</li>
-                    <li><strong>Districts:</strong> 12. Largest: Lahaul-Spiti. Smallest: Hamirpur. (12 जिले).</li>
-                    <li><strong>Sub-Divisions & Tehsils:</strong> Multiple sub-divisions headed by SDM and Tehsils by Tehsildar. (उपमंडल और तहसीलें).</li>
-                    <li><strong>Blocks:</strong> Development Blocks for rural development. (विकास खंड).</li>
+                    <li><strong>Three Divisions:</strong> The entire state is administratively divided into exactly 3 major Divisions: Shimla, Mandi, and Kangra, each headed by a Divisional Commissioner. (तीन मंडल: पूरा राज्य प्रशासनिक रूप से ठीक 3 प्रमुख मंडलों (शिमला, मंडी, कांगड़ा) में विभाजित है, जिनका नेतृत्व एक मंडलायुक्त करता है).</li>
+                    <li><strong>Largest Division:</strong> The Mandi division is the absolute largest administratively, encompassing 5 full districts (Mandi, Kullu, Lahaul-Spiti, Hamirpur, and Bilaspur). (सबसे बड़ा मंडल: मंडी मंडल प्रशासनिक रूप से सबसे बड़ा है, जिसमें 5 पूर्ण जिले (मंडी, कुल्लू, लाहौल-स्पीति, हमीरपुर और बिलासपुर) शामिल हैं).</li>
+                    <li><strong>Twelve Districts:</strong> The state consists of exactly 12 districts, where the Deputy Commissioner (DC) holds supreme administrative and revenue powers. (बारह जिले: राज्य में ठीक 12 जिले हैं, जहाँ उपायुक्त (DC) सर्वोच्च प्रशासनिक और राजस्व शक्तियाँ रखता है).</li>
+                    <li><strong>Sub-Divisions (SDM):</strong> Districts are further logically divided into numerous Sub-Divisions, each effectively headed by a Sub-Divisional Magistrate (SDM). (उपमंडल (SDM): जिलों को आगे कई उपमंडलों में तार्किक रूप से विभाजित किया गया है, जिनका नेतृत्व उप-विभागीय मजिस्ट्रेट करता है).</li>
+                    <li><strong>Tehsils & Revenue:</strong> Tehsils and strictly demarcated Sub-Tehsils function as the core foundational units for land revenue administration, headed by Tehsildars. (तहसीलें और राजस्व: तहसीलें और उप-तहसीलें भूमि राजस्व प्रशासन के लिए मुख्य आधारभूत इकाइयों के रूप में कार्य करती हैं (तहसीलदार के नेतृत्व में)).</li>
+                    <li><strong>Development Blocks:</strong> Specially designated blocks (headed by a BDO) are strictly tasked with flawlessly executing all rural development and poverty alleviation schemes. (विकास खंड: विशेष रूप से नामित ब्लॉकों (BDO के नेतृत्व में) को सभी ग्रामीण विकास योजनाओं को त्रुटिहीन ढंग से निष्पादित करने का काम सौंपा जाता है).</li>
+                    <li><strong>Patwari System:</strong> The village 'Patwari' acts directly as the most basic, fundamentally important ground-level official maintaining vital agricultural land records. (पटवारी प्रणाली: ग्राम 'पटवारी' महत्वपूर्ण कृषि भूमि रिकॉर्ड बनाए रखने वाले सबसे बुनियादी, मौलिक रूप से महत्वपूर्ण जमीनी स्तर के अधिकारी के रूप में कार्य करता है).</li>
+                    <li><strong>Kanungo Circles:</strong> Several village Patwar circles are administratively aggregated into larger Kanungo circles strictly for tighter supervisory control. (कानूनगो सर्कल: कड़े पर्यवेक्षी नियंत्रण के लिए कई ग्राम पटवार सर्किलों को प्रशासनिक रूप से बड़े कानूनगो सर्किलों में जोड़ा जाता है).</li>
                 </ul>
             </div>
 
@@ -798,16 +836,16 @@
                 <i class="fa-solid fa-xmark"></i>
             </button>
         </div>
-        <div class="quiz-modal-body" style="font-size:0.85rem; color:var(--text-body); line-height:1.6; padding-top:10px;">
-            <ul style="list-style:none; padding:0; margin:0; display:grid; gap:12px;">
-                <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-solid fa-download" style="color:var(--text-sec); font-size:1rem;"></i></span> <span><strong>Backup:</strong> Save your progress to a file.</span></li>
-                <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-solid fa-upload" style="color:var(--text-sec); font-size:1rem;"></i></span> <span><strong>Restore:</strong> Load your saved progress.</span></li>
-                <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-solid fa-rotate-right" style="color:var(--wrong-text); font-size:1rem;"></i></span> <span><strong>Reset:</strong> Clear all history for this subject.</span></li>
-                <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-solid fa-bolt" style="color:var(--accent); font-size:1rem;"></i></span> <span><strong>Quick 10:</strong> Start a fast 10-question session.</span></li>
-                <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-solid fa-shuffle" style="color:var(--primary); font-size:1rem;"></i></span> <span><strong>Shuffle:</strong> Randomize question order.</span></li>
-                <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-solid fa-triangle-exclamation" style="color:var(--wrong-text); font-size:1rem;"></i></span> <span><strong>Mistakes:</strong> Review incorrect answers.</span></li>
-                <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-regular fa-bookmark" style="color:var(--primary); font-size:1rem;"></i></span> <span><strong>Bookmarks:</strong> View saved questions.</span></li>
-                <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center; font-weight:bold; color:var(--text-sec);">A&plusmn;</span> <span><strong>Text Size:</strong> Adjust font size.</span></li>
+        <div class="quiz-modal-body" style="font-size:0.75rem; color:var(--text-body); line-height:1.4; padding-top:10px;">
+            <ul style="list-style:none; padding:0; margin:0; display:grid; gap:8px;">
+                <li style="display:flex; gap:8px; align-items:center;"><span style="width:20px; text-align:center;"><i class="fa-solid fa-download" style="color:var(--text-sec); font-size:0.9rem;"></i></span> <span><strong>Backup:</strong> Save your progress.</span></li>
+                <li style="display:flex; gap:8px; align-items:center;"><span style="width:20px; text-align:center;"><i class="fa-solid fa-upload" style="color:var(--text-sec); font-size:0.9rem;"></i></span> <span><strong>Restore:</strong> Load saved progress.</span></li>
+                <li style="display:flex; gap:8px; align-items:center;"><span style="width:20px; text-align:center;"><i class="fa-solid fa-rotate-right" style="color:var(--wrong-text); font-size:0.9rem;"></i></span> <span><strong>Reset:</strong> Clear all history.</span></li>
+                <li style="display:flex; gap:8px; align-items:center;"><span style="width:20px; text-align:center;"><i class="fa-solid fa-bolt" style="color:var(--accent); font-size:0.9rem;"></i></span> <span><strong>Quick 10:</strong> Start fast 10-Q session.</span></li>
+                <li style="display:flex; gap:8px; align-items:center;"><span style="width:20px; text-align:center;"><i class="fa-solid fa-shuffle" style="color:var(--primary); font-size:0.9rem;"></i></span> <span><strong>Shuffle:</strong> Randomize questions.</span></li>
+                <li style="display:flex; gap:8px; align-items:center;"><span style="width:20px; text-align:center;"><i class="fa-solid fa-triangle-exclamation" style="color:var(--wrong-text); font-size:0.9rem;"></i></span> <span><strong>Mistakes:</strong> Review incorrect answers.</span></li>
+                <li style="display:flex; gap:8px; align-items:center;"><span style="width:20px; text-align:center;"><i class="fa-regular fa-bookmark" style="color:var(--primary); font-size:0.9rem;"></i></span> <span><strong>Bookmarks:</strong> View saved questions.</span></li>
+                <li style="display:flex; gap:8px; align-items:center;"><span style="width:20px; text-align:center; font-weight:bold; color:var(--text-sec); font-size:0.9rem;">A&plusmn;</span> <span><strong>Text Size:</strong> Adjust font size.</span></li>
             </ul>
         </div>
     </div>
