@@ -150,12 +150,21 @@
 
         .top-meta-bar { 
             display: flex; justify-content: space-between; align-items: center; 
-            width: 100%; max-width: var(--site-width); margin: 0 auto 12px auto; 
+            width: 100%; max-width: var(--site-width); margin: 0 auto 5px auto; 
             padding: 0 15px; flex-wrap: nowrap; gap: 10px; 
         }
 
         .page-header-top, .main-layout, .seo-content-wrapper { 
             width: 100%; max-width: var(--site-width); margin: 0 auto; padding: 0 15px; 
+        }
+
+        .page-header-top { text-align: center; margin-bottom: 25px; }
+
+        /* HERO DESC FIX: Force Center Alignment and Margin Auto */
+        .hero-desc {
+            margin: 0 auto;
+            text-align: center;
+            max-width: 800px;
         }
 
         .section-separator { 
@@ -167,6 +176,7 @@
             .top-meta-bar, .page-header-top, .main-layout, .seo-content-wrapper {
                 padding: 0 12px !important;
             }
+            .page-header-top { margin-bottom: 20px; }
         }
 
         .breadcrumb-nav { margin: 0; flex-shrink: 1; display: flex; align-items: center; height: 24px; }
@@ -191,22 +201,16 @@
             margin: 0; border: 1px solid var(--primary); letter-spacing: 0.5px; white-space: nowrap; 
             flex-shrink: 0; box-sizing: border-box;
         }
-
-        .page-header-top { text-align: center; margin-bottom: 20px; }
         
-        /* EXACT DESKTOP H1 FONT SIZE: 32px */
+        /* Clean H1 styling (no bottom line) */
         .hero-title { 
-            font-size: 32px !important; 
-            font-weight: 900 !important; 
-            margin: 0; 
-            letter-spacing: -0.5px; 
-            text-align: center; 
             background: linear-gradient(135deg, var(--text-main) 0%, var(--primary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             color: var(--primary); 
-            line-height: 1.2;
+            letter-spacing: -0.8px;
+            margin-bottom: 8px !important;
         }
         
         .main-layout { display: flex; flex-direction: column; gap: 20px; }
@@ -220,7 +224,7 @@
         .intro-card h2 { font-size: 1.05rem; color: var(--primary); margin: 0 0 8px 0; display: flex; align-items: center; gap: 8px; font-weight: 700; justify-content: center; }
         .intro-card p { font-size: 0.85rem; color: var(--text-body); margin: 0; line-height: 1.5; }
         .intro-list { margin: 8px 0 0 0; padding-left: 20px; font-size: 0.85rem; color: var(--text-body); line-height: 1.5; }
-        .intro-list li { margin-bottom: 4px; }
+        .intro-list li { margin-bottom: 6px; } /* Increased spacing between list items for readability */
         
         .quick-links { 
             margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--card-border); 
@@ -425,42 +429,7 @@
         .progress-display { display: flex; align-items: center; justify-content: center; padding: 4px 10px; }
         .progress-text { font-weight: 800; color: var(--text-main); font-size: 0.85rem; }
 
-        /* ==========================================
-           FIXED: EXTREME LOCK FOR MODAL (Center Screen Popup Guaranteed)
-           ========================================== */
-        .quiz-modal-overlay {
-            position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important;
-            width: 100vw !important; height: 100vh !important;
-            background: rgba(0,0,0,0.5) !important; backdrop-filter: blur(4px) !important; -webkit-backdrop-filter: blur(4px) !important;
-            z-index: 999999 !important; display: none; align-items: center !important; justify-content: center !important; padding: 20px;
-            opacity: 0; transition: opacity 0.2s ease;
-        }
-        .quiz-modal-overlay.show { display: flex !important; opacity: 1; }
-        .quiz-modal-content {
-            background: var(--tooltip-bg) !important; 
-            width: 100%; max-width: 380px; margin: auto !important;
-            border: 1px solid var(--card-border);
-            border-radius: var(--radius-lg); padding: 20px;
-            box-shadow: var(--glass-shadow); transform: translateY(20px); transition: transform 0.2s ease;
-            position: relative !important; z-index: 1000000 !important;
-        }
-        .quiz-modal-overlay.show .quiz-modal-content { transform: translateY(0); }
-        .quiz-modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--card-border); padding-bottom: 12px; margin-bottom: 12px; }
-
-        .section-separator { height: 1px; background: linear-gradient(90deg, transparent, var(--card-border), transparent); margin: 25px 0; width: 100%; }
-        .seo-content-wrapper { margin-bottom: 30px; }
-        .seo-header { text-align: center; margin-bottom: 20px; }
-        .seo-header h2 { font-size: clamp(1.2rem, 3vw, 1.6rem); margin-bottom: 8px; }
-        .seo-header p { color: var(--text-sec); max-width: 600px; margin: 0 auto; font-size: 0.85rem; }
-        .seo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
-        .seo-card { background: var(--card-bg); border: 1px solid var(--card-border); padding: 20px; border-radius: var(--radius-lg); box-shadow: var(--glass-shadow); border-left: 4px solid var(--primary); transition: border-color 0.2s; }
-        .seo-card:hover { border-color: var(--primary-light); }
-        .seo-card h3 { font-size: 1rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; color: var(--text-main) !important; }
-        .seo-card h3 i { color: var(--primary); }
-        .seo-card p { color: var(--text-body) !important; font-size: 0.85rem; margin-bottom: 10px; }
-        
-        .seo-list { list-style: none; padding-left: 0; }
-        .seo-list li { position: relative; padding-left: 18px; margin-bottom: 5px; font-size: 0.8rem; color: var(--text-body) !important; }
+        /* Local overrides removed to use global CSS */
         .seo-list li::before { 
             content: "\f111"; 
             font-family: "Font Awesome 6 Free";
@@ -472,22 +441,37 @@
             font-size: 0.4rem; 
         }
 
+        /* Modal specific styles */
+        .quiz-modal-overlay {
+            position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important;
+            width: 100vw !important; height: 100vh !important;
+            background: rgba(0,0,0,0.5) !important; backdrop-filter: blur(4px) !important; -webkit-backdrop-filter: blur(4px) !important;
+            z-index: 999999 !important; display: none; align-items: center !important; justify-content: center !important; padding: 20px;
+            opacity: 0; transition: opacity 0.2s ease;
+        }
+        .quiz-modal-overlay.show { display: flex !important; opacity: 1; }
+        .quiz-modal-content {
+            background: var(--card-bg) !important; 
+            width: 100%; max-width: 380px; margin: auto !important;
+            border: 1px solid var(--border-color);
+            border-radius: 12px; padding: 20px;
+            box-shadow: var(--glass-shadow); transform: translateY(20px); transition: transform 0.2s ease;
+            position: relative !important; z-index: 1000000 !important;
+        }
+        .quiz-modal-overlay.show .quiz-modal-content { transform: translateY(0); }
+        .quiz-modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; margin-bottom: 12px; }
+
         /* ==========================================
            EXACT MOBILE CSS COMPACTNESS 
            ========================================== */
         @media (max-width: 600px) {
-            /* EXACT MOBILE H1 FONT SIZE: 23px */
-            .hero-title { font-size: 23px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
             .top-meta-bar { flex-wrap: nowrap; justify-content: space-between; }
-            
             .widget-header { padding: 10px; align-items: center; }
             .text-controls { justify-content: center; gap: 3px; padding: 2px 0; }
             
-            /* RESTORED: Toolbar Icons back to 13.6px for mobile too */
             .icon-btn, .text-btn, .text-controls label { width: 28px !important; height: 28px !important; font-size: 13.6px !important; border-radius: 6px !important; }
             .v-divider { margin: 0 1px; height: 14px; }
             
-            /* COMPACT DASHBOARD STATS FOR MOBILE (Strict 10.4px) */
             .stat-item { flex-direction: column; gap: 1px; padding: 4px 1px; align-items: center; }
             .stat-label { font-size: 10.4px !important; letter-spacing: -0.2px; margin: 0; }
             .stat-value { font-size: 10.4px !important; }
@@ -498,6 +482,18 @@
             .nav-btn { padding: 4px 8px; font-size: 0.7rem; min-width: 55px; }
             .progress-display { padding: 2px 6px; }
             .progress-text { font-size: 0.7rem; }
+            
+            /* Quick Links Mobile Fix: Inline & Scrollable */
+            .quick-links {
+                flex-wrap: nowrap !important;
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                justify-content: flex-start !important;
+                padding-bottom: 5px;
+            }
+            .quick-links::-webkit-scrollbar { display: none; }
+            .quick-link-item { font-size: 0.65rem; padding: 4px 10px; }
         }
     </style>
 
@@ -537,6 +533,10 @@
     <!-- New Top Page Header (Centers H1 above the columns) -->
     <div class="page-header-top">
         <h1 class="hero-title">River System of Himachal Pradesh</h1>
+        <!-- Descriptive content acting as hero sub-heading -->
+        <p class="hero-desc">
+            The river system is the most high-yielding topic for HPAS and Allied exams. Every year, 3-4 questions appear directly from tributaries, Vedic names, and hydro projects. <br>यह विषय HPAS और अन्य परीक्षाओं के लिए सबसे महत्वपूर्ण है। हर साल 3-4 प्रश्न सीधे पूछे जाते हैं।
+        </p>
     </div>
 
     <!-- Side-by-Side Two Column Layout -->
@@ -545,13 +545,12 @@
         <!-- Left Column: Intro Hook -->
         <section class="intro-column">
             <div class="intro-grid">
-                <!-- Fixed Heading Hierarchy & Center Aligned Card -->
+                <!-- Cleaned up left card: Now just holds Quick Links -->
                 <div class="intro-card glass-panel" style="text-align: center;">
-                    <h2 style="justify-content: center;"><i class="fa-solid fa-star"></i> Why This Matters? (यह महत्वपूर्ण क्यों है?)</h2>
-                    <p>The river system is the most high-yielding topic for HPAS and Allied exams. Every year, 3-4 questions appear directly from tributaries, Vedic names, and hydro projects. <br><br>यह विषय HPAS और अन्य परीक्षाओं के लिए सबसे महत्वपूर्ण है। हर साल 3-4 प्रश्न सीधे पूछे जाते हैं।</p>
+                    <h2 style="justify-content: center; margin-bottom: 12px; font-size: 1rem;"><i class="fa-solid fa-link"></i> Quick Study Links</h2>
                     
                     <!-- Sibling Directory Interlinking -->
-                    <div class="quick-links" style="justify-content: center;">
+                    <div class="quick-links" style="justify-content: center; border-top: none; padding-top: 0; margin-top: 0;">
                         <a href="../history/" class="quick-link-item"><i class="fa-solid fa-landmark"></i> History</a>
                         <a href="../geography/" class="quick-link-item"><i class="fa-solid fa-mountain"></i> Geography</a>
                         <a href="../district/" class="quick-link-item"><i class="fa-solid fa-map-location-dot"></i> Districts</a>
@@ -562,12 +561,13 @@
                 <div class="intro-card glass-panel">
                     <h2><i class="fa-solid fa-list-check"></i> What this Page Covers (इस पृष्ठ में क्या शामिल है)</h2>
                     <ul class="intro-list">
-                        <li><strong>5 Major River Systems (5 प्रमुख नदी तंत्र):</strong> In-depth analysis of Satluj, Beas, Ravi, Chenab, & Yamuna from source to plains. (नदी का उद्गम से मैदानों तक का सफर).</li>
-                        <li><strong>Vedic & Sanskrit Nomenclature (वैदिक और संस्कृत नाम):</strong> Master the ancient names (e.g., Sutudri, Vipasha) and Greek records (Hyphasis). (प्राचीन नाम और ग्रीक रिकॉर्ड).</li>
-                        <li><strong>Tributary Mapping (सहायक नदियों का मानचित्रण):</strong> Exhaustive lists including micro-khads like Seer, Ali, and Banganga. (सभी जिलों की सूक्ष्म खड्डों की सूची).</li>
-                        <li><strong>Hydel Power Potential (जलविद्युत क्षमता):</strong> Detailed facts on major dams (Bhakra, Pong) and unique projects. (प्रमुख बांधों और भूमिगत परियोजनाओं के तथ्य).</li>
-                        <li><strong>Geographic Phenomena (भौगोलिक घटनाएँ):</strong> Understanding Antecedent drainage, Tandi confluence, and the 'River of Sorrows'. (तांडी संगम और 'दुखों की नदी' का विश्लेषण).</li>
-                        <li><strong>Interactive Quiz (संवादात्मक प्रश्नोत्तरी):</strong> Verify your retention of every single river fact through 290+ bilingual MCQs.</li>
+                        <li><strong>5 Major River Systems (5 प्रमुख नदी तंत्र):</strong> In-depth analysis of Satluj, Beas, Ravi, Chenab, & Yamuna detailing their journey from high-altitude glaciers to the plains. (उद्गम से मैदानों तक का सफर).</li>
+                        <li><strong>Vedic & Sanskrit Nomenclature (वैदिक और संस्कृत नाम):</strong> Master the ancient names (e.g., Sutudri, Vipasha) along with historical Greek records like Hyphasis and Acesines. (प्राचीन नाम और ग्रीक रिकॉर्ड).</li>
+                        <li><strong>Micro-Tributary Mapping (सूक्ष्म सहायक नदियों का मानचित्रण):</strong> Exhaustive lists including micro-khads like Seer, Ali, Gambhar, and Banganga which frequently appear in state exams. (सभी जिलों की सूक्ष्म खड्डों की विस्तृत सूची).</li>
+                        <li><strong>Hydel Power & Dams (जलविद्युत क्षमता और बांध):</strong> Deep dive into facts on major dams (Bhakra, Pong) and unique underground projects like Nathpa Jhakri and Karcham Wangtoo. (प्रमुख बांधों और भूमिगत परियोजनाओं के तथ्य).</li>
+                        <li><strong>Geographic Phenomena (भौगोलिक घटनाएँ):</strong> Understanding unique concepts like Antecedent drainage, the Tandi confluence, and Una's 'River of Sorrows'. (पूर्ववर्ती अपवाह, तांडी संगम और 'दुखों की नदी' का वैज्ञानिक विश्लेषण).</li>
+                        <li><strong>Historical & Cultural Ties (ऐतिहासिक और सांस्कृतिक संबंध):</strong> Read about how the Beas stopped Alexander's army, and the implication of the Indus Water Treaty (1960). (सिकंदर का आक्रमण और सिंधु जल संधि 1960 के महत्वपूर्ण पहलू).</li>
+                        <li><strong>Interactive Testing (संवादात्मक प्रश्नोत्तरी):</strong> Verify your retention of every single river fact through our dedicated quiz engine featuring 290+ bilingual MCQs with detailed explanations. (290+ बहुविकल्पीय प्रश्नों के साथ अभ्यास).</li>
                     </ul>
                 </div>
             </div>
@@ -582,11 +582,11 @@
                 </button>
 
                 <div class="widget-header">
-                    <div class="text-controls">
+                    <div class="text-controls" style="margin: 0 auto;">
                         <button class="icon-btn" onclick="toggleHelpModal()" title="Help Guide">
                             <i class="fa-solid fa-circle-question"></i>
                         </button>
-                        <div class="v-divider"></div>
+                        <div class="v-divider" style="width: 1px; height: 16px; background: var(--border-color); margin: 0 4px;"></div>
                         
                         <button class="icon-btn" onclick="exportProgress()" title="Backup Progress">
                             <i class="fa-solid fa-download"></i>
@@ -596,11 +596,11 @@
                         </label>
                         <input type="file" id="importFile" style="display: none;" accept=".json" onchange="importProgress(this)">
                         
-                        <button class="icon-btn" onclick="resetProgress()" title="Reset Progress">
+                        <button class="icon-btn reset" onclick="resetProgress()" title="Reset Progress" style="color: var(--wrong-text);">
                             <i class="fa-solid fa-rotate-right"></i>
                         </button>
                         
-                        <div class="v-divider"></div>
+                        <div class="v-divider" style="width: 1px; height: 16px; background: var(--border-color); margin: 0 4px;"></div>
 
                         <button class="icon-btn" id="quickModeBtn" onclick="toggleQuickMode()" title="Quick 10 Quiz">
                             <i class="fa-solid fa-bolt"></i>
@@ -615,7 +615,7 @@
                             <i class="fa-regular fa-bookmark"></i>
                         </button>
                         
-                        <div class="v-divider"></div>
+                        <div class="v-divider" style="width: 1px; height: 16px; background: var(--border-color); margin: 0 4px;"></div>
                         
                         <button class="text-btn" onclick="adjustFont(-1)" title="Decrease Font">A-</button>
                         <button class="text-btn" onclick="adjustFont(1)" title="Increase Font">A+</button>
@@ -642,7 +642,6 @@
                     <div class="widget-controls">
                         <button id="prevBtn" class="nav-btn"><i class="fa-solid fa-arrow-left"></i> Prev</button>
                         
-                        <!-- REPLACED JUMP WITH SIMPLE PROGRESS TEXT -->
                         <div class="progress-display">
                             <span class="progress-text" id="progressText">0 / 0</span>
                         </div>
@@ -661,7 +660,7 @@
     <section class="seo-content-wrapper">
         <div class="seo-header">
             <h2>Detailed Study Notes (विस्तृत अध्ययन नोट्स)</h2>
-            <p>Comprehensive analysis of the drainage system for competitive exams. <br>(प्रतियोगी परीक्षाओं के लिए अपवाह तंत्र का व्यापक विश्लेषण।)</p>
+            <p>Comprehensive analysis of the drainage system for competitive exams. Explore the origin, tributaries, dams, and cultural significance of Himachal's rivers. <br>(प्रतियोगी परीक्षाओं के लिए अपवाह तंत्र का व्यापक विश्लेषण। हिमाचल की नदियों के उद्गम, सहायक नदियों और सांस्कृतिक महत्व को समझें।)</p>
         </div>
 
         <div class="seo-grid">
@@ -669,126 +668,132 @@
             <!-- River 1: Satluj -->
             <div class="seo-card glass-panel">
                 <h3><i class="fa-solid fa-water"></i> 1. The Satluj (सतलुज - लाल नदी)</h3>
-                <p>The Satluj is the longest river in HP, cutting across the Great Himalaya and Zaskar ranges. It is an antecedent river. <br>(सतलुज सबसे लंबी और पूर्ववर्ती नदी है।)</p>
+                <p>The Satluj is the longest river in HP (320 km). It is a classic example of an antecedent river, meaning it existed before the Himalayas were fully formed, slowly cutting deep gorges (like at Shipki La) as the mountains rose. <br>(सतलुज हिमाचल की सबसे लंबी (320 किमी) और पूर्ववर्ती नदी है, जो हिमालय के निर्माण से पहले भी मौजूद थी।)</p>
                 <ul class="seo-list">
                     <li><strong>Vedic Name:</strong> Sutudri | <strong>Sanskrit Name:</strong> Shatadru (वैदिक: सुतुद्री | संस्कृत: शतद्रु).</li>
-                    <li><strong>Origin:</strong> Rakas Tal near Mansarovar (Tibet). Known as 'Langqen Zangbo' (Elephant River). (उद्गम: राक्षस ताल).</li>
-                    <li><strong>Entry into HP:</strong> Enters at Shipki La (Pass) in Kinnaur at 6,608 meters. (प्रवेश: शिपकी ला).</li>
-                    <li><strong>Exit from HP:</strong> Leaves HP at Bhakra village (Naila) to enter Punjab (Nangal). (निकास: भाखड़ा गाँव).</li>
-                    <li><strong>Total Length in HP:</strong> 320 km. Catchment Area: 20,000 sq km (Largest in HP). <br>(कुल लंबाई: 320 किमी, जलग्रहण क्षेत्र: 20,000 वर्ग किमी - सबसे बड़ा).</li>
-                    <li><strong>Major Tributaries:</strong> Spiti River (Joins at Namgia), Baspa River (Joins at Karcham), Nogli Khad, Soan River ('River of Sorrows'). <br>(प्रमुख सहायक नदियां: स्पीति, बास्पा, नोगली खड्ड, स्वान नदी).</li>
-                    <li><strong>Hydro Projects:</strong> Bhakra Nangal (1325 MW), Nathpa Jhakri (1500 MW), Karcham Wangtoo (1000 MW). <br>(जलविद्युत परियोजनाएं: भाखड़ा नांगल, नाथपा झाकड़ी, करछम वांगतू).</li>
+                    <li><strong>Origin:</strong> Rakas Tal near Mansarovar Lake in Tibet. It is known locally in Tibet as 'Langqen Zangbo' or the Elephant River. (उद्गम: राक्षस ताल, तिब्बत। इसे 'हाथी नदी' भी कहा जाता है).</li>
+                    <li><strong>Entry & Exit:</strong> Enters HP at Shipki La Pass (Kinnaur) at an altitude of 6,608 meters. It leaves HP at Bhakra village (Una/Bilaspur border) to enter Punjab at Nangal. (प्रवेश: शिपकी ला, किन्नौर। निकास: भाखड़ा गाँव).</li>
+                    <li><strong>Catchment Area:</strong> 20,000 sq km (Largest catchment area in HP). <br>(जलग्रहण क्षेत्र: 20,000 वर्ग किमी - हिमाचल में सबसे बड़ा).</li>
+                    <li><strong>Major Tributaries:</strong> Spiti River (Largest tributary, joins at Khab/Namgia), Baspa River (Joins at Karcham), Nogli Khad (Joins at Rampur), Gambhar, Seer Khad (Bilaspur), Ali Khad, and Soan River (Una). <br>(प्रमुख सहायक नदियां: स्पीति (खाब में मिलती है), बास्पा, नोगली खड्ड, गंभर, सीर, और स्वान नदी).</li>
+                    <li><strong>Key Settlements & Bridges:</strong> Namgia, Kalpa, Rampur Bushahr, Tattapani, Bilaspur. The famous Kandror Bridge (once Asia's highest) is built across it. <br>(प्रमुख शहर और पुल: रामपुर बुशहर, तत्तापानी, बिलासपुर। प्रसिद्ध कंदरौर पुल इसी पर बना है).</li>
+                    <li><strong>Hydro Projects:</strong> Bhakra Nangal Dam (1325 MW, completed 1963, creating Govind Sagar), Nathpa Jhakri (1500 MW - India's largest underground project), Karcham Wangtoo (1000 MW), Kol Dam (800 MW by NTPC). <br>(जलविद्युत परियोजनाएं: भाखड़ा नांगल, नाथपा झाकड़ी - सबसे बड़ी भूमिगत परियोजना, करछम वांगतू, कोल डैम).</li>
                 </ul>
             </div>
 
             <!-- River 2: Beas -->
             <div class="seo-card glass-panel">
                 <h3><i class="fa-solid fa-bridge-water"></i> 2. The Beas (व्यास)</h3>
-                <p>Historically significant, marking the eastern border of Alexander's conquest (326 BC). Flows entirely in India. <br>(सिकंदर की विजय की पूर्वी सीमा, पूरी तरह भारत में बहती है।)</p>
+                <p>Historically significant, the Beas river marked the easternmost border of Alexander the Great's conquests in 326 BC, where his troops mutinied. Unlike Satluj or Chenab, the Beas flows entirely within India. <br>(सिकंदर महान की विजय की पूर्वी सीमा, जहां उसकी सेना ने विद्रोह कर दिया था। यह नदी पूरी तरह से भारत की सीमाओं के भीतर बहती है।)</p>
                 <ul class="seo-list">
                     <li><strong>Vedic Name:</strong> Arjikiya | <strong>Sanskrit Name:</strong> Vipasha (वैदिक: अर्जीकिया | संस्कृत: विपाशा).</li>
-                    <li><strong>Greek Name:</strong> Hyphasis (हाइपासिस).</li>
-                    <li><strong>Origin:</strong> Beas Kund near Rohtang Pass, Pir Panjal Range. (उद्गम: व्यास कुंड, रोहतांग दर्रा).</li>
-                    <li><strong>Exit from HP:</strong> Leaves at Mirthal (Kathgarh) to enter Punjab. (निकास: मिर्थल).</li>
-                    <li><strong>Total Length in HP:</strong> 256 km. Catchment Area: 12,000 sq km. <br>(कुल लंबाई: 256 किमी, जलग्रहण क्षेत्र: 12,000 वर्ग किमी).</li>
-                    <li><strong>Major Tributaries:</strong> Parbati River (Largest, joins at Shamshi), Banganga, Chakki, Sainj, Tirthan, Uhl. <br>(प्रमुख सहायक नदियां: पार्वती - सबसे बड़ी, बाणगंगा, चक्की, सैंज, तीर्थन, ऊहल).</li>
-                    <li><strong>Hydro Projects:</strong> Larji (126 MW), Baner, Neugal, Pong Dam (Maharana Pratap Sagar). <br>(जलविद्युत परियोजनाएं: लार्जी, बनेर, न्यूगल, पोंग बांध).</li>
+                    <li><strong>Greek Name:</strong> Hyphasis (ग्रीक नाम: हाइपासिस).</li>
+                    <li><strong>Origin:</strong> Beas Kund near Rohtang Pass (Pir Panjal Range) at an altitude of 4,361 meters, close to the Bhrigu Lake. (उद्गम: रोहतांग दर्रे के पास व्यास कुंड).</li>
+                    <li><strong>Entry & Exit:</strong> Enters Kangra district at Sandhol. Leaves HP at Mirthal (Kathgarh) to enter the plains of Punjab. (कांगड़ा में प्रवेश: संधोल। हिमाचल से निकास: मिर्थल).</li>
+                    <li><strong>Total Length in HP:</strong> 256 km. Catchment Area: 12,000 sq km. <br>(हिमाचल में कुल लंबाई: 256 किमी, जलग्रहण क्षेत्र: 12,000 वर्ग किमी).</li>
+                    <li><strong>Major Tributaries:</strong> Parbati River (Largest tributary, meets Beas at Shamshi), Banganga, Chakki, Sainj, Tirthan, Uhl (Mandi), Luni, Baner Khad. <br>(प्रमुख सहायक नदियां: पार्वती - सबसे बड़ी सहायक नदी, बाणगंगा, चक्की, सैंज, तीर्थन, ऊहल, लूनी).</li>
+                    <li><strong>Key Settlements:</strong> Manali, Kullu, Bajaura, Pandoh, Mandi town, Sujanpur Tira, Nadaun, Dehra Gopipur. <br>(प्रमुख शहर: मनाली, कुल्लू, मंडी, सुजानपुर टीरा, नादौन, देहरा गोपीपुर).</li>
+                    <li><strong>Hydro Projects:</strong> Larji (126 MW), Pandoh Dam (diverts Beas water to Satluj at Slapper), Pong Dam (Maharana Pratap Sagar, completed 1975). <br>(परियोजनाएं: लार्जी, पंडोह बांध - जो व्यास का पानी सतलुज में मिलाता है, पोंग बांध).</li>
                 </ul>
             </div>
 
             <!-- River 3: Ravi -->
             <div class="seo-card glass-panel">
                 <h3><i class="fa-solid fa-droplet"></i> 3. The Ravi (रावी)</h3>
-                <p>The life-line of the Chamba valley, flowing between Dhauladhar and Pir Panjal. <br>(चंबा घाटी की जीवन रेखा।)</p>
+                <p>Considered the life-line of the beautiful Chamba valley, the Ravi river flows through a narrow, picturesque gorge between the Dhauladhar and Pir Panjal mountain ranges. <br>(चंबा घाटी की जीवन रेखा, जो धौलाधार और पीर पंजाल पर्वतमालाओं के बीच एक संकरी घाटी से होकर बहती है।)</p>
                 <ul class="seo-list">
                     <li><strong>Vedic Name:</strong> Parushni | <strong>Sanskrit Name:</strong> Iravati (वैदिक: परुष्णी | संस्कृत: इरावती).</li>
-                    <li><strong>Greek Name:</strong> Hydraotes (हाइड्राओट्स).</li>
-                    <li><strong>Origin:</strong> Bara Banghal (Kangra), formed by Bhadal and Tant Gari glaciers. (उद्गम: बड़ा भंगाल).</li>
-                    <li><strong>Exit from HP:</strong> Leaves Chamba at Kheri to enter J&K (near Madhopur). (निकास: खेड़ी).</li>
+                    <li><strong>Greek Name:</strong> Hydraotes (ग्रीक नाम: हाइड्राओट्स).</li>
+                    <li><strong>Origin:</strong> Bara Banghal region of Kangra district, formed by the confluence of the Bhadal and Tant Gari glacier-fed streams. (उद्गम: बड़ा भंगाल, कांगड़ा - भादल और तंत गारी ग्लेशियरों के संगम से).</li>
+                    <li><strong>Exit from HP:</strong> Leaves Chamba district at Kheri to enter Jammu & Kashmir (near Madhopur). (निकास: चंबा के खेड़ी नामक स्थान से J&K में प्रवेश).</li>
                     <li><strong>Total Length in HP:</strong> 158 km. Catchment Area: 5,451 sq km. <br>(कुल लंबाई: 158 किमी, जलग्रहण क्षेत्र: 5,451 वर्ग किमी).</li>
-                    <li><strong>Major Tributaries:</strong> Bhadal, Tant Gari, Siul, Baira, Budhil (Rises from Kugti Pass). <br>(प्रमुख सहायक नदियां: भादल, तंत गारी, सियूल, बैरा, बुढिल).</li>
-                    <li><strong>Hydro Projects:</strong> Chamera I (540 MW), Chamera II (300 MW), Chamera III (231 MW), Baira Siul. <br>(जलविद्युत परियोजनाएं: चमेरा I, II, III, बैरा सियूल).</li>
+                    <li><strong>Major Tributaries:</strong> Bhadal, Tant Gari, Siul, Baira, Budhil (which rises from Kugti Pass and Manimahesh Lake), Chirchind Nala. <br>(प्रमुख सहायक नदियां: भादल, तंत गारी, सियूल, बैरा, बुढिल - जो कुगती दर्रे से निकलती है, चिरचिंड).</li>
+                    <li><strong>Key Settlements & Culture:</strong> Chamba town is situated on its right bank. Bharmaur is located near the Budhil stream. The famous Minjar fair is celebrated on the banks of its tributaries. <br>(शहर और संस्कृति: चंबा शहर रावी के दाहिने तट पर स्थित है। प्रसिद्ध मिंजर मेला इसी के आसपास मनाया जाता है).</li>
+                    <li><strong>Hydro Projects:</strong> Chamera I (540 MW), Chamera II (300 MW), Chamera III (231 MW), Baira Siul (198 MW - the very first NHPC project in India). <br>(परियोजनाएं: चमेरा I, II, III और बैरा सियूल - भारत का पहला NHPC प्रोजेक्ट).</li>
                 </ul>
             </div>
 
             <!-- River 4: Chenab -->
             <div class="seo-card glass-panel">
                 <h3><i class="fa-solid fa-water"></i> 4. The Chenab (चिनाब / चंद्रभागा)</h3>
-                <p>The largest river in HP by volume of water. It flows through Lahaul and Pangi valleys. <br>(जल आयतन की दृष्टि से हिमाचल की सबसे बड़ी नदी।)</p>
+                <p>The Chenab is the largest river in Himachal Pradesh in terms of volume of water (discharge). It flows through the rugged, remote terrains of the Lahaul and Pangi valleys. <br>(जल आयतन (Volume) की दृष्टि से यह हिमाचल की सबसे बड़ी नदी है, जो लाहौल और पांगी की दुर्गम घाटियों से गुजरती है।)</p>
                 <ul class="seo-list">
-                    <li><strong>Vedic Name:</strong> Asikni (वैदिक: असिकनी).</li>
-                    <li><strong>Greek Name:</strong> Acesines (अकेसिन्स).</li>
-                    <li><strong>Origin:</strong> Confluence of Chandra and Bhaga at Tandi (Lahaul). Legend says Draupadi breathed her last here. (उद्गम: तांडी में चंद्रा और भागा का संगम).</li>
-                    <li><strong>Exit from HP:</strong> Leaves Pangi at Sansari Nala to enter Paddar (Kashmir). (निकास: संसारी नाला).</li>
+                    <li><strong>Vedic Name:</strong> Asikni (वैदिक नाम: असिकनी).</li>
+                    <li><strong>Greek Name:</strong> Acesines (ग्रीक नाम: अकेसिन्स).</li>
+                    <li><strong>Origin:</strong> Formed by the confluence of two streams, Chandra (from Chandra Tal) and Bhaga (from Suraj Tal), at Tandi (Lahaul) at an elevation of 2,286m. Mythologically, Draupadi breathed her last near Tandi. (उद्गम: तांडी में चंद्रा और भागा नदियों का संगम).</li>
+                    <li><strong>Exit from HP:</strong> Leaves the Pangi valley at Sansari Nala to enter the Paddar area of Kashmir. (निकास: पांगी के संसारी नाला से कश्मीर में प्रवेश).</li>
                     <li><strong>Total Length in HP:</strong> 122 km. Catchment Area: 7,500 sq km. <br>(कुल लंबाई: 122 किमी, जलग्रहण क्षेत्र: 7,500 वर्ग किमी).</li>
-                    <li><strong>Major Tributaries:</strong> Miyar Nala, Saicher Nala. Gold is found in the sands (Gold River). <br>(प्रमुख सहायक नदियां: मियार नाला, सेंचर नाला। रेत में सोना पाया जाता है).</li>
+                    <li><strong>Major Tributaries:</strong> Miyar Nala (joins in Lahaul), Saicher Nala (joins in Pangi). Gold particles are historically found in its sandy beds. <br>(प्रमुख सहायक नदियां: मियार नाला, सेंचर नाला। ऐतिहासिक रूप से इसकी रेत में सोने के कण पाए जाते हैं).</li>
+                    <li><strong>Key Settlements:</strong> Keylong (located on the banks of Bhaga), Tandi, Udaipur, Killar (Pangi). <br>(शहर: केलांग, तांडी, उदयपुर, किलाड़).</li>
+                    <li><strong>Hydro Projects:</strong> Thirot, Seli, and several under-construction mega projects (like Reoli Dugli) due to its massive untapped hydel potential. <br>(परियोजनाएं: थिरोट, सेली और अन्य उच्च क्षमता वाली प्रस्तावित परियोजनाएं).</li>
                 </ul>
             </div>
 
             <!-- River 5: Yamuna -->
             <div class="seo-card glass-panel">
                 <h3><i class="fa-solid fa-faucet-drip"></i> 5. The Yamuna (यमुना)</h3>
-                <p>The shortest river course in HP, forming the eastern boundary with Uttarakhand. <br>(हिमाचल में सबसे छोटी नदी, उत्तराखंड के साथ पूर्वी सीमा बनाती है।)</p>
+                <p>The Yamuna has the shortest river course in HP, mostly skirting the state's south-eastern border and acting as a natural divider between Sirmaur (HP) and Dehradun (Uttarakhand). <br>(हिमाचल में सबसे छोटा नदी मार्ग (22 किमी), जो मुख्य रूप से सिरमौर और उत्तराखंड के बीच प्राकृतिक सीमा बनाता है।)</p>
                 <ul class="seo-list">
-                    <li><strong>Vedic Name:</strong> Kalindi (वैदिक: कालिंदी).</li>
-                    <li><strong>Origin:</strong> Yamunotri (Garhwal Hills). (उद्गम: यमुनोत्री).</li>
-                    <li><strong>Entry into HP:</strong> Khodar Majri (Sirmaur). Exit: Tajewala (enters Haryana). <br>(प्रवेश: खोदर माजरी - सिरमौर। निकास: ताजेवाला).</li>
-                    <li><strong>Total Length in HP:</strong> 22 km. Catchment Area: 2,320 sq km. <br>(कुल लंबाई: 22 किमी - सबसे छोटी, जलग्रहण क्षेत्र: 2,320 वर्ग किमी).</li>
-                    <li><strong>Major Tributaries:</strong> Tons River (Largest, joins at Kalsi), Giri River (Divides Sirmaur), Pabbar River, Bata River. <br>(प्रमुख सहायक नदियां: टोंस - सबसे बड़ी, गिरि, पब्बर, बाटा).</li>
-                    <li><strong>Hydro Projects:</strong> Giri Bata, Yamuna Hydel, Renuka Dam (Proposed), Kishau Dam. <br>(जलविद्युत परियोजनाएं: गिरि बाटा, यमुना हाइडेल, रेणुका बांध, किशाऊ बांध).</li>
+                    <li><strong>Vedic Name:</strong> Kalindi, owing to its deep mythological association with the Sun god (Surya) and the Kalind mountain. (वैदिक नाम: कालिंदी - सूर्य देव और कालिंद पर्वत से जुड़ा पौराणिक महत्व).</li>
+                    <li><strong>Origin:</strong> Yamunotri Glacier in the Garhwal Hills of Uttarakhand. (उद्गम: यमुनोत्री ग्लेशियर, उत्तराखंड).</li>
+                    <li><strong>Entry & Exit:</strong> Enters HP at Khodar Majri (Sirmaur). Exits HP at Tajewala to enter the plains of Haryana. <br>(प्रवेश: खोदर माजरी, सिरमौर। निकास: ताजेवाला).</li>
+                    <li><strong>Total Length in HP:</strong> 22 km. Catchment Area: 2,320 sq km. <br>(कुल लंबाई: 22 किमी - हिमाचल में सबसे कम, जलग्रहण क्षेत्र: 2,320 वर्ग किमी).</li>
+                    <li><strong>Major Tributaries:</strong> Tons River (Largest tributary, brings more water than Yamuna itself, joins at Kalsi), Giri River (Divides Sirmaur into Cis-Giri and Trans-Giri parts), Pabbar River, Bata River, Jalal River. <br>(प्रमुख सहायक नदियां: टोंस - सबसे बड़ी, गिरि - जो सिरमौर को दो भागों में बांटती है, पब्बर, बाटा, जलाल).</li>
+                    <li><strong>Key Settlements:</strong> Paonta Sahib (A highly revered Sikh pilgrimage site situated on its right bank). <br>(शहर: पौंटा साहिब).</li>
+                    <li><strong>Hydro Projects:</strong> Giri Bata (60 MW - HP's first state-owned project), Yamuna Hydel, Renuka Dam (Proposed national project on Giri), Kishau Dam (on Tons). <br>(परियोजनाएं: गिरि बाटा - हिमाचल सरकार की पहली परियोजना, रेणुका बांध, किशाऊ बांध).</li>
                 </ul>
             </div>
 
             <!-- Minor Rivers -->
             <div class="seo-card glass-panel">
-                <h3><i class="fa-solid fa-water"></i> 6. Other Important Streams (महत्वपूर्ण खड्ड)</h3>
-                <p>Smaller streams crucial for local irrigation. <br>(स्थानीय सिंचाई के लिए महत्वपूर्ण छोटी धाराएँ।)</p>
+                <h3><i class="fa-solid fa-water"></i> 6. Crucial Minor Streams (महत्वपूर्ण खड्ड और धाराएँ)</h3>
+                <p>While not major rivers, these smaller streams are crucial for local agriculture, define district boundaries, and frequently appear as trick questions in state exams. <br>(यद्यपि ये प्रमुख नदियां नहीं हैं, फिर भी स्थानीय कृषि और परीक्षा के दृष्टिकोण से ये धाराएँ अत्यंत महत्वपूर्ण हैं।)</p>
                 <ul class="seo-list">
-                    <li><strong>Swan River (स्वान):</strong> 'River of Sorrows' in Una. Divides Una into two. <br>(ऊना की 'दुखों की नदी', ऊना को दो भागों में बांटती है).</li>
-                    <li><strong>Sirsa River (सिरसा):</strong> Flows through Nalagarh (Solan/Baddi). Joins Satluj. <br>(सिरसा नदी: नालागढ़/बद्दी से बहती है, सतलुज में मिलती है).</li>
-                    <li><strong>Ghamber Khad (गंभर):</strong> Tributary of Satluj, from Tara Devi. <br>(गंभर खड्ड: सतलुज की सहायक नदी, तारा देवी से निकलती है).</li>
-                    <li><strong>Chakki Khad (चक्की):</strong> Boundary between HP and Punjab (Pathankot). <br>(चक्की खड्ड: हिमाचल और पंजाब के बीच सीमा).</li>
-                    <li><strong>Markanda (मारकंडा):</strong> Sirmaur (Kiarda Dun). Suketi Fossil Park located here. <br>(मारकंडा: सिरमौर, सुकेती जीवाश्म पार्क यहां स्थित है).</li>
-                    <li><strong>Seer Khad (सीर):</strong> Largest tributary of Satluj in Bilaspur. <br>(सीर खड्ड: बिलासपुर में सतलुज की सबसे बड़ी सहायक नदी).</li>
+                    <li><strong>Swan River (स्वान नदी):</strong> Known as the 'River of Sorrows' in Una district because of its devastating monsoon floods before it was heavily channelized. It divides Una into two roughly equal parts. <br>(स्वान: ऊना की 'दुखों की नदी', जो ऊना को दो भागों में बांटती है। अब इसका तटीकरण कर दिया गया है).</li>
+                    <li><strong>Sirsa River (सिरसा):</strong> Originates near Kalka, flows through the industrial belt of Nalagarh and Baddi, and eventually joins the Satluj. High industrial pollution is a major environmental concern here. <br>(सिरसा: बद्दी-नालागढ़ औद्योगिक क्षेत्र से बहती है और सतलुज में मिलती है).</li>
+                    <li><strong>Ghamber Khad (गंभर खड्ड):</strong> A critical tributary of the Satluj that originates from the Tara Devi hills in Shimla. <br>(गंभर: तारा देवी पहाड़ियों से निकलकर सतलुज में मिलती है).</li>
+                    <li><strong>Chakki Khad (चक्की खड्ड):</strong> Forms a vital natural boundary between Himachal Pradesh (Kangra) and Punjab (Pathankot). It ultimately joins the Beas river. <br>(चक्की: हिमाचल और पंजाब (पठानकोट) के बीच सीमा बनाती है).</li>
+                    <li><strong>Markanda River (मारकंडा):</strong> Flows through the fertile Kiarda Dun valley in Sirmaur. The famous Suketi Fossil Park (Shivalik Fossil Park) is located on its left bank. <br>(मारकंडा: सिरमौर के क्यारदा दून से बहती है, सुकेती जीवाश्म पार्क इसी के तट पर है).</li>
+                    <li><strong>Seer Khad (सीर खड्ड):</strong> The absolute largest tributary of the Satluj river within the Bilaspur district. <br>(सीर: बिलासपुर जिले में सतलुज की सबसे बड़ी सहायक खड्ड).</li>
                 </ul>
             </div>
 
             <!-- Section 7: Drainage Patterns -->
             <div class="seo-card glass-panel">
-                <h3><i class="fa-solid fa-network-wired"></i> 7. Drainage Patterns (अपवाह तंत्र)</h3>
-                <p>How rivers form their networks across the topography. <br>(नदियों के नेटवर्क कैसे बनते हैं।)</p>
+                <h3><i class="fa-solid fa-network-wired"></i> 7. Drainage Patterns (अपवाह तंत्र के प्रकार)</h3>
+                <p>The rugged topography of Himachal creates diverse river network shapes (drainage patterns) which are a staple topic in the HPPSC physical geography sections. <br>(हिमाचल की भौगोलिक संरचना विभिन्न प्रकार के नदी नेटवर्क बनाती है।)</p>
                 <ul class="seo-list">
-                    <li><strong>Antecedent Drainage (पूर्ववर्ती अपवाह):</strong> Satluj existed before Himalayas rose, cutting deep gorges. <br>(पूर्ववर्ती अपवाह: सतलुज हिमालय के उदय से पहले से मौजूद है).</li>
-                    <li><strong>Dendritic Pattern (वृक्षाकार प्रतिरूप):</strong> Beas and Ravi basins resemble tree branches. <br>(वृक्षाकार प्रतिरूप: ब्यास और रावी का बेसिन पेड़ की शाखाओं जैसा दिखता है).</li>
-                    <li><strong>Parallel Drainage (समानांतर अपवाह):</strong> Streams in Shivalik hills flow parallel. <br>(समानांतर अपवाह: शिवालिक पहाड़ियों में धाराएं समानांतर बहती हैं).</li>
-                    <li><strong>Radial Drainage (अरीय अपवाह):</strong> Streams diverging from high peaks. <br>(अरीय अपवाह: ऊंची चोटियों से अलग होने वाली धाराएं).</li>
-                    <li><strong>Trellis Pattern (जालीदार अपवाह):</strong> Giri river tributaries meeting at right angles. <br>(जालीदार अपवाह: गिरि नदी की सहायक नदियां समकोण पर मिलती हैं).</li>
+                    <li><strong>Antecedent Drainage (पूर्ववर्ती अपवाह):</strong> Rivers that existed before the uplifting of the Himalayas. Satluj is the prime example; as the mountains rose, the river continuously eroded its bed to maintain its original course, creating extremely deep V-shaped gorges. <br>(पूर्ववर्ती: हिमालय के उदय से पहले से मौजूद नदियां, जैसे सतलुज, जो गहरी खाइयां (गॉर्ज) बनाती हैं).</li>
+                    <li><strong>Dendritic Pattern (वृक्षाकार प्रतिरूप):</strong> The network looks like the branching of a tree. This is the most common pattern found in the Beas and Ravi basins where the underlying rock terrain is relatively uniform. <br>(वृक्षाकार: पेड़ की शाखाओं जैसा प्रतिरूप, जो ब्यास और रावी बेसिन में आम तौर पर देखा जाता है).</li>
+                    <li><strong>Parallel Drainage (समानांतर अपवाह):</strong> Fast-flowing streams in the steep, narrow Shivalik hills that run almost parallel to each other before joining a larger river. <br>(समानांतर: शिवालिक पहाड़ियों में तेजी से बहने वाली धाराएं जो एक दूसरे के समानांतर बहती हैं).</li>
+                    <li><strong>Radial Drainage (अरीय अपवाह):</strong> Streams diverging outward from a central high peak or dome, looking like spokes on a bicycle wheel. <br>(अरीय: ऊंची चोटियों से चारों ओर (विपरीत दिशाओं में) फैलने वाली धाराएं).</li>
+                    <li><strong>Trellis Pattern (जालीदार अपवाह):</strong> A pattern where primary tributaries join the main river at roughly right angles. Commonly seen in the structural and fault valleys of the Giri river basin in Sirmaur. <br>(जालीदार: जहां सहायक नदियां मुख्य नदी से लगभग समकोण (90 डिग्री) पर मिलती हैं, जैसे गिरि नदी बेसिन में).</li>
                 </ul>
             </div>
 
             <!-- Section 8: Major Lakes -->
             <div class="seo-card glass-panel">
-                <h3><i class="fa-solid fa-water"></i> 8. Lakes & Reservoirs (प्रमुख झीलें)</h3>
-                <p>Natural and man-made water bodies linked to the river system. <br>(नदी तंत्र से जुड़े प्राकृतिक और कृत्रिम जल निकाय।)</p>
+                <h3><i class="fa-solid fa-water"></i> 8. River-Linked Lakes & Reservoirs (नदी से जुड़ी प्रमुख झीलें)</h3>
+                <p>The damming of Himachal's major rivers for hydroelectricity has created vast man-made reservoirs. Alongside these, natural high-altitude glacial lakes act as the very source for these rivers. <br>(प्रमुख नदियों पर बने बांधों ने विशाल कृत्रिम झीलों का निर्माण किया है, इसके अतिरिक्त उच्च हिमालयी प्राकृतिक झीलें नदियों का उद्गम स्थल हैं।)</p>
                 <ul class="seo-list">
-                    <li><strong>Govind Sagar (Bilaspur):</strong> Man-made reservoir on Satluj (Bhakra Dam). <br>(गोविंद सागर: सतलुज पर कृत्रिम जलाशय - भाखड़ा बांध).</li>
-                    <li><strong>Pong Dam Lake (Kangra):</strong> On Beas. Ramsar wetland. <br>(पोंग बांध झील: ब्यास नदी पर, रामसर आर्द्रभूमि).</li>
-                    <li><strong>Chamera Lake (Chamba):</strong> Man-made on Ravi. <br>(चमेरा झील: रावी नदी पर कृत्रिम झील).</li>
-                    <li><strong>Renuka Lake (Sirmaur):</strong> Fed by Giri basin. Largest natural lake. <br>(रेणुका झील: गिरि बेसिन द्वारा पोषित, सबसे बड़ी प्राकृतिक झील).</li>
-                    <li><strong>Chandra Tal & Suraj Tal (Lahaul):</strong> Sources of Chenab. <br>(चंद्र ताल और सूरज ताल: चिनाब के स्रोत).</li>
+                    <li><strong>Govind Sagar (Bilaspur):</strong> The largest man-made reservoir in HP, created by the monumental Bhakra Dam on the Satluj river. It was named in honor of the 10th Sikh Guru, Guru Gobind Singh Ji. <br>(गोविंद सागर: सतलुज पर भाखड़ा बांध द्वारा निर्मित हिमाचल की सबसे बड़ी कृत्रिम झील).</li>
+                    <li><strong>Pong Dam Lake / Maharana Pratap Sagar (Kangra):</strong> Created on the Beas river. It is a designated Ramsar wetland of international importance, famous for hosting thousands of migratory birds, especially the Bar-headed Geese from Siberia. <br>(पोंग बांध झील: ब्यास नदी पर, यह एक अंतरराष्ट्रीय रामसर आर्द्रभूमि है जो साइबेरियन प्रवासी पक्षियों के लिए प्रसिद्ध है).</li>
+                    <li><strong>Pandoh Lake (Mandi):</strong> The smallest man-made lake in HP, built on the Beas river specifically to divert its waters into the Satluj river at Slapper. <br>(पंडोह झील: ब्यास नदी पर बनी सबसे छोटी कृत्रिम झील, जिसका मुख्य उद्देश्य पानी को सतलुज में मोड़ना है).</li>
+                    <li><strong>Chamera Lake (Chamba):</strong> A highly scenic and tourist-frequented man-made reservoir created by the Chamera Dam on the Ravi river. <br>(चमेरा झील: रावी नदी पर निर्मित एक सुंदर कृत्रिम जलाशय).</li>
+                    <li><strong>Renuka Lake (Sirmaur):</strong> The largest natural lake in HP (2.5 km long), fed by underground springs and ecologically linked to the Giri river basin. It is shaped remarkably like a sleeping woman. <br>(रेणुका झील: हिमाचल की सबसे बड़ी प्राकृतिक झील, जो एक सोई हुई महिला के आकार की है).</li>
+                    <li><strong>Chandra Tal & Suraj Tal (Lahaul):</strong> High-altitude glacial lakes that serve as the primary sources for the Chandra and Bhaga streams, which ultimately form the mighty Chenab. <br>(चंद्र ताल और सूरज ताल: लाहौल-स्पीति में चिनाब नदी की मुख्य धाराओं के स्रोत).</li>
                 </ul>
             </div>
 
             <!-- Section 9: Environmental Impact -->
             <div class="seo-card glass-panel">
-                <h3><i class="fa-solid fa-triangle-exclamation"></i> 9. Environmental Concerns (पर्यावरण मुद्दे)</h3>
-                <p>Challenges facing the river systems today. <br>(नदी प्रणालियों के सामने आज की चुनौतियां।)</p>
+                <h3><i class="fa-solid fa-triangle-exclamation"></i> 9. Environmental Challenges (वर्तमान पर्यावरण संबंधी चुनौतियां)</h3>
+                <p>Modern infrastructural development and rapid climate change pose severe threats to the delicate Himalayan river ecosystems, affecting both the state's economy and biodiversity. <br>(आधुनिक विकास और जलवायु परिवर्तन हिमालयी नदी पारिस्थितिकी तंत्र के लिए गंभीर खतरे पैदा कर रहे हैं।)</p>
                 <ul class="seo-list">
-                    <li><strong>Siltation (गाद):</strong> High silt in Satluj affects hydro projects like Nathpa Jhakri. <br>(गाद: सतलुज में उच्च गाद नाथपा झाकड़ी जैसी परियोजनाओं को प्रभावित करती है).</li>
-                    <li><strong>Glacial Retreat (ग्लेशियर का पिघलना):</strong> Melting of glaciers like Bara Shigri threatens long-term flow. <br>(बड़ा शिगड़ी जैसे ग्लेशियरों का पिघलना).</li>
-                    <li><strong>Pollution (प्रदूषण):</strong> Industrial waste in Sirsa and Markanda rivers. <br>(सिरसा और मारकंडा नदियों में औद्योगिक कचरा).</li>
-                    <li><strong>Flash Floods (अचानक बाढ़):</strong> Steep gradients of Beas/Satluj cause sudden floods. <br>(ब्यास/सतलुज के तीव्र ढलान के कारण).</li>
-                    <li><strong>Cloud Bursts (बादल फटना):</strong> Frequent in Kullu and Kinnaur causing rapid discharge. <br>(कुल्लू और किन्नौर में आम घटना).</li>
+                    <li><strong>Severe Siltation (अत्यधिक गाद):</strong> High silt levels in the fast-flowing Satluj river frequently force the immediate closure of mega hydro projects like Nathpa Jhakri during the monsoon season to prevent turbine damage. <br>(गाद: सतलुज में उच्च गाद के कारण मानसून के दौरान नाथपा झाकड़ी जैसी बड़ी परियोजनाओं को टरबाइन डैमेज से बचाने के लिए बंद करना पड़ता है).</li>
+                    <li><strong>Glacial Retreat (ग्लेशियरों का पिघलना):</strong> The rapid and alarming shrinking of major glaciers like Bara Shigri (Lahaul) threatens the long-term perennial water flow of the Chenab and other major snow-fed rivers. <br>(ग्लेशियरों का सिकुड़ना: बड़ा शिगड़ी जैसे ग्लेशियरों के पिघलने से नदियों के भविष्य के जल स्तर पर गंभीर खतरा मंडरा रहा है).</li>
+                    <li><strong>Industrial Pollution (औद्योगिक प्रदूषण):</strong> Rivers like Sirsa (in Baddi) and Markanda face severe degradation due to the discharge of untreated chemical effluents from pharmaceutical and industrial hubs. <br>(प्रदूषण: बद्दी और नालागढ़ में फार्मा उद्योगों के रासायनिक कचरे के कारण सिरसा नदी में भारी प्रदूषण).</li>
+                    <li><strong>Flash Floods & Cloud Bursts (अचानक बाढ़):</strong> The exceptionally steep gradients of the Beas and Satluj basins, combined with frequent cloud bursts in Kullu and Kinnaur, lead to catastrophic and highly destructive flash floods. <br>(अचानक बाढ़: कुल्लू और किन्नौर में बादल फटने और नदियों के तीव्र ढलान के कारण अक्सर विनाशकारी बाढ़ आती है).</li>
+                    <li><strong>Unregulated Sand Mining (अवैध खनन):</strong> Excessive riverbed sand mining in rivers like Swan, Beas, and Chakki is continuously altering the natural course of the rivers, causing bank erosion and destroying aquatic habitats. <br>(अवैध खनन: स्वान और चक्की खड्ड में भारी रेत खनन से नदियों का प्राकृतिक मार्ग बदल रहा है और किनारों का क्षरण हो रहा है).</li>
                 </ul>
             </div>
 
