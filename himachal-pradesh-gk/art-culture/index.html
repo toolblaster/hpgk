@@ -7,7 +7,7 @@
     <meta name="keywords" content="Himachal Pradesh Art and Culture, HP GK Culture, HP Temples, HP Fairs and Festivals, HP Folk Dances, HP Pahari Painting, HP Social Customs, HPPSC GK Culture, HPAS Art Culture, Allied Services HP GK, Art and Culture of HP MCQ">
     <title>Art & Culture of HP | Study Notes & Quiz</title>
     
-    <!-- Canonical Link (Updated for Subfolder Path) -->
+    <!-- Canonical Link -->
     <link rel="canonical" href="https://hpgk.toolblaster.com/himachal-pradesh-gk/art-culture/">
 
     <!-- Open Graph / Facebook -->
@@ -50,7 +50,7 @@
     }
     </script>
 
-    <!-- Assets (Updated for 2-Level Depth: ../../) -->
+    <!-- Assets -->
     <link rel="apple-touch-icon" sizes="180x180" href="../../js/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="512x512" href="../../js/favicon/web-app-manifest-512x512.png">
     <link rel="icon" type="image/png" sizes="192x192" href="../../js/favicon/web-app-manifest-192x192.png">
@@ -69,7 +69,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Noto+Sans+Devanagari:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Global CSS (Updated Path) -->
+    <!-- Global CSS -->
     <link rel="stylesheet" href="../../js/style.css">
 
     <!-- Premium Glassmorphism & Compact UI Stylesheet -->
@@ -137,7 +137,6 @@
             flex-direction: column;
         }
 
-        /* Strictly enforcing Inter font for headings */
         h1, h2, h3, h4 { font-family: 'Inter', sans-serif !important; color: var(--text-main); }
 
         .glass-panel {
@@ -148,22 +147,24 @@
             box-shadow: var(--glass-shadow);
         }
 
-        /* ==========================================
-           MAIN LAYOUT & ALIGNMENT FIXES (var(--site-width))
-           ========================================== */
-        
-        main { flex: 1; width: 100%; padding: 15px 0 !important; }
+        main { flex: 1; width: 100%; padding: 15px 0 !important; box-sizing: border-box; }
 
-        /* Top Meta Bar strictly locked to var(--site-width) so it aligns perfectly with the global header */
         .top-meta-bar { 
             display: flex; justify-content: space-between; align-items: center; 
-            width: 100%; max-width: var(--site-width); margin: 0 auto 12px auto; 
-            padding: 0 15px; flex-wrap: nowrap; gap: 10px; 
+            width: 100%; max-width: var(--site-width); margin: 0 auto 5px auto; 
+            padding: 0 15px; flex-wrap: nowrap; gap: 10px; box-sizing: border-box;
         }
 
-        /* Sub-containers locked to var(--site-width) */
         .page-header-top, .main-layout, .seo-content-wrapper { 
-            width: 100%; max-width: var(--site-width); margin: 0 auto; padding: 0 15px; 
+            width: 100%; max-width: var(--site-width); margin: 0 auto; padding: 0 15px; box-sizing: border-box;
+        }
+
+        .page-header-top { text-align: center; margin-bottom: 25px; }
+
+        .hero-desc {
+            margin: 0 auto;
+            text-align: center;
+            max-width: 800px;
         }
 
         .section-separator { 
@@ -175,72 +176,58 @@
             .top-meta-bar, .page-header-top, .main-layout, .seo-content-wrapper {
                 padding: 0 12px !important;
             }
+            .page-header-top { margin-bottom: 20px; }
         }
 
-        /* ==========================================
-           META BAR (Inline Alignment)
-           ========================================== */
-        
-        .breadcrumb-nav { margin: 0; flex-shrink: 1; display: flex; align-items: center; height: 26px; }
+        .breadcrumb-nav { margin: 0; flex-shrink: 1; display: flex; align-items: center; height: 24px; }
         
         .breadcrumb-list { 
-            list-style: none; padding: 0 12px; margin: 0; display: flex; flex-wrap: nowrap; 
-            align-items: center; gap: 4px; background: var(--card-bg); border-radius: 13px; 
+            list-style: none; padding: 0 10px; margin: 0; display: flex; flex-wrap: nowrap; 
+            align-items: center; gap: 4px; background: var(--card-bg); border-radius: 12px; 
             border: 1px solid var(--card-border); backdrop-filter: blur(8px); box-shadow: var(--shadow-sm); 
             height: 100%; box-sizing: border-box;
         }
         
-        .breadcrumb-item { font-size: 0.65rem; font-weight: 600; color: var(--text-sec); display: flex; align-items: center; white-space: nowrap; height: 100%; }
+        .breadcrumb-item { font-size: 0.6rem; font-weight: 600; color: var(--text-sec); display: flex; align-items: center; white-space: nowrap; height: 100%; }
         .breadcrumb-item a { color: var(--text-sec); text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 4px; }
         .breadcrumb-item a:hover { color: var(--primary); }
         .breadcrumb-item.active { color: var(--primary); pointer-events: none; }
         .breadcrumb-separator { font-size: 0.55rem; color: var(--text-sec); opacity: 0.6; margin: 0 2px; }
 
         .hero-badge { 
-            display: inline-flex; align-items: center; justify-content: center; height: 26px; 
-            background: var(--primary-light); color: var(--primary); padding: 0 12px; 
-            border-radius: 13px; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; 
+            display: inline-flex; align-items: center; justify-content: center; height: 24px; 
+            background: var(--primary-light); color: var(--primary); padding: 0 10px; 
+            border-radius: 12px; font-size: 0.6rem; font-weight: 700; text-transform: uppercase; 
             margin: 0; border: 1px solid var(--primary); letter-spacing: 0.5px; white-space: nowrap; 
             flex-shrink: 0; box-sizing: border-box;
         }
-
-        /* Top Page Header (H1) */
-        .page-header-top { text-align: center; margin-bottom: 20px; }
         
-        /* EXACT DESKTOP H1 FONT SIZE: 32px */
         .hero-title { 
-            font-size: 32px !important; 
-            font-weight: 900 !important; 
-            margin: 0; 
-            letter-spacing: -0.5px; 
-            text-align: center; 
             background: linear-gradient(135deg, var(--text-main) 0%, var(--primary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             color: var(--primary); 
-            line-height: 1.2;
+            letter-spacing: -0.8px;
+            margin-bottom: 8px !important;
         }
         
-        /* Two Column Layout */
         .main-layout { display: flex; flex-direction: column; gap: 20px; }
         @media (min-width: 900px) { 
             .main-layout { flex-direction: row; align-items: flex-start; } 
-            .intro-column, .quiz-widget-wrapper { flex: 1; width: 50%; } 
+            .intro-column, .quiz-widget-wrapper { flex: 1; width: 50%; box-sizing: border-box; } 
         }
 
-        /* Intro Grid (Compact) */
         .intro-grid { display: grid; gap: 12px; text-align: left; }
-        .intro-card { background: var(--input-bg); border: 1px solid var(--card-border); border-radius: var(--radius-lg); padding: 15px; box-shadow: var(--shadow-sm); }
+        .intro-card { background: var(--input-bg); border: 1px solid var(--card-border); border-radius: var(--radius-lg); padding: 15px; box-shadow: var(--shadow-sm); box-sizing: border-box; width: 100%; }
         .intro-card h2 { font-size: 1.05rem; color: var(--primary); margin: 0 0 8px 0; display: flex; align-items: center; gap: 8px; font-weight: 700; justify-content: center; }
         .intro-card p { font-size: 0.85rem; color: var(--text-body); margin: 0; line-height: 1.5; }
         .intro-list { margin: 8px 0 0 0; padding-left: 20px; font-size: 0.85rem; color: var(--text-body); line-height: 1.5; }
-        .intro-list li { margin-bottom: 4px; }
+        .intro-list li { margin-bottom: 6px; } 
         
-        /* Quick Links */
         .quick-links { 
             margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--card-border); 
-            display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; 
+            display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; width: 100%; box-sizing: border-box;
         }
         .quick-link-item { 
             font-size: 0.7rem; text-decoration: none; color: var(--primary); 
@@ -251,13 +238,10 @@
         .quick-link-item:hover { background: var(--primary); color: white; }
 
         /* QUIZ WIDGET */
-        .quiz-card { border-radius: var(--radius-xl); display: flex; flex-direction: column; overflow: hidden; height: auto; min-height: 480px; background: var(--card-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--card-border); box-shadow: var(--glass-shadow); position: sticky; top: 80px; }
-        .quick-start-ribbon { background: var(--primary); color: #fff; border: none; padding: 12px; font-size: 0.95rem; font-weight: 700; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px; transition: background 0.2s; width: 100%; flex-shrink: 0; min-height: 45px; }
+        .quiz-card { border-radius: var(--radius-xl); display: flex; flex-direction: column; overflow: hidden; height: auto; min-height: 480px; background: var(--card-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--card-border); box-shadow: var(--glass-shadow); position: sticky; top: 80px; box-sizing: border-box; width: 100%; }
+        .quick-start-ribbon { background: var(--primary); color: #fff; border: none; padding: 12px; font-size: 0.95rem; font-weight: 700; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px; transition: background 0.2s; width: 100%; flex-shrink: 0; min-height: 45px; box-sizing: border-box; }
         .quick-start-ribbon:hover { background: var(--primary-dark); }
         
-        /* ==========================================
-           PREMIUM FLOATING 3D TOOLBAR
-           ========================================== */
         .widget-header { 
             padding: 12px 10px; 
             border-bottom: none; 
@@ -273,11 +257,10 @@
         }
         .text-controls::-webkit-scrollbar { display: none; }
         
-        /* Toolbar Icons 13.6px */
         .icon-btn, .text-btn, .text-controls label {
             background: #ffffff !important; 
             border: none !important; 
-            color: var(--text-sec) !important;
+            color: var(--text-sec);
             width: 32px !important; 
             height: 32px !important; 
             border-radius: 8px !important; 
@@ -304,7 +287,7 @@
 
         [data-theme="dark"] .icon-btn, [data-theme="dark"] .text-btn, [data-theme="dark"] .text-controls label { 
             background: rgba(30, 41, 59, 0.9) !important; 
-            color: var(--text-body) !important;
+            color: var(--text-body);
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3) !important;
         }
         
@@ -318,22 +301,20 @@
             background: rgba(0,0,0,0.3) !important;
             box-shadow: inset 0 2px 4px rgba(0,0,0,0.2) !important;
         }
-        
+
         .v-divider { width: 1px; height: 16px; background: var(--card-border); margin: 0 2px; border-radius: 2px; flex-shrink: 0; }
 
         .quiz-mcq-container {
             display: flex; flex-direction: column; flex: 1; overflow: hidden; margin: 10px 15px 15px 15px; 
             border: 1px solid rgba(37, 99, 235, 0.25); border-radius: var(--radius-lg); background: var(--input-bg); 
             box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.03);
+            box-sizing: border-box;
         }
         [data-theme="dark"] .quiz-mcq-container { border-color: rgba(96, 165, 250, 0.25); }
 
-        /* ==========================================
-           FIXED: ULTRA-COMPACT DASHBOARD STATS BAR (Strict 10.4px)
-           ========================================== */
         .stats-dashboard { 
             display: flex; flex-wrap: nowrap; background: rgba(0,0,0,0.03); 
-            border-bottom: 1px solid var(--card-border); align-items: center;
+            border-bottom: 1px solid var(--card-border); align-items: center; width: 100%; box-sizing: border-box;
         }
         [data-theme="dark"] .stats-dashboard { background: rgba(255,255,255,0.02); }
         
@@ -350,7 +331,7 @@
         .stat-value.red { color: var(--wrong-border); }
         .stat-value.accent { color: var(--accent); }
 
-        .quiz-content { flex: 1; padding: 15px; position: relative; background: transparent; border: none; margin: 0; box-shadow: none; overflow-y: auto; }
+        .quiz-content { flex: 1; padding: 15px; position: relative; background: transparent; border: none; margin: 0; box-shadow: none; overflow-y: auto; box-sizing: border-box; width: 100%; }
         
         .q-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-size: 0.75rem; font-weight: 700; color: var(--text-sec); border-bottom: 1px dashed var(--card-border); padding-bottom: 4px; }
         .q-id { font-size: 0.85rem; color: var(--text-main); }
@@ -364,8 +345,7 @@
         .q-text-hi { font-weight: 600; color: var(--text-sec); margin-bottom: 12px; font-family: 'Noto Sans Devanagari', sans-serif; line-height: 1.4; font-size: 0.85rem; }
         mark.highlight { background: var(--accent); color: #fff; padding: 0 2px; border-radius: 3px; }
 
-        /* PERFECT BUG FIX: NO TEXT SHIFTING ON ANSWER SELECTION */
-        .options-list { display: flex; flex-direction: column; gap: 8px; counter-reset: opt-counter; }
+        .options-list { display: flex; flex-direction: column; gap: 8px; counter-reset: opt-counter; width: 100%; box-sizing: border-box; }
         
         .option-btn { 
             width: 100%; 
@@ -382,6 +362,7 @@
             align-items: flex-start; 
             line-height: 1.4; 
             position: relative; 
+            box-sizing: border-box;
         }
         
         .option-btn::before { 
@@ -417,10 +398,9 @@
         .option-btn.correct { background: var(--correct-bg); border-color: var(--correct-border); color: var(--correct-text); }
         .option-btn.wrong { background: var(--wrong-bg); border-color: var(--wrong-border); color: var(--wrong-text); }
 
-        .feedback-row { display: flex; gap: 8px; align-items: center; margin-top: 12px; }
+        .feedback-row { display: flex; gap: 8px; align-items: center; margin-top: 12px; width: 100%; box-sizing: border-box; }
         
-        /* FIXED: No fadeIn animation to prevent blinking */
-        .feedback-msg { flex: 1; padding: 8px 12px; border-radius: var(--radius-md); font-weight: 700; font-size: 0.85rem; text-align: center; margin: 0; border: 1px solid transparent; }
+        .feedback-msg { flex: 1; padding: 8px 12px; border-radius: var(--radius-md); font-weight: 700; font-size: 0.85rem; text-align: center; margin: 0; border: 1px solid transparent; box-sizing: border-box; }
         
         .correct-feed { background: var(--correct-bg); color: var(--correct-text); border-color: var(--correct-border); }
         .wrong-feed { background: var(--wrong-bg); color: var(--wrong-text); border-color: var(--wrong-border); }
@@ -428,14 +408,14 @@
         .expl-wrapper { position: relative; }
         .expl-btn { background: var(--card-bg); color: var(--primary); border: 1px solid var(--card-border); width: 34px; height: 34px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1rem; transition: 0.2s; box-shadow: var(--shadow-sm); }
         .expl-btn:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
-        .explanation-tooltip { position: absolute; bottom: 120%; right: 0; width: 280px; background: var(--tooltip-bg); border: 1px solid var(--card-border); box-shadow: var(--glass-shadow); padding: 15px; border-radius: var(--radius-md); font-size: 0.8rem; color: var(--text-main); z-index: 100; margin-bottom: 10px; display: none; text-align: left; line-height: 1.4; font-weight: 500; }
+        .explanation-tooltip { position: absolute; bottom: 120%; right: 0; width: 280px; background: var(--tooltip-bg); border: 1px solid var(--card-border); box-shadow: var(--glass-shadow); padding: 15px; border-radius: var(--radius-md); font-size: 0.8rem; color: var(--text-main); z-index: 100; margin-bottom: 10px; display: none; text-align: left; line-height: 1.4; font-weight: 500; box-sizing: border-box; }
         .explanation-tooltip::after { content: ''; position: absolute; top: 100%; right: 12px; border-width: 6px; border-style: solid; border-color: var(--tooltip-bg) transparent transparent transparent; }
         .explanation-tooltip::before { content: ''; position: absolute; top: 100%; right: 11px; border-width: 7px; border-style: solid; border-color: var(--card-border) transparent transparent transparent; z-index: -1; }
         .explanation-tooltip.show { display: block; animation: fadeUp 0.2s ease-out; }
         .explanation-tooltip strong { color: var(--primary); display: block; margin-bottom: 6px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; }
         @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        .widget-controls { padding: 10px 15px; border-top: 1px solid var(--card-border); background: rgba(0,0,0,0.03); display: flex; justify-content: space-between; align-items: center; }
+        .widget-controls { padding: 10px 15px; border-top: 1px solid var(--card-border); background: rgba(0,0,0,0.03); display: flex; justify-content: space-between; align-items: center; width: 100%; box-sizing: border-box; }
         [data-theme="dark"] .widget-controls { background: rgba(255,255,255,0.02); }
         .nav-btn { background: var(--card-bg); border: 1px solid var(--card-border); color: var(--text-main); padding: 6px 12px; border-radius: var(--radius-md); cursor: pointer; font-weight: 600; font-size: 0.85rem; display: flex; align-items: center; gap: 5px; transition: 0.2s; }
         .nav-btn:hover:not(:disabled) { border-color: var(--primary); color: var(--primary); }
@@ -444,42 +424,25 @@
         .progress-display { display: flex; align-items: center; justify-content: center; padding: 4px 10px; }
         .progress-text { font-weight: 800; color: var(--text-main); font-size: 0.85rem; }
 
-        /* ==========================================
-           FIXED: EXTREME LOCK FOR MODAL (Center Screen Popup Guaranteed)
-           ========================================== */
-        .quiz-modal-overlay {
-            position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important;
-            width: 100vw !important; height: 100vh !important;
-            background: rgba(0,0,0,0.5) !important; backdrop-filter: blur(4px) !important; -webkit-backdrop-filter: blur(4px) !important;
-            z-index: 999999 !important; display: none; align-items: center !important; justify-content: center !important; padding: 20px;
-            opacity: 0; transition: opacity 0.2s ease;
-        }
-        .quiz-modal-overlay.show { display: flex !important; opacity: 1; }
-        .quiz-modal-content {
-            background: var(--tooltip-bg) !important; 
-            width: 100%; max-width: 380px; margin: auto !important;
-            border: 1px solid var(--card-border);
-            border-radius: var(--radius-lg); padding: 20px;
-            box-shadow: var(--glass-shadow); transform: translateY(20px); transition: transform 0.2s ease;
-            position: relative !important; z-index: 1000000 !important;
-        }
-        .quiz-modal-overlay.show .quiz-modal-content { transform: translateY(0); }
-        .quiz-modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--card-border); padding-bottom: 12px; margin-bottom: 12px; }
-
-        .section-separator { height: 1px; background: linear-gradient(90deg, transparent, var(--card-border), transparent); margin: 25px 0; width: 100%; }
+        /* SEO Card Styles - Adjusted for clean, non-bloated look */
         .seo-content-wrapper { margin-bottom: 30px; }
         .seo-header { text-align: center; margin-bottom: 20px; }
         .seo-header h2 { font-size: clamp(1.2rem, 3vw, 1.6rem); margin-bottom: 8px; }
         .seo-header p { color: var(--text-sec); max-width: 600px; margin: 0 auto; font-size: 0.85rem; }
-        .seo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
-        .seo-card { background: var(--card-bg); border: 1px solid var(--card-border); padding: 20px; border-radius: var(--radius-lg); box-shadow: var(--glass-shadow); border-left: 4px solid var(--primary); transition: border-color 0.2s; }
+        
+        /* Grid Alignment */
+        .seo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 15px; align-items: stretch; width: 100%; }
+        
+        .seo-card { background: var(--card-bg); border: 1px solid var(--card-border); padding: 20px; border-radius: var(--radius-lg); box-shadow: var(--glass-shadow); border-left: 4px solid var(--primary); transition: border-color 0.2s; display: flex; flex-direction: column; box-sizing: border-box; width: 100%; }
         .seo-card:hover { border-color: var(--primary-light); }
         .seo-card h3 { font-size: 1rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; color: var(--text-main) !important; }
         .seo-card h3 i { color: var(--primary); }
-        .seo-card p { color: var(--text-body) !important; font-size: 0.85rem; margin-bottom: 10px; }
+        .seo-card p { color: var(--text-body) !important; font-size: 0.85rem; margin-bottom: 15px; }
         
-        .seo-list { list-style: none; padding-left: 0; }
-        .seo-list li { position: relative; padding-left: 18px; margin-bottom: 5px; font-size: 0.8rem; color: var(--text-body) !important; }
+        .seo-list { list-style: none; padding-left: 0; margin-top: 0; }
+        
+        /* Dense, concise list items */
+        .seo-list li { position: relative; padding-left: 18px; margin-bottom: 6px; font-size: 0.8rem; color: var(--text-body) !important; line-height: 1.35; }
         .seo-list li::before { 
             content: "\f111"; 
             font-family: "Font Awesome 6 Free";
@@ -491,22 +454,34 @@
             font-size: 0.4rem; 
         }
 
-        /* ==========================================
-           EXACT MOBILE CSS COMPACTNESS 
-           ========================================== */
+        /* Modal specific styles */
+        .quiz-modal-overlay {
+            position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important;
+            background: rgba(0,0,0,0.5) !important; backdrop-filter: blur(4px) !important; -webkit-backdrop-filter: blur(4px) !important;
+            z-index: 999999 !important; display: none; align-items: center !important; justify-content: center !important; padding: 20px;
+            opacity: 0; transition: opacity 0.2s ease;
+        }
+        .quiz-modal-overlay.show { display: flex !important; opacity: 1; }
+        .quiz-modal-content {
+            background: var(--card-bg) !important; 
+            width: 100%; max-width: 380px; margin: auto !important;
+            border: 1px solid var(--border-color);
+            border-radius: 12px; padding: 20px;
+            box-shadow: var(--glass-shadow); transform: translateY(20px); transition: transform 0.2s ease;
+            position: relative !important; z-index: 1000000 !important;
+            box-sizing: border-box;
+        }
+        .quiz-modal-overlay.show .quiz-modal-content { transform: translateY(0); }
+        .quiz-modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; margin-bottom: 12px; }
+
         @media (max-width: 600px) {
-            /* EXACT MOBILE H1 FONT SIZE: 23px */
-            .hero-title { font-size: 23px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
             .top-meta-bar { flex-wrap: nowrap; justify-content: space-between; }
-            
             .widget-header { padding: 10px; align-items: center; }
             .text-controls { justify-content: center; gap: 3px; padding: 2px 0; }
             
-            /* Toolbar Icons 13.6px for mobile too */
             .icon-btn, .text-btn, .text-controls label { width: 28px !important; height: 28px !important; font-size: 13.6px !important; border-radius: 6px !important; }
             .v-divider { margin: 0 1px; height: 14px; }
             
-            /* COMPACT DASHBOARD STATS FOR MOBILE (Strict 10.4px) */
             .stat-item { flex-direction: column; gap: 1px; padding: 4px 1px; align-items: center; }
             .stat-label { font-size: 10.4px !important; letter-spacing: -0.2px; margin: 0; }
             .stat-value { font-size: 10.4px !important; }
@@ -517,6 +492,19 @@
             .nav-btn { padding: 4px 8px; font-size: 0.7rem; min-width: 55px; }
             .progress-display { padding: 2px 6px; }
             .progress-text { font-size: 0.7rem; }
+            
+            /* Quick Links Mobile Fix: Inline & Scrollable without breaking width */
+            .quick-links {
+                flex-wrap: nowrap !important;
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                justify-content: flex-start !important;
+                padding-bottom: 5px;
+                max-width: 100%;
+            }
+            .quick-links::-webkit-scrollbar { display: none; }
+            .quick-link-item { font-size: 0.65rem; padding: 4px 10px; }
         }
     </style>
 
@@ -556,6 +544,10 @@
     <!-- New Top Page Header (Centers H1 above the columns) -->
     <div class="page-header-top">
         <h1 class="hero-title">Art & Culture of Himachal Pradesh</h1>
+        <!-- Descriptive content acting as hero sub-heading -->
+        <p class="hero-desc">
+            Art & Culture is the soul of HP GK. Expect 20-25% of questions in HPAS and Allied exams to cover temple architecture, vibrant fairs, tribal customs, and Pahari paintings. <br>कला और संस्कृति हिमाचल जीके की आत्मा है। HPAS/Allied परीक्षाओं में लगभग 20-25% प्रश्न मंदिर वास्तुकला, मेलों और जनजातीय रीति-रिवाजों से आते हैं।
+        </p>
     </div>
 
     <!-- Side-by-Side Two Column Layout -->
@@ -564,12 +556,12 @@
         <!-- Left Column: Intro Hook -->
         <section class="intro-column">
             <div class="intro-grid">
+                <!-- Cleaned up left card: Now just holds Quick Links -->
                 <div class="intro-card glass-panel" style="text-align: center;">
-                    <h2 style="justify-content: center;"><i class="fa-solid fa-star"></i> Why This Matters? (यह महत्वपूर्ण क्यों है?)</h2>
-                    <p>Art & Culture is the soul of HP GK. Around 20-25% of questions in HPAS/Allied exams cover temple architecture, fairs, festivals, and tribal customs. <br><br>कला और संस्कृति हिमाचल जीके की आत्मा है। HPAS/Allied परीक्षाओं में लगभग 20-25% प्रश्न मंदिर वास्तुकला, मेलों और त्योहारों से आते हैं।</p>
+                    <h2 style="justify-content: center; margin-bottom: 12px; font-size: 1rem;"><i class="fa-solid fa-link"></i> Quick Study Links</h2>
                     
-                    <!-- Sibling Directory Interlinking - Scrollable Inline on Mobile -->
-                    <div class="quick-links" style="justify-content: center;">
+                    <!-- Exactly 4 Sibling Directory Interlinking -->
+                    <div class="quick-links">
                         <a href="../history/" class="quick-link-item"><i class="fa-solid fa-landmark"></i> History</a>
                         <a href="../geography/" class="quick-link-item"><i class="fa-solid fa-mountain"></i> Geography</a>
                         <a href="../district/" class="quick-link-item"><i class="fa-solid fa-map-location-dot"></i> Districts</a>
@@ -580,19 +572,19 @@
                 <div class="intro-card glass-panel">
                     <h2><i class="fa-solid fa-list-check"></i> What this Page Covers (इस पृष्ठ में क्या शामिल है)</h2>
                     <ul class="intro-list">
-                        <li><strong>Temple Architecture (मंदिर वास्तुकला):</strong> Pent-roof (Lakshana Devi), Pagoda (Hidimba), Nagara (Masroor), & Dome styles.</li>
-                        <li><strong>Fairs & Festivals (मेले और त्यौहार):</strong> Kullu Dussehra, Minjar Fair (Chamba), Shivratri (Mandi), Lavi Fair.</li>
-                        <li><strong>Social Customs (सामाजिक रीति-रिवाज):</strong> Polyandry in Kinnaur, Marriage forms (Reet, Jhanjrara), Rituals.</li>
-                        <li><strong>Tribal Culture (जनजातीय संस्कृति):</strong> Gaddi, Gujjar, Pangwal, Kinnaura, Lahaula tribes.</li>
-                        <li><strong>Pahari Painting (पहाड़ी चित्रकला):</strong> Kangra School, Basohli School, Chamba Rumal (GI Tagged).</li>
-                        <li><strong>Folk Dances (लोक नृत्य):</strong> Nati (Guinness Record), Dangi, Demon Dance (Chham).</li>
-                        <li><strong>Interactive Quiz:</strong> Test your knowledge with precision through 390+ bilingual MCQs.</li>
+                        <li><strong>Temple Architecture (मंदिर वास्तुकला):</strong> Discover Pent-roof, Pagoda, Nagara, and Dome styles with key examples like Masroor and Hidimba. (पहाड़ी मंदिर वास्तुकला शैलियों का अध्ययन).</li>
+                        <li><strong>Fairs & Festivals (मेले और त्यौहार):</strong> Learn about International fairs like Kullu Dussehra, Minjar, and tribal festivals like Losar. (अंतरराष्ट्रीय मेलों और जनजातीय त्योहारों की जानकारी).</li>
+                        <li><strong>Social Customs (सामाजिक रीति-रिवाज):</strong> Explore unique marriage systems (Polyandry, Jhanjrara) and deeply rooted social traditions. (विवाह प्रणालियों और सामाजिक परंपराओं का अन्वेषण).</li>
+                        <li><strong>Tribal Culture (जनजातीय संस्कृति):</strong> Dive into the lifestyle of indigenous tribes like Gaddis, Gujjars, Kinnauras, and Lahaulas. (गद्दी, गुर्जर और किन्नौर जनजातियों की जीवन शैली).</li>
+                        <li><strong>Pahari Painting (पहाड़ी चित्रकला):</strong> Study the golden era of Kangra and Basohli schools, and the GI-tagged Chamba Rumal. (कांगड़ा चित्रकला और चंबा रुमाल का इतिहास).</li>
+                        <li><strong>Folk Dances (लोक नृत्य):</strong> Read about the Guinness record-holding Nati, the Dangi of Chamba, and the monastic Demon Dance (Chham). (नाटी, डांगी और छम नृत्यों के तथ्य).</li>
+                        <li><strong>Interactive Testing (संवादात्मक प्रश्नोत्तरी):</strong> Verify your retention of culture facts through our dedicated quiz engine featuring 390+ bilingual MCQs. (390+ बहुविकल्पीय प्रश्नों के साथ अभ्यास).</li>
                     </ul>
                 </div>
             </div>
         </section>
 
-        <!-- Right Column: Dedicated Quiz Engine (Static, Not Sticky) -->
+        <!-- Right Column: Dedicated Quiz Engine -->
         <section class="quiz-widget-wrapper">
             <div class="quiz-card glass-panel">
                 
@@ -601,13 +593,13 @@
                 </button>
 
                 <div class="widget-header">
-                    <div class="text-controls">
-                        <button class="icon-btn" onclick="toggleHelpModal()" title="Help Guide">
+                    <div class="text-controls" style="margin: 0 auto;">
+                        <button class="icon-btn" onclick="toggleHelpModal()" title="Help Guide" type="button">
                             <i class="fa-solid fa-circle-question"></i>
                         </button>
-                        <div class="v-divider"></div>
+                        <div class="v-divider" style="width: 1px; height: 16px; background: var(--border-color); margin: 0 4px;"></div>
                         
-                        <button class="icon-btn" onclick="exportProgress()" title="Backup Progress">
+                        <button class="icon-btn" onclick="exportProgress()" title="Backup Progress" type="button">
                             <i class="fa-solid fa-download"></i>
                         </button>
                         <label for="importFile" class="icon-btn" title="Restore Progress" style="margin:0; cursor:pointer;">
@@ -615,29 +607,29 @@
                         </label>
                         <input type="file" id="importFile" style="display: none;" accept=".json" onchange="importProgress(this)">
                         
-                        <button class="icon-btn" onclick="resetProgress()" title="Reset Progress">
+                        <button class="icon-btn reset" onclick="resetProgress()" title="Reset Progress" type="button" style="color: var(--wrong-text);">
                             <i class="fa-solid fa-rotate-right"></i>
                         </button>
                         
-                        <div class="v-divider"></div>
+                        <div class="v-divider" style="width: 1px; height: 16px; background: var(--border-color); margin: 0 4px;"></div>
 
-                        <button class="icon-btn" id="quickModeBtn" onclick="toggleQuickMode()" title="Quick 10 Quiz">
+                        <button class="icon-btn" id="quickModeBtn" onclick="toggleQuickMode()" title="Quick 10 Quiz" type="button" style="color: var(--accent);">
                             <i class="fa-solid fa-bolt"></i>
                         </button>
-                        <button class="icon-btn" id="shuffleBtn" onclick="toggleShuffle()" title="Shuffle Questions">
+                        <button class="icon-btn" id="shuffleBtn" onclick="toggleShuffle()" title="Shuffle Questions" type="button" style="color: var(--primary);">
                             <i class="fa-solid fa-shuffle"></i>
                         </button>
-                        <button class="icon-btn" id="mistakeFilterBtn" onclick="toggleMistakeFilter()" title="Review Mistakes">
+                        <button class="icon-btn" id="mistakeFilterBtn" onclick="toggleMistakeFilter()" title="Review Mistakes" type="button" style="color: var(--wrong-text);">
                             <i class="fa-solid fa-triangle-exclamation"></i>
                         </button>
-                        <button class="icon-btn" id="bookmarkFilterBtn" onclick="toggleBookmarkFilter()" title="Saved Bookmarks">
+                        <button class="icon-btn" id="bookmarkFilterBtn" onclick="toggleBookmarkFilter()" title="Saved Bookmarks" type="button" style="color: var(--primary);">
                             <i class="fa-regular fa-bookmark"></i>
                         </button>
                         
-                        <div class="v-divider"></div>
+                        <div class="v-divider" style="width: 1px; height: 16px; background: var(--border-color); margin: 0 4px;"></div>
                         
-                        <button class="text-btn" onclick="adjustFont(-1)" title="Decrease Font">A-</button>
-                        <button class="text-btn" onclick="adjustFont(1)" title="Increase Font">A+</button>
+                        <button class="text-btn" onclick="adjustFont(-1)" title="Decrease Font" type="button">A-</button>
+                        <button class="text-btn" onclick="adjustFont(1)" title="Increase Font" type="button">A+</button>
                     </div>
                 </div>
 
@@ -661,7 +653,6 @@
                     <div class="widget-controls">
                         <button id="prevBtn" class="nav-btn"><i class="fa-solid fa-arrow-left"></i> Prev</button>
                         
-                        <!-- PROGRESS DISPLAY (JUMP REMOVED) -->
                         <div class="progress-display">
                             <span class="progress-text" id="progressText">0 / 0</span>
                         </div>
@@ -676,11 +667,11 @@
     
     <div class="section-separator"></div>
 
-    <!-- Full Width Bilingual Content -->
+    <!-- Full Width Bilingual Content: Expanded to 9 Detailed Bullet-Point Sections -->
     <section class="seo-content-wrapper">
         <div class="seo-header">
             <h2>Detailed Culture Notes (विस्तृत संस्कृति नोट्स)</h2>
-            <p>Deep dive into the vibrant traditions of Dev Bhumi. (देवभूमि की जीवंत परंपराओं में गहरा गोता लगाएँ।)</p>
+            <p>Deep dive into the vibrant traditions, ancient temple styles, and indigenous tribes of Dev Bhumi. <br>(देवभूमि की जीवंत परंपराओं, प्राचीन मंदिर शैलियों और मूल जनजातियों में गहरा गोता लगाएँ।)</p>
         </div>
 
         <div class="seo-grid">
@@ -688,76 +679,144 @@
             <!-- 1. Temple Architecture -->
             <div class="seo-card glass-panel">
                 <h3><i class="fa-solid fa-gopuram"></i> 1. Temple Architecture (मंदिर वास्तुकला)</h3>
-                <p>Himachal is known as the 'Land of Gods' with unique architectural styles adapted to hills. (हिमाचल को अद्वितीय पहाड़ी वास्तुकला शैलियों के साथ 'देवभूमि' के रूप में जाना जाता है।)</p>
+                <p>Himachal is known as the 'Land of Gods' with unique architectural styles adapted perfectly to harsh mountain climates. <br>(हिमाचल को अपनी अनूठी पहाड़ी वास्तुकला शैलियों के कारण 'देवभूमि' के रूप में जाना जाता है।)</p>
                 <ul class="seo-list">
-                    <li><strong>Pent-Roof Style (बंद छत शैली):</strong> Oldest style. Lakshana Devi (Bharmour), Shakti Devi (Chatrari). (सबसे पुरानी शैली: लक्षणा देवी, शक्ति देवी).</li>
-                    <li><strong>Pagoda Style (पैगोडा शैली):</strong> Multi-tiered roofs. Hidimba Devi (Manali), Parashar Rishi (Mandi). (बहु-स्तरीय छतें: हिडिम्बा देवी, पराशर ऋषि).</li>
-                    <li><strong>Nagara Style (नागर शैली):</strong> Masroor Rock Cut (Kangra - Monolithic), Baijnath (Kangra). (मसरूर रॉक कट, बैजनाथ).</li>
-                    <li><strong>Dome Style (गुंबद शैली):</strong> Influenced by Mughals/Sikhs. Jwalamukhi, Brajeshwari Devi. (मुगलों/सिखों से प्रभावित: ज्वालामुखी, ब्रजेश्वरी देवी).</li>
-                    <li><strong>Pyramidal Style (पिरामिड शैली):</strong> Hateshwari Devi (Hatkoti), Shiva Temple (Jubbal). (हाटेश्वरी देवी, शिव मंदिर जुब्बल).</li>
+                    <li><strong>Pent-Roof Style:</strong> The oldest architectural style with slanting slate roofs. Example: Lakshana Devi (Bharmour) and Shakti Devi (Chatrari). (बंद छत शैली: सबसे पुरानी शैली। उदाहरण: लक्षणा देवी और शक्ति देवी मंदिर).</li>
+                    <li><strong>Pagoda Style:</strong> Features multi-tiered, successive roofs. Best examples are Hidimba Devi (Manali) and Parashar Rishi (Mandi). (पैगोडा शैली: बहु-स्तरीय छतें। उदाहरण: हिडिम्बा देवी और पराशर ऋषि).</li>
+                    <li><strong>Nagara Style:</strong> Classical North Indian stone-carved style. Found mainly in Baijnath and Bajaura. (नागर शैली: पत्थर पर की गई पारंपरिक उत्तर भारतीय नक्काशी। उदाहरण: बैजनाथ).</li>
+                    <li><strong>Masroor Rock Cut:</strong> A spectacular Nagara style monolithic temple in Kangra, famously known as the 'Ellora of the Himalayas' (8th Century). (मसरूर रॉक कट: कांगड़ा में स्थित एकाश्म मंदिर, जिसे 'हिमालय का एलोरा' कहा जाता है).</li>
+                    <li><strong>Dome Style:</strong> Influenced by Sikh and Mughal architecture. Key examples include Jwalamukhi and Brajeshwari Devi temples. (गुंबद शैली: सिख और मुगल वास्तुकला से प्रभावित। उदाहरण: ज्वालामुखी और ब्रजेश्वरी देवी).</li>
+                    <li><strong>Pyramidal Style:</strong> Features a pointed pyramidal roof. Found in Hatkoti (Hateshwari Devi) and Jubbal (Shiva Temple). (पिरामिड शैली: नुकीली पिरामिड जैसी छत। उदाहरण: हाटकोटी और जुब्बल के मंदिर).</li>
+                    <li><strong>Sutlej Valley Style:</strong> A unique blend of pent-roof and pagoda styles. The Bhimakali Temple in Sarahan is a prime example. (सतलुज घाटी शैली: बंद छत और पैगोडा का मिश्रण। उदाहरण: भीमाकाली मंदिर).</li>
+                    <li><strong>Wood Carvings:</strong> Extensive and intricate use of Deodar wood is a hallmark of ancient Himachali temples to withstand earthquakes. (काष्ठ कला: भूकंप से बचाव के लिए देवदार की लकड़ी का व्यापक उपयोग).</li>
                 </ul>
             </div>
 
             <!-- 2. Fairs (Melas) -->
             <div class="seo-card glass-panel">
                 <h3><i class="fa-solid fa-people-group"></i> 2. Famous Fairs (प्रसिद्ध मेले)</h3>
-                <p>Fairs are the lifeline of social gathering and trade. (मेले सामाजिक समारोहों और व्यापार की जीवन रेखा हैं।)</p>
+                <p>Traditional fairs in Himachal are the absolute lifeline of social gatherings, religious devotion, and winter trade. <br>(पारंपरिक मेले हिमाचल में सामाजिक समारोहों, भक्ति और व्यापार की जीवन रेखा हैं।)</p>
                 <ul class="seo-list">
-                    <li><strong>Kullu Dussehra (कुल्लू दशहरा):</strong> International Fair. Starts on Vijaya Dashami. Lord Raghunath's rath yatra. No Ravan burning. (अंतर्राष्ट्रीय मेला, भगवान रघुनाथ की रथ यात्रा, रावण दहन नहीं).</li>
-                    <li><strong>Minjar Fair (मिंजर मेला):</strong> Chamba. Maize flower (Minjar) offered to River Ravi/Varuna. Started by Sahil Varman. (चंबा, मक्का का फूल रावी/वरुण नदी को अर्पित).</li>
-                    <li><strong>Shivratri (शिवरात्रि):</strong> Mandi. Started by Raja Ajbar Sen (1527). Procession of 200+ deities. (मंडी, राजा अजबर सेन द्वारा शुरू, 200+ देवताओं का जुलूस).</li>
-                    <li><strong>Lavi Fair (लवी मेला):</strong> Rampur. Oldest trade fair. Signed treaty between Bushahr and Tibet. (रामपुर, सबसे पुराना व्यापारिक मेला).</li>
-                    <li><strong>Renuka Fair (रेणुका मेला):</strong> Sirmaur. Dedicated to Goddess Renuka (Mother of Parshuram). (सिरमौर, देवी रेणुका को समर्पित).</li>
+                    <li><strong>Kullu Dussehra:</strong> An International Fair that uniquely begins on Vijaya Dashami (when Dussehra ends elsewhere). (कुल्लू दशहरा: यह अंतर्राष्ट्रीय मेला तब शुरू होता है जब अन्य जगह दशहरा समाप्त होता है).</li>
+                    <li><strong>Raghunath Rath Yatra:</strong> The central attraction of Kullu Dussehra. Crucially, there is no Ravan burning tradition here. (रघुनाथ रथ यात्रा: कुल्लू दशहरे का मुख्य आकर्षण, यहाँ रावण दहन की परंपरा नहीं है).</li>
+                    <li><strong>Minjar Fair (Chamba):</strong> An International fair held in July-August. 'Minjar' (Maize flower) is offered to the River Ravi/Varuna god. (मिंजर मेला: चंबा का अंतर्राष्ट्रीय मेला, जिसमें रावी/वरुण देवता को मक्का का फूल चढ़ाया जाता है).</li>
+                    <li><strong>Sahil Varman:</strong> The historically significant Minjar fair was started by Raja Sahil Varman to celebrate his victory over Trigarta. (साहिल वर्मन: मिंजर मेले की शुरुआत राजा साहिल वर्मन ने त्रिगर्त पर अपनी जीत की खुशी में की थी).</li>
+                    <li><strong>Lavi Fair (Rampur):</strong> The oldest, most famous international trade fair held in November. It historically marked the Indo-Tibet trade pact. (लवी मेला: रामपुर का सबसे पुराना व्यापारिक मेला, जो ऐतिहासिक भारत-तिब्बत व्यापार समझौते का प्रतीक है).</li>
+                    <li><strong>Mandi Shivratri:</strong> Started by Raja Ajbar Sen in 1527. It features a grand procession of over 200 local hill deities. (मंडी शिवरात्रि: 1527 में राजा अजबर सेन द्वारा शुरू, 200 से अधिक देवताओं का भव्य जुलूस).</li>
+                    <li><strong>Renuka Fair (Sirmaur):</strong> An International fair celebrated in November, dedicated to Goddess Renuka (Mother of Lord Parshuram). (रेणुका मेला: सिरमौर में नवंबर में मनाया जाने वाला मेला, देवी रेणुका को समर्पित).</li>
+                    <li><strong>Nalwari Fair (Bilaspur):</strong> A famous state-level cattle fair that was started by British officer W. Goldstein in 1889. (नलवाड़ी मेला: बिलासपुर का प्रसिद्ध पशु मेला, जिसे 1889 में डब्ल्यू. गोल्डस्टीन ने शुरू किया था).</li>
                 </ul>
             </div>
 
             <!-- 3. Festivals -->
             <div class="seo-card glass-panel">
-                <h3><i class="fa-solid fa-mask"></i> 3. Festivals (त्यौहार)</h3>
-                <p>Unique hill festivals celebrated with zeal. (उत्साह के साथ मनाए जाने वाले अनूठे पहाड़ी त्यौहार।)</p>
+                <h3><i class="fa-solid fa-mask"></i> 3. Key Festivals (प्रमुख त्यौहार)</h3>
+                <p>Unique high-altitude festivals celebrated with immense zeal, often reflecting harsh climates and agrarian cycles. <br>(अत्यधिक उत्साह के साथ मनाए जाने वाले ऊंचाई वाले त्यौहार, जो अक्सर कठोर जलवायु और कृषि चक्रों को दर्शाते हैं।)</p>
                 <ul class="seo-list">
-                    <li><strong>Losar (लोसर):</strong> New Year festival in Lahaul-Spiti and Kinnaur. Mask dances (Chham). (लाहौल-स्पीति और किन्नौर में नव वर्ष का त्यौहार, मुखौटा नृत्य).</li>
-                    <li><strong>Fulaich (फुलाइच / उख्यांग):</strong> Festival of Flowers in Kinnaur. Villagers collect wild flowers from high peaks. (किन्नौर में फूलों का त्यौहार).</li>
-                    <li><strong>Halda (हाल्दा):</strong> Lahaul's festival of lights (similar to Diwali). Cedar torches lit. (लाहौल का रोशनी का त्यौहार - दिवाली के समान).</li>
-                    <li><strong>Sair (सैर):</strong> End of rainy season (September). Offering of crops/walnuts. (बरसात के मौसम का अंत, फसलों/अखरोट की भेंट).</li>
-                    <li><strong>Nawala (नवाला):</strong> Gaddi tribe festival dedicated to Lord Shiva. (गद्दी जनजाति का त्यौहार, भगवान शिव को समर्पित).</li>
+                    <li><strong>Losar (New Year):</strong> The Tibetan New Year celebrated widely in Lahaul-Spiti and Kinnaur regions during mid-winter. (लोसर: लाहौल-स्पीति और किन्नौर क्षेत्रों में व्यापक रूप से मनाया जाने वाला तिब्बती नव वर्ष).</li>
+                    <li><strong>Fulaich (Ukhyang):</strong> The 'Festival of Flowers' in Kinnaur. Villagers climb high alpine peaks to collect specific wild flowers in September. (फुलाइच: किन्नौर में 'फूलों का त्यौहार', ग्रामीण सितंबर में जंगली फूल इकट्ठा करने के लिए चोटियों पर चढ़ते हैं).</li>
+                    <li><strong>Halda Festival:</strong> Known as Lahaul's festival of lights, heavily resembling Diwali. Locals light huge cedar branches as torches. (हाल्दा त्यौहार: लाहौल का रोशनी का त्यौहार जो दिवाली के समान है, देवदार की मशालें जलाई जाती हैं).</li>
+                    <li><strong>Sair Festival:</strong> Celebrated in September marking the end of the rainy season. Walnuts and new crops are traditionally offered. (सैर त्यौहार: बारिश के मौसम के अंत में सितंबर में मनाया जाता है, अखरोट और नई फसल चढ़ाई जाती है).</li>
+                    <li><strong>Nawala Festival:</strong> The most significant thanksgiving festival of the Gaddi tribe (Chamba/Kangra), dedicated exclusively to Lord Shiva. (नवाला त्यौहार: गद्दी जनजाति (चंबा/कांगड़ा) का सबसे महत्वपूर्ण त्यौहार, जो पूरी तरह से भगवान शिव को समर्पित है).</li>
+                    <li><strong>Gochi Festival:</strong> A unique festival celebrated specifically in the Bhaga Valley (Lahaul) to celebrate the birth of male children. (गोची त्यौहार: भागा घाटी (लाहौल) में लड़कों के जन्म का जश्न मनाने के लिए मनाया जाने वाला अनोखा त्यौहार).</li>
+                    <li><strong>Buri Diwali:</strong> Celebrated one month after the main Diwali in the Nirmand area of Kullu and Sirmaur districts. (बूढ़ी दिवाली: कुल्लू के निर्मंड और सिरमौर जिलों में मुख्य दिवाली के एक महीने बाद मनाई जाती है).</li>
+                    <li><strong>Chaitra / Rali:</strong> The traditional Hindu New Year in the lower hills, marked by singing and traditional agrarian rituals. (चैत्र / राली: निचले पहाड़ी क्षेत्रों में पारंपरिक हिंदू नव वर्ष, जो गायन और अनुष्ठानों द्वारा चिह्नित है).</li>
                 </ul>
             </div>
 
             <!-- 4. Folk Dances -->
             <div class="seo-card glass-panel">
                 <h3><i class="fa-solid fa-music"></i> 4. Folk Dances (लोक नृत्य)</h3>
-                <p>Rhythmic expressions of joy and devotion. (आनंद और भक्ति की लयबद्ध अभिव्यक्ति।)</p>
+                <p>Highly rhythmic and culturally deeply-rooted expressions of joy, devotion, and community bonding. <br>(आनंद, भक्ति और सामुदायिक बंधन की अत्यधिक लयबद्ध और सांस्कृतिक रूप से गहरी अभिव्यक्ति।)</p>
                 <ul class="seo-list">
-                    <li><strong>Nati (नाटी):</strong> Most popular dance. Listed in Guinness Book for largest participation. (सबसे लोकप्रिय नृत्य, गिनीज बुक में शामिल).</li>
-                    <li><strong>Dangi & Deepak (डांगी और दीपक):</strong> Performed by Gaddi women in Chamba. (चंबा में गद्दी महिलाओं द्वारा किया जाने वाला नृत्य).</li>
-                    <li><strong>Kayang, Bakayang (कयांग, बाकयांग):</strong> Kinnaur. (किन्नौर के लोक नृत्य).</li>
-                    <li><strong>Chham (छम / मुखौटा नृत्य):</strong> Lahaul-Spiti/Kinnaur monasteries. Monks wear masks to ward off evil. (बुराई को दूर भगाने के लिए भिक्षुओं द्वारा मुखौटा नृत्य).</li>
-                    <li><strong>Thoda (ठोडा):</strong> War dance of Sirmaur/Shimla. Archery skills displayed. (सिरमौर/शिमला का युद्ध नृत्य, तीरंदाजी कौशल).</li>
+                    <li><strong>Nati (नाटी):</strong> The most widely recognized dance of HP. Kullu Nati holds the Guinness World Record for the largest participation. (हिमाचल का सबसे प्रसिद्ध नृत्य। कुल्लू नाटी सबसे बड़ी भागीदारी के लिए गिनीज बुक में दर्ज है).</li>
+                    <li><strong>Dangi & Deepak:</strong> Exceptionally graceful dances performed exclusively by the Gaddi women of Chamba during the Minjar fair and jatras. (डांगी और दीपक: चंबा की गद्दी महिलाओं द्वारा मिंजर मेले और जात्रा के दौरान किया जाने वाला नृत्य).</li>
+                    <li><strong>Chham (Demon Dance):</strong> A strictly religious mask dance performed by Buddhist Monks in Lahaul/Kinnaur to forcefully ward off evil spirits. (छम / मुखौटा नृत्य: लाहौल/किन्नौर में बौद्ध भिक्षुओं द्वारा बुरी आत्माओं को भगाने के लिए किया जाने वाला धार्मिक नृत्य).</li>
+                    <li><strong>Thoda (ठोडा):</strong> A traditional martial/war dance of Sirmaur and Shimla regions, explicitly displaying ancient archery skills. (सिरमौर और शिमला क्षेत्रों का एक पारंपरिक युद्ध नृत्य, जिसमें प्राचीन तीरंदाजी कौशल प्रदर्शित किया जाता है).</li>
+                    <li><strong>Kayang & Bakayang:</strong> Prominent and highly rhythmic circular folk dances belonging to the Kinnaur district. (कयांग और बाकयांग: किन्नौर जिले से संबंधित प्रमुख और लयबद्ध गोलाकार लोक नृत्य).</li>
+                    <li><strong>Burah Dance:</strong> A highly energetic traditional dance specifically belonging to the Sirmaur district. (बुराह नृत्य: विशेष रूप से सिरमौर जिले से संबंधित एक अत्यधिक ऊर्जावान पारंपरिक नृत्य).</li>
+                    <li><strong>Jhamakda:</strong> A lively folk dance specifically performed by women in the Kangra district during marriage ceremonies. (झमाकड़ा: कांगड़ा जिले में विवाह समारोहों के दौरान महिलाओं द्वारा किया जाने वाला एक जीवंत लोक नृत्य).</li>
+                    <li><strong>Cholamba:</strong> A prominent folk dance traditionally performed in the high-altitude Rohru region. (छोलंबा: उच्च ऊंचाई वाले रोहड़ू क्षेत्र में पारंपरिक रूप से किया जाने वाला एक प्रमुख लोक नृत्य).</li>
                 </ul>
             </div>
 
             <!-- 5. Pahari Painting -->
             <div class="seo-card glass-panel">
                 <h3><i class="fa-solid fa-palette"></i> 5. Pahari Painting (पहाड़ी चित्रकला)</h3>
-                <p>Miniature paintings that flourished in hill states. (पहाड़ी राज्यों में फली-फूली लघु चित्रकलाएँ।)</p>
+                <p>Exquisite miniature paintings that flourished under royal patronage, heavily influenced by Vaishnavism. <br>(शाही संरक्षण में फली-फूली उत्कृष्ट लघु चित्रकलाएँ, जो वैष्णववाद से अत्यधिक प्रभावित थीं।)</p>
                 <ul class="seo-list">
-                    <li><strong>Basohli School (बसोहली शैली):</strong> Oldest school. Bold colors. Patron: Raja Kirpal Pal. (सबसे पुरानी शैली, राजा कृपाल पाल).</li>
-                    <li><strong>Kangra School (कांगड़ा शैली):</strong> Most famous. Theme: Radha-Krishna. Golden age under Maharaja Sansar Chand. (राधा-कृष्ण प्रसंग, महाराजा संसार चंद का स्वर्ण युग).</li>
-                    <li><strong>Chamba Rumal (चंबा रुमाल):</strong> Pictorial embroidery on handkerchiefs. Patron: Raja Umed Singh (GI Tagged). (रुमाल पर चित्रमय कढ़ाई, जीआई टैग).</li>
-                    <li><strong>Arki School (अर्की शैली):</strong> Flourished in Baghal state. (बाघल राज्य में फली-फूली).</li>
+                    <li><strong>Basohli School:</strong> The absolute oldest school of Pahari painting, characterized by bold, intense colors. Flourished under Raja Kirpal Pal. (बसोहली शैली: पहाड़ी चित्रकला की सबसे पुरानी शैली, जो अपने बोल्ड रंगों के लिए जानी जाती है, राजा कृपाल पाल के अधीन फली-फूली).</li>
+                    <li><strong>Kangra School:</strong> The most famous school worldwide. Its central romantic theme is the divine love of Radha and Krishna. (कांगड़ा शैली: दुनिया भर में सबसे प्रसिद्ध शैली। इसका मुख्य विषय राधा-कृष्ण का दिव्य प्रेम है).</li>
+                    <li><strong>Golden Age:</strong> Kangra miniature painting reached its absolute zenith under the royal patronage of Maharaja Sansar Chand. (स्वर्ण युग: कांगड़ा लघु चित्रकला महाराजा संसार चंद के शाही संरक्षण में अपने चरम पर पहुंची).</li>
+                    <li><strong>Master Artists:</strong> Nainsukh, Manaku, Fattu, and Purkhu were the legendary artists who defined the Pahari miniature style. (प्रमुख कलाकार: नैनसुख, माणकू, फत्तू और पुरखू वे महान कलाकार थे जिन्होंने पहाड़ी शैली को परिभाषित किया).</li>
+                    <li><strong>Chamba Rumal:</strong> A unique pictorial embroidery done on handkerchiefs, often depicting Krishna Leela. It now holds a GI Tag. (चंबा रुमाल: रुमाल पर की जाने वाली एक अनूठी चित्रमय कढ़ाई (कृष्ण लीला)। अब इसे जीआई (GI) टैग प्राप्त है).</li>
+                    <li><strong>Royal Patronage (Chamba):</strong> The Chamba Rumal craft massively flourished under the patronage of Raja Umed Singh of Chamba. (शाही संरक्षण: चंबा रुमाल कला चंबा के राजा उम्मेद सिंह के संरक्षण में फली-फूली).</li>
+                    <li><strong>Arki School:</strong> A highly distinct school of painting that successfully flourished in the Baghal state (modern Solan). (अर्की शैली: चित्रकला की एक अत्यधिक विशिष्ट शैली जो बाघल राज्य (आधुनिक सोलन) में सफलतापूर्वक फली-फूली).</li>
+                    <li><strong>Guler School:</strong> Often considered the mother and literal birthplace of the famous Kangra style of painting. (गुलेर शैली: इसे अक्सर प्रसिद्ध कांगड़ा चित्रकला शैली की जननी और जन्मस्थान माना जाता है).</li>
                 </ul>
             </div>
 
-            <!-- 6. Social Customs -->
+            <!-- 6. Tribes & Ethnography -->
             <div class="seo-card glass-panel">
-                <h3><i class="fa-solid fa-hand-holding-heart"></i> 6. Social Customs (सामाजिक रीति-रिवाज)</h3>
-                <p>Distinct customs of marriage and family. (विवाह और परिवार के विशिष्ट रीति-रिवाज।)</p>
+                <h3><i class="fa-solid fa-tent"></i> 6. Tribes & Ethnography (जनजातियाँ)</h3>
+                <p>Himachal hosts diverse indigenous tribes, each with distinct dialects, attire, and transhumance lifestyles. <br>(हिमाचल में विविध मूल जनजातियाँ हैं, जिनकी अपनी विशिष्ट बोलियाँ, वेशभूषा और घुमंतू जीवन शैली है।)</p>
                 <ul class="seo-list">
-                    <li><strong>Polyandry (बहुपति प्रथा):</strong> Prevalent in Kinnaur & Lahaul-Spiti (Pandava marriage). (किन्नौर और लाहौल-स्पीति में प्रचलित - पांडव विवाह).</li>
-                    <li><strong>Jhanjrara (झांझरारा):</strong> Marriage by elopement or mutual love. (पलायन या आपसी प्रेम से विवाह).</li>
-                    <li><strong>Reet (रीत):</strong> Custom where a woman could leave her husband for another (Now Abolished). (वह प्रथा जहां एक महिला अपने पति को दूसरे के लिए छोड़ सकती थी - अब समाप्त).</li>
-                    <li><strong>Bata-Sata (बाटा-साटा):</strong> Exchange marriage (Barter system of brides). (विनिमय विवाह - दुल्हनों की वस्तु विनिमय प्रणाली).</li>
+                    <li><strong>Gaddis:</strong> Semi-nomadic shepherds primarily residing in the Bharmour region (Chamba) and parts of Kangra. They worship Lord Shiva. (गद्दी: मुख्य रूप से भरमौर (चंबा) और कांगड़ा के कुछ हिस्सों में रहने वाले घुमंतू चरवाहे। वे भगवान शिव की पूजा करते हैं).</li>
+                    <li><strong>Gujjars:</strong> Traditionally a nomadic pastoral tribe dealing in buffalo herding and dairy. Found in Chamba and Sirmaur. (गुर्जर: पारंपरिक रूप से भैंस चराने और डेयरी से जुड़ी एक घुमंतू देहाती जनजाति। चंबा और सिरमौर में पाए जाते हैं).</li>
+                    <li><strong>Kinnauras:</strong> Inhabitants of Kinnaur, historically associated with the mythological 'Kinnaras' (half-man, half-god beings). (किन्नौरा: किन्नौर के निवासी, जिनका ऐतिहासिक रूप से पौराणिक 'किन्नरों' (आधा इंसान, आधा भगवान) से संबंध है).</li>
+                    <li><strong>Pangwals:</strong> Hardworking residents of the extremely rugged and isolated Pangi valley in the Chamba district. (पंगवाल: चंबा जिले की अत्यंत दुर्गम और अलग-थलग पांगी घाटी के मेहनती निवासी).</li>
+                    <li><strong>Lahaulas:</strong> Inhabitants of Lahaul valley, heavily following a deeply syncretic mix of Hinduism and Tibetan Buddhism. (लाहौला: लाहौल घाटी के निवासी, जो हिंदू धर्म और तिब्बती बौद्ध धर्म के मिश्रण का पालन करते हैं).</li>
+                    <li><strong>Swanglas:</strong> A Scheduled Tribe specifically inhabiting the remote Pattan valley within the Lahaul-Spiti district. (स्वांगला: विशेष रूप से लाहौल-स्पीति जिले की पट्टन घाटी में रहने वाली एक अनुसूचित जनजाति).</li>
+                    <li><strong>Khampas:</strong> Nomadic traders who originally migrated from Tibet into the high-altitude valleys of Himachal Pradesh. (खम्पा: घुमंतू व्यापारी जो मूल रूप से तिब्बत से हिमाचल प्रदेश की उच्च ऊंचाई वाली घाटियों में चले गए थे).</li>
+                    <li><strong>Jads:</strong> A specific sub-tribe that mainly inhabits the treacherous border areas adjoining the Tibet region. (जाद: एक विशिष्ट उप-जनजाति जो मुख्य रूप से तिब्बत क्षेत्र से सटे सीमावर्ती क्षेत्रों में निवास करती है).</li>
+                </ul>
+            </div>
+
+            <!-- 7. Social Customs -->
+            <div class="seo-card glass-panel">
+                <h3><i class="fa-solid fa-hand-holding-heart"></i> 7. Customs & Marriages (सामाजिक रीति-रिवाज)</h3>
+                <p>Isolated geographies led to the development of highly distinct and practical social family customs. <br>(अलग-थलग भूगोल के कारण अत्यधिक विशिष्ट और व्यावहारिक सामाजिक पारिवारिक रीति-रिवाजों का विकास हुआ।)</p>
+                <ul class="seo-list">
+                    <li><strong>Polyandry (बहुपति प्रथा):</strong> The practice where brothers share one wife (Pandava marriage). Historically prevalent in Kinnaur & Lahaul-Spiti to preserve land holdings. (बहुपति प्रथा: भाइयों द्वारा एक पत्नी साझा करना (पांडव विवाह)। भूमि बचाने के लिए किन्नौर और लाहौल में ऐतिहासिक रूप से प्रचलित).</li>
+                    <li><strong>Jhanjrara (झांझरारा):</strong> A traditional and widely accepted form of marriage by elopement or mutual love among tribes. (झांझरारा: पलायन या आपसी प्रेम द्वारा विवाह का एक पारंपरिक और व्यापक रूप से स्वीकृत रूप).</li>
+                    <li><strong>Reet System (रीत):</strong> A historical custom (now legally abolished) where a woman could officially leave her husband for another by paying 'Reet money'. (रीत: एक ऐतिहासिक प्रथा (अब समाप्त) जहां एक महिला 'रीत का पैसा' देकर अपने पति को दूसरे के लिए छोड़ सकती थी).</li>
+                    <li><strong>Bata-Sata (बाटा-साटा):</strong> A traditional system of exchange marriage (effectively a barter system of brides between two families). (बाटा-साटा: विनिमय विवाह की एक पारंपरिक प्रणाली - दो परिवारों के बीच दुल्हनों की वस्तु विनिमय).</li>
+                    <li><strong>Darosh / Dab-Dab:</strong> A highly specific tribal marriage custom strictly practiced within the Kinnaur district. (दरोश / दब-दब: किन्नौर जिले के भीतर सख्ती से प्रचलित एक अत्यधिक विशिष्ट जनजातीय विवाह प्रथा).</li>
+                    <li><strong>Pargachna:</strong> The socially accepted formal tradition of divorce specifically among the Kinnaura tribe. (परगचना: विशेष रूप से किन्नौरा जनजाति के बीच तलाक की सामाजिक रूप से स्वीकृत औपचारिक परंपरा).</li>
+                    <li><strong>Khatri:</strong> The traditional marriage custom that is strictly followed by the Khampa nomadic tribes. (खत्री: पारंपरिक विवाह प्रथा जिसका खम्पा घुमंतू जनजातियों द्वारा सख्ती से पालन किया जाता है).</li>
+                    <li><strong>Jindphook:</strong> A very unique marriage custom specifically associated with the Pangwal tribe of the Pangi valley. (जिंदफूक: पांगी घाटी की पंगवाल जनजाति से जुड़ी एक बहुत ही अनूठी विवाह प्रथा).</li>
+                </ul>
+            </div>
+
+            <!-- 8. Forts & Heritage -->
+            <div class="seo-card glass-panel">
+                <h3><i class="fa-brands fa-fort-awesome"></i> 8. Forts & Heritage (किले और विरासत)</h3>
+                <p>The state is dotted with ancient forts that have witnessed legendary sieges, battles, and royal politics. <br>(राज्य ऐसे प्राचीन किलों से अटा पड़ा है जिन्होंने पौराणिक घेराबंदी, युद्धों और शाही राजनीति को देखा है।)</p>
+                <ul class="seo-list">
+                    <li><strong>Kangra Fort:</strong> Built by Susharma Chand, it is the oldest and largest fort in the Himalayas. It was captured by Jahangir in 1620. (कांगड़ा किला: सुशर्मा चंद द्वारा निर्मित, हिमालय का सबसे पुराना और बड़ा किला। 1620 में जहांगीर ने इस पर कब्जा किया).</li>
+                    <li><strong>Taragarh Fort:</strong> A heavily fortified structure built in Chamba specifically by Raja Jagat Singh to expand his territories. (तारागढ़ किला: राजा जगत सिंह द्वारा अपने क्षेत्रों का विस्तार करने के लिए चंबा में बनाया गया एक भारी गढ़ वाला ढांचा).</li>
+                    <li><strong>Kamlah Fort:</strong> A highly strategic and nearly impregnable fort built by Raja Suraj Sen in the Mandi state. (कमलाह किला: मंडी राज्य में राजा सूरज सेन द्वारा निर्मित एक अत्यधिक रणनीतिक और अभेद्य किला).</li>
+                    <li><strong>Kuthar Fort:</strong> A deeply historical fort located near Subathu in the Solan district, known for its intricate ancient architecture. (कुठार किला: सोलन जिले में सुबाथू के पास स्थित एक ऐतिहासिक किला, जो अपनी जटिल प्राचीन वास्तुकला के लिए जाना जाता है).</li>
+                    <li><strong>Jaitak Fort:</strong> Located in Sirmaur, this fort is historically significant as the site where British forces defeated the Gorkhas in 1815. (जेतक किला: सिरमौर में स्थित यह किला ऐतिहासिक रूप से महत्वपूर्ण है जहां अंग्रेजों ने 1815 में गोरखाओं को हराया था).</li>
+                    <li><strong>Naun Fort:</strong> A prominent historical stronghold situated within the Bilaspur district. (न्यून किला: बिलासपुर जिले के भीतर स्थित एक प्रमुख ऐतिहासिक गढ़).</li>
+                    <li><strong>Nurpur Fort:</strong> Originally built by Raja Basu, deeply associated with the Pathania dynasty and Mughal history. (नूरपुर किला: मूल रूप से राजा बासु द्वारा निर्मित, जो पठानिया वंश और मुगल इतिहास से गहराई से जुड़ा है).</li>
+                    <li><strong>Sujanpur Fort:</strong> The majestic royal seat built by Abhaya Chand, later extensively beautified by Maharaja Sansar Chand. (सुजानपुर किला: अभय चंद द्वारा निर्मित राजसी सीट, जिसे बाद में महाराजा संसार चंद ने सुशोभित किया).</li>
+                </ul>
+            </div>
+
+            <!-- 9. Languages & Scripts -->
+            <div class="seo-card glass-panel">
+                <h3><i class="fa-solid fa-language"></i> 9. Languages & Scripts (भाषाएँ और लिपियाँ)</h3>
+                <p>Himachal features a tremendously rich linguistic diversity, heavily documented by early British surveyors. <br>(हिमाचल में अत्यधिक समृद्ध भाषाई विविधता है, जिसका प्रारंभिक ब्रिटिश सर्वेक्षकों ने भारी दस्तावेजीकरण किया है।)</p>
+                <ul class="seo-list">
+                    <li><strong>Pahari Language:</strong> The primary linguistic group of HP, which technically belongs to the Indo-Aryan language family. (पहाड़ी भाषा: हिमाचल का प्राथमिक भाषाई समूह, जो इंडो-आर्यन भाषा परिवार से संबंधित है).</li>
+                    <li><strong>Takri Script (टांकरी लिपि):</strong> The official ancient script historically used for writing Pahari languages and keeping royal state records. (टांकरी लिपि: पहाड़ी भाषाओं को लिखने और शाही राज्य के रिकॉर्ड रखने के लिए ऐतिहासिक रूप से उपयोग की जाने वाली प्राचीन लिपि).</li>
+                    <li><strong>Bhoti Script:</strong> Widely used in the Lahaul-Spiti and Kinnaur regions, deeply connected to Tibetan culture and Buddhism. (भोटी लिपि: लाहौल-स्पीति और किन्नौर क्षेत्रों में व्यापक रूप से उपयोग की जाती है, तिब्बती संस्कृति और बौद्ध धर्म से जुड़ी है).</li>
+                    <li><strong>Linguistic Survey:</strong> George Abraham Grierson was the very first scholar to conduct a detailed linguistic survey of the Pahari languages. (भाषाई सर्वेक्षण: जॉर्ज अब्राहम ग्रियर्सन पहाड़ी भाषाओं का विस्तृत सर्वेक्षण करने वाले पहले विद्वान थे).</li>
+                    <li><strong>Chambeali:</strong> The prominent local dialect spoken in Chamba. Raja Sahil Varman's ancient copper plates heavily feature the Takri script. (चम्बयाली: चंबा में बोली जाने वाली स्थानीय बोली। राजा साहिल वर्मन के ताम्रपत्रों में टांकरी लिपि का उपयोग हुआ है).</li>
+                    <li><strong>Kangri:</strong> The most widely spoken and dominant Pahari dialect in the populous Kangra, Hamirpur, and Una districts. (कांगड़ी: कांगड़ा, हमीरपुर और ऊना जिलों में सबसे व्यापक रूप से बोली जाने वाली प्रमुख पहाड़ी बोली).</li>
+                    <li><strong>Mahasui:</strong> The major dialect historically spoken in the Mahasu region (which covers modern-day Shimla and Solan). (महासूई: ऐतिहासिक रूप से महासू क्षेत्र (आधुनिक शिमला और सोलन) में बोली जाने वाली प्रमुख बोली).</li>
+                    <li><strong>Kehluri:</strong> The native and historically significant dialect belonging exclusively to the Bilaspur (formerly Kehloor) district. (कहलूरी: विशेष रूप से बिलासपुर (पूर्व में कहलूर) जिले की मूल और ऐतिहासिक रूप से महत्वपूर्ण बोली).</li>
                 </ul>
             </div>
 
@@ -795,7 +854,7 @@
 <!-- Dynamic Footer Container -->
 <div id="site-footer"></div>
 
-<!-- Load Layout Manager (Updated path) -->
+<!-- Load Layout Manager -->
 <script src="../../js/layout.js"></script>
 
 <!-- Initialize Header & Footer -->
@@ -834,7 +893,7 @@
 <script src="art-culture-literature-handicrafts-part-8.js"></script>
 <script src="art-culture-belief-systems-institutions-part-9.js"></script>
 
-<!-- Quiz Engine (Updated path) -->
+<!-- Quiz Engine -->
 <script src="../../js/main.js"></script>
 
 </body>
