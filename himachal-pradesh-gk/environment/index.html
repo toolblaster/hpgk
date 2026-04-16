@@ -72,6 +72,7 @@
     <!-- Global CSS -->
     <link rel="stylesheet" href="../../js/style.css">
 
+    <!-- Premium Glassmorphism & Compact UI Stylesheet -->
     <style>
         :root {
             --primary: #2563eb;       
@@ -146,16 +147,24 @@
             box-shadow: var(--glass-shadow);
         }
 
-        main { flex: 1; width: 100%; padding: 15px 0 !important; }
+        main { flex: 1; width: 100%; padding: 15px 0 !important; box-sizing: border-box; }
 
         .top-meta-bar { 
             display: flex; justify-content: space-between; align-items: center; 
-            width: 100%; max-width: var(--site-width); margin: 0 auto 12px auto; 
-            padding: 0 15px; flex-wrap: nowrap; gap: 10px; 
+            width: 100%; max-width: var(--site-width); margin: 0 auto 5px auto; 
+            padding: 0 15px; flex-wrap: nowrap; gap: 10px; box-sizing: border-box;
         }
 
         .page-header-top, .main-layout, .seo-content-wrapper { 
-            width: 100%; max-width: var(--site-width); margin: 0 auto; padding: 0 15px; 
+            width: 100%; max-width: var(--site-width); margin: 0 auto; padding: 0 15px; box-sizing: border-box;
+        }
+
+        .page-header-top { text-align: center; margin-bottom: 25px; }
+
+        .hero-desc {
+            margin: 0 auto;
+            text-align: center;
+            max-width: 800px;
         }
 
         .section-separator { 
@@ -167,6 +176,7 @@
             .top-meta-bar, .page-header-top, .main-layout, .seo-content-wrapper {
                 padding: 0 12px !important;
             }
+            .page-header-top { margin-bottom: 20px; }
         }
 
         .breadcrumb-nav { margin: 0; flex-shrink: 1; display: flex; align-items: center; height: 24px; }
@@ -191,40 +201,33 @@
             margin: 0; border: 1px solid var(--primary); letter-spacing: 0.5px; white-space: nowrap; 
             flex-shrink: 0; box-sizing: border-box;
         }
-
-        .page-header-top { text-align: center; margin-bottom: 20px; }
         
-        /* EXACT DESKTOP H1 FONT SIZE: 32px */
         .hero-title { 
-            font-size: 32px !important; 
-            font-weight: 900 !important; 
-            margin: 0; 
-            letter-spacing: -0.5px; 
-            text-align: center; 
             background: linear-gradient(135deg, var(--text-main) 0%, var(--primary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             color: var(--primary); 
-            line-height: 1.2;
+            letter-spacing: -0.8px;
+            margin-bottom: 8px !important;
         }
         
         .main-layout { display: flex; flex-direction: column; gap: 20px; }
         @media (min-width: 900px) { 
             .main-layout { flex-direction: row; align-items: flex-start; } 
-            .intro-column, .quiz-widget-wrapper { flex: 1; width: 50%; } 
+            .intro-column, .quiz-widget-wrapper { flex: 1; width: 50%; box-sizing: border-box; } 
         }
 
         .intro-grid { display: grid; gap: 12px; text-align: left; }
-        .intro-card { background: var(--input-bg); border: 1px solid var(--card-border); border-radius: var(--radius-lg); padding: 15px; box-shadow: var(--shadow-sm); }
+        .intro-card { background: var(--input-bg); border: 1px solid var(--card-border); border-radius: var(--radius-lg); padding: 15px; box-shadow: var(--shadow-sm); box-sizing: border-box; width: 100%; }
         .intro-card h2 { font-size: 1.05rem; color: var(--primary); margin: 0 0 8px 0; display: flex; align-items: center; gap: 8px; font-weight: 700; justify-content: center; }
         .intro-card p { font-size: 0.85rem; color: var(--text-body); margin: 0; line-height: 1.5; }
         .intro-list { margin: 8px 0 0 0; padding-left: 20px; font-size: 0.85rem; color: var(--text-body); line-height: 1.5; }
-        .intro-list li { margin-bottom: 4px; }
+        .intro-list li { margin-bottom: 6px; } 
         
         .quick-links { 
             margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--card-border); 
-            display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; 
+            display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; width: 100%; box-sizing: border-box;
         }
         .quick-link-item { 
             font-size: 0.7rem; text-decoration: none; color: var(--primary); 
@@ -235,8 +238,8 @@
         .quick-link-item:hover { background: var(--primary); color: white; }
 
         /* QUIZ WIDGET */
-        .quiz-card { border-radius: var(--radius-xl); display: flex; flex-direction: column; overflow: hidden; height: auto; min-height: 480px; background: var(--card-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--card-border); box-shadow: var(--glass-shadow); position: sticky; top: 80px; }
-        .quick-start-ribbon { background: var(--primary); color: #fff; border: none; padding: 12px; font-size: 0.95rem; font-weight: 700; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px; transition: background 0.2s; width: 100%; flex-shrink: 0; min-height: 45px; }
+        .quiz-card { border-radius: var(--radius-xl); display: flex; flex-direction: column; overflow: hidden; height: auto; min-height: 480px; background: var(--card-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--card-border); box-shadow: var(--glass-shadow); position: sticky; top: 80px; box-sizing: border-box; width: 100%; }
+        .quick-start-ribbon { background: var(--primary); color: #fff; border: none; padding: 12px; font-size: 0.95rem; font-weight: 700; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px; transition: background 0.2s; width: 100%; flex-shrink: 0; min-height: 45px; box-sizing: border-box; }
         .quick-start-ribbon:hover { background: var(--primary-dark); }
         
         .widget-header { 
@@ -254,11 +257,10 @@
         }
         .text-controls::-webkit-scrollbar { display: none; }
         
-        /* Toolbar Icons 13.6px */
         .icon-btn, .text-btn, .text-controls label {
             background: #ffffff !important; 
             border: none !important; 
-            color: var(--text-sec) !important;
+            color: var(--text-sec);
             width: 32px !important; 
             height: 32px !important; 
             border-radius: 8px !important; 
@@ -285,7 +287,7 @@
 
         [data-theme="dark"] .icon-btn, [data-theme="dark"] .text-btn, [data-theme="dark"] .text-controls label { 
             background: rgba(30, 41, 59, 0.9) !important; 
-            color: var(--text-body) !important;
+            color: var(--text-body);
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3) !important;
         }
         
@@ -306,15 +308,13 @@
             display: flex; flex-direction: column; flex: 1; overflow: hidden; margin: 10px 15px 15px 15px; 
             border: 1px solid rgba(37, 99, 235, 0.25); border-radius: var(--radius-lg); background: var(--input-bg); 
             box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.03);
+            box-sizing: border-box;
         }
         [data-theme="dark"] .quiz-mcq-container { border-color: rgba(96, 165, 250, 0.25); }
 
-        /* ==========================================
-           FIXED: ULTRA-COMPACT DASHBOARD STATS BAR (Strict 10.4px)
-           ========================================== */
         .stats-dashboard { 
             display: flex; flex-wrap: nowrap; background: rgba(0,0,0,0.03); 
-            border-bottom: 1px solid var(--card-border); align-items: center;
+            border-bottom: 1px solid var(--card-border); align-items: center; width: 100%; box-sizing: border-box;
         }
         [data-theme="dark"] .stats-dashboard { background: rgba(255,255,255,0.02); }
         
@@ -331,7 +331,7 @@
         .stat-value.red { color: var(--wrong-border); }
         .stat-value.accent { color: var(--accent); }
 
-        .quiz-content { flex: 1; padding: 15px; position: relative; background: transparent; border: none; margin: 0; box-shadow: none; overflow-y: auto; }
+        .quiz-content { flex: 1; padding: 15px; position: relative; background: transparent; border: none; margin: 0; box-shadow: none; overflow-y: auto; box-sizing: border-box; width: 100%; }
         
         .q-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-size: 0.75rem; font-weight: 700; color: var(--text-sec); border-bottom: 1px dashed var(--card-border); padding-bottom: 4px; }
         .q-id { font-size: 0.85rem; color: var(--text-main); }
@@ -345,8 +345,7 @@
         .q-text-hi { font-weight: 600; color: var(--text-sec); margin-bottom: 12px; font-family: 'Noto Sans Devanagari', sans-serif; line-height: 1.4; font-size: 0.85rem; }
         mark.highlight { background: var(--accent); color: #fff; padding: 0 2px; border-radius: 3px; }
 
-        /* PERFECT BUG FIX: NO TEXT SHIFTING ON ANSWER SELECTION */
-        .options-list { display: flex; flex-direction: column; gap: 8px; counter-reset: opt-counter; }
+        .options-list { display: flex; flex-direction: column; gap: 8px; counter-reset: opt-counter; width: 100%; box-sizing: border-box; }
         
         .option-btn { 
             width: 100%; 
@@ -363,6 +362,7 @@
             align-items: flex-start; 
             line-height: 1.4; 
             position: relative; 
+            box-sizing: border-box;
         }
         
         .option-btn::before { 
@@ -398,10 +398,9 @@
         .option-btn.correct { background: var(--correct-bg); border-color: var(--correct-border); color: var(--correct-text); }
         .option-btn.wrong { background: var(--wrong-bg); border-color: var(--wrong-border); color: var(--wrong-text); }
 
-        .feedback-row { display: flex; gap: 8px; align-items: center; margin-top: 12px; }
+        .feedback-row { display: flex; gap: 8px; align-items: center; margin-top: 12px; width: 100%; box-sizing: border-box; }
         
-        /* FIXED: No fadeIn animation to prevent blinking */
-        .feedback-msg { flex: 1; padding: 8px 12px; border-radius: var(--radius-md); font-weight: 700; font-size: 0.85rem; text-align: center; margin: 0; border: 1px solid transparent; }
+        .feedback-msg { flex: 1; padding: 8px 12px; border-radius: var(--radius-md); font-weight: 700; font-size: 0.85rem; text-align: center; margin: 0; border: 1px solid transparent; box-sizing: border-box; }
         
         .correct-feed { background: var(--correct-bg); color: var(--correct-text); border-color: var(--correct-border); }
         .wrong-feed { background: var(--wrong-bg); color: var(--wrong-text); border-color: var(--wrong-border); }
@@ -409,14 +408,14 @@
         .expl-wrapper { position: relative; }
         .expl-btn { background: var(--card-bg); color: var(--primary); border: 1px solid var(--card-border); width: 34px; height: 34px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1rem; transition: 0.2s; box-shadow: var(--shadow-sm); }
         .expl-btn:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
-        .explanation-tooltip { position: absolute; bottom: 120%; right: 0; width: 280px; background: var(--tooltip-bg); border: 1px solid var(--card-border); box-shadow: var(--glass-shadow); padding: 15px; border-radius: var(--radius-md); font-size: 0.8rem; color: var(--text-main); z-index: 100; margin-bottom: 10px; display: none; text-align: left; line-height: 1.4; font-weight: 500; }
+        .explanation-tooltip { position: absolute; bottom: 120%; right: 0; width: 280px; background: var(--tooltip-bg); border: 1px solid var(--card-border); box-shadow: var(--glass-shadow); padding: 15px; border-radius: var(--radius-md); font-size: 0.8rem; color: var(--text-main); z-index: 100; margin-bottom: 10px; display: none; text-align: left; line-height: 1.4; font-weight: 500; box-sizing: border-box; }
         .explanation-tooltip::after { content: ''; position: absolute; top: 100%; right: 12px; border-width: 6px; border-style: solid; border-color: var(--tooltip-bg) transparent transparent transparent; }
         .explanation-tooltip::before { content: ''; position: absolute; top: 100%; right: 11px; border-width: 7px; border-style: solid; border-color: var(--card-border) transparent transparent transparent; z-index: -1; }
         .explanation-tooltip.show { display: block; animation: fadeUp 0.2s ease-out; }
         .explanation-tooltip strong { color: var(--primary); display: block; margin-bottom: 6px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; }
         @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        .widget-controls { padding: 10px 15px; border-top: 1px solid var(--card-border); background: rgba(0,0,0,0.03); display: flex; justify-content: space-between; align-items: center; }
+        .widget-controls { padding: 10px 15px; border-top: 1px solid var(--card-border); background: rgba(0,0,0,0.03); display: flex; justify-content: space-between; align-items: center; width: 100%; box-sizing: border-box; }
         [data-theme="dark"] .widget-controls { background: rgba(255,255,255,0.02); }
         .nav-btn { background: var(--card-bg); border: 1px solid var(--card-border); color: var(--text-main); padding: 6px 12px; border-radius: var(--radius-md); cursor: pointer; font-weight: 600; font-size: 0.85rem; display: flex; align-items: center; gap: 5px; transition: 0.2s; }
         .nav-btn:hover:not(:disabled) { border-color: var(--primary); color: var(--primary); }
@@ -425,42 +424,25 @@
         .progress-display { display: flex; align-items: center; justify-content: center; padding: 4px 10px; }
         .progress-text { font-weight: 800; color: var(--text-main); font-size: 0.85rem; }
 
-        /* ==========================================
-           FIXED: EXTREME LOCK FOR MODAL (Center Screen Popup Guaranteed)
-           ========================================== */
-        .quiz-modal-overlay {
-            position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important;
-            width: 100vw !important; height: 100vh !important;
-            background: rgba(0,0,0,0.5) !important; backdrop-filter: blur(4px) !important; -webkit-backdrop-filter: blur(4px) !important;
-            z-index: 999999 !important; display: none; align-items: center !important; justify-content: center !important; padding: 20px;
-            opacity: 0; transition: opacity 0.2s ease;
-        }
-        .quiz-modal-overlay.show { display: flex !important; opacity: 1; }
-        .quiz-modal-content {
-            background: var(--tooltip-bg) !important; 
-            width: 100%; max-width: 380px; margin: auto !important;
-            border: 1px solid var(--card-border);
-            border-radius: var(--radius-lg); padding: 20px;
-            box-shadow: var(--glass-shadow); transform: translateY(20px); transition: transform 0.2s ease;
-            position: relative !important; z-index: 1000000 !important;
-        }
-        .quiz-modal-overlay.show .quiz-modal-content { transform: translateY(0); }
-        .quiz-modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--card-border); padding-bottom: 12px; margin-bottom: 12px; }
-
-        .section-separator { height: 1px; background: linear-gradient(90deg, transparent, var(--card-border), transparent); margin: 25px 0; width: 100%; }
+        /* SEO Card Styles - Adjusted for clean, non-bloated look */
         .seo-content-wrapper { margin-bottom: 30px; }
         .seo-header { text-align: center; margin-bottom: 20px; }
         .seo-header h2 { font-size: clamp(1.2rem, 3vw, 1.6rem); margin-bottom: 8px; }
         .seo-header p { color: var(--text-sec); max-width: 600px; margin: 0 auto; font-size: 0.85rem; }
-        .seo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
-        .seo-card { background: var(--card-bg); border: 1px solid var(--card-border); padding: 20px; border-radius: var(--radius-lg); box-shadow: var(--glass-shadow); border-left: 4px solid var(--primary); transition: border-color 0.2s; }
+        
+        /* Grid Alignment */
+        .seo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 15px; align-items: stretch; width: 100%; }
+        
+        .seo-card { background: var(--card-bg); border: 1px solid var(--card-border); padding: 20px; border-radius: var(--radius-lg); box-shadow: var(--glass-shadow); border-left: 4px solid var(--primary); transition: border-color 0.2s; display: flex; flex-direction: column; box-sizing: border-box; width: 100%; }
         .seo-card:hover { border-color: var(--primary-light); }
         .seo-card h3 { font-size: 1rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; color: var(--text-main) !important; }
         .seo-card h3 i { color: var(--primary); }
-        .seo-card p { color: var(--text-body) !important; font-size: 0.85rem; margin-bottom: 10px; }
+        .seo-card p { color: var(--text-body) !important; font-size: 0.85rem; margin-bottom: 15px; }
         
-        .seo-list { list-style: none; padding-left: 0; }
-        .seo-list li { position: relative; padding-left: 18px; margin-bottom: 5px; font-size: 0.8rem; color: var(--text-body) !important; }
+        .seo-list { list-style: none; padding-left: 0; margin-top: 0; }
+        
+        /* Dense, concise list items */
+        .seo-list li { position: relative; padding-left: 18px; margin-bottom: 6px; font-size: 0.8rem; color: var(--text-body) !important; line-height: 1.35; }
         .seo-list li::before { 
             content: "\f111"; 
             font-family: "Font Awesome 6 Free";
@@ -472,22 +454,35 @@
             font-size: 0.4rem; 
         }
 
-        /* ==========================================
-           EXACT MOBILE CSS COMPACTNESS 
-           ========================================== */
+        /* Modal specific styles */
+        .quiz-modal-overlay {
+            position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important;
+            background: rgba(0,0,0,0.5) !important; backdrop-filter: blur(4px) !important; -webkit-backdrop-filter: blur(4px) !important;
+            z-index: 999999 !important; display: none; align-items: center !important; justify-content: center !important; padding: 20px;
+            opacity: 0; transition: opacity 0.2s ease;
+        }
+        .quiz-modal-overlay.show { display: flex !important; opacity: 1; }
+        .quiz-modal-content {
+            background: var(--tooltip-bg) !important; 
+            width: 100%; max-width: 320px; margin: auto !important;
+            border: 1px solid var(--border-color);
+            border-radius: 12px; padding: 15px;
+            box-shadow: var(--glass-shadow); transform: translateY(20px); transition: transform 0.2s ease;
+            position: relative !important; z-index: 1000000 !important;
+            box-sizing: border-box;
+        }
+        .quiz-modal-overlay.show .quiz-modal-content { transform: translateY(0); }
+        .quiz-modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; margin-bottom: 10px; }
+
         @media (max-width: 600px) {
-            /* EXACT MOBILE H1 FONT SIZE: 23px */
-            .hero-title { font-size: 23px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
+            .hero-title { font-size: 25px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
             .top-meta-bar { flex-wrap: nowrap; justify-content: space-between; }
-            
             .widget-header { padding: 10px; align-items: center; }
             .text-controls { justify-content: center; gap: 3px; padding: 2px 0; }
             
-            /* Toolbar Icons 13.6px for mobile too */
             .icon-btn, .text-btn, .text-controls label { width: 28px !important; height: 28px !important; font-size: 13.6px !important; border-radius: 6px !important; }
             .v-divider { margin: 0 1px; height: 14px; }
             
-            /* COMPACT DASHBOARD STATS FOR MOBILE (Strict 10.4px) */
             .stat-item { flex-direction: column; gap: 1px; padding: 4px 1px; align-items: center; }
             .stat-label { font-size: 10.4px !important; letter-spacing: -0.2px; margin: 0; }
             .stat-value { font-size: 10.4px !important; }
@@ -498,10 +493,22 @@
             .nav-btn { padding: 4px 8px; font-size: 0.7rem; min-width: 55px; }
             .progress-display { padding: 2px 6px; }
             .progress-text { font-size: 0.7rem; }
+            
+            /* Quick Links Mobile Fix: Inline & Scrollable without breaking width */
+            .quick-links {
+                flex-wrap: nowrap !important;
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                justify-content: flex-start !important;
+                padding-bottom: 5px;
+                max-width: 100%;
+            }
+            .quick-links::-webkit-scrollbar { display: none; }
+            .quick-link-item { font-size: 0.65rem; padding: 4px 10px; }
         }
     </style>
 
-    <!-- Theme Initialization Script -->
     <script>
         const savedTheme = localStorage.getItem('theme') || 'light';
         document.documentElement.setAttribute('data-theme', savedTheme);
@@ -537,6 +544,10 @@
     <!-- New Top Page Header (Centers H1 above the columns) -->
     <div class="page-header-top">
         <h1 class="hero-title">Environment & Biodiversity of HP</h1>
+        <!-- Descriptive content acting as hero sub-heading -->
+        <p class="hero-desc">
+            Environment and Forestry cover a highly significant portion of the HPAS and HPPSC syllabus. Questions on National Parks, Wildlife Sanctuaries, and State Symbols are asked frequently. <br>यह विषय HPAS और HPPSC पाठ्यक्रम का एक महत्वपूर्ण हिस्सा है। राष्ट्रीय उद्यानों, वन्यजीव अभयारण्यों और राज्य प्रतीकों पर अक्सर प्रश्न पूछे जाते हैं।
+        </p>
     </div>
 
     <!-- Side-by-Side Two Column Layout -->
@@ -545,13 +556,12 @@
         <!-- Left Column: Intro Hook -->
         <section class="intro-column">
             <div class="intro-grid">
-                <!-- Center Aligned H2 Card -->
+                <!-- Cleaned up left card: Now just holds Quick Links -->
                 <div class="intro-card glass-panel" style="text-align: center;">
-                    <h2 style="justify-content: center;"><i class="fa-solid fa-star"></i> Why This Matters? (यह महत्वपूर्ण क्यों है?)</h2>
-                    <p>Environment and Forestry cover a significant portion of the HPAS and HPPSC syllabus. Questions on National Parks, Wildlife Sanctuaries, and State Symbols are asked frequently. <br><br>यह विषय HPAS और HPPSC पाठ्यक्रम का एक महत्वपूर्ण हिस्सा है। राष्ट्रीय उद्यानों, वन्यजीव अभयारण्यों और राज्य प्रतीकों पर अक्सर प्रश्न पूछे जाते हैं।</p>
+                    <h2 style="justify-content: center; margin-bottom: 12px; font-size: 1rem;"><i class="fa-solid fa-link"></i> Quick Study Links</h2>
                     
-                    <!-- Sibling Directory Interlinking -->
-                    <div class="quick-links" style="justify-content: center;">
+                    <!-- Exactly 4 Sibling Directory Interlinking -->
+                    <div class="quick-links">
                         <a href="../geography/" class="quick-link-item"><i class="fa-solid fa-mountain"></i> Geography</a>
                         <a href="../rivers/" class="quick-link-item"><i class="fa-solid fa-water"></i> Rivers</a>
                         <a href="../district/" class="quick-link-item"><i class="fa-solid fa-map"></i> Districts</a>
@@ -562,12 +572,13 @@
                 <div class="intro-card glass-panel">
                     <h2><i class="fa-solid fa-list-check"></i> What this Page Covers (इस पृष्ठ में क्या शामिल है)</h2>
                     <ul class="intro-list">
-                        <li><strong>Forest Wealth (वन संपदा):</strong> Classification of forests, altitude-based vegetation zones. (वनों का वर्गीकरण, वनस्पति क्षेत्र).</li>
-                        <li><strong>National Parks (राष्ट्रीय उद्यान):</strong> Detailed facts on Great Himalayan National Park (UNESCO), Pin Valley, Simbalbara, Inderkilla, and Khirganga.</li>
-                        <li><strong>Wildlife Sanctuaries (वन्यजीव अभयारण्य):</strong> Location and specifics of sanctuaries like Kibber, Shilli, Renuka, and Pong Dam.</li>
-                        <li><strong>State Symbols (राज्य प्रतीक):</strong> Scientific names and status of Snow Leopard, Western Tragopan, Pink Rhododendron, and Deodar.</li>
-                        <li><strong>Medicinal Plants (औषधीय पौधे):</strong> Economically important herbs like Kuth, Patish, and Taxus baccata.</li>
-                        <li><strong>Interactive Quiz (संवादात्मक प्रश्नोत्तरी):</strong> Test your knowledge with 450+ bilingual environment MCQs. (450+ द्विभाषी MCQs के साथ परीक्षण).</li>
+                        <li><strong>Forest Wealth (वन संपदा):</strong> Master the latest ISFR 2021 data, classification of forests, and altitude-based vegetation zones. (ISFR 2021 डेटा, वनों का वर्गीकरण, वनस्पति क्षेत्र).</li>
+                        <li><strong>National Parks (राष्ट्रीय उद्यान):</strong> Detailed facts on Great Himalayan National Park (UNESCO), Pin Valley, Simbalbara, and Inderkilla. (ग्रेट हिमालयन नेशनल पार्क और पिन वैली जैसे उद्यान).</li>
+                        <li><strong>Wildlife Sanctuaries (वन्यजीव अभयारण्य):</strong> Discover the exact location and specifics of major sanctuaries like Kibber, Shilli, and Pong Dam. (किब्बर, शिल्ली और पोंग बांध जैसे प्रमुख अभयारण्य).</li>
+                        <li><strong>State Symbols (राज्य प्रतीक):</strong> Scientific names and current status of the Snow Leopard, Western Tragopan, and Pink Rhododendron. (हिम तेंदुआ, जुजुराना और गुलाबी रोडोडेंड्रोन के वैज्ञानिक नाम).</li>
+                        <li><strong>Medicinal Plants (औषधीय पौधे):</strong> Deep dive into economically important alpine herbs like Kuth, Patish, and Taxus baccata. (कुठ, पतीश और टैक्सस बैकाटा जैसी आर्थिक जड़ी-बूटियाँ).</li>
+                        <li><strong>Conservation Efforts (संरक्षण प्रयास):</strong> Learn about the unique Tragopan breeding center and innovative state afforestation schemes. (जुजुराना प्रजनन केंद्र और राज्य की नवीन वनरोपण योजनाएं).</li>
+                        <li><strong>Interactive Quiz (संवादात्मक प्रश्नोत्तरी):</strong> Test your deep ecological knowledge with 450+ bilingual, highly specific environment MCQs. (450+ द्विभाषी MCQs के साथ अपने पारिस्थितिक ज्ञान का परीक्षण करें).</li>
                     </ul>
                 </div>
             </div>
@@ -582,11 +593,11 @@
                 </button>
 
                 <div class="widget-header">
-                    <div class="text-controls">
+                    <div class="text-controls" style="margin: 0 auto;">
                         <button class="icon-btn" onclick="toggleHelpModal()" title="Help Guide" type="button">
                             <i class="fa-solid fa-circle-question"></i>
                         </button>
-                        <div class="v-divider"></div>
+                        <div class="v-divider" style="width: 1px; height: 16px; background: var(--border-color); margin: 0 4px;"></div>
                         
                         <button class="icon-btn" onclick="exportProgress()" title="Backup Progress" type="button">
                             <i class="fa-solid fa-download"></i>
@@ -596,26 +607,26 @@
                         </label>
                         <input type="file" id="importFile" style="display: none;" accept=".json" onchange="importProgress(this)">
                         
-                        <button class="icon-btn" onclick="resetProgress()" title="Reset Progress" type="button">
+                        <button class="icon-btn reset" onclick="resetProgress()" title="Reset Progress" type="button" style="color: var(--wrong-text);">
                             <i class="fa-solid fa-rotate-right"></i>
                         </button>
                         
-                        <div class="v-divider"></div>
+                        <div class="v-divider" style="width: 1px; height: 16px; background: var(--border-color); margin: 0 4px;"></div>
 
-                        <button class="icon-btn" id="quickModeBtn" onclick="toggleQuickMode()" title="Quick 10 Quiz" type="button">
+                        <button class="icon-btn" id="quickModeBtn" onclick="toggleQuickMode()" title="Quick 10 Quiz" type="button" style="color: var(--accent);">
                             <i class="fa-solid fa-bolt"></i>
                         </button>
-                        <button class="icon-btn" id="shuffleBtn" onclick="toggleShuffle()" title="Shuffle Questions" type="button">
+                        <button class="icon-btn" id="shuffleBtn" onclick="toggleShuffle()" title="Shuffle Questions" type="button" style="color: var(--primary);">
                             <i class="fa-solid fa-shuffle"></i>
                         </button>
-                        <button class="icon-btn" id="mistakeFilterBtn" onclick="toggleMistakeFilter()" title="Review Mistakes" type="button">
+                        <button class="icon-btn" id="mistakeFilterBtn" onclick="toggleMistakeFilter()" title="Review Mistakes" type="button" style="color: var(--wrong-text);">
                             <i class="fa-solid fa-triangle-exclamation"></i>
                         </button>
-                        <button class="icon-btn" id="bookmarkFilterBtn" onclick="toggleBookmarkFilter()" title="Saved Bookmarks" type="button">
+                        <button class="icon-btn" id="bookmarkFilterBtn" onclick="toggleBookmarkFilter()" title="Saved Bookmarks" type="button" style="color: var(--primary);">
                             <i class="fa-regular fa-bookmark"></i>
                         </button>
                         
-                        <div class="v-divider"></div>
+                        <div class="v-divider" style="width: 1px; height: 16px; background: var(--border-color); margin: 0 4px;"></div>
                         
                         <button class="text-btn" onclick="adjustFont(-1)" title="Decrease Font" type="button">A-</button>
                         <button class="text-btn" onclick="adjustFont(1)" title="Increase Font" type="button">A+</button>
@@ -642,7 +653,6 @@
                     <div class="widget-controls">
                         <button id="prevBtn" class="nav-btn"><i class="fa-solid fa-arrow-left"></i> Prev</button>
                         
-                        <!-- PROGRESS DISPLAY (JUMP REMOVED) -->
                         <div class="progress-display">
                             <span class="progress-text" id="progressText">0 / 0</span>
                         </div>
@@ -657,97 +667,156 @@
     
     <div class="section-separator"></div>
 
-    <!-- Full Width Bilingual Content -->
+    <!-- Full Width Bilingual Content: Expanded to 9 Detailed Bullet-Point Sections -->
     <section class="seo-content-wrapper">
         <div class="seo-header">
-            <h2>Detailed Study Notes (विस्तृत अध्ययन नोट्स)</h2>
-            <p>Comprehensive analysis of Forests and Wildlife for competitive exams. <br>(प्रतियोगी परीक्षाओं के लिए वनों और वन्यजीवों का व्यापक विश्लेषण।)</p>
+            <h2>Detailed Environment Notes (विस्तृत पर्यावरण नोट्स)</h2>
+            <p>Comprehensive ecological analysis of Forests, Wetlands, and Wildlife Sanctuaries for competitive exams. <br>(प्रतियोगी परीक्षाओं के लिए वनों, आर्द्रभूमियों और वन्यजीव अभयारण्यों का व्यापक पारिस्थितिक विश्लेषण।)</p>
         </div>
 
         <div class="seo-grid">
             
-            <!-- Topic 1: Forests -->
+            <!-- 1. Forest Wealth -->
             <div class="seo-card glass-panel">
-                <h3><i class="fa-solid fa-tree"></i> 1. Forest Wealth & ISFR 2021 Data (वन संपदा और ISFR 2021)</h3>
-                <p>According to the <strong>ISFR 2021 Report</strong>, HP has a recorded forest area of <strong>37,033 sq km</strong> (66.52% of total area), but actual forest cover is ~15,443 sq km (27.72%). <br>(ISFR 2021 के अनुसार, दर्ज वन क्षेत्र 37,033 वर्ग किमी है, लेकिन वास्तविक वनावरण ~15,443 वर्ग किमी है।)</p>
+                <h3><i class="fa-solid fa-tree"></i> 1. Forest Wealth & ISFR Data (वन संपदा)</h3>
+                <p>Crucial data regarding the state's forest cover based strictly on the latest Indian State of Forest Report (ISFR). <br>(नवीनतम भारतीय वन स्थिति रिपोर्ट (ISFR) पर कड़ाई से आधारित राज्य के वनावरण के संबंध में महत्वपूर्ण डेटा।)</p>
                 <ul class="seo-list">
-                    <li><strong>Forest Cover Breakdown (वनावरण):</strong> VDF (अति सघन वन): 3,163 sq km. MDF (मध्यम सघन वन): 7,100 sq km. OF (खुले वन): 5,180 sq km.</li>
-                    <li><strong>Legal Classification (कानूनी वर्गीकरण):</strong> Reserved (आरक्षित): 1,896 sq km. Protected (संरक्षित - सर्वाधिक): 33,043 sq km. Unclassed (अवर्गीकृत): 2,094 sq km.</li>
-                    <li><strong>Vegetation Zones (वनस्पति क्षेत्र):</strong>
-                        <br>- <strong>Tropical Thorny (उष्णकटिबंधीय कांटेदार):</strong> Shivaliks. Acacia catechu (Khair/खैर).
-                        <br>- <strong>Sub-Tropical Pine (उप-उष्णकटिबंधीय चीड़):</strong> Chir Pine. Source of Resin (लीसा का स्रोत).
-                        <br>- <strong>Moist Temperate (नम समशीतोष्ण):</strong> Deodar (देवदार), Ban Oak (बान), Spruce.
-                        <br>- <strong>Dry Temperate (शुष्क समशीतोष्ण):</strong> Kinnaur/Lahaul. Chilgoza Pine (चिलगोजा).
-                        <br>- <strong>Alpine (अल्पाइन - 3500m+):</strong> Bhojpatra (भोजपत्र), Rhododendrons (बुरांस), Pastures (Thach/चरागाह).
-                    </li>
+                    <li><strong>HP Forest Cover:</strong> The total officially recorded forest area is 37,033 sq km (constituting exactly 66.52% of the total geographic area). (कुल आधिकारिक दर्ज वन क्षेत्र 37,033 वर्ग किमी (कुल भौगोलिक क्षेत्र का ठीक 66.52%) है).</li>
+                    <li><strong>Actual Cover:</strong> However, as per the ISFR 2021, the actual, physically existing forest cover is approximately 15,443 sq km. (ISFR 2021 के अनुसार, वास्तविक और भौतिक रूप से मौजूद वनावरण लगभग 15,443 वर्ग किमी है).</li>
+                    <li><strong>Very Dense Forest (VDF):</strong> Accounts for 3,163 sq km of the state's highly thick, impenetrable canopy cover. (अति सघन वन (VDF) राज्य के अत्यधिक घने और अभेद्य वनावरण के 3,163 वर्ग किमी क्षेत्र को कवर करता है).</li>
+                    <li><strong>Protected Forests:</strong> They form the absolute largest legal classification of forests in HP, covering a massive 33,043 sq km. (संरक्षित वन: हिमाचल में वनों का सबसे बड़ा कानूनी वर्गीकरण बनाते हैं, जो विशाल 33,043 वर्ग किमी को कवर करते हैं).</li>
+                    <li><strong>Reserved Forests:</strong> Highly legally restricted forest zones covering roughly 1,896 sq km of prime state land. (आरक्षित वन: अत्यधिक कानूनी रूप से प्रतिबंधित वन क्षेत्र जो लगभग 1,896 वर्ग किमी राज्य भूमि को कवर करते हैं).</li>
+                    <li><strong>Chamba District:</strong> Proudly boasts the absolute highest actual forest cover area among all 12 districts of HP. (चंबा जिला: गर्व से हिमाचल के सभी 12 जिलों में सबसे अधिक वास्तविक वन आवरण क्षेत्र का दावा करता है).</li>
+                    <li><strong>Lahaul-Spiti:</strong> Has the lowest forest cover percentage solely due to its severe, high-altitude cold desert ecology. (लाहौल-स्पीति: इसके अत्यधिक ठंडे मरुस्थलीय पारिस्थितिकी के कारण यहाँ वन आवरण प्रतिशत सबसे कम है).</li>
+                    <li><strong>Sirmaur District:</strong> Notably shows highly dense, extremely diverse broad-leaved tropical and subtropical forest ecosystems. (सिरमौर जिला: मुख्य रूप से अत्यधिक घने, बेहद विविध चौड़ी पत्ती वाले उष्णकटिबंधीय और उपोष्णकटिबंधीय वन पारिस्थितिक तंत्र दिखाता है).</li>
                 </ul>
             </div>
 
-            <!-- Topic 2: National Parks -->
+            <!-- 2. Vegetation Zones -->
             <div class="seo-card glass-panel">
-                <h3><i class="fa-solid fa-mountain"></i> 2. National Parks (5 Parks) (राष्ट्रीय उद्यान)</h3>
-                <p>HP has 5 National Parks covering distinct ecological zones. <br>(हिमाचल में 5 राष्ट्रीय उद्यान हैं जो विभिन्न पारिस्थितिक क्षेत्रों को कवर करते हैं।)</p>
+                <h3><i class="fa-brands fa-pagelines"></i> 2. Vegetation Zones (वनस्पति क्षेत्र)</h3>
+                <p>The state's massive variation in altitude creates highly distinct, specialized botanical and vegetation zones. <br>(राज्य की ऊंचाई में भारी भिन्नता अत्यधिक विशिष्ट वनस्पति और वानस्पतिक क्षेत्र बनाती है।)</p>
                 <ul class="seo-list">
-                    <li><strong>Great Himalayan National Park:</strong> Kullu (754.4 sq km). Est 1984. <strong>UNESCO Heritage (2014)</strong>. Fauna: Blue Sheep (Bharal), Himalayan Tahr. (कुल्लू - यूनेस्को धरोहर).</li>
-                    <li><strong>Pin Valley National Park:</strong> Lahaul-Spiti (675 sq km). Cold Desert Biosphere. Home to <strong>Snow Leopard</strong> & Siberian Ibex. (लाहौल-स्पीति - हिम तेंदुआ).</li>
-                    <li><strong>Khirganga National Park:</strong> Kullu (~710 sq km). Located in Parvati watershed. Hot springs. (कुल्लू - पार्वती घाटी).</li>
-                    <li><strong>Inderkilla National Park:</strong> Kullu (~104 sq km). Near Manali. Habitat for Brown & Black Bears. (कुल्लू - मनाली के पास).</li>
-                    <li><strong>Simbalbara National Park:</strong> Sirmaur (~27.88 sq km). Dense Sal forests. Also known as <strong>Col. Sher Jung National Park</strong>. (सिरमौर - साल वन).</li>
+                    <li><strong>Tropical Thorny:</strong> Found primarily in the Shivaliks; dominant tree species include Khair (Acacia catechu) and Kikar. (उष्णकटिबंधीय कांटेदार वन: मुख्य रूप से शिवालिक में पाए जाते हैं; प्रमुख वृक्ष प्रजातियों में खैर और कीकर शामिल हैं).</li>
+                    <li><strong>Sub-Tropical Pine:</strong> Heavily dominated by Chir Pine forests, which operate as the primary commercial source of Resin (Leesa). (उप-उष्णकटिबंधीय चीड़ वन: चीड़ के जंगलों का प्रभुत्व, जो व्यावसायिक लीसा (Resin) के प्राथमिक स्रोत के रूप में काम करते हैं).</li>
+                    <li><strong>Moist Temperate:</strong> Spans 1500m to 3000m, featuring magnificent towering Deodar, Ban Oak, and thick Spruce forests. (नम समशीतोष्ण वन: 1500m-3000m तक फैले हैं, जिनमें शानदार विशाल देवदार, बान ओक और घने स्प्रूस जंगल हैं).</li>
+                    <li><strong>Dry Temperate:</strong> Found strictly in the harsh climates of Kinnaur and Pangi; famous globally for the rare Chilgoza pine. (शुष्क समशीतोष्ण वन: किन्नौर और पांगी की कठोर जलवायु में पाए जाते हैं; दुर्लभ चिलगोजा पाइन के लिए विश्व स्तर पर प्रसिद्ध हैं).</li>
+                    <li><strong>Alpine Zone:</strong> Occurs entirely above 3500m, characterized heavily by Bhojpatra (Birch trees) and stunning, vibrant Rhododendrons. (अल्पाइन क्षेत्र: पूरी तरह से 3500m से ऊपर होता है, जो भोजपत्र (बर्च के पेड़) और शानदार बुरांस (Rhododendrons) की विशेषता है).</li>
+                    <li><strong>Alpine Pastures:</strong> Known locally and affectionately as 'Thach', these high-altitude meadows are vital for seasonal transhumance (grazing). (अल्पाइन चरागाह: स्थानीय रूप से 'थाच' के रूप में जाने जाते हैं, ये उच्च ऊंचाई वाले घास के मैदान मौसमी चराई के लिए महत्वपूर्ण हैं).</li>
+                    <li><strong>Timber Wealth:</strong> Deodar (the official State Tree) consistently provides the absolute most valuable and highly durable timber in the state. (इमारती लकड़ी: देवदार (आधिकारिक राज्य वृक्ष) लगातार राज्य में सबसे मूल्यवान और अत्यधिक टिकाऊ लकड़ी प्रदान करता है).</li>
+                    <li><strong>Afforestation Push:</strong> The state actively promotes planting diverse broad-leaved species to completely and effectively restore depleting groundwater. (वनरोपण अभियान: राज्य घटते भूजल को पूरी तरह से बहाल करने के लिए चौड़ी पत्ती वाली प्रजातियों को लगाने को सक्रिय रूप से बढ़ावा देता है).</li>
                 </ul>
             </div>
 
-            <!-- Topic 3: Wildlife Sanctuaries -->
+            <!-- 3. National Parks -->
             <div class="seo-card glass-panel">
-                <h3><i class="fa-solid fa-paw"></i> 3. Wildlife Sanctuaries (32+) (वन्यजीव अभयारण्य)</h3>
-                <p>Key sanctuaries categorized by district. <br>(जिलेवार वर्गीकृत प्रमुख अभयारण्य।)</p>
+                <h3><i class="fa-solid fa-mountain"></i> 3. National Parks (राष्ट्रीय उद्यान)</h3>
+                <p>Himachal officially hosts 5 deeply protected National Parks covering highly distinct, fragile ecological zones. <br>(हिमाचल आधिकारिक तौर पर अत्यधिक विशिष्ट, नाजुक पारिस्थितिक क्षेत्रों को कवर करने वाले 5 संरक्षित राष्ट्रीय उद्यानों की मेजबानी करता है।)</p>
                 <ul class="seo-list">
-                    <li><strong>Largest (सबसे बड़ा):</strong> Kibber (Lahaul-Spiti) - 1400 sq km. Cold desert fauna. (किब्बर).</li>
-                    <li><strong>Smallest (सबसे छोटा):</strong> Shilli (Solan) - 2 sq km. Conservation of Himalayan Cedar. (शिल्ली).</li>
-                    <li><strong>Chamba District:</strong> Gamgul Siyabehi (Only habitat for Kashmir Stag/Hangul in HP), Kugti (2nd Largest). (गामगुल सियाबेही, कुगती).</li>
-                    <li><strong>Mandi District:</strong> Shikari Devi (Roofless temple), Nargu, Bandli. (शिकारी देवी, नारगु).</li>
-                    <li><strong>Shimla District:</strong> Daranghati (Tragopan), Shimla Water Catchment. (दरांगघाटी).</li>
-                    <li><strong>Solan District:</strong> Majathal (Goral habitat), Chail (Cheer Pheasant). (मजाथल, चायल).</li>
-                    <li><strong>Ramsar Wetlands (रामसर स्थल):</strong> Pong Dam (Kangra), Renuka (Sirmaur), Chandratal (Spiti).</li>
+                    <li><strong>GHNP (Kullu):</strong> The Great Himalayan National Park (754.4 sq km) was officially established in 1984 to protect alpine flora and fauna. (ग्रेट हिमालयन नेशनल पार्क: कुल्लू में स्थित (754.4 वर्ग किमी), अल्पाइन वनस्पतियों और जीवों की रक्षा के लिए 1984 में स्थापित).</li>
+                    <li><strong>UNESCO Status:</strong> GHNP was proudly and officially declared a highly prestigious UNESCO World Heritage Site in 2014. (यूनेस्को दर्जा: GHNP को 2014 में गर्व से एक अत्यधिक प्रतिष्ठित यूनेस्को विश्व धरोहर स्थल घोषित किया गया था).</li>
+                    <li><strong>Pin Valley National Park:</strong> Located deep in Lahaul-Spiti; famously serves as a totally pristine, undisturbed habitat for the elusive Snow Leopard. (पिन वैली नेशनल पार्क: लाहौल-स्पीति में स्थित, यह मायावी हिम तेंदुए के लिए पूरी तरह से अछूते निवास स्थान के रूप में कार्य करता है).</li>
+                    <li><strong>Cold Desert Biosphere:</strong> Pin Valley forms a highly critical, legally protected core part of India's Cold Desert Biosphere Reserve. (शीत मरुस्थल बायोस्फीयर: पिन वैली भारत के 'कोल्ड डेजर्ट बायोस्फीयर रिजर्व' का एक अत्यधिक महत्वपूर्ण, कानूनी रूप से संरक्षित मुख्य हिस्सा है).</li>
+                    <li><strong>Khirganga National Park:</strong> Situated extensively in Kullu (~710 sq km), it is deeply known for protecting the highly sensitive Parbati valley watershed. (खीरगंगा नेशनल पार्क: कुल्लू (~710 वर्ग किमी) में स्थित, अत्यधिक संवेदनशील पार्वती घाटी जलक्षेत्र की रक्षा के लिए जाना जाता है).</li>
+                    <li><strong>Inderkilla National Park:</strong> Located very near Manali (Kullu); acts prominently as a highly vital high-altitude habitat for Brown and Black Bears. (इंदरकिला नेशनल पार्क: मनाली (कुल्लू) के बहुत करीब स्थित; भूरे और काले भालुओं के लिए एक अत्यंत महत्वपूर्ण उच्च ऊंचाई वाले निवास के रूप में कार्य करता है).</li>
+                    <li><strong>Simbalbara National Park:</strong> Located perfectly in the Sirmaur district; renowned heavily for its thick, extremely dense and tropical Sal forests. (सिंबलबाड़ा नेशनल पार्क: सिरमौर जिले में स्थित; अपने मोटे, अत्यंत घने और उष्णकटिबंधीय साल वनों के लिए भारी रूप से प्रसिद्ध है).</li>
+                    <li><strong>Col. Sher Jung:</strong> Simbalbara is also historically and officially named 'Col. Sher Jung National Park' to honor the great conservationist. (कर्नल शेर जंग: महान संरक्षणवादी का सम्मान करने के लिए सिंबलबाड़ा को ऐतिहासिक रूप से 'कर्नल शेर जंग नेशनल पार्क' नाम दिया गया है).</li>
                 </ul>
             </div>
 
-            <!-- Topic 4: State Symbols -->
+            <!-- 4. Wildlife Sanctuaries -->
             <div class="seo-card glass-panel">
-                <h3><i class="fa-solid fa-feather"></i> 4. State Symbols (राज्य प्रतीक)</h3>
-                <p>Updated symbols adopted by the HP Government (post-2007). <br>(सरकार द्वारा अपनाए गए अद्यतन प्रतीक)।</p>
+                <h3><i class="fa-solid fa-paw"></i> 4. Wildlife Sanctuaries (वन्यजीव अभयारण्य)</h3>
+                <p>Over 32 highly diverse wildlife sanctuaries operate to rigorously protect endangered, endemic Himalayan animal species. <br>(लुप्तप्राय, स्थानिक हिमालयी पशु प्रजातियों की कठोरता से रक्षा करने के लिए 32 से अधिक अत्यधिक विविध वन्यजीव अभयारण्य संचालित हैं।)</p>
                 <ul class="seo-list">
-                    <li><strong>State Animal (राज्य पशु):</strong> Snow Leopard (<i>Panthera uncia</i>). Local: 'Barfani Cheetah'. Replaced Musk Deer. (हिम तेंदुआ).</li>
-                    <li><strong>State Bird (राज्य पक्षी):</strong> Western Tragopan (<i>Tragopan melanocephalus</i>). Local: 'Jujurana' (King of Birds). Replaced Monal. (जुजुराना).</li>
-                    <li><strong>State Flower (राज्य पुष्प):</strong> Pink Rhododendron (<i>Rhododendron campanulatum</i>). Replaced Burans. Found near snowline. (गुलाबी रोडोडेंड्रोन).</li>
-                    <li><strong>State Tree (राज्य वृक्ष):</strong> Deodar Cedar (<i>Cedrus deodara</i>). "Timber of the Gods". (देवदार).</li>
-                    <li><strong>State Fish (राज्य मछली):</strong> Golden Mahseer (<i>Tor putitora</i>). "Tiger of the Water". Declared in 2012. (गोल्डन महाशीर).</li>
+                    <li><strong>Kibber Sanctuary:</strong> The absolute largest wildlife sanctuary in HP (1400 sq km), located completely in the freezing Spiti cold desert. (किब्बर अभयारण्य: हिमाचल का सबसे बड़ा वन्यजीव अभयारण्य (1400 वर्ग किमी), जो पूरी तरह से ठंडे स्पीति मरुस्थल में स्थित है).</li>
+                    <li><strong>Shilli Sanctuary:</strong> The absolute smallest sanctuary (just 2 sq km) located in Solan, purely dedicated to rapidly conserving the Himalayan Cedar. (शिल्ली अभयारण्य: सोलन में स्थित सबसे छोटा अभयारण्य (केवल 2 वर्ग किमी), जो पूरी तरह से हिमालयन देवदार के संरक्षण को समर्पित है).</li>
+                    <li><strong>Gamgul Siyabehi:</strong> Located high in Chamba; famously recognized as the absolute only natural habitat of the rare Kashmir Stag (Hangul) in HP. (गामगुल सियाबेही: चंबा में स्थित; हिमाचल में दुर्लभ कश्मीरी हिरण (हंगुल) के एकमात्र प्राकृतिक निवास स्थान के रूप में प्रसिद्ध).</li>
+                    <li><strong>Daranghati Sanctuary:</strong> Situated heavily in the Shimla district, highly famous globally for securely protecting the extremely rare Western Tragopan. (दरांगघाटी अभयारण्य: शिमला जिले में स्थित, अत्यंत दुर्लभ पश्चिमी ट्रैगोपैन (जुजुराना) की सुरक्षित रक्षा के लिए विश्व स्तर पर अत्यधिक प्रसिद्ध).</li>
+                    <li><strong>Majathal Sanctuary:</strong> Located strategically in Solan, it is nationally recognized for having a massively high, undisturbed population of the Goral. (मजाथल अभयारण्य: सोलन में रणनीतिक रूप से स्थित, गोरल (पहाड़ी बकरी) की भारी आबादी के लिए राष्ट्रीय स्तर पर मान्यता प्राप्त है).</li>
+                    <li><strong>Shikari Devi:</strong> A highly unique, high-altitude sanctuary in Mandi affectionately named after the highly revered, ancient roofless hilltop temple. (शिकारी देवी: मंडी में एक अत्यंत अनूठा, उच्च ऊंचाई वाला अभयारण्य जिसका नाम श्रद्धेय, प्राचीन छत रहित पहाड़ी मंदिर के नाम पर रखा गया है).</li>
+                    <li><strong>Chail Sanctuary:</strong> Extensively known worldwide for the highly successful captive breeding and secure conservation of the critically endangered Cheer Pheasant. (चायल अभयारण्य: गंभीर रूप से लुप्तप्राय चीर तीतर के अत्यधिक सफल बंदी प्रजनन और सुरक्षित संरक्षण के लिए दुनिया भर में प्रसिद्ध).</li>
+                    <li><strong>Kugti Sanctuary:</strong> The second largest sanctuary overall in the state, located deep in the remote, highly rugged Bharmour region of Chamba. (कुगती अभयारण्य: राज्य में कुल मिलाकर दूसरा सबसे बड़ा अभयारण्य, जो चंबा के दूरस्थ, अत्यधिक ऊबड़-खाबड़ भरमौर क्षेत्र में गहराई में स्थित है).</li>
                 </ul>
             </div>
 
-            <!-- Topic 5: Medicinal Plants & GI Tags -->
+            <!-- 5. State Symbols -->
             <div class="seo-card glass-panel">
-                <h3><i class="fa-solid fa-leaf"></i> 5. Medicinal Plants & GI Tags (औषधीय पौधे)</h3>
-                <p>HP is the "Fruit Bowl" and "Herbal State". <br>(HP "फलों का कटोरा" और "हर्बल राज्य" है।)</p>
+                <h3><i class="fa-solid fa-feather"></i> 5. State Symbols (राज्य प्रतीक)</h3>
+                <p>The highly significant, officially updated ecological symbols proudly adopted by the HP Government (post-2007). <br>(हिमाचल सरकार द्वारा गर्व से अपनाए गए अत्यधिक महत्वपूर्ण, आधिकारिक रूप से अद्यतन पारिस्थितिक प्रतीक (2007 के बाद)।)</p>
                 <ul class="seo-list">
-                    <li><strong>Kuth (<i>Saussurea lappa</i>):</strong> Major cash crop of Lahaul. Roots used for asthma/perfumes. (कुठ: लाहौल की फसल).</li>
-                    <li><strong>Kala Zira:</strong> High value spice from Kinnaur/Lahaul. Has <strong>GI Tag</strong>. (काला जीरा).</li>
-                    <li><strong>Chuli Oil:</strong> Oil from wild apricot (Chuli) - <strong>GI Tag</strong>. (चुली तेल).</li>
-                    <li><strong>Chilgoza (Neoza):</strong> Edible nut from Kinnaur. Only place in India it grows wild. (चिलगोजा).</li>
-                    <li><strong>Seabuckthorn (Chharma):</strong> "Gold of Cold Desert". Rich in Vit C. (सीबकथॉर्न).</li>
-                    <li><strong>Guchhi (<i>Morchella esculenta</i>):</strong> Wild mushroom found in high hills, high market value. (गुच्छी).</li>
+                    <li><strong>State Animal:</strong> The highly elusive Snow Leopard (Panthera uncia), famously and affectionately known locally as the 'Barfani Cheetah'. (राज्य पशु: अत्यधिक मायावी हिम तेंदुआ, जिसे स्थानीय रूप से 'बर्फानी चीता' के रूप में जाना जाता है).</li>
+                    <li><strong>Previous Animal:</strong> The majestic Snow Leopard officially replaced the rare Himalayan Musk Deer (Kasturi Mrig) as the state animal in 2007. (पूर्व पशु: राजसी हिम तेंदुए ने 2007 में दुर्लभ कस्तूरी मृग की जगह आधिकारिक रूप से राज्य पशु का स्थान लिया).</li>
+                    <li><strong>State Bird:</strong> The incredibly vibrant Western Tragopan (Tragopan melanocephalus), deeply revered and worshipped locally as 'Jujurana' (King of Birds). (राज्य पक्षी: अविश्वसनीय रूप से जीवंत पश्चिमी ट्रैगोपैन, जिसे स्थानीय रूप से 'जुजुराना' (पक्षियों का राजा) के रूप में पूजा जाता है).</li>
+                    <li><strong>Previous Bird:</strong> Jujurana successfully and officially replaced the beautiful Himalayan Monal as the official state bird to fiercely boost its conservation. (पूर्व पक्षी: इसके संरक्षण को बढ़ावा देने के लिए जुजुराना ने आधिकारिक तौर पर सुंदर हिमालयन मोनाल की जगह ली).</li>
+                    <li><strong>State Flower:</strong> The stunning Pink Rhododendron (Rhododendron campanulatum), widely blooming heavily right near the high alpine snowlines. (राज्य पुष्प: शानदार गुलाबी रोडोडेंड्रोन, जो उच्च अल्पाइन हिमरेखा के ठीक पास भारी रूप से खिलता है).</li>
+                    <li><strong>Previous Flower:</strong> The Pink Rhododendron officially replaced the lower-altitude Red Rhododendron (Burans) as the definitive state flower. (पूर्व पुष्प: गुलाबी रोडोडेंड्रोन ने आधिकारिक तौर पर लाल बुरांस की जगह निश्चित राज्य पुष्प का स्थान लिया).</li>
+                    <li><strong>State Tree:</strong> The massive, majestic Deodar Cedar (Cedrus deodara), mythologically and historically celebrated heavily as the "Timber of the Gods". (राज्य वृक्ष: विशाल, राजसी देवदार, जिसे पौराणिक और ऐतिहासिक रूप से "देवताओं की लकड़ी" के रूप में मनाया जाता है).</li>
+                    <li><strong>State Fish:</strong> The highly powerful Golden Mahseer (Tor putitora), often aggressively hailed as the fierce "Tiger of the Water" (officially declared in 2012). (राज्य मछली: अत्यधिक शक्तिशाली गोल्डन महाशीर, जिसे अक्सर उग्र रूप से "पानी का बाघ" कहा जाता है (2012 में आधिकारिक घोषित)).</li>
                 </ul>
             </div>
 
-            <!-- Topic 6: Conservation Efforts -->
+            <!-- 6. Ramsar Wetlands -->
             <div class="seo-card glass-panel">
-                <h3><i class="fa-solid fa-hands-holding-circle"></i> 6. Conservation Centers (संरक्षण केंद्र)</h3>
-                <p>Institutions dedicated to wildlife preservation. <br>(वन्यजीव संरक्षण को समर्पित संस्थान।)</p>
+                <h3><i class="fa-solid fa-water"></i> 6. Ramsar Wetlands (रामसर आर्द्रभूमि)</h3>
+                <p>The state officially hosts three highly critical, internationally recognized Ramsar wetlands essential for global migratory birds. <br>(राज्य आधिकारिक तौर पर वैश्विक प्रवासी पक्षियों के लिए आवश्यक तीन अत्यधिक महत्वपूर्ण, अंतरराष्ट्रीय स्तर पर मान्यता प्राप्त रामसर आर्द्रभूमि की मेजबानी करता है।)</p>
                 <ul class="seo-list">
-                    <li><strong>Western Tragopan Breeding Center:</strong> Sarahan (Shimla). The only one globally. (जुजुराना प्रजनन केंद्र - सराहन).</li>
-                    <li><strong>Cheer Pheasant Breeding:</strong> Chail (Solan) and Khariun (Kangra). (चीर तीतर प्रजनन).</li>
-                    <li><strong>Himalayan Monal Center:</strong> Manali. (हिमालयन मोनाल).</li>
-                    <li><strong>Snow Leopard Project:</strong> Centered in Spiti (Kibber). (हिम तेंदुआ परियोजना).</li>
-                    <li><strong>Government Schemes (योजनाएं):</strong> 'Vidyarthi Van Mitra Yojana', 'Ek Buta Beti Ke Naam', 'Samudayik Van Samvardhan Yojna'.</li>
+                    <li><strong>Pong Dam Lake:</strong> A massive man-made wetland located in Kangra, highly famous globally for hosting thousands of migratory Bar-headed Geese. (पोंग बांध झील: कांगड़ा में स्थित एक विशाल कृत्रिम आर्द्रभूमि, जो हजारों प्रवासी बार-हेडेड गीज़ की मेजबानी के लिए विश्व स्तर पर प्रसिद्ध है).</li>
+                    <li><strong>Ramsar Status (Pong):</strong> Pong Dam was officially declared a Wetland of National Importance in 1994 and a prestigious Ramsar site heavily protected in 2002. (रामसर दर्जा (पोंग): पोंग बांध को 1994 में राष्ट्रीय महत्व का और 2002 में एक प्रतिष्ठित रामसर साइट घोषित किया गया था).</li>
+                    <li><strong>Renuka Lake:</strong> Located beautifully in Sirmaur, it uniquely stands as the absolute largest naturally formed lake existing in Himachal Pradesh. (रेणुका झील: सिरमौर में खूबसूरती से स्थित, यह विशिष्ट रूप से हिमाचल प्रदेश में मौजूद सबसे बड़ी प्राकृतिक रूप से बनी झील है).</li>
+                    <li><strong>Ramsar Status (Renuka):</strong> Officially and globally designated as an internationally recognized Ramsar wetland site in November 2005 due to its deep ecological value. (रामसर दर्जा (रेणुका): इसके गहरे पारिस्थितिक मूल्य के कारण नवंबर 2005 में अंतरराष्ट्रीय स्तर पर मान्यता प्राप्त रामसर साइट के रूप में आधिकारिक रूप से नामित).</li>
+                    <li><strong>Chandratal Lake:</strong> A totally pristine, high-altitude glacial lake situated in Lahaul-Spiti, known clearly and poetically as the 'Lake of the Moon'. (चंद्रताल झील: लाहौल-स्पीति में स्थित एक पूरी तरह से प्राचीन, उच्च ऊंचाई वाली हिमनद झील, जिसे काव्यात्मक रूप से 'चंद्रमा की झील' के रूप में जाना जाता है).</li>
+                    <li><strong>Ramsar Status (Chandratal):</strong> Formally recognized and heavily protected ecologically as a globally vital Ramsar Site since its induction in 2005. (रामसर दर्जा (चंद्रताल): 2005 में शामिल होने के बाद से विश्व स्तर पर महत्वपूर्ण रामसर साइट के रूप में औपचारिक रूप से मान्यता प्राप्त और पारिस्थितिक रूप से संरक्षित).</li>
+                    <li><strong>Migratory Birds Flyway:</strong> These three wetlands form a highly critical stopover precisely on the massive Central Asian Flyway used heavily by Siberian birds. (प्रवासी पक्षी फ्लाईवे: ये तीन आर्द्रभूमि साइबेरियाई पक्षियों द्वारा भारी रूप से उपयोग किए जाने वाले विशाल मध्य एशियाई फ्लाईवे पर एक अत्यंत महत्वपूर्ण पड़ाव बनाते हैं).</li>
+                    <li><strong>Ecological Value:</strong> These wetlands heavily sustain immense regional biodiversity and perfectly regulate the state's complex underlying groundwater hydrology. (पारिस्थितिक मूल्य: ये आर्द्रभूमि भारी क्षेत्रीय जैव विविधता को बनाए रखते हैं और राज्य के जटिल अंतर्निहित भूजल विज्ञान को पूरी तरह से नियंत्रित करते हैं).</li>
+                </ul>
+            </div>
+
+            <!-- 7. Medicinal Plants -->
+            <div class="seo-card glass-panel">
+                <h3><i class="fa-solid fa-leaf"></i> 7. Medicinal Plants (औषधीय पौधे)</h3>
+                <p>Himachal aims aggressively to become the premier 'Herbal State' by highly sustainably exploiting its rich, rare medicinal flora. <br>(हिमाचल अपनी समृद्ध, दुर्लभ औषधीय वनस्पतियों का अत्यधिक स्थायी रूप से दोहन करके प्रमुख 'हर्बल राज्य' बनने का आक्रामक लक्ष्य रखता है।)</p>
+                <ul class="seo-list">
+                    <li><strong>Herbal State Goal:</strong> HP's government strongly and actively pursues policies aiming strictly to completely transform HP into India's premier 'Herbal State'. (हर्बल राज्य का लक्ष्य: हिमाचल सरकार राज्य को भारत का प्रमुख 'हर्बल राज्य' बनाने के उद्देश्य से दृढ़ता से और सक्रिय रूप से नीतियां अपनाती है).</li>
+                    <li><strong>Kuth (Saussurea lappa):</strong> An extremely highly valuable medicinal cash crop of Lahaul, heavily used worldwide in manufacturing premium perfumes and asthma medicines. (कुठ: लाहौल की एक अत्यंत मूल्यवान औषधीय नकदी फसल, जिसका भारी उपयोग दुनिया भर में प्रीमियम इत्र और अस्थमा की दवाएं बनाने में किया जाता है).</li>
+                    <li><strong>Kala Zira:</strong> A very rare, high-altitude premium spice natively found flourishing in Kinnaur/Lahaul, strictly holding a highly prestigious official GI Tag. (काला जीरा: एक बहुत ही दुर्लभ, उच्च ऊंचाई वाला प्रीमियम मसाला जो किन्नौर/लाहौल में मूल रूप से पनपता है, इसे आधिकारिक GI टैग प्राप्त है).</li>
+                    <li><strong>Chuli Oil:</strong> An extremely nutritious, traditional organic oil carefully extracted from wild apricots (Chuli), officially and legally protected with a GI Tag. (चुली तेल: जंगली खुबानी (चुली) से सावधानीपूर्वक निकाला गया एक अत्यंत पौष्टिक, पारंपरिक जैविक तेल, जो आधिकारिक तौर पर GI टैग से संरक्षित है).</li>
+                    <li><strong>Chilgoza (Neoza):</strong> A highly expensive, completely nutritious edible pine nut found growing wild absolutely exclusively in the rugged terrains of Kinnaur. (चिलगोजा (नियोजा): एक अत्यधिक महंगा, पूरी तरह से पौष्टिक खाद्य पाइन नट जो विशेष रूप से किन्नौर के ऊबड़-खाबड़ इलाकों में जंगली रूप से उगता है).</li>
+                    <li><strong>Seabuckthorn (Chharma):</strong> Aggressively and rightfully hailed as the "Gold of the Cold Desert" directly due to its immense, incredibly high Vitamin C content. (सीबकथॉर्न (छरमा): इसके अविश्वसनीय रूप से उच्च विटामिन सी सामग्री के कारण इसे आक्रामक रूप से "ठंडे मरुस्थल का सोना" कहा जाता है).</li>
+                    <li><strong>Guchhi (Morchella):</strong> A highly sought-after, wildly grown premium mushroom found heavily in the upper hills, commanding a genuinely massive global market value. (गुच्छी: ऊपरी पहाड़ियों में भारी रूप से पाया जाने वाला एक अत्यधिक मांग वाला, जंगली प्रीमियम मशरूम, जिसका वैश्विक बाजार मूल्य बहुत बड़ा है).</li>
+                    <li><strong>Taxus Baccata:</strong> A highly vital medicinal Himalayan yew tree heavily exploited chemically for the direct extraction of 'Taxol' (a powerful anti-cancer drug). (टैक्सस बैकाटा: एक अत्यंत महत्वपूर्ण औषधीय हिमालयी पेड़ जिसका 'टैक्सोल' (एक शक्तिशाली कैंसर रोधी दवा) निकालने के लिए भारी रासायनिक दोहन किया जाता है).</li>
+                </ul>
+            </div>
+
+            <!-- 8. Policies -->
+            <div class="seo-card glass-panel">
+                <h3><i class="fa-solid fa-hands-holding-circle"></i> 8. Environmental Policies (पर्यावरण नीतियां)</h3>
+                <p>The state government has proactively enacted highly robust, aggressive policies to strictly combat impending climate change and deforestation. <br>(राज्य सरकार ने आसन्न जलवायु परिवर्तन और वनों की कटाई से सख्ती से निपटने के लिए सक्रिय रूप से अत्यधिक मजबूत, आक्रामक नीतियां बनाई हैं।)</p>
+                <ul class="seo-list">
+                    <li><strong>Historic Plastic Ban:</strong> HP was universally hailed globally as the very first Indian state to strictly ban all non-biodegradable plastic bags back in 1999. (ऐतिहासिक प्लास्टिक बैन: हिमाचल को 1999 में सभी गैर-बायोडिग्रेडेबल प्लास्टिक बैगों पर सख्ती से प्रतिबंध लगाने वाले पहले भारतीय राज्य के रूप में सराहा गया).</li>
+                    <li><strong>Carbon Neutral Goal:</strong> The state administration actively pursues highly aggressive green policies aiming directly and rapidly to become a completely Carbon Neutral state. (कार्बन न्यूट्रल लक्ष्य: राज्य प्रशासन पूरी तरह से कार्बन न्यूट्रल राज्य बनने के उद्देश्य से अत्यधिक आक्रामक हरित नीतियों का सक्रिय रूप से पालन करता है).</li>
+                    <li><strong>Vidyarthi Van Mitra:</strong> A heavily successful, massive eco-scheme directly involving thousands of local school students in active, hands-on forest conservation drives. (विद्यार्थी वन मित्र: एक भारी सफल, विशाल पर्यावरण-योजना जिसमें हजारों स्थानीय स्कूली छात्रों को सक्रिय वन संरक्षण अभियानों में सीधे शामिल किया जाता है).</li>
+                    <li><strong>Ek Buta Beti Ke Naam:</strong> A highly unique, emotionally driven socio-environmental scheme to rigorously plant multiple trees simultaneously celebrating the birth of a girl child. (एक बूटा बेटी के नाम: बालिकाओं के जन्म का जश्न मनाते हुए एक साथ कई पेड़ लगाने की एक अत्यधिक अनूठी, भावनात्मक सामाजिक-पर्यावरण योजना).</li>
+                    <li><strong>Samudayik Van Samvardhan:</strong> A major, heavily funded participatory forestry scheme expressly designed to strongly empower active local community-driven forest management. (सामुदायिक वन संवर्धन: सक्रिय स्थानीय समुदाय-संचालित वन प्रबंधन को दृढ़ता से सशक्त बनाने के लिए स्पष्ट रूप से डिजाइन की गई एक प्रमुख वानिकी योजना).</li>
+                    <li><strong>HP Forest Sector Project:</strong> A massive JICA-funded (Japan) ongoing forestry project aimed heavily at total ecosystem management and intense local livelihood improvement. (HP वन क्षेत्र परियोजना: कुल पारिस्थितिक तंत्र प्रबंधन और स्थानीय आजीविका सुधार के उद्देश्य से एक विशाल JICA-वित्तपोषित (जापान) चालू वानिकी परियोजना).</li>
+                    <li><strong>Van Sarovar Initiative:</strong> An innovative and highly vital state initiative strictly focused on effectively harvesting and permanently storing vital rainwater deep inside forests. (वन सरोवर पहल: एक अभिनव और अत्यधिक महत्वपूर्ण राज्य पहल जो विशेष रूप से जंगलों के भीतर वर्षा जल को प्रभावी ढंग से संचयन और स्थायी रूप से संग्रहीत करने पर केंद्रित है).</li>
+                    <li><strong>PES Policy:</strong> Payment for Ecosystem Services is a modern, proactive state policy explicitly designed to heavily financially reward completely sustainable, local forest protection. (PES नीति: पारिस्थितिकी तंत्र सेवाओं के लिए भुगतान एक आधुनिक राज्य नीति है जिसे स्थायी वन संरक्षण को भारी वित्तीय रूप से पुरस्कृत करने के लिए डिज़ाइन किया गया है).</li>
+                </ul>
+            </div>
+
+            <!-- 9. Breeding Centers -->
+            <div class="seo-card glass-panel">
+                <h3><i class="fa-solid fa-dove"></i> 9. Targeted Breeding Centers (प्रजनन केंद्र)</h3>
+                <p>Highly specialized, rigorously scientific state institutions strictly dedicated to the direct captive breeding and preservation of critically endangered wildlife. <br>(गंभीर रूप से लुप्तप्राय वन्यजीवों के प्रत्यक्ष बंदी प्रजनन और संरक्षण के लिए सख्ती से समर्पित अत्यधिक विशिष्ट, वैज्ञानिक राज्य संस्थान।)</p>
+                <ul class="seo-list">
+                    <li><strong>Tragopan Breeding Center:</strong> Specifically located at Sarahan (Shimla); it is exceptionally and proudly the absolute only 'Jujurana' targeted breeding center existing globally. (ट्रैगोपैन प्रजनन केंद्र: विशेष रूप से सराहन (शिमला) में स्थित; यह विश्व स्तर पर मौजूद एकमात्र 'जुजुराना' लक्षित प्रजनन केंद्र है).</li>
+                    <li><strong>Cheer Pheasant Breeding:</strong> Highly successful, scientifically managed captive breeding facilities are actively operated at the Chail (Solan) and Khariun (Kangra) centers. (चीर तीतर प्रजनन: चायल (सोलन) और खरिउन (कांगड़ा) केंद्रों पर अत्यधिक सफल, वैज्ञानिक रूप से प्रबंधित बंदी प्रजनन सुविधाएं सक्रिय रूप से संचालित की जाती हैं).</li>
+                    <li><strong>Snow Leopard Conservation:</strong> Deeply centered within the remote Spiti valley (Kibber), rigorously supported financially and scientifically globally by the Snow Leopard Trust. (हिम तेंदुआ संरक्षण: दूरस्थ स्पीति घाटी (किब्बर) के भीतर गहराई से केंद्रित, जिसे विश्व स्तर पर स्नो लेपर्ड ट्रस्ट द्वारा कठोर वित्तीय और वैज्ञानिक समर्थन प्राप्त है).</li>
+                    <li><strong>Himalayan Monal Center:</strong> Effectively established permanently at Manali to securely preserve and extensively breed the highly beautiful, formerly official state bird. (हिमालयन मोनाल केंद्र: अत्यधिक सुंदर, पूर्व आधिकारिक राज्य पक्षी को सुरक्षित रूप से संरक्षित करने और बड़े पैमाने पर प्रजनन करने के लिए मनाली में प्रभावी रूप से स्थापित).</li>
+                    <li><strong>Musk Deer Breeding:</strong> Successfully conducted centrally at Kufri (Shimla) to actively and urgently rebuild the sharply declining wild populations of the Kasturi Mrig. (कस्तूरी मृग प्रजनन: कस्तूरी मृग की तेजी से घटती जंगली आबादी को सक्रिय रूप से फिर से बनाने के लिए कुफरी (शिमला) में केंद्रीय रूप से सफलतापूर्वक आयोजित किया गया).</li>
+                    <li><strong>Brown Bear Protection:</strong> Heavily focused specifically inside the highly protective, remote confines of the Kugti (Chamba) and Inderkilla (Kullu) National Parks. (भूरा भालू संरक्षण: विशेष रूप से कुगती (चंबा) और इंदरकिला (कुल्लू) राष्ट्रीय उद्यानों की अत्यधिक सुरक्षात्मक, दूरस्थ सीमाओं के अंदर भारी रूप से केंद्रित है).</li>
+                    <li><strong>Vulture Conservation:</strong> Rigorous ongoing scientific monitoring strictly prevents fatal Diclofenac poisoning, heavily threatening the magnificent Himalayan Griffon vultures. (गिद्ध संरक्षण: कठोर निरंतर वैज्ञानिक निगरानी घातक डाइक्लोफेनाक विषाक्तता को रोकती है, जो शानदार हिमालयी ग्रिफॉन गिद्धों के लिए भारी खतरा है).</li>
+                    <li><strong>Golden Mahseer Hatchery:</strong> A massive, dedicated modern scientific facility strictly operating at Machhial (Mandi) to continuously replenish the mighty Beas river system. (गोल्डन महाशीर हैचरी: एक विशाल, आधुनिक वैज्ञानिक सुविधा जो विशेष रूप से ब्यास नदी प्रणाली को लगातार फिर से भरने के लिए मछियाल (मंडी) में संचालित हो रही है).</li>
                 </ul>
             </div>
 
@@ -767,16 +836,16 @@
                 <i class="fa-solid fa-xmark"></i>
             </button>
         </div>
-        <div class="quiz-modal-body" style="font-size:0.85rem; color:var(--text-body); line-height:1.6; padding-top:10px;">
-            <ul style="list-style:none; padding:0; margin:0; display:grid; gap:12px;">
-                <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-solid fa-download" style="color:var(--text-sec); font-size:1rem;"></i></span> <span><strong>Backup:</strong> Save your progress to a file.</span></li>
-                <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-solid fa-upload" style="color:var(--text-sec); font-size:1rem;"></i></span> <span><strong>Restore:</strong> Load your saved progress.</span></li>
-                <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-solid fa-rotate-right" style="color:var(--wrong-text); font-size:1rem;"></i></span> <span><strong>Reset:</strong> Clear all history for this subject.</span></li>
-                <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-solid fa-bolt" style="color:var(--accent); font-size:1rem;"></i></span> <span><strong>Quick 10:</strong> Start a fast 10-question session.</span></li>
-                <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-solid fa-shuffle" style="color:var(--primary); font-size:1rem;"></i></span> <span><strong>Shuffle:</strong> Randomize question order.</span></li>
-                <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-solid fa-triangle-exclamation" style="color:var(--wrong-text); font-size:1rem;"></i></span> <span><strong>Mistakes:</strong> Review incorrect answers.</span></li>
-                <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center;"><i class="fa-regular fa-bookmark" style="color:var(--primary); font-size:1rem;"></i></span> <span><strong>Bookmarks:</strong> View saved questions.</span></li>
-                <li style="display:flex; gap:10px; align-items:center;"><span style="width:25px; text-align:center; font-weight:bold; color:var(--text-sec);">A&plusmn;</span> <span><strong>Text Size:</strong> Adjust font size.</span></li>
+        <div class="quiz-modal-body" style="font-size:0.75rem; color:var(--text-body); line-height:1.4; padding-top:10px;">
+            <ul style="list-style:none; padding:0; margin:0; display:grid; gap:8px;">
+                <li style="display:flex; gap:8px; align-items:center;"><span style="width:20px; text-align:center;"><i class="fa-solid fa-download" style="color:var(--text-sec); font-size:0.9rem;"></i></span> <span><strong>Backup:</strong> Save your progress.</span></li>
+                <li style="display:flex; gap:8px; align-items:center;"><span style="width:20px; text-align:center;"><i class="fa-solid fa-upload" style="color:var(--text-sec); font-size:0.9rem;"></i></span> <span><strong>Restore:</strong> Load saved progress.</span></li>
+                <li style="display:flex; gap:8px; align-items:center;"><span style="width:20px; text-align:center;"><i class="fa-solid fa-rotate-right" style="color:var(--wrong-text); font-size:0.9rem;"></i></span> <span><strong>Reset:</strong> Clear all history.</span></li>
+                <li style="display:flex; gap:8px; align-items:center;"><span style="width:20px; text-align:center;"><i class="fa-solid fa-bolt" style="color:var(--accent); font-size:0.9rem;"></i></span> <span><strong>Quick 10:</strong> Start fast 10-Q session.</span></li>
+                <li style="display:flex; gap:8px; align-items:center;"><span style="width:20px; text-align:center;"><i class="fa-solid fa-shuffle" style="color:var(--primary); font-size:0.9rem;"></i></span> <span><strong>Shuffle:</strong> Randomize questions.</span></li>
+                <li style="display:flex; gap:8px; align-items:center;"><span style="width:20px; text-align:center;"><i class="fa-solid fa-triangle-exclamation" style="color:var(--wrong-text); font-size:0.9rem;"></i></span> <span><strong>Mistakes:</strong> Review incorrect answers.</span></li>
+                <li style="display:flex; gap:8px; align-items:center;"><span style="width:20px; text-align:center;"><i class="fa-regular fa-bookmark" style="color:var(--primary); font-size:0.9rem;"></i></span> <span><strong>Bookmarks:</strong> View saved questions.</span></li>
+                <li style="display:flex; gap:8px; align-items:center;"><span style="width:20px; text-align:center; font-weight:bold; color:var(--text-sec); font-size:0.9rem;">A&plusmn;</span> <span><strong>Text Size:</strong> Adjust font size.</span></li>
             </ul>
         </div>
     </div>
