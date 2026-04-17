@@ -172,19 +172,15 @@
         /* Hero Section */
         .hub-hero { text-align: center; max-width: 800px; margin: 0 auto 25px auto; padding: 10px 15px; }
         
+        /* Clean H1 styling (connected to global style.css) */
         .hero-title { 
-            font-family: 'Inter', sans-serif !important;
-            font-size: 32px !important; 
-            font-weight: 900 !important; 
             margin: 0 0 8px 0; 
-            letter-spacing: -0.5px; 
-            text-align: center; 
+            letter-spacing: -0.8px; 
             background: linear-gradient(135deg, var(--text-main) 0%, var(--primary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             color: var(--primary); 
-            line-height: 1.2;
         }
 
         .hero-desc { font-size: 0.95rem; color: var(--text-sec); line-height: 1.5; margin: 0 auto; max-width: 650px; }
@@ -201,8 +197,9 @@
             text-decoration: none; transition: all 0.2s ease;
             box-shadow: 0 2px 4px rgba(37,99,235,0.1);
         }
+        /* Hover effect simplified to avoid jumping */
         .part-nav-btn:hover {
-            background: var(--primary); color: white; transform: translateY(-2px);
+            background: var(--primary); color: white;
             box-shadow: 0 4px 10px rgba(37,99,235,0.2);
         }
 
@@ -286,7 +283,7 @@
             }
         }
 
-        /* Compact, clean Row Design (Hover effect removed for performance) */
+        /* Compact, clean Row Design - Hover jump removed */
         .fact-row {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
@@ -331,7 +328,7 @@
         [data-theme="dark"] .a-hi { color: #fbbf24; }
 
         @media (max-width: 600px) {
-            .hero-title { font-size: 23px !important; padding: 0 10px; white-space: normal; line-height: 1.2; } /* Exact match to other pages */
+            .hero-title { white-space: normal; padding: 0 10px; line-height: 1.2; } /* Exact match to other pages, local font-size removed */
             .fact-row { padding: 10px 12px; }
             .content-en { padding-right: 45px; } /* Ensures text wraps correctly on mobile to avoid overlapping */
             .q-en { font-size: 0.85rem; }
@@ -398,16 +395,17 @@
             <span class="hi-desc">हिमाचल प्रदेश के इतिहास, भूगोल, राजनीति और संस्कृति को कवर करने वाले द्विभाषी वन-लाइनर्स। प्रश्न 501 से 750 तक।</span>
         </p>
         
-        <!-- Navigation Link to Parts -->
+        <!-- Navigation Links to Part 1 & Part 3 -->
         <div class="nav-links-row">
-            <a href="../hp-gk-one-liners-500-part-1/" class="part-nav-btn">
+            <a href="../hp-gk-one-liners-500-part-1/" class="part-nav-btn" style="margin: 0;">
                 <i class="fa-solid fa-arrow-left"></i> Read Part 1 (1-500)
             </a>
-            <a href="../hp-gk-one-liners-250-part-3/" class="part-nav-btn">
+            <a href="https://hpgk.toolblaster.com/study-notes/hp-gk-one-liners-250-part-3/" class="part-nav-btn" style="margin: 0;">
                 Read Part 3 (751-1000) <i class="fa-solid fa-arrow-right"></i>
             </a>
         </div>
-        
+        <br>
+
         <!-- High-Contrast Interlinking Hook -->
         <div class="hero-interlinks">
             <span class="interlink-label"><i class="fa-solid fa-layer-group"></i> Deep Dive:</span>
@@ -678,7 +676,7 @@
         { id: 738, qHi: "हिमाचल प्रदेश के पहले मुख्य आयुक्त कौन थे?", aHi: "एन.सी. मेहता।", qEn: "Who was the first Chief Commissioner of Himachal Pradesh?", aEn: "N.C. Mehta." },
         { id: 739, qHi: "हिमाचल प्रदेश के पहले उपराज्यपाल कौन थे?", aHi: "मेजर जनरल हिम्मत सिंह।", qEn: "Who was the first Lieutenant Governor of Himachal Pradesh?", aEn: "Major General Himmat Singh." },
         { id: 740, qHi: "हिमाचल प्रदेश के पहले राज्यपाल कौन थे?", aHi: "एस. चक्रवर्ती।", qEn: "Who was the first Governor of Himachal Pradesh?", aEn: "S. Chakravarti." },
-        { id: 741, qHi: "हिमाचल प्रदेश के पहले मुख्यमंत्री कौन थे?", aHi: "डॉ. वाई.एस. परमार।", qEn: "Who was the first Chief Minister of Himachal Pradesh?", aEn: "Dr. Y.S. Parmar." },
+        { id: 741, qHi: "हिमाचल प्रदेश के पहले मुख्यमंत्री कौन थे?", aালী: "डॉ. वाई.एस. परमार।", qEn: "Who was the first Chief Minister of Himachal Pradesh?", aEn: "Dr. Y.S. Parmar." },
         { id: 742, qHi: "हिमाचल प्रदेश उच्च न्यायालय के पहले मुख्य न्यायाधीश कौन थे?", aHi: "न्यायमूर्ति एम.एच. बेग।", qEn: "Who was the first Chief Justice of the Himachal Pradesh High Court?", aEn: "Justice M.H. Beg." },
         { id: 743, qHi: "हिमाचल प्रदेश की पहली महिला राज्यपाल कौन थीं?", aHi: "शीला कौल।", qEn: "Who was the first woman Governor of Himachal Pradesh?", aEn: "Sheila Kaul." },
         { id: 744, qHi: "हिमाचल प्रदेश उच्च न्यायालय की पहली महिला मुख्य न्यायाधीश कौन थीं?", aHi: "न्यायमूर्ति लीला सेठ।", qEn: "Who was the first woman Chief Justice of the HP High Court?", aEn: "Justice Leila Seth." },
