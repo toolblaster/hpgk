@@ -96,8 +96,6 @@
     <!-- PAGE SPECIFIC STYLESHEET -->
     <style>
         :root {
-            --site-width: 1100px;
-            
             --primary: #2563eb;       
             --primary-hover: #1d4ed8; 
             --primary-light: rgba(37, 99, 235, 0.1); 
@@ -141,27 +139,12 @@
             flex-direction: column;
         }
 
-        /* ==========================================================================
-           MAIN LAYOUT FIX: Bounding inner containers to match Global Header exactly
-           ========================================================================== */
-        main { 
-            flex: 1; 
-            max-width: var(--site-width); 
-            margin: 0 auto; 
-            padding: 20px 0; /* 0px horizontal padding to ensure exact 1100px content width */
-            width: 100%; 
-            box-sizing: border-box;
-        }
-        
-        @media (max-width: 1130px) {
-            main { padding: 20px 15px !important; }
-        }
+        main { flex: 1; width: 100%; padding: 15px 0 !important; }
 
         /* Top Bar & Breadcrumbs */
         .top-meta-bar { 
             display: flex; justify-content: space-between; align-items: center; 
-            width: 100%; max-width: var(--site-width); margin: 0 auto 15px auto; 
-            padding: 0 15px; flex-wrap: nowrap; gap: 10px; box-sizing: border-box;
+            width: 100%; max-width: 1100px; margin: 0 auto 15px auto; padding: 0 15px; flex-wrap: nowrap; gap: 10px; 
         }
 
         .breadcrumb-nav { margin: 0; flex-shrink: 1; display: flex; align-items: center; height: 24px; }
@@ -187,21 +170,17 @@
         }
 
         /* Hero Section */
-        .hub-hero { text-align: center; max-width: 800px; margin: 0 auto 25px auto; padding: 10px 0; }
+        .hub-hero { text-align: center; max-width: 800px; margin: 0 auto 25px auto; padding: 10px 15px; }
         
+        /* Clean H1 styling (connected to global style.css) */
         .hero-title { 
-            font-family: 'Inter', sans-serif !important;
-            font-size: 32px !important; 
-            font-weight: 900 !important; 
             margin: 0 0 8px 0; 
-            letter-spacing: -0.5px; 
-            text-align: center; 
+            letter-spacing: -0.8px; 
             background: linear-gradient(135deg, var(--text-main) 0%, var(--primary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             color: var(--primary); 
-            line-height: 1.2;
         }
 
         .hero-desc { font-size: 0.95rem; color: var(--text-sec); line-height: 1.5; margin: 0 auto; max-width: 650px; }
@@ -216,11 +195,11 @@
             border: 1px solid var(--primary); padding: 8px 16px;
             border-radius: 20px; font-size: 0.85rem; font-weight: 700;
             text-decoration: none; transition: all 0.2s ease;
-            box-shadow: 0 2px 4px rgba(37,99,235,0.1);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }
+        /* Hover effect simplified to avoid jumping */
         .part-nav-btn:hover {
-            background: var(--primary); color: white; transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(37,99,235,0.2);
+            background: var(--primary); color: white;
         }
 
         /* HIGH-CONTRAST INTERLINKING PILL */
@@ -283,11 +262,10 @@
            1100px 2-COLUMN LIST LAYOUT
            ========================================== */
         .one-liner-container {
-            max-width: var(--site-width); 
+            max-width: 1100px; /* Locked to 1100px */
             margin: 0 auto;
             padding: 0 15px 40px 15px;
             width: 100%;
-            box-sizing: border-box;
         }
 
         .one-liner-grid {
@@ -304,7 +282,7 @@
             }
         }
 
-        /* Compact, clean Row Design (Hover effect removed for performance) */
+        /* Compact, clean Row Design - Hover jump removed */
         .fact-row {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
@@ -349,7 +327,7 @@
         [data-theme="dark"] .a-hi { color: #fbbf24; }
 
         @media (max-width: 600px) {
-            .hero-title { font-size: 23px !important; padding: 0 10px; white-space: normal; line-height: 1.2; } /* Exact match to other pages */
+            .hero-title { white-space: normal; padding: 0 10px; line-height: 1.2; } /* Exact match to other pages, local font-size removed */
             .fact-row { padding: 10px 12px; }
             .content-en { padding-right: 45px; } /* Ensures text wraps correctly on mobile to avoid overlapping */
             .q-en { font-size: 0.85rem; }
@@ -376,7 +354,6 @@
             .hero-interlinks .interlink-label { 
                 font-size: 0.75rem; 
             }
-            .top-meta-bar { padding: 0 12px !important; }
         }
     </style>
 
@@ -417,15 +394,16 @@
             <span class="hi-desc">हिमाचल प्रदेश के इतिहास, भूगोल, राजनीति और संस्कृति को कवर करने वाले द्विभाषी वन-लाइनर्स। प्रश्न 751 से 1000 तक।</span>
         </p>
         
-        <!-- Navigation Link to Parts -->
+        <!-- Navigation Links to Parts -->
         <div class="nav-links-row">
-            <a href="../hp-gk-one-liners-500-part-1/" class="part-nav-btn">
+            <a href="../hp-gk-one-liners-500-part-1/" class="part-nav-btn" style="margin: 0;">
                 <i class="fa-solid fa-backward-step"></i> Read Part 1 (1-500)
             </a>
-            <a href="../hp-gk-one-liners-250-part-2/" class="part-nav-btn">
+            <a href="../hp-gk-one-liners-2/" class="part-nav-btn" style="margin: 0;">
                 <i class="fa-solid fa-arrow-left"></i> Read Part 2 (501-750)
             </a>
         </div>
+        <br>
 
         <!-- High-Contrast Interlinking Hook -->
         <div class="hero-interlinks">
