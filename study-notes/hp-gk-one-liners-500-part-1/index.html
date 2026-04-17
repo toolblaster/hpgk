@@ -172,36 +172,33 @@
         /* Hero Section */
         .hub-hero { text-align: center; max-width: 800px; margin: 0 auto 25px auto; padding: 10px 15px; }
         
+        /* Clean H1 styling without size overrides so it aligns with global style.css */
         .hero-title { 
-            font-family: 'Inter', sans-serif !important;
-            font-size: 32px !important; 
-            font-weight: 900 !important; 
             margin: 0 0 8px 0; 
-            letter-spacing: -0.5px; 
-            text-align: center; 
+            letter-spacing: -0.8px; 
             background: linear-gradient(135deg, var(--text-main) 0%, var(--primary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             color: var(--primary); 
-            line-height: 1.2;
         }
 
         .hero-desc { font-size: 0.95rem; color: var(--text-sec); line-height: 1.5; margin: 0 auto; max-width: 650px; }
         .hero-desc span.hi-desc { font-family: 'Noto Sans Devanagari', sans-serif; font-size: 0.85rem; color: var(--text-sec); display: block; margin-top: 4px; }
         [data-theme="dark"] .hero-desc span.hi-desc { color: #e2e8f0; }
 
-        /* Navigation Link to Part 2 */
+        /* Navigation Link to Parts */
         .part-nav-btn {
             display: inline-flex; align-items: center; gap: 8px;
             background: var(--card-bg); color: var(--primary);
             border: 1px solid var(--primary); padding: 8px 16px;
             border-radius: 20px; font-size: 0.85rem; font-weight: 700;
-            text-decoration: none; margin-top: 15px; margin-bottom: 5px; transition: all 0.2s ease;
+            text-decoration: none; transition: all 0.2s ease;
             box-shadow: 0 2px 4px rgba(37,99,235,0.1);
         }
         .part-nav-btn:hover {
-            background: var(--primary); color: white; transform: translateY(-2px);
+            background: var(--primary); color: white;
+            /* Removed jump/transform to keep it static and stable */
             box-shadow: 0 4px 10px rgba(37,99,235,0.2);
         }
 
@@ -285,7 +282,7 @@
             }
         }
 
-        /* Compact, clean Row Design */
+        /* Compact, clean Row Design - Hover jump removed */
         .fact-row {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
@@ -330,7 +327,7 @@
         [data-theme="dark"] .a-hi { color: #fbbf24; }
 
         @media (max-width: 600px) {
-            .hero-title { font-size: 23px !important; padding: 0 10px; white-space: normal; line-height: 1.2; } /* Exact match to other pages */
+            .hero-title { white-space: normal; padding: 0 10px; line-height: 1.2; } 
             .fact-row { padding: 10px 12px; }
             .content-en { padding-right: 45px; } /* Ensures text wraps correctly on mobile to avoid overlapping */
             .q-en { font-size: 0.85rem; }
@@ -397,10 +394,15 @@
             <span class="hi-desc">हिमाचल प्रदेश के इतिहास, भूगोल, राजनीति और संस्कृति को कवर करने वाले द्विभाषी वन-लाइनर्स। प्रश्न 1 से 500 तक।</span>
         </p>
         
-        <!-- Navigation Link to Part 2 -->
-        <a href="../hp-gk-one-liners-250-part-2/" class="part-nav-btn">
-            Read Part 2 (501-750) <i class="fa-solid fa-arrow-right"></i>
-        </a>
+        <!-- Navigation Links to Part 2 & Part 3 -->
+        <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 15px; margin-bottom: 5px;">
+            <a href="../hp-gk-one-liners-250-part-2/" class="part-nav-btn" style="margin: 0;">
+                Read Part 2 <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a href="https://hpgk.toolblaster.com/study-notes/hp-gk-one-liners-250-part-3/" class="part-nav-btn" style="margin: 0;">
+                Read Part 3 <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
         <br>
 
         <!-- High-Contrast Interlinking Hook -->
@@ -551,7 +553,7 @@
         { id: 116, qHi: "सिरमौर का रेणुका मेला किससे संबंधित है?", aHi: "भगवान परशुराम और उनकी माता रेणुका।", qEn: "Renuka fair in Sirmaur is associated with whom?", aEn: "Lord Parshuram and his mother Renuka." },
         { id: 117, qHi: "चौरासी मंदिर समूह कहाँ स्थित है?", aHi: "भरमौर (चम्बा)।", qEn: "Chaurasi Temple complex is located in?", aEn: "Bharmour (Chamba)." },
         { id: 118, qHi: "भीमाकाली मंदिर कहाँ स्थित है?", aHi: "सराहन (शिमला)।", qEn: "Bhimakali temple is situated at?", aEn: "Sarahan (Shimla)." },
-        { id: 119, qHi: "बैजनाथ का पुराना नाम क्या है?", aHi: "कीरग्राम।", qEn: "What is the old name of Baijnath?", aEn: "Kirgram." },
+        { id: 119, qHi: "बैजनाथ का पुराना नाम क्या বহুমुखी है?", aHi: "कीरग्राम।", qEn: "What is the old name of Baijnath?", aEn: "Kirgram." },
         { id: 120, qHi: "सुंदरनगर का पुराना नाम क्या है?", aHi: "बनेड़।", qEn: "What is the old name of Sundernagar?", aEn: "Baned." },
         { id: 121, qHi: "बिलासपुर (कहलूर) रियासत के संस्थापक कौन थे?", aHi: "बीर चंद।", qEn: "Who was the founder of Bilaspur (Kahlur) state?", aEn: "Bir Chand." },
         { id: 122, qHi: "औरंगजेब ने बुशहर के किस राजा को 'छत्रपति' की उपाधि दी थी?", aHi: "केहरी सिंह।", qEn: "Which ruler of Bushahr was titled 'Chhatrapati' by Aurangzeb?", aEn: "Kehri Singh." },
