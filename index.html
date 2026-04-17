@@ -352,7 +352,7 @@
            GRID LAYOUTS
            ========================================================================== */
         
-        /* Topic Grid for 10 cards (5 columns on desktop) */
+        /* Topic Grid for 10 cards (5 columns on desktop) - Used for Section 1 & 2 */
         .topic-grid { 
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -373,7 +373,7 @@
             }
         }
 
-        /* Resource Grid for 4/8 cards (4 columns on desktop) */
+        /* Resource Grid for 8 cards (4 columns on desktop) - Used for Section 3 */
         .resource-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -630,16 +630,18 @@
     <div class="section-separator"></div>
 
     <!-- ==============================================
-         SECTION 2: PRACTICE & TEST SERIES 
+         SECTION 2: PRACTICE & TEST SERIES (10 CARDS)
          ============================================== -->
     <div class="page-layout">
         <h2 class="section-sub-heading">Practice & Test Series</h2>
         <p class="section-desc">
-            Evaluate your preparation with specialized mock tests, district-wise deep dives, and rapid testing modules.
+            Evaluate your preparation with specialized mock tests, district-wise deep dives, and previous year question papers.
         </p>
         
-        <div class="resource-grid">
-            <!-- 1. Agriculture (Moved to 1st Position as requested) -->
+        <!-- Re-using .topic-grid to make it 5 columns on desktop, perfectly matching Section 1 -->
+        <div class="topic-grid">
+            
+            <!-- 1. Agriculture -->
             <a href="agriculture-quiz/" class="topic-card">
                 <div class="topic-icon" style="color: #10b981; background: rgba(16, 185, 129, 0.1);"><i class="fa-solid fa-seedling"></i></div>
                 <div class="topic-title">General Agriculture</div>
@@ -647,15 +649,23 @@
                 <div class="topic-badge active" style="background: #10b981; color: white;">507+ MCQs</div>
             </a>
 
-            <!-- 2. District Mastery (Disabled - No Hover Jump) -->
+            <!-- 2. Previous Papers (PYQ) -->
             <div class="topic-card disabled" title="Coming Soon">
-                <div class="topic-icon" style="color: #8b5cf6; background: rgba(139, 92, 246, 0.1);"><i class="fa-solid fa-map-location-dot"></i></div>
-                <div class="topic-title">District Mastery</div>
-                <div class="topic-desc">Deep dive into all 12 districts of HP.</div>
+                <div class="topic-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                <div class="topic-title">Previous Papers</div>
+                <div class="topic-desc">Solved PYQs for HPPSC state exams.</div>
                 <div class="topic-badge">Soon</div>
             </div>
 
-            <!-- 3. Full Length Mocks (Disabled) -->
+            <!-- 3. Mini Mock Tests -->
+            <div class="topic-card disabled" title="Coming Soon">
+                <div class="topic-icon"><i class="fa-solid fa-stopwatch"></i></div>
+                <div class="topic-title">Mini Mock Tests</div>
+                <div class="topic-desc">Quick 20-Q mixed tests for daily practice.</div>
+                <div class="topic-badge">Soon</div>
+            </div>
+
+            <!-- 4. Full Length Mocks -->
             <div class="topic-card disabled" title="Coming Soon">
                 <div class="topic-icon"><i class="fa-solid fa-clipboard-list"></i></div>
                 <div class="topic-title">Full-Length Mocks</div>
@@ -663,20 +673,61 @@
                 <div class="topic-badge">Soon</div>
             </div>
 
-            <!-- 4. Mini Mock Tests (Disabled - Replacing PYQs here) -->
+            <!-- 5. District Mastery -->
             <div class="topic-card disabled" title="Coming Soon">
-                <div class="topic-icon"><i class="fa-solid fa-stopwatch"></i></div>
-                <div class="topic-title">Mini Mock Tests</div>
-                <div class="topic-desc">Quick 20-Q mixed tests for daily practice.</div>
+                <div class="topic-icon" style="color: #8b5cf6; background: rgba(139, 92, 246, 0.1);"><i class="fa-solid fa-map-location-dot"></i></div>
+                <div class="topic-title">District Mastery</div>
+                <div class="topic-desc">Deep dive into all 12 districts of HP.</div>
                 <div class="topic-badge">Soon</div>
             </div>
+
+            <!-- 6. HP Patwari Exam -->
+            <div class="topic-card disabled" title="Coming Soon">
+                <div class="topic-icon"><i class="fa-solid fa-file-signature"></i></div>
+                <div class="topic-title">HP Patwari</div>
+                <div class="topic-desc">Targeted mocks for Revenue Dept exams.</div>
+                <div class="topic-badge">Soon</div>
+            </div>
+
+            <!-- 7. HP Police Constable -->
+            <div class="topic-card disabled" title="Coming Soon">
+                <div class="topic-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                <div class="topic-title">Police Constable</div>
+                <div class="topic-desc">Full mock tests for HP Police recruitment.</div>
+                <div class="topic-badge">Soon</div>
+            </div>
+
+            <!-- 8. HRTC Conductor -->
+            <div class="topic-card disabled" title="Coming Soon">
+                <div class="topic-icon"><i class="fa-solid fa-bus"></i></div>
+                <div class="topic-title">HRTC Conductor</div>
+                <div class="topic-desc">Specialized transport rules & GK mocks.</div>
+                <div class="topic-badge">Soon</div>
+            </div>
+
+            <!-- 9. HP High Court -->
+            <div class="topic-card disabled" title="Coming Soon">
+                <div class="topic-icon"><i class="fa-solid fa-scale-unbalanced"></i></div>
+                <div class="topic-title">HP High Court</div>
+                <div class="topic-desc">Clerk & Process Server mock test series.</div>
+                <div class="topic-badge">Soon</div>
+            </div>
+
+            <!-- 10. HP TET & JBT -->
+            <div class="topic-card disabled" title="Coming Soon">
+                <div class="topic-icon"><i class="fa-solid fa-chalkboard-user"></i></div>
+                <div class="topic-title">HP TET & JBT</div>
+                <div class="topic-desc">Pedagogy, GK & subject specific tests.</div>
+                <div class="topic-badge">Soon</div>
+            </div>
+
         </div>
     </div>
 
     <div class="section-separator"></div>
 
     <!-- ==============================================
-         SECTION 3: PREMIUM STUDY NOTES & RESOURCES
+         SECTION 3: PREMIUM STUDY NOTES & RESOURCES (8 CARDS)
          ============================================== -->
     <div class="page-layout">
         <h2 class="section-sub-heading">Premium Study Resources</h2>
@@ -684,6 +735,7 @@
             Supercharge your revision with our highly curated study hubs, fast-reading one-liners, and extra curriculum resources.
         </p>
         
+        <!-- 8 Cards - 4 Columns on Desktop -->
         <div class="resource-grid">
             <!-- 1. HP Study Notes Hub -->
             <a href="study-notes/" class="topic-card">
@@ -709,11 +761,11 @@
                 <div class="topic-badge">Soon</div>
             </div>
             
-            <!-- 4. Previous Papers (PYQ) (Moved from Section 2) -->
+            <!-- 4. General Hindi & English (New) -->
             <div class="topic-card disabled" title="Coming Soon">
-                <div class="topic-icon"><i class="fa-solid fa-file-pdf"></i></div>
-                <div class="topic-title">Previous Papers (PYQ)</div>
-                <div class="topic-desc">Solved past papers for HPPSC state exams.</div>
+                <div class="topic-icon"><i class="fa-solid fa-spell-check"></i></div>
+                <div class="topic-title">Gen. Hindi & English</div>
+                <div class="topic-desc">Grammar notes for state level exams.</div>
                 <div class="topic-badge">Soon</div>
             </div>
 
