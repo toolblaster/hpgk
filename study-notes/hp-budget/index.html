@@ -208,19 +208,16 @@
             padding: 10px 0;
         }
 
-        /* STRICTLY LOCKED H1 to 32px */
+        /* Clean H1 styling linked to global style.css */
         .hero-title {
-            font-family: 'Inter', sans-serif !important;
-            font-size: 32px !important; 
-            font-weight: 900 !important;
             margin: 0 0 8px 0; 
             line-height: 1.2;
             letter-spacing: -0.5px;
-            color: var(--text-main);
             background: linear-gradient(135deg, var(--text-main) 0%, var(--primary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            color: var(--primary);
         }
 
         .hero-desc {
@@ -328,9 +325,9 @@
             display: flex;
             flex-direction: column;
             height: 100%;
-            transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
             position: relative;
             overflow: hidden;
+            transition: border-color 0.2s; /* Removed transform and box-shadow */
         }
         
         [data-theme="dark"] .scheme-card { 
@@ -338,12 +335,8 @@
             border-color: #334155; 
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
-        
-        .scheme-card:hover {
-            transform: translateY(-3px);
-            border-color: var(--primary);
-            box-shadow: 0 8px 15px rgba(37, 99, 235, 0.1);
-        }
+
+        /* Removed hover effects completely as requested */
 
         .scheme-header {
             border-bottom: 1px solid #f1f5f9;
@@ -419,28 +412,6 @@
             line-height: 1.4;
         }
 
-        /* --- Minimal Contextual Interlink --- */
-        .bottom-interlink { 
-            text-align: center; 
-            font-size: 0.85rem; 
-            color: var(--text-sec); 
-            margin: 30px auto 10px auto; 
-            max-width: 800px; 
-            line-height: 1.5; 
-            border-top: 1px dashed var(--card-border); 
-            padding-top: 20px; 
-        }
-        .bottom-interlink a { 
-            color: var(--primary); 
-            font-weight: 600; 
-            text-decoration: none; 
-            transition: color 0.2s; 
-        }
-        .bottom-interlink a:hover { 
-            color: var(--primary-hover); 
-            text-decoration: underline; 
-        }
-
         /* Notice Banner */
         .notice-banner {
             background: var(--primary-light);
@@ -504,8 +475,6 @@
         }
 
         @media (max-width: 600px) {
-            /* EXACT MOBILE H1 FONT SIZE: 23px */
-            .hero-title { font-size: 23px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
             main { padding: 15px 12px !important; }
             .top-meta-bar { flex-wrap: nowrap; justify-content: space-between; }
             .breadcrumb-nav, .hero-badge { height: 26px; }
@@ -902,11 +871,6 @@
                     </ul>
                 </div>
 
-            </div>
-
-            <!-- Contextual Interlink Line -->
-            <div class="bottom-interlink">
-                To test your knowledge on the financial structure and industrial growth, explore our interactive MCQs on the <a href="../../himachal-pradesh-gk/economy/">Economy of Himachal Pradesh</a>.
             </div>
 
         </section>
