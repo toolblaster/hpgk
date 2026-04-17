@@ -1,6 +1,6 @@
 /**
  * Layout Manager for HPGK
- * Handles global Header, Footer, and Theme logic.
+ * Handles global Header, Footer, Theme logic, and Back to Top functionality.
  */
 
 const SiteConfig = {
@@ -108,7 +108,7 @@ function renderFooter(rootPath = '.') {
                         </div>
                     </a>
 
-                    <!-- Nav Grid (Horizontal & Wrapped) - UPDATED TO NEW FOLDER PATH -->
+                    <!-- Nav Grid (Horizontal & Wrapped) -->
                     <nav class="footer-nav">
                         <a href="${rootPath}/himachal-pradesh-gk/history/" class="footer-link">History</a>
                         <a href="${rootPath}/himachal-pradesh-gk/geography/" class="footer-link">Geography</a>
@@ -140,7 +140,7 @@ function renderFooter(rootPath = '.') {
     `;
 }
 
-// --- Shared Logic (Theme Only) ---
+// --- Shared Logic (Theme & Back to Top) ---
 
 function initThemeState() {
     const savedTheme = localStorage.getItem('theme') || 'light';
@@ -167,4 +167,88 @@ function updateThemeIcon(theme) {
     }
 }
 
-document.addEventListener('DOMContentLoaded', initThemeState);
+/**
+ * Injects a smooth "Back to Top" button on all pages automatically.
+ */
+function initBackToTop() {
+    // Prevent duplicate injection
+    if (document.getElementById('backToTopBtn')) return;
+
+    // 1. Inject CSS for the button
+    const style = document.createElement('style');
+    style.innerHTML = `
+        #backToTopBtn {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 42px;
+            height: 42px;
+            background-color: var(--primary);
+            color: #ffffff;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 9999;
+        }
+        #backToTopBtn:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(37, 99, 235, 0.3);
+        }
+        #backToTopBtn.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        @media (max-width: 600px) {
+            #backToTopBtn {
+                bottom: 15px;
+                right: 15px;
+                width: 38px;
+                height: 38px;
+                font-size: 1rem;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+
+    // 2. Inject the Button element
+    const btn = document.createElement('button');
+    btn.id = 'backToTopBtn';
+    btn.title = 'Back to Top';
+    btn.setAttribute('aria-label', 'Back to top');
+    btn.innerHTML = '<i class="fa-solid fa-arrow-up"></i>';
+    document.body.appendChild(btn);
+
+    // 3. Scroll Event Listener to show/hide
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            btn.classList.add('show');
+        } else {
+            btn.classList.remove('show');
+        }
+    });
+
+    // 4. Click Event Listener for smooth scrolling to top
+    btn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+}
+
+// Initialize everything when the DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    initThemeState();
+    initBackToTop();
+});
