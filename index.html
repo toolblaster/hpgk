@@ -32,6 +32,7 @@
         }
     </script>
 
+    <!-- JSON-LD Schema -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -115,7 +116,7 @@
     <meta name="msapplication-TileColor" content="#2563eb">
     <meta name="theme-color" content="#ffffff">
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Noto+Sans+Devanagari:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Noto+Sans+Devanagari:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Load Global Style First -->
@@ -172,6 +173,7 @@
         body {
             background: var(--bg-gradient);
             color: var(--text-body);
+            font-family: 'Inter', 'Noto Sans Devanagari', sans-serif;
         }
 
         .glass-panel {
@@ -182,9 +184,6 @@
             box-shadow: var(--glass-shadow);
         }
 
-        /* ==========================================================================
-           FIXED: RENAMED TO .page-layout TO AVOID CONFLICT WITH GLOBAL CSS ROW FLEX
-           ========================================================================== */
         main { 
             flex: 1; 
             width: 100%; 
@@ -198,7 +197,7 @@
             margin: 0 auto; 
             padding: 0 15px; 
             box-sizing: border-box;
-            display: block !important; /* Forces vertical stacking, overriding any global flex rows */
+            display: block !important;
         }
 
         .section-separator { 
@@ -224,19 +223,24 @@
             display: block;
         }
 
-        /* Isolated Homepage Main Title - No link with global style.css */
+        /* ==========================================================================
+           ISOLATED H1 STYLING (Protected from global style.css)
+           ========================================================================== */
         .hp-main-title {
             font-family: 'Inter', sans-serif !important;
             font-size: 32px !important; 
-            font-weight: 800 !important;
-            margin: 0 0 6px 0 !important; 
-            line-height: 1.2;
-            letter-spacing: -0.5px;
-            color: var(--text-main);
-            text-align: center; 
+            font-weight: 900 !important;
+            margin: 0 0 8px 0 !important; 
+            line-height: 1.2 !important;
+            letter-spacing: -0.5px !important;
+            color: var(--text-main) !important;
+            text-align: center !important; 
+            background: linear-gradient(135deg, var(--text-main) 0%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        /* Isolated Homepage Hero Description */
         .hp-hero-desc {
             font-size: 0.95rem;
             color: var(--text-sec);
@@ -244,6 +248,14 @@
             margin: 0 auto; 
             max-width: 650px;
             text-align: center;
+        }
+
+        .hp-hero-desc span.hi-desc {
+            font-family: 'Noto Sans Devanagari', sans-serif;
+            font-size: 0.85rem; 
+            color: var(--text-sec);
+            display: block;
+            margin-top: 4px;
         }
         
         .hero-badge {
@@ -263,7 +275,7 @@
             border: 1px solid var(--card-border);
             border-radius: var(--radius-md);
             overflow: hidden;
-            display: flex !important; /* Ticker needs flex internally */
+            display: flex !important;
             align-items: center;
             padding: 4px 8px;
             margin-bottom: 25px;
@@ -315,14 +327,14 @@
             100% { transform: translate3d(-100%, 0, 0); }
         }
 
-        /* STRICTLY LOCKED H2 to 25px */
+        /* --- ISOLATED SECTION HEADINGS --- */
         .section-sub-heading {
             font-family: 'Inter', sans-serif !important;
             font-size: 25px !important;
             font-weight: 800 !important;
-            color: var(--text-main);
-            text-align: center;
-            margin: 0 auto 5px auto; 
+            color: var(--text-main) !important;
+            text-align: center !important;
+            margin: 0 auto 5px auto !important; 
             width: 100%;
             display: block;
         }
@@ -337,8 +349,10 @@
         }
 
         /* ==========================================================================
-           UNIFORM GRID LAYOUT (Pure CSS Grid for robust 5-column alignment)
+           GRID LAYOUTS
            ========================================================================== */
+        
+        /* Topic Grid for 10 cards (5 columns on desktop) */
         .topic-grid { 
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -359,7 +373,28 @@
             }
         }
 
-        /* Uniform card style */
+        /* Resource Grid for 4/8 cards (4 columns on desktop) */
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            width: 100%;
+        }
+
+        @media (min-width: 600px) {
+            .resource-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 15px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .resource-grid { 
+                grid-template-columns: repeat(4, 1fr); 
+            }
+        }
+
+        /* Uniform card style (HOVER JUMP REMOVED) */
         .topic-card { 
             background: var(--card-bg);
             backdrop-filter: blur(16px);
@@ -370,7 +405,7 @@
             padding: 15px 10px; 
             text-decoration: none; 
             color: var(--text-main); 
-            transition: all 0.2s ease;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
             display: flex; 
             flex-direction: column; 
             align-items: center; 
@@ -379,18 +414,28 @@
             width: 100%;
         }
         
+        /* Only border and shadow change on hover, no transform/jump */
         .topic-card:hover:not(.disabled) { 
             border-color: var(--primary); 
-            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.08);
         }
 
+        /* STRICT DISABLED STATE NO HOVER EFFECT */
         .topic-card.disabled {
             opacity: 0.7;
-            cursor: not-allowed;
+            cursor: not-allowed !important;
             background: rgba(0, 0, 0, 0.02);
+        }
+        .topic-card.disabled:hover {
+            border-color: var(--card-border) !important;
+            box-shadow: var(--glass-shadow) !important;
+            transform: none !important;
         }
         [data-theme="dark"] .topic-card.disabled {
             background: rgba(0, 0, 0, 0.2);
+        }
+        [data-theme="dark"] .topic-card.disabled:hover {
+            border-color: #334155 !important; 
         }
         
         .topic-icon { 
@@ -440,62 +485,20 @@
         @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
         /* --- SEO Content Blocks --- */
-        .seo-header { 
-            text-align: center; 
-            margin-bottom: 25px; 
-        }
+        .seo-header { text-align: center; margin-bottom: 25px; }
+        .seo-header p { color: var(--text-sec); max-width: 700px; margin: 0 auto; font-size: 0.9rem; }
         
-        .seo-header p { 
-            color: var(--text-sec); 
-            max-width: 700px; 
-            margin: 0 auto; 
-            font-size: 0.9rem; 
-        }
+        .seo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
         
-        .seo-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-            gap: 15px; 
-        }
+        .seo-card { background: var(--card-bg); border: 1px solid var(--card-border); padding: 20px; border-radius: var(--radius-lg); box-shadow: var(--glass-shadow); border-left: 4px solid var(--primary); transition: border-color 0.2s; }
+        .seo-card:hover { border-color: var(--primary-light); }
         
-        .seo-card { 
-            background: var(--card-bg); 
-            border: 1px solid var(--card-border); 
-            padding: 20px; 
-            border-radius: var(--radius-lg); 
-            box-shadow: var(--glass-shadow); 
-            border-left: 4px solid var(--primary); 
-            transition: border-color 0.2s; 
-        }
-        
-        .seo-card:hover { 
-            border-color: var(--primary-light); 
-        }
-        
-        /* H3 strictly 16px */
-        .seo-card h3 { 
-            font-size: 16px !important; 
-            margin-bottom: 10px; 
-            display: flex; 
-            align-items: center; 
-            gap: 8px; 
-            color: var(--text-main); 
-            font-weight: 700; 
-        }
-        
-        .seo-card h3 i { 
-            color: var(--primary); 
-        }
-        
-        .seo-card p { 
-            color: var(--text-body); 
-            font-size: 0.85rem; 
-            margin-bottom: 0; 
-            line-height: 1.6; 
-        }
+        .seo-card h3 { font-size: 16px !important; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; color: var(--text-main); font-weight: 700; }
+        .seo-card h3 i { color: var(--primary); }
+        .seo-card p { color: var(--text-body); font-size: 0.85rem; margin-bottom: 0; line-height: 1.6; }
         
         @media (max-width: 600px) {
-            /* Applied to isolated titles - ensuring extra bold feel */
+            /* Mobile H1 and H2 Overrides strictly preserved in local style */
             .hp-main-title { font-size: 26px !important; font-weight: 800 !important; }
             .section-sub-heading { font-size: 22px !important; font-weight: 800 !important; }
             .section-desc { font-size: 0.8rem; margin-bottom: 12px; }
@@ -516,7 +519,7 @@
 
 <noscript>
     <div style="padding: 20px; text-align: center; color: #7f1d1d; background: #fef2f2;">
-        <strong>JavaScript is required.</strong> Please enable JavaScript to use the AgriQuiz application.
+        <strong>JavaScript is required.</strong> Please enable JavaScript to use the HPGK Quiz application.
     </div>
 </noscript>
 
@@ -533,9 +536,7 @@
         <!-- Hero Section -->
         <section class="hub-hero">
             <span class="hero-badge glass-panel" style="border-color: var(--primary); color: var(--primary);">Devbhoomi Edition</span>
-            <!-- Changed class to isolated hp-main-title -->
             <h1 class="hp-main-title">Master Himachal Pradesh General Knowledge</h1>
-            <!-- Changed class to isolated hp-hero-desc -->
             <p class="hp-hero-desc">
                 The ultimate study companion for HPAS (HAS), HPPSC, Allied Services, Naib Tehsildar, and HP Police. Select a topic below to start practicing.
             </p>
@@ -547,13 +548,21 @@
         <span class="ticker-badge"><i class="fa-solid fa-bolt" style="margin-right:2px;"></i> Updates</span>
         <div class="ticker-wrap">
             <span class="ticker-text">
-                🔥 <span>New:</span> 6000+ Bilingual MCQs for HPAS & Allied Exams &nbsp;&nbsp; | &nbsp;&nbsp; 🎯 <span>Trending:</span> 1300+ District Profile Questions &nbsp;&nbsp; | &nbsp;&nbsp; 📚 <span>Updated:</span> Study Notes & Agriculture Quiz Live &nbsp;&nbsp; | &nbsp;&nbsp; 🚀 Start practicing for free!
+                🔥 <span>New:</span> 6000+ Bilingual MCQs for HPAS & Allied Exams &nbsp;&nbsp; | &nbsp;&nbsp; 🎯 <span>Trending:</span> District Mastery Series &nbsp;&nbsp; | &nbsp;&nbsp; 📚 <span>Updated:</span> Premium Study Notes & Agriculture Hub &nbsp;&nbsp; | &nbsp;&nbsp; 🚀 Start practicing for free!
             </span>
         </div>
     </div>
 
+    <!-- ==============================================
+         SECTION 1: CORE SUBJECTS (ORIGINAL 10 CARDS) 
+         ============================================== -->
     <div class="page-layout">
-        <!-- Main HP GK Topics Grid (Top 10) -->
+        <h2 class="section-sub-heading">HP Topic-Wise MCQs</h2>
+        <p class="section-desc">
+            Master every subject of Himachal Pradesh General Knowledge with our comprehensive, syllabus-aligned bilingual quizzes.
+        </p>
+
+        <!-- 10 Core Subjects Grid (Forms perfect 2 rows of 5 on Desktop) -->
         <div class="topic-grid">
             <a href="himachal-pradesh-gk/rivers/" class="topic-card">
                 <div class="topic-icon"><i class="fa-solid fa-water"></i></div>
@@ -573,19 +582,7 @@
                 <div class="topic-desc">Peaks, Passes, Glaciers & Valleys.</div>
                 <div class="topic-badge active">440+ MCQs</div>
             </a>
-            <a href="himachal-pradesh-gk/art-culture/" class="topic-card">
-                <div class="topic-icon"><i class="fa-solid fa-gopuram"></i></div>
-                <div class="topic-title">Art & Culture</div>
-                <div class="topic-desc">Temple architecture, Fairs & Folk Dances.</div>
-                <div class="topic-badge active">680+ MCQs</div>
-            </a>
-            <a href="himachal-pradesh-gk/economy/" class="topic-card">
-                <div class="topic-icon"><i class="fa-solid fa-bolt"></i></div>
-                <div class="topic-title">Economy</div>
-                <div class="topic-desc">Hydropower, Agriculture & Apple production.</div>
-                <div class="topic-badge active">510+ MCQs</div>
-            </a>
-             <a href="himachal-pradesh-gk/district/" class="topic-card">
+            <a href="himachal-pradesh-gk/district/" class="topic-card">
                 <div class="topic-icon"><i class="fa-solid fa-map-location-dot"></i></div>
                 <div class="topic-title">District Profile</div>
                 <div class="topic-desc">Specific GK for Kangra, Mandi, Shimla, etc.</div>
@@ -596,6 +593,12 @@
                 <div class="topic-title">Polity</div>
                 <div class="topic-desc">Administrative structure & Vidhan Sabha.</div>
                 <div class="topic-badge active">810+ MCQs</div>
+            </a>
+            <a href="himachal-pradesh-gk/economy/" class="topic-card">
+                <div class="topic-icon"><i class="fa-solid fa-bolt"></i></div>
+                <div class="topic-title">Economy</div>
+                <div class="topic-desc">Hydropower, Agriculture & Apple production.</div>
+                <div class="topic-badge active">510+ MCQs</div>
             </a>
             <a href="himachal-pradesh-gk/famous-people/" class="topic-card">
                 <div class="topic-icon"><i class="fa-solid fa-user-graduate"></i></div>
@@ -615,61 +618,136 @@
                 <div class="topic-desc">Hill Stations, Treks & Religious Circuit.</div>
                 <div class="topic-badge active">390+ MCQs</div>
             </a>
+            <a href="himachal-pradesh-gk/art-culture/" class="topic-card">
+                <div class="topic-icon"><i class="fa-solid fa-gopuram"></i></div>
+                <div class="topic-title">Art & Culture</div>
+                <div class="topic-desc">Temple architecture, Fairs & Folk Dances.</div>
+                <div class="topic-badge active">680+ MCQs</div>
+            </a>
         </div>
     </div>
 
     <div class="section-separator"></div>
 
+    <!-- ==============================================
+         SECTION 2: PRACTICE & TEST SERIES 
+         ============================================== -->
     <div class="page-layout">
-        <!-- Specialized Subject Quizzes & Resources -->
-        <h2 class="section-sub-heading">Specialized Quizzes & Resources</h2>
+        <h2 class="section-sub-heading">Practice & Test Series</h2>
         <p class="section-desc">
-            Target high-weightage subjects with focused mock tests. Includes latest HP Govt schemes, budget highlights, and a dedicated <strong>General Agriculture</strong> module tailored for ICAR JRF, IBPS AFO & State ADO exams.
+            Evaluate your preparation with specialized mock tests, district-wise deep dives, and rapid testing modules.
         </p>
         
-        <!-- Bottom Uniform Grid (5 Columns) -->
-        <div class="topic-grid">
-            
-            <!-- 1. Agriculture -->
+        <div class="resource-grid">
+            <!-- 1. Agriculture (Moved to 1st Position as requested) -->
             <a href="agriculture-quiz/" class="topic-card">
-                <div class="topic-icon"><i class="fa-solid fa-seedling"></i></div>
-                <div class="topic-title">Agriculture</div>
-                <div class="topic-desc">ICAR JRF, IBPS AFO & NABARD.</div>
-                <div class="topic-badge active">507+ MCQs</div>
+                <div class="topic-icon" style="color: #10b981; background: rgba(16, 185, 129, 0.1);"><i class="fa-solid fa-seedling"></i></div>
+                <div class="topic-title">General Agriculture</div>
+                <div class="topic-desc">ICAR JRF, IBPS AFO & State ADO Exams.</div>
+                <div class="topic-badge active" style="background: #10b981; color: white;">507+ MCQs</div>
             </a>
 
-            <!-- 2. Study Notes -->
+            <!-- 2. District Mastery (Disabled - No Hover Jump) -->
+            <div class="topic-card disabled" title="Coming Soon">
+                <div class="topic-icon" style="color: #8b5cf6; background: rgba(139, 92, 246, 0.1);"><i class="fa-solid fa-map-location-dot"></i></div>
+                <div class="topic-title">District Mastery</div>
+                <div class="topic-desc">Deep dive into all 12 districts of HP.</div>
+                <div class="topic-badge">Soon</div>
+            </div>
+
+            <!-- 3. Full Length Mocks (Disabled) -->
+            <div class="topic-card disabled" title="Coming Soon">
+                <div class="topic-icon"><i class="fa-solid fa-clipboard-list"></i></div>
+                <div class="topic-title">Full-Length Mocks</div>
+                <div class="topic-desc">Complete HPAS & Allied level mock tests.</div>
+                <div class="topic-badge">Soon</div>
+            </div>
+
+            <!-- 4. Mini Mock Tests (Disabled - Replacing PYQs here) -->
+            <div class="topic-card disabled" title="Coming Soon">
+                <div class="topic-icon"><i class="fa-solid fa-stopwatch"></i></div>
+                <div class="topic-title">Mini Mock Tests</div>
+                <div class="topic-desc">Quick 20-Q mixed tests for daily practice.</div>
+                <div class="topic-badge">Soon</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-separator"></div>
+
+    <!-- ==============================================
+         SECTION 3: PREMIUM STUDY NOTES & RESOURCES
+         ============================================== -->
+    <div class="page-layout">
+        <h2 class="section-sub-heading">Premium Study Resources</h2>
+        <p class="section-desc">
+            Supercharge your revision with our highly curated study hubs, fast-reading one-liners, and extra curriculum resources.
+        </p>
+        
+        <div class="resource-grid">
+            <!-- 1. HP Study Notes Hub -->
             <a href="study-notes/" class="topic-card">
                 <div class="topic-icon"><i class="fa-solid fa-book-open"></i></div>
-                <div class="topic-title">HP Study Notes</div>
-                <div class="topic-desc">Govt Schemes & Budget Survey.</div>
+                <div class="topic-title">HP Study Notes Hub</div>
+                <div class="topic-desc">Govt Schemes, Budget 2026-27 & Survey.</div>
                 <div class="topic-badge active">Updated</div>
             </a>
 
-            <!-- 3. Computer / IT -->
+            <!-- 2. HP GK One Liners Hub -->
+            <a href="study-notes/hp-gk-one-liners-500-part-1/" class="topic-card">
+                <div class="topic-icon" style="color: #f59e0b; background: rgba(245, 158, 11, 0.1);"><i class="fa-solid fa-bolt"></i></div>
+                <div class="topic-title">One-Liners Series</div>
+                <div class="topic-desc">1000+ rapid-fire bilingual revision facts.</div>
+                <div class="topic-badge active" style="background: #f59e0b; color: white;">Trending</div>
+            </a>
+
+            <!-- 3. Syllabus (Disabled) -->
+            <div class="topic-card disabled" title="Coming Soon">
+                <div class="topic-icon" style="color: #ef4444; background: rgba(239, 68, 68, 0.1);"><i class="fa-solid fa-list-check"></i></div>
+                <div class="topic-title">Exam Syllabus</div>
+                <div class="topic-desc">HPAS, Naib Tehsildar, Allied & Police exams.</div>
+                <div class="topic-badge">Soon</div>
+            </div>
+            
+            <!-- 4. Previous Papers (PYQ) (Moved from Section 2) -->
+            <div class="topic-card disabled" title="Coming Soon">
+                <div class="topic-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                <div class="topic-title">Previous Papers (PYQ)</div>
+                <div class="topic-desc">Solved past papers for HPPSC state exams.</div>
+                <div class="topic-badge">Soon</div>
+            </div>
+
+            <!-- 5. HP Current Affairs -->
+            <div class="topic-card disabled" title="Coming Soon">
+                <div class="topic-icon"><i class="fa-regular fa-newspaper"></i></div>
+                <div class="topic-title">HP Current Affairs</div>
+                <div class="topic-desc">Monthly MCQs of HP & National events.</div>
+                <div class="topic-badge">Soon</div>
+            </div>
+            
+            <!-- 6. Indian Static GK -->
+            <div class="topic-card disabled" title="Coming Soon">
+                <div class="topic-icon"><i class="fa-solid fa-monument"></i></div>
+                <div class="topic-title">Indian Static GK</div>
+                <div class="topic-desc">Indian History, Polity & Geography basics.</div>
+                <div class="topic-badge">Soon</div>
+            </div>
+
+            <!-- 7. General Science -->
+            <div class="topic-card disabled" title="Coming Soon">
+                <div class="topic-icon"><i class="fa-solid fa-flask"></i></div>
+                <div class="topic-title">General Science</div>
+                <div class="topic-desc">Physics, Chemistry & Bio for state exams.</div>
+                <div class="topic-badge">Soon</div>
+            </div>
+
+            <!-- 8. Computer / IT -->
             <div class="topic-card disabled" title="Coming Soon">
                 <div class="topic-icon"><i class="fa-solid fa-computer"></i></div>
                 <div class="topic-title">Computer / IT</div>
-                <div class="topic-desc">JOA IT, Clerk & Comp Operator.</div>
+                <div class="topic-desc">JOA IT, Clerk & Comp Operator notes.</div>
                 <div class="topic-badge">Soon</div>
             </div>
-
-            <!-- 4. Current Affairs -->
-            <div class="topic-card disabled" title="Coming Soon">
-                <div class="topic-icon"><i class="fa-regular fa-newspaper"></i></div>
-                <div class="topic-title">Current Affairs</div>
-                <div class="topic-desc">Latest HP & National Events.</div>
-                <div class="topic-badge">Soon</div>
-            </div>
-
-            <!-- 5. Previous Papers -->
-            <div class="topic-card disabled" title="Coming Soon">
-                <div class="topic-icon"><i class="fa-solid fa-file-pdf"></i></div>
-                <div class="topic-title">Previous Papers</div>
-                <div class="topic-desc">HPAS, Naib Tehsildar & Allied.</div>
-                <div class="topic-badge">Soon</div>
-            </div>
-
         </div>
     </div>
     
@@ -683,19 +761,19 @@
         </div>
 
         <div class="seo-grid">
-            <!-- Card 1: Targeting English & Hindi combo -->
+            <!-- Card 1 -->
             <div class="seo-card glass-panel">
                 <h3><i class="fa-solid fa-language"></i> Bilingual Learning</h3>
                 <p>Welcome to the most trusted platform to master <strong>himachal pradesh gk in english</strong> as well as <strong>himachal pradesh gk in hindi</strong>. Our dual-language approach ensures that language is never a barrier to your success in state-level exams.</p>
             </div>
 
-            <!-- Card 2: Targeting "latest questions" & Hindi -->
+            <!-- Card 2 -->
             <div class="seo-card glass-panel">
                 <h3><i class="fa-solid fa-clipboard-question"></i> Latest Question Bank</h3>
                 <p>Stay ahead of the competition with our regularly updated database. We provide the <strong>latest hp gk questions with answers in hindi</strong> and English, covering high-weightage topics like History, Geography, Polity, and the state Economy.</p>
             </div>
 
-            <!-- Card 3: Targeting general Hindi queries -->
+            <!-- Card 3 -->
             <div class="seo-card glass-panel">
                 <h3><i class="fa-solid fa-bullseye"></i> Targeted Practice</h3>
                 <p>Looking for reliable practice material? Attempting our <strong>hp gk questions in hindi</strong> and English through our interactive mock tests helps you evaluate your preparation for HPAS, HPPSC, Naib Tehsildar, and Allied Services—all for free and without any login.</p>
