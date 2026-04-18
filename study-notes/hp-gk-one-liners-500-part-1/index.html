@@ -183,7 +183,15 @@
             color: var(--primary); 
         }
 
-        .hero-desc { font-size: 0.95rem; color: var(--text-sec); line-height: 1.5; margin: 0 auto; max-width: 650px; }
+        /* FIXED: Hero Description forced to 14px with good line height */
+        .hero-desc { 
+            font-size: 14px !important; 
+            color: var(--text-sec); 
+            line-height: 1.6; 
+            margin: 0 auto; 
+            max-width: 650px; 
+        }
+        
         .hero-desc span.hi-desc { font-family: 'Noto Sans Devanagari', sans-serif; font-size: 0.85rem; color: var(--text-sec); display: block; margin-top: 4px; }
         [data-theme="dark"] .hero-desc span.hi-desc { color: #e2e8f0; }
 
@@ -326,8 +334,12 @@
         .a-hi { font-size: 0.85rem; font-weight: 600; color: var(--accent); font-family: 'Noto Sans Devanagari', sans-serif; }
         [data-theme="dark"] .a-hi { color: #fbbf24; }
 
+        /* FIXED: Mobile specific overrides */
         @media (max-width: 600px) {
-            .hero-title { white-space: normal; padding: 0 10px; line-height: 1.2; } 
+            /* Pushes H1 down to avoid cluttering with the Breadcrumb */
+            .hub-hero { margin-top: 25px; padding-top: 0; }
+
+            .hero-title { white-space: normal; padding: 0 10px; line-height: 1.2; } /* Exact match to other pages, local font-size removed */
             .fact-row { padding: 10px 12px; }
             .content-en { padding-right: 45px; } /* Ensures text wraps correctly on mobile to avoid overlapping */
             .q-en { font-size: 0.85rem; }
