@@ -183,8 +183,23 @@
             color: var(--primary); 
         }
 
-        .hero-desc { font-size: 0.95rem; color: var(--text-sec); line-height: 1.5; margin: 0 auto; max-width: 650px; }
-        .hero-desc span.hi-desc { font-family: 'Noto Sans Devanagari', sans-serif; font-size: 0.85rem; color: var(--text-sec); display: block; margin-top: 4px; }
+        /* FIXED: Hero Description forced to 14px with good line height */
+        .hero-desc {
+            font-size: 14px !important;
+            color: var(--text-sec);
+            line-height: 1.6;
+            margin: 0 auto; 
+            max-width: 650px;
+        }
+
+        .hero-desc span.hi-desc {
+            font-family: 'Noto Sans Devanagari', sans-serif;
+            font-size: 0.85rem; 
+            color: var(--text-sec);
+            display: block;
+            margin-top: 4px;
+        }
+        
         [data-theme="dark"] .hero-desc span.hi-desc { color: #e2e8f0; }
 
         /* Navigation Link to Parts */
@@ -327,7 +342,12 @@
         [data-theme="dark"] .a-hi { color: #fbbf24; }
 
         @media (max-width: 600px) {
-            .hero-title { white-space: normal; padding: 0 10px; line-height: 1.2; } /* Exact match to other pages, local font-size removed */
+            /* FIXED: Pushes H1 down to avoid cluttering with the Breadcrumb */
+            .hub-hero { margin-top: 25px; padding-top: 0; }
+
+            /* FIXED: Ensure mobile font size is strictly 25px */
+            .hero-title { font-size: 25px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
+            
             .fact-row { padding: 10px 12px; }
             .content-en { padding-right: 45px; } /* Ensures text wraps correctly on mobile to avoid overlapping */
             .q-en { font-size: 0.85rem; }
@@ -539,7 +559,7 @@
         { id: 852, qHi: "धामी प्रजामंडल आंदोलन का नेतृत्व किसने किया?", aHi: "भागमल सौठा।", qEn: "Who led the Dhami Prajamandal movement?", aEn: "Bhagmal Sautha." },
         { id: 853, qHi: "पझौता आंदोलन (1942) किस रियासत में हुआ था?", aHi: "सिरमौर।", qEn: "Pajhota Agitation (1942) took place in which princely state?", aEn: "Sirmaur." },
         { id: 854, qHi: "1948 में सुकेत सत्याग्रह के नेता कौन थे?", aHi: "पंडित पदम देव।", qEn: "Who was the leader of the Suket Satyagraha in 1948?", aEn: "Pandit Padam Dev." },
-        { id: 855, qHi: "हिमाचल प्रदेश को मुख्य आयुक्त प्रांत के रूप में कब बनाया गया था?", aHi: "15 अप्रैल 1948।", qEn: "When was Himachal Pradesh formed as a Chief Commissioner's Province?", aEn: "15 April 1948." },
+        { id: 855, qHi: "हिमाचल प्रदेश को मुख्य आयुक्त प्रांत के रूप划 गया था?", aHi: "15 अप्रैल 1948।", qEn: "When was Himachal Pradesh formed as a Chief Commissioner's Province?", aEn: "15 April 1948." },
         { id: 856, qHi: "1948 में हिमाचल प्रदेश बनाने के लिए कितनी रियासतों का विलय किया गया था?", aHi: "30।", qEn: "How many princely states were merged to form Himachal Pradesh in 1948?", aEn: "30." },
         { id: 857, qHi: "हिमाचल प्रदेश पार्ट 'सी' राज्य कब बना?", aHi: "1951।", qEn: "When did Himachal Pradesh become a Part 'C' state?", aEn: "1951." },
         { id: 858, qHi: "बिलासपुर का हिमाचल प्रदेश में विलय कब हुआ?", aHi: "1 जुलाई 1954।", qEn: "When did Bilaspur merge into Himachal Pradesh?", aEn: "1 July 1954." },
@@ -585,7 +605,7 @@
         { id: 898, qHi: "1992 में आधिकारिक तौर पर खज्जियार को 'मिनी स्विट्जरलैंड' का नाम किसने दिया?", aHi: "विली टी. ब्लेज़र।", qEn: "Who officially named Khajjiar as 'Mini Switzerland' in 1992?", aEn: "Willy T. Blazer." },
         { id: 899, qHi: "विश्व का सबसे ऊँचा मतदान केंद्र कहाँ स्थित है?", aHi: "ताशीगंग (लाहौल-स्पीति)।", qEn: "Where is the world's highest polling station located?", aEn: "Tashigang (Lahaul-Spiti)." },
         { id: 900, qHi: "मोटर योग्य सड़क से जुड़ा दुनिया का सबसे ऊँचा गाँव कौन सा है?", aHi: "कोमिक (स्पीति)।", qEn: "Which is the highest village in the world connected by a motorable road?", aEn: "Komic (Spiti)." },
-        { id: 901, qHi: "'हिमालय में बहुपति प्रथा' पुस्तक किसने लिखी?", aHi: "डॉ. वाई.एस. परमार।", qEn: "Who wrote the book 'Polyandry in the Himalayas'?", aEn: "Dr. Y.S. Parmar." },
+        { id: 901, qHi: "'हिमालय में बहुपति प्रथा' पुस्तक किसने लिखी?", aHi: "डॉ. वाई.एस. پرमार।", qEn: "Who wrote the book 'Polyandry in the Himalayas'?", aEn: "Dr. Y.S. Parmar." },
         { id: 902, qHi: "'हिस्ट्री ऑफ पंजाब हिल स्टेट्स' के लेखक कौन हैं?", aHi: "जे. हचिसन और जे. पी. वोगेल।", qEn: "Who is the author of 'History of Punjab Hill States'?", aEn: "J. Hutchison and J. Ph. Vogel." },
         { id: 903, qHi: "'मुख्तसर तवारीख-ए-रियासत चंबा' किसने लिखी?", aHi: "गरीब खान।", qEn: "Who wrote 'Mukhtasar Tawarikh-e-Riyasat Chamba'?", aEn: "Garib Khan." },
         { id: 904, qHi: "'धरती है बलिदान की' के लेखक कौन हैं?", aHi: "शांता कुमार।", qEn: "Who is the author of 'Dharti Hai Balidan Ki'?", aEn: "Shanta Kumar." },
