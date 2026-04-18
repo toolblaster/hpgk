@@ -328,6 +328,7 @@
             height: 100%;
             position: relative;
             overflow: hidden;
+            transition: border-color 0.2s; /* Removed transform and box-shadow */
         }
         
         [data-theme="dark"] .scheme-card { 
@@ -335,6 +336,8 @@
             border-color: #334155; 
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
+
+        /* Removed hover effects completely as requested */
 
         .scheme-header {
             border-bottom: 1px solid #f1f5f9;
@@ -410,40 +413,76 @@
             line-height: 1.4;
         }
 
-        /* --- Minimal Contextual Interlink --- */
-        .bottom-interlink { 
-            text-align: center; 
-            font-size: 0.85rem; 
-            color: var(--text-sec); 
-            margin: 30px auto 10px auto; 
-            max-width: 800px; 
-            line-height: 1.5; 
-            border-top: 1px dashed var(--card-border); 
-            padding-top: 20px; 
+        /* Notice Banner */
+        .notice-banner {
+            background: var(--primary-light);
+            border: 1px solid var(--primary);
+            border-left: 4px solid var(--primary);
+            border-radius: var(--radius-md);
+            padding: 12px 15px;
+            margin-bottom: 25px;
+            font-size: 0.85rem;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-        .bottom-interlink a { 
-            color: var(--primary); 
-            font-weight: 600; 
-            text-decoration: none; 
-            transition: color 0.2s; 
+        .notice-banner i {
+            color: var(--primary);
+            font-size: 1.2rem;
         }
-        .bottom-interlink a:hover { 
-            color: var(--primary-hover); 
-            text-decoration: underline; 
+        
+        /* --- SEO Content Blocks --- */
+        .seo-content-wrapper { width: 100%; margin: 0 auto 30px auto; }
+        .seo-header { text-align: center; margin-bottom: 20px; }
+        
+        /* STRICTLY LOCKED H2 to 25px */
+        .seo-header h2 { 
+            font-size: 25px !important; 
+            margin-bottom: 8px; 
+            color: var(--text-main); 
+            font-weight: 800; 
+        }
+        
+        .seo-header p { color: var(--text-sec); max-width: 600px; margin: 0 auto; font-size: 0.85rem; }
+        .seo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
+        .seo-card { background: var(--card-bg); border: 1px solid var(--card-border); padding: 20px; border-radius: var(--radius-lg); box-shadow: var(--glass-shadow); border-left: 4px solid var(--primary); transition: border-color 0.2s; }
+        .seo-card:hover { border-color: var(--primary-light); }
+        
+        /* STRICTLY LOCKED H3 to 16px */
+        .seo-card h3 { 
+            font-size: 16px !important; 
+            margin-bottom: 10px; 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            color: var(--text-main); 
+            font-weight: 700; 
+        }
+        
+        .seo-card h3 i { color: var(--primary); }
+        .seo-card p { color: var(--text-body); font-size: 0.85rem; margin-bottom: 0; line-height: 1.5; }
+
+        .section-separator {
+            margin-top: 30px; 
+            margin-bottom: 30px; 
+            height: 1px;
+            width: 100%;
+            background: linear-gradient(90deg, transparent, #e2e8f0, transparent);
         }
 
-        /* FIXED: Mobile specific overrides */
+        [data-theme="dark"] .section-separator {
+            background: linear-gradient(90deg, transparent, #334155, transparent);
+        }
+
         @media (max-width: 600px) {
-            /* Pushes H1 down to avoid cluttering with the Breadcrumb */
-            .hub-hero { margin-top: 25px; padding-top: 0; }
-
-            .hero-title { font-size: 25px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
             main { padding: 15px 12px !important; }
             .top-meta-bar { flex-wrap: nowrap; justify-content: space-between; }
             .breadcrumb-nav, .hero-badge { height: 26px; }
             .breadcrumb-list { padding: 0 10px; border-radius: 13px; }
             .hero-badge { padding: 0 10px; border-radius: 13px; font-size: 0.6rem; }
             .breadcrumb-item { font-size: 0.6rem; }
+            .section-separator { margin-top: 20px; margin-bottom: 20px; }
             
             /* Responsive interlinks for mobile */
             .hero-interlinks { flex-direction: row; flex-wrap: wrap; gap: 6px; padding: 8px 12px; border-radius: 30px; }
@@ -1133,11 +1172,6 @@
                     </ul>
                 </div>
 
-            </div>
-
-            <!-- Contextual Interlink Line (No Clutter) -->
-            <div class="bottom-interlink">
-                To test your knowledge and understand the broader impact, explore our quick revision notes and interactive MCQs on the <a href="../../himachal-pradesh-gk/economy/">Economy of Himachal Pradesh</a> and the state's <a href="../../himachal-pradesh-gk/polity/">Administrative Setup</a>.
             </div>
 
         </section>
