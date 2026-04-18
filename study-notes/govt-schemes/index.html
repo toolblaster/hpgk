@@ -220,10 +220,11 @@
             color: var(--primary);
         }
 
+        /* FIXED: Hero Description forced to 14px with good line height */
         .hero-desc {
-            font-size: 0.95rem;
+            font-size: 14px !important;
             color: var(--text-sec);
-            line-height: 1.5;
+            line-height: 1.6;
             margin: 0 auto; 
             max-width: 650px;
         }
@@ -315,7 +316,7 @@
             .schemes-grid { grid-template-columns: repeat(4, 1fr); }
         }
 
-        /* Solid, highly readable Scheme Cards (Hover effect removed as requested) */
+        /* Solid, highly readable Scheme Cards */
         .scheme-card {
             background: #ffffff;
             border: 1px solid #e2e8f0;
@@ -431,8 +432,12 @@
             text-decoration: underline; 
         }
 
+        /* FIXED: Mobile specific overrides */
         @media (max-width: 600px) {
-            .hero-title { white-space: normal; padding: 0 10px; line-height: 1.2; }
+            /* Pushes H1 down to avoid cluttering with the Breadcrumb */
+            .hub-hero { margin-top: 25px; padding-top: 0; }
+
+            .hero-title { font-size: 25px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
             main { padding: 15px 12px !important; }
             .top-meta-bar { flex-wrap: nowrap; justify-content: space-between; }
             .breadcrumb-nav, .hero-badge { height: 26px; }
