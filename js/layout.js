@@ -52,8 +52,8 @@ function renderHeader(options = {}) {
             
             <div class="header-actions" style="display: flex; align-items: center; gap: 12px;">
                 <!-- Auth Container (Login / Profile UI will load here) -->
-                <div id="auth-ui-container" style="display: flex; align-items: center; gap: 10px;">
-                    <div style="font-size: 0.7rem; color: var(--text-sec);"><i class="fa-solid fa-spinner fa-spin"></i></div>
+                <div id="auth-ui-container" style="display: flex; align-items: center;">
+                    <div style="font-size: 0.8rem; color: var(--text-sec);"><i class="fa-solid fa-spinner fa-spin"></i></div>
                 </div>
 
                 <!-- Theme Button -->
@@ -68,10 +68,27 @@ function renderHeader(options = {}) {
             </div>
         </div>
         <style>
-            /* Auth UI Styles */
+            /* Grouped Auth UI Styles (Premium EdTech Look) */
+            .auth-group-wrapper {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                padding: 4px 6px 4px 4px;
+                border: 1px solid var(--card-border, #cbd5e1);
+                border-radius: 30px;
+                background: rgba(255, 255, 255, 0.5);
+                box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+                transition: all 0.2s ease;
+            }
+            [data-theme="dark"] .auth-group-wrapper {
+                border-color: #334155;
+                background: rgba(0, 0, 0, 0.2);
+            }
+
+            /* Punchy Red Google Login Button */
             .login-btn {
-                background: var(--text-main);
-                color: var(--card-bg);
+                background: #dc2626; /* WCAG AA Compliant High-Contrast Red */
+                color: #ffffff;
                 border: none;
                 padding: 6px 14px;
                 border-radius: 20px;
@@ -85,16 +102,21 @@ function renderHeader(options = {}) {
                 font-family: 'Inter', sans-serif;
             }
             .login-btn:hover {
+                background: #b91c1c; /* Darker red on hover */
                 transform: translateY(-2px);
-                box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+                box-shadow: 0 4px 10px rgba(220, 38, 38, 0.3); /* Red tinted shadow */
             }
-            .user-avatar {
-                width: 32px;
-                height: 32px;
-                border-radius: 50%;
-                border: 2px solid var(--primary);
-                object-fit: cover;
+
+            /* Dark Mode Fix for Login Button */
+            [data-theme="dark"] .login-btn {
+                background: #ef4444; /* Brighter red for visibility in dark mode */
+                color: #ffffff;
             }
+            [data-theme="dark"] .login-btn:hover {
+                background: #dc2626;
+                box-shadow: 0 4px 10px rgba(239, 68, 68, 0.4);
+            }
+            
             .dashboard-btn {
                 background: var(--primary-light);
                 color: var(--primary);
@@ -115,26 +137,60 @@ function renderHeader(options = {}) {
                 background: var(--primary);
                 color: white;
             }
+            
+            /* Dark Mode Fix for Dashboard Button */
+            [data-theme="dark"] .dashboard-btn {
+                background: rgba(255, 255, 255, 0.1);
+                color: var(--text-main);
+            }
+            [data-theme="dark"] .dashboard-btn:hover {
+                background: var(--primary);
+                color: white;
+            }
+
+            .user-avatar {
+                width: 28px;
+                height: 28px;
+                border-radius: 50%;
+                border: 2px solid var(--primary);
+                object-fit: cover;
+                background: #fff;
+            }
+
+            /* Specially designed clear Logout Button */
             .logout-icon-btn {
-                color: var(--text-sec);
-                background: transparent;
+                color: #ef4444; 
+                background: rgba(239, 68, 68, 0.1);
                 border: none;
-                font-size: 1rem;
+                width: 28px; height: 28px;
+                border-radius: 50%;
+                display: flex; align-items: center; justify-content: center;
+                font-size: 0.8rem;
                 cursor: pointer;
-                transition: color 0.2s;
+                transition: all 0.2s;
             }
             .logout-icon-btn:hover {
-                color: #ef4444;
+                background: #ef4444;
+                color: white;
             }
+
+            .text-mobile { display: none; } /* Default hide mobile specific text */
 
             @media (max-width: 600px) {
                 .brand-name { font-size: 0.9rem !important; line-height: 1.1; }
                 .brand-sub { font-size: 0.65rem !important; display: block; }
                 .brand-icon { font-size: 1.1rem !important; margin-right: 6px !important; }
                 .header-content { padding: 10px 12px !important; }
-                .login-btn { padding: 5px 10px; font-size: 0.75rem; }
-                .dashboard-btn { padding: 5px 10px; font-size: 0.7rem; }
-                .user-avatar { width: 28px; height: 28px; }
+                
+                /* Adjusted padding and font sizes for mobile with text included */
+                .login-btn { padding: 6px 12px; font-size: 0.8rem; }
+                /* Increased icon size and matching padding so it aligns perfectly with the login button */
+                .dashboard-btn { padding: 6px 12px; font-size: 1.1rem; } 
+                
+                .text-desktop { display: none; } /* Hide full text on mobile */
+                
+                .auth-group-wrapper { gap: 6px; padding: 3px 5px 3px 3px; }
+                .user-avatar, .logout-icon-btn { width: 26px; height: 26px; }
             }
         </style>
     `;
@@ -260,18 +316,17 @@ function initBackToTop() {
 }
 
 // =========================================================================
-// 🔥 FIREBASE GOOGLE AUTHENTICATION INTEGRATION (Dynamic Import Method)
+// ðŸ”¥ FIREBASE GOOGLE AUTHENTICATION INTEGRATION (Dynamic Import Method)
 // =========================================================================
 
 let auth, provider;
 
 async function initFirebase() {
     try {
-        // Dynamically import Firebase v10 modules (Compatible with modern browsers)
-        const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js");
+        // Dynamically import Firebase
+        const { initializeApp, getApps, getApp } = await import("https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js");
         const { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } = await import("https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js");
 
-        // Your specific Firebase Config
         const firebaseConfig = {
             apiKey: "AIzaSyDfz5Y4oVQHl-crnATIv5dMWsw7edSKddQ",
             authDomain: "hpgk-quiz.firebaseapp.com",
@@ -282,8 +337,7 @@ async function initFirebase() {
             measurementId: "G-LFXVQ2JNTY"
         };
 
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
+        const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
         auth = getAuth(app);
         provider = new GoogleAuthProvider();
 
@@ -302,10 +356,19 @@ async function initFirebase() {
                 
             } catch (error) {
                 console.error("Login Error Full Details:", error);
-                updateAuthUI(null); // Reset UI on failure
                 
-                // Display the EXACT error message to the user so we know why it failed
-                alert("Login Failed: " + error.message + "\n\n(Note: Check 'Support Email' & 'Authorized Domains' in Firebase Settings)");
+                // Reset UI back to login button
+                updateAuthUI(null); 
+                
+                // SILENT FAIL FOR POPUP CLOSED BY USER
+                // Agar user khud popup close karta hai, toh kuch alert mat dikhao.
+                if (error.code === 'auth/popup-closed-by-user' || error.code === 'auth/cancelled-popup-request') {
+                    // Do nothing, just let them stay on the page peacefully
+                    return; 
+                }
+
+                // Agar koi real technical error aaya ho, toh user-friendly message dikhao
+                alert("Login nahi ho paaya. Kripya apna internet connection check karein ya thodi der baad try karein.");
             }
         };
 
@@ -313,48 +376,54 @@ async function initFirebase() {
         window.logoutUser = async () => {
             try {
                 await signOut(auth);
-                // If user is on dashboard and logs out, redirect to home
-                if(window.location.pathname.includes('dashboard')) {
-                    window.location.href = currentRootPath === '.' ? './index.html' : currentRootPath + '/index.html';
-                }
             } catch (error) {
                 console.error("Logout Error:", error);
             }
         };
 
     } catch (error) {
-        console.error("Firebase Initialization Failed:", error);
-        // Fallback UI if script fails to load
+        console.error("Firebase Initialization Failed in Layout:", error);
         const authContainer = document.getElementById('auth-ui-container');
         if(authContainer) authContainer.innerHTML = '';
     }
 }
 
-// Function to dynamically update the Header UI based on User State
+// Dynamically update the Header UI with grouped border design
 function updateAuthUI(user) {
     const authContainer = document.getElementById('auth-ui-container');
     if (!authContainer) return;
 
+    const dashLink = currentRootPath === '.' ? './user/dashboard.html' : currentRootPath + '/user/dashboard.html';
+
     if (user) {
-        // User is LOGGED IN -> Show Dashboard Button & Avatar
-        const dashLink = currentRootPath === '.' ? './dashboard.html' : currentRootPath + '/dashboard.html';
+        // User is LOGGED IN -> Show Dash, DP, Logout in a nice pill-shaped border
+        const userPhoto = user.photoURL || 'https://ui-avatars.com/api/?name=Student&background=2563eb&color=fff';
         
         authContainer.innerHTML = `
-            <a href="${dashLink}" class="dashboard-btn" title="My Dashboard">
-                <i class="fa-solid fa-chart-pie"></i> <span class="hide-mobile">Dash</span>
-            </a>
-            <img src="${user.photoURL}" alt="Profile" class="user-avatar" title="${user.displayName}">
-            <button class="logout-icon-btn" onclick="logoutUser()" title="Logout">
-                <i class="fa-solid fa-right-from-bracket"></i>
-            </button>
-            <style>@media (max-width: 600px) { .hide-mobile { display: none; } }</style>
+            <div class="auth-group-wrapper">
+                <a href="${dashLink}" class="dashboard-btn" title="My Dashboard">
+                    <i class="fa-solid fa-circle-user"></i> 
+                    <span class="text-desktop">My Dashboard</span>
+                </a>
+                <img src="${userPhoto}" alt="Profile" class="user-avatar" title="${user.displayName || 'Student'}">
+                <button class="logout-icon-btn" onclick="logoutUser()" title="Logout">
+                    <i class="fa-solid fa-power-off"></i>
+                </button>
+            </div>
         `;
     } else {
-        // User is NOT LOGGED IN -> Show Login Button
+        // User is NOT LOGGED IN -> Show Dash AND Login Button together
         authContainer.innerHTML = `
-            <button class="login-btn" onclick="loginWithGoogle()">
-                <i class="fa-brands fa-google"></i> Login
-            </button>
+            <div class="auth-group-wrapper">
+                <a href="${dashLink}" class="dashboard-btn" title="My Dashboard">
+                    <i class="fa-solid fa-circle-user"></i> 
+                    <span class="text-desktop">My Dashboard</span>
+                </a>
+                <button class="login-btn" onclick="loginWithGoogle()" title="Login Securely">
+                    <i class="fa-brands fa-google"></i> 
+                    <span>Login</span>
+                </button>
+            </div>
         `;
     }
 }
@@ -363,5 +432,5 @@ function updateAuthUI(user) {
 document.addEventListener('DOMContentLoaded', () => {
     initThemeState();
     initBackToTop();
-    initFirebase(); // Start Firebase magic!
+    initFirebase(); 
 });
