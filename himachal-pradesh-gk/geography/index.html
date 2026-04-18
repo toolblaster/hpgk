@@ -160,10 +160,14 @@
 
         .page-header-top { text-align: center; margin-bottom: 25px; }
 
+        /* FIXED: Hero Description forced to 14px with good line height */
         .hero-desc {
             margin: 0 auto;
             text-align: center;
             max-width: 800px;
+            font-size: 14px !important;
+            line-height: 1.6;
+            color: var(--text-sec);
         }
 
         .section-separator { 
@@ -224,17 +228,20 @@
         .intro-list { margin: 8px 0 0 0; padding-left: 20px; font-size: 0.85rem; color: var(--text-body); line-height: 1.5; }
         .intro-list li { margin-bottom: 6px; } 
         
-        .quick-links { 
-            margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--card-border); 
-            display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; width: 100%; box-sizing: border-box;
+        /* HIGH-CONTRAST INTERLINKING PILL */
+        .hero-interlinks {
+            display: inline-flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px;
+            margin-top: 15px; padding: 10px 20px; background: var(--card-bg); border: 1px solid var(--card-border);
+            border-radius: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
-        .quick-link-item { 
-            font-size: 0.7rem; text-decoration: none; color: var(--primary); 
-            background: var(--primary-light); padding: 3px 10px; border-radius: 15px; 
-            font-weight: 600; transition: background 0.2s; border: 1px solid var(--primary); 
-            display: flex; align-items: center; gap: 3px; white-space: nowrap; flex-shrink: 0;
-        }
-        .quick-link-item:hover { background: var(--primary); color: white; }
+        [data-theme="dark"] .hero-interlinks { background: #1e293b; border-color: #334155; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        .hero-interlinks .interlink-label { font-size: 0.8rem; font-weight: 800; color: var(--text-sec); text-transform: uppercase; letter-spacing: 0.5px; }
+        .hero-interlinks .interlink-label i { color: var(--primary); margin-right: 4px; }
+        .hero-interlinks a { font-size: 0.9rem; font-weight: 700; color: var(--primary-dark); text-decoration: none; transition: all 0.2s ease; }
+        .hero-interlinks a:hover { color: var(--primary); text-decoration: underline; }
+        [data-theme="dark"] .hero-interlinks a { color: #93c5fd; }
+        [data-theme="dark"] .hero-interlinks a:hover { color: #60a5fa; }
+        .hero-interlinks .dot { color: var(--text-sec); font-size: 0.8rem; opacity: 0.6; }
 
         /* QUIZ WIDGET */
         .quiz-card { border-radius: var(--radius-xl); display: flex; flex-direction: column; overflow: hidden; height: auto; min-height: 480px; background: var(--card-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--card-border); box-shadow: var(--glass-shadow); position: sticky; top: 80px; box-sizing: border-box; width: 100%; }
@@ -477,6 +484,9 @@
         .quiz-modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; margin-bottom: 10px; }
 
         @media (max-width: 600px) {
+            /* Pushes H1 down to avoid cluttering with the Breadcrumb */
+            .page-header-top { margin-top: 25px; } 
+
             .hero-title { font-size: 25px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
             .top-meta-bar { flex-wrap: nowrap; justify-content: space-between; }
             .widget-header { padding: 10px; align-items: center; }
@@ -497,17 +507,10 @@
             .progress-text { font-size: 0.7rem; }
             
             /* Quick Links Mobile Fix: Inline & Scrollable */
-            .quick-links {
-                flex-wrap: nowrap !important;
-                overflow-x: auto !important;
-                -webkit-overflow-scrolling: touch;
-                scrollbar-width: none;
-                justify-content: flex-start !important;
-                padding-bottom: 5px;
-                max-width: 100%;
-            }
-            .quick-links::-webkit-scrollbar { display: none; }
-            .quick-link-item { font-size: 0.65rem; padding: 4px 10px; }
+            .hero-interlinks { flex-direction: row; flex-wrap: wrap; gap: 6px; padding: 8px 12px; border-radius: 30px; }
+            .hero-interlinks .dot { display: inline; font-size: 0.7rem; }
+            .hero-interlinks a { font-size: 0.8rem; }
+            .hero-interlinks .interlink-label { font-size: 0.75rem; }
         }
     </style>
 
@@ -548,9 +551,16 @@
     <div class="page-header-top">
         <h1 class="hero-title">Geography of Himachal Pradesh</h1>
         <!-- Descriptive content acting as hero sub-heading -->
-        <p class="hero-desc" style="margin: 10px auto 0; max-width: 800px; color: var(--text-sec); font-size: 0.95rem; line-height: 1.5;">
+        <p class="hero-desc">
             Geography is the foundation of Himachal's identity. Expect 4-5 direct questions on peaks, high-altitude passes, glaciers, and valleys in HPAS and state exams. <br>भूगोल हिमाचल की पहचान का आधार है। HPAS और राज्य स्तरीय परीक्षाओं में चोटियों, दर्रों, ग्लेशियरों और घाटियों से 4-5 सीधे प्रश्न आते हैं।
         </p>
+        <div class="hero-interlinks">
+            <span class="interlink-label"><i class="fa-solid fa-link"></i> Quick Links:</span>
+            <a href="../rivers/">Rivers</a><span class="dot">•</span>
+            <a href="../history/">History</a><span class="dot">•</span>
+            <a href="../district/">Districts</a><span class="dot">•</span>
+            <a href="../economy/">Economy</a>
+        </div>
     </div>
 
     <!-- Side-by-Side Two Column Layout -->
@@ -559,19 +569,6 @@
         <!-- Left Column: Intro Hook -->
         <section class="intro-column">
             <div class="intro-grid">
-                <!-- Cleaned up left card: Now just holds Quick Links -->
-                <div class="intro-card glass-panel" style="text-align: center;">
-                    <h2 style="justify-content: center; margin-bottom: 12px; font-size: 1rem;"><i class="fa-solid fa-link"></i> Quick Study Links</h2>
-                    
-                    <!-- Sibling Directory Interlinking -->
-                    <div class="quick-links" style="justify-content: center; border-top: none; padding-top: 0; margin-top: 0;">
-                        <a href="../rivers/" class="quick-link-item"><i class="fa-solid fa-water"></i> Rivers</a>
-                        <a href="../history/" class="quick-link-item"><i class="fa-solid fa-landmark"></i> History</a>
-                        <a href="../district/" class="quick-link-item"><i class="fa-solid fa-map-location-dot"></i> Districts</a>
-                        <a href="../economy/" class="quick-link-item"><i class="fa-solid fa-bolt"></i> Economy</a>
-                    </div>
-                </div>
-
                 <div class="intro-card glass-panel">
                     <h2><i class="fa-solid fa-list-check"></i> What this Page Covers (इस पृष्ठ में क्या शामिल है)</h2>
                     <ul class="intro-list">
