@@ -215,10 +215,11 @@
             color: var(--primary); 
         }
 
+        /* FIXED: Hero Description forced to 14px with good line height */
         .hero-desc {
-            font-size: 0.95rem;
+            font-size: 14px !important;
             color: var(--text-sec);
-            line-height: 1.5;
+            line-height: 1.6;
             margin: 0 auto; 
             max-width: 650px;
         }
@@ -407,7 +408,11 @@
         .seo-card h3 i { color: var(--primary); }
         .seo-card p { color: var(--text-body); font-size: 0.85rem; margin-bottom: 0; line-height: 1.5; }
         
+        /* FIXED: Mobile specific overrides */
         @media (max-width: 600px) {
+            /* Pushes H1 down to avoid cluttering with the Breadcrumb */
+            .hub-hero { margin-top: 25px; padding-top: 0; }
+
             .hero-title { white-space: normal; padding: 0 10px; line-height: 1.2; }
             
             /* Responsive tweaks for the 2-column mobile grid */
