@@ -3,6 +3,10 @@
 (function() {
     const STORAGE_KEY = 'agri_vantage_history_v1';
     
+    // 🔥 SMART FREE LIMIT CONFIGURATION (Freemium Model)
+    // Defaults to 50, but can be overridden in HTML via: window.PAGE_FREE_LIMIT = 20;
+    const freeLimit = (window.PAGE_FREE_LIMIT !== undefined) ? window.PAGE_FREE_LIMIT : 50;
+    
     let currentList = [];
     let currentIndex = 0;
     let historyState = { lastIndex: 0, answers: {}, bookmarks: [] };
@@ -17,6 +21,11 @@
     let isQuickModeActive = false;
     let quickSessionScore = 0;
     const QUICK_LIMIT = 10;
+
+    // 🔥 FIREBASE VARIABLES
+    let isUserLoggedIn = false;
+    let currentUserUid = null;
+    let db = null;
 
     // DOM Elements
     const cardArea = document.getElementById('cardArea');
@@ -33,6 +42,83 @@
     const shuffleBtn = document.getElementById('shuffleBtn');
     const quickModeBtn = document.getElementById('quickModeBtn');
     const quizWidgetWrapper = document.getElementById('quizWidgetWrapper');
+
+    // ------------------------------------------------------------------
+    // 🔥 FIREBASE INITIALIZATION & SCORE SYNC
+    // ------------------------------------------------------------------
+    async function initQuizFirebase() {
+        try {
+            const { initializeApp, getApps, getApp } = await import("https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js");
+            const { getAuth, onAuthStateChanged } = await import("https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js");
+            const { getFirestore } = await import("https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js");
+
+            const firebaseConfig = {
+                apiKey: "AIzaSyDfz5Y4oVQHl-crnATIv5dMWsw7edSKddQ",
+                authDomain: "hpgk-quiz.firebaseapp.com",
+                projectId: "hpgk-quiz",
+                storageBucket: "hpgk-quiz.firebasestorage.app",
+                messagingSenderId: "273909571419",
+                appId: "1:273909571419:web:20d5e06d8b582f4d2dc47e"
+            };
+
+            // Safely initialize Firebase
+            const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
+            const auth = getAuth(app);
+            db = getFirestore(app);
+
+            onAuthStateChanged(auth, (user) => {
+                isUserLoggedIn = !!user;
+                currentUserUid = user ? user.uid : null;
+                
+                if (isUserLoggedIn) {
+                    loadQuestion(currentIndex); // Refresh UI to remove paywall if active
+                    syncScoreToFirebase(); // Sync any local offline progress immediately
+                }
+            });
+        } catch (e) {
+            console.error("Firebase Quiz Engine Init Failed:", e);
+        }
+    }
+
+    async function syncScoreToFirebase() {
+        if (!isUserLoggedIn || !currentUserUid || !db) return;
+
+        let validDoneCount = 0;
+        let validCorrectCount = 0;
+
+        if (window.quizData) {
+            window.quizData.forEach(q => {
+                if (historyState.answers[q.id] !== undefined && historyState.answers[q.id] !== null) {
+                    validDoneCount++;
+                    if (historyState.answers[q.id] === q.answer) {
+                        validCorrectCount++;
+                    }
+                }
+            });
+        }
+
+        if (validDoneCount === 0) return;
+
+        try {
+            const { doc, setDoc } = await import("https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js");
+
+            // Explicitly set category name for Agriculture Dashboard
+            const rawCategory = 'Agriculture Quiz';
+            const docId = 'agriculture-quiz';
+
+            const docRef = doc(db, 'artifacts', 'hpgk-quiz', 'users', currentUserUid, 'scores', docId);
+
+            await setDoc(docRef, {
+                category: rawCategory,
+                score: validCorrectCount,
+                total: validDoneCount,
+                timestamp: Date.now()
+            }, { merge: true });
+
+        } catch (e) {
+            console.error("Error syncing score:", e);
+        }
+    }
 
     // Cross-Communication Theme Logic with layout.js
     window.handleLocalThemeToggle = function() {
@@ -94,6 +180,7 @@
                     
                     applyFilters(); 
                     updateStats();
+                    syncScoreToFirebase(); // 🔥 Sync restored progress to DB
                     alert('Progress restored successfully!');
                 } else {
                     alert('Invalid backup file. Please ensure it is a valid AgriQuiz JSON file.');
@@ -159,7 +246,27 @@
 
     // Load specific question
     function loadQuestion(index) {
+        if (!quizContent || !cardArea) return;
         quizContent.scrollTop = 0;
+
+        // 🔥 FREEMIUM PAYWALL LOGIC
+        if (index >= freeLimit && !isUserLoggedIn) {
+            cardArea.innerHTML = `
+                <div class="empty-state glass-panel" style="border: 2px solid var(--accent); padding: 35px 20px; box-sizing: border-box; width: 100%;">
+                    <i class="fa-solid fa-lock" style="font-size: 3.5rem; color: var(--accent); margin-bottom: 20px;"></i>
+                    <h2 style="font-size: 1.5rem; margin-bottom: 12px; color: var(--text-main); font-weight: 800;">Premium Content Locked</h2>
+                    <p style="color: var(--text-body); margin-bottom: 25px; font-size: 0.95rem; line-height: 1.6;">
+                        Awesome progress! 🎉 You've reached the free limit of <strong>${freeLimit} questions</strong>.<br><br>
+                        Login for <strong>FREE</strong> to unlock hundreds of premium Agriculture MCQs and track your accuracy on your personalized Dashboard.
+                    </p>
+                    <button class="login-btn" style="margin: 0 auto; padding: 12px 30px; font-size: 1.05rem;" onclick="if(window.loginWithGoogle) window.loginWithGoogle()">
+                        <i class="fa-brands fa-google"></i> Login to Unlock
+                    </button>
+                </div>
+            `;
+            updateControls(true); // Tell controls to lock the next button
+            return;
+        }
 
         // Quick Mode Completion State
         if (isQuickModeActive && index >= currentList.length) {
@@ -265,7 +372,6 @@
                 </div>`;
             }
 
-            // Wrapping the feedback message and matching the dynamic font-size
             feedbackHtml = `
             <div class="feedback-row">
                 <div class="feedback-msg ${bgClass}" style="font-size: ${fontSize};">${text}</div>
@@ -452,7 +558,7 @@
         if (!q) return;
 
         const link = `${window.location.origin}${window.location.pathname}?id=${qId}`;
-        const msg = `Can you solve this Agriculture question? ðŸ¤”\n\nQ: ${q.questionEn}\n\nðŸ‘‰ Attempt here: ${link}`;
+        const msg = `Can you solve this Agriculture question? 🤔\n\nQ: ${q.questionEn}\n\n👉 Attempt here: ${link}`;
         
         if (navigator.share) {
             try { 
@@ -485,6 +591,7 @@
         saveToStorage(); 
         updateStats(); 
         loadQuestion(currentIndex);
+        syncScoreToFirebase(); // 🔥 Trigger save to Database instantly
     };
 
     // Event Listeners for Navigation
@@ -554,8 +661,20 @@
     });
 
     // Update bottom controls
-    function updateControls() {
+    function updateControls(isLocked = false) {
         if (!prevBtn || !nextBtn || !progressText || !progressFill) return;
+
+        // 🔥 Handle Paywall Lock state
+        if (isLocked) {
+            prevBtn.disabled = false; // Allow going back to review previous questions
+            nextBtn.disabled = true;  // Block going forward
+            progressText.innerText = "Locked";
+            progressFill.style.width = "100%";
+            progressFill.style.backgroundColor = "var(--accent)"; // Turn bar orange to show lock
+            return;
+        } else {
+            progressFill.style.backgroundColor = "var(--primary)";
+        }
 
         const isDone = isQuickModeActive && currentIndex >= currentList.length;
         
@@ -650,6 +769,7 @@
         }
     }
     
-    // Start the app
-    initQuizNow();
+    // Start Firebase magic and the app
+    initQuizFirebase();
+    setTimeout(() => { initQuizNow(); }, 100);
 })();
