@@ -515,18 +515,20 @@
     });
 
     function updateControls(isLocked = false) {
-        if (!prevBtn || !nextBtn || !progressText || !progressFill) return;
+        if (!prevBtn || !nextBtn || !progressText) return; // Made bulletproof (progressFill is now optional)
         
         // Handle Paywall Lock state
         if (isLocked) {
             prevBtn.disabled = false; // Allow going back to previous questions
             nextBtn.disabled = true;  // Block going forward
             progressText.innerText = "Locked";
-            progressFill.style.width = "100%";
-            progressFill.style.backgroundColor = "var(--accent)"; // Turn bar orange to show lock
+            if (progressFill) {
+                progressFill.style.width = "100%";
+                progressFill.style.backgroundColor = "var(--accent)"; // Turn bar orange to show lock
+            }
             return;
         } else {
-            progressFill.style.backgroundColor = "var(--primary)";
+            if (progressFill) progressFill.style.backgroundColor = "var(--primary)";
         }
 
         const isDone = isQuickModeActive && currentIndex >= currentList.length;
@@ -535,7 +537,10 @@
         const isAnswered = currentQ && historyState.answers[currentQ.id] !== undefined;
         nextBtn.disabled = (currentIndex === currentList.length - 1 && !isQuickModeActive) || isDone || !isAnswered;
         progressText.innerText = isDone ? "Done" : `${currentIndex + 1} / ${currentList.length}`;
-        progressFill.style.width = isDone ? "100%" : `${((currentIndex + 1) / currentList.length) * 100}%`;
+        
+        if (progressFill) {
+            progressFill.style.width = isDone ? "100%" : `${((currentIndex + 1) / currentList.length) * 100}%`;
+        }
     }
 
     if (searchInput) {
