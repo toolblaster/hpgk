@@ -60,7 +60,7 @@ function initLoginModal() {
             }
             .login-modal-overlay.show { display: flex; opacity: 1; }
             
-            /* FIXED: Solid White Background, Compact Mobile Sizing */
+            /* Solid White Background, Compact Mobile Sizing */
             .login-modal-content {
                 background: #ffffff !important; 
                 width: 95%; max-width: 330px; margin: auto;
@@ -71,7 +71,7 @@ function initLoginModal() {
                 transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
                 position: relative; box-sizing: border-box; text-align: center;
             }
-            /* Dark Mode Support remains pristine */
+            /* Dark Mode Support */
             [data-theme="dark"] .login-modal-content { 
                 background: #1e293b !important; border-color: #334155 !important; box-shadow: 0 20px 40px rgba(0,0,0,0.5) !important; 
             }
@@ -118,7 +118,8 @@ function initLoginModal() {
                 display: flex; align-items: center; justify-content: center; gap: 8px;
                 width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important; transition: all 0.2s ease;
             }
-            .modal-google-btn img { width: 18px; height: 18px; }
+            /* G Icon size fixed */
+            .modal-google-btn img { width: 1.15em; height: 1.15em; display: inline-block; }
             .modal-google-btn:hover { 
                 transform: translateY(-1px); box-shadow: 0 4px 10px rgba(37, 99, 235, 0.1) !important; border-color: #94a3b8 !important; 
             }
@@ -138,7 +139,7 @@ function initLoginModal() {
             [data-theme="dark"] .login-terms { color: #94a3b8 !important; }
             [data-theme="dark"] .login-terms a { color: #60a5fa !important; }
 
-            /* Failsafe for extremely small phones (like iPhone SE) */
+            /* Failsafe for extremely small phones */
             @media (max-width: 360px) {
                 .login-modal-content { padding: 20px 15px; }
                 .login-terms { font-size: 0.55rem; white-space: normal; line-height: 1.2; }
@@ -166,8 +167,6 @@ window.closeLoginModal = function() {
 };
 
 window.startGoogleLogin = function() {
-    // Only call login function. Do NOT close the modal immediately.
-    // The modal closes itself ONLY if the login is successful.
     if(window.loginWithGoogle) window.loginWithGoogle();
 };
 
@@ -200,34 +199,38 @@ function renderHeader(options = {}) {
     headerEl.style.zIndex = '1000';
     document.body.style.paddingTop = '0px';
 
-    const homeUrl = rootPath === '.' ? './' : '../';
-
+    // 🔥 MODIFIED: Left Group now contains Brand/Logo AND the Home & Theme Nav controls
+    // Home button always points to SiteConfig.root to redirect to the main homepage
     headerEl.innerHTML = `
         <div class="header-content" style="position: relative; display: flex; align-items: center; justify-content: space-between;">
-            <a href="${cleanLink}" class="brand">
-                <i class="${iconClass} brand-icon" ${isQuizPage ? 'style="font-size:1.2rem;"' : ''}></i>
-                <div class="brand-name">
-                    ${title}
-                    <span class="brand-sub">${subtitle}</span>
-                </div>
-            </a>
             
-            <div class="header-actions" style="display: flex; align-items: center; gap: 12px;">
-                <!-- Auth Container (Login / Profile UI will load here) -->
-                <div id="auth-ui-container" style="display: flex; align-items: center;">
-                    <div style="font-size: 0.8rem; color: var(--text-sec);"><i class="fa-solid fa-spinner fa-spin"></i></div>
-                </div>
-
-                <!-- Theme Button -->
-                <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" title="Toggle Theme">
-                    <i class="fa-solid fa-moon"></i>
-                </button>
-
-                <!-- Home Button -->
-                <a href="${homeUrl}" class="home-btn" title="Go Home">
-                    <i class="fa-solid fa-house"></i>
+            <!-- Left Group: Brand + Nav Controls -->
+            <div class="header-left-group" style="display: flex; align-items: center; gap: 15px;">
+                <a href="${cleanLink}" class="brand">
+                    <i class="${iconClass} brand-icon" ${isQuizPage ? 'style="font-size:1.2rem;"' : ''}></i>
+                    <div class="brand-name">
+                        ${title}
+                        <span class="brand-sub">${subtitle}</span>
+                    </div>
                 </a>
+                
+                <div class="header-nav-controls">
+                    <a href="${SiteConfig.root}/" class="home-btn" title="Go Home">
+                        <i class="fa-solid fa-house"></i>
+                    </a>
+                    <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" title="Toggle Theme">
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+                </div>
             </div>
+            
+            <!-- Right Group: Auth / Dashboard Container Only -->
+            <div class="header-actions" style="display: flex; align-items: center; gap: 12px;">
+                <div id="auth-ui-container" style="display: flex; align-items: center;">
+                    <!-- Loading initial state is empty to prevent flicker. updateAuthUI populates this instantly -->
+                </div>
+            </div>
+            
         </div>
         <style>
             /* Grouped Auth UI Styles (Premium EdTech Look) */
@@ -245,6 +248,18 @@ function renderHeader(options = {}) {
             [data-theme="dark"] .auth-group-wrapper {
                 border-color: #334155;
                 background: rgba(0, 0, 0, 0.2);
+            }
+
+            /* Nav Controls (Home & Theme moved to left) */
+            .header-nav-controls {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                border-left: 1px solid var(--card-border, #cbd5e1);
+                padding-left: 15px;
+            }
+            [data-theme="dark"] .header-nav-controls {
+                border-left-color: #334155;
             }
 
             /* Punchy Red Google Login Button */
@@ -344,9 +359,13 @@ function renderHeader(options = {}) {
                 .brand-icon { font-size: 1.1rem !important; margin-right: 6px !important; }
                 .header-content { padding: 10px 12px !important; }
                 
+                /* Compact Left Group for Mobile */
+                .header-left-group { gap: 8px !important; }
+                .header-nav-controls { border-left: none; padding-left: 0; gap: 6px; }
+                .home-btn, .theme-btn { padding: 6px 8px !important; font-size: 0.8rem !important; }
+                
                 /* Adjusted padding and font sizes for mobile with text included */
                 .login-btn { padding: 6px 12px; font-size: 0.8rem; }
-                /* Increased icon size and matching padding so it aligns perfectly with the login button */
                 .dashboard-btn { padding: 6px 12px; font-size: 1.1rem; } 
                 
                 .text-desktop { display: none; } /* Hide full text on mobile */
@@ -485,6 +504,9 @@ let auth, provider;
 
 async function initFirebase() {
     try {
+        // First strictly set UI to logged out state (Removes initial loader completely)
+        updateAuthUI(null);
+
         // Dynamically import Firebase
         const { initializeApp, getApps, getApp } = await import("https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js");
         const { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } = await import("https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js");
@@ -508,41 +530,71 @@ async function initFirebase() {
             updateAuthUI(user);
         });
 
-        // Global Login Function
+        // Global Login Function with Smart Focus Listener for Instant UI Reset
         window.loginWithGoogle = async () => {
-            try {
-                // IMPORTANT: Show Spinner ONLY on the Modal's Google Button, NOT on the header
-                const modalBtn = document.getElementById('modalGoogleBtn');
-                const originalBtnHTML = modalBtn ? modalBtn.innerHTML : '';
+            const modalBtn = document.getElementById('modalGoogleBtn');
+            
+            // Function to instantly restore button state
+            const resetBtnState = () => {
                 if (modalBtn) {
-                    modalBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i><span>Connecting...</span>';
+                    modalBtn.innerHTML = '<img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google Logo"><span>Continue with Google</span>';
+                    modalBtn.style.opacity = '1';
+                    modalBtn.style.pointerEvents = 'auto';
+                }
+            };
+
+            // Smart Listener: If user closes the popup manually, window regains focus.
+            // We check auth state after a brief delay to reset the button instantly.
+            const handleFocusReturn = () => {
+                setTimeout(() => {
+                    if (!auth.currentUser) {
+                        resetBtnState();
+                    }
+                    window.removeEventListener('focus', handleFocusReturn);
+                    document.removeEventListener('visibilitychange', handleVisibilityChange);
+                }, 800); 
+            };
+
+            // Failsafe for mobile browsers (Safari/Chrome Mobile) using visibility API
+            const handleVisibilityChange = () => {
+                if (document.visibilityState === 'visible') {
+                    handleFocusReturn();
+                }
+            };
+
+            window.addEventListener('focus', handleFocusReturn);
+            document.addEventListener('visibilitychange', handleVisibilityChange);
+
+            try {
+                // Show Spinner ONLY on the Modal's Google Button
+                if (modalBtn) {
+                    modalBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin" style="font-size: 1.15em;"></i><span>Connecting...</span>';
                     modalBtn.style.opacity = '0.8';
                     modalBtn.style.pointerEvents = 'none';
                 }
                 
                 await signInWithPopup(auth, provider);
                 
-                // If login succeeds, the modal closes
+                // If login succeeds, cleanup and close modal
+                window.removeEventListener('focus', handleFocusReturn);
+                document.removeEventListener('visibilitychange', handleVisibilityChange);
                 closeLoginModal();
                 
             } catch (error) {
-                console.error("Login Error Full Details:", error);
+                console.error("Login Error Details:", error);
                 
-                // If user cancels or it fails, reset the modal button back to normal
-                const modalBtn = document.getElementById('modalGoogleBtn');
-                if (modalBtn) {
-                    modalBtn.innerHTML = '<img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google Logo"><span>Continue with Google</span>';
-                    modalBtn.style.opacity = '1';
-                    modalBtn.style.pointerEvents = 'auto';
-                }
+                // 🔥 CRITICAL FIX: Instantly restore the UI
+                updateAuthUI(null); 
+                resetBtnState();
+                window.removeEventListener('focus', handleFocusReturn);
+                document.removeEventListener('visibilitychange', handleVisibilityChange);
                 
                 // SILENT FAIL FOR POPUP CLOSED BY USER
                 if (error.code === 'auth/popup-closed-by-user' || error.code === 'auth/cancelled-popup-request') {
-                    // Just stay quietly on the page, the user can close the modal manually if they want
                     return; 
                 }
 
-                // Show error
+                // Show error for actual technical issues
                 alert("Login failed. Please check your internet connection and try again.");
             }
         };
@@ -558,9 +610,8 @@ async function initFirebase() {
 
     } catch (error) {
         console.error("Firebase Initialization Failed in Layout:", error);
-        // Clear spinner if failed completely
-        const authContainer = document.getElementById('auth-ui-container');
-        if(authContainer) authContainer.innerHTML = '';
+        // Instantly fallback to Logged-Out UI without any spinner
+        updateAuthUI(null);
     }
 }
 
@@ -573,7 +624,7 @@ function updateAuthUI(user) {
 
     if (user) {
         // User is LOGGED IN -> Show Dash, DP, Logout in a nice pill-shaped border
-        const userPhoto = user.photoURL || 'https://ui-avatars.com/api/?name=Student&background=2563eb&color=fff';
+        const userPhoto = user.photoURL || 'https://ui-avatars.com/api/?name=' + encodeURIComponent(user.displayName || 'S') + '&background=2563eb&color=fff';
         
         authContainer.innerHTML = `
             <div class="auth-group-wrapper">
@@ -589,7 +640,7 @@ function updateAuthUI(user) {
         `;
     } else {
         // User is NOT LOGGED IN -> Show Dash AND Login Button together
-        // Modified: Clicking Login opens the SaaS modal instead of direct Google Auth
+        // Clicking Login opens the SaaS modal
         authContainer.innerHTML = `
             <div class="auth-group-wrapper">
                 <a href="${dashLink}" class="dashboard-btn" title="My Dashboard">
