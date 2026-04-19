@@ -249,18 +249,22 @@
         if (!quizContent || !cardArea) return;
         quizContent.scrollTop = 0;
 
-        // 🔥 FREEMIUM PAYWALL LOGIC
+        // 🔥 FREEMIUM PAYWALL LOGIC (Highly Optimized, Compact & Corrected)
         if (index >= freeLimit && !isUserLoggedIn) {
             cardArea.innerHTML = `
-                <div class="empty-state glass-panel" style="border: 2px solid var(--accent); padding: 35px 20px; box-sizing: border-box; width: 100%;">
-                    <i class="fa-solid fa-lock" style="font-size: 3.5rem; color: var(--accent); margin-bottom: 20px;"></i>
-                    <h2 style="font-size: 1.5rem; margin-bottom: 12px; color: var(--text-main); font-weight: 800;">Premium Content Locked</h2>
-                    <p style="color: var(--text-body); margin-bottom: 25px; font-size: 0.95rem; line-height: 1.6;">
+                <div class="empty-state glass-panel" style="border: 1px solid var(--card-border); border-top: 4px solid var(--accent); padding: 30px 20px; border-radius: var(--radius-lg); box-sizing: border-box; width: 100%; text-align: center; box-shadow: var(--glass-shadow);">
+                    <div style="width: 50px; height: 50px; margin: 0 auto 12px auto; background: rgba(234, 88, 12, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <i class="fa-solid fa-lock" style="font-size: 1.4rem; color: var(--accent);"></i>
+                    </div>
+                    <h2 style="font-size: 1.25rem; margin-bottom: 8px; color: var(--text-main); font-weight: 800; letter-spacing: -0.3px;">Premium Content Locked</h2>
+                    <p style="color: var(--text-sec); margin-bottom: 22px; font-size: 0.85rem; line-height: 1.5; max-width: 320px; margin-inline: auto;">
                         Awesome progress! 🎉 You've reached the free limit of <strong>${freeLimit} questions</strong>.<br><br>
-                        Login for <strong>FREE</strong> to unlock thousands of premium mock tests and track your accuracy on your personalized Dashboard.
+                        Login for <strong>FREE</strong> to unlock all remaining questions and track your accuracy on your personalized Dashboard.
                     </p>
-                    <button class="login-btn" style="margin: 0 auto; padding: 12px 30px; font-size: 1.05rem;" onclick="if(window.loginWithGoogle) window.loginWithGoogle()">
-                        <i class="fa-brands fa-google"></i> Login to Unlock
+                    <!-- Button calls the new Premium SaaS Modal from layout.js - ALIGNMENT FIXED -->
+                    <button class="login-btn" style="margin: 0 auto; padding: 10px 22px; font-size: 0.85rem; border-radius: 25px; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2); display: inline-flex; align-items: center; justify-content: center; gap: 8px;" onclick="window.openLoginModal ? window.openLoginModal() : (window.loginWithGoogle && window.loginWithGoogle())">
+                        <i class="fa-brands fa-google" style="display: inline-block !important; font-size: 1.15em; line-height: 1; position: relative; top: 1px; width: auto !important; height: auto !important;"></i>
+                        <span style="display: inline-block !important; line-height: 1; position: relative; top: 0px; font-weight: 700;">Login to Unlock</span>
                     </button>
                 </div>
             `;
