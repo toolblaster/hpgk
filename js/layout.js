@@ -10,6 +10,168 @@ const SiteConfig = {
 // Global variable to store rootPath for auth UI
 let currentRootPath = '.';
 
+// =========================================================================
+// 🔥 PREMIUM SAAS LOGIN MODAL (Injects the popup into any page)
+// =========================================================================
+function initLoginModal() {
+    if (document.getElementById('saasLoginModal')) return;
+
+    // Legal links are now STRICTLY absolute from the root domain
+    const termsUrl = `${SiteConfig.root}/legal/terms.html`;
+    const privacyUrl = `${SiteConfig.root}/legal/privacy.html`;
+
+    const modalHTML = `
+        <div id="saasLoginModal" class="login-modal-overlay" onclick="if(event.target === this) closeLoginModal()">
+            <div class="login-modal-content">
+                <button class="close-modal-btn" onclick="closeLoginModal()" aria-label="Close">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                
+                <div class="login-modal-header">
+                    <div class="modal-logo">
+                        <i class="fa-solid fa-mountain-sun"></i>
+                    </div>
+                    <h2>Unlock Premium Access</h2>
+                    <p class="login-modal-desc">
+                        Log in securely to save your progress across <strong>3000+ MCQs</strong>, unlock premium mock tests, and access your personalized smart dashboard.
+                    </p>
+                </div>
+                
+                <button class="modal-google-btn" id="modalGoogleBtn" onclick="startGoogleLogin()">
+                    <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google Logo">
+                    <span>Continue with Google</span>
+                </button>
+                
+                <div class="login-terms">
+                    By continuing, you agree to our <a href="${termsUrl}">Terms</a> & <a href="${privacyUrl}">Privacy Policy</a>.
+                </div>
+            </div>
+        </div>
+    `;
+
+    // Extremely Compact, Vertical, High-Contrast, and Mobile-Optimized Design
+    const modalCSS = `
+        <style>
+            .login-modal-overlay {
+                position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+                background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+                z-index: 1000000; display: none; align-items: center; justify-content: center; padding: 15px;
+                opacity: 0; transition: opacity 0.3s ease;
+            }
+            .login-modal-overlay.show { display: flex; opacity: 1; }
+            
+            /* FIXED: Solid White Background, Compact Mobile Sizing */
+            .login-modal-content {
+                background: #ffffff !important; 
+                width: 95%; max-width: 330px; margin: auto;
+                border: 1px solid #e2e8f0 !important;
+                border-radius: 16px; padding: 25px 20px;
+                box-shadow: 0 20px 40px rgba(0,0,0,0.15) !important; 
+                transform: translateY(20px) scale(0.95); 
+                transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                position: relative; box-sizing: border-box; text-align: center;
+            }
+            /* Dark Mode Support remains pristine */
+            [data-theme="dark"] .login-modal-content { 
+                background: #1e293b !important; border-color: #334155 !important; box-shadow: 0 20px 40px rgba(0,0,0,0.5) !important; 
+            }
+            
+            .login-modal-overlay.show .login-modal-content { transform: translateY(0) scale(1); }
+            
+            .close-modal-btn {
+                position: absolute; top: 10px; right: 10px;
+                background: transparent; border: none; font-size: 1.1rem; cursor: pointer; 
+                color: #64748b !important; transition: color 0.2s; width: 28px; height: 28px;
+                display: flex; align-items: center; justify-content: center; border-radius: 50%;
+            }
+            .close-modal-btn:hover { color: #ef4444 !important; background: rgba(239, 68, 68, 0.1); }
+            
+            .login-modal-header { margin-bottom: 20px; }
+            .modal-logo {
+                width: 45px; height: 45px; margin: 0 auto 12px auto;
+                background: rgba(37, 99, 235, 0.1);
+                color: #2563eb; border-radius: 50%;
+                display: flex; align-items: center; justify-content: center; font-size: 1.3rem;
+            }
+            [data-theme="dark"] .modal-logo { color: #60a5fa; background: rgba(96, 165, 250, 0.15); }
+            
+            /* Reduced H2 Font Size */
+            .login-modal-header h2 { 
+                font-size: 1.1rem; font-weight: 800; margin: 0 0 8px 0; 
+                color: #0f172a !important; letter-spacing: -0.3px; 
+            }
+            
+            /* Descriptive 2-line text */
+            .login-modal-desc { 
+                font-size: 0.85rem; color: #475569 !important; margin: 0; line-height: 1.5; 
+            }
+            .login-modal-desc strong { color: #0f172a !important; font-weight: 700; }
+            
+            [data-theme="dark"] .login-modal-header h2 { color: #f8fafc !important; }
+            [data-theme="dark"] .login-modal-desc { color: #cbd5e1 !important; }
+            [data-theme="dark"] .login-modal-desc strong { color: #f8fafc !important; }
+            
+            .modal-google-btn {
+                background: #ffffff !important; color: #334155 !important; border: 1px solid #cbd5e1 !important; 
+                padding: 10px 15px; border-radius: 30px; font-family: 'Inter', sans-serif;
+                font-size: 0.9rem; font-weight: 700; cursor: pointer; 
+                display: flex; align-items: center; justify-content: center; gap: 8px;
+                width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important; transition: all 0.2s ease;
+            }
+            .modal-google-btn img { width: 18px; height: 18px; }
+            .modal-google-btn:hover { 
+                transform: translateY(-1px); box-shadow: 0 4px 10px rgba(37, 99, 235, 0.1) !important; border-color: #94a3b8 !important; 
+            }
+            
+            [data-theme="dark"] .modal-google-btn { 
+                background: #1e293b !important; color: #f8fafc !important; border-color: #475569 !important; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3) !important; 
+            }
+            [data-theme="dark"] .modal-google-btn:hover { border-color: #64748b !important; background: #334155 !important; }
+            
+            /* Single Line Terms & Privacy */
+            .login-terms { 
+                margin-top: 15px; font-size: 0.65rem; color: #64748b !important; 
+                white-space: nowrap; /* Forces content to stay on one line */
+            }
+            .login-terms a { color: #2563eb !important; text-decoration: none; font-weight: 600; }
+            .login-terms a:hover { text-decoration: underline; }
+            [data-theme="dark"] .login-terms { color: #94a3b8 !important; }
+            [data-theme="dark"] .login-terms a { color: #60a5fa !important; }
+
+            /* Failsafe for extremely small phones (like iPhone SE) */
+            @media (max-width: 360px) {
+                .login-modal-content { padding: 20px 15px; }
+                .login-terms { font-size: 0.55rem; white-space: normal; line-height: 1.2; }
+                .login-modal-desc { font-size: 0.75rem; }
+            }
+        </style>
+    `;
+    document.body.insertAdjacentHTML('beforeend', modalHTML + modalCSS);
+}
+
+window.openLoginModal = function() {
+    const modal = document.getElementById('saasLoginModal');
+    if (modal) {
+        modal.style.display = 'flex';
+        setTimeout(() => modal.classList.add('show'), 10);
+    }
+};
+
+window.closeLoginModal = function() {
+    const modal = document.getElementById('saasLoginModal');
+    if (modal) {
+        modal.classList.remove('show');
+        setTimeout(() => modal.style.display = 'none', 300);
+    }
+};
+
+window.startGoogleLogin = function() {
+    // Only call login function. Do NOT close the modal immediately.
+    // The modal closes itself ONLY if the login is successful.
+    if(window.loginWithGoogle) window.loginWithGoogle();
+};
+
+
 /**
  * Renders the Global Header
  * @param {Object} options Configuration for the header
@@ -245,9 +407,9 @@ function renderFooter(rootPath = '.') {
                 <div class="footer-bottom-row">
                     <span>&copy; ${currentYear} hpgk.toolblaster.com</span>
                     <div class="footer-legal-links">
-                        <a href="${rootPath}/legal/about.html" class="footer-legal-link">About</a>
-                        <a href="${rootPath}/legal/privacy.html" class="footer-legal-link">Privacy</a>
-                        <a href="${rootPath}/legal/terms.html" class="footer-legal-link">Terms</a>
+                        <a href="${SiteConfig.root}/legal/about.html" class="footer-legal-link">About</a>
+                        <a href="${SiteConfig.root}/legal/privacy.html" class="footer-legal-link">Privacy</a>
+                        <a href="${SiteConfig.root}/legal/terms.html" class="footer-legal-link">Terms</a>
                     </div>
                 </div>
             </div>
@@ -316,7 +478,7 @@ function initBackToTop() {
 }
 
 // =========================================================================
-// ðŸ”¥ FIREBASE GOOGLE AUTHENTICATION INTEGRATION (Dynamic Import Method)
+// 🔥 FIREBASE GOOGLE AUTHENTICATION INTEGRATION (Dynamic Import Method)
 // =========================================================================
 
 let auth, provider;
@@ -349,26 +511,39 @@ async function initFirebase() {
         // Global Login Function
         window.loginWithGoogle = async () => {
             try {
-                const authContainer = document.getElementById('auth-ui-container');
-                if(authContainer) authContainer.innerHTML = '<div style="font-size: 0.8rem; color: var(--primary);"><i class="fa-solid fa-spinner fa-spin"></i></div>';
+                // IMPORTANT: Show Spinner ONLY on the Modal's Google Button, NOT on the header
+                const modalBtn = document.getElementById('modalGoogleBtn');
+                const originalBtnHTML = modalBtn ? modalBtn.innerHTML : '';
+                if (modalBtn) {
+                    modalBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i><span>Connecting...</span>';
+                    modalBtn.style.opacity = '0.8';
+                    modalBtn.style.pointerEvents = 'none';
+                }
                 
                 await signInWithPopup(auth, provider);
+                
+                // If login succeeds, the modal closes
+                closeLoginModal();
                 
             } catch (error) {
                 console.error("Login Error Full Details:", error);
                 
-                // Reset UI back to login button
-                updateAuthUI(null); 
+                // If user cancels or it fails, reset the modal button back to normal
+                const modalBtn = document.getElementById('modalGoogleBtn');
+                if (modalBtn) {
+                    modalBtn.innerHTML = '<img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google Logo"><span>Continue with Google</span>';
+                    modalBtn.style.opacity = '1';
+                    modalBtn.style.pointerEvents = 'auto';
+                }
                 
                 // SILENT FAIL FOR POPUP CLOSED BY USER
-                // Agar user khud popup close karta hai, toh kuch alert mat dikhao.
                 if (error.code === 'auth/popup-closed-by-user' || error.code === 'auth/cancelled-popup-request') {
-                    // Do nothing, just let them stay on the page peacefully
+                    // Just stay quietly on the page, the user can close the modal manually if they want
                     return; 
                 }
 
-                // Agar koi real technical error aaya ho, toh user-friendly message dikhao
-                alert("Login nahi ho paaya. Kripya apna internet connection check karein ya thodi der baad try karein.");
+                // Show error
+                alert("Login failed. Please check your internet connection and try again.");
             }
         };
 
@@ -383,6 +558,7 @@ async function initFirebase() {
 
     } catch (error) {
         console.error("Firebase Initialization Failed in Layout:", error);
+        // Clear spinner if failed completely
         const authContainer = document.getElementById('auth-ui-container');
         if(authContainer) authContainer.innerHTML = '';
     }
@@ -413,13 +589,14 @@ function updateAuthUI(user) {
         `;
     } else {
         // User is NOT LOGGED IN -> Show Dash AND Login Button together
+        // Modified: Clicking Login opens the SaaS modal instead of direct Google Auth
         authContainer.innerHTML = `
             <div class="auth-group-wrapper">
                 <a href="${dashLink}" class="dashboard-btn" title="My Dashboard">
                     <i class="fa-solid fa-circle-user"></i> 
                     <span class="text-desktop">My Dashboard</span>
                 </a>
-                <button class="login-btn" onclick="loginWithGoogle()" title="Login Securely">
+                <button class="login-btn" onclick="openLoginModal()" title="Login Securely">
                     <i class="fa-brands fa-google"></i> 
                     <span>Login</span>
                 </button>
@@ -432,5 +609,6 @@ function updateAuthUI(user) {
 document.addEventListener('DOMContentLoaded', () => {
     initThemeState();
     initBackToTop();
+    initLoginModal(); // Inject Modal into DOM
     initFirebase(); 
 });
