@@ -1,6 +1,6 @@
 /**
  * Layout Manager for HPGK
- * Handles global Header, Footer, Theme logic, Back to Top, and Google Auth.
+ * Handles global Header, Footer, Theme logic, Back to Top, Google Auth, and Mobile Menu.
  */
 
 const SiteConfig = {
@@ -11,12 +11,194 @@ const SiteConfig = {
 let currentRootPath = '.';
 
 // =========================================================================
-// 🔥 PREMIUM SAAS LOGIN MODAL (Injects the popup into any page)
+// ðŸ”¥ PREMIUM MOBILE HAMBURGER MENU (Slide-out Navigation)
+// =========================================================================
+function initMobileMenu() {
+    if (document.getElementById('mobileSideMenu')) return;
+
+    const menuHTML = `
+        <div id="mobileMenuOverlay" class="mobile-menu-overlay" onclick="toggleMobileMenu()"></div>
+        <nav id="mobileSideMenu" class="mobile-side-menu">
+            <div class="side-menu-header">
+                <a href="${SiteConfig.root}/" class="brand" style="text-decoration:none; display:flex; align-items:center;">
+                    <i class="fa-solid fa-mountain-sun brand-icon" style="color:var(--primary); font-size:1.4rem; margin-right:10px;"></i>
+                    <div class="brand-name" style="color:var(--text-main); font-weight:800; font-size:1.15rem; line-height:1.1; letter-spacing:-0.5px;">
+                        HPGK Quiz<br><span style="font-size:0.65rem; color:var(--text-sec); font-weight:600; letter-spacing:0;">by toolblaster.com</span>
+                    </div>
+                </a>
+                <div style="display:flex; align-items:center; gap:16px;">
+                    <!-- Theme Toggle shifted left with increased gap -->
+                    <button class="theme-icon-btn" id="mobileThemeBtn" onclick="toggleTheme()" title="Toggle Theme" aria-label="Toggle Theme">
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+                    <button class="close-menu-btn" onclick="toggleMobileMenu()" aria-label="Close Menu">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="side-menu-content">
+                <div class="menu-section">
+                    <div class="menu-label">Main Menu</div>
+                    <a href="${SiteConfig.root}/" class="menu-link">
+                        <div class="menu-icon icon-primary"><i class="fa-solid fa-house"></i></div>
+                        <span>Home</span>
+                    </a>
+                    <a href="${SiteConfig.root}/himachal-pradesh-gk/" class="menu-link">
+                        <div class="menu-icon"><i class="fa-solid fa-layer-group"></i></div>
+                        <span>HP GK Series</span>
+                    </a>
+                    <a href="${SiteConfig.root}/study-notes/" class="menu-link">
+                        <div class="menu-icon"><i class="fa-solid fa-book-open"></i></div>
+                        <span>Study Notes</span>
+                    </a>
+                    <a href="${SiteConfig.root}/agriculture-quiz/" class="menu-link">
+                        <div class="menu-icon icon-green"><i class="fa-solid fa-seedling"></i></div>
+                        <span>Agriculture Quiz</span>
+                    </a>
+                </div>
+
+                <div class="menu-section">
+                    <div class="menu-label">My Account</div>
+                    <a href="${SiteConfig.root}/user/dashboard.html" class="menu-link">
+                        <div class="menu-icon icon-purple"><i class="fa-solid fa-circle-user"></i></div>
+                        <span>My Dashboard</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="side-menu-footer">
+                &copy; ${new Date().getFullYear()} ToolBlaster EdTech.
+            </div>
+        </nav>
+    `;
+
+    const menuCSS = `
+        <style>
+            /* Overlay Background */
+            .mobile-menu-overlay {
+                position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+                background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+                z-index: 1000001; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+            }
+            .mobile-menu-overlay.show { opacity: 1; pointer-events: auto; }
+
+            /* Side Menu Panel */
+            .mobile-side-menu {
+                position: fixed; top: 0; right: 0; bottom: 0;
+                width: 320px; max-width: 85vw;
+                background: var(--card-bg, #ffffff);
+                backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+                box-shadow: -10px 0 40px rgba(0,0,0,0.15);
+                z-index: 1000002;
+                transform: translateX(100%);
+                transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+                display: flex; flex-direction: column;
+                border-left: 1px solid var(--card-border);
+            }
+            [data-theme="dark"] .mobile-side-menu { background: rgba(30, 41, 59, 0.95); box-shadow: -10px 0 40px rgba(0,0,0,0.6); }
+            
+            .mobile-side-menu.open { transform: translateX(0); }
+
+            /* Header inside menu */
+            .side-menu-header {
+                padding: 15px 20px; display: flex; justify-content: space-between; align-items: center;
+                border-bottom: 1px solid var(--card-border); background: rgba(37, 99, 235, 0.02);
+            }
+            .close-menu-btn, .theme-icon-btn {
+                background: var(--input-bg); border: 1px solid var(--card-border);
+                width: 34px; height: 34px; border-radius: 50%;
+                display: flex; align-items: center; justify-content: center;
+                color: var(--text-sec); cursor: pointer; transition: all 0.2s; font-size: 1.1rem;
+                text-decoration: none; padding: 0; /* Clear padding */
+            }
+            .close-menu-btn:hover { background: #ef4444; color: white; border-color: #ef4444; transform: rotate(90deg); }
+            .theme-icon-btn:hover { background: var(--primary); color: white; border-color: var(--primary); transform: translateY(-2px); box-shadow: 0 4px 10px rgba(37,99,235,0.2); }
+
+            /* Content & Links */
+            .side-menu-content { padding: 15px 20px; overflow-y: auto; flex: 1; }
+            .menu-section { margin-bottom: 20px; }
+            .menu-label {
+                font-size: 0.7rem; font-weight: 800; color: var(--text-sec);
+                text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;
+                padding-left: 5px; opacity: 0.8;
+            }
+            
+            /* ðŸ”¥ FIXED: More compact padding and smaller gap for the menu link */
+            .menu-link {
+                display: flex; align-items: center; gap: 8px;
+                padding: 6px 10px; border-radius: 8px; 
+                color: var(--text-main); text-decoration: none;
+                font-size: 0.85rem; font-weight: 700; 
+                transition: all 0.2s ease; margin-bottom: 2px;
+                border: 1px solid transparent;
+            }
+            .menu-link:hover {
+                background: var(--primary-light); color: var(--primary);
+                border-color: rgba(37, 99, 235, 0.1); transform: translateX(4px);
+            }
+            [data-theme="dark"] .menu-link:hover { border-color: rgba(96, 165, 250, 0.1); }
+            
+            /* Custom Icon Colors */
+            .icon-primary { color: var(--primary); }
+            .icon-green { color: #10b981; }
+            .icon-purple { color: #8b5cf6; }
+
+            /* ðŸ”¥ FIXED: Slightly smaller icon to match the compact padding */
+            .menu-icon {
+                width: 26px; height: 26px; border-radius: 6px; 
+                background: var(--input-bg); 
+                display: flex; align-items: center; justify-content: center;
+                font-size: 0.8rem; transition: all 0.2s; box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            }
+            
+            /* Forces background and pure white text unconditionally */
+            .menu-link:hover .menu-icon {
+                background: var(--primary) !important; 
+                color: #ffffff !important;
+                box-shadow: 0 4px 10px rgba(37,99,235,0.25);
+            }
+
+            .side-menu-footer {
+                padding: 15px 25px; border-top: 1px solid var(--card-border);
+                font-size: 0.7rem; color: var(--text-sec); text-align: center; font-weight: 600;
+            }
+        </style>
+    `;
+
+    document.body.insertAdjacentHTML('beforeend', menuHTML + menuCSS);
+    
+    // Initial sync of the mobile theme icon
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+    const mobileBtn = document.getElementById('mobileThemeBtn');
+    if (mobileBtn) {
+        mobileBtn.innerHTML = currentTheme === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+    }
+}
+
+// Mobile Menu Toggle Logic
+window.toggleMobileMenu = function() {
+    const menu = document.getElementById('mobileSideMenu');
+    const overlay = document.getElementById('mobileMenuOverlay');
+    if (menu && overlay) {
+        menu.classList.toggle('open');
+        overlay.classList.toggle('show');
+        
+        // Lock background scrolling when menu is open
+        if (menu.classList.contains('open')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+    }
+};
+
+// =========================================================================
+// ðŸ”¥ PREMIUM SAAS LOGIN MODAL (Injects the popup into any page)
 // =========================================================================
 function initLoginModal() {
     if (document.getElementById('saasLoginModal')) return;
 
-    // Legal links are now STRICTLY absolute from the root domain
     const termsUrl = `${SiteConfig.root}/legal/terms.html`;
     const privacyUrl = `${SiteConfig.root}/legal/privacy.html`;
 
@@ -49,7 +231,6 @@ function initLoginModal() {
         </div>
     `;
 
-    // Extremely Compact, Vertical, High-Contrast, and Mobile-Optimized Design
     const modalCSS = `
         <style>
             .login-modal-overlay {
@@ -60,7 +241,6 @@ function initLoginModal() {
             }
             .login-modal-overlay.show { display: flex; opacity: 1; }
             
-            /* Solid White Background, Compact Mobile Sizing */
             .login-modal-content {
                 background: #ffffff !important; 
                 width: 95%; max-width: 330px; margin: auto;
@@ -71,7 +251,6 @@ function initLoginModal() {
                 transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
                 position: relative; box-sizing: border-box; text-align: center;
             }
-            /* Dark Mode Support */
             [data-theme="dark"] .login-modal-content { 
                 background: #1e293b !important; border-color: #334155 !important; box-shadow: 0 20px 40px rgba(0,0,0,0.5) !important; 
             }
@@ -95,13 +274,11 @@ function initLoginModal() {
             }
             [data-theme="dark"] .modal-logo { color: #60a5fa; background: rgba(96, 165, 250, 0.15); }
             
-            /* Reduced H2 Font Size */
             .login-modal-header h2 { 
                 font-size: 1.1rem; font-weight: 800; margin: 0 0 8px 0; 
                 color: #0f172a !important; letter-spacing: -0.3px; 
             }
             
-            /* Descriptive 2-line text */
             .login-modal-desc { 
                 font-size: 0.85rem; color: #475569 !important; margin: 0; line-height: 1.5; 
             }
@@ -118,7 +295,6 @@ function initLoginModal() {
                 display: flex; align-items: center; justify-content: center; gap: 8px;
                 width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important; transition: all 0.2s ease;
             }
-            /* G Icon size fixed */
             .modal-google-btn img { width: 1.15em; height: 1.15em; display: inline-block; }
             .modal-google-btn:hover { 
                 transform: translateY(-1px); box-shadow: 0 4px 10px rgba(37, 99, 235, 0.1) !important; border-color: #94a3b8 !important; 
@@ -129,17 +305,15 @@ function initLoginModal() {
             }
             [data-theme="dark"] .modal-google-btn:hover { border-color: #64748b !important; background: #334155 !important; }
             
-            /* Single Line Terms & Privacy */
             .login-terms { 
                 margin-top: 15px; font-size: 0.65rem; color: #64748b !important; 
-                white-space: nowrap; /* Forces content to stay on one line */
+                white-space: nowrap; 
             }
             .login-terms a { color: #2563eb !important; text-decoration: none; font-weight: 600; }
             .login-terms a:hover { text-decoration: underline; }
             [data-theme="dark"] .login-terms { color: #94a3b8 !important; }
             [data-theme="dark"] .login-terms a { color: #60a5fa !important; }
 
-            /* Failsafe for extremely small phones */
             @media (max-width: 360px) {
                 .login-modal-content { padding: 20px 15px; }
                 .login-terms { font-size: 0.55rem; white-space: normal; line-height: 1.2; }
@@ -187,7 +361,6 @@ function renderHeader(options = {}) {
 
     currentRootPath = rootPath; // Store globally for auth UI
 
-    // Ensure clean URL by stripping index.html from any passed link
     let cleanLink = link.replace(/\/index\.html$/, '/').replace(/^index\.html$/, './');
     if (cleanLink === '#') cleanLink = 'https://hpgk.toolblaster.com';
 
@@ -199,159 +372,84 @@ function renderHeader(options = {}) {
     headerEl.style.zIndex = '1000';
     document.body.style.paddingTop = '0px';
 
-    // 🔥 MODIFIED: Left Group now contains Brand/Logo AND the Home & Theme Nav controls
-    // Home button always points to SiteConfig.root to redirect to the main homepage
+    const homeUrl = rootPath === '.' ? './' : '../';
+
     headerEl.innerHTML = `
         <div class="header-content" style="position: relative; display: flex; align-items: center; justify-content: space-between;">
             
-            <!-- Left Group: Brand + Nav Controls -->
-            <div class="header-left-group" style="display: flex; align-items: center; gap: 15px;">
-                <a href="${cleanLink}" class="brand">
-                    <i class="${iconClass} brand-icon" ${isQuizPage ? 'style="font-size:1.2rem;"' : ''}></i>
-                    <div class="brand-name">
-                        ${title}
-                        <span class="brand-sub">${subtitle}</span>
-                    </div>
-                </a>
-                
-                <div class="header-nav-controls">
-                    <a href="${SiteConfig.root}/" class="home-btn" title="Go Home">
-                        <i class="fa-solid fa-house"></i>
-                    </a>
-                    <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" title="Toggle Theme">
-                        <i class="fa-solid fa-moon"></i>
-                    </button>
+            <a href="${cleanLink}" class="brand">
+                <i class="${iconClass} brand-icon" ${isQuizPage ? 'style="font-size:1.2rem;"' : ''}></i>
+                <div class="brand-name">
+                    ${title}
+                    <span class="brand-sub">${subtitle}</span>
                 </div>
-            </div>
+            </a>
             
-            <!-- Right Group: Auth / Dashboard Container Only -->
-            <div class="header-actions" style="display: flex; align-items: center; gap: 12px;">
+            <!-- Right Group: Auth / Dashboard Container + Hamburger -->
+            <div class="header-actions" style="display: flex; align-items: center; gap: 8px;">
                 <div id="auth-ui-container" style="display: flex; align-items: center;">
                     <!-- Loading initial state is empty to prevent flicker. updateAuthUI populates this instantly -->
                 </div>
+                
+                <!-- Premium Hamburger Menu Button -->
+                <button class="hamburger-btn" onclick="toggleMobileMenu()" aria-label="Open Menu">
+                    <i class="fa-solid fa-bars-staggered"></i>
+                </button>
             </div>
             
         </div>
         <style>
             /* Grouped Auth UI Styles (Premium EdTech Look) */
             .auth-group-wrapper {
-                display: flex;
-                align-items: center;
-                gap: 8px;
-                padding: 4px 6px 4px 4px;
-                border: 1px solid var(--card-border, #cbd5e1);
-                border-radius: 30px;
-                background: rgba(255, 255, 255, 0.5);
-                box-shadow: 0 2px 6px rgba(0,0,0,0.04);
-                transition: all 0.2s ease;
+                display: flex; align-items: center; gap: 8px;
+                padding: 4px 6px 4px 4px; border: 1px solid var(--card-border, #cbd5e1);
+                border-radius: 30px; background: rgba(255, 255, 255, 0.5);
+                box-shadow: 0 2px 6px rgba(0,0,0,0.04); transition: all 0.2s ease;
             }
-            [data-theme="dark"] .auth-group-wrapper {
-                border-color: #334155;
-                background: rgba(0, 0, 0, 0.2);
-            }
+            [data-theme="dark"] .auth-group-wrapper { border-color: #334155; background: rgba(0, 0, 0, 0.2); }
 
-            /* Nav Controls (Home & Theme moved to left) */
-            .header-nav-controls {
-                display: flex;
-                align-items: center;
-                gap: 8px;
-                border-left: 1px solid var(--card-border, #cbd5e1);
-                padding-left: 15px;
+            /* Hamburger Button Styling */
+            .hamburger-btn {
+                background: var(--input-bg); 
+                border: 1px solid var(--card-border);
+                color: var(--text-main);
+                width: 38px; height: 38px; border-radius: 50%;
+                display: flex; align-items: center; justify-content: center;
+                font-size: 1.1rem; cursor: pointer; transition: all 0.2s ease;
+                box-shadow: 0 2px 6px rgba(0,0,0,0.04); margin-left: 4px;
             }
-            [data-theme="dark"] .header-nav-controls {
-                border-left-color: #334155;
-            }
+            [data-theme="dark"] .hamburger-btn { border-color: #334155; background: rgba(0, 0, 0, 0.2); }
+            .hamburger-btn:hover { background: var(--primary); color: white; border-color: var(--primary); transform: translateY(-2px); box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2); }
 
             /* Punchy Red Google Login Button */
             .login-btn {
-                background: #dc2626; /* WCAG AA Compliant High-Contrast Red */
-                color: #ffffff;
-                border: none;
-                padding: 6px 14px;
-                border-radius: 20px;
-                font-size: 0.8rem;
-                font-weight: 700;
-                cursor: pointer;
-                display: flex;
-                align-items: center;
-                gap: 6px;
-                transition: all 0.2s ease;
-                font-family: 'Inter', sans-serif;
+                background: #dc2626; color: #ffffff; border: none; padding: 6px 14px;
+                border-radius: 20px; font-size: 0.8rem; font-weight: 700; cursor: pointer;
+                display: flex; align-items: center; gap: 6px; transition: all 0.2s ease; font-family: 'Inter', sans-serif;
             }
-            .login-btn:hover {
-                background: #b91c1c; /* Darker red on hover */
-                transform: translateY(-2px);
-                box-shadow: 0 4px 10px rgba(220, 38, 38, 0.3); /* Red tinted shadow */
-            }
-
-            /* Dark Mode Fix for Login Button */
-            [data-theme="dark"] .login-btn {
-                background: #ef4444; /* Brighter red for visibility in dark mode */
-                color: #ffffff;
-            }
-            [data-theme="dark"] .login-btn:hover {
-                background: #dc2626;
-                box-shadow: 0 4px 10px rgba(239, 68, 68, 0.4);
-            }
+            .login-btn:hover { background: #b91c1c; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(220, 38, 38, 0.3); }
+            [data-theme="dark"] .login-btn { background: #ef4444; color: #ffffff; }
+            [data-theme="dark"] .login-btn:hover { background: #dc2626; box-shadow: 0 4px 10px rgba(239, 68, 68, 0.4); }
             
             .dashboard-btn {
-                background: var(--primary-light);
-                color: var(--primary);
-                border: none;
-                padding: 6px 12px;
-                border-radius: 20px;
-                font-size: 0.75rem;
-                font-weight: 700;
-                cursor: pointer;
-                text-decoration: none;
-                display: flex;
-                align-items: center;
-                gap: 5px;
-                transition: all 0.2s;
-                font-family: 'Inter', sans-serif;
+                background: var(--primary-light); color: var(--primary); border: none; padding: 6px 12px;
+                border-radius: 20px; font-size: 0.75rem; font-weight: 700; cursor: pointer;
+                text-decoration: none; display: flex; align-items: center; gap: 5px; transition: all 0.2s; font-family: 'Inter', sans-serif;
             }
-            .dashboard-btn:hover {
-                background: var(--primary);
-                color: white;
-            }
-            
-            /* Dark Mode Fix for Dashboard Button */
-            [data-theme="dark"] .dashboard-btn {
-                background: rgba(255, 255, 255, 0.1);
-                color: var(--text-main);
-            }
-            [data-theme="dark"] .dashboard-btn:hover {
-                background: var(--primary);
-                color: white;
-            }
+            .dashboard-btn:hover { background: var(--primary); color: white; }
+            [data-theme="dark"] .dashboard-btn { background: rgba(255, 255, 255, 0.1); color: var(--text-main); }
+            [data-theme="dark"] .dashboard-btn:hover { background: var(--primary); color: white; }
 
-            .user-avatar {
-                width: 28px;
-                height: 28px;
-                border-radius: 50%;
-                border: 2px solid var(--primary);
-                object-fit: cover;
-                background: #fff;
-            }
+            .user-avatar { width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--primary); object-fit: cover; background: #fff; }
 
-            /* Specially designed clear Logout Button */
             .logout-icon-btn {
-                color: #ef4444; 
-                background: rgba(239, 68, 68, 0.1);
-                border: none;
-                width: 28px; height: 28px;
-                border-radius: 50%;
-                display: flex; align-items: center; justify-content: center;
-                font-size: 0.8rem;
-                cursor: pointer;
-                transition: all 0.2s;
+                color: #ef4444; background: rgba(239, 68, 68, 0.1); border: none;
+                width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+                font-size: 0.8rem; cursor: pointer; transition: all 0.2s;
             }
-            .logout-icon-btn:hover {
-                background: #ef4444;
-                color: white;
-            }
+            .logout-icon-btn:hover { background: #ef4444; color: white; }
 
-            .text-mobile { display: none; } /* Default hide mobile specific text */
+            .text-mobile { display: none; }
 
             @media (max-width: 600px) {
                 .brand-name { font-size: 0.9rem !important; line-height: 1.1; }
@@ -359,24 +457,19 @@ function renderHeader(options = {}) {
                 .brand-icon { font-size: 1.1rem !important; margin-right: 6px !important; }
                 .header-content { padding: 10px 12px !important; }
                 
-                /* Compact Left Group for Mobile */
-                .header-left-group { gap: 8px !important; }
-                .header-nav-controls { border-left: none; padding-left: 0; gap: 6px; }
-                .home-btn, .theme-btn { padding: 6px 8px !important; font-size: 0.8rem !important; }
-                
-                /* Adjusted padding and font sizes for mobile with text included */
                 .login-btn { padding: 6px 12px; font-size: 0.8rem; }
                 .dashboard-btn { padding: 6px 12px; font-size: 1.1rem; } 
-                
-                .text-desktop { display: none; } /* Hide full text on mobile */
+                .text-desktop { display: none; } 
                 
                 .auth-group-wrapper { gap: 6px; padding: 3px 5px 3px 3px; }
                 .user-avatar, .logout-icon-btn { width: 26px; height: 26px; }
+                
+                .hamburger-btn { width: 34px; height: 34px; font-size: 1rem; }
             }
         </style>
     `;
 
-    initThemeState();
+    // Only inject initThemeState inside DOM load if not present to avoid double firing
 }
 
 /**
@@ -454,12 +547,11 @@ function toggleTheme() {
 
 function updateThemeIcon(theme) {
     const btn = document.getElementById('themeBtn');
-    if (!btn) return;
-    if(theme === 'dark') {
-        btn.innerHTML = '<i class="fa-solid fa-sun"></i>';
-    } else {
-        btn.innerHTML = '<i class="fa-solid fa-moon"></i>';
-    }
+    const mobileBtn = document.getElementById('mobileThemeBtn');
+    const iconHtml = theme === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+    
+    if (btn) btn.innerHTML = iconHtml;
+    if (mobileBtn) mobileBtn.innerHTML = iconHtml;
 }
 
 function initBackToTop() {
@@ -497,17 +589,15 @@ function initBackToTop() {
 }
 
 // =========================================================================
-// 🔥 FIREBASE GOOGLE AUTHENTICATION INTEGRATION (Dynamic Import Method)
+// ðŸ”¥ FIREBASE GOOGLE AUTHENTICATION INTEGRATION
 // =========================================================================
 
 let auth, provider;
 
 async function initFirebase() {
     try {
-        // First strictly set UI to logged out state (Removes initial loader completely)
         updateAuthUI(null);
 
-        // Dynamically import Firebase
         const { initializeApp, getApps, getApp } = await import("https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js");
         const { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } = await import("https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js");
 
@@ -525,16 +615,13 @@ async function initFirebase() {
         auth = getAuth(app);
         provider = new GoogleAuthProvider();
 
-        // Listen for Login/Logout state changes
         onAuthStateChanged(auth, (user) => {
             updateAuthUI(user);
         });
 
-        // Global Login Function with Smart Focus Listener for Instant UI Reset
         window.loginWithGoogle = async () => {
             const modalBtn = document.getElementById('modalGoogleBtn');
             
-            // Function to instantly restore button state
             const resetBtnState = () => {
                 if (modalBtn) {
                     modalBtn.innerHTML = '<img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google Logo"><span>Continue with Google</span>';
@@ -543,30 +630,22 @@ async function initFirebase() {
                 }
             };
 
-            // Smart Listener: If user closes the popup manually, window regains focus.
-            // We check auth state after a brief delay to reset the button instantly.
             const handleFocusReturn = () => {
                 setTimeout(() => {
-                    if (!auth.currentUser) {
-                        resetBtnState();
-                    }
+                    if (!auth.currentUser) { resetBtnState(); }
                     window.removeEventListener('focus', handleFocusReturn);
                     document.removeEventListener('visibilitychange', handleVisibilityChange);
                 }, 800); 
             };
 
-            // Failsafe for mobile browsers (Safari/Chrome Mobile) using visibility API
             const handleVisibilityChange = () => {
-                if (document.visibilityState === 'visible') {
-                    handleFocusReturn();
-                }
+                if (document.visibilityState === 'visible') { handleFocusReturn(); }
             };
 
             window.addEventListener('focus', handleFocusReturn);
             document.addEventListener('visibilitychange', handleVisibilityChange);
 
             try {
-                // Show Spinner ONLY on the Modal's Google Button
                 if (modalBtn) {
                     modalBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin" style="font-size: 1.15em;"></i><span>Connecting...</span>';
                     modalBtn.style.opacity = '0.8';
@@ -575,7 +654,6 @@ async function initFirebase() {
                 
                 await signInWithPopup(auth, provider);
                 
-                // If login succeeds, cleanup and close modal
                 window.removeEventListener('focus', handleFocusReturn);
                 document.removeEventListener('visibilitychange', handleVisibilityChange);
                 closeLoginModal();
@@ -583,39 +661,29 @@ async function initFirebase() {
             } catch (error) {
                 console.error("Login Error Details:", error);
                 
-                // 🔥 CRITICAL FIX: Instantly restore the UI
                 updateAuthUI(null); 
                 resetBtnState();
                 window.removeEventListener('focus', handleFocusReturn);
                 document.removeEventListener('visibilitychange', handleVisibilityChange);
                 
-                // SILENT FAIL FOR POPUP CLOSED BY USER
                 if (error.code === 'auth/popup-closed-by-user' || error.code === 'auth/cancelled-popup-request') {
                     return; 
                 }
 
-                // Show error for actual technical issues
                 alert("Login failed. Please check your internet connection and try again.");
             }
         };
 
-        // Global Logout Function
         window.logoutUser = async () => {
-            try {
-                await signOut(auth);
-            } catch (error) {
-                console.error("Logout Error:", error);
-            }
+            try { await signOut(auth); } catch (error) { console.error("Logout Error:", error); }
         };
 
     } catch (error) {
         console.error("Firebase Initialization Failed in Layout:", error);
-        // Instantly fallback to Logged-Out UI without any spinner
         updateAuthUI(null);
     }
 }
 
-// Dynamically update the Header UI with grouped border design
 function updateAuthUI(user) {
     const authContainer = document.getElementById('auth-ui-container');
     if (!authContainer) return;
@@ -623,7 +691,6 @@ function updateAuthUI(user) {
     const dashLink = currentRootPath === '.' ? './user/dashboard.html' : currentRootPath + '/user/dashboard.html';
 
     if (user) {
-        // User is LOGGED IN -> Show Dash, DP, Logout in a nice pill-shaped border
         const userPhoto = user.photoURL || 'https://ui-avatars.com/api/?name=' + encodeURIComponent(user.displayName || 'S') + '&background=2563eb&color=fff';
         
         authContainer.innerHTML = `
@@ -639,8 +706,6 @@ function updateAuthUI(user) {
             </div>
         `;
     } else {
-        // User is NOT LOGGED IN -> Show Dash AND Login Button together
-        // Clicking Login opens the SaaS modal
         authContainer.innerHTML = `
             <div class="auth-group-wrapper">
                 <a href="${dashLink}" class="dashboard-btn" title="My Dashboard">
@@ -658,8 +723,9 @@ function updateAuthUI(user) {
 
 // Initialize everything when the DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
-    initThemeState();
     initBackToTop();
-    initLoginModal(); // Inject Modal into DOM
+    initLoginModal(); 
+    initMobileMenu(); // ðŸ”¥ INJECTS THE SLIDE-OUT MOBILE MENU
+    initThemeState(); // Ensures theme icons are synced perfectly right after DOM injection
     initFirebase(); 
 });
