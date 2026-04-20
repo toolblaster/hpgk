@@ -877,20 +877,34 @@
     });
 </script>
 
-<!-- Config for this specific category -->
+<!-- ************************************************************ -->
+<!-- PAYWALL & ACCESS CONFIGURATION (The ID Card)                 -->
+<!-- ************************************************************ -->
 <script>
+    window.PAGE_ACCESS = {
+        category: 'rivers',     // Page category
+        type: 'mcq',            // Content type
+        loginLimit: 30,         // Show free login card at 50 questions
+        proLimit: 9999,         // 9999 means no Pro Paywall (100% free after login)
+        requiredPass: 'mcq_pass'// Not needed here, but good for future-proofing
+    };
+    
+    // Standard Quiz Config
     window.QUIZ_CONFIG = { category: 'rivers' };
     window.quizData = []; 
 </script>
 
-<!-- Load Data & Logic -->
+<!-- 1. Load Access Guard (The Bouncer) FIRST -->
+<script src="../../js/access-guard.js"></script>
+
+<!-- 2. Load Data Files -->
 <script src="river-part-1.js"></script>
 <script src="river-part-2.js"></script>
 <script src="river-part-3.js"></script>
 <script src="river-part-4.js"></script>
 <script src="river-part-5.js"></script>
 
-<!-- Quiz Engine -->
+<!-- 3. Load Quiz Engine (The Teacher) -->
 <script src="../../js/main.js"></script>
 
 </body>
