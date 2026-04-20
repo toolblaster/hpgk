@@ -5,10 +5,6 @@
         ? `hpgk_${window.QUIZ_CONFIG.category}_v1` 
         : 'hpgk_general_v1';
     
-    // 🔥 SMART FREE LIMIT CONFIGURATION (Freemium Model)
-    // You can override this in any HTML file by adding: <script> window.PAGE_FREE_LIMIT = 20; </script>
-    const freeLimit = (window.PAGE_FREE_LIMIT !== undefined) ? window.PAGE_FREE_LIMIT : 50;
-
     let currentList = [];
     let currentIndex = 0;
     let historyState = { lastIndex: 0, answers: {}, bookmarks: [] };
@@ -24,10 +20,9 @@
     let quickSessionScore = 0;
     const QUICK_LIMIT = 10;
 
-    // 🔥 FIREBASE VARIABLES
-    let isUserLoggedIn = false;
-    let currentUserUid = null;
+    // 🔥 FIREBASE VARIABLES (Sirf Score Save Karne Ke Liye, Login Guard check karega)
     let db = null;
+    let currentUserUid = null;
 
     // DOM Elements
     const cardArea = document.getElementById('cardArea');
@@ -42,6 +37,15 @@
     const quizWidgetWrapper = document.querySelector('.quiz-widget-wrapper');
 
     let bookmarkFilterBtn, mistakeFilterBtn, shuffleBtn, quickModeBtn;
+
+    // ------------------------------------------------------------------
+    // 🔥 GUARD COMMUNICATION LINK (Yeh Guard se baat karega)
+    // ------------------------------------------------------------------
+    window.HPGK_Engine_Refresh = function() {
+        // Jab bhi user login karta hai ya pass kharidata hai, Guard is function ko bulayega
+        // taaki current question dobara load ho aur paywall hat jaye.
+        loadQuestion(currentIndex);
+    };
 
     // ------------------------------------------------------------------
     // 🔥 FIREBASE INITIALIZATION & SCORE SYNC
@@ -61,18 +65,16 @@
                 appId: "1:273909571419:web:20d5e06d8b582f4d2dc47e"
             };
 
-            // Safely initialize Firebase (checks if already initialized by layout.js)
+            // Safely initialize Firebase
             const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
             const auth = getAuth(app);
             db = getFirestore(app);
 
+            // Sirf UUID store karenge score sync ke liye. Login/Paywall logic Guard handle kar raha hai.
             onAuthStateChanged(auth, (user) => {
-                isUserLoggedIn = !!user;
                 currentUserUid = user ? user.uid : null;
-                
-                if (isUserLoggedIn) {
-                    loadQuestion(currentIndex); // Refresh UI to remove paywall if active
-                    syncScoreToFirebase(); // Sync any local offline progress immediately
+                if (currentUserUid) {
+                    syncScoreToFirebase(); // Sync local score immediately upon auth
                 }
             });
         } catch (e) {
@@ -81,7 +83,8 @@
     }
 
     async function syncScoreToFirebase() {
-        if (!isUserLoggedIn || !currentUserUid || !db) return;
+        // Score saving logic... (Same as before, checking Guard for auth state)
+        if (!window.HPGK_Guard || !window.HPGK_Guard.isUserLoggedIn || !currentUserUid || !db) return;
 
         let validDoneCount = 0;
         let validCorrectCount = 0;
@@ -97,49 +100,37 @@
             });
         }
 
-        if (validDoneCount === 0) return; // Don't save if 0 questions attempted
+        if (validDoneCount === 0) return; 
 
         try {
             const { doc, setDoc } = await import("https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js");
-
-            // Extract Name for Dashboard (e.g. "Patwari Mock 1" or "General GK")
             const rawCategory = window.QUIZ_NAME || (window.QUIZ_CONFIG && window.QUIZ_CONFIG.category) || 'General Practice';
-            
-            // Create a clean ID for the database document
             const docId = rawCategory.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-
             const docRef = doc(db, 'artifacts', 'hpgk-quiz', 'users', currentUserUid, 'scores', docId);
 
-            // Save live progress
             await setDoc(docRef, {
                 category: rawCategory,
                 score: validCorrectCount,
                 total: validDoneCount,
-                timestamp: Date.now() // Always bump timestamp to show in 'Recent Activity'
+                timestamp: Date.now() 
             }, { merge: true });
-
         } catch (e) {
             console.error("Error syncing score:", e);
         }
     }
 
     window.addEventListener('DOMContentLoaded', () => {
-        if (jumpTrigger) jumpTrigger.style.display = 'none'; // Hide jump
-        
-        // Grab pre-hardcoded buttons from HTML
+        if (jumpTrigger) jumpTrigger.style.display = 'none'; 
         bookmarkFilterBtn = document.getElementById('bookmarkFilterBtn');
         mistakeFilterBtn = document.getElementById('mistakeFilterBtn');
         shuffleBtn = document.getElementById('shuffleBtn');
         quickModeBtn = document.getElementById('quickModeBtn');
 
-        // Start Quiz Engine & Firebase
         initQuizFirebase();
         setTimeout(() => { initQuizNow(); }, 100);
     });
 
-    // ------------------------------------------------------------------
-    // CENTRALIZED HELP MODAL TOGGLE (HTML is now hardcoded)
-    // ------------------------------------------------------------------
+    // ... (Help Modal, Backup, Font Adjustments, Stats, Highlight remain unchanged)
     window.toggleHelpModal = function() {
         const modal = document.getElementById('quizHelpModal');
         if (modal) {
@@ -153,7 +144,6 @@
         }
     };
 
-    // Backup & Restore
     window.exportProgress = function() {
         const dataStr = JSON.stringify(historyState);
         const dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
@@ -178,7 +168,7 @@
                     currentIndex = (historyState.lastIndex && historyState.lastIndex < currentList.length) ? historyState.lastIndex : 0;
                     applyFilters(); 
                     updateStats();
-                    syncScoreToFirebase(); // Sync restored progress
+                    syncScoreToFirebase();
                     alert('Progress restored successfully!');
                 } else {
                     alert('Invalid backup file format.');
@@ -189,7 +179,6 @@
         input.value = '';
     }
 
-    // Font Adjustments (Strictly clamped between 12px and 15px)
     window.adjustFont = function(dir) {
         currentFontSizePx += dir;
         if (currentFontSizePx > 15) currentFontSizePx = 15;
@@ -197,9 +186,7 @@
         loadQuestion(currentIndex);
     }
 
-    function getFontSize() {
-        return `${currentFontSizePx}px`;
-    }
+    function getFontSize() { return `${currentFontSizePx}px`; }
 
     function updateStats() {
         if (!document.getElementById('statDone')) return;
@@ -234,44 +221,31 @@
         return text.replace(regex, '<mark class="highlight">$1</mark>');
     }
 
-    // Explanation Tooltip Toggle
     window.toggleExpl = function(qId) {
         const tooltip = document.getElementById(`expl-${qId}`);
-        if (tooltip) {
-            tooltip.classList.toggle('show');
-        }
+        if (tooltip) { tooltip.classList.toggle('show'); }
     };
 
     // ------------------------------------------------------------------
-    // CORE RENDER
+    // 🔥 CORE RENDER (GUARD INTEGRATED)
     // ------------------------------------------------------------------
     function loadQuestion(index) {
         if (!quizContent || !cardArea) return;
         quizContent.scrollTop = 0;
 
-        // 🔥 FREEMIUM PAYWALL LOGIC (Highly Optimized, Compact & Corrected)
-        if (index >= freeLimit && !isUserLoggedIn) {
-            cardArea.innerHTML = `
-                <div class="empty-state glass-panel" style="border: 1px solid var(--card-border); border-top: 4px solid var(--accent); padding: 30px 20px; border-radius: var(--radius-lg); box-sizing: border-box; width: 100%; text-align: center; box-shadow: var(--glass-shadow);">
-                    <div style="width: 50px; height: 50px; margin: 0 auto 12px auto; background: rgba(234, 88, 12, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                        <i class="fa-solid fa-lock" style="font-size: 1.4rem; color: var(--accent);"></i>
-                    </div>
-                    <h2 style="font-size: 1.25rem; margin-bottom: 8px; color: var(--text-main); font-weight: 800; letter-spacing: -0.3px;">Premium Content Locked</h2>
-                    <p style="color: var(--text-sec); margin-bottom: 22px; font-size: 0.85rem; line-height: 1.5; max-width: 320px; margin-inline: auto;">
-                        Awesome progress! 🎉 You've reached the free limit of <strong>${freeLimit} questions</strong>.<br><br>
-                        Login for <strong>FREE</strong> to unlock all remaining questions and track your accuracy on your personalized Dashboard.
-                    </p>
-                    <!-- Button calls the new Premium SaaS Modal from layout.js - ALIGNMENT FIXED -->
-                    <button class="login-btn" style="margin: 0 auto; padding: 10px 22px; font-size: 0.85rem; border-radius: 25px; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2); display: inline-flex; align-items: center; justify-content: center; gap: 8px;" onclick="window.openLoginModal ? window.openLoginModal() : (window.loginWithGoogle && window.loginWithGoogle())">
-                        <i class="fa-brands fa-google" style="display: inline-block !important; font-size: 1.15em; line-height: 1; position: relative; top: 1px; width: auto !important; height: auto !important;"></i>
-                        <span style="display: inline-block !important; line-height: 1; position: relative; top: 0px; font-weight: 700;">Login to Unlock</span>
-                    </button>
-                </div>
-            `;
-            updateControls(true); // Tell controls to lock the next button
-            return;
+        // 🔥 STEP 1: GUARD CHECK (Bouncer se pucho)
+        if (window.HPGK_Guard) {
+            const access = window.HPGK_Guard.checkAccess(index);
+            
+            if (access.status !== 'allowed') {
+                // Agar Guard ne roka, toh Paywall dikhao aur wapas jao
+                window.HPGK_Guard.showPaywall(cardArea, access);
+                updateControls(true); // Disable Next Button
+                return;
+            }
         }
 
+        // 🔥 STEP 2: Normal Quiz Render (Agar Guard ne allowed bola)
         if (isQuickModeActive && index >= currentList.length) {
             cardArea.innerHTML = `
                 <div class="empty-state">
@@ -326,7 +300,6 @@
             const text = isCorrect ? 'Correct!' : `Correct: ${q.options[q.answer]}`;
             const bgClass = isCorrect ? 'correct-feed' : 'wrong-feed';
             
-            // TOOLTIP Logic
             let explToggleBtn = '';
             if (q.explanation) {
                 explToggleBtn = `
@@ -375,9 +348,7 @@
         updateControls();
     }
 
-    // ------------------------------------------------------------------
-    // TOGGLES
-    // ------------------------------------------------------------------
+    // ... (All other Handlers, Buttons, Keydowns remain unchanged and intact)
     window.clearAllFilters = function() {
         isBookmarkFilterActive = false; isMistakesFilterActive = false; isShuffleActive = false; isQuickModeActive = false;
         if(bookmarkFilterBtn) bookmarkFilterBtn.classList.remove('active');
@@ -463,7 +434,6 @@
         loadQuestion(currentIndex);
     }
 
-    // Handlers
     window.handleAnswer = function(btn, qId, choiceIndex) {
         if (!currentList || !currentList[currentIndex]) return;
         const q = currentList[currentIndex];
@@ -474,7 +444,7 @@
         saveToStorage(); 
         updateStats(); 
         loadQuestion(currentIndex);
-        syncScoreToFirebase(); // 🔥 Trigger save to Database instantly
+        syncScoreToFirebase(); 
     };
 
     window.shareQuestion = async function(qId) {
@@ -515,16 +485,15 @@
     });
 
     function updateControls(isLocked = false) {
-        if (!prevBtn || !nextBtn || !progressText) return; // Made bulletproof (progressFill is now optional)
+        if (!prevBtn || !nextBtn || !progressText) return; 
         
-        // Handle Paywall Lock state
         if (isLocked) {
-            prevBtn.disabled = false; // Allow going back to previous questions
-            nextBtn.disabled = true;  // Block going forward
+            prevBtn.disabled = false; 
+            nextBtn.disabled = true;  
             progressText.innerText = "Locked";
             if (progressFill) {
                 progressFill.style.width = "100%";
-                progressFill.style.backgroundColor = "var(--accent)"; // Turn bar orange to show lock
+                progressFill.style.backgroundColor = "var(--accent)"; 
             }
             return;
         } else {
