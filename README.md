@@ -1,128 +1,103 @@
-HPGK Quiz Hub & Agriculture Prep
+🏔️ HPGK MCQ & Mock Test Platform (v2.0 - 2026)
 
-A comprehensive, bilingual (English & Hindi), and highly interactive web application designed to help aspirants prepare for Himachal Pradesh Competitive Exams (HPAS, HPPSC, Allied Services, Naib Tehsildar) and Agriculture Exams (ICAR JRF, IBPS AFO, NABARD).
+Welcome to the official documentation of the HPGK (Himachal Pradesh General Knowledge) web application. This platform is a high-performance, SEO-optimized, and centralized freemium system designed for HPPSC aspirants.
 
-🚀 Features
+🏗️ 1. Architecture Overview (The "Three Pillars" Model)
 
-Bilingual Interface: All questions and study notes are available simultaneously in English and Hindi to break language barriers.
+The system is built on a Decoupled Centralized Architecture. The logic is separated from the content to ensure that a single update can affect thousands of pages instantly.
 
-Interactive Quiz Engine: - Instant visual feedback (Green/Red) upon selecting an answer.
+Pillar A: The ID Card (PAGE_ACCESS)
 
-Active Recall methodology to enhance memory retention.
+Every HTML content page contains a window.PAGE_ACCESS object. This is the local configuration that tells the system how to treat that specific page.
 
-Mistake review and Bookmark filtering.
+Location: Inside the <script> tag at the bottom of individual HTML files.
 
-Privacy First (No Login Required): All quiz progress, bookmarks, and statistics are saved locally on the user's device using localStorage.
+Controls: loginLimit (Free questions count), proLimit (Paywall trigger), and category.
 
-Backup & Restore: Users can export their progress as a .json file and restore it across different devices.
+Pillar B: The Bouncer (access-guard.js)
 
-Premium UI/UX: - Mobile-first, fully responsive design.
+This is the Central Security Hub. It reads the "ID Card" from the HTML and checks it against the user's identity.
 
-Modern Glassmorphism aesthetics.
+Function: Handles Paywall UI injection, Login detection, and Subscription verification.
 
-High contrast WCAG AA compliant color palettes.
+Logic: Communicates with Firebase to check if the user has a valid active_plans ticket.
 
-Built-in Dark / Light Mode toggle.
+Pillar C: The Engines (main.js & mock-engine.js)
 
-Rich Study Material: - Comprehensive notes on HP Budget, Govt Schemes, and District Profiles.
+These are the Content Renderers.
 
-1000+ Rapid Revision One-Liners (Split into optimized pages for lightning-fast loading).
+main.js: Handles standard MCQ practice with instant feedback and explanations.
 
-📁 Project Structure
+mock-engine.js (Future): Handles time-bound exams with negative marking and result analysis.
 
-The project is built using pure HTML5, CSS3, and Vanilla JavaScript with no heavy frontend frameworks, ensuring maximum speed and SEO friendliness.
+📂 2. File & Directory Structure
 
-/
-├── index.html                  # Main Homepage
-├── css/
-│   └── style.css               # Global Stylesheet (Variables, Dark Mode, Utility Classes)
+root/
+├── index.html                 # Main Homepage
 ├── js/
-│   ├── main.js                 # Global Quiz Engine Logic
-│   └── layout.js               # Dynamic Header/Footer rendering
-├── himachal-pradesh-gk/        # HP GK Quiz Modules
+│   ├── layout.js              # Global UI (Header/Footer/Login Modals)
+│   ├── main.js                # Practice MCQ Engine (The "Teacher")
+│   ├── access-guard.js        # Central Security Guard (The "Bouncer")
+│   ├── style.css              # Global Design System (Glassmorphism UI)
+│   └── favicon/               # Brand assets & PWA manifest
+├── himachal-pradesh-gk/       # Content Directory
+│   ├── rivers/
+│   │   ├── index.html         # River Topic Landing Page (Configured with ID Card)
+│   │   └── river-part-1.js    # Raw Data (Question objects)
 │   ├── history/
 │   ├── geography/
-│   ├── polity/
-│   ├── economy/
-│   ├── art-culture/
-│   ├── district/
-│   ├── rivers/
-│   ├── tourism/
-│   ├── environment/
-│   └── famous-people/
-├── agriculture-quiz/           # Specialized Agriculture Module
-│   └── index.html
-├── study-notes/                # Premium Notes Section
-│   ├── index.html              # Study Notes Hub
-│   ├── govt-schemes/
-│   ├── hp-budget/
-│   ├── hp-gk-one-liners-500-part-1/
-│   ├── hp-gk-one-liners-250-part-2/
-│   └── hp-gk-one-liners-250-part-3/
-└── legal/                      # Legal & Meta Pages
-    ├── about.html
-    ├── privacy.html
-    └── terms.html
+│   └── ... (other topics)
+└── artifacts/                 # System configuration & Firebase logic
 
 
-🛠️ Technology Stack
+🔐 3. Authentication & Monetization Logic (Freemium)
 
-Frontend: HTML5, CSS3 (CSS Variables, Flexbox, Grid)
+The platform follows a strict Login-then-Pay funnel:
 
-Logic & State: Vanilla JavaScript (ES6+), Web Storage API (localStorage)
+Anonymous Stage: User can view up to loginLimit (e.g., 30) questions for free.
 
-Icons: FontAwesome 6
+Login Stage: At question 31, the access-guard.js triggers the Login Card.
 
-Typography: Google Fonts (Inter for English, Noto Sans Devanagari for Hindi)
+Pro Stage: After login, the user can view up to proLimit (e.g., 100 or 9999).
 
-SEO: Semantic HTML, JSON-LD Structured Data, Open Graph Tags, Custom Meta Descriptions.
+Paywall Stage: If proLimit is reached, the system triggers the Premium Pass (₹29) requirement.
 
-⚙️ Installation & Deployment
+VIP Access: Any user with the mega_combo_pass tag in Firebase Firestore (/users/{uid}/profile/billing) bypasses all limits automatically.
 
-Since this is a fully static client-side application, no complex build steps or backend servers are required.
+🚀 4. Developer Onboarding (How to add a new page)
 
-Clone the repository:
+To add a new MCQ topic, follow these 3 steps:
 
-git clone [https://github.com/your-username/hpgk-quiz-hub.git](https://github.com/your-username/hpgk-quiz-hub.git)
+Create Directory: Add a folder in himachal-pradesh-gk/.
 
+Prepare Data: Create JS files containing the window.quizData array.
 
-Run locally:
-Simply open the index.html file in any modern web browser, or use an extension like VS Code Live Server for a better development experience.
+Setup HTML: Copy the template and update the PAGE_ACCESS block:
 
-Deployment:
-Host the directory on any static file hosting service such as GitHub Pages, Netlify, Vercel, or Cloudflare Pages.
-
-🎯 Quiz Engine Usage
-
-The core quiz logic is maintained in js/main.js. Each specific category folder contains an index.html page and multiple .js files containing the question arrays.
-
-To add new questions:
-
-Navigate to the specific topic folder (e.g., himachal-pradesh-gk/history/).
-
-Open or create a data file (e.g., history-part-1.js).
-
-Append objects to the quizData array:
-
-quizData.push({
-    id: "hist-001",
-    qEn: "Question in English?",
-    qHi: "प्रश्न हिंदी में?",
-    options: ["Option 1", "Option 2", "Option 3", "Option 4"],
-    answer: 0, // Index of the correct option (0-based)
-    explEn: "Explanation in English.",
-    explHi: "हिंदी में स्पष्टीकरण।"
-});
+window.PAGE_ACCESS = {
+    category: 'new_topic',
+    loginLimit: 30,
+    proLimit: 9999,
+    requiredPass: 'mcq_pass'
+};
 
 
-🤝 Contributing
+🛠️ 5. Tech Stack
 
-Contributions are welcome! If you find any factual errors in the GK questions, layout bugs, or have feature requests, please open an issue or submit a pull request.
+Frontend: Pure HTML5, CSS3 (Custom Glassmorphism), Vanilla JS (ES6+).
 
-📄 License
+Backend: Firebase Auth (Google), Firebase Firestore (NoSQL).
 
-This project and its original content are developed and maintained by ToolBlaster.
+Icons: FontAwesome 6.4.0.
 
-Educational content provided is for exam preparation purposes.
+SEO: Meta-tag density control, JSON-LD Schema, WCAG AA Compliance.
 
-Empowering Aspirants with Knowledge - HPGK Quiz Hub
+📈 6. Future Roadmap
+
+Mock Test Engine: Implementation of mock-engine.js with JSON-fetch logic.
+
+PDF Monetization: Integration of "Pay-per-PDF" logic via Access Guard.
+
+Dynamic Data: Shifting from JS-data files to a unified JSON API fetch system.
+
+Last Updated: April 2026
