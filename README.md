@@ -47,7 +47,7 @@ root/
 │   ├── history/
 │   ├── geography/
 │   └── ... (other topics)
-└── artifacts/                 # System configuration & Firebase logic
+└── artifacts/                 # Internal System Settings (Firebase Config & Security Rules)
 
 
 🔐 3. Authentication & Monetization Logic (Freemium)
