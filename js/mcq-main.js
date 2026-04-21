@@ -1,6 +1,10 @@
-// Wrapping ENTIRE logic inside an IIFE to isolate the quiz logic from the global environment.
+/**
+ * --------------------------------------------------------------------------
+ * MCQ PRACTICE ENGINE (The Teacher)
+ * --------------------------------------------------------------------------
+ * Purely renders questions, handles UI logic, and communicates with Guard.
+ */
 (function() {
-    // Dynamic Storage Key based on Page Config
     const STORAGE_KEY = (window.QUIZ_CONFIG && window.QUIZ_CONFIG.category) 
         ? `hpgk_${window.QUIZ_CONFIG.category}_v1` 
         : 'hpgk_general_v1';
@@ -9,9 +13,7 @@
     let currentIndex = 0;
     let historyState = { lastIndex: 0, answers: {}, bookmarks: [] };
     
-    // Default font size strictly set to 12px as requested
     let currentFontSizePx = 12; 
-    
     let currentSearchTerm = '';
     let isBookmarkFilterActive = false;
     let isMistakesFilterActive = false;
@@ -20,11 +22,6 @@
     let quickSessionScore = 0;
     const QUICK_LIMIT = 10;
 
-    // 🔥 FIREBASE VARIABLES (Sirf Score Save Karne Ke Liye, Login Guard check karega)
-    let db = null;
-    let currentUserUid = null;
-
-    // DOM Elements
     const cardArea = document.getElementById('cardArea');
     const quizContent = document.getElementById('quizContent');
     const prevBtn = document.getElementById('prevBtn');
@@ -38,85 +35,27 @@
 
     let bookmarkFilterBtn, mistakeFilterBtn, shuffleBtn, quickModeBtn;
 
-    // ------------------------------------------------------------------
-    // 🔥 GUARD COMMUNICATION LINK (Yeh Guard se baat karega)
-    // ------------------------------------------------------------------
+    // Triggered by core.js
     window.HPGK_Engine_Refresh = function() {
-        // Jab bhi user login karta hai ya pass kharidata hai, Guard is function ko bulayega
-        // taaki current question dobara load ho aur paywall hat jaye.
-        loadQuestion(currentIndex);
+        loadQuestion(currentIndex); 
+        triggerCloudSync(); 
     };
 
-    // ------------------------------------------------------------------
-    // 🔥 FIREBASE INITIALIZATION & SCORE SYNC
-    // ------------------------------------------------------------------
-    async function initQuizFirebase() {
-        try {
-            const { initializeApp, getApps, getApp } = await import("https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js");
-            const { getAuth, onAuthStateChanged } = await import("https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js");
-            const { getFirestore } = await import("https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js");
-
-            const firebaseConfig = {
-                apiKey: "AIzaSyDfz5Y4oVQHl-crnATIv5dMWsw7edSKddQ",
-                authDomain: "hpgk-quiz.firebaseapp.com",
-                projectId: "hpgk-quiz",
-                storageBucket: "hpgk-quiz.firebasestorage.app",
-                messagingSenderId: "273909571419",
-                appId: "1:273909571419:web:20d5e06d8b582f4d2dc47e"
-            };
-
-            // Safely initialize Firebase
-            const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
-            const auth = getAuth(app);
-            db = getFirestore(app);
-
-            // Sirf UUID store karenge score sync ke liye. Login/Paywall logic Guard handle kar raha hai.
-            onAuthStateChanged(auth, (user) => {
-                currentUserUid = user ? user.uid : null;
-                if (currentUserUid) {
-                    syncScoreToFirebase(); // Sync local score immediately upon auth
-                }
-            });
-        } catch (e) {
-            console.error("Firebase Quiz Engine Init Failed:", e);
-        }
-    }
-
-    async function syncScoreToFirebase() {
-        // Score saving logic... (Same as before, checking Guard for auth state)
-        if (!window.HPGK_Guard || !window.HPGK_Guard.isUserLoggedIn || !currentUserUid || !db) return;
-
+    function triggerCloudSync() {
+        if (!window.HPGK_SaveScore) return;
         let validDoneCount = 0;
         let validCorrectCount = 0;
-
         if (window.quizData) {
             window.quizData.forEach(q => {
                 if (historyState.answers[q.id] !== undefined && historyState.answers[q.id] !== null) {
                     validDoneCount++;
-                    if (historyState.answers[q.id] === q.answer) {
-                        validCorrectCount++;
-                    }
+                    if (historyState.answers[q.id] === q.answer) validCorrectCount++;
                 }
             });
         }
-
-        if (validDoneCount === 0) return; 
-
-        try {
-            const { doc, setDoc } = await import("https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js");
-            const rawCategory = window.QUIZ_NAME || (window.QUIZ_CONFIG && window.QUIZ_CONFIG.category) || 'General Practice';
-            const docId = rawCategory.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-            const docRef = doc(db, 'artifacts', 'hpgk-quiz', 'users', currentUserUid, 'scores', docId);
-
-            await setDoc(docRef, {
-                category: rawCategory,
-                score: validCorrectCount,
-                total: validDoneCount,
-                timestamp: Date.now() 
-            }, { merge: true });
-        } catch (e) {
-            console.error("Error syncing score:", e);
-        }
+        if (validDoneCount === 0) return;
+        const rawCategory = window.QUIZ_NAME || (window.QUIZ_CONFIG && window.QUIZ_CONFIG.category) || 'General Practice';
+        window.HPGK_SaveScore(rawCategory, validCorrectCount, validDoneCount);
     }
 
     window.addEventListener('DOMContentLoaded', () => {
@@ -125,26 +64,10 @@
         mistakeFilterBtn = document.getElementById('mistakeFilterBtn');
         shuffleBtn = document.getElementById('shuffleBtn');
         quickModeBtn = document.getElementById('quickModeBtn');
-
-        initQuizFirebase();
         setTimeout(() => { initQuizNow(); }, 100);
     });
 
-    // ... (Help Modal, Backup, Font Adjustments, Stats, Highlight remain unchanged)
-    window.toggleHelpModal = function() {
-        const modal = document.getElementById('quizHelpModal');
-        if (modal) {
-            if (modal.classList.contains('show')) {
-                modal.classList.remove('show');
-                setTimeout(() => modal.style.display = 'none', 200);
-            } else {
-                modal.style.display = 'flex';
-                setTimeout(() => modal.classList.add('show'), 10);
-            }
-        }
-    };
-
-    window.exportProgress = function() {
+    window.HPGK_ExportLocalData = function() {
         const dataStr = JSON.stringify(historyState);
         const dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
         const catName = window.QUIZ_CONFIG ? window.QUIZ_CONFIG.category : 'backup';
@@ -152,9 +75,9 @@
         linkElement.setAttribute('href', dataUri);
         linkElement.setAttribute('download', `hpgk_${catName}_backup.json`);
         linkElement.click();
-    }
+    };
 
-    window.importProgress = function(input) {
+    window.HPGK_ImportLocalData = function(input) {
         const file = input.files[0];
         if (!file) return;
         const reader = new FileReader();
@@ -168,16 +91,14 @@
                     currentIndex = (historyState.lastIndex && historyState.lastIndex < currentList.length) ? historyState.lastIndex : 0;
                     applyFilters(); 
                     updateStats();
-                    syncScoreToFirebase();
+                    triggerCloudSync(); 
                     alert('Progress restored successfully!');
-                } else {
-                    alert('Invalid backup file format.');
-                }
+                } else { alert('Invalid backup file format.'); }
             } catch(err) { alert('Error reading file.'); }
         };
         reader.readAsText(file);
         input.value = '';
-    }
+    };
 
     window.adjustFont = function(dir) {
         currentFontSizePx += dir;
@@ -185,24 +106,18 @@
         if (currentFontSizePx < 12) currentFontSizePx = 12;
         loadQuestion(currentIndex);
     }
-
     function getFontSize() { return `${currentFontSizePx}px`; }
 
     function updateStats() {
         if (!document.getElementById('statDone')) return;
         const total = window.quizData.length;
-        let validDoneCount = 0;
-        let validCorrectCount = 0;
-
+        let validDoneCount = 0, validCorrectCount = 0;
         window.quizData.forEach(q => {
             if (historyState.answers[q.id] !== undefined && historyState.answers[q.id] !== null) {
                 validDoneCount++;
-                if (historyState.answers[q.id] === q.answer) {
-                    validCorrectCount++;
-                }
+                if (historyState.answers[q.id] === q.answer) validCorrectCount++;
             }
         });
-        
         const leftCount = total - validDoneCount;
         const wrongCount = validDoneCount - validCorrectCount;
         const accuracy = validDoneCount > 0 ? Math.round((validCorrectCount / validDoneCount) * 100) : 0;
@@ -226,26 +141,20 @@
         if (tooltip) { tooltip.classList.toggle('show'); }
     };
 
-    // ------------------------------------------------------------------
-    // 🔥 CORE RENDER (GUARD INTEGRATED)
-    // ------------------------------------------------------------------
     function loadQuestion(index) {
         if (!quizContent || !cardArea) return;
         quizContent.scrollTop = 0;
 
-        // 🔥 STEP 1: GUARD CHECK (Bouncer se pucho)
+        // 🔥 THE MAGIC LINK: Ask Guard before rendering
         if (window.HPGK_Guard) {
             const access = window.HPGK_Guard.checkAccess(index);
-            
             if (access.status !== 'allowed') {
-                // Agar Guard ne roka, toh Paywall dikhao aur wapas jao
-                window.HPGK_Guard.showPaywall(cardArea, access);
-                updateControls(true); // Disable Next Button
+                window.HPGK_Guard.showBlocker(cardArea, access);
+                updateControls(true); // Lock the controls
                 return;
             }
         }
 
-        // 🔥 STEP 2: Normal Quiz Render (Agar Guard ne allowed bola)
         if (isQuickModeActive && index >= currentList.length) {
             cardArea.innerHTML = `
                 <div class="empty-state">
@@ -348,7 +257,9 @@
         updateControls();
     }
 
-    // ... (All other Handlers, Buttons, Keydowns remain unchanged and intact)
+    // ------------------------------------------------------------------
+    // TOGGLES
+    // ------------------------------------------------------------------
     window.clearAllFilters = function() {
         isBookmarkFilterActive = false; isMistakesFilterActive = false; isShuffleActive = false; isQuickModeActive = false;
         if(bookmarkFilterBtn) bookmarkFilterBtn.classList.remove('active');
@@ -434,6 +345,7 @@
         loadQuestion(currentIndex);
     }
 
+    // Handlers
     window.handleAnswer = function(btn, qId, choiceIndex) {
         if (!currentList || !currentList[currentIndex]) return;
         const q = currentList[currentIndex];
@@ -444,7 +356,7 @@
         saveToStorage(); 
         updateStats(); 
         loadQuestion(currentIndex);
-        syncScoreToFirebase(); 
+        triggerCloudSync(); 
     };
 
     window.shareQuestion = async function(qId) {
