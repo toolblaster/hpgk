@@ -925,13 +925,35 @@
     });
 </script>
 
-<!-- Config for this specific category -->
+<!-- ======================================================= -->
+<!-- 1. THE ID CARD (PAGE CONFIGURATION) -->
+<!-- ======================================================= -->
 <script>
-    window.QUIZ_CONFIG = { category: 'district' };
+    // The core config read by the Bouncer and the Engine
+    window.PAGE_ACCESS = {
+        category: 'hpgk_district',
+        loginLimit: 30,         // Questions free for anonymous users
+        proLimit: 9999,         // Questions free for logged-in users (before Paywall)
+        requiredPass: 'mcq_pass'// Pass required if proLimit is reached
+    };
+    
+    // Legacy fallback for the engine
+    window.QUIZ_NAME = "District Profiles of HP";
+    window.QUIZ_CONFIG = { category: "hpgk_district" };
     window.quizData = []; 
 </script>
 
-<!-- Load Data & Logic -->
+<!-- ======================================================= -->
+<!-- 2. SCRIPT ARCHITECTURE (THE HOLY TRINITY) -->
+<!-- ======================================================= -->
+
+<!-- A. The Global Brain (Firebase & User Identity) -->
+<script src="../../js/core.js"></script>
+
+<!-- B. The Bouncer (Security & Paywall Limits) -->
+<script src="../../js/access-guard.js"></script>
+
+<!-- C. The Raw Data (Questions Array) -->
 <script src="district-kangra-part-1.js"></script>
 <script src="district-mandi-part-1.js"></script>
 <script src="district-shimla-part-1.js"></script>
@@ -945,7 +967,7 @@
 <script src="district-kinnaur-part-1.js"></script>
 <script src="district-lahaul-spiti-part-1.js"></script>
 
-<!-- Quiz Engine -->
+<!-- D. The Teacher (Pure MCQ Engine) -->
 <script src="../../js/main.js"></script>
 
 </body>
