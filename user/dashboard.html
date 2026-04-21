@@ -4,9 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
-    <title>My Dashboard | HPGK Quiz</title>
     
-    <!-- Assets (Updated paths for /user/ folder with ../) -->
+    <!-- SEO Optimization -->
+    <meta name="description" content="Access your personalized student dashboard to track quiz progress, review mock test scores, and manage premium access for HPAS and Agriculture exams.">
+    <title>Student Dashboard: Track Quiz Progress | HPGK</title>
+
+    <!-- Canonical Link -->
+    <link rel="canonical" href="https://hpgk.toolblaster.com/user/dashboard.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="profile">
+    <meta property="og:url" content="https://hpgk.toolblaster.com/user/dashboard.html">
+    <meta property="og:title" content="Student Dashboard: Track Quiz Progress | HPGK">
+    <meta property="og:description" content="Access your personalized student dashboard to track quiz progress, review mock test scores, and manage premium access for HPAS and Agriculture exams.">
+    <meta property="og:image" content="https://hpgk.toolblaster.com/js/favicon/web-app-manifest-512x512.png">
+
+    <!-- Assets -->
     <link rel="apple-touch-icon" sizes="180x180" href="../js/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="512x512" href="../js/favicon/web-app-manifest-512x512.png">
     <link rel="icon" type="image/png" sizes="192x192" href="../js/favicon/web-app-manifest-192x192.png">
@@ -22,48 +35,52 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Global CSS (Updated path) -->
+    <!-- Global CSS -->
     <link rel="stylesheet" href="../js/style.css">
 
     <style>
-        /* Modern Blue Glassmorphism & Compact SaaS Design Variables */
+        /* Ultra-Compact High-Density Theme Variables */
         :root {
-            /* FIXED: Matched global site width for perfect uniformity */
-            --site-width: 1100px;
+            --site-width: 1150px;
             
-            /* Enhanced Blue Gradients for Background */
             --bg-gradient: linear-gradient(135deg, #eff6ff 0%, #dbeafe 50%, #bfdbfe 100%);
             
-            /* Glassmorphism Variables */
-            --card-bg: rgba(255, 255, 255, 0.75);
-            --card-border: rgba(255, 255, 255, 0.8);
-            --glass-shadow: 0 4px 20px 0 rgba(37, 99, 235, 0.05); 
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --card-border: rgba(255, 255, 255, 0.6);
+            --glass-shadow: 0 4px 15px 0 rgba(37, 99, 235, 0.05); 
             
             --primary: #2563eb;
             --primary-dark: #1e40af;
             --accent: #ea580c;
+            --accent-light: rgba(234, 88, 12, 0.1);
             --text-main: #0f172a;
             --text-body: #334155;
             --text-sec: #64748b;
             --success: #10b981;
-            --radius-md: 8px;
-            --radius-lg: 12px;
-            --radius-xl: 16px;
+            --warning: #f59e0b;
+            
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 14px;
+            
+            /* Compact Padding Standards */
+            --panel-pad: 12px 16px;
+            --item-pad: 8px 12px;
         }
 
         [data-theme="dark"] {
             --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #020617 100%);
-            --card-bg: rgba(30, 41, 59, 0.6);
-            --card-border: rgba(255, 255, 255, 0.06);
-            --glass-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.3);
+            --card-bg: rgba(30, 41, 59, 0.75);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --glass-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.3);
             
             --primary: #3b82f6;
             --primary-dark: #60a5fa;
             --accent: #f97316;
+            --accent-light: rgba(249, 115, 22, 0.15);
             --text-main: #f8fafc;
             --text-body: #cbd5e1;
             --text-sec: #94a3b8;
-            --success: #34d399;
         }
 
         body { 
@@ -72,293 +89,231 @@
             font-family: 'Inter', sans-serif; 
             margin: 0; 
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.25; /* Tighter line-height */
         }
         
         main { 
             flex: 1; 
             width: 100%; 
-            padding: 25px 15px; 
+            padding: 15px; 
             box-sizing: border-box; 
             max-width: var(--site-width); 
             margin: 0 auto; 
         }
         
-        h1, h2, h3 { color: var(--text-main); margin-top: 0; }
+        h1, h2, h3, h4 { color: var(--text-main); margin-top: 0; letter-spacing: -0.3px; }
 
-        /* Premium Blue Glass Panel */
+        /* General Panel Styling */
         .glass-panel {
             background: var(--card-bg);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border: 1px solid var(--card-border);
             border-radius: var(--radius-lg);
-            padding: 20px;
-            margin-bottom: 20px;
+            padding: 15px;
+            margin-bottom: 15px;
             box-shadow: var(--glass-shadow);
         }
 
         /* =========================================
-           SaaS PROFILE HEADER
+           TOP GRID: 30/70 SPLIT (Profile + Purchase/Store)
+           Vertical Thin & Ultra Compact
            ========================================= */
-        .profile-header {
+        .top-dashboard-grid {
+            display: grid;
+            grid-template-columns: 3fr 7fr;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .compact-top-card {
+            padding: 12px 15px; /* Thin vertical padding */
+            margin-bottom: 0;
             display: flex;
-            justify-content: space-between;
+        }
+
+        /* 30% Left: Profile Panel */
+        .profile-panel {
             align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            padding: 16px 20px;
-            background: linear-gradient(to right, var(--card-bg), rgba(255,255,255,0.4));
+            gap: 12px;
             border-left: 4px solid var(--primary);
         }
-        [data-theme="dark"] .profile-header {
-            background: linear-gradient(to right, var(--card-bg), rgba(15,23,42,0.4));
-        }
         
-        .user-details {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-        
-        /* SaaS Avatar with Online Indicator */
-        .avatar-wrapper {
-            position: relative;
-            display: inline-block;
-        }
+        .avatar-wrapper { position: relative; flex-shrink: 0; }
         .avatar {
-            width: 55px; height: 55px; 
-            border-radius: 12px; /* Squircle look */
+            width: 48px; height: 48px; 
+            border-radius: 10px; 
             object-fit: cover;
             border: 2px solid var(--card-border);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
             background: #fff;
         }
         .status-dot {
-            position: absolute;
-            bottom: -2px; right: -2px;
-            width: 14px; height: 14px;
+            position: absolute; bottom: -2px; right: -2px;
+            width: 12px; height: 12px;
             background-color: var(--success);
-            border: 2px solid #ffffff;
+            border: 2px solid var(--card-bg);
             border-radius: 50%;
         }
-        [data-theme="dark"] .status-dot { border-color: #1e293b; }
         
-        .user-info h1 { font-size: 1.2rem; font-weight: 800; margin: 0 0 2px 0; line-height: 1.2; letter-spacing: -0.3px; }
-        .user-info p { color: var(--text-sec); margin: 0; font-size: 0.8rem; font-weight: 500; }
-        .user-badge {
-            display: inline-block; margin-top: 4px;
+        .user-info { display: flex; flex-direction: column; justify-content: center; }
+        .user-info h1 { font-size: 1rem; font-weight: 800; margin: 0 0 2px 0; }
+        .user-info p { color: var(--text-sec); margin: 0 0 4px 0; font-size: 0.65rem; font-weight: 500; }
+        .badge {
             font-size: 0.6rem; font-weight: 700; text-transform: uppercase;
-            padding: 2px 8px; border-radius: 20px;
-            background: var(--primary-light); color: var(--primary);
-        }
-        
-        /* SaaS Plan Pill Box */
-        .plan-box {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            background: rgba(255, 255, 255, 0.6);
-            border: 1px solid var(--card-border);
-            border-radius: 40px; /* Pill shape */
-            padding: 5px 5px 5px 15px;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
-        }
-        [data-theme="dark"] .plan-box { background: rgba(0, 0, 0, 0.2); }
-        
-        .plan-info { display: flex; flex-direction: column; align-items: flex-end; }
-        .plan-status { font-size: 0.6rem; color: var(--text-sec); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
-        .plan-name { font-size: 0.9rem; font-weight: 800; color: var(--text-main); }
-        
-        .upgrade-btn {
-            background: var(--text-main);
-            color: #ffffff; /* FIXED: Strict pure white text */
-            border: none;
-            padding: 8px 16px;
-            border-radius: 30px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            display: flex; align-items: center; gap: 6px;
-        }
-        .upgrade-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
-        [data-theme="dark"] .upgrade-btn { background: var(--primary); color: #ffffff; }
-
-        /* =========================================
-           ULTRA-COMPACT STATS GRID (Horizontal Row)
-           ========================================= */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px; 
-            margin-bottom: 20px;
-        }
-        
-        .stat-item {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: var(--radius-md); 
-            padding: 12px 18px; 
-            display: flex;
-            flex-direction: row; /* HORIZONTAL LAYOUT */
-            justify-content: space-between;
-            align-items: center;
-            backdrop-filter: blur(16px);
-            box-shadow: var(--glass-shadow);
+            padding: 2px 6px; border-radius: 4px; display: inline-block; width: fit-content;
         }
 
-        .stat-content {
+        /* 70% Right: Purchases & Store Panel */
+        .purchases-panel {
+            border-top: 3px solid var(--accent);
+            align-items: stretch;
+            gap: 15px;
+        }
+        
+        .purchases-left {
+            flex: 1;
             display: flex;
             flex-direction: column;
-            gap: 2px; /* Tight text spacing */
-        }
-
-        .stat-label { 
-            font-size: 0.7rem; 
-            color: var(--text-sec); 
-            font-weight: 700; 
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
-            margin: 0;
-        }
-
-        .stat-val { 
-            font-size: 1.4rem; /* Reduced from 1.8rem for compactness */
-            font-weight: 900; 
-            color: var(--text-main); 
-            line-height: 1; 
-            letter-spacing: -0.5px;
-            margin: 0;
-        }
-
-        .stat-icon-wrapper {
-            width: 36px; height: 36px; 
-            border-radius: 8px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1rem;
-            flex-shrink: 0;
+            justify-content: center;
+            border-right: 1px dashed var(--card-border);
+            padding-right: 15px;
         }
         
-        /* Specialized Icon Colors */
-        .icon-blue { background: rgba(37, 99, 235, 0.1); color: #2563eb; }
-        .icon-green { background: rgba(16, 185, 129, 0.1); color: #10b981; }
-        .icon-orange { background: rgba(234, 88, 12, 0.1); color: #ea580c; }
+        .purchases-right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
         
-        [data-theme="dark"] .icon-blue { background: rgba(96, 165, 250, 0.15); color: #60a5fa; }
-        [data-theme="dark"] .icon-green { background: rgba(52, 211, 153, 0.15); color: #34d399; }
-        [data-theme="dark"] .icon-orange { background: rgba(251, 191, 36, 0.15); color: #fbbf24; }
+        .mini-section-title {
+            font-size: 0.65rem; font-weight: 800; color: var(--text-sec);
+            text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.5px;
+        }
+
+        /* Compact Active Plan Box */
+        .active-plan-box {
+            background: var(--input-bg); border: 1px solid var(--card-border);
+            border-radius: var(--radius-sm); padding: 8px 10px;
+        }
+        [data-theme="dark"] .active-plan-box { background: rgba(0,0,0,0.2); }
+
+        /* Compact Store Items */
+        .compact-upgrade-item {
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(255,255,255,0.4); border: 1px solid var(--card-border);
+            padding: 6px 10px; border-radius: var(--radius-sm); margin-bottom: 6px;
+        }
+        .compact-upgrade-item:last-child { margin-bottom: 0; }
+        [data-theme="dark"] .compact-upgrade-item { background: rgba(0,0,0,0.15); }
+        
+        .compact-btn-buy {
+            background: linear-gradient(135deg, #f59e0b, #ea580c);
+            color: #fff; font-size: 0.65rem; font-weight: 800; padding: 4px 10px;
+            border-radius: 12px; text-decoration: none; border: none; text-transform: uppercase;
+            transition: 0.2s ease; box-shadow: 0 2px 8px rgba(234, 88, 12, 0.3);
+        }
+        .compact-btn-buy:hover { opacity: 0.9; }
 
         /* =========================================
-           MAIN LAYOUT COLUMNS
+           PAST: STATS DENSITY GRID (5 Cards)
+           ========================================= */
+        .stats-density-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px; 
+            margin-bottom: 15px;
+        }
+        
+        .stat-dense-card {
+            background: var(--card-bg); border: 1px solid var(--card-border);
+            border-radius: var(--radius-md); padding: 10px 15px; 
+            display: flex; flex-direction: column; justify-content: center;
+            box-shadow: var(--glass-shadow);
+        }
+        .stat-dense-label { font-size: 0.65rem; color: var(--text-sec); font-weight: 700; text-transform: uppercase; margin-bottom: 2px; }
+        .stat-dense-val { font-size: 1.25rem; font-weight: 900; color: var(--text-main); display: flex; align-items: center; justify-content: space-between; }
+        .stat-dense-val i { font-size: 0.9rem; opacity: 0.4; }
+
+        /* =========================================
+           BOTTOM LAYOUT: 2 COLUMNS (50/50 Split)
            ========================================= */
         .dashboard-cols {
             display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 20px;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
         }
 
-        .section-title { font-size: 1rem; font-weight: 800; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; letter-spacing: -0.3px; }
-        
-        .list-container {
-            display: flex; flex-direction: column; gap: 8px;
-        }
-
-        /* 2-COLUMN GRID FOR HISTORY LIST */
-        #history-list {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 8px;
-        }
-        
-        .list-item {
+        .section-header {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 8px 10px; /* Reduced padding */
-            border: 1px solid var(--card-border);
-            border-radius: var(--radius-md);
-            background: rgba(255,255,255,0.4);
-            transition: border-color 0.2s ease;
+            border-bottom: 1px solid var(--card-border); padding-bottom: 6px; margin-bottom: 10px;
         }
-        [data-theme="dark"] .list-item { background: rgba(0,0,0,0.2); }
-        .list-item:hover { border-color: var(--primary); }
-        
-        .item-info { display: flex; flex-direction: column; gap: 2px; }
-        .item-title { font-weight: 700; font-size: 0.75rem; color: var(--text-main); }
-        .item-sub { font-size: 0.65rem; color: var(--text-sec); font-weight: 500; }
-        
-        .item-score { font-size: 0.8rem; font-weight: 800; color: var(--text-main); background: var(--input-bg); border: 1px solid var(--card-border); padding: 3px 8px; border-radius: 6px; }
-        
-        .mock-lock { color: var(--text-sec); font-size: 0.9rem; opacity: 0.8; background: var(--input-bg); width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; border-radius: 6px; }
-        .mock-btn { background: var(--primary); padding: 4px 10px; border-radius: 6px; font-size: 0.7rem; color: white; font-weight: 700; text-decoration: none; transition: opacity 0.2s; }
-        .mock-btn:hover { opacity: 0.9; }
+        .section-title { font-size: 0.85rem; font-weight: 800; margin: 0; display: flex; align-items: center; gap: 6px; }
+        .section-title span { font-size: 0.6rem; background: var(--input-bg); padding: 2px 6px; border-radius: 4px; color: var(--text-sec); }
 
-        /* Auth Warning & Modern Google Button */
-        .auth-warning { text-align: center; padding: 50px 20px; }
-        .auth-warning i { font-size: 3rem; color: var(--primary); margin-bottom: 12px; opacity: 0.8; }
-        .auth-warning h2 { font-size: 1.3rem; margin-bottom: 10px; font-weight: 800; letter-spacing: -0.5px; }
-        .auth-warning p { font-size: 0.9rem; margin-bottom: 25px; color: var(--text-sec); max-width: 400px; margin-inline: auto; line-height: 1.5; }
+        .dense-list { display: flex; flex-direction: column; gap: 6px; }
 
+        /* PAST: History Items */
+        .history-item {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 8px 10px; border-radius: var(--radius-sm);
+            background: rgba(255,255,255,0.3); border: 1px solid var(--card-border);
+            border-left: 3px solid var(--primary);
+            transition: background 0.2s;
+        }
+        [data-theme="dark"] .history-item { background: rgba(0,0,0,0.15); }
+        
+        .history-item:nth-child(even) { border-left-color: var(--success); background: linear-gradient(90deg, rgba(16,185,129,0.05), transparent); }
+        .history-item:nth-child(3n) { border-left-color: var(--warning); background: linear-gradient(90deg, rgba(245,158,11,0.05), transparent); }
+        .history-item:hover { background: var(--input-bg); }
+        
+        .h-info { display: flex; flex-direction: column; }
+        .h-title { font-weight: 700; font-size: 0.75rem; color: var(--text-main); }
+        .h-date { font-size: 0.6rem; color: var(--text-sec); font-weight: 500; }
+        .h-score { font-size: 0.75rem; font-weight: 800; color: var(--text-main); background: var(--card-bg); padding: 2px 6px; border-radius: 4px; border: 1px solid var(--card-border); }
+
+        /* Mocks List (Present Action) */
+        .mock-item {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 6px 10px; border-bottom: 1px dashed var(--card-border);
+        }
+        .mock-item:last-child { border-bottom: none; }
+        .mock-info { display: flex; align-items: center; gap: 8px; }
+        .mock-icon { width: 26px; height: 26px; border-radius: 6px; background: var(--primary-light); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; }
+        .mock-details { display: flex; flex-direction: column; }
+        .mock-title { font-size: 0.75rem; font-weight: 700; color: var(--text-main); }
+        .mock-meta { font-size: 0.6rem; color: var(--text-sec); }
+        .mock-play { background: var(--text-main); color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.6rem; text-decoration: none; transition: 0.2s; }
+        .mock-play:hover { transform: scale(1.1); }
+        [data-theme="dark"] .mock-play { background: var(--primary); }
+
+        /* Auth Warning - Compact */
+        .auth-warning { text-align: center; padding: 40px 20px; }
+        .auth-warning h2 { font-size: 1.1rem; margin-bottom: 8px; }
+        .auth-warning p { font-size: 0.8rem; margin-bottom: 20px; color: var(--text-sec); max-width: 400px; margin-inline: auto; }
         .modern-google-btn {
-            background: #ffffff;
-            color: #334155;
-            border: 1px solid #cbd5e1;
-            padding: 10px 20px;
-            border-radius: 30px;
-            font-size: 0.9rem;
-            font-weight: 700;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-            font-family: 'Inter', sans-serif;
-        }
-        
-        .modern-google-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(37, 99, 235, 0.15);
-            border-color: #94a3b8;
+            background: #fff; color: #334155; border: 1px solid #cbd5e1; padding: 8px 16px; border-radius: 20px;
+            font-size: 0.8rem; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05); font-family: 'Inter', sans-serif;
         }
 
-        [data-theme="dark"] .modern-google-btn {
-            background: #1e293b;
-            color: #f8fafc;
-            border-color: #334155;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        /* Responsive Layout Adjustments */
+        @media (max-width: 1024px) {
+            .stats-density-grid { grid-template-columns: repeat(3, 1fr); }
         }
-        
-        [data-theme="dark"] .modern-google-btn:hover {
-            border-color: #475569;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
-        }
-
-        /* Mobile Responsiveness */
-        @media (max-width: 768px) {
+        @media (max-width: 850px) {
+            .top-dashboard-grid { grid-template-columns: 1fr; }
+            .purchases-panel { border-top: none; border-left: 4px solid var(--accent); }
             .dashboard-cols { grid-template-columns: 1fr; }
-            #history-list { grid-template-columns: 1fr; } /* Stack history list on mobile */
-            .profile-header { flex-direction: column; align-items: flex-start; gap: 15px; padding: 15px; }
-            .plan-box { width: 100%; justify-content: space-between; padding: 6px 6px 6px 12px; box-sizing: border-box; }
-            .stats-grid { gap: 8px; }
-            .stat-item { padding: 10px; gap: 6px; }
-            .stat-val { font-size: 1.2rem; }
-            .stat-label { font-size: 0.65rem; }
-            .stat-icon-wrapper { width: 28px; height: 28px; font-size: 0.85rem; border-radius: 6px; }
-            .avatar { width: 48px; height: 48px; }
-            .user-info h1 { font-size: 1.1rem; }
         }
-        @media (max-width: 480px) {
-            .stats-grid { gap: 6px; }
-            /* Extra compact vertical stack for smallest screens */
-            .stat-item { flex-direction: column; align-items: flex-start; padding: 10px 12px; justify-content: center; }
-            .stat-val { font-size: 1.15rem; }
-            .stat-label { font-size: 0.6rem; letter-spacing: 0; }
-            .stat-icon-wrapper { display: none; } /* Hide icons on mobile for maximum space efficiency */
+        @media (max-width: 600px) {
+            .stats-density-grid { grid-template-columns: repeat(2, 1fr); }
+            .purchases-panel { flex-direction: column; gap: 10px; }
+            .purchases-left { border-right: none; border-bottom: 1px dashed var(--card-border); padding-right: 0; padding-bottom: 10px; }
         }
     </style>
-    
     <script>
         const savedTheme = localStorage.getItem('theme') || 'light';
         document.documentElement.setAttribute('data-theme', savedTheme);
@@ -370,129 +325,177 @@
 
 <main>
     <!-- Loading State -->
-    <div id="loading-state" class="glass-panel" style="text-align: center; padding: 50px;">
-        <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 2rem; color: var(--primary);"></i>
-        <div style="font-size: 0.9rem; font-weight: 700; margin-top: 12px; color: var(--text-main);">Syncing Dashboard...</div>
+    <div id="loading-state" class="glass-panel" style="text-align: center; padding: 30px 20px;">
+        <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 1.8rem; color: var(--primary);"></i>
+        <div style="font-size: 0.8rem; font-weight: 700; margin-top: 8px; color: var(--text-sec);">Loading Workspace...</div>
     </div>
 
     <!-- Logged Out State -->
     <div id="logged-out-state" class="glass-panel auth-warning" style="display: none;">
-        <i class="fa-solid fa-shield-halved"></i>
-        <h2>Authentication Required</h2>
-        <p>Please login securely with your Google account to access your personalized performance dashboard and premium mock tests.</p>
-        
+        <i class="fa-solid fa-lock" style="font-size: 1.8rem; color: var(--text-sec); margin-bottom: 10px;"></i>
+        <h2>Workspace Locked</h2>
+        <p>Login securely with Google to access your past history, active plans, and future mock tests.</p>
         <button class="modern-google-btn" onclick="if(window.loginWithGoogle) window.loginWithGoogle()">
-            <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
                 <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
                 <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
                 <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
             </svg>
-            Continue with Google
+            Google Login
         </button>
     </div>
 
     <!-- Logged In State -->
     <div id="logged-in-state" style="display: none;">
         
-        <!-- SaaS Profile & Subscription Header -->
-        <div class="glass-panel profile-header">
-            <div class="user-details">
+        <!-- NEW 30/70 SPLIT HEADER: Ultra Compact Vertical Design -->
+        <div class="top-dashboard-grid">
+            
+            <!-- 30% Left: Profile Panel -->
+            <div class="glass-panel compact-top-card profile-panel">
                 <div class="avatar-wrapper">
                     <img id="user-photo" src="" alt="Avatar" class="avatar">
-                    <div class="status-dot" title="Online & Synced"></div>
+                    <div class="status-dot"></div>
                 </div>
                 <div class="user-info">
-                    <h1 id="user-name">Student Name</h1>
+                    <h1 id="user-name">Student</h1>
                     <p id="user-email">student@email.com</p>
-                    <span class="user-badge">HP Aspirant</span>
+                    <span class="badge" style="background:var(--input-bg); border:1px solid var(--card-border); color:var(--text-main);">UID: <span id="user-short-id">...</span></span>
                 </div>
             </div>
-            
-            <div class="plan-box">
-                <div class="plan-info">
-                    <div class="plan-status">Current Plan</div>
-                    <div class="plan-name" id="user-plan-name">Free Explorer</div>
+
+            <!-- 70% Right: Active Purchases & Upgrades Store -->
+            <div class="glass-panel compact-top-card purchases-panel">
+                
+                <!-- Active Purchases Section -->
+                <div class="purchases-left">
+                    <div class="mini-section-title"><i class="fa-solid fa-id-card-clip"></i> My Active Plan</div>
+                    <div id="top-plan-container">
+                        <!-- Populated via JS -->
+                        <div class="active-plan-box">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
+                                <span style="font-size: 0.75rem; font-weight: 800; color: var(--text-main);">Free Explorer</span>
+                                <span style="font-size: 0.6rem; color: var(--text-sec); background: rgba(100,116,139,0.1); padding: 2px 6px; border-radius: 4px;">Basic</span>
+                            </div>
+                            <div style="font-size: 0.65rem; color: var(--text-sec); line-height: 1.4;">
+                                Access limited free MCQs & history.<br>Valid Till: Lifetime
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <button class="upgrade-btn" onclick="alert('Subscription module coming soon! You will be able to unlock all Premium Mock Tests here.')">
-                    Upgrade <i class="fa-solid fa-arrow-right" style="font-size: 0.7rem;"></i>
-                </button>
+
+                <!-- Quick Upgrades Store Section -->
+                <div class="purchases-right">
+                    <div class="mini-section-title"><i class="fa-solid fa-store"></i> Recommended Upgrades</div>
+                    
+                    <div class="compact-upgrade-item">
+                        <div>
+                            <div style="font-size: 0.75rem; font-weight: 800; color: var(--text-main);"><i class="fa-solid fa-bolt" style="color:var(--accent);"></i> MCQ Pro Pass</div>
+                            <div style="font-size: 0.6rem; color: var(--text-sec);">Unlock 3000+ Premium MCQs</div>
+                        </div>
+                        <a href="../user/upgrade.html" class="compact-btn-buy">₹29/mo</a>
+                    </div>
+                    
+                    <div class="compact-upgrade-item">
+                        <div>
+                            <div style="font-size: 0.75rem; font-weight: 800; color: var(--text-main);"><i class="fa-solid fa-crown" style="color:var(--warning);"></i> Master Access</div>
+                            <div style="font-size: 0.6rem; color: var(--text-sec);">Unlock All Mocks & Features</div>
+                        </div>
+                        <a href="../user/upgrade.html" class="compact-btn-buy">₹149/mo</a>
+                    </div>
+                </div>
+
+            </div>
+            
+        </div>
+
+        <!-- PAST/PRESENT: High Density Stats (5 Cards) -->
+        <div class="stats-density-grid">
+            <div class="stat-dense-card">
+                <span class="stat-dense-label">Total Tests</span>
+                <div class="stat-dense-val"><span id="stat-total-tests">0</span> <i class="fa-solid fa-file-signature" style="color:var(--primary);"></i></div>
+            </div>
+            <div class="stat-dense-card">
+                <span class="stat-dense-label">Questions Solved</span>
+                <div class="stat-dense-val"><span id="stat-total-questions">0</span> <i class="fa-solid fa-bolt" style="color:var(--accent);"></i></div>
+            </div>
+            <div class="stat-dense-card">
+                <span class="stat-dense-label">Overall Acc.</span>
+                <div class="stat-dense-val"><span id="stat-avg-score">0%</span> <i class="fa-solid fa-bullseye" style="color:var(--success);"></i></div>
+            </div>
+            <div class="stat-dense-card">
+                <span class="stat-dense-label">Active Passes</span>
+                <div class="stat-dense-val"><span id="stat-passes">0</span> <i class="fa-solid fa-ticket" style="color:var(--warning);"></i></div>
+            </div>
+            <div class="stat-dense-card">
+                <span class="stat-dense-label">Study Streak</span>
+                <div class="stat-dense-val"><span id="stat-streak">0</span> <i class="fa-solid fa-fire" style="color:var(--accent);"></i></div>
             </div>
         </div>
 
-        <!-- ULTRA-COMPACT SaaS Stats Grid -->
-        <div class="stats-grid">
-            <div class="stat-item">
-                <div class="stat-content">
-                    <div class="stat-label">Tests Given</div>
-                    <div class="stat-val" id="stat-total-tests">0</div>
-                </div>
-                <div class="stat-icon-wrapper icon-blue"><i class="fa-solid fa-file-signature"></i></div>
-            </div>
-            
-            <div class="stat-item">
-                <div class="stat-content">
-                    <div class="stat-label">Avg Acc.</div>
-                    <div class="stat-val" id="stat-avg-score">0%</div>
-                </div>
-                <div class="stat-icon-wrapper icon-green"><i class="fa-solid fa-bullseye"></i></div>
-            </div>
-            
-            <div class="stat-item">
-                <div class="stat-content">
-                    <div class="stat-label">MCQs Solved</div>
-                    <div class="stat-val" id="stat-total-questions">0</div>
-                </div>
-                <div class="stat-icon-wrapper icon-orange"><i class="fa-solid fa-bolt"></i></div>
-            </div>
-        </div>
-
-        <!-- Main Layout (History + Premium Area) -->
+        <!-- MAIN GRID: 2 COLUMNS (50/50 Split for History and Present Action) -->
         <div class="dashboard-cols">
             
-            <!-- Left Column: History -->
-            <div class="glass-panel">
-                <h2 class="section-title"><i class="fa-solid fa-clock-rotate-left" style="color:var(--primary);"></i> Recent Activity</h2>
-                <div class="list-container" id="history-list">
-                    <!-- Dynamic Content -->
-                    <div style="text-align: center; padding: 30px 20px; color: var(--text-sec); font-size: 0.85rem; grid-column: 1 / -1;">
-                        <i class="fa-solid fa-box-open" style="font-size: 2rem; margin-bottom: 12px; opacity: 0.2;"></i><br>
-                        No test history found.<br>Start practicing to see your stats here!
+            <!-- COL 1 (PAST): Learning History -->
+            <div class="glass-panel" style="padding: 15px;">
+                <div class="section-header">
+                    <h2 class="section-title"><i class="fa-solid fa-clock-rotate-left"></i> Past History <span>Last 15</span></h2>
+                </div>
+                <div class="dense-list" id="history-list">
+                    <!-- Dynamic Content populated by JS -->
+                    <div style="text-align: center; padding: 20px; color: var(--text-sec); font-size: 0.75rem;">
+                        No history found. Start a quiz!
                     </div>
                 </div>
             </div>
 
-            <!-- Right Column: Premium Mock Tests -->
-            <div class="glass-panel">
-                <h2 class="section-title"><i class="fa-solid fa-file-contract" style="color:var(--accent);"></i> Mock Tests</h2>
-                <div class="list-container">
-                    
-                    <!-- Free Test Example -->
-                    <div class="list-item">
-                        <div class="item-info">
-                            <span class="item-title">Patwari Mock 1</span>
-                            <span class="item-sub">100 MCQs • Free Demo</span>
+            <!-- COL 2 (PRESENT): Continue Learning / Topics -->
+            <div class="glass-panel" style="padding: 15px;">
+                <div class="section-header">
+                    <h2 class="section-title"><i class="fa-solid fa-book-open-reader"></i> Continue Practice <span>Topics</span></h2>
+                </div>
+                <div class="dense-list">
+                    <div class="mock-item">
+                        <div class="mock-info">
+                            <div class="mock-icon"><i class="fa-solid fa-seedling"></i></div>
+                            <div class="mock-details">
+                                <span class="mock-title">Agriculture Quiz</span>
+                                <span class="mock-meta">Notes & MCQs</span>
+                            </div>
                         </div>
-                        <a href="javascript:void(0);" onclick="alert('This page will be built in the next step!')" class="mock-btn">Start</a>
+                        <a href="../agriculture-quiz/" class="mock-play"><i class="fa-solid fa-play"></i></a>
                     </div>
-
-                    <!-- Locked Premium Tests Example -->
-                    <div class="list-item">
-                        <div class="item-info">
-                            <span class="item-title">Patwari Mock 2</span>
-                            <span class="item-sub">100 MCQs • Premium</span>
+                    <div class="mock-item">
+                        <div class="mock-info">
+                            <div class="mock-icon" style="color:var(--accent); background:var(--accent-light);"><i class="fa-solid fa-water"></i></div>
+                            <div class="mock-details">
+                                <span class="mock-title">Rivers of HP</span>
+                                <span class="mock-meta">Notes & MCQs</span>
+                            </div>
                         </div>
-                        <div class="mock-lock"><i class="fa-solid fa-lock"></i></div>
+                        <a href="../himachal-pradesh-gk/rivers/" class="mock-play"><i class="fa-solid fa-play"></i></a>
                     </div>
-                    
-                    <div class="list-item">
-                        <div class="item-info">
-                            <span class="item-title">Police Constable 1</span>
-                            <span class="item-sub">80 MCQs • Premium</span>
+                    <div class="mock-item">
+                        <div class="mock-info">
+                            <div class="mock-icon" style="color:var(--primary);"><i class="fa-solid fa-person-hiking"></i></div>
+                            <div class="mock-details">
+                                <span class="mock-title">Tourism & Culture</span>
+                                <span class="mock-meta">Notes & MCQs</span>
+                            </div>
                         </div>
-                        <div class="mock-lock"><i class="fa-solid fa-lock"></i></div>
+                        <a href="../himachal-pradesh-gk/tourism/" class="mock-play"><i class="fa-solid fa-play"></i></a>
                     </div>
-
+                    <div class="mock-item">
+                        <div class="mock-info">
+                            <div class="mock-icon" style="color:var(--warning); background:rgba(245,158,11,0.1);"><i class="fa-solid fa-landmark"></i></div>
+                            <div class="mock-details">
+                                <span class="mock-title">History of HP</span>
+                                <span class="mock-meta">Notes & MCQs</span>
+                            </div>
+                        </div>
+                        <a href="../himachal-pradesh-gk/history/" class="mock-play"><i class="fa-solid fa-play"></i></a>
+                    </div>
                 </div>
             </div>
 
@@ -503,10 +506,11 @@
 
 <div id="site-footer"></div>
 
-<!-- Load Scripts (Updated paths with ../) -->
+<!-- Load Scripts -->
+<script src="../js/core.js"></script>
 <script src="../js/layout.js"></script>
 
-<!-- Firebase Firestore Integration -->
+<!-- Firebase Firestore Integration for fetching User History -->
 <script type="module">
     import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
     import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
@@ -521,7 +525,6 @@
         appId: "1:273909571419:web:20d5e06d8b582f4d2dc47e"
     };
 
-    // Safely check if Firebase is already initialized to prevent crashes
     const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
     const auth = getAuth(app);
     const db = getFirestore(app);
@@ -530,19 +533,49 @@
     const elLoggedOut = document.getElementById('logged-out-state');
     const elLoggedIn = document.getElementById('logged-in-state');
     const historyList = document.getElementById('history-list');
+    const topPlanContainer = document.getElementById('top-plan-container');
 
     onAuthStateChanged(auth, async (user) => {
         if (user) {
-            // Setup Profile Data
             document.getElementById('user-name').innerText = user.displayName || 'Student';
             document.getElementById('user-email').innerText = user.email;
             document.getElementById('user-photo').src = user.photoURL || 'https://ui-avatars.com/api/?name=' + encodeURIComponent(user.displayName || 'S') + '&background=e2e8f0&color=334155';
+            document.getElementById('user-short-id').innerText = user.uid.substring(0, 6).toUpperCase();
             
-            // Check Premium Status (Future Proofing)
-            let isPremium = false; 
-            if(isPremium) {
-                document.getElementById('user-plan-name').innerText = "Premium Access";
-                document.getElementById('user-plan-name').style.color = "var(--success)";
+            // Handle User Subscriptions / Passes UI (70% Panel Left Side)
+            let activePasses = 0;
+            if(window.HPGK_User && window.HPGK_User.passes && Object.keys(window.HPGK_User.passes).length > 0) {
+                activePasses = Object.keys(window.HPGK_User.passes).length;
+                document.getElementById('stat-passes').innerText = activePasses;
+
+                let html = '';
+                for(const [passId, passData] of Object.entries(window.HPGK_User.passes)) {
+                    html += `
+                    <div class="active-plan-box">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
+                            <span style="font-size: 0.75rem; font-weight: 800; color: var(--text-main);"><i class="fa-solid fa-check-circle" style="color:var(--success);"></i> ${passData.name || 'Premium Pass'}</span>
+                            <span class="badge" style="background: rgba(16,185,129,0.1); color: var(--success); border: 1px solid rgba(16,185,129,0.2);">Active</span>
+                        </div>
+                        <div style="font-size: 0.6rem; color: var(--text-sec); line-height: 1.4;">
+                            Purchased: ${passData.purchaseDate || 'N/A'} • Valid Till: ${passData.expiryDate || 'Lifetime'}<br>
+                            Includes: Premium MCQs & Features Unlocked.
+                        </div>
+                    </div>`;
+                }
+                topPlanContainer.innerHTML = html;
+            } else {
+                // Free Plan HTML Default
+                topPlanContainer.innerHTML = `
+                    <div class="active-plan-box">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
+                            <span style="font-size: 0.75rem; font-weight: 800; color: var(--text-main);">Free Explorer</span>
+                            <span class="badge badge-free">Basic</span>
+                        </div>
+                        <div style="font-size: 0.6rem; color: var(--text-sec); line-height: 1.4;">
+                            Access limited free MCQs & history.<br>Valid Till: Lifetime
+                        </div>
+                    </div>
+                `;
             }
             
             elLoading.style.display = 'none';
@@ -563,19 +596,63 @@
             const scoresRef = collection(db, 'artifacts', appId, 'users', uid, 'scores');
             const querySnapshot = await getDocs(scoresRef);
             
-            let totalTests = 0;
-            let totalQuestions = 0;
-            let totalCorrect = 0;
-            let historyHTML = '';
-
             const records = [];
             querySnapshot.forEach((doc) => { records.push({ id: doc.id, ...doc.data() }); });
             records.sort((a, b) => b.timestamp - a.timestamp); // Newest first
 
+            // SMART DEDUPLICATION & BEAUTIFUL NAMING FIX
+            const uniqueRecords = [];
+            const seenCategories = new Set();
+            
+            const beautifyName = {
+                'rivers': 'Rivers of HP',
+                'geography': 'Geography of HP',
+                'history': 'History of HP',
+                'economy': 'Economy of HP',
+                'polity': 'Polity of HP',
+                'art culture': 'Art & Culture of HP',
+                'tourism': 'Tourism in HP',
+                'agriculture': 'Agriculture Quiz',
+                'district': 'Districts of HP',
+                'environment': 'Environment of HP',
+                'famous people': 'Famous People of HP'
+            };
+
+            const practiceDays = new Set();
+
             records.forEach(data => {
-                totalTests++;
-                totalQuestions += data.total;
-                totalCorrect += data.score;
+                const rawCat = data.category || 'Unknown Quiz';
+                let cleanString = rawCat.replace(/hpgk_/gi, '').replace(/-/g, ' ').trim();
+                const uniqueKey = cleanString.toLowerCase();
+
+                let finalUniqueKey = uniqueKey;
+                if (uniqueKey === 'rivers of hp' || uniqueKey === 'rivers') finalUniqueKey = 'rivers';
+                if (uniqueKey === 'geography of hp' || uniqueKey === 'geography') finalUniqueKey = 'geography';
+
+                if (!seenCategories.has(finalUniqueKey)) {
+                    seenCategories.add(finalUniqueKey);
+                    
+                    if (beautifyName[finalUniqueKey]) {
+                        data.cleanCatName = beautifyName[finalUniqueKey];
+                    } else {
+                        data.cleanCatName = cleanString.replace(/\b\w/g, l => l.toUpperCase());
+                    }
+                    uniqueRecords.push(data);
+                }
+
+                const dateOnly = new Date(data.timestamp).setHours(0,0,0,0);
+                practiceDays.add(dateOnly);
+            });
+
+            document.getElementById('stat-streak').innerText = practiceDays.size;
+
+            let totalTests = uniqueRecords.length;
+            let totalQuestions = 0;
+            let totalCorrect = 0;
+
+            uniqueRecords.forEach(data => {
+                totalQuestions += (Number(data.total) || 0);
+                totalCorrect += (Number(data.score) || 0);
             });
 
             if (totalTests > 0) {
@@ -585,23 +662,26 @@
                 const avgAcc = Math.round((totalCorrect / totalQuestions) * 100) || 0;
                 document.getElementById('stat-avg-score').innerText = avgAcc + '%';
                 
-                historyList.innerHTML = records.slice(0, 16).map(data => {
-                    const dateStr = new Date(data.timestamp).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' });
-                    const catName = data.category.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                historyList.innerHTML = uniqueRecords.slice(0, 15).map(data => {
+                    const dateObj = new Date(data.timestamp);
+                    const dateStr = dateObj.toLocaleDateString('en-IN', { day: '2-digit', month: 'short' });
+                    const timeStr = dateObj.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
+                    const catName = data.cleanCatName;
                     
                     return `
-                        <div class="list-item">
-                            <div class="item-info">
-                                <span class="item-title" title="${catName}">${catName}</span>
-                                <span class="item-sub"><i class="fa-regular fa-calendar" style="margin-right:4px;"></i>${dateStr}</span>
+                        <div class="history-item">
+                            <div class="h-info">
+                                <span class="h-title" title="${catName}">${catName}</span>
+                                <span class="h-date">${dateStr} • ${timeStr}</span>
                             </div>
-                            <div class="item-score">${data.score} / ${data.total}</div>
+                            <div class="h-score">${data.score} / ${data.total}</div>
                         </div>
                     `;
                 }).join('');
             }
         } catch (error) {
             console.error("Error fetching stats:", error);
+            historyList.innerHTML = `<div style="text-align: center; font-size:0.75rem; color: var(--wrong-text);">Error loading history.</div>`;
         }
     }
 </script>
@@ -610,10 +690,10 @@
     document.addEventListener('DOMContentLoaded', () => {
         if (typeof renderHeader === 'function') {
             renderHeader({
-                title: 'My Dashboard',
-                subtitle: 'Control Panel',
-                iconClass: 'fa-solid fa-gauge-high',
-                link: '../index.html', /* Go back to root from /user/ */
+                title: 'Workspace',
+                subtitle: 'My Analytics',
+                iconClass: 'fa-solid fa-server',
+                link: '../', 
                 rootPath: '..'
             });
         }
