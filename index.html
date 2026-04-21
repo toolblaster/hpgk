@@ -373,7 +373,7 @@
             }
         }
 
-        /* Resource Grid for 8 cards (4 columns on desktop) - Used for Section 3 */
+        /* Resource Grid for cards (4 columns on desktop) - Used for Section 3 */
         .resource-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -495,7 +495,7 @@
         
         .seo-card h3 { font-size: 16px !important; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; color: var(--text-main); font-weight: 700; }
         .seo-card h3 i { color: var(--primary); }
-        .seo-card p { color: var(--text-body); font-size: 0.85rem; margin-bottom: 0; line-height: 1.6; }
+        .seo-card p { color: var(--text-body); font-size: 13px; margin-bottom: 0; line-height: 1.6; }
         
         @media (max-width: 600px) {
             /* Mobile H1 and H2 Overrides strictly preserved in local style */
@@ -682,7 +682,7 @@
             </div>
 
             <!-- 6. HP Patwari Exam -->
-            <div class="topic-card disabled" title="Coming Soon">
+            <div class="topic-card disabled" title="Coming Soon" style="display: none;">
                 <div class="topic-icon"><i class="fa-solid fa-file-signature"></i></div>
                 <div class="topic-title">HP Patwari</div>
                 <div class="topic-desc">Targeted mocks for Revenue Dept exams.</div>
@@ -690,7 +690,7 @@
             </div>
 
             <!-- 7. HP Police Constable -->
-            <div class="topic-card disabled" title="Coming Soon">
+            <div class="topic-card disabled" title="Coming Soon" style="display: none;">
                 <div class="topic-icon"><i class="fa-solid fa-shield-halved"></i></div>
                 <div class="topic-title">Police Constable</div>
                 <div class="topic-desc">Full mock tests for HP Police recruitment.</div>
@@ -698,7 +698,7 @@
             </div>
 
             <!-- 8. HRTC Conductor -->
-            <div class="topic-card disabled" title="Coming Soon">
+            <div class="topic-card disabled" title="Coming Soon" style="display: none;">
                 <div class="topic-icon"><i class="fa-solid fa-bus"></i></div>
                 <div class="topic-title">HRTC Conductor</div>
                 <div class="topic-desc">Specialized transport rules & GK mocks.</div>
@@ -706,7 +706,7 @@
             </div>
 
             <!-- 9. HP High Court -->
-            <div class="topic-card disabled" title="Coming Soon">
+            <div class="topic-card disabled" title="Coming Soon" style="display: none;">
                 <div class="topic-icon"><i class="fa-solid fa-scale-unbalanced"></i></div>
                 <div class="topic-title">HP High Court</div>
                 <div class="topic-desc">Clerk & Process Server mock test series.</div>
@@ -714,7 +714,7 @@
             </div>
 
             <!-- 10. HP TET & JBT -->
-            <div class="topic-card disabled" title="Coming Soon">
+            <div class="topic-card disabled" title="Coming Soon" style="display: none;">
                 <div class="topic-icon"><i class="fa-solid fa-chalkboard-user"></i></div>
                 <div class="topic-title">HP TET & JBT</div>
                 <div class="topic-desc">Pedagogy, GK & subject specific tests.</div>
@@ -727,7 +727,7 @@
     <div class="section-separator"></div>
 
     <!-- ==============================================
-         SECTION 3: PREMIUM STUDY NOTES & RESOURCES (8 CARDS)
+         SECTION 3: PREMIUM STUDY NOTES & RESOURCES
          ============================================== -->
     <div class="page-layout">
         <h2 class="section-sub-heading">Premium Study Resources</h2>
@@ -735,7 +735,6 @@
             Supercharge your revision with our highly curated study hubs, fast-reading one-liners, and extra curriculum resources.
         </p>
         
-        <!-- 8 Cards - 4 Columns on Desktop -->
         <div class="resource-grid">
             <!-- 1. HP Study Notes Hub -->
             <a href="study-notes/" class="topic-card">
@@ -761,24 +760,24 @@
                 <div class="topic-badge">Soon</div>
             </div>
             
-            <!-- 4. General Hindi & English (New) -->
-            <div class="topic-card disabled" title="Coming Soon">
-                <div class="topic-icon"><i class="fa-solid fa-spell-check"></i></div>
-                <div class="topic-title">Gen. Hindi & English</div>
-                <div class="topic-desc">Grammar notes for state level exams.</div>
-                <div class="topic-badge">Soon</div>
-            </div>
-
-            <!-- 5. HP Current Affairs -->
+            <!-- 4. HP Current Affairs (Disabled) -->
             <div class="topic-card disabled" title="Coming Soon">
                 <div class="topic-icon"><i class="fa-regular fa-newspaper"></i></div>
                 <div class="topic-title">HP Current Affairs</div>
                 <div class="topic-desc">Monthly MCQs of HP & National events.</div>
                 <div class="topic-badge">Soon</div>
             </div>
-            
+
+            <!-- 5. General Hindi & English -->
+            <div class="topic-card disabled" title="Coming Soon" style="display: none;">
+                <div class="topic-icon"><i class="fa-solid fa-spell-check"></i></div>
+                <div class="topic-title">Gen. Hindi & English</div>
+                <div class="topic-desc">Grammar notes for state level exams.</div>
+                <div class="topic-badge">Soon</div>
+            </div>
+
             <!-- 6. Indian Static GK -->
-            <div class="topic-card disabled" title="Coming Soon">
+            <div class="topic-card disabled" title="Coming Soon" style="display: none;">
                 <div class="topic-icon"><i class="fa-solid fa-monument"></i></div>
                 <div class="topic-title">Indian Static GK</div>
                 <div class="topic-desc">Indian History, Polity & Geography basics.</div>
@@ -786,7 +785,7 @@
             </div>
 
             <!-- 7. General Science -->
-            <div class="topic-card disabled" title="Coming Soon">
+            <div class="topic-card disabled" title="Coming Soon" style="display: none;">
                 <div class="topic-icon"><i class="fa-solid fa-flask"></i></div>
                 <div class="topic-title">General Science</div>
                 <div class="topic-desc">Physics, Chemistry & Bio for state exams.</div>
@@ -794,7 +793,7 @@
             </div>
 
             <!-- 8. Computer / IT -->
-            <div class="topic-card disabled" title="Coming Soon">
+            <div class="topic-card disabled" title="Coming Soon" style="display: none;">
                 <div class="topic-icon"><i class="fa-solid fa-computer"></i></div>
                 <div class="topic-title">Computer / IT</div>
                 <div class="topic-desc">JOA IT, Clerk & Comp Operator notes.</div>
@@ -808,7 +807,7 @@
     <!-- Natural SEO Content Section for Search Engines -->
     <div class="seo-content-wrapper">
         <div class="seo-header">
-            <h2 class="section-sub-heading">Your Ultimate Guide to HP General Knowledge</h2>
+            <h2 class="section-sub-heading" style="font-size: 22px !important;">Ultimate HP GK Guide</h2>
             <p>Comprehensive study material and free mock tests for all Himachal Pradesh competitive exams.</p>
         </div>
 
