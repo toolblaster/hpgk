@@ -877,35 +877,43 @@
     });
 </script>
 
-<!-- ************************************************************ -->
-<!-- PAYWALL & ACCESS CONFIGURATION (The ID Card)                 -->
-<!-- ************************************************************ -->
+<!-- ======================================================= -->
+<!-- 1. THE ID CARD (PAGE CONFIGURATION) -->
+<!-- ======================================================= -->
 <script>
+    // The core config read by the Bouncer and the Engine
     window.PAGE_ACCESS = {
-        category: 'rivers',     // Page category
-        type: 'mcq',            // Content type
-        loginLimit: 30,         // Show free login card at 50 questions
-        proLimit: 9999,         // 9999 means no Pro Paywall (100% free after login)
-        requiredPass: 'mcq_pass'// Not needed here, but good for future-proofing
+        category: 'hpgk_rivers',
+        loginLimit: 30,         // Questions free for anonymous users
+        proLimit: 9999,         // Questions free for logged-in users (before Paywall)
+        requiredPass: 'mcq_pass'// Pass required if proLimit is reached
     };
     
-    // Standard Quiz Config
-    window.QUIZ_CONFIG = { category: 'rivers' };
+    // Legacy fallback for the engine
+    window.QUIZ_NAME = "Rivers of HP";
+    window.QUIZ_CONFIG = { category: "hpgk_rivers" };
     window.quizData = []; 
 </script>
 
-<!-- 1. Load Access Guard (The Bouncer) FIRST -->
+<!-- ======================================================= -->
+<!-- 2. SCRIPT ARCHITECTURE (THE HOLY TRINITY) -->
+<!-- ======================================================= -->
+
+<!-- A. The Global Brain (Firebase & User Identity) -->
+<script src="../../js/core.js"></script>
+
+<!-- B. The Bouncer (Security & Paywall Limits) -->
 <script src="../../js/access-guard.js"></script>
 
-<!-- 2. Load Data Files -->
+<!-- C. The Raw Data (Questions Array) -->
 <script src="river-part-1.js"></script>
 <script src="river-part-2.js"></script>
 <script src="river-part-3.js"></script>
 <script src="river-part-4.js"></script>
 <script src="river-part-5.js"></script>
 
-<!-- 3. Load Quiz Engine (The Teacher) -->
-<script src="../../js/main.js"></script>
+<!-- D. The Teacher (Pure MCQ Engine) -->
+<script src="../../js/mcq-main.js"></script>
 
 </body>
 </html>
