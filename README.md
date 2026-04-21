@@ -1,103 +1,119 @@
 🏔️ HPGK MCQ & Mock Test Platform (v2.0 - 2026)
 
-Welcome to the official documentation of the HPGK (Himachal Pradesh General Knowledge) web application. This platform is a high-performance, SEO-optimized, and centralized freemium system designed for HPPSC aspirants.
+Welcome to the official documentation of the HPGK (Himachal Pradesh General Knowledge) web application. This platform is a high-performance, SEO-optimized, and centralized freemium system designed specifically for HPAS, HPPSC, and Allied Services aspirants.
 
-🏗️ 1. Architecture Overview (The "Three Pillars" Model)
+Designed with a strict Mobile-First approach and ensuring WCAG AA Compliance for maximum accessibility, this platform delivers a seamless, app-like experience directly in the browser.
 
-The system is built on a Decoupled Centralized Architecture. The logic is separated from the content to ensure that a single update can affect thousands of pages instantly.
+🏗️ Core Architecture: The "Holy Trinity" Model
 
-Pillar A: The ID Card (PAGE_ACCESS)
+The system has been meticulously decoupled into three independent core files to maximize speed, security, and maintainability.
 
-Every HTML content page contains a window.PAGE_ACCESS object. This is the local configuration that tells the system how to treat that specific page.
+1. The Global Brain (js/core.js)
 
-Location: Inside the <script> tag at the bottom of individual HTML files.
+This is the foundational script loaded on every page.
 
-Controls: loginLimit (Free questions count), proLimit (Paywall trigger), and category.
+Role: Handles Firebase initialization, Google Authentication, and Firestore Database connections.
 
-Pillar B: The Bouncer (access-guard.js)
+Key Features: Manages the global window.HPGK_User object (storing UID and active passes) and handles cloud synchronization (HPGK_SaveScore).
 
-This is the Central Security Hub. It reads the "ID Card" from the HTML and checks it against the user's identity.
+2. The Bouncer (js/access-guard.js)
 
-Function: Handles Paywall UI injection, Login detection, and Subscription verification.
+The centralized security and monetization manager.
 
-Logic: Communicates with Firebase to check if the user has a valid active_plans ticket.
+Role: Reads the local HTML page configuration (window.PAGE_ACCESS) and decides whether the user can view the next question.
 
-Pillar C: The Engines (main.js & mock-engine.js)
+Key Features: Injects a dynamic, high-converting premium UI (Paywall) if the user hits a limit. It operates in 3 distinct states:
 
-These are the Content Renderers.
+Guest Limit Reached: Prompts for a Free Google Login.
 
-main.js: Handles standard MCQ practice with instant feedback and explanations.
+Pro Limit Reached (Not Logged In): Prompts to login to view premium plans.
 
-mock-engine.js (Future): Handles time-bound exams with negative marking and result analysis.
+Pro Limit Reached (Logged In): Displays the Razorpay checkout button for the Premium Pass.
 
-📂 2. File & Directory Structure
+3. The Teacher (js/main.js)
+
+The pure, lightweight MCQ rendering engine.
+
+Role: Strictly handles the display of questions, options, explanations, and local statistics.
+
+Key Features: Manages Quick 10 mode, Shuffle, Bookmarks, and Mistakes Review. It constantly communicates with the "Bouncer" before rendering any new question.
+
+📂 Directory & File Structure
 
 root/
-├── index.html                 # Main Homepage
+├── index.html                 # Main Homepage & Subject Navigation
+├── dashboard.html             # User's Personalized Performance Dashboard
+├── README.md                  # Project Documentation
 ├── js/
-│   ├── layout.js              # Global UI (Header/Footer/Login Modals)
-│   ├── main.js                # Practice MCQ Engine (The "Teacher")
-│   ├── access-guard.js        # Central Security Guard (The "Bouncer")
-│   ├── style.css              # Global Design System (Glassmorphism UI)
-│   └── favicon/               # Brand assets & PWA manifest
-├── himachal-pradesh-gk/       # Content Directory
+│   ├── core.js                # [1] The Brain (Auth & Firebase)
+│   ├── access-guard.js        # [2] The Bouncer (Paywalls & Limits)
+│   ├── main.js                # [3] The Teacher (MCQ Engine)
+│   ├── layout.js              # Global UI (Header, Footer, Mobile Menu, Modals)
+│   ├── style.css              # Global Design System (Glassmorphism, High-Contrast)
+│   └── favicon/               # Brand assets & PWA manifest files
+├── himachal-pradesh-gk/       # Core Content Directory
 │   ├── rivers/
-│   │   ├── index.html         # River Topic Landing Page (Configured with ID Card)
-│   │   └── river-part-1.js    # Raw Data (Question objects)
+│   │   ├── index.html         # Topic Landing Page (Contains PAGE_ACCESS ID Card)
+│   │   └── river-part-1.js    # Raw Data Array
 │   ├── history/
 │   ├── geography/
 │   └── ... (other topics)
-└── artifacts/                 # Internal System Settings (Firebase Config & Security Rules)
+└── user/
+    └── upgrade.html           # Premium Subscription & Mock Test Bundles Page
 
 
-🔐 3. Authentication & Monetization Logic (Freemium)
+🔐 Freemium Logic & Page Configuration
 
-The platform follows a strict Login-then-Pay funnel:
+Every topic page controls its own destiny using a simple configuration block placed at the bottom of its HTML file.
 
-Anonymous Stage: User can view up to loginLimit (e.g., 30) questions for free.
-
-Login Stage: At question 31, the access-guard.js triggers the Login Card.
-
-Pro Stage: After login, the user can view up to proLimit (e.g., 100 or 9999).
-
-Paywall Stage: If proLimit is reached, the system triggers the Premium Pass (₹29) requirement.
-
-VIP Access: Any user with the mega_combo_pass tag in Firebase Firestore (/users/{uid}/profile/billing) bypasses all limits automatically.
-
-🚀 4. Developer Onboarding (How to add a new page)
-
-To add a new MCQ topic, follow these 3 steps:
-
-Create Directory: Add a folder in himachal-pradesh-gk/.
-
-Prepare Data: Create JS files containing the window.quizData array.
-
-Setup HTML: Copy the template and update the PAGE_ACCESS block:
+The "ID Card" (PAGE_ACCESS)
 
 window.PAGE_ACCESS = {
-    category: 'new_topic',
-    loginLimit: 30,
-    proLimit: 9999,
-    requiredPass: 'mcq_pass'
+    category: 'hpgk_rivers',
+    loginLimit: 30,          // Questions free for anonymous guests
+    proLimit: 9999,          // Questions free for logged-in users (9999 = no paywall)
+    requiredPass: 'mcq_pass' // Pass ID required if proLimit is triggered
 };
 
 
-🛠️ 5. Tech Stack
+To lock a premium Mock Test after 10 questions, simply set proLimit: 10 and requiredPass: 'patwari_mock_pass'.
 
-Frontend: Pure HTML5, CSS3 (Custom Glassmorphism), Vanilla JS (ES6+).
+🚀 Developer Guide: How to Add a New Topic
 
-Backend: Firebase Auth (Google), Firebase Firestore (NoSQL).
+Adding new content to the platform takes less than 2 minutes:
 
-Icons: FontAwesome 6.4.0.
+Create Directory: Create a new folder (e.g., himachal-pradesh-gk/new-topic/).
 
-SEO: Meta-tag density control, JSON-LD Schema, WCAG AA Compliance.
+Add Data Files: Create part-1.js containing your window.quizData array.
 
-📈 6. Future Roadmap
+Setup HTML: Copy an existing index.html template.
 
-Mock Test Engine: Implementation of mock-engine.js with JSON-fetch logic.
+Update the ID Card: Modify window.PAGE_ACCESS and window.QUIZ_CONFIG to reflect the new category.
 
-PDF Monetization: Integration of "Pay-per-PDF" logic via Access Guard.
+Link Scripts: Ensure the Holy Trinity is linked in the exact order: core.js ➔ access-guard.js ➔ Data Files ➔ main.js.
 
-Dynamic Data: Shifting from JS-data files to a unified JSON API fetch system.
+🛠️ Tech Stack & Design System
 
-Last Updated: April 2026
+Frontend Technologies: Pure HTML5, CSS3 (Custom Glassmorphism Variables), Vanilla JavaScript (ES6+).
+
+Backend Services: Firebase Authentication (Google OAuth), Firebase Firestore (NoSQL Document Database).
+
+Design Philosophy:
+
+Mobile-First: Fully responsive grid layouts optimized for touch interactions.
+
+Glassmorphism: Premium frosted-glass effects utilizing CSS backdrop-filter.
+
+Accessibility: WCAG AA compliant contrast ratios (--primary: #2563eb against white/dark backgrounds).
+
+Typography: 'Inter' for English, 'Noto Sans Devanagari' for Hindi.
+
+📈 Future Roadmap
+
+Payment Gateway Integration: Connecting upgrade.html and access-guard.js with Razorpay/Stripe for automated ticket unlocking.
+
+Advanced Mock Engine: Creating a specialized mock-engine.js for time-bound, negative-marking tests.
+
+JSON API Migration: Upgrading static .js data files to dynamic .json fetch requests to further improve load times.
+
+Last Updated: April 2026 | Built by toolblaster.com
