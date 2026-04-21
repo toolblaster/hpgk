@@ -75,7 +75,7 @@
     <!-- Premium Glassmorphism & Compact UI Stylesheet -->
     <style>
         :root {
-            --primary: #2563eb;       
+            --primary: #2563eb;        
             --primary-hover: #1d4ed8; 
             --primary-light: rgba(37, 99, 235, 0.1); 
             --primary-dark: #1e3a8a;  
@@ -104,7 +104,7 @@
         }
 
         [data-theme="dark"] {
-            --primary: #60a5fa;       
+            --primary: #60a5fa;        
             --primary-hover: #93c5fd; 
             --primary-light: rgba(96, 165, 250, 0.15); 
             --primary-dark: #bfdbfe;  
@@ -879,21 +879,43 @@
     });
 </script>
 
-<!-- Config for this specific category -->
+<!-- ======================================================= -->
+<!-- 1. THE ID CARD (PAGE CONFIGURATION) -->
+<!-- ======================================================= -->
 <script>
-    window.QUIZ_CONFIG = { category: 'tourism' };
+    // The core config read by the Bouncer and the Engine
+    window.PAGE_ACCESS = {
+        category: 'hpgk_tourism',
+        loginLimit: 30,         // Questions free for anonymous users
+        proLimit: 9999,         // Questions free for logged-in users (before Paywall)
+        requiredPass: 'mcq_pass'// Pass required if proLimit is reached
+    };
+    
+    // Legacy fallback for the engine
+    window.QUIZ_NAME = "Tourism in HP";
+    window.QUIZ_CONFIG = { category: "hpgk_tourism" };
     window.quizData = []; 
 </script>
 
-<!-- Load Data & Logic -->
+<!-- ======================================================= -->
+<!-- 2. SCRIPT ARCHITECTURE (THE HOLY TRINITY) -->
+<!-- ======================================================= -->
+
+<!-- A. The Global Brain (Firebase & User Identity) -->
+<script src="../../js/core.js"></script>
+
+<!-- B. The Bouncer (Security & Paywall Limits) -->
+<script src="../../js/access-guard.js"></script>
+
+<!-- C. The Raw Data (Questions Array) -->
 <script src="tourism-part-1.js"></script>
 <script src="tourism-part-2.js"></script>
 <script src="tourism-part-3.js"></script>
 <script src="tourism-part-4.js"></script>
 <script src="tourism-part-5.js"></script>
 
-<!-- Quiz Engine -->
-<script src="../../js/main.js"></script>
+<!-- D. The Teacher (Pure MCQ Engine) -->
+<script src="../../js/mcq-main.js"></script>
 
 </body>
 </html>
