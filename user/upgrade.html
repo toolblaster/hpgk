@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Optimized Meta Description for SEO -->
-    <meta name="description" content="Unlock premium full-length mock tests and bundles for HP competitive exams. Pay per mock or grab a bundle. Trusted by 350+ dedicated aspirants.">
+    <meta name="description" content="Unlock premium full-length HP GK mock tests and MCQ bundles for HPPSC, HPAS, and Allied exams. Choose your Master Access Pass today.">
     <!-- Optimized Title Tag (Max 60 Chars) -->
-    <title>Premium Mocks & Bundles | HPGK Quiz Prep</title>
+    <title>Premium HP GK Mock Tests & Passes | HPGK Quiz Prep</title>
     
     <!-- Assets -->
     <link rel="apple-touch-icon" sizes="180x180" href="../js/favicon/apple-touch-icon.png">
@@ -19,7 +19,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -27,7 +27,7 @@
     <!-- Global CSS -->
     <link rel="stylesheet" href="../js/style.css">
 
-    <!-- EMBEDDED LOCAL STYLESHEET FOR UPGRADE PAGE (ULTRA-COMPACT) -->
+    <!-- COMPACT & HIGH-DENSITY STYLESHEET -->
     <style>
         :root {
             --primary: #047857;        
@@ -37,17 +37,22 @@
             --accent: #B45309;        
             
             --bg-gradient: linear-gradient(135deg, #e0f2fe 0%, #dcfce7 50%, #f3e8ff 100%);
-            --card-bg: rgba(255, 255, 255, 0.65); 
-            --card-border: rgba(255, 255, 255, 0.5); 
-            --glass-shadow: 0 4px 15px 0 rgba(31, 38, 135, 0.05); /* Softer shadow */
+            --card-bg: rgba(255, 255, 255, 0.85); 
+            --card-border: rgba(203, 213, 225, 0.6); 
+            --glass-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
             
             --text-main: #1f2937;     
             --text-body: #374151;     
             --text-sec: #4b5563;      
             
-            --radius-md: 8px;
-            --radius-lg: 12px;
-            --radius-xl: 16px;
+            --correct-bg: #dcfce7;
+            --correct-border: #22c55e;
+            --correct-text: #14532d;
+            
+            --radius-md: 6px;
+            --radius-lg: 10px;
+            --radius-xl: 14px;
+            --site-width: 1100px;
         }
 
         [data-theme="dark"] {
@@ -58,13 +63,17 @@
             --accent: #fbbf24;        
             
             --bg-gradient: linear-gradient(135deg, #0f172a 0%, #022c22 50%, #1e1b4b 100%);
-            --card-bg: rgba(30, 41, 59, 0.5); 
-            --card-border: rgba(255, 255, 255, 0.08); 
-            --glass-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.3);
+            --card-bg: rgba(30, 41, 59, 0.7); 
+            --card-border: rgba(51, 65, 85, 0.6); 
+            --glass-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             
             --text-main: #f9fafb;     
             --text-body: #e5e7eb;     
             --text-sec: #9ca3af;      
+            
+            --correct-bg: rgba(6, 78, 59, 0.9);
+            --correct-border: #059669;
+            --correct-text: #6ee7b7;
         }
 
         body {
@@ -77,9 +86,9 @@
             margin: 0;
         }
 
-        /* 🔴 FIXED: Reduced vertical padding drastically */
-        main { flex: 1; width: 100%; padding: 25px 15px; box-sizing: border-box; }
-        .container { max-width: 1000px; margin: 0 auto; }
+        /* Compact Layout Padding */
+        main { flex: 1; width: 100%; padding: 15px 0 !important; box-sizing: border-box; }
+        .container { max-width: var(--site-width); margin: 0 auto; padding: 0 15px; box-sizing: border-box;}
 
         .glass-panel {
             background: var(--card-bg);
@@ -89,144 +98,376 @@
             box-shadow: var(--glass-shadow);
         }
 
-        /* 🔴 FIXED: Compact Page Header */
-        .upgrade-header { text-align: center; margin-bottom: 25px; }
-        .upgrade-header h1 { font-size: clamp(1.5rem, 4vw, 2.2rem); font-weight: 900; color: var(--text-main); margin-bottom: 8px; letter-spacing: -0.5px; line-height: 1.2; }
-        .upgrade-header p { font-size: 0.9rem; color: var(--text-sec); max-width: 600px; margin: 0 auto 15px auto; line-height: 1.4; }
+        /* ==========================================================================
+           BREADCRUMB & HERO STYLES (Matched to rest of site)
+           ========================================================================== */
+        .top-meta-bar { 
+            display: flex; justify-content: space-between; align-items: center; 
+            width: 100%; margin: 0 auto 15px auto; flex-wrap: nowrap; gap: 10px; box-sizing: border-box;
+        }
+
+        .breadcrumb-nav { margin: 0; flex-shrink: 1; display: flex; align-items: center; height: 24px; }
+        
+        .breadcrumb-list { 
+            list-style: none; padding: 0 10px; margin: 0; display: flex; flex-wrap: nowrap; 
+            align-items: center; gap: 4px; background: var(--card-bg); border-radius: 12px; 
+            border: 1px solid var(--card-border); backdrop-filter: blur(8px); box-shadow: 0 1px 2px rgba(0,0,0,0.05); 
+            height: 100%; box-sizing: border-box;
+        }
+        [data-theme="dark"] .breadcrumb-list { box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
+        
+        .breadcrumb-item { font-size: 0.6rem; font-weight: 600; color: var(--text-sec); display: flex; align-items: center; white-space: nowrap; height: 100%; }
+        .breadcrumb-item a { color: var(--text-sec); text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 4px; }
+        .breadcrumb-item a:hover { color: var(--primary); }
+        .breadcrumb-item.active { color: var(--primary); pointer-events: none; }
+        .breadcrumb-separator { font-size: 0.55rem; color: var(--text-sec); opacity: 0.6; margin: 0 2px; }
+
+        .hero-badge { 
+            display: inline-flex; align-items: center; justify-content: center; height: 24px; 
+            background: var(--primary-light); color: var(--primary); padding: 0 10px; 
+            border-radius: 12px; font-size: 0.6rem; font-weight: 700; text-transform: uppercase; 
+            margin: 0; border: 1px solid var(--primary); letter-spacing: 0.5px; white-space: nowrap; 
+            flex-shrink: 0; box-sizing: border-box;
+        }
+
+        /* Hero Section (Punchy & Compact) */
+        .upgrade-header { text-align: center; margin-bottom: 20px; }
+        .upgrade-header h1 { 
+            font-size: clamp(1.4rem, 4vw, 2rem); 
+            font-weight: 900; 
+            color: var(--text-main); 
+            margin-bottom: 8px; 
+            letter-spacing: -0.5px; 
+            line-height: 1.2; 
+        }
+        .upgrade-header p { 
+            font-size: 0.85rem; 
+            color: var(--text-sec); 
+            max-width: 600px; 
+            margin: 0 auto 12px auto; 
+            line-height: 1.5; 
+        }
         
         .trust-badge {
             display: inline-flex; align-items: center; gap: 6px;
             background: var(--primary-light); color: var(--primary);
-            padding: 6px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 700;
+            padding: 4px 12px; border-radius: 20px; font-size: 0.7rem; font-weight: 700;
             border: 1px solid rgba(4, 120, 87, 0.2);
         }
         [data-theme="dark"] .trust-badge { border-color: rgba(52, 211, 153, 0.2); }
 
-        /* 🔴 FIXED: Extremely compact Free Tier Explanation */
+        /* Free Tier Info Box (Optimized for Mobile) */
         .free-tier-note {
-            text-align: center; padding: 12px 15px; border-radius: var(--radius-md);
-            background: var(--input-bg); border: 1px dashed var(--card-border);
-            max-width: 700px; margin: 0 auto 25px auto;
+            text-align: center; padding: 10px 15px; border-radius: var(--radius-lg);
+            background: var(--input-bg); border: 1px dashed var(--primary);
+            max-width: 800px; margin: 0 auto 25px auto;
         }
-        .free-tier-note p { margin: 0; font-size: 0.8rem; color: var(--text-body); line-height: 1.4; font-weight: 600; }
+        .free-tier-note p { margin: 0 0 8px 0; font-size: 0.8rem; color: var(--text-body); line-height: 1.4; font-weight: 600; }
         .free-tier-note i { color: var(--primary); margin-right: 4px; }
+        
+        .tier-tags {
+            display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; font-size: 0.7rem; font-weight: 700;
+        }
+        .tier-tags span { 
+            padding: 4px 10px; border-radius: 20px; display: inline-flex; align-items: center; gap: 5px; 
+        }
+        
+        .tag-free { background: var(--correct-bg); color: var(--correct-text); border: 1px solid var(--correct-border); }
+        .tag-login { background: var(--primary-light); color: var(--primary); border: 1px solid var(--primary); }
+        .tag-pro { background: rgba(234, 88, 12, 0.1); color: var(--accent); border: 1px solid var(--accent); }
 
-        /* 🔴 FIXED: Tighter Pricing Grid */
+        /* =========================================
+           PRICING GRID (3 Cards - Original Compact Look)
+           ========================================= */
         .pricing-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px; 
             align-items: stretch;
-            margin-bottom: 30px;
+            margin: 0 auto 25px auto;
+            max-width: 950px;
         }
 
-        /* 🔴 FIXED: Thinner Cards */
         .price-card {
             border-radius: var(--radius-lg);
-            padding: 20px 15px;
+            padding: 20px 15px; 
             display: flex;
             flex-direction: column;
+            text-align: left;        
             position: relative;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            transition: transform 0.2s ease, border-color 0.2s ease;
             box-sizing: border-box;
             background: var(--card-bg);
             border: 1px solid var(--card-border);
+            z-index: 1;
+            width: 100%;
+            box-shadow: var(--glass-shadow);
         }
 
         .price-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-color: var(--primary);
+            transform: translateY(-2px);
         }
-        [data-theme="dark"] .price-card:hover { box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
 
-        /* Highlighted Bundle Card */
-        .price-card.popular {
-            border: 2px solid var(--primary);
-            z-index: 1;
-            background: rgba(255, 255, 255, 0.9);
+        /* VIBRANT COMBO CARD */
+        .price-card.premium-combo {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); 
+            border: 1px solid #60a5fa;
+            color: #ffffff;
+            box-shadow: 0 6px 15px rgba(37, 99, 235, 0.2);
+            z-index: 2;
         }
-        [data-theme="dark"] .price-card.popular { background: rgba(30, 41, 59, 0.9); }
-        .price-card.popular:hover { transform: translateY(-3px); }
-
+        [data-theme="dark"] .price-card.premium-combo {
+            background: linear-gradient(135deg, #020617 0%, #1e3a8a 100%);
+            border-color: #3b82f6;
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.3);
+        }
+        
         .popular-ribbon {
             position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
-            background: var(--primary); color: #fff;
+            background: #f59e0b; 
+            color: #fff;
             padding: 2px 12px; border-radius: 12px; font-size: 0.65rem; font-weight: 800;
-            text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 2px 6px rgba(4, 120, 87, 0.3);
-            white-space: nowrap;
+            text-transform: uppercase; letter-spacing: 0.5px;
+            white-space: nowrap; box-shadow: 0 2px 5px rgba(245, 158, 11, 0.3);
         }
 
-        /* 🔴 FIXED: Smaller Typography for Cards */
-        .card-type { font-size: 0.75rem; font-weight: 800; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
-        .card-title { font-size: 1.15rem; font-weight: 900; color: var(--text-main); margin: 0 0 10px 0; line-height: 1.2; letter-spacing: -0.3px; }
+        /* Typography inside cards */
+        .card-type { width: 100%; font-size: 0.7rem; font-weight: 800; color: var(--accent); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+        .card-title { width: 100%; font-size: 1.15rem; font-weight: 900; color: var(--text-main); margin: 0 0 10px 0; line-height: 1.2; letter-spacing: -0.3px; }
         
-        .price-box { margin-bottom: 12px; display: flex; align-items: baseline; gap: 4px; }
+        .price-box { 
+            width: 100%; margin-bottom: 15px; display: flex; align-items: baseline; gap: 4px; 
+            border-bottom: 1px solid var(--card-border); padding-bottom: 15px;
+        }
         .currency { font-size: 1.1rem; font-weight: 700; color: var(--text-main); }
-        .amount { font-size: 2rem; font-weight: 900; color: var(--text-main); letter-spacing: -1px; }
-        .price-suffix { font-size: 0.8rem; color: var(--text-sec); font-weight: 600; }
+        .amount { font-size: 30px; font-weight: 900; color: var(--text-main); letter-spacing: -1px; line-height: 1; }
+        .price-suffix { font-size: 0.75rem; color: var(--text-sec); font-weight: 600; }
         .original-price { text-decoration: line-through; color: var(--text-sec); font-size: 0.9rem; margin-left: 6px; opacity: 0.7; font-weight: 600; }
 
-        .card-features { list-style: none; padding: 0; margin: 0 0 15px 0; flex: 1; }
-        .card-features li {
-            display: flex; align-items: flex-start; gap: 8px;
-            font-size: 0.8rem; color: var(--text-body); font-weight: 600;
-            margin-bottom: 8px; line-height: 1.3;
-        }
-        .card-features li i { color: var(--primary); font-size: 0.85rem; margin-top: 2px; flex-shrink: 0; }
-        .card-features li.disabled { opacity: 0.5; }
-        .card-features li.disabled i { color: var(--text-sec); }
+        /* Combo Card overrides */
+        .premium-combo .card-type { color: #fcd34d !important; }
+        .premium-combo .card-title, .premium-combo .amount, .premium-combo .currency { color: #ffffff !important; }
+        .premium-combo .price-suffix { color: #bfdbfe !important; opacity: 0.9; }
+        .premium-combo .original-price { color: #bfdbfe !important; opacity: 0.7; border-bottom: none;}
+        .premium-combo .price-box { border-bottom-color: rgba(255,255,255,0.2); }
 
+        /* FEATURE LIST (DIV BASED FOR PERFECT ALIGNMENT) */
+        .card-features { 
+            list-style: none; padding: 0; margin: 0 0 20px 0; 
+            flex: 1; display: flex; flex-direction: column; gap: 8px;
+            width: 100%;
+        }
+        .card-features li {
+            display: flex; 
+            align-items: flex-start; 
+            gap: 8px;
+            font-size: 0.8rem; 
+            color: var(--text-body); 
+            font-weight: 500; 
+            line-height: 1.4;
+            text-align: left; 
+        }
+        .card-features li i { 
+            color: var(--primary); 
+            font-size: 0.85rem; 
+            margin-top: 3px; 
+            flex-shrink: 0; 
+        }
+        .card-features li div { flex: 1; }
+        .card-features li strong { color: var(--text-main); font-weight: 700; }
+        
+        [data-theme="dark"] .card-features li strong { color: #fff; }
+
+        .premium-combo .card-features li { color: #f8fafc !important; }
+        .premium-combo .card-features li i { color: #fcd34d !important; } 
+        .premium-combo .card-features li strong { color: #ffffff !important; font-weight: 800; }
+
+        /* Action Buttons */
         .buy-btn {
             background: var(--input-bg); color: var(--text-main);
             border: 1px solid var(--card-border); padding: 10px;
-            border-radius: 8px; font-size: 0.9rem; font-weight: 800;
+            border-radius: var(--radius-md); font-size: 0.85rem; font-weight: 800;
             cursor: pointer; transition: all 0.2s; text-align: center;
             width: 100%; box-sizing: border-box; font-family: 'Inter', sans-serif;
-            min-height: 40px; /* Touch target size */
+            min-height: 42px; display: flex; align-items: center; justify-content: center; gap: 6px;
+            margin-top: auto; 
         }
-        .buy-btn:hover { background: rgba(0,0,0,0.05); }
-        [data-theme="dark"] .buy-btn:hover { background: rgba(255,255,255,0.1); }
+        .buy-btn:hover { background: var(--card-border); color: var(--primary); }
+        [data-theme="dark"] .buy-btn { border-color: #475569; }
+        [data-theme="dark"] .buy-btn:hover { background: rgba(255,255,255,0.05); }
 
-        .price-card.popular .buy-btn {
-            background: var(--primary); color: #ffffff; border-color: var(--primary);
-            box-shadow: 0 4px 10px rgba(4, 120, 87, 0.2);
+        /* Button for Combo Card */
+        .price-card.premium-combo .buy-btn {
+            background: #f59e0b; /* Vibrant Gold */
+            color: #0f172a; /* Dark text for contrast on gold */
+            border: none;
+            box-shadow: 0 4px 10px rgba(245, 158, 11, 0.2);
         }
-        .price-card.popular .buy-btn:hover { background: var(--primary-hover); transform: translateY(-1px); }
+        .price-card.premium-combo .buy-btn:hover { 
+            background: #fbbf24; /* Lighter gold on hover */
+            transform: translateY(-1px); 
+        }
+
+        /* ==========================================================================
+           DASHBOARD NUDGE (Placed Below Cards)
+           ========================================================================== */
+        .dashboard-nudge {
+            max-width: 950px;
+            margin: 0 auto 25px auto;
+            background: linear-gradient(to right, var(--card-bg), rgba(37, 99, 235, 0.05));
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--card-border);
+            border-left: 4px solid var(--primary);
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--glass-shadow);
+        }
+        [data-theme="dark"] .dashboard-nudge { background: linear-gradient(to right, var(--card-bg), rgba(96, 165, 250, 0.05)); border-left-color: var(--primary); }
+
+        .nudge-text {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.85rem;
+            color: var(--text-body);
+            font-weight: 500;
+        }
+        .nudge-text span strong { color: var(--text-main); font-weight: 700;}
+
+        .nudge-btn {
+            background: var(--input-bg);
+            color: var(--text-main);
+            border: 1px solid var(--card-border);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+        }
+        .nudge-btn:hover { background: var(--primary); color: white; border-color: var(--primary); }
+        [data-theme="dark"] .nudge-btn { background: rgba(255,255,255,0.05); }
+        [data-theme="dark"] .nudge-btn:hover { background: var(--primary); color: white; border-color: var(--primary); }
+
+        /* ======================================================
+           🔥 TRUST PILLARS & FAQ SECTION
+           ====================================================== */
+        .trust-pillars {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin: 0 auto 35px auto;
+            max-width: 1000px;
+        }
+        .trust-pillar-card {
+            background: var(--card-bg); border: 1px solid var(--card-border);
+            border-radius: var(--radius-md); padding: 15px;
+            display: flex; align-items: center; gap: 12px;
+            box-shadow: var(--glass-shadow);
+        }
+        .trust-pillar-icon {
+            background: var(--primary-light); color: var(--primary);
+            width: 42px; height: 42px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem; flex-shrink: 0;
+        }
+        .trust-pillar-text { display: flex; flex-direction: column; gap: 3px; }
+        .trust-pillar-text h4 { margin: 0; font-size: 0.85rem; font-weight: 800; color: var(--text-main); }
+        .trust-pillar-text p { margin: 0; font-size: 0.75rem; color: var(--text-sec); line-height: 1.3; }
+
+        .faq-section {
+            max-width: 1000px;
+            margin: 0 auto 40px auto;
+        }
+        .faq-header { text-align: center; margin-bottom: 25px; }
+        .faq-header h2 { font-size: 1.4rem; font-weight: 900; color: var(--text-main); margin-bottom: 8px; letter-spacing: -0.3px; }
+        .faq-header p { font-size: 0.85rem; color: var(--text-sec); }
+        
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+        }
+        .faq-item {
+            background: var(--card-bg); border: 1px solid var(--card-border);
+            border-radius: var(--radius-md); padding: 15px;
+            box-shadow: var(--glass-shadow);
+        }
+        .faq-q {
+            font-size: 0.85rem; font-weight: 800; color: var(--text-main);
+            margin-bottom: 8px; display: flex; align-items: flex-start; gap: 8px; line-height: 1.3;
+        }
+        .faq-q i { color: var(--primary); margin-top: 2px; font-size: 0.8rem; flex-shrink: 0; }
+        .faq-a {
+            font-size: 0.8rem; color: var(--text-body); line-height: 1.5;
+            margin: 0 0 0 20px;
+        }
+        .faq-a strong { color: var(--text-main); font-weight: 700; }
+        [data-theme="dark"] .faq-a strong { color: #fff; }
 
         /* Secure Payment Note */
         .secure-note {
-            text-align: center; font-size: 0.75rem; color: var(--text-sec); margin-top: 15px;
+            text-align: center; font-size: 0.7rem; color: var(--text-sec); margin-top: 10px;
             display: flex; align-items: center; justify-content: center; gap: 6px; font-weight: 600;
+            opacity: 0.85;
+        }
+        .secure-note i { color: #10b981; font-size: 0.9rem; }
+
+        /* ==========================================================================
+           MOBILE SPECIFIC OPTIMIZATION
+           ========================================================================== */
+        @media (max-width: 900px) {
+            .price-card.premium-combo { transform: scale(1); } 
+            .price-card.premium-combo:hover { transform: translateY(-5px); }
         }
 
-        /* =========================================
-           MOBILE SPECIFIC OPTIMIZATION
-           ========================================= */
         @media (max-width: 600px) {
             main { padding: 20px 12px; }
             
             .upgrade-header { margin-bottom: 20px; }
-            .upgrade-header h1 { font-size: 1.4rem; }
-            .upgrade-header p { font-size: 0.8rem; margin-bottom: 12px; }
-            .trust-badge { font-size: 0.7rem; padding: 4px 10px; }
+            .upgrade-header h1 { font-size: 1.5rem; }
+            .upgrade-header p { font-size: 0.85rem; margin-bottom: 12px; }
             
-            .free-tier-note { padding: 10px 12px; margin-bottom: 20px; }
-            .free-tier-note p { font-size: 0.75rem; }
+            .free-tier-note { padding: 12px; margin-bottom: 20px; text-align: left; }
+            .free-tier-note p { font-size: 0.75rem; margin-bottom: 8px; }
+            .tier-tags { flex-direction: column; align-items: stretch; gap: 6px; }
+            .tier-tags span { font-size: 0.75rem; padding: 8px 12px; justify-content: flex-start; border-radius: 8px; }
 
-            .pricing-grid { gap: 12px; }
-            
-            .price-card { padding: 15px; }
+            .pricing-grid { gap: 15px; margin-bottom: 20px; }
+            .price-card { padding: 20px 15px; }
             .popular-ribbon { font-size: 0.6rem; padding: 2px 10px; top: -8px; }
             
             .card-title { font-size: 1.1rem; margin-bottom: 8px; }
-            .amount { font-size: 1.8rem; }
-            .currency { font-size: 1rem; }
-            .price-box { margin-bottom: 10px; }
+            .amount { font-size: 30px; } 
+            .price-box { margin-bottom: 12px; padding-bottom: 12px; }
             
-            .card-features li { font-size: 0.75rem; margin-bottom: 6px; }
-            .card-features { margin-bottom: 12px; }
+            .card-features { gap: 6px; margin-bottom: 15px; }
+            .card-features li { font-size: 0.75rem; }
             
-            .buy-btn { padding: 8px; font-size: 0.85rem; min-height: 42px; }
+            .buy-btn { padding: 8px; font-size: 0.85rem; min-height: 40px; }
+
+            /* Dashboard Nudge Mobile */
+            .dashboard-nudge { flex-direction: column; text-align: left; gap: 12px; padding: 12px 15px; align-items: flex-start; margin-bottom: 20px;}
+            
+            /* Mobile fixes for new sections */
+            .trust-pillars { gap: 10px; margin-bottom: 25px; }
+            .trust-pillar-card { padding: 12px; }
+            .faq-section { margin-bottom: 25px; }
+            .faq-header h2 { font-size: 1.25rem; }
+            .faq-grid { gap: 10px; }
+            .faq-item { padding: 12px; }
+            .faq-q { font-size: 0.8rem; }
+            .faq-a { font-size: 0.75rem; margin-left: 18px; }
+
+            /* Secure Note alignment fix for very small screens */
+            .secure-note { font-size: 0.7rem; justify-content: flex-start; padding: 0 10px; margin-top: 10px; }
         }
     </style>
 
@@ -243,102 +484,198 @@
 
 <main>
     <div class="container">
+
+        <!-- Top Meta Bar: Breadcrumb (Left) & Hero Badge (Right) -->
+        <div class="top-meta-bar">
+            <nav aria-label="breadcrumb" class="breadcrumb-nav">
+                <ol class="breadcrumb-list">
+                    <li class="breadcrumb-item"><a href="../"><i class="fa-solid fa-house"></i> Home</a></li>
+                    <li class="breadcrumb-separator"><i class="fa-solid fa-chevron-right"></i></li>
+                    <li class="breadcrumb-item active" aria-current="page">Premium Store</li>
+                </ol>
+            </nav>
+            <span class="hero-badge glass-panel">Pro Plans</span>
+        </div>
         
         <div class="upgrade-header">
-            <h1>Level Up Your Preparation</h1>
-            <p>While basic practice sets are free, our premium full-length mocks provide the exact exam-like experience you need to secure your rank.</p>
+            <!-- SEO Optimized & Punchy H1 -->
+            <h1>Premium HP GK Mock Tests & Topic-Wise MCQ Passes</h1>
+            <p>Take your preparation to the next level with our exam-specific mock tests, topic-wise MCQ bundles, and detailed analytics designed strictly for HPPSC & Allied exams.</p>
             
             <div class="trust-badge">
-                <i class="fa-solid fa-users"></i> Trusted by 350+ Dedicated Aspirants
+                <i class="fa-solid fa-users"></i> Trusted by 280+ Dedicated Aspirants
             </div>
         </div>
 
-        <div class="free-tier-note glass-panel" style="max-width: 750px;">
-            <p style="margin-bottom: 12px; font-size: 0.85rem;"><i class="fa-solid fa-layer-group"></i> <strong>How Content Access Works on HPGK:</strong></p>
-            <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; font-size: 0.75rem; font-weight: 700;">
-                <span style="background: var(--correct-bg); color: var(--correct-text); padding: 6px 12px; border-radius: 20px; border: 1px solid var(--correct-border);"><i class="fa-solid fa-unlock"></i> 1-50 MCQs: Always Free</span>
-                <span style="background: var(--primary-light); color: var(--primary); padding: 6px 12px; border-radius: 20px; border: 1px solid var(--primary);"><i class="fa-solid fa-user-check"></i> 51-100 MCQs: Free with Login</span>
-                <span style="background: rgba(234, 88, 12, 0.1); color: var(--accent); padding: 6px 12px; border-radius: 20px; border: 1px solid var(--accent);"><i class="fa-solid fa-crown"></i> 101+ MCQs: Pro Pass Only</span>
+        <div class="free-tier-note glass-panel">
+            <p><i class="fa-solid fa-layer-group"></i> <strong>How Content Access Works on HPGK:</strong></p>
+            <div class="tier-tags">
+                <span class="tag-free"><i class="fa-solid fa-unlock"></i> Q 1-30: Free</span>
+                <span class="tag-login"><i class="fa-solid fa-user-check"></i> Q 31-100: Free (Login)</span>
+                <span class="tag-pro"><i class="fa-solid fa-crown"></i> 101+ & Mocks: Pro</span>
             </div>
         </div>
 
+        <!-- 🔥 PERFECT 3-CARD LAYOUT WITH STRICT ALIGNMENT -->
         <div class="pricing-grid">
             
-            <!-- Single Mock Card -->
+            <!-- Card 1: MCQ Pro Pass -->
             <div class="price-card glass-panel">
-                <div class="card-type">Pay Per Mock</div>
-                <h2 class="card-title">Single Mock Test</h2>
+                <div class="card-type">Monthly Subscription</div>
+                <h2 class="card-title">MCQ Pro Pass</h2>
                 
                 <div class="price-box">
                     <span class="currency">₹</span>
-                    <span class="amount">15</span>
-                    <span class="price-suffix">/ test</span>
-                </div>
-                
-                <ul class="card-features">
-                    <li><i class="fa-solid fa-check"></i> 1 Full-Length Practice Test</li>
-                    <li><i class="fa-solid fa-check"></i> 100+ Exam-Level MCQs</li>
-                    <li><i class="fa-solid fa-check"></i> Negative Marking Simulation</li>
-                    <li><i class="fa-solid fa-check"></i> Instant Score & Feedback</li>
-                    <li><i class="fa-solid fa-check"></i> Personalized Dashboard</li>
-                </ul>
-                
-                <!-- Mock Payment Trigger -->
-                <button class="buy-btn" onclick="initiatePayment('mock_single', 15)">Buy 1 Mock Test</button>
-            </div>
-
-            <!-- Bundle Card (Most Popular) -->
-            <div class="price-card popular glass-panel">
-                <div class="popular-ribbon">Most Popular</div>
-                <div class="card-type">Mock Bundle</div>
-                <h2 class="card-title">Starter 5-Mock Pack</h2>
-                
-                <div class="price-box">
-                    <span class="currency">₹</span>
-                    <span class="amount">99</span>
-                    <span class="original-price">₹199</span>
-                </div>
-                
-                <ul class="card-features">
-                    <li><i class="fa-solid fa-check"></i> 5 Premium Mock Tests</li>
-                    <li><i class="fa-solid fa-check"></i> 500+ Selected MCQs</li>
-                    <li><i class="fa-solid fa-check"></i> Real Exam Interface & Timer</li>
-                    <li><i class="fa-solid fa-check"></i> Save History & Progress</li>
-                    <li><i class="fa-solid fa-check"></i> Personalized Dashboard</li>
-                </ul>
-                
-                <!-- Mock Payment Trigger -->
-                <button class="buy-btn" onclick="initiatePayment('mock_bundle_5', 99)">Grab 5-Mock Pack</button>
-            </div>
-
-            <!-- Subscription Card -->
-            <div class="price-card glass-panel">
-                <div class="card-type">Pro Subscription</div>
-                <h2 class="card-title">Monthly Pro Pass</h2>
-                
-                <div class="price-box">
-                    <span class="currency">₹</span>
-                    <span class="amount">29</span>
+                    <span class="amount">39</span>
                     <span class="price-suffix">/ month</span>
                     <span class="original-price">₹99</span>
                 </div>
                 
+                <!-- Wrapped text in <div> to preserve perfect alignment alongside icons -->
                 <ul class="card-features">
-                    <li><i class="fa-solid fa-check"></i> Unlimited MCQs & PYQs Access</li>
-                    <li><i class="fa-solid fa-check"></i> Bookmark & Review Mistakes Tool</li>
-                    <li><i class="fa-solid fa-check"></i> Quick 10 & Shuffle Quiz Modes</li>
-                    <li><i class="fa-solid fa-check"></i> Detailed Analytics & Dashboard</li>
-                    <li><i class="fa-solid fa-check"></i> Zero Ads Experience</li>
+                    <li><i class="fa-solid fa-check"></i> <div>Access to <strong>3800+ Topic-Wise MCQs</strong></div></li>
+                    <li><i class="fa-solid fa-check"></i> <div>Live Status <strong>Wrong, Right and Accuracy</strong></div></li>
+                    <li><i class="fa-solid fa-check"></i> <div>Practice with <strong>Shuffle Questions</strong> mode</div></li>
+                    <li><i class="fa-solid fa-check"></i> <div>Save, Bookmark & <strong>Review Mistakes</strong></div></li>
+                    <li><i class="fa-solid fa-check"></i> <div>100% <strong>Ad-Free</strong> Experience</div></li>
                 </ul>
                 
-                <!-- Mock Payment Trigger -->
-                <button class="buy-btn" onclick="initiatePayment('pro_pass_1m', 29)">Get Monthly Pass</button>
+                <button class="buy-btn" onclick="initiatePayment('mcq_pro_pass', 39)"><i class="fa-solid fa-unlock-keyhole"></i> Get MCQ Pass</button>
+            </div>
+
+            <!-- Card 2: Mock Master Pass -->
+            <div class="price-card glass-panel">
+                <div class="card-type">Exam Simulator</div>
+                <h2 class="card-title">Mock Master Pass</h2>
+                
+                <div class="price-box">
+                    <span class="currency">₹</span>
+                    <span class="amount">99</span>
+                    <span class="price-suffix">/ month</span>
+                    <span class="original-price">₹299</span>
+                </div>
+                
+                <ul class="card-features">
+                    <li><i class="fa-solid fa-check"></i> <div>Access to <strong>ALL</strong> Premium Mock Tests</div></li>
+                    <li><i class="fa-solid fa-check"></i> <div>Topic-wise <strong>Mini Mocks</strong></div></li>
+                    <li><i class="fa-solid fa-check"></i> <div>Covers <strong>6+ Major Exams</strong></div></li>
+                    <li><i class="fa-solid fa-check"></i> <div><strong>Real Exam Interface</strong></div></li>
+                    <li><i class="fa-solid fa-check"></i> <div>Includes <strong>Negative Marking</strong> simulation</div></li>
+                    <li><i class="fa-solid fa-check"></i> <div>Detailed <strong>Accuracy Analytics</strong></div></li>
+                </ul>
+                
+                <button class="buy-btn" onclick="initiatePayment('mock_master_pass', 99)"><i class="fa-solid fa-file-signature"></i> Get Mock Pass</button>
+            </div>
+
+            <!-- Card 3: Ultimate Combo Pass (VIBRANT & COMPACT) -->
+            <div class="price-card premium-combo">
+                <div class="popular-ribbon">Best Value</div>
+                <div class="card-type">Monthly All-Inclusive</div>
+                <h2 class="card-title">Ultimate Combo</h2>
+                
+                <div class="price-box">
+                    <span class="currency">₹</span>
+                    <span class="amount">199</span>
+                    <span class="price-suffix">/ month</span>
+                    <span class="original-price">₹499</span>
+                </div>
+                
+                <ul class="card-features">
+                    <li><i class="fa-solid fa-check-double"></i> <div><strong>Everything</strong> from MCQ & Mock Passes</div></li>
+                    <li><i class="fa-solid fa-check-double"></i> <div>Downloadable <strong>PDF Study Notes</strong></div></li>
+                    <li><i class="fa-solid fa-check-double"></i> <div>All <strong>PYQs Mock</strong></div></li>
+                    <li><i class="fa-solid fa-check-double"></i> <div>Access to all <strong>Future Test Series</strong> additions</div></li>
+                    <li><i class="fa-solid fa-check-double"></i> <div>100% <strong>Ad-Free</strong> Premium Experience</div></li>
+                </ul>
+                
+                <button class="buy-btn" onclick="initiatePayment('ultimate_combo_pass', 199)"><i class="fa-solid fa-rocket"></i> Grab Ultimate Combo</button>
             </div>
 
         </div>
 
+        <!-- Dashboard Link / Nudge Below Cards -->
+        <div class="dashboard-nudge">
+            <div class="nudge-text">
+                <i class="fa-solid fa-chart-pie" style="font-size: 1.2rem; color: var(--primary);"></i>
+                <span><strong>Track Your Progress:</strong> Already purchased a pass or want to view free stats?</span>
+            </div>
+            <a href="dashboard.html" class="nudge-btn">Go to Dashboard <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <!-- 🔥 TRUST PILLARS -->
+        <div class="trust-pillars">
+            <div class="trust-pillar-card">
+                <div class="trust-pillar-icon"><i class="fa-solid fa-bolt"></i></div>
+                <div class="trust-pillar-text">
+                    <h4>Instant Activation</h4>
+                    <p>Your premium access is unlocked immediately after successful payment.</p>
+                </div>
+            </div>
+            <div class="trust-pillar-card">
+                <div class="trust-pillar-icon"><i class="fa-solid fa-mobile-screen"></i></div>
+                <div class="trust-pillar-text">
+                    <h4>Learn Anywhere</h4>
+                    <p>Practice seamlessly across your Mobile, Tablet, or Laptop browser.</p>
+                </div>
+            </div>
+            <div class="trust-pillar-card">
+                <div class="trust-pillar-icon"><i class="fa-solid fa-arrows-rotate"></i></div>
+                <div class="trust-pillar-text">
+                    <h4>Always Updated</h4>
+                    <p>Get the latest Economic Survey and Current Affairs questions automatically.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 🔥 COMPACT FAQ SECTION -->
+        <div class="faq-section">
+            <div class="faq-header">
+                <h2>Frequently Asked Questions</h2>
+                <p>Everything you need to know before upgrading your preparation.</p>
+            </div>
+            
+            <div class="faq-grid">
+                <!-- FAQ 1 -->
+                <div class="faq-item">
+                    <div class="faq-q"><i class="fa-solid fa-q"></i> How soon will my account be upgraded?</div>
+                    <div class="faq-a">Your premium access is activated <strong>instantly</strong> the moment your payment is successful. Just refresh the page to see the locks removed.</div>
+                </div>
+                
+                <!-- FAQ 2 -->
+                <div class="faq-item">
+                    <div class="faq-q"><i class="fa-solid fa-q"></i> Is there any Refund Policy?</div>
+                    <div class="faq-a"><strong>No, all sales are final.</strong> Since we provide ample free content and free demo mocks to let you evaluate our quality beforehand, we strictly do not offer refunds once a pass is purchased.</div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="faq-item">
+                    <div class="faq-q"><i class="fa-solid fa-q"></i> Are the mock tests bilingual?</div>
+                    <div class="faq-a">Yes! Every single question, option, and detailed explanation is provided in <strong>both English and Hindi</strong> simultaneously to ensure maximum clarity.</div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="faq-item">
+                    <div class="faq-q"><i class="fa-solid fa-q"></i> Do I need to download an app?</div>
+                    <div class="faq-a">No app download is required. Our platform is a <strong>highly optimized Web App</strong> that runs perfectly on any browser across mobiles, tablets, and laptops.</div>
+                </div>
+
+                <!-- FAQ 5 -->
+                <div class="faq-item">
+                    <div class="faq-q"><i class="fa-solid fa-q"></i> Will I get access to newly added questions?</div>
+                    <div class="faq-a"><strong>Absolutely.</strong> If you have an active pass, any new topic-wise MCQs or full-length mock tests added to the database are automatically unlocked for you.</div>
+                </div>
+
+                <!-- FAQ 6 -->
+                <div class="faq-item">
+                    <div class="faq-q"><i class="fa-solid fa-q"></i> How do I track my performance?</div>
+                    <div class="faq-a">Once logged in, all your right/wrong answers are securely saved. You can visit your <strong>Personalized Dashboard</strong> anytime to view your overall accuracy and topic mastery.</div>
+                </div>
+            </div>
+        </div>
+
         <div class="secure-note">
-            <i class="fa-solid fa-shield-halved" style="color: #10b981;"></i> 100% Secure Payments via UPI, Cards & NetBanking.
+            <i class="fa-solid fa-shield-halved" style="color: #10b981;"></i> 
+            <div>100% Secure Payments via UPI, Cards & NetBanking.</div>
         </div>
 
     </div>
@@ -346,8 +683,12 @@
 
 <div id="site-footer"></div>
 
-<!-- Core Scripts -->
+<!-- Core Logic (For User Session State) -->
+<script src="../js/core.js"></script>
+
+<!-- Layout Scripts (For Header, Footer & Login Modal) -->
 <script src="../js/layout.js"></script>
+
 <script>
     // Initialize Header & Footer
     document.addEventListener('DOMContentLoaded', () => {
@@ -366,17 +707,20 @@
         }
     });
 
-    // Mock Payment Gateway Function (For Future Integration with Razorpay/Stripe)
+    // Smart Payment Initiation Logic
     function initiatePayment(planId, price) {
-        // Here you will check if user is logged in first
-        if (typeof window.auth !== 'undefined' && window.auth && !window.auth.currentUser) {
-            alert("Please login first from the header to purchase a mock or bundle.");
-            if(window.openLoginModal) window.openLoginModal();
+        // Check if user is logged in via core.js global object
+        if (!window.HPGK_User || !window.HPGK_User.isLoggedIn) {
+            if (window.openLoginModal) {
+                window.openLoginModal();
+            } else {
+                alert("Please login securely from the top bar to continue.");
+            }
             return;
         }
 
-        // Show a beautiful mock alert for now
-        alert(`Payment integration pending.\n\nYou selected: ${planId}\nPrice: ₹${price}\n\nIn the future, clicking this will open the Razorpay/UPI checkout popup!`);
+        // User IS logged in, proceed to Gateway (Razorpay/Stripe placeholder)
+        alert(`Payment Gateway Integration Pending.\n\nSecure UID: ${window.HPGK_User.uid}\nPlan Selected: ${planId}\nAmount: ₹${price}\n\n(In production, clicking this will open the Razorpay/UPI checkout!)`);
     }
 </script>
 
