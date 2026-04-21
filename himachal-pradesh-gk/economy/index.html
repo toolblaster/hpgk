@@ -877,13 +877,35 @@
     });
 </script>
 
-<!-- Config for this specific category -->
+<!-- ======================================================= -->
+<!-- 1. THE ID CARD (PAGE CONFIGURATION) -->
+<!-- ======================================================= -->
 <script>
-    window.QUIZ_CONFIG = { category: 'economy' };
+    // The core config read by the Bouncer and the Engine
+    window.PAGE_ACCESS = {
+        category: 'hpgk_economy',
+        loginLimit: 30,         // Questions free for anonymous users
+        proLimit: 9999,         // Questions free for logged-in users (before Paywall)
+        requiredPass: 'mcq_pass'// Pass required if proLimit is reached
+    };
+    
+    // Legacy fallback for the engine
+    window.QUIZ_NAME = "Economy of HP";
+    window.QUIZ_CONFIG = { category: "hpgk_economy" };
     window.quizData = []; 
 </script>
 
-<!-- Load Data & Logic -->
+<!-- ======================================================= -->
+<!-- 2. SCRIPT ARCHITECTURE (THE HOLY TRINITY) -->
+<!-- ======================================================= -->
+
+<!-- A. The Global Brain (Firebase & User Identity) -->
+<script src="../../js/core.js"></script>
+
+<!-- B. The Bouncer (Security & Paywall Limits) -->
+<script src="../../js/access-guard.js"></script>
+
+<!-- C. The Raw Data (Questions Array) -->
 <script src="economy-agriculture-horticulture-part-1.js"></script>
 <script src="economy-animal-husbandry-forestry-part-2.js"></script>
 <script src="economy-industries-msme-part-3.js"></script>
@@ -891,8 +913,8 @@
 <script src="economy-tourism-transport-part-5.js"></script>
 <script src="economy-planning-issues-part-6.js"></script>
 
-<!-- Quiz Engine -->
-<script src="../../js/main.js"></script>
+<!-- D. The Teacher (Pure MCQ Engine) -->
+<script src="../../js/mcq-main.js"></script>
 
 </body>
 </html>
