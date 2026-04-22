@@ -23,11 +23,6 @@
     <link rel="apple-touch-icon" sizes="180x180" href="../js/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="512x512" href="../js/favicon/web-app-manifest-512x512.png">
     <link rel="icon" type="image/png" sizes="192x192" href="../js/favicon/web-app-manifest-192x192.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="../js/favicon/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="48x48" href="../js/favicon/favicon-48x48.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../js/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../js/favicon/favicon-16x16.png">
-    <link rel="manifest" href="../js/favicon/site.webmanifest">
     <link rel="shortcut icon" href="../js/favicon/favicon.ico">
     <meta name="theme-color" content="#eff6ff">
 
@@ -58,6 +53,7 @@
             --text-sec: #64748b;
             --success: #10b981;
             --warning: #f59e0b;
+            --danger: #ef4444;
             
             --radius-sm: 6px;
             --radius-md: 10px;
@@ -87,7 +83,7 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            line-height: 1.25; /* Tighter line-height */
+            line-height: 1.25;
         }
         
         main { 
@@ -101,7 +97,6 @@
         
         h1, h2, h3, h4 { color: var(--text-main); margin-top: 0; letter-spacing: -0.3px; }
 
-        /* General Panel Styling */
         .glass-panel {
             background: var(--card-bg);
             backdrop-filter: blur(16px);
@@ -115,7 +110,6 @@
 
         /* =========================================
            TOP GRID: 30/70 SPLIT (Profile + Purchase/Store)
-           Vertical Thin & Ultra Compact
            ========================================= */
         .top-dashboard-grid {
             display: grid;
@@ -124,111 +118,39 @@
             margin-bottom: 15px;
         }
 
-        .compact-top-card {
-            padding: 12px 15px; /* Thin vertical padding */
-            margin-bottom: 0;
-            display: flex;
-        }
+        .compact-top-card { padding: 12px 15px; margin-bottom: 0; display: flex; }
 
         /* 30% Left: Profile Panel */
-        .profile-panel {
-            align-items: center;
-            gap: 12px;
-            border-left: 4px solid var(--primary);
-        }
-        
+        .profile-panel { align-items: center; gap: 12px; border-left: 4px solid var(--primary); }
         .avatar-wrapper { position: relative; flex-shrink: 0; }
-        .avatar {
-            width: 48px; height: 48px; 
-            border-radius: 10px; 
-            object-fit: cover;
-            border: 2px solid var(--card-border);
-            background: #fff;
-        }
-        .status-dot {
-            position: absolute; bottom: -2px; right: -2px;
-            width: 12px; height: 12px;
-            background-color: var(--success);
-            border: 2px solid var(--card-bg);
-            border-radius: 50%;
-        }
-        
+        .avatar { width: 48px; height: 48px; border-radius: 10px; object-fit: cover; border: 2px solid var(--card-border); background: #fff; }
+        .status-dot { position: absolute; bottom: -2px; right: -2px; width: 12px; height: 12px; background-color: var(--success); border: 2px solid var(--card-bg); border-radius: 50%; }
         .user-info { display: flex; flex-direction: column; justify-content: center; }
         .user-info h1 { font-size: 1rem; font-weight: 800; margin: 0 0 2px 0; }
         .user-info p { color: var(--text-sec); margin: 0 0 4px 0; font-size: 0.65rem; font-weight: 500; }
-        .badge {
-            font-size: 0.6rem; font-weight: 700; text-transform: uppercase;
-            padding: 2px 6px; border-radius: 4px; display: inline-block; width: fit-content;
-        }
+        .badge { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; padding: 2px 6px; border-radius: 4px; display: inline-block; width: fit-content; }
 
-        /* 70% Right: Purchases & Store Panel */
-        .purchases-panel {
-            border-top: 3px solid var(--accent);
-            align-items: stretch;
-            gap: 15px;
-        }
-        
-        .purchases-left {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            border-right: 1px dashed var(--card-border);
-            padding-right: 15px;
-        }
-        
-        .purchases-right {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        
-        .mini-section-title {
-            font-size: 0.65rem; font-weight: 800; color: var(--text-sec);
-            text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.5px;
-        }
+        /* 70% Right: Purchases Panel */
+        .purchases-panel { border-top: 3px solid var(--accent); align-items: stretch; gap: 15px; }
+        .purchases-left { flex: 1; display: flex; flex-direction: column; justify-content: center; border-right: 1px dashed var(--card-border); padding-right: 15px; }
+        .purchases-right { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+        .mini-section-title { font-size: 0.65rem; font-weight: 800; color: var(--text-sec); text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.5px; }
 
-        /* Compact Active Plan Box */
-        .active-plan-box {
-            background: var(--input-bg); border: 1px solid var(--card-border);
-            border-radius: var(--radius-sm); padding: 8px 10px;
-        }
+        .active-plan-box { background: var(--input-bg); border: 1px solid var(--card-border); border-radius: var(--radius-sm); padding: 8px 10px; }
         [data-theme="dark"] .active-plan-box { background: rgba(0,0,0,0.2); }
 
-        /* Compact Store Items */
-        .compact-upgrade-item {
-            display: flex; justify-content: space-between; align-items: center;
-            background: rgba(255,255,255,0.4); border: 1px solid var(--card-border);
-            padding: 6px 10px; border-radius: var(--radius-sm); margin-bottom: 6px;
-        }
+        .compact-upgrade-item { display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.4); border: 1px solid var(--card-border); padding: 6px 10px; border-radius: var(--radius-sm); margin-bottom: 6px; }
         .compact-upgrade-item:last-child { margin-bottom: 0; }
         [data-theme="dark"] .compact-upgrade-item { background: rgba(0,0,0,0.15); }
         
-        .compact-btn-buy {
-            background: linear-gradient(135deg, #f59e0b, #ea580c);
-            color: #fff; font-size: 0.65rem; font-weight: 800; padding: 4px 10px;
-            border-radius: 12px; text-decoration: none; border: none; text-transform: uppercase;
-            transition: 0.2s ease; box-shadow: 0 2px 8px rgba(234, 88, 12, 0.3);
-        }
+        .compact-btn-buy { background: linear-gradient(135deg, #f59e0b, #ea580c); color: #fff; font-size: 0.65rem; font-weight: 800; padding: 4px 10px; border-radius: 12px; text-decoration: none; border: none; text-transform: uppercase; transition: 0.2s ease; box-shadow: 0 2px 8px rgba(234, 88, 12, 0.3); }
         .compact-btn-buy:hover { opacity: 0.9; }
 
         /* =========================================
-           PAST: STATS DENSITY GRID (5 Cards)
+           STATS DENSITY GRID (5 Cards)
            ========================================= */
-        .stats-density-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 10px; 
-            margin-bottom: 15px;
-        }
-        
-        .stat-dense-card {
-            background: var(--card-bg); border: 1px solid var(--card-border);
-            border-radius: var(--radius-md); padding: 10px 15px; 
-            display: flex; flex-direction: column; justify-content: center;
-            box-shadow: var(--glass-shadow);
-        }
+        .stats-density-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 15px; }
+        .stat-dense-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-md); padding: 10px 15px; display: flex; flex-direction: column; justify-content: center; box-shadow: var(--glass-shadow); }
         .stat-dense-label { font-size: 0.65rem; color: var(--text-sec); font-weight: 700; text-transform: uppercase; margin-bottom: 2px; }
         .stat-dense-val { font-size: 1.25rem; font-weight: 900; color: var(--text-main); display: flex; align-items: center; justify-content: space-between; }
         .stat-dense-val i { font-size: 0.9rem; opacity: 0.4; }
@@ -236,66 +158,66 @@
         /* =========================================
            BOTTOM LAYOUT: 2 COLUMNS (50/50 Split)
            ========================================= */
-        .dashboard-cols {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
+        .dashboard-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
 
-        .section-header {
-            display: flex; justify-content: space-between; align-items: center;
-            border-bottom: 1px solid var(--card-border); padding-bottom: 6px; margin-bottom: 10px;
-        }
-        .section-title { font-size: 0.85rem; font-weight: 800; margin: 0; display: flex; align-items: center; gap: 6px; }
+        .section-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--card-border); padding-bottom: 6px; margin-bottom: 10px; }
+        .section-title { font-size: 0.85rem; font-weight: 800; margin: 0; display: flex; align-items: center; gap: 6px; color: var(--text-main); }
         .section-title span { font-size: 0.6rem; background: var(--input-bg); padding: 2px 6px; border-radius: 4px; color: var(--text-sec); }
 
-        .dense-list { display: flex; flex-direction: column; gap: 6px; }
+        .dense-list { display: flex; flex-direction: column; gap: 8px; }
 
-        /* PAST: History Items */
+        /* --- UPDATED: ADVANCED HISTORY CARDS --- */
         .history-item {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 8px 10px; border-radius: var(--radius-sm);
+            padding: 10px 12px; border-radius: var(--radius-sm);
             background: rgba(255,255,255,0.3); border: 1px solid var(--card-border);
-            border-left: 3px solid var(--primary);
-            transition: background 0.2s;
+            border-left: 3px solid var(--primary); transition: background 0.2s;
         }
         [data-theme="dark"] .history-item { background: rgba(0,0,0,0.15); }
-        
         .history-item:nth-child(even) { border-left-color: var(--success); background: linear-gradient(90deg, rgba(16,185,129,0.05), transparent); }
-        .history-item:nth-child(3n) { border-left-color: var(--warning); background: linear-gradient(90deg, rgba(245,158,11,0.05), transparent); }
         .history-item:hover { background: var(--input-bg); }
         
-        .h-info { display: flex; flex-direction: column; }
-        .h-title { font-weight: 700; font-size: 0.75rem; color: var(--text-main); }
-        .h-date { font-size: 0.6rem; color: var(--text-sec); font-weight: 500; }
-        .h-score { font-size: 0.75rem; font-weight: 800; color: var(--text-main); background: var(--card-bg); padding: 2px 6px; border-radius: 4px; border: 1px solid var(--card-border); }
+        .history-left { display: flex; flex-direction: column; gap: 4px; }
+        .h-title-row { display: flex; align-items: center; gap: 6px; }
+        .test-type-badge { font-size: 0.55rem; text-transform: uppercase; background: var(--primary); color: white; padding: 2px 5px; border-radius: 3px; font-weight: 800; letter-spacing: 0.5px;}
+        .h-title { font-weight: 800; font-size: 0.8rem; color: var(--text-main); }
+        .h-date { font-size: 0.65rem; color: var(--text-sec); font-weight: 600; display: flex; align-items: center; gap: 4px;}
+        
+        .history-right { display: flex; flex-direction: column; align-items: flex-end; gap: 5px; }
+        .h-score { font-size: 0.85rem; font-weight: 900; color: var(--text-main); background: var(--card-bg); padding: 2px 8px; border-radius: 4px; border: 1px solid var(--card-border); box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        
+        .h-stats-row { display: flex; align-items: center; gap: 6px; }
+        .h-badge { font-size: 0.6rem; padding: 2px 6px; border-radius: 4px; font-weight: 700; background: var(--input-bg); border: 1px solid var(--card-border); color: var(--text-sec); }
+        .h-badge.acc-good { color: #16a34a; background: rgba(34, 197, 94, 0.1); border-color: rgba(34, 197, 94, 0.2); }
+        .h-badge.acc-avg { color: #f59e0b; background: rgba(245, 158, 11, 0.1); border-color: rgba(245, 158, 11, 0.2); }
+        .h-badge.acc-bad { color: #dc2626; background: rgba(239, 68, 68, 0.1); border-color: rgba(239, 68, 68, 0.2); }
 
-        /* Mocks List (Present Action) */
-        .mock-item {
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 6px 10px; border-bottom: 1px dashed var(--card-border);
-        }
-        .mock-item:last-child { border-bottom: none; }
-        .mock-info { display: flex; align-items: center; gap: 8px; }
-        .mock-icon { width: 26px; height: 26px; border-radius: 6px; background: var(--primary-light); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; }
+        /* --- NEW: SUBJECT MASTERY BARS --- */
+        .subject-perf-item { margin-bottom: 12px; }
+        .subject-perf-item:last-child { margin-bottom: 0; }
+        .perf-labels { display: flex; justify-content: space-between; font-size: 0.75rem; font-weight: 700; color: var(--text-main); margin-bottom: 5px; }
+        .perf-track { width: 100%; height: 8px; background: rgba(0,0,0,0.05); border-radius: 4px; overflow: hidden; border: 1px solid var(--card-border); }
+        [data-theme="dark"] .perf-track { background: rgba(255,255,255,0.05); }
+        .perf-fill { height: 100%; border-radius: 4px; transition: width 1s ease-out; }
+
+        /* Mocks List (Quick Actions) */
+        .mock-item { display: flex; align-items: center; justify-content: space-between; padding: 8px 10px; border-radius: var(--radius-sm); border: 1px solid var(--card-border); background: var(--card-bg); margin-bottom: 8px; transition: 0.2s;}
+        .mock-item:hover { border-color: var(--primary); }
+        .mock-info { display: flex; align-items: center; gap: 10px; }
+        .mock-icon { width: 32px; height: 32px; border-radius: 8px; background: var(--primary-light); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 0.9rem; }
         .mock-details { display: flex; flex-direction: column; }
-        .mock-title { font-size: 0.75rem; font-weight: 700; color: var(--text-main); }
-        .mock-meta { font-size: 0.6rem; color: var(--text-sec); }
-        .mock-play { background: var(--text-main); color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.6rem; text-decoration: none; transition: 0.2s; }
-        .mock-play:hover { transform: scale(1.1); }
+        .mock-title { font-size: 0.8rem; font-weight: 700; color: var(--text-main); }
+        .mock-meta { font-size: 0.65rem; font-weight: 600; color: var(--text-sec); margin-top: 2px;}
+        .mock-play { background: var(--text-main); color: white; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; text-decoration: none; transition: 0.2s; box-shadow: 0 2px 5px rgba(0,0,0,0.1);}
+        .mock-play:hover { transform: scale(1.1); background: var(--primary); }
         [data-theme="dark"] .mock-play { background: var(--primary); }
 
         /* Auth Warning - Compact */
         .auth-warning { text-align: center; padding: 40px 20px; }
         .auth-warning h2 { font-size: 1.1rem; margin-bottom: 8px; }
         .auth-warning p { font-size: 0.8rem; margin-bottom: 20px; color: var(--text-sec); max-width: 400px; margin-inline: auto; }
-        .modern-google-btn {
-            background: #fff; color: #334155; border: 1px solid #cbd5e1; padding: 8px 16px; border-radius: 20px;
-            font-size: 0.8rem; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05); font-family: 'Inter', sans-serif;
-        }
+        .modern-google-btn { background: #fff; color: #334155; border: 1px solid #cbd5e1; padding: 8px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); font-family: 'Inter', sans-serif; }
 
-        /* Responsive Layout Adjustments */
         @media (max-width: 1024px) {
             .stats-density-grid { grid-template-columns: repeat(3, 1fr); }
         }
@@ -308,6 +230,10 @@
             .stats-density-grid { grid-template-columns: repeat(2, 1fr); }
             .purchases-panel { flex-direction: column; gap: 10px; }
             .purchases-left { border-right: none; border-bottom: 1px dashed var(--card-border); padding-right: 0; padding-bottom: 10px; }
+            
+            /* Compact History on Mobile */
+            .history-item { flex-direction: column; align-items: flex-start; gap: 8px; }
+            .history-right { align-items: flex-start; flex-direction: row; width: 100%; justify-content: space-between; }
         }
     </style>
     <script>
@@ -345,10 +271,9 @@
     <!-- Logged In State -->
     <div id="logged-in-state" style="display: none;">
         
-        <!-- NEW 30/70 SPLIT HEADER: Ultra Compact Vertical Design -->
+        <!-- 30/70 SPLIT HEADER -->
         <div class="top-dashboard-grid">
             
-            <!-- 30% Left: Profile Panel -->
             <div class="glass-panel compact-top-card profile-panel">
                 <div class="avatar-wrapper">
                     <img id="user-photo" src="" alt="Avatar" class="avatar">
@@ -361,10 +286,8 @@
                 </div>
             </div>
 
-            <!-- 70% Right: Active Purchases & Upgrades Store -->
             <div class="glass-panel compact-top-card purchases-panel">
                 
-                <!-- Active Purchases Section -->
                 <div class="purchases-left">
                     <div class="mini-section-title"><i class="fa-solid fa-id-card-clip"></i> My Active Plan</div>
                     <div id="top-plan-container">
@@ -381,7 +304,6 @@
                     </div>
                 </div>
 
-                <!-- Quick Upgrades Store Section -->
                 <div class="purchases-right">
                     <div class="mini-section-title"><i class="fa-solid fa-store"></i> Recommended Upgrades</div>
                     
@@ -396,9 +318,9 @@
                     <div class="compact-upgrade-item">
                         <div>
                             <div style="font-size: 0.75rem; font-weight: 800; color: var(--text-main);"><i class="fa-solid fa-crown" style="color:var(--warning);"></i> Mock Master Pass</div>
-                            <div style="font-size: 0.6rem; color: var(--text-sec);">Unlock All Mocks & Features</div>
+                            <div style="font-size: 0.6rem; color: var(--text-sec);">Unlock All Full-Length Mocks</div>
                         </div>
-                        <a href="../user/upgrade.html" class="compact-btn-buy">₹99/mo</a>
+                        <a href="../user/upgrade.html" class="compact-btn-buy" style="background: linear-gradient(135deg, #10b981, #059669);">₹99/mo</a>
                     </div>
                 </div>
 
@@ -406,7 +328,7 @@
             
         </div>
 
-        <!-- PAST/PRESENT: High Density Stats (5 Cards) -->
+        <!-- High Density Stats (5 Cards) -->
         <div class="stats-density-grid">
             <div class="stat-dense-card">
                 <span class="stat-dense-label">Total Tests</span>
@@ -426,73 +348,80 @@
             </div>
             <div class="stat-dense-card">
                 <span class="stat-dense-label">Study Streak</span>
-                <div class="stat-dense-val"><span id="stat-streak">0</span> <i class="fa-solid fa-fire" style="color:var(--accent);"></i></div>
+                <div class="stat-dense-val"><span id="stat-streak">0</span> <i class="fa-solid fa-fire" style="color:var(--danger);"></i></div>
             </div>
         </div>
 
-        <!-- MAIN GRID: 2 COLUMNS (50/50 Split for History and Present Action) -->
+        <!-- MAIN GRID: 2 COLUMNS (Past History vs Analytics/Quick Actions) -->
         <div class="dashboard-cols">
             
-            <!-- COL 1 (PAST): Learning History -->
+            <!-- COL 1 (PAST): Detailed Learning History -->
             <div class="glass-panel" style="padding: 15px;">
                 <div class="section-header">
-                    <h2 class="section-title"><i class="fa-solid fa-clock-rotate-left"></i> Past History <span>Last 15</span></h2>
+                    <h2 class="section-title"><i class="fa-solid fa-clock-rotate-left"></i> Recent Test Reports <span>Last 15</span></h2>
                 </div>
                 <div class="dense-list" id="history-list">
-                    <!-- Dynamic Content populated by JS -->
                     <div style="text-align: center; padding: 20px; color: var(--text-sec); font-size: 0.75rem;">
-                        No history found. Start a quiz!
+                        <i class="fa-solid fa-spinner fa-spin" style="margin-bottom: 8px; font-size: 1.2rem;"></i><br>
+                        Fetching your test reports...
                     </div>
                 </div>
             </div>
 
-            <!-- COL 2 (PRESENT): Active Resources / Quick Mocks -->
-            <div class="glass-panel" style="padding: 15px;">
-                <div class="section-header">
-                    <h2 class="section-title"><i class="fa-solid fa-play"></i> Present Action <span>Free Mocks</span></h2>
-                </div>
-                <div class="dense-list">
-                    <div class="mock-item">
-                        <div class="mock-info">
-                            <div class="mock-icon"><i class="fa-solid fa-seedling"></i></div>
-                            <div class="mock-details">
-                                <span class="mock-title">Agriculture Mix</span>
-                                <span class="mock-meta">Practice • 10 Qs</span>
-                            </div>
-                        </div>
-                        <a href="../agriculture-quiz/" class="mock-play"><i class="fa-solid fa-play"></i></a>
+            <!-- COL 2 (ANALYTICS & PRESENT ACTION) -->
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+                
+                <!-- Subject Mastery Analytics -->
+                <div class="glass-panel" style="padding: 15px; margin-bottom: 0;">
+                    <div class="section-header">
+                        <h2 class="section-title"><i class="fa-solid fa-chart-column"></i> Subject Mastery <span>Top 5</span></h2>
                     </div>
-                    <div class="mock-item">
-                        <div class="mock-info">
-                            <div class="mock-icon" style="color:var(--accent); background:var(--accent-light);"><i class="fa-solid fa-water"></i></div>
-                            <div class="mock-details">
-                                <span class="mock-title">Rivers of HP</span>
-                                <span class="mock-meta">Practice • Topic</span>
-                            </div>
+                    <div class="dense-list" id="subject-perf-list">
+                        <div style="text-align: center; padding: 15px; color: var(--text-sec); font-size: 0.75rem;">
+                            Analyzing your performance data...
                         </div>
-                        <a href="../himachal-pradesh-gk/rivers/" class="mock-play"><i class="fa-solid fa-play"></i></a>
-                    </div>
-                    <div class="mock-item">
-                        <div class="mock-info">
-                            <div class="mock-icon" style="color:var(--primary);"><i class="fa-solid fa-person-hiking"></i></div>
-                            <div class="mock-details">
-                                <span class="mock-title">Tourism & Culture</span>
-                                <span class="mock-meta">Practice • Topic</span>
-                            </div>
-                        </div>
-                        <a href="../himachal-pradesh-gk/tourism/" class="mock-play"><i class="fa-solid fa-play"></i></a>
-                    </div>
-                    <div class="mock-item">
-                        <div class="mock-info">
-                            <div class="mock-icon" style="color:var(--warning); background:rgba(245,158,11,0.1);"><i class="fa-solid fa-landmark"></i></div>
-                            <div class="mock-details">
-                                <span class="mock-title">History of HP</span>
-                                <span class="mock-meta">Practice • Topic</span>
-                            </div>
-                        </div>
-                        <a href="../himachal-pradesh-gk/history/" class="mock-play"><i class="fa-solid fa-play"></i></a>
                     </div>
                 </div>
+
+                <!-- Quick Access Mocks -->
+                <div class="glass-panel" style="padding: 15px; margin-bottom: 0;">
+                    <div class="section-header">
+                        <h2 class="section-title"><i class="fa-solid fa-play"></i> Quick Practice <span>Free</span></h2>
+                    </div>
+                    <div class="dense-list">
+                        <div class="mock-item">
+                            <div class="mock-info">
+                                <div class="mock-icon" style="color:var(--danger); background:rgba(239,68,68,0.1);"><i class="fa-solid fa-file-signature"></i></div>
+                                <div class="mock-details">
+                                    <span class="mock-title">Patwari Mock Test 1</span>
+                                    <span class="mock-meta">Full Mock • 120 Mins</span>
+                                </div>
+                            </div>
+                            <a href="../mock-engine/index.html?exam=patwari-exam&testId=patwari-test-1" class="mock-play"><i class="fa-solid fa-play"></i></a>
+                        </div>
+                        <div class="mock-item">
+                            <div class="mock-info">
+                                <div class="mock-icon" style="color:var(--success); background:rgba(16,185,129,0.1);"><i class="fa-solid fa-seedling"></i></div>
+                                <div class="mock-details">
+                                    <span class="mock-title">Agriculture Mix</span>
+                                    <span class="mock-meta">Practice Quiz • Topic</span>
+                                </div>
+                            </div>
+                            <a href="../agriculture-quiz/" class="mock-play"><i class="fa-solid fa-play"></i></a>
+                        </div>
+                        <div class="mock-item">
+                            <div class="mock-info">
+                                <div class="mock-icon" style="color:var(--primary);"><i class="fa-solid fa-person-hiking"></i></div>
+                                <div class="mock-details">
+                                    <span class="mock-title">Tourism & Culture</span>
+                                    <span class="mock-meta">Practice Quiz • Topic</span>
+                                </div>
+                            </div>
+                            <a href="../himachal-pradesh-gk/tourism/" class="mock-play"><i class="fa-solid fa-play"></i></a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
         </div>
@@ -506,7 +435,7 @@
 <script src="../js/core.js"></script>
 <script src="../js/layout.js"></script>
 
-<!-- Firebase Firestore Integration for fetching User History -->
+<!-- Firebase Firestore Integration for fetching User History & Analytics -->
 <script type="module">
     import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
     import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
@@ -538,7 +467,7 @@
             document.getElementById('user-photo').src = user.photoURL || 'https://ui-avatars.com/api/?name=' + encodeURIComponent(user.displayName || 'S') + '&background=e2e8f0&color=334155';
             document.getElementById('user-short-id').innerText = user.uid.substring(0, 6).toUpperCase();
             
-            // Handle User Subscriptions / Passes UI (70% Panel Left Side)
+            // Handle User Subscriptions / Passes UI
             let activePasses = 0;
             if(window.HPGK_User && window.HPGK_User.passes && Object.keys(window.HPGK_User.passes).length > 0) {
                 activePasses = Object.keys(window.HPGK_User.passes).length;
@@ -560,12 +489,11 @@
                 }
                 topPlanContainer.innerHTML = html;
             } else {
-                // Free Plan HTML Default
                 topPlanContainer.innerHTML = `
                     <div class="active-plan-box">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
                             <span style="font-size: 0.75rem; font-weight: 800; color: var(--text-main);">Free Explorer</span>
-                            <span class="badge badge-free">Basic</span>
+                            <span class="badge" style="background: rgba(100,116,139,0.1); color: var(--text-sec); border: 1px solid rgba(100,116,139,0.2);">Basic</span>
                         </div>
                         <div style="font-size: 0.6rem; color: var(--text-sec); line-height: 1.4;">
                             Access limited free MCQs & history.<br>Valid Till: Lifetime
@@ -596,59 +524,103 @@
             querySnapshot.forEach((doc) => { records.push({ id: doc.id, ...doc.data() }); });
             records.sort((a, b) => b.timestamp - a.timestamp); // Newest first
 
-            // SMART DEDUPLICATION & BEAUTIFUL NAMING FIX
-            const uniqueRecords = [];
-            const seenCategories = new Set();
-            
-            const beautifyName = {
+            // =================================================================
+            // UNIFIED CATEGORY MAPPER: Strict Dictionary to fix Data Duplication
+            // =================================================================
+            const categoryMap = {
                 'rivers': 'Rivers of HP',
+                'rivers of hp': 'Rivers of HP',
+                'hpgk rivers': 'Rivers of HP',
+                
                 'geography': 'Geography of HP',
+                'geography of hp': 'Geography of HP',
+                'hpgk geography': 'Geography of HP',
+                
                 'history': 'History of HP',
+                'history of hp': 'History of HP',
+                'hpgk history': 'History of HP',
+                
                 'economy': 'Economy of HP',
+                'economy of hp': 'Economy of HP',
+                
                 'polity': 'Polity of HP',
+                'polity of hp': 'Polity of HP',
+                
                 'art culture': 'Art & Culture of HP',
+                'art and culture': 'Art & Culture of HP',
+                'art culture of hp': 'Art & Culture of HP',
+                'culture': 'Art & Culture of HP',
+                
                 'tourism': 'Tourism in HP',
+                'tourism in hp': 'Tourism in HP',
+                
                 'agriculture': 'Agriculture Quiz',
+                'general agriculture': 'Agriculture Quiz',
+                
                 'district': 'Districts of HP',
+                'districts': 'Districts of HP',
+                
                 'environment': 'Environment of HP',
-                'famous people': 'Famous People of HP'
+                'environment of hp': 'Environment of HP',
+                
+                'famous people': 'Famous People of HP',
+                
+                'patwari exam': 'HP Patwari Mock',
+                'patwari': 'HP Patwari Mock',
+                
+                'police exam': 'HP Police Mock',
+                'police': 'HP Police Mock'
             };
 
             const practiceDays = new Set();
+            const catStats = {}; // For Subject Mastery Analytics
 
             records.forEach(data => {
+                // 1. Normalize the raw category string from Firebase
                 const rawCat = data.category || 'Unknown Quiz';
-                let cleanString = rawCat.replace(/hpgk_/gi, '').replace(/-/g, ' ').trim();
-                const uniqueKey = cleanString.toLowerCase();
+                
+                // Lowercase, remove 'hpgk_', replace hyphens/underscores with space, remove extra spaces
+                let cleanString = rawCat.toLowerCase()
+                                        .replace(/hpgk_/g, '')
+                                        .replace(/[-_]/g, ' ')
+                                        .replace(/\s+/g, ' ')
+                                        .trim();
 
-                let finalUniqueKey = uniqueKey;
-                if (uniqueKey === 'rivers of hp' || uniqueKey === 'rivers') finalUniqueKey = 'rivers';
-                if (uniqueKey === 'geography of hp' || uniqueKey === 'geography') finalUniqueKey = 'geography';
-
-                if (!seenCategories.has(finalUniqueKey)) {
-                    seenCategories.add(finalUniqueKey);
-                    
-                    if (beautifyName[finalUniqueKey]) {
-                        data.cleanCatName = beautifyName[finalUniqueKey];
-                    } else {
-                        data.cleanCatName = cleanString.replace(/\b\w/g, l => l.toUpperCase());
-                    }
-                    uniqueRecords.push(data);
+                // 2. Assign the Unified Canonical Name
+                data.cleanCatName = categoryMap[cleanString] || cleanString.replace(/\b\w/g, l => l.toUpperCase());
+                
+                // 3. Define if it's a Mock or Topic Quiz
+                if (data.testId) {
+                    let cleanTest = data.testId.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                    data.displayTitle = `${data.cleanCatName} (${cleanTest})`;
+                    data.isMock = true;
+                } else {
+                    data.displayTitle = data.cleanCatName;
+                    data.isMock = false;
                 }
 
+                // 4. Analytics Aggregation (Only aggregate standard subjects for Mastery graph)
+                if (!data.isMock) {
+                    if (!catStats[data.cleanCatName]) catStats[data.cleanCatName] = { correct: 0, total: 0 };
+                    catStats[data.cleanCatName].correct += Number(data.score) || 0;
+                    catStats[data.cleanCatName].total += Number(data.total) || 0;
+                }
+
+                // 5. Streak Calculation
                 const dateOnly = new Date(data.timestamp).setHours(0,0,0,0);
                 practiceDays.add(dateOnly);
             });
 
+            // Update Top Density Stats
             document.getElementById('stat-streak').innerText = practiceDays.size;
 
-            let totalTests = uniqueRecords.length;
+            let totalTests = records.length;
             let totalQuestions = 0;
             let totalCorrect = 0;
 
-            uniqueRecords.forEach(data => {
+            records.forEach(data => {
                 totalQuestions += (Number(data.total) || 0);
-                totalCorrect += (Number(data.score) || 0);
+                totalCorrect += (Number(data.score) || 0); // Aggregate scores
             });
 
             if (totalTests > 0) {
@@ -658,26 +630,88 @@
                 const avgAcc = Math.round((totalCorrect / totalQuestions) * 100) || 0;
                 document.getElementById('stat-avg-score').innerText = avgAcc + '%';
                 
-                historyList.innerHTML = uniqueRecords.slice(0, 15).map(data => {
+                // RENDER ADVANCED RECENT HISTORY (Top 15)
+                historyList.innerHTML = records.slice(0, 15).map(data => {
                     const dateObj = new Date(data.timestamp);
                     const dateStr = dateObj.toLocaleDateString('en-IN', { day: '2-digit', month: 'short' });
                     const timeStr = dateObj.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
-                    const catName = data.cleanCatName;
                     
+                    let acc = data.accuracy;
+                    if(acc === undefined) { acc = Math.round((data.score / data.total) * 100) || 0; }
+                    
+                    let badgeClass = 'acc-bad';
+                    if (acc >= 75) badgeClass = 'acc-good';
+                    else if (acc >= 50) badgeClass = 'acc-avg';
+
+                    let timeBadge = '';
+                    if (data.timeTaken) {
+                        const m = Math.floor(data.timeTaken / 60);
+                        const s = data.timeTaken % 60;
+                        timeBadge = `<span class="h-badge"><i class="fa-regular fa-clock"></i> ${m > 0 ? m+'m ' : ''}${s}s</span>`;
+                    }
+
+                    const typeBadge = data.isMock 
+                        ? `<span class="test-type-badge" style="background:var(--danger);">Mock Test</span>` 
+                        : `<span class="test-type-badge">Topic Quiz</span>`;
+
                     return `
                         <div class="history-item">
-                            <div class="h-info">
-                                <span class="h-title" title="${catName}">${catName}</span>
-                                <span class="h-date">${dateStr} • ${timeStr}</span>
+                            <div class="history-left">
+                                <div class="h-title-row">
+                                    ${typeBadge}
+                                    <span class="h-title" title="${data.displayTitle}">${data.displayTitle}</span>
+                                </div>
+                                <span class="h-date"><i class="fa-regular fa-calendar"></i> ${dateStr} • ${timeStr}</span>
                             </div>
-                            <div class="h-score">${data.score} / ${data.total}</div>
+                            <div class="history-right">
+                                <div class="h-score">${data.score} / ${data.total}</div>
+                                <div class="h-stats-row">
+                                    ${timeBadge}
+                                    <span class="h-badge ${badgeClass}">${acc}% Acc</span>
+                                </div>
+                            </div>
                         </div>
                     `;
                 }).join('');
+
+                // RENDER SUBJECT MASTERY (Top 5 Practiced Subjects)
+                const sortedCats = Object.keys(catStats).map(cat => ({
+                    name: cat,
+                    acc: Math.round((catStats[cat].correct / catStats[cat].total) * 100),
+                    total: catStats[cat].total
+                })).sort((a, b) => b.total - a.total).slice(0, 5); 
+
+                if (sortedCats.length > 0) {
+                    let subjectHtml = '';
+                    sortedCats.forEach(cat => {
+                        let barColor = 'var(--danger)';
+                        if (cat.acc >= 75) barColor = 'var(--success)';
+                        else if (cat.acc >= 50) barColor = 'var(--warning)';
+
+                        subjectHtml += `
+                        <div class="subject-perf-item">
+                            <div class="perf-labels">
+                                <span>${cat.name} <span style="font-size:0.6rem; color:var(--text-sec); font-weight:500;">(${cat.total} Qs)</span></span>
+                                <span style="color:${barColor};">${cat.acc}%</span>
+                            </div>
+                            <div class="perf-track">
+                                <div class="perf-fill" style="width: ${cat.acc}%; background: ${barColor}"></div>
+                            </div>
+                        </div>
+                        `;
+                    });
+                    document.getElementById('subject-perf-list').innerHTML = subjectHtml;
+                } else {
+                    document.getElementById('subject-perf-list').innerHTML = `<div style="text-align: center; padding: 15px; color: var(--text-sec); font-size: 0.75rem;">Attempt Topic Quizzes to generate Subject Mastery insights.</div>`;
+                }
+
+            } else {
+                historyList.innerHTML = `<div style="text-align: center; padding: 20px; color: var(--text-sec); font-size: 0.75rem;">No history found. Start practicing!</div>`;
+                document.getElementById('subject-perf-list').innerHTML = `<div style="text-align: center; padding: 15px; color: var(--text-sec); font-size: 0.75rem;">Not enough data yet.</div>`;
             }
         } catch (error) {
             console.error("Error fetching stats:", error);
-            historyList.innerHTML = `<div style="text-align: center; font-size:0.75rem; color: var(--wrong-text);">Error loading history.</div>`;
+            historyList.innerHTML = `<div style="text-align: center; font-size:0.75rem; color: var(--danger);">Error loading history.</div>`;
         }
     }
 </script>
