@@ -473,7 +473,7 @@
         
         /* Solid background for the modal content */
         .quiz-modal-content {
-            background: var(--card-bg) !important; 
+            background: var(--tooltip-bg) !important; 
             width: 100%; max-width: 320px; margin: auto !important;
             border: 1px solid var(--border-color);
             border-radius: 12px; padding: 15px;
@@ -885,7 +885,7 @@
 <script>
     // The core config read by the Bouncer and the Engine
     window.PAGE_ACCESS = {
-        category: 'hpgk_art_culture',
+        category: 'art-culture',
         loginLimit: 30,         // Questions free for anonymous users
         proLimit: 9999,         // Questions free for logged-in users (before Paywall)
         requiredPass: 'mcq_pass'// Pass required if proLimit is reached
@@ -893,7 +893,7 @@
     
     // Legacy fallback for the engine
     window.QUIZ_NAME = "Art & Culture of HP";
-    window.QUIZ_CONFIG = { category: "hpgk_art_culture" };
+    window.QUIZ_CONFIG = { category: "art-culture" };
     window.quizData = []; 
 </script>
 
