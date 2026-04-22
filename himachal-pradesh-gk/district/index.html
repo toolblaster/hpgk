@@ -75,7 +75,7 @@
     <!-- Premium Glassmorphism & Compact UI Stylesheet -->
     <style>
         :root {
-            --primary: #2563eb;       
+            --primary: #2563eb;        
             --primary-hover: #1d4ed8; 
             --primary-light: rgba(37, 99, 235, 0.1); 
             --primary-dark: #1e3a8a;  
@@ -104,7 +104,7 @@
         }
 
         [data-theme="dark"] {
-            --primary: #60a5fa;       
+            --primary: #60a5fa;        
             --primary-hover: #93c5fd; 
             --primary-light: rgba(96, 165, 250, 0.15); 
             --primary-dark: #bfdbfe;  
@@ -507,7 +507,7 @@
             .progress-display { padding: 2px 6px; }
             .progress-text { font-size: 0.7rem; }
             
-            /* Quick Links Mobile Fix */
+            /* Quick Links Mobile Fix: Inline & Scrollable */
             .hero-interlinks { flex-direction: row; flex-wrap: wrap; gap: 6px; padding: 8px 12px; border-radius: 30px; }
             .hero-interlinks .dot { display: inline; font-size: 0.7rem; }
             .hero-interlinks a { font-size: 0.8rem; }
@@ -811,7 +811,7 @@
                 <p>The highly prestigious Capital of HP and the former Summer Capital of British India. Rightfully celebrated as the majestic 'Queen of the Hills'. <br>(हिमाचल की राजधानी और ब्रिटिश भारत की पूर्व ग्रीष्मकालीन राजधानी। 'पहाड़ियों की रानी' के रूप में विख्यात।)</p>
                 <ul class="seo-list">
                     <li><strong>Formation:</strong> Officially formed on 1 Sept 1972 after the major, complex territorial reorganization of the vast Mahasu district. (1 सितंबर 1972: विशाल महासू जिले के जटिल क्षेत्रीय पुनर्गठन के बाद आधिकारिक रूप से बना).</li>
-                    <li><strong>Identity:</strong> Functions as the primary administrative Capital of Himachal Pradesh and is globally recognized as the 'Queen of the Hills'. (पहचान: हिमाचल प्रदेश की प्राथमिक प्रशासनिक राजधानी और 'पहाड़ियों की रानी' के रूप में मान्यता प्राप्त).</li>
+                    <li><strong>Identity:</strong> Functions as the primary administrative Capital of Himachal Pradesh and is globally recognized as the 'Queen of the Hills'. (पहचान: हिमाचल प्रदेश की प्राथमिक राजधानी और 'पहाड़ियों की रानी' के रूप में मान्यता प्राप्त).</li>
                     <li><strong>British History:</strong> It was officially declared the supreme Summer Capital of the entire British Indian Empire in 1864 under Viceroy John Lawrence. (इतिहास: 1864 में वाइसराय जॉन लॉरेंस के तहत इसे पूरे ब्रिटिश भारतीय साम्राज्य की ग्रीष्मकालीन राजधानी घोषित किया गया).</li>
                     <li><strong>Unique Demographics:</strong> It stands entirely unique for being the absolute only district in HP where the urban population exceeds the rural population. (जनसांख्यिकी: यह हिमाचल का एकमात्र ऐसा अनूठा जिला है जहां शहरी आबादी ग्रामीण आबादी से अधिक है).</li>
                     <li><strong>UNESCO Heritage:</strong> The astonishingly engineered historic Kalka-Shimla narrow-gauge Railway line (started 1903) is a UNESCO World Heritage site. (विरासत: आश्चर्यजनक रूप से निर्मित ऐतिहासिक कालका-शिमला नैरो-गेज रेलवे लाइन (1903) एक यूनेस्को साइट है).</li>
@@ -929,9 +929,9 @@
 <!-- 1. THE ID CARD (PAGE CONFIGURATION) -->
 <!-- ======================================================= -->
 <script>
-    // The core config read by the Bouncer and the Engine
+    // FIXED: Category perfectly synced with Firebase Dashboard Mapper
     window.PAGE_ACCESS = {
-        category: 'hpgk_district',
+        category: 'district',     // Changed from 'hpgk_district'
         loginLimit: 30,         // Questions free for anonymous users
         proLimit: 9999,         // Questions free for logged-in users (before Paywall)
         requiredPass: 'mcq_pass'// Pass required if proLimit is reached
@@ -939,7 +939,7 @@
     
     // Legacy fallback for the engine
     window.QUIZ_NAME = "District Profiles of HP";
-    window.QUIZ_CONFIG = { category: "hpgk_district" };
+    window.QUIZ_CONFIG = { category: "district" }; // Changed from 'hpgk_district'
     window.quizData = []; 
 </script>
 
