@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="description" content="Study 290+ Bilingual MCQs and detailed notes on Rivers of Himachal Pradesh. Covers Satluj, Beas, Ravi, Chenab, Yamuna & tributaries for HPPSC 2026.">
     <meta name="keywords" content="Himachal Pradesh Rivers, HP GK Rivers, Satluj River HP, Beas River HP, Ravi River HP, Chenab River HP, Yamuna River HP, HPPSC GK Rivers, HPAS Geography, Allied Services HP GK, Naib Tehsildar HP GK, Rivers of HP MCQ, Himachal Pradesh Drainage System">
     <title>Rivers of HP | Study Notes & 290+ MCQs</title>
@@ -75,7 +75,7 @@
     <!-- Premium Glassmorphism & Compact UI Stylesheet -->
     <style>
         :root {
-            --primary: #2563eb;       
+            --primary: #2563eb;        
             --primary-hover: #1d4ed8; 
             --primary-light: rgba(37, 99, 235, 0.1); 
             --primary-dark: #1e3a8a;  
@@ -104,7 +104,7 @@
         }
 
         [data-theme="dark"] {
-            --primary: #60a5fa;       
+            --primary: #60a5fa;        
             --primary-hover: #93c5fd; 
             --primary-light: rgba(96, 165, 250, 0.15); 
             --primary-dark: #bfdbfe;  
@@ -161,7 +161,6 @@
 
         .page-header-top { text-align: center; margin-bottom: 25px; }
 
-        /* FIXED: Hero Description forced to 14px with good line height */
         .hero-desc {
             margin: 0 auto;
             text-align: center;
@@ -881,9 +880,9 @@
 <!-- 1. THE ID CARD (PAGE CONFIGURATION) -->
 <!-- ======================================================= -->
 <script>
-    // The core config read by the Bouncer and the Engine
+    // FIXED: Category perfectly synced with Firebase Dashboard Mapper
     window.PAGE_ACCESS = {
-        category: 'hpgk_rivers',
+        category: 'rivers',     // Changed from 'hpgk_rivers'
         loginLimit: 30,         // Questions free for anonymous users
         proLimit: 9999,         // Questions free for logged-in users (before Paywall)
         requiredPass: 'mcq_pass'// Pass required if proLimit is reached
@@ -891,7 +890,7 @@
     
     // Legacy fallback for the engine
     window.QUIZ_NAME = "Rivers of HP";
-    window.QUIZ_CONFIG = { category: "hpgk_rivers" };
+    window.QUIZ_CONFIG = { category: "rivers" }; // Changed from 'hpgk_rivers'
     window.quizData = []; 
 </script>
 
