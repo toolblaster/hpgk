@@ -1,0 +1,169 @@
+{
+  "testTitle": "HP Patwari Full Mock Test 2",
+  "durationMinutes": 120,
+  "negativeMarking": "0.25",
+  "customInstructions": [
+    "This mock test strictly follows the HP Patwari Exam Pattern.",
+    "Total Questions: 120, Total Marks: 120, Total Time: 120 Minutes.",
+    "Every correct answer awards +1 Mark.",
+    "Every incorrect answer will deduct 0.25 Marks (Negative Marking).",
+    "Questions are available in both English and Hindi."
+  ],
+  "sections": [
+    {
+      "name": "HP GK / हि.प्र. सामान्य ज्ञान",
+      "questions": [
+        { "questionEn": "Which district of HP is known as 'Chhota Kashi'?", "questionHi": "हि.प्र. का कौन सा जिला छोटा काशी के नाम से जाना जाता है?", "options": ["Kullu / कुल्लू", "Mandi / मंडी", "Shimla / शिमला", "Hamirpur / हमीरपुर"], "answer": 1 },
+        { "questionEn": "Who was the first Speaker of HP Vidhan Sabha?", "questionHi": "हि.प्र. विधानसभा के प्रथम अध्यक्ष कौन थे?", "options": ["Jaywant Ram / जयवंत राम", "Krishan Chand", "Pandit Jaiwant Ram", "Desh Raj Mahajan"], "answer": 0 },
+        { "questionEn": "'Dhongri Mela' celebrated in honour of:", "questionHi": "ढोंगरी मेला किसकी याद में मनाया जाता है?", "options": ["Goddess Hadimba / देवी हिडिम्बा", "Goddess Naina Devi", "Goddess Renuka", "Goddess Jwalamukhi"], "answer": 0 },
+        { "questionEn": "State Bird of HP:", "questionHi": "हि.प्र. का राज्य पक्षी:", "options": ["Monal", "Jujurana / जुजुराना", "Peacock", "Kingfisher"], "answer": 1 },
+        { "questionEn": "'Chamunda Devi' temple is in:", "questionHi": "चामुंडा देवी मंदिर कहाँ स्थित है?", "options": ["Chamba", "Kangra / कांगड़ा", "Mandi", "Una"], "answer": 1 },
+        { "questionEn": "'Pong Dam' is built on:", "questionHi": "पोंग बांध किस नदी पर बना है?", "options": ["Satluj", "Ravi", "Beas / ब्यास", "Yamuna"], "answer": 2 },
+        { "questionEn": "'Dhami Firing Tragedy' held in:", "questionHi": "धामी गोली कांड कब हुआ?", "options": ["1939", "1942", "1945", "1947"], "answer": 0 },
+        { "questionEn": "'Valley of Gods':", "questionHi": "देवताओं की घाटी:", "options": ["Kangra", "Kullu / कुल्लू", "Chamba", "Spiti"], "answer": 1 },
+        { "questionEn": "Largest district of HP area-wise:", "questionHi": "क्षेत्रफल की दृष्टि से हि.प्र. का सबसे बड़ा जिला:", "options": ["Kangra", "Mandi", "Lahaul & Spiti / लाहौल स्पीति", "Chamba"], "answer": 2 },
+        { "questionEn": "Who built 'Rang Mahal' of Chamba?", "questionHi": "चंबा का रंग महल किसने बनवाया?", "options": ["Sahil Varman", "Umed Singh / उमेद सिंह", "Meru Varman", "Bhuri Singh"], "answer": 1 },
+        { "questionEn": "'Lavi Fair' is famous for:", "questionHi": "लवी मेला किसके लिए प्रसिद्ध है?", "options": ["Trade / व्यापार", "Wrestling", "Buffalo Fight", "Boat Racing"], "answer": 0 },
+        { "questionEn": "'Mushroom City of India':", "questionHi": "भारत का मशरूम शहर:", "options": ["Shimla", "Solan / सोलन", "Dharamshala", "Dalhousie"], "answer": 1 },
+        { "questionEn": "'Bhakra Nangal Dam' is on:", "questionHi": "भाखड़ा नंगल बांध किस नदी पर है?", "options": ["Ravi", "Beas", "Satluj / सतलुज", "Chenab"], "answer": 2 },
+        { "questionEn": "'Nati' is popular folk dance of:", "questionHi": "नाटी कहाँ का प्रसिद्ध लोक नृत्य है?", "options": ["Kullu", "Sirmaur", "Shimla", "All / सभी"], "answer": 3 },
+        { "questionEn": "Highest population density district:", "questionHi": "सर्वाधिक जनसंख्या घनत्व वाला जिला:", "options": ["Kangra", "Hamirpur / हमीरपुर", "Shimla", "Mandi"], "answer": 1 },
+        { "questionEn": "'Rohtang Pass' is gateway to:", "questionHi": "रोहतांग दर्रा किसका प्रवेश द्वार है?", "options": ["Pangi", "Lahaul & Spiti / लाहौल स्पीति", "Kinnaur", "Bharmour"], "answer": 1 },
+        { "questionEn": "Founder of 'Kehlur' (Bilaspur):", "questionHi": "कह्लूर (बिलासपुर) का संस्थापक:", "options": ["Bir Chand / बीर चंद", "Hari Chand", "Abhay Chand", "Kahal Chand"], "answer": 0 },
+        { "questionEn": "'IIAS' is located in:", "questionHi": "IIAS कहाँ स्थित है?", "options": ["Palampur", "Shimla / शिमला", "Solan", "Sundernagar"], "answer": 1 },
+        { "questionEn": "'Oldest Democracy in the World':", "questionHi": "विश्व का सबसे पुराना लोकतंत्र:", "options": ["Pragpur", "Malana / मलाणा", "Chitkul", "Kalpa"], "answer": 1 },
+        { "questionEn": "'Renuka Lake' is in:", "questionHi": "रेणुका झील कहाँ है?", "options": ["Sirmaur / सिरमौर", "Mandi", "Bilaspur", "Chamba"], "answer": 0 },
+        { "questionEn": "'Karyala' is folk drama of:", "questionHi": "करियाला कहाँ का लोक नाट्य है?", "options": ["Shimla / शिमला", "Kangra", "Kinnaur", "Una"], "answer": 0 },
+        { "questionEn": "Author of 'History of Mandi State':", "questionHi": "हिस्ट्री ऑफ मंडी स्टेट के लेखक:", "options": ["Randhawa", "Manmohan Singh / मनमोहन सिंह", "Parmar", "T.S. Negi"], "answer": 1 },
+        { "questionEn": "Kangra ruler contemporary of Jehangir:", "questionHi": "जहांगीर के समकालीन कांगड़ा शासक:", "options": ["Sansar Chand", "Trilok Chand / त्रिलोक चंद", "Hari Chand", "Bhim Chand"], "answer": 1 },
+        { "questionEn": "'Guler' state founded by:", "questionHi": "गुलेर राज्य की स्थापना किसने की?", "options": ["Hari Chand / हरि चंद", "Karam Chand", "Ghamand Chand", "Rup Chand"], "answer": 0 },
+        { "questionEn": "'Chandra and Bhaga' meet at:", "questionHi": "चंद्रा और भागा कहाँ मिलती हैं?", "options": ["Tandi / तांडी", "Keylong", "Udaipur", "Kaza"], "answer": 0 },
+        { "questionEn": "'CPRI' is located at:", "questionHi": "CPRI कहाँ स्थित है?", "options": ["Kufri / कुफरी", "Palampur", "Nauni", "Mashobra"], "answer": 0 },
+        { "questionEn": "Famous for 'Chamba Chappal':", "questionHi": "चंबा चप्पल के लिए प्रसिद्ध:", "options": ["Kangra", "Chamba / चंबा", "Mandi", "Kullu"], "answer": 1 },
+        { "questionEn": "'Kinner Kailash' peak is in:", "questionHi": "किन्नर कैलाश चोटी कहाँ है?", "options": ["Lahaul", "Kinnaur / किन्नौर", "Kullu", "Chamba"], "answer": 1 },
+        { "questionEn": "'HP University' established in:", "questionHi": "हि.प्र. विश्वविद्यालय की स्थापना:", "options": ["1970", "1971", "1972", "1975"], "answer": 0 },
+        { "questionEn": "Smallest district of HP area-wise:", "questionHi": "क्षेत्रफल में सबसे छोटा जिला:", "options": ["Bilaspur", "Hamirpur / हमीरपुर", "Una", "Solan"], "answer": 1 }
+      ]
+    },
+    {
+      "name": "General Science / सामान्य विज्ञान",
+      "questions": [
+        { "questionEn": "Unit of power:", "questionHi": "शक्ति की इकाई:", "options": ["Joule", "Watt / वाट", "Newton", "Pascal"], "answer": 1 },
+        { "questionEn": "Gas used in chips packets:", "questionHi": "चिप्स पैकेट में प्रयुक्त गैस:", "options": ["Oxygen", "Nitrogen / नाइट्रोजन", "Hydrogen", "Helium"], "answer": 1 },
+        { "questionEn": "Human heart chambers:", "questionHi": "मानव हृदय में कितने कक्ष होते हैं?", "options": ["2", "3", "4 / चार", "5"], "answer": 2 },
+        { "questionEn": "Lens for Short-sightedness (Myopia):", "questionHi": "निकट दृष्टि दोष के लिए लेंस:", "options": ["Convex", "Concave / अवतल", "Cylindrical", "Bifocal"], "answer": 1 },
+        { "questionEn": "'Goitre' caused by deficiency of:", "questionHi": "घेंघा किसकी कमी से होता है?", "options": ["Iron", "Calcium", "Iodine / आयोडीन", "Potassium"], "answer": 2 },
+        { "questionEn": "Formula of Water:", "questionHi": "पानी का सूत्र:", "options": ["H2O2", "H2O", "HO2", "H3O"], "answer": 1 },
+        { "questionEn": "'Red Planet':", "questionHi": "लाल ग्रह:", "options": ["Venus", "Mars / मंगल", "Jupiter", "Saturn"], "answer": 1 },
+        { "questionEn": "Filament of electric bulb:", "questionHi": "बल्ब का फिलामेंट बना होता है:", "options": ["Copper", "Aluminum", "Tungsten / टंगस्टन", "Iron"], "answer": 2 },
+        { "questionEn": "'Universal Donor' Blood Group:", "questionHi": "सर्वदाता रक्त समूह:", "options": ["A+", "B+", "AB+", "O- / ओ नेगेटिव"], "answer": 3 },
+        { "questionEn": "Photosynthesis takes place in:", "questionHi": "प्रकाश संश्लेषण कहाँ होता है?", "options": ["Roots", "Stem", "Leaves / पत्तियां", "Flowers"], "answer": 2 },
+        { "questionEn": "'Rabies' caused by:", "questionHi": "रेबीज किसके कारण होता है?", "options": ["Bacteria", "Virus / विषाणु", "Fungus", "Protozoa"], "answer": 1 },
+        { "questionEn": "Hardest natural substance:", "questionHi": "सबसे कठोर प्राकृतिक पदार्थ:", "options": ["Gold", "Iron", "Diamond / हीरा", "Platinum"], "answer": 2 },
+        { "questionEn": "Normal body temperature:", "questionHi": "सामान्य शरीर का तापमान:", "options": ["96.4 F", "98.6 F", "100 F", "102 F"], "answer": 1 },
+        { "questionEn": "Acid in lemon:", "questionHi": "नींबू में अम्ल:", "options": ["Acetic", "Citric / साइट्रिक", "Lactic", "Tartaric"], "answer": 1 },
+        { "questionEn": "Newton's Third Law:", "questionHi": "न्यूटन का तीसरा नियम:", "options": ["F=ma", "Energy conservation", "Action-Reaction / क्रिया-प्रतिक्रिया", "Gravity"], "answer": 2 }
+      ]
+    },
+    {
+      "name": "History, Polity, Geo / इतिहास, राजनीति, भूगोल",
+      "questions": [
+        { "questionEn": "'Father of Indian Constitution':", "questionHi": "भारतीय संविधान के जनक:", "options": ["Gandhi", "Nehru", "Ambedkar / अंबेडकर", "Patel"], "answer": 2 },
+        { "questionEn": "'Right to Education' act year:", "questionHi": "शिक्षा का अधिकार अधिनियम वर्ष:", "options": ["2005", "2009 / 2009", "2010", "2012"], "answer": 1 },
+        { "questionEn": "First Gov-Gen of Independent India:", "questionHi": "स्वतंत्र भारत के प्रथम गवर्नर जनरल:", "options": ["Rajagopalachari", "Mountbatten / माउंटबेटन", "Prasad", "Hastings"], "answer": 1 },
+        { "questionEn": "'Jallianwala Bagh' year:", "questionHi": "जलियांवाला बाग वर्ष:", "options": ["1919 / 1919", "1920", "1922", "1925"], "answer": 0 },
+        { "questionEn": "Longest river in India:", "questionHi": "भारत की सबसे लंबी नदी:", "options": ["Godavari", "Ganga / गंगा", "Yamuna", "Brahmaputra"], "answer": 1 },
+        { "questionEn": "'NITI Aayog' replaced:", "questionHi": "NITI आयोग ने किसकी जगह ली?", "options": ["Finance Comm.", "Planning Comm. / योजना आयोग", "Election Comm.", "HR Comm."], "answer": 1 },
+        { "questionEn": "Capital of Australia:", "questionHi": "ऑस्ट्रेलिया की राजधानी:", "options": ["Sydney", "Melbourne", "Canberra / कैनबरा", "Perth"], "answer": 2 },
+        { "questionEn": "Planet with most moons:", "questionHi": "सर्वाधिक चंद्रमाओं वाला ग्रह:", "options": ["Jupiter", "Saturn / शनि", "Uranous", "Neptune"], "answer": 1 },
+        { "questionEn": "'Quit India Movement' started in:", "questionHi": "भारत छोड़ो आंदोलन कब शुरू हुआ?", "options": ["1930", "1940", "1942 / 1942", "1947"], "answer": 2 },
+        { "questionEn": "Author of 'Ramcharitmanas':", "questionHi": "रामचरितमानस के रचयिता:", "options": ["Valmiki", "Tulsidas / तुलसीदास", "Ved Vyas", "Kalidas"], "answer": 1 },
+        { "questionEn": "'Green Revolution' related to:", "questionHi": "हरित क्रांति संबंधित है:", "options": ["Milk", "Wheat/Agri / गेहूं/कृषि", "Fish", "Egg"], "answer": 1 },
+        { "questionEn": "'Lok Sabha' is also known as:", "questionHi": "लोकसभा को और क्या कहते हैं?", "options": ["Upper House", "Lower House / निचला सदन", "Permanent", "Council"], "answer": 1 },
+        { "questionEn": "Longest coastline state:", "questionHi": "सबसे लंबी तटरेखा वाला राज्य:", "options": ["Maharashtra", "Tamil Nadu", "Gujarat / गुजरात", "Kerala"], "answer": 2 },
+        { "questionEn": "'Sanchi Stupa' built by:", "questionHi": "सांची स्तूप किसने बनवाया?", "options": ["Chandragupta", "Ashoka / अशोक", "Harsha", "Kanishka"], "answer": 1 },
+        { "questionEn": "'Arya Samaj' founder:", "questionHi": "आर्य समाज के संस्थापक:", "options": ["Roy", "Vivekananda", "Dayanand Saraswati / दयानंद सरस्वती", "Vidyasagar"], "answer": 2 },
+        { "questionEn": "Currency of Russia:", "questionHi": "रूस की मुद्रा:", "options": ["Euro", "Ruble / रूबल", "Dollar", "Pound"], "answer": 1 },
+        { "questionEn": "'Freedom of Speech' Article:", "questionHi": "भाषण की स्वतंत्रता अनुच्छेद:", "options": ["14", "19 / 19", "21", "32"], "answer": 1 },
+        { "questionEn": "'Thar Desert' location:", "questionHi": "थार मरुस्थल कहाँ है?", "options": ["Gujarat", "Punjab", "Rajasthan / राजस्थान", "Haryana"], "answer": 2 },
+        { "questionEn": "First woman PM of India:", "questionHi": "भारत की प्रथम महिला प्रधानमंत्री:", "options": ["Sarojini Naidu", "Indira Gandhi / इंदिरा गांधी", "Sonia Gandhi", "Pratibha Patil"], "answer": 1 },
+        { "questionEn": "'White Revolution' related to:", "questionHi": "श्वेत क्रांति संबंधित है:", "options": ["Cotton", "Milk / दूध", "Sugar", "Rice"], "answer": 1 },
+        { "questionEn": "'Taj Mahal' river bank:", "questionHi": "ताज महल किस नदी के किनारे है?", "options": ["Ganga", "Yamuna / यमुना", "Narmada", "Gomti"], "answer": 1 },
+        { "questionEn": "President's Term:", "questionHi": "राष्ट्रपति का कार्यकाल:", "options": ["4", "5 / 5 वर्ष", "6", "3"], "answer": 1 },
+        { "questionEn": "'Hirakud Dam' river:", "questionHi": "हीराकुंड बांध नदी:", "options": ["Mahanadi / महानदी", "Godavari", "Krishna", "Kaveri"], "answer": 0 },
+        { "questionEn": "Known as 'Netaji':", "questionHi": "नेताजी के नाम से जाना जाता है:", "options": ["Gandhi", "Bose / बोस", "Bhagat Singh", "Nehru"], "answer": 1 },
+        { "questionEn": "Tax by State Govt:", "questionHi": "राज्य सरकार द्वारा कर:", "options": ["Income", "Customs", "Land Revenue / भू-राजस्व", "Corp Tax"], "answer": 2 }
+      ]
+    },
+    {
+      "name": "Misc / विविध",
+      "questions": [
+        { "questionEn": "Cricket World Cup 2023 Winner:", "questionHi": "क्रिकेट विश्व कप 2023 विजेता:", "options": ["India", "Australia / ऑस्ट्रेलिया", "England", "SA"], "answer": 1 },
+        { "questionEn": "'Statue of Unity' location:", "questionHi": "स्टैच्यू ऑफ यूनिटी कहाँ है?", "options": ["Maharashtra", "Gujarat / गुजरात", "MP", "UP"], "answer": 1 },
+        { "questionEn": "'International Yoga Day':", "questionHi": "अंतर्राष्ट्रीय योग दिवस:", "options": ["21st June / 21 जून", "5th June", "1st July", "15th Aug"], "answer": 0 },
+        { "questionEn": "Current RBI Governor:", "questionHi": "वर्तमान RBI गवर्नर:", "options": ["Rajan", "Urjit", "Shaktikanta Das / शक्तिकांत दास", "Sitharaman"], "answer": 2 },
+        { "questionEn": "'Chandrayaan-3' landing:", "questionHi": "चंद्रयान-3 लैंडिंग:", "options": ["North Pole", "South Pole / दक्षिणी ध्रुव", "Equator", "None"], "answer": 1 },
+        { "questionEn": "Author 'God of Small Things':", "questionHi": "गॉड ऑफ स्मॉल थिंग्स लेखक:", "options": ["Arundhati Roy / अरुंधति रॉय", "Kiran Desai", "Lahiri", "Chetan Bhagat"], "answer": 0 },
+        { "questionEn": "2024 Olympics Host:", "questionHi": "2024 ओलंपिक मेजबान:", "options": ["Tokyo", "Paris / पेरिस", "LA", "London"], "answer": 1 },
+        { "questionEn": "'Bharat Ratna' is for:", "questionHi": "भारत रत्न सर्वोच्च पुरस्कार है:", "options": ["Military", "Civilian / नागरिक", "Sports", "Cinema"], "answer": 1 },
+        { "questionEn": "'Golden Temple' location:", "questionHi": "स्वर्ण मंदिर कहाँ है?", "options": ["Chandigarh", "Amritsar / अमृतसर", "Ludhiana", "Patiala"], "answer": 1 },
+        { "questionEn": "'Ayodhya' river bank:", "questionHi": "अयोध्या किस नदी के किनारे है?", "options": ["Ganga", "Yamuna", "Sarayu / सरयू", "Godavari"], "answer": 2 },
+        { "questionEn": "'Miss Universe 2021' (India):", "questionHi": "मिस यूनिवर्स 2021 (भारत):", "options": ["Sushmita", "Lara", "Harnaaz Sandhu / हरनाज़ संधू", "Manushi"], "answer": 2 },
+        { "questionEn": "WiFi full form:", "questionHi": "WiFi का पूरा नाम:", "options": ["Wireless Fidelity", "Wireless Fire", "Wired Fidelity", "Finder"], "answer": 0 },
+        { "questionEn": "'Facebook' founder:", "questionHi": "फेसबुक संस्थापक:", "options": ["Gates", "Zuckerberg / जुकरबर्ग", "Bezos", "Musk"], "answer": 1 },
+        { "questionEn": "National Animal of India:", "questionHi": "भारत का राष्ट्रीय पशु:", "options": ["Lion", "Tiger / बाघ", "Elephant", "Peacock"], "answer": 1 },
+        { "questionEn": "'Teachers Day' date:", "questionHi": "शिक्षक दिवस तिथि:", "options": ["14 Nov", "5 Sep / 5 सितंबर", "2 Oct", "15 Aug"], "answer": 1 }
+      ]
+    },
+    {
+      "name": "Maths & Reasoning / गणित और तर्कशक्ति",
+      "questions": [
+        { "questionEn": "A:B = 2:3, B:C = 4:5. A:C?", "questionHi": "A:B = 2:3, B:C = 4:5. A:C?", "options": ["2:5", "8:15", "6:5", "10:12"], "answer": 1 },
+        { "questionEn": "120 km in 2 hours. Speed?", "questionHi": "2 घंटे में 120 किमी. गति?", "options": ["40", "50", "60 / 60 किमी/घंटा", "80"], "answer": 2 },
+        { "questionEn": "Next term: 5, 10, 20, 40, ?", "questionHi": "अगला पद: 5, 10, 20, 40, ?", "options": ["60", "70", "80", "100"], "answer": 2 },
+        { "questionEn": "S.I. on 5000, 10%, 2 years?", "questionHi": "5000 पर 10% की दर से 2 वर्ष का साधारण ब्याज?", "options": ["500", "1000", "1500", "2000"], "answer": 1 },
+        { "questionEn": "Code: DELHI -> CCIDD. BOMBAY -> ?", "questionHi": "कोड: DELHI -> CCIDD. BOMBAY -> ?", "options": ["AMJXVS", "ANKYAS", "APNCBZ", "AMJXWT"], "answer": 0 },
+        { "questionEn": "A is father of B. C is daughter of B. D is brother of B. D to C?", "questionHi": "A, B का पिता है। C, B की बेटी है। D, B का भाई है। D का C से संबंध?", "options": ["Father", "Brother", "Uncle / चाचा/मामा", "Grandfather"], "answer": 2 },
+        { "questionEn": "Circumference 88cm. Radius?", "questionHi": "परिधि 88 सेमी। त्रिज्या?", "options": ["7", "14", "21", "28"], "answer": 1 },
+        { "questionEn": "Triangles in square with 2 diagonals?", "questionHi": "2 विकर्णों वाले वर्ग में त्रिभुज?", "options": ["4", "6", "8", "10"], "answer": 2 },
+        { "questionEn": "Sum of angles of triangle:", "questionHi": "त्रिभुज के कोणों का योग:", "options": ["90", "180", "270", "360"], "answer": 1 },
+        { "questionEn": "15 x 15 + 75 = ?", "questionHi": "15 x 15 + 75 = ?", "options": ["225", "300", "325", "400"], "answer": 1 },
+        { "questionEn": "Rank 10th from top, 20th from bottom. Total?", "questionHi": "ऊपर से 10वां, नीचे से 20वां। कुल छात्र?", "options": ["29", "30", "31", "28"], "answer": 0 },
+        { "questionEn": "1 Hectare = ? Bigha (Approx HP)", "questionHi": "1 हेक्टेयर = ? बीघा (हि.प्र. लगभग)", "options": ["5", "10", "12.5", "20"], "answer": 2 },
+        { "questionEn": "Cube root of 27:", "questionHi": "27 का घनमूल:", "options": ["2", "3", "4", "9"], "answer": 1 },
+        { "questionEn": "Odd one out:", "questionHi": "विषम चुनें:", "options": ["Apple", "Mango", "Potato / आलू", "Orange"], "answer": 2 },
+        { "questionEn": "If x + 5 = 12, x=?", "questionHi": "यदि x + 5 = 12, x=?", "options": ["5", "6", "7", "8"], "answer": 2 }
+      ]
+    },
+    {
+      "name": "General English",
+      "questions": [
+        { "questionEn": "Choose the correct preposition: The cat jumped ____ the table.", "questionHi": "", "options": ["on", "upon", "in", "at"], "answer": 1 },
+        { "questionEn": "Antonym of 'Ancient':", "questionHi": "", "options": ["Old", "Modern", "Past", "Historic"], "answer": 1 },
+        { "questionEn": "Synonym of 'Happy':", "questionHi": "", "options": ["Sad", "Joyful", "Angry", "Serious"], "answer": 1 },
+        { "questionEn": "Plural of 'Child':", "questionHi": "", "options": ["Childs", "Children", "Childrens", "Childes"], "answer": 1 },
+        { "questionEn": "Idiom \"Apple of one's eye\" means:", "questionHi": "", "options": ["A fruit", "Very dear/loved", "An enemy", "A problem"], "answer": 1 },
+        { "questionEn": "One word for: A place where books are kept.", "questionHi": "", "options": ["Museum", "Library", "Laboratory", "Bakery"], "answer": 1 },
+        { "questionEn": "Article: ____ sun rises in the east.", "questionHi": "", "options": ["A", "An", "The", "No article"], "answer": 2 },
+        { "questionEn": "Correct spelling:", "questionHi": "", "options": ["Recieve", "Receive", "Riceive", "Receeve"], "answer": 1 },
+        { "questionEn": "Past tense of 'Go':", "questionHi": "", "options": ["Goed", "Gone", "Went", "Going"], "answer": 2 },
+        { "questionEn": "\"He is good ____ mathematics.\"", "questionHi": "", "options": ["in", "at", "on", "with"], "answer": 1 }
+      ]
+    },
+    {
+      "name": "General Hindi",
+      "questions": [
+        { "questionEn": "", "questionHi": "'विद्यालय' का संधि विच्छेद है:", "options": ["विद्या + आलय", "विद्य + आलय", "विद्या + लय", "विद + आलय"], "answer": 0 },
+        { "questionEn": "", "questionHi": "'नीलकंठ' में कौन सा समास है?", "options": ["बहुव्रीहि", "तत्पुरुष", "द्विगु", "द्वंद्व"], "answer": 0 },
+        { "questionEn": "", "questionHi": "'घोड़ा' का तत्सम शब्द है:", "options": ["अश्व", "घोटक", "तुरंग", "बाजी"], "answer": 1 },
+        { "questionEn": "", "questionHi": "'जो कम बोलता हो' - वाक्यांश के लिए एक शब्द:", "options": ["वाचाल", "मितभाषी", "मृदुभाषी", "गूँगा"], "answer": 1 },
+        { "questionEn": "", "questionHi": "मुहावरा 'आंखों का तारा' का अर्थ है:", "options": ["बहुत प्यारा", "दुश्मन", "दूर का", "कमजोर"], "answer": 0 },
+        { "questionEn": "", "questionHi": "शुद्ध शब्द कौन सा है?", "options": ["उज्वल", "उज्ज्वल", "उजवल", "उज्जवल"], "answer": 1 },
+        { "questionEn": "", "questionHi": "'सूर्य' का पर्यायवाची नहीं है:", "options": ["दिनकर", "दिवाकर", "भानु", "शशांक"], "answer": 3 },
+        { "questionEn": "", "questionHi": "हिंदी वर्णमाला में स्वरों की संख्या है:", "options": ["10", "11", "13", "12"], "answer": 1 },
+        { "questionEn": "", "questionHi": "'राजा' का विलोम शब्द:", "options": ["रानी", "रंक", "प्रजा", "नौकर"], "answer": 1 },
+        { "questionEn": "", "questionHi": "'कमल' का पर्यायवाची है:", "options": ["पंकज", "मेघ", "पवन", "अग्नि"], "answer": 0 }
+      ]
+    }
+  ]
+}
