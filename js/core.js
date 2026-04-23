@@ -1,90 +1,113 @@
 /**
  * --------------------------------------------------------------------------
- * HPGK CORE SYSTEM (The Global Brain)
+ * HPGK CORE SYSTEM & GLOBAL SECURITY (PRODUCTION)
+ * Handles Global User Session & Universal UI Protection
  * --------------------------------------------------------------------------
- * Handles Firebase connection, User Profile, Global Utilities, and Cloud Sync.
  */
 
 (function() {
+    // 1. GLOBAL USER OBJECT
     window.HPGK_User = {
         isLoggedIn: false,
         uid: null,
-        db: null,
-        passes: [] // Will store user's premium passes/combos in future
+        displayName: null,
+        photoURL: null,
+        passes: {} // Example: { 'mock_master_pass': true }
     };
 
-    async function initCoreFirebase() {
+    // 2. FIREBASE INITIALIZATION & AUTH LISTENER
+    async function initCore() {
         try {
-            const { initializeApp, getApps, getApp } = await import("https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js");
+            const { getApp, getApps, initializeApp } = await import("https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js");
             const { getAuth, onAuthStateChanged } = await import("https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js");
-            const { getFirestore, doc, getDoc } = await import("https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js");
-
-            const firebaseConfig = {
-                apiKey: "AIzaSyDfz5Y4oVQHl-crnATIv5dMWsw7edSKddQ",
-                authDomain: "hpgk-quiz.firebaseapp.com",
-                projectId: "hpgk-quiz",
-                storageBucket: "hpgk-quiz.firebasestorage.app",
-                messagingSenderId: "273909571419",
-                appId: "1:273909571419:web:20d5e06d8b582f4d2dc47e"
-            };
-
-            const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
-            const auth = getAuth(app);
-            window.HPGK_User.db = getFirestore(app);
-
-            onAuthStateChanged(auth, async (user) => {
-                window.HPGK_User.isLoggedIn = !!user;
-                window.HPGK_User.uid = user ? user.uid : null;
-                window.HPGK_User.passes = []; // Ready for future combo upgrades
+            
+            // Note: Firebase config should be defined globally in your HTML headers if not done already.
+            // Assuming Firebase is initialized elsewhere or we use the default app.
+            if (getApps().length > 0) {
+                const app = getApp();
+                const auth = getAuth(app);
                 
-                // If a Quiz Engine is currently active on the page, tell it to refresh
-                if (window.HPGK_Engine_Refresh) {
-                    window.HPGK_Engine_Refresh();
-                }
-            });
+                onAuthStateChanged(auth, (user) => {
+                    if (user) {
+                        window.HPGK_User.isLoggedIn = true;
+                        window.HPGK_User.uid = user.uid;
+                        window.HPGK_User.displayName = user.displayName;
+                        window.HPGK_User.photoURL = user.photoURL;
+                        
+                        // TODO: In production, fetch user passes from Firestore here
+                        // For now, simulating a premium pass if needed for testing, 
+                        // or leave empty so mock-engine enforces the lock.
+                    } else {
+                        window.HPGK_User.isLoggedIn = false;
+                        window.HPGK_User.uid = null;
+                        window.HPGK_User.displayName = null;
+                        window.HPGK_User.photoURL = null;
+                        window.HPGK_User.passes = {};
+                    }
+                });
+            }
         } catch (e) {
-            console.error("Core Firebase Init Failed:", e);
+            console.error("Core initialization error:", e);
         }
     }
 
-    // Extracted directly from original syncScoreToFirebase
-    window.HPGK_SaveScore = async function(rawCategory, validCorrectCount, validDoneCount) {
-        if (!window.HPGK_User.isLoggedIn || !window.HPGK_User.uid || !window.HPGK_User.db) return;
-        if (validDoneCount === 0) return;
+    // 3. GLOBAL UI SECURITY (THE SPEED BUMPS)
+    function enforceGlobalSecurity() {
+        
+        // Block Right-Click (Context Menu)
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
 
-        try {
-            const { doc, setDoc } = await import("https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js");
-            const docId = rawCategory.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-            const docRef = doc(window.HPGK_User.db, 'artifacts', 'hpgk-quiz', 'users', window.HPGK_User.uid, 'scores', docId);
-
-            await setDoc(docRef, {
-                category: rawCategory,
-                score: validCorrectCount,
-                total: validDoneCount,
-                timestamp: Date.now() 
-            }, { merge: true });
-        } catch (e) {
-            console.error("Error syncing score:", e);
-        }
-    };
-
-    // Centralized Help Modal (From original code)
-    window.toggleHelpModal = function() {
-        const modal = document.getElementById('quizHelpModal');
-        if (modal) {
-            if (modal.classList.contains('show')) {
-                modal.classList.remove('show');
-                setTimeout(() => modal.style.display = 'none', 200);
-            } else {
-                modal.style.display = 'flex';
-                setTimeout(() => modal.classList.add('show'), 10);
+        // Block F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U, Ctrl+Shift+C
+        document.addEventListener('keydown', function(e) {
+            
+            // F12 key
+            if (e.key === 'F12' || e.keyCode === 123) {
+                e.preventDefault();
             }
-        }
-    };
+            
+            if (e.ctrlKey) {
+                // Ctrl+U (View Source)
+                if (e.key === 'u' || e.key === 'U' || e.keyCode === 85) {
+                    e.preventDefault();
+                }
+                // Ctrl+S (Save Page)
+                if (e.key === 's' || e.key === 'S' || e.keyCode === 83) {
+                    e.preventDefault();
+                }
+                
+                if (e.shiftKey) {
+                    // Ctrl+Shift+I (Inspect)
+                    if (e.key === 'i' || e.key === 'I' || e.keyCode === 73) {
+                        e.preventDefault();
+                    }
+                    // Ctrl+Shift+J (Console)
+                    if (e.key === 'j' || e.key === 'J' || e.keyCode === 74) {
+                        e.preventDefault();
+                    }
+                    // Ctrl+Shift+C (Element Inspector)
+                    if (e.key === 'c' || e.key === 'C' || e.keyCode === 67) {
+                        e.preventDefault();
+                    }
+                }
+            }
+        });
+        
+        // Extra Protection: Block Dragging of elements (like images or text)
+        document.addEventListener('dragstart', function(e) {
+            e.preventDefault();
+        });
+    }
 
-    // Backup & Restore Global Proxies
-    window.exportProgress = function() { if(window.HPGK_ExportLocalData) window.HPGK_ExportLocalData(); };
-    window.importProgress = function(input) { if(window.HPGK_ImportLocalData) window.HPGK_ImportLocalData(input); };
-
-    window.addEventListener('DOMContentLoaded', () => { initCoreFirebase(); });
+    // Run when the document is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            enforceGlobalSecurity();
+            initCore();
+        });
+    } else {
+        enforceGlobalSecurity();
+        initCore();
+    }
 })();
