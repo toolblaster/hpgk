@@ -1,7 +1,8 @@
 /**
  * --------------------------------------------------------------------------
- * HPGK MOCK TEST ENGINE - PRODUCTION LEVEL (FREEMIUM GATEKEEPER)
- * Includes Secure Paywall Routing, Score Calculation & Firebase DB Sync
+ * HPGK MOCK TEST ENGINE (TCS/NTA Style Master Logic - PHASE 3 FINAL)
+ * Includes Score Calculation, Detailed Analytics & Firebase DB Sync
+ * Compact UI Updates, Production Paywall Fixes & Custom Watermark
  * --------------------------------------------------------------------------
  */
 
@@ -24,8 +25,18 @@ const engine = (function() {
 
     let DOM = {};
 
+    // Injects a light, unclickable diagonal watermark spanning the screen
+    function injectUIWatermark() {
+        const wm = document.createElement('div');
+        wm.innerHTML = 'HPGK.TOOLBLASTER.COM';
+        // Extremely light opacity, rotated, pushed behind text but above base background
+        wm.style.cssText = 'position:fixed; top:50%; left:50%; transform:translate(-50%, -50%) rotate(-35deg); font-size:clamp(3rem, 6vw, 6rem); color:rgba(100, 116, 139, 0.04); z-index:0; pointer-events:none; white-space:nowrap; font-weight:900; letter-spacing:4px; font-family:Inter, sans-serif; user-select:none;';
+        document.body.appendChild(wm);
+    }
+
     function init() {
-        // Fetch DOM elements
+        injectUIWatermark(); // Load watermark immediately
+
         DOM = {
             blocker: document.getElementById('security-blocker'),
             secTitle: document.getElementById('security-title'),
@@ -71,29 +82,28 @@ const engine = (function() {
         };
 
         const urlParams = new URLSearchParams(window.location.search);
-        state.exam = urlParams.get('exam');     
-        state.testId = urlParams.get('testId');   
+        const examParam = urlParams.get('exam');     
+        const testParam = urlParams.get('testId');   
 
-        if (!state.exam || !state.testId) {
-            triggerFatalError("Invalid Test Link", "Please start the test properly from your Exam Dashboard.", "../user/dashboard.html", "Go to Dashboard");
+        if (!examParam || !testParam) {
+            triggerFatalError("Invalid Test Session", "Please start the test properly from your Exam Dashboard.");
             return;
         }
 
-        // ====================================================================
-        // PRODUCTION GATEKEEPER: SECURE AUTH & PASS VERIFICATION
-        // ====================================================================
+        state.exam = examParam;
+        state.testId = testParam;
+
         waitForAuth().then((isLoggedIn) => {
             const user = window.HPGK_User;
             
-            // RULE 1: Must be logged in (even for free tests to track history)
             if (!isLoggedIn || !user) {
-                 triggerFatalError("Login Required", "You must be logged in to attempt any mock test securely. Please log in from the Dashboard.", "../user/dashboard.html", "Login / Dashboard");
+                 triggerFatalError("Login Required", "You must be logged in to attempt any mock test (Free or Paid). Please log in securely from the Dashboard.");
                  return;
             }
 
-            // Populate User UI
             const userName = user.displayName || user.name || user.email || 'Candidate';
             const userPhoto = user.photoURL || user.picture || user.avatar || null;
+
             document.getElementById('ui-user-name').innerText = userName;
 
             const avatarImg = document.getElementById('ui-user-avatar');
@@ -106,30 +116,24 @@ const engine = (function() {
                 avatarImg.src = 'https://ui-avatars.com/api/?name=' + encodeURIComponent(userName) + '&background=cbd5e1';
             }
 
-            // RULE 2: Freemium Paywall Logic
-            // Test ID ending with '-1' is considered the Free Demo Mock. All others are Premium.
-            const isFreeTest = state.testId.endsWith('-1'); 
+            const isFree = testParam.endsWith('-1'); 
             
-            // Check if user object has passes and if 'mock_master_pass' exists in it
-            const hasPremiumPass = user.passes && user.passes['mock_master_pass'];
+            const hasPass = user.passes && user.passes['mock_master_pass'];
             
-            if (!isFreeTest && !hasPremiumPass) {
-                // User is trying to access a premium test without a pass
-                triggerFatalError(
-                    "Premium Content Locked <i class='fa-solid fa-crown' style='color:#f59e0b;'></i>", 
-                    "This is a Premium Full-Length Mock Test. You need the 'Mock Master Pass' to unlock this content.", 
-                    "../user/upgrade.html", 
-                    "Upgrade to PRO <i class='fa-solid fa-bolt'></i>",
-                    "var(--accent)" // Premium button color
-                );
+            if (!isFree && !hasPass) {
+                const accessStatus = { status: 'blocked_pro_paywall', passId: 'mock_master_pass' };
+                if (window.HPGK_Guard) {
+                    window.HPGK_Guard.showBlocker(DOM.blocker, accessStatus);
+                    DOM.blocker.style.backgroundColor = "var(--card-bg)"; 
+                } else {
+                    triggerFatalError("Access Denied", "Premium pass required.");
+                }
                 return;
             }
 
-            // All Security Checks Passed! Proceed to fetch data.
             fetchTestData();
         });
 
-        // Tooltip close listener
         document.addEventListener('click', (e) => {
             if (DOM.sectionTooltip && !DOM.sectionTooltip.contains(e.target) && !e.target.closest('.sec-info-icon')) {
                 DOM.sectionTooltip.style.display = 'none';
@@ -169,30 +173,12 @@ const engine = (function() {
                     }
                 } catch(e) {}
 
-                if (++attempts > 40) { // Wait up to 4 seconds
+                if (++attempts > 50) {
                     clearInterval(check);
                     resolve(window.HPGK_User ? window.HPGK_User.isLoggedIn : false);
                 }
             }, 100);
         });
-    }
-
-    function triggerFatalError(title, desc, btnLink, btnText, btnColor = "var(--primary)") {
-        // Create a beautiful, un-closable premium blocker UI
-        DOM.blocker.innerHTML = `
-            <div style="background:var(--card-bg); padding:30px 25px; border-radius:16px; box-shadow:var(--glass-shadow); border:1px solid var(--border-color); max-width:400px; text-align:center; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);">
-                <i class="fa-solid fa-shield-halved" style="font-size: 3.5rem; color: var(--text-sec); margin-bottom: 20px; opacity:0.8;"></i>
-                <h2 style="margin:0 0 10px 0; font-size: 1.4rem; font-weight: 900; color: var(--text-main); line-height:1.3;">${title}</h2>
-                <p style="font-size:0.85rem; color:var(--text-sec); margin: 0 auto 25px auto; line-height:1.5; font-weight:500;">${desc}</p>
-                <div style="display:flex; flex-direction:column; gap:10px;">
-                    <button onclick="window.location.href='${btnLink}'" style="padding: 12px 20px; background:${btnColor}; color:white; border:none; border-radius:30px; font-weight:800; cursor:pointer; width:100%; transition:0.2s; box-shadow:0 4px 15px rgba(0,0,0,0.15); font-family:'Inter', sans-serif;">${btnText}</button>
-                    <button onclick="window.history.back()" style="padding: 12px 20px; background:var(--input-bg); color:var(--text-main); border:1px solid var(--border-color); border-radius:30px; font-weight:700; cursor:pointer; width:100%; transition:0.2s; font-family:'Inter', sans-serif;">Go Back</button>
-                </div>
-            </div>
-        `;
-        DOM.blocker.style.backgroundColor = "rgba(0,0,0,0.75)"; // Darken the background securely
-        DOM.blocker.style.backdropFilter = "blur(8px)";
-        DOM.blocker.style.display = 'flex';
     }
 
     async function fetchTestData() {
@@ -242,7 +228,6 @@ const engine = (function() {
                 state.responses[i] = { selected: null, status: 'not-visited' };
             });
 
-            // Everything is ready. Remove blocker and show instructions.
             DOM.blocker.style.display = 'none';
             DOM.instPanel.style.display = 'flex'; 
 
@@ -253,7 +238,7 @@ const engine = (function() {
             });
 
         } catch (error) {
-            triggerFatalError("Test Data Missing", "Could not load test data. Please try again later or contact support.", "../user/dashboard.html", "Go to Dashboard");
+            triggerFatalError("Test Data Missing", "Could not load test data. Ensure the exam category and test ID are correct.");
         }
     }
 
@@ -397,6 +382,18 @@ const engine = (function() {
         }
     }
 
+    function triggerFatalError(title, desc) {
+        DOM.secTitle.innerText = title;
+        DOM.secDesc.innerText = desc;
+        DOM.blocker.innerHTML = `
+            <i class="fa-solid fa-lock" style="font-size: 3rem; color: #ef4444; margin-bottom: 15px;"></i>
+            <h2 style="margin:0; font-size: 1.4rem; color: var(--text-main);">${title}</h2>
+            <p style="font-size:0.9rem; color:var(--text-sec); margin-top: 10px; max-width: 400px;">${desc}</p>
+            <button onclick="window.location.href='../user/dashboard.html'" style="margin-top:20px; padding: 10px 20px; background:var(--primary); color:white; border:none; border-radius:4px; font-weight:700; cursor:pointer;">Go to Dashboard</button>
+        `;
+        DOM.blocker.style.display = 'flex';
+    }
+
     function startTimer() {
         state.timerInterval = setInterval(() => {
             if (state.timeLeftSeconds <= 0) {
@@ -441,7 +438,7 @@ const engine = (function() {
         let optionsHtml = q.options.map((opt, i) => {
             const isChecked = res.selected === i ? 'checked' : '';
             return `
-                <label class="option-label">
+                <label class="option-label" style="position:relative; z-index:2;">
                     <input type="radio" name="exam_q" value="${i}" ${isChecked} onchange="engine.selectOption(${i})">
                     <span>${opt}</span>
                 </label>
@@ -452,7 +449,7 @@ const engine = (function() {
         const fontClass = state.language === 'hi' ? "font-family: 'Noto Sans Devanagari', sans-serif;" : "";
 
         DOM.qContent.innerHTML = `
-            <div id="ui-q-text-container" style="margin-bottom: 20px; font-weight: 600; line-height: 1.6; ${fontClass}">${questionText}</div>
+            <div id="ui-q-text-container" style="margin-bottom: 20px; font-weight: 600; line-height: 1.6; position:relative; z-index:2; ${fontClass}">${questionText}</div>
             <div>${optionsHtml}</div>
         `;
 
@@ -585,13 +582,10 @@ const engine = (function() {
         clearInterval(state.timerInterval);
 
         DOM.summaryPanel.style.display = 'none';
-        
-        // Show calculating overlay briefly
         DOM.secTitle.innerText = "Calculating Score...";
         DOM.secDesc.innerText = "Saving result securely to the cloud. Please don't refresh.";
         DOM.blocker.style.display = 'flex';
         
-        // 1. SMART SCORE CALCULATION
         let correct = 0, wrong = 0, unattempted = 0;
         let penaltyTextStr = DOM.penaltyText ? DOM.penaltyText.innerText : "0.25";
         let penaltyAmount = parseFloat(penaltyTextStr) || 0.25;
@@ -618,7 +612,6 @@ const engine = (function() {
         let timeSec = timeTakenSecs % 60;
         let timeTakenStr = `${timeMin}m ${timeSec}s`;
 
-        // 2. FIREBASE SYNC (PRODUCTION)
         try {
             const { getApp, getApps } = await import("https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js");
             if (getApps().length > 0) {
@@ -646,8 +639,6 @@ const engine = (function() {
             console.error("Firebase Sync Error:", e);
         }
 
-        // 3. RENDER ADVANCED ANALYTICS SCREEN
-        // Note: Removed the trial "alert" box here. Directly loading UI.
         DOM.blocker.style.display = 'none';
         
         DOM.resScoreVal.innerText = finalScore + ' / ' + totalQs;
@@ -689,13 +680,13 @@ const engine = (function() {
                 return `
                     <div class="res-opt ${optClass}">
                         ${icon}
-                        <div style="flex:1;">${opt}</div>
+                        <div style="flex:1; z-index:2; position:relative;">${opt}</div>
                     </div>
                 `;
             }).join('');
 
             detailsHtml += `
-                <div class="res-q-card ${statusClass}">
+                <div class="res-q-card ${statusClass}" style="position:relative; z-index:2;">
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
                         <div style="font-weight:800; color:var(--text-sec); font-size:0.75rem; text-transform:uppercase;">Question ${i+1}</div>
                         ${statusBadge}
