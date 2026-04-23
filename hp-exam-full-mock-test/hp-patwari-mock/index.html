@@ -199,7 +199,7 @@
             margin: 0; align-items: center; justify-content: center;
         }
         .toggle-btn {
-            background: transparent; border: none; padding: 6px 20px; font-size: 0.85rem;
+            background: transparent; border: none; padding: 8px 24px; font-size: 0.85rem;
             font-weight: 800; color: var(--text-sec); border-radius: 25px; cursor: pointer;
             transition: all 0.2s ease; font-family: 'Inter', sans-serif;
             display: flex; align-items: center; gap: 6px;
@@ -280,29 +280,6 @@
         [data-theme="dark"] .btn-pro { background: rgba(255,255,255,0.1); border: 1px solid var(--card-border); }
         [data-theme="dark"] .btn-pro:hover { background: rgba(255,255,255,0.2); }
 
-        /* --- DASHBOARD NUDGE --- */
-        .dashboard-nudge {
-            background: linear-gradient(to right, var(--card-bg), rgba(37, 99, 235, 0.05));
-            border-radius: var(--radius-lg); border: 1px solid var(--card-border);
-            border-left: 4px solid var(--primary); padding: 10px 15px;
-            display: flex; justify-content: space-between; align-items: center;
-            box-shadow: var(--glass-shadow); margin: 0 15px 30px 15px;
-        }
-        [data-theme="dark"] .dashboard-nudge { background: linear-gradient(to right, var(--card-bg), rgba(59, 130, 246, 0.05)); border-left-color: var(--primary); }
-
-        .nudge-text { display: flex; align-items: center; gap: 10px; font-size: 0.75rem; color: var(--text-body); font-weight: 500; }
-        .nudge-text h3 { margin: 0; font-size: 0.8rem; color: var(--text-main); font-weight: 700; display: inline;}
-        .nudge-text span { line-height: 1.4; }
-
-        .nudge-btn {
-            background: var(--input-bg); color: var(--text-main); border: 1px solid var(--card-border);
-            padding: 4px 12px; border-radius: 20px; font-size: 0.7rem; font-weight: 700;
-            text-decoration: none; transition: all 0.2s; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; height: 28px;
-        }
-        .nudge-btn:hover { background: var(--primary); color: white; border-color: var(--primary); }
-        [data-theme="dark"] .nudge-btn { background: rgba(255,255,255,0.05); }
-        [data-theme="dark"] .nudge-btn:hover { background: var(--primary); color: white; border-color: var(--primary); }
-
         /* --- FAQ SECTION --- */
         .faq-section { max-width: 1000px; margin: 0 auto 30px auto; padding: 0 15px; }
         .faq-header { text-align: center; margin-bottom: 20px; }
@@ -328,7 +305,6 @@
             
             .trust-pillars { grid-template-columns: 1fr; gap: 10px; }
             .modern-glow-divider { margin: 10px auto 25px auto; }
-            .dashboard-nudge { flex-direction: column; text-align: left; gap: 10px; padding: 10px 12px; align-items: flex-start; }
             
             .faq-header h2 { font-size: 1.25rem; }
             .faq-grid { gap: 10px; }
@@ -340,7 +316,7 @@
             .hide-mobile { display: none; }
         }
         @media (max-width: 480px) {
-            .top-meta-bar, .page-header-top, .trust-pillars, .test-list, .dashboard-nudge, .toggle-wrapper, .faq-section { padding-left: 12px !important; padding-right: 12px !important; }
+            .top-meta-bar, .page-header-top, .trust-pillars, .test-list, .toggle-wrapper, .faq-section { padding-left: 12px !important; padding-right: 12px !important; }
         }
     </style>
     <script>
@@ -587,14 +563,8 @@
         </div>
     </div>
 
-    <!-- Dashboard Link / Nudge Below Cards -->
-    <div class="dashboard-nudge">
-        <div class="nudge-text">
-            <i class="fa-solid fa-chart-column" style="font-size: 1.1rem; color: var(--primary);"></i>
-            <span><h3>Track Your Progress:</h3> View your past mock test scores and detailed accuracy analytics.</span>
-        </div>
-        <a href="../../user/dashboard.html" class="nudge-btn">Go to Dashboard <i class="fa-solid fa-arrow-right"></i></a>
-    </div>
+    <!-- MODERN GLOW DIVIDER BEFORE FAQ -->
+    <div class="modern-glow-divider"></div>
 
     <!-- 🔥 COMPACT FAQ SECTION -->
     <div class="faq-section">
