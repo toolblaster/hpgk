@@ -74,20 +74,25 @@
 
     <style>
         :root {
-            /* Width Updated to 1100px */
             --site-width: 1100px;
             --bg-gradient: linear-gradient(135deg, #eff6ff 0%, #dbeafe 50%, #bfdbfe 100%);
             --card-bg: rgba(255, 255, 255, 0.85);
             --card-border: rgba(255, 255, 255, 0.6);
             --glass-shadow: 0 4px 15px 0 rgba(37, 99, 235, 0.05); 
             --primary: #2563eb;
+            --primary-light: rgba(37, 99, 235, 0.1);
             --primary-dark: #1e40af;
-            --accent: #f59e0b;
+            
+            --accent: #8b5cf6; 
+            --accent-light: rgba(139, 92, 246, 0.1);
+            
             --warning: #f59e0b;
             --text-main: #0f172a;
+            --text-body: #374151;
             --text-sec: #64748b;
             --success: #10b981;
             --radius-md: 10px;
+            --radius-lg: 14px;
         }
 
         [data-theme="dark"] {
@@ -95,20 +100,25 @@
             --card-bg: rgba(30, 41, 59, 0.75);
             --card-border: rgba(255, 255, 255, 0.08);
             --glass-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.3);
+            --primary: #3b82f6;
+            --primary-light: rgba(59, 130, 246, 0.15);
+            --accent: #a78bfa;
+            --accent-light: rgba(167, 139, 250, 0.15);
             --text-main: #f8fafc;
+            --text-body: #e5e7eb;
             --text-sec: #94a3b8;
         }
 
         body { background: var(--bg-gradient); font-family: 'Inter', sans-serif; margin: 0; min-height: 100vh; display: flex; flex-direction: column; }
-        main { flex: 1; width: 100%; padding: 20px 15px; box-sizing: border-box; max-width: var(--site-width); margin: 0 auto; }
+        main { flex: 1; width: 100%; padding: 20px 0; box-sizing: border-box; max-width: var(--site-width); margin: 0 auto; }
         
-        .glass-panel { background: var(--card-bg); backdrop-filter: blur(16px); border: 1px solid var(--card-border); border-radius: var(--radius-md); box-shadow: var(--glass-shadow); }
+        .glass-panel { background: var(--card-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--card-border); border-radius: var(--radius-md); box-shadow: var(--glass-shadow); }
 
         /* --- Breadcrumb & Meta Bar Styles --- */
         .top-meta-bar { 
             display: flex; justify-content: space-between; align-items: center; 
-            width: 100%; max-width: var(--site-width); margin: 0 auto 5px auto; 
-            padding: 0; flex-wrap: nowrap; gap: 10px; box-sizing: border-box;
+            width: 100%; margin: 0 auto 15px auto; 
+            padding: 0 15px; flex-wrap: nowrap; gap: 10px; box-sizing: border-box;
         }
 
         .breadcrumb-nav { margin: 0; flex-shrink: 1; display: flex; align-items: center; height: 24px; }
@@ -134,80 +144,203 @@
             flex-shrink: 0; box-sizing: border-box;
         }
 
-        .page-header-top { text-align: center; margin-bottom: 30px; margin-top: 10px; }
+        .page-header-top { text-align: center; margin-bottom: 25px; margin-top: 10px; padding: 0 15px; }
         
-        /* Updated Premium Gradient Title */
         .hero-title { 
-            font-size: 2rem; font-weight: 900; margin-bottom: 10px; line-height: 1.2; letter-spacing: -0.8px;
+            font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 900; margin-bottom: 10px; line-height: 1.2; letter-spacing: -0.5px;
             background: linear-gradient(135deg, var(--text-main) 0%, var(--primary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             color: var(--primary);
         }
-        
-        .hero-desc { font-size: 0.9rem; color: var(--text-sec); max-width: 600px; margin: 0 auto; line-height: 1.5; }
+        .hero-desc { font-size: 0.85rem; color: var(--text-sec); max-width: 650px; margin: 0 auto; line-height: 1.5; font-weight: 500;}
 
-        /* 2-Column Grid for 1100px width with Top Card Centered */
-        .test-list { display: grid; grid-template-columns: 1fr; gap: 15px; }
+        /* --- TRUST PILLARS --- */
+        .trust-pillars {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 12px;
+            margin: 0 auto 20px auto;
+            padding: 0 15px;
+        }
+        .trust-pillar-card {
+            background: var(--card-bg); border: 1px solid var(--card-border);
+            border-radius: var(--radius-md); padding: 10px 12px;
+            display: flex; align-items: center; gap: 10px;
+            box-shadow: var(--glass-shadow);
+        }
+        .trust-pillar-icon {
+            background: var(--primary-light); color: var(--primary);
+            width: 32px; height: 32px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1rem; flex-shrink: 0;
+        }
+        .trust-pillar-text { display: flex; flex-direction: column; gap: 2px; }
+        .trust-pillar-text h3 { margin: 0; font-size: 0.75rem; font-weight: 800; color: var(--text-main); }
+        .trust-pillar-text p { margin: 0; font-size: 0.65rem; color: var(--text-sec); line-height: 1.3; font-weight: 500;}
+
+        /* MODERN SHADOW DIVIDER */
+        .modern-glow-divider {
+            width: 100%; max-width: 700px; height: 1px; margin: 0 auto 30px auto;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            box-shadow: 0 2px 20px 2px rgba(37, 99, 235, 0.4);
+            opacity: 0.5;
+        }
+        [data-theme="dark"] .modern-glow-divider { box-shadow: 0 2px 20px 2px rgba(96, 165, 250, 0.5); }
+
+        /* --- SMART TOGGLE H2 --- */
+        .toggle-wrapper {
+            display: flex; justify-content: center; margin-bottom: 20px; padding: 0 15px;
+        }
+        .toggle-container {
+            display: inline-flex; background: var(--card-bg); border: 1px solid var(--card-border);
+            border-radius: 30px; padding: 4px; box-shadow: var(--glass-shadow);
+            margin: 0; align-items: center; justify-content: center;
+        }
+        .toggle-btn {
+            background: transparent; border: none; padding: 6px 20px; font-size: 0.85rem;
+            font-weight: 800; color: var(--text-sec); border-radius: 25px; cursor: pointer;
+            transition: all 0.2s ease; font-family: 'Inter', sans-serif;
+            display: flex; align-items: center; gap: 6px;
+        }
+        .t-count {
+            font-size: 0.65rem; background: var(--input-bg); color: var(--text-sec); 
+            padding: 2px 6px; border-radius: 10px; border: 1px solid var(--card-border); transition: 0.2s;
+        }
+        .toggle-btn.active {
+            background: var(--primary); color: white; box-shadow: 0 2px 8px rgba(37,99,235,0.3);
+        }
+        .toggle-btn.active .t-count {
+            background: rgba(255,255,255,0.2); color: white; border-color: transparent;
+        }
+        [data-theme="dark"] .toggle-container { background: rgba(0,0,0,0.2); }
+
+        /* --- TAB CONTENT --- */
+        .tab-content { display: none; animation: fadeIn 0.3s ease; }
+        .tab-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- ULTRA COMPACT MOCK TEST CARDS (3 STRICT LAYERS) --- */
+        .test-list { display: grid; grid-template-columns: 1fr; gap: 10px; margin-bottom: 25px; padding: 0 15px; }
         @media (min-width: 800px) {
             .test-list { grid-template-columns: repeat(2, 1fr); }
-            /* Center the first free test instead of making it full width */
-            .test-list > .test-card:first-child { 
-                grid-column: 1 / -1; 
-                justify-self: center;
-                width: 100%;
-                max-width: 550px; /* Controls the width so it doesn't stretch fully */
-                padding: 18px 22px; 
-            }
-            .test-list > .test-card:first-child .tc-info h3 { font-size: 1.15rem; margin-bottom: 6px; }
-            .test-list > .test-card:first-child .tc-info p { font-size: 0.75rem; }
-            .test-list > .test-card:first-child .tc-icon { width: 55px; height: 55px; font-size: 1.6rem; }
+            /* First card is now strictly side-by-side, no full width bridging */
         }
 
-        /* Compact Card Styling */
         .test-card {
             display: flex; align-items: center; justify-content: space-between;
-            padding: 12px 15px; transition: transform 0.2s, border-color 0.2s;
+            padding: 8px 12px; background: var(--card-bg); border: 1px solid var(--card-border);
+            border-radius: var(--radius-md); box-shadow: var(--glass-shadow);
         }
-        .test-card:hover { transform: translateY(-2px); border-color: var(--primary); box-shadow: 0 6px 20px rgba(37,99,235,0.1); }
 
-        .tc-left { display: flex; align-items: center; gap: 12px; }
-        .tc-icon { width: 42px; height: 42px; background: rgba(37,99,235,0.1); color: var(--primary); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
-        .tc-info h3 { margin: 0 0 4px 0; font-size: 0.95rem; color: var(--text-main); display: flex; align-items: center; gap: 6px; font-weight: 800; letter-spacing: -0.2px; }
-        .tc-info p { margin: 0; font-size: 0.7rem; color: var(--text-sec); font-weight: 600; display: flex; align-items: center; gap: 4px; flex-wrap: wrap;}
+        .tc-left { display: flex; align-items: center; gap: 10px; flex: 1; }
         
-        .pro-badge { background: var(--accent); color: white; font-size: 0.55rem; padding: 2px 6px; border-radius: 4px; font-weight: 800; letter-spacing: 0.5px; }
+        .tc-icon { 
+            width: 32px; height: 32px; background: rgba(37,99,235,0.1); color: var(--primary); 
+            border-radius: 6px; display: flex; align-items: center; justify-content: center; 
+            font-size: 0.9rem; flex-shrink: 0; 
+        }
         
-        /* Marking Scheme Badges (Light & Dark Mode Compatible) */
-        .mark-positive { color: #15803d; font-weight: 900; background: rgba(22, 163, 74, 0.15); padding: 1px 5px; border-radius: 4px; border: 1px solid rgba(22, 163, 74, 0.2); }
-        .mark-negative { color: #b91c1c; font-weight: 900; background: rgba(220, 38, 38, 0.15); padding: 1px 5px; border-radius: 4px; border: 1px solid rgba(220, 38, 38, 0.2); }
+        /* Strict 3-Layer Information Structure - Ultra Compact */
+        .tc-info { display: flex; flex-direction: column; gap: 2px; }
+        .tc-info h3 { margin: 0; font-size: 0.75rem; color: var(--text-main); display: block; font-weight: 800; letter-spacing: -0.2px; line-height: 1.2;}
+        .tc-meta { font-size: 0.6rem; color: var(--text-sec); font-weight: 600; display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+        .tc-badges { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; margin-top: 1px; }
+        
+        /* 100% UNIFORM ULTRA-COMPACT BADGES */
+        .tc-badge-common {
+            display: inline-flex; align-items: center; justify-content: center; gap: 3px;
+            font-size: 0.55rem; font-weight: 700; height: 18px; padding: 0 6px;
+            border-radius: 3px; box-sizing: border-box; border: 1px solid transparent;
+            letter-spacing: 0.2px; white-space: nowrap;
+        }
+        .lang-indicator { background: var(--input-bg); color: var(--text-sec); border-color: var(--card-border); }
+        .lang-indicator i { color: var(--primary); font-size: 0.6rem; }
+        .pro-badge { background: var(--accent); color: white; border-color: var(--accent); }
+        .free-badge { background: var(--success); color: white; border-color: var(--success); }
+        
+        /* Marking Scheme Badges */
+        .mark-positive { color: #15803d; font-weight: 900; background: rgba(22, 163, 74, 0.15); padding: 0 3px; border-radius: 2px; border: 1px solid rgba(22, 163, 74, 0.2); font-size: 0.55rem; }
+        .mark-negative { color: #b91c1c; font-weight: 900; background: rgba(220, 38, 38, 0.15); padding: 0 3px; border-radius: 2px; border: 1px solid rgba(220, 38, 38, 0.2); font-size: 0.55rem; }
         [data-theme="dark"] .mark-positive { color: #4ade80; background: rgba(74, 222, 128, 0.15); border-color: rgba(74, 222, 128, 0.2); }
         [data-theme="dark"] .mark-negative { color: #f87171; background: rgba(248, 113, 113, 0.15); border-color: rgba(248, 113, 113, 0.2); }
 
+        /* Ultra Compact Uniform Button Sizes */
         .btn-action { 
-            padding: 8px 16px; border-radius: 30px; font-size: 0.75rem; font-weight: 700; text-decoration: none; 
-            transition: 0.2s; display: inline-flex; align-items: center; gap: 6px; border: none; cursor: pointer; font-family: 'Inter', sans-serif;
+            padding: 4px 10px; border-radius: 14px; font-size: 0.65rem; font-weight: 700; text-decoration: none; 
+            transition: 0.2s; display: inline-flex; align-items: center; justify-content: center; gap: 4px; border: none; cursor: pointer; font-family: 'Inter', sans-serif;
+            white-space: nowrap; flex-shrink: 0; height: 28px; box-sizing: border-box;
         }
-        .btn-free { background: var(--primary); color: white; box-shadow: 0 4px 10px rgba(37,99,235,0.3); }
-        .btn-free:hover { background: var(--primary-dark); transform: scale(1.05); }
+        .btn-free { background: var(--primary); color: white; box-shadow: 0 2px 5px rgba(37,99,235,0.2); }
+        .btn-free:hover { background: var(--primary-dark); }
         
         .btn-pro { background: var(--text-sec); color: white; }
         .btn-pro:hover { background: var(--text-main); }
         [data-theme="dark"] .btn-pro { background: rgba(255,255,255,0.1); border: 1px solid var(--card-border); }
         [data-theme="dark"] .btn-pro:hover { background: rgba(255,255,255,0.2); }
 
+        /* --- DASHBOARD NUDGE --- */
+        .dashboard-nudge {
+            background: linear-gradient(to right, var(--card-bg), rgba(37, 99, 235, 0.05));
+            border-radius: var(--radius-lg); border: 1px solid var(--card-border);
+            border-left: 4px solid var(--primary); padding: 10px 15px;
+            display: flex; justify-content: space-between; align-items: center;
+            box-shadow: var(--glass-shadow); margin: 0 15px 30px 15px;
+        }
+        [data-theme="dark"] .dashboard-nudge { background: linear-gradient(to right, var(--card-bg), rgba(59, 130, 246, 0.05)); border-left-color: var(--primary); }
+
+        .nudge-text { display: flex; align-items: center; gap: 10px; font-size: 0.75rem; color: var(--text-body); font-weight: 500; }
+        .nudge-text h3 { margin: 0; font-size: 0.8rem; color: var(--text-main); font-weight: 700; display: inline;}
+        .nudge-text span { line-height: 1.4; }
+
+        .nudge-btn {
+            background: var(--input-bg); color: var(--text-main); border: 1px solid var(--card-border);
+            padding: 4px 12px; border-radius: 20px; font-size: 0.7rem; font-weight: 700;
+            text-decoration: none; transition: all 0.2s; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; height: 28px;
+        }
+        .nudge-btn:hover { background: var(--primary); color: white; border-color: var(--primary); }
+        [data-theme="dark"] .nudge-btn { background: rgba(255,255,255,0.05); }
+        [data-theme="dark"] .nudge-btn:hover { background: var(--primary); color: white; border-color: var(--primary); }
+
+        /* --- FAQ SECTION --- */
+        .faq-section { max-width: 1000px; margin: 0 auto 30px auto; padding: 0 15px; }
+        .faq-header { text-align: center; margin-bottom: 20px; }
+        .faq-header h2 { font-size: 1.4rem; font-weight: 900; color: var(--text-main); margin-bottom: 8px; letter-spacing: -0.3px; }
+        .faq-header p { font-size: 0.85rem; color: var(--text-sec); }
+        
+        .faq-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; }
+        .faq-item { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-md); padding: 12px; box-shadow: var(--glass-shadow); }
+        .faq-q { font-size: 0.8rem; font-weight: 800; color: var(--text-main); margin-bottom: 6px; display: flex; align-items: flex-start; gap: 6px; line-height: 1.3; }
+        .faq-q i { color: var(--primary); margin-top: 2px; font-size: 0.75rem; flex-shrink: 0; }
+        .faq-a { font-size: 0.75rem; color: var(--text-body); line-height: 1.5; margin: 0 0 0 18px; }
+        .faq-a strong { color: var(--text-main); font-weight: 700; }
+        [data-theme="dark"] .faq-a strong { color: #fff; }
+
         @media (max-width: 600px) {
-            .test-card { flex-direction: column; align-items: flex-start; gap: 12px; padding: 15px; }
-            .btn-action { width: 100%; justify-content: center; box-sizing: border-box; }
+            .test-card { flex-direction: column; align-items: flex-start; gap: 10px; padding: 10px 12px; }
+            .tc-left { width: 100%; align-items: flex-start; }
+            .btn-action { width: 100%; padding: 6px; height: 32px; font-size: 0.7rem; }
             .tc-icon { display: none; }
             .top-meta-bar { flex-wrap: nowrap; justify-content: space-between; }
-            .hero-title { font-size: 25px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
-            .page-header-top { margin-top: 25px; }
+            .hero-title { font-size: 22px !important; white-space: normal; padding: 0 5px; line-height: 1.2; }
+            .page-header-top { margin-top: 20px; margin-bottom: 20px;}
+            
+            .trust-pillars { grid-template-columns: 1fr; gap: 10px; }
+            .modern-glow-divider { margin: 10px auto 25px auto; }
+            .dashboard-nudge { flex-direction: column; text-align: left; gap: 10px; padding: 10px 12px; align-items: flex-start; }
+            
+            .faq-header h2 { font-size: 1.25rem; }
+            .faq-grid { gap: 10px; }
+            .faq-item { padding: 10px; }
+            .faq-q { font-size: 0.75rem; }
+            .faq-a { font-size: 0.7rem; margin-left: 16px; }
+            
+            .toggle-btn { font-size: 0.8rem; padding: 6px 14px; }
+            .hide-mobile { display: none; }
         }
         @media (max-width: 480px) {
-            .top-meta-bar, .page-header-top { padding: 0 12px !important; }
-            .page-header-top { margin-bottom: 20px; }
+            .top-meta-bar, .page-header-top, .trust-pillars, .test-list, .dashboard-nudge, .toggle-wrapper, .faq-section { padding-left: 12px !important; padding-right: 12px !important; }
         }
     </style>
     <script>
@@ -220,8 +353,7 @@
 <div id="site-header"></div>
 
 <main>
-    <!-- Top Meta Bar: Breadcrumb (Left) & Hero Badge (Right) Inline & Compact -->
-    <!-- Breadcrumb updated to properly reflect 3 levels -->
+    <!-- Top Meta Bar: Breadcrumb (Left) & Hero Badge (Right) -->
     <div class="top-meta-bar">
         <nav aria-label="breadcrumb" class="breadcrumb-nav">
             <ol class="breadcrumb-list">
@@ -235,100 +367,295 @@
         <span class="hero-badge glass-panel">Mock Series</span>
     </div>
 
+    <!-- Hero Section -->
     <div class="page-header-top">
         <h1 class="hero-title">HP Patwari Mock Test Series</h1>
         <p class="hero-desc">
-            Attempt strictly syllabus-based full-length mock tests. Features 120 Questions, 120 Minutes duration, and 0.25 negative marking. The first mock test is entirely free for everyone!
+            Take your preparation to the next level with our strictly syllabus-based full-length mock tests and authentic Previous Year Papers (PYPs).
         </p>
     </div>
 
-    <div class="test-list">
-        
-        <!-- MOCK TEST 1 (FREE) - This will automatically span full width on desktop -->
-        <div class="test-card glass-panel" style="border-left: 4px solid var(--success);">
-            <div class="tc-left">
-                <div class="tc-icon" style="color:var(--success); background:rgba(16,185,129,0.1);"><i class="fa-solid fa-file-signature"></i></div>
-                <div class="tc-info">
-                    <h3>Patwari Full Mock Test 1 <span style="background:var(--success); color:white; font-size:0.55rem; padding:2px 6px; border-radius:4px; font-weight:800;">FREE</span></h3>
-                    <p>120 Qs • 120 Mins • Marks: <span class="mark-positive">+1</span> <span class="mark-negative">-0.25</span></p>
-                </div>
+    <!-- 🔥 TRUST PILLARS (About the Test) - Ultra Compact -->
+    <div class="trust-pillars">
+        <div class="trust-pillar-card">
+            <div class="trust-pillar-icon"><i class="fa-solid fa-language"></i></div>
+            <div class="trust-pillar-text">
+                <h3>100% Bilingual Format</h3>
+                <p>Every question and option is available simultaneously in English & Hindi.</p>
             </div>
-            <a href="../../mock-engine/index.html?exam=hp-patwari-mock&testId=patwari-mock-test-1" class="btn-action btn-free">
-                Attempt Free <i class="fa-solid fa-arrow-right"></i>
-            </a>
         </div>
-
-        <!-- MOCK TEST 2 (PREMIUM) -->
-        <div class="test-card glass-panel" style="opacity: 0.95;">
-            <div class="tc-left">
-                <div class="tc-icon"><i class="fa-solid fa-lock"></i></div>
-                <div class="tc-info">
-                    <h3>Patwari Full Mock Test 2 <span class="pro-badge"><i class="fa-solid fa-crown"></i> PRO</span></h3>
-                    <p>120 Qs • 120 Mins • Marks: <span class="mark-positive">+1</span> <span class="mark-negative">-0.25</span></p>
-                </div>
+        <div class="trust-pillar-card">
+            <div class="trust-pillar-icon"><i class="fa-solid fa-stopwatch"></i></div>
+            <div class="trust-pillar-text">
+                <h3>Real Exam Interface</h3>
+                <p>Experience actual exam pressure with strict timers and 0.25 negative marking.</p>
             </div>
-            <button onclick="showUpgradeModal()" class="btn-action btn-pro">
-                Unlock Now <i class="fa-solid fa-lock"></i>
-            </button>
         </div>
-
-        <!-- MOCK TEST 3 (PREMIUM) -->
-        <div class="test-card glass-panel" style="opacity: 0.95;">
-            <div class="tc-left">
-                <div class="tc-icon"><i class="fa-solid fa-lock"></i></div>
-                <div class="tc-info">
-                    <h3>Patwari Full Mock Test 3 <span class="pro-badge"><i class="fa-solid fa-crown"></i> PRO</span></h3>
-                    <p>120 Qs • 120 Mins • Marks: <span class="mark-positive">+1</span> <span class="mark-negative">-0.25</span></p>
-                </div>
+        <div class="trust-pillar-card">
+            <div class="trust-pillar-icon"><i class="fa-solid fa-chart-pie"></i></div>
+            <div class="trust-pillar-text">
+                <h3>Detailed Analytics</h3>
+                <p>Get in-depth subject mastery reports to identify your weak topics instantly.</p>
             </div>
-            <button onclick="showUpgradeModal()" class="btn-action btn-pro">
-                Unlock Now <i class="fa-solid fa-lock"></i>
-            </button>
         </div>
-
-        <!-- MOCK TEST 4 (PREMIUM) -->
-        <div class="test-card glass-panel" style="opacity: 0.95;">
-            <div class="tc-left">
-                <div class="tc-icon"><i class="fa-solid fa-lock"></i></div>
-                <div class="tc-info">
-                    <h3>Patwari Full Mock Test 4 <span class="pro-badge"><i class="fa-solid fa-crown"></i> PRO</span></h3>
-                    <p>120 Qs • 120 Mins • Marks: <span class="mark-positive">+1</span> <span class="mark-negative">-0.25</span></p>
-                </div>
-            </div>
-            <button onclick="showUpgradeModal()" class="btn-action btn-pro">
-                Unlock Now <i class="fa-solid fa-lock"></i>
-            </button>
-        </div>
-
-        <!-- MOCK TEST 5 (PREMIUM) -->
-        <div class="test-card glass-panel" style="opacity: 0.95;">
-            <div class="tc-left">
-                <div class="tc-icon"><i class="fa-solid fa-lock"></i></div>
-                <div class="tc-info">
-                    <h3>Patwari Full Mock Test 5 <span class="pro-badge"><i class="fa-solid fa-crown"></i> PRO</span></h3>
-                    <p>120 Qs • 120 Mins • Marks: <span class="mark-positive">+1</span> <span class="mark-negative">-0.25</span></p>
-                </div>
-            </div>
-            <button onclick="showUpgradeModal()" class="btn-action btn-pro">
-                Unlock Now <i class="fa-solid fa-lock"></i>
-            </button>
-        </div>
-
     </div>
+
+    <!-- MODERN GLOW DIVIDER -->
+    <div class="modern-glow-divider"></div>
+
+    <!-- SMART SEO TOGGLE H2 -->
+    <div class="toggle-wrapper">
+        <h2 class="toggle-container">
+            <button id="btn-mocks" class="toggle-btn active" onclick="switchTab('mocks')">Mock Tests <span class="t-count">5</span></button>
+            <button id="btn-pyps" class="toggle-btn" onclick="switchTab('pyps')">PYPs <span class="hide-mobile">(Past Papers)</span> <span class="t-count">4</span></button>
+        </h2>
+    </div>
+
+    <!-- 🎯 TAB 1: FRESH MOCK TESTS (ULTRA COMPACT) -->
+    <div id="tab-mocks" class="tab-content active">
+        <div class="test-list">
+            
+            <!-- MOCK TEST 1 (FREE) - Now perfectly aligned in 2-column grid -->
+            <div class="test-card glass-panel" style="border-left: 4px solid var(--success);">
+                <div class="tc-left">
+                    <div class="tc-icon" style="color:var(--success); background:rgba(16,185,129,0.1);"><i class="fa-solid fa-file-signature"></i></div>
+                    <div class="tc-info">
+                        <h3>HP Patwari Full Mock Test 1</h3>
+                        <div class="tc-meta">120 Qs • 120 Mins • Marks: <span class="mark-positive">+1</span> <span class="mark-negative">-0.25</span></div>
+                        <div class="tc-badges">
+                            <span class="tc-badge-common lang-indicator"><i class="fa-solid fa-language"></i> English, Hindi</span>
+                            <span class="tc-badge-common free-badge">FREE</span>
+                        </div>
+                    </div>
+                </div>
+                <a href="../../mock-engine/index.html?exam=hp-patwari-mock&testId=patwari-mock-test-1" class="btn-action btn-free">
+                    Attempt Free <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <!-- MOCK TEST 2 (PREMIUM) -->
+            <div class="test-card glass-panel">
+                <div class="tc-left">
+                    <div class="tc-icon"><i class="fa-solid fa-lock"></i></div>
+                    <div class="tc-info">
+                        <h3>HP Patwari Full Mock Test 2</h3>
+                        <div class="tc-meta">120 Qs • 120 Mins • Marks: <span class="mark-positive">+1</span> <span class="mark-negative">-0.25</span></div>
+                        <div class="tc-badges">
+                            <span class="tc-badge-common lang-indicator"><i class="fa-solid fa-language"></i> English, Hindi</span>
+                            <span class="tc-badge-common pro-badge"><i class="fa-solid fa-crown" style="font-size:0.5rem;"></i> PRO</span>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="showUpgradeModal()" class="btn-action btn-pro">
+                    Unlock <i class="fa-solid fa-lock"></i>
+                </button>
+            </div>
+
+            <!-- MOCK TEST 3 (PREMIUM) -->
+            <div class="test-card glass-panel">
+                <div class="tc-left">
+                    <div class="tc-icon"><i class="fa-solid fa-lock"></i></div>
+                    <div class="tc-info">
+                        <h3>HP Patwari Full Mock Test 3</h3>
+                        <div class="tc-meta">120 Qs • 120 Mins • Marks: <span class="mark-positive">+1</span> <span class="mark-negative">-0.25</span></div>
+                        <div class="tc-badges">
+                            <span class="tc-badge-common lang-indicator"><i class="fa-solid fa-language"></i> English, Hindi</span>
+                            <span class="tc-badge-common pro-badge"><i class="fa-solid fa-crown" style="font-size:0.5rem;"></i> PRO</span>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="showUpgradeModal()" class="btn-action btn-pro">
+                    Unlock <i class="fa-solid fa-lock"></i>
+                </button>
+            </div>
+
+            <!-- MOCK TEST 4 (PREMIUM) -->
+            <div class="test-card glass-panel">
+                <div class="tc-left">
+                    <div class="tc-icon"><i class="fa-solid fa-lock"></i></div>
+                    <div class="tc-info">
+                        <h3>HP Patwari Full Mock Test 4</h3>
+                        <div class="tc-meta">120 Qs • 120 Mins • Marks: <span class="mark-positive">+1</span> <span class="mark-negative">-0.25</span></div>
+                        <div class="tc-badges">
+                            <span class="tc-badge-common lang-indicator"><i class="fa-solid fa-language"></i> English, Hindi</span>
+                            <span class="tc-badge-common pro-badge"><i class="fa-solid fa-crown" style="font-size:0.5rem;"></i> PRO</span>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="showUpgradeModal()" class="btn-action btn-pro">
+                    Unlock <i class="fa-solid fa-lock"></i>
+                </button>
+            </div>
+
+            <!-- MOCK TEST 5 (PREMIUM) -->
+            <div class="test-card glass-panel">
+                <div class="tc-left">
+                    <div class="tc-icon"><i class="fa-solid fa-lock"></i></div>
+                    <div class="tc-info">
+                        <h3>HP Patwari Full Mock Test 5</h3>
+                        <div class="tc-meta">120 Qs • 120 Mins • Marks: <span class="mark-positive">+1</span> <span class="mark-negative">-0.25</span></div>
+                        <div class="tc-badges">
+                            <span class="tc-badge-common lang-indicator"><i class="fa-solid fa-language"></i> English, Hindi</span>
+                            <span class="tc-badge-common pro-badge"><i class="fa-solid fa-crown" style="font-size:0.5rem;"></i> PRO</span>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="showUpgradeModal()" class="btn-action btn-pro">
+                    Unlock <i class="fa-solid fa-lock"></i>
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 🎯 TAB 2: PYP TESTS (PAST PAPERS) - Purple Theme -->
+    <div id="tab-pyps" class="tab-content">
+        <div class="test-list">
+            
+            <!-- PYP 2019 (PREMIUM) -->
+            <div class="test-card glass-panel" style="border-left: 3px solid var(--accent);">
+                <div class="tc-left">
+                    <div class="tc-icon" style="background: var(--accent-light); color: var(--accent); font-size: 0.75rem; font-weight: 900; letter-spacing: 0.5px;">PYP</div>
+                    <div class="tc-info">
+                        <h3>HP Patwari Official Paper (17 Nov 2019)</h3>
+                        <div class="tc-meta">100 Qs • 100 Mins • Marks: <span class="mark-positive">+1</span></div>
+                        <div class="tc-badges">
+                            <span class="tc-badge-common lang-indicator"><i class="fa-solid fa-language"></i> English, Hindi</span>
+                            <span class="tc-badge-common pro-badge"><i class="fa-solid fa-crown" style="font-size:0.5rem;"></i> PRO</span>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="showUpgradeModal()" class="btn-action btn-pro">
+                    Unlock <i class="fa-solid fa-lock"></i>
+                </button>
+            </div>
+
+            <!-- PYP 2016 (PREMIUM) -->
+            <div class="test-card glass-panel" style="border-left: 3px solid var(--accent);">
+                <div class="tc-left">
+                    <div class="tc-icon" style="background: var(--accent-light); color: var(--accent); font-size: 0.75rem; font-weight: 900; letter-spacing: 0.5px;">PYP</div>
+                    <div class="tc-info">
+                        <h3>HP Patwari Official Paper (Held In 2016)</h3>
+                        <div class="tc-meta">100 Qs • 100 Mins • Marks: <span class="mark-positive">+1</span></div>
+                        <div class="tc-badges">
+                            <span class="tc-badge-common lang-indicator"><i class="fa-solid fa-language"></i> English, Hindi</span>
+                            <span class="tc-badge-common pro-badge"><i class="fa-solid fa-crown" style="font-size:0.5rem;"></i> PRO</span>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="showUpgradeModal()" class="btn-action btn-pro">
+                    Unlock <i class="fa-solid fa-lock"></i>
+                </button>
+            </div>
+
+            <!-- PYP 2015 (PREMIUM) -->
+            <div class="test-card glass-panel" style="border-left: 3px solid var(--accent);">
+                <div class="tc-left">
+                    <div class="tc-icon" style="background: var(--accent-light); color: var(--accent); font-size: 0.75rem; font-weight: 900; letter-spacing: 0.5px;">PYP</div>
+                    <div class="tc-info">
+                        <h3>HP Patwari Official Paper (Held In 2015)</h3>
+                        <div class="tc-meta">100 Qs • 100 Mins • Marks: <span class="mark-positive">+1</span></div>
+                        <div class="tc-badges">
+                            <span class="tc-badge-common lang-indicator"><i class="fa-solid fa-language"></i> English, Hindi</span>
+                            <span class="tc-badge-common pro-badge"><i class="fa-solid fa-crown" style="font-size:0.5rem;"></i> PRO</span>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="showUpgradeModal()" class="btn-action btn-pro">
+                    Unlock <i class="fa-solid fa-lock"></i>
+                </button>
+            </div>
+
+            <!-- PYP 2013 (PREMIUM) -->
+            <div class="test-card glass-panel" style="border-left: 3px solid var(--accent);">
+                <div class="tc-left">
+                    <div class="tc-icon" style="background: var(--accent-light); color: var(--accent); font-size: 0.75rem; font-weight: 900; letter-spacing: 0.5px;">PYP</div>
+                    <div class="tc-info">
+                        <h3>HP Patwari Official Paper (Held In 2013)</h3>
+                        <div class="tc-meta">100 Qs • 100 Mins • Marks: <span class="mark-positive">+1</span></div>
+                        <div class="tc-badges">
+                            <span class="tc-badge-common lang-indicator"><i class="fa-solid fa-language"></i> English, Hindi</span>
+                            <span class="tc-badge-common pro-badge"><i class="fa-solid fa-crown" style="font-size:0.5rem;"></i> PRO</span>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="showUpgradeModal()" class="btn-action btn-pro">
+                    Unlock <i class="fa-solid fa-lock"></i>
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Dashboard Link / Nudge Below Cards -->
+    <div class="dashboard-nudge">
+        <div class="nudge-text">
+            <i class="fa-solid fa-chart-column" style="font-size: 1.1rem; color: var(--primary);"></i>
+            <span><h3>Track Your Progress:</h3> View your past mock test scores and detailed accuracy analytics.</span>
+        </div>
+        <a href="../../user/dashboard.html" class="nudge-btn">Go to Dashboard <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+
+    <!-- 🔥 COMPACT FAQ SECTION -->
+    <div class="faq-section">
+        <div class="faq-header">
+            <h2>Frequently Asked Questions</h2>
+            <p>Everything you need to know before attempting the Patwari Mock Series.</p>
+        </div>
+        
+        <div class="faq-grid">
+            <!-- FAQ 1 -->
+            <div class="faq-item">
+                <div class="faq-q"><i class="fa-solid fa-q"></i> Are these tests strictly based on the latest syllabus?</div>
+                <div class="faq-a"><strong>Yes.</strong> All mocks feature exactly 120 questions divided across Arithmetic, Hindi, English, and General Knowledge as per the latest HP Patwari exam pattern.</div>
+            </div>
+            
+            <!-- FAQ 2 -->
+            <div class="faq-item">
+                <div class="faq-q"><i class="fa-solid fa-q"></i> Is there negative marking in the real exam?</div>
+                <div class="faq-a">Our engine strictly simulates a <strong>0.25 negative marking</strong> for every incorrect answer to help you practice accurate risk management.</div>
+            </div>
+
+            <!-- FAQ 3 -->
+            <div class="faq-item">
+                <div class="faq-q"><i class="fa-solid fa-q"></i> Can I attempt the free test multiple times?</div>
+                <div class="faq-a"><strong>Absolutely.</strong> You can attempt the free mock test as many times as you like. Every attempt's score is safely recorded in your dashboard.</div>
+            </div>
+
+            <!-- FAQ 4 -->
+            <div class="faq-item">
+                <div class="faq-q"><i class="fa-solid fa-q"></i> Will I get detailed solutions after the test?</div>
+                <div class="faq-a"><strong>Yes.</strong> Once you submit a test, our analytics engine provides your complete scorecard and detailed bilingual explanations for every single question.</div>
+            </div>
+
+            <!-- FAQ 5 -->
+            <div class="faq-item">
+                <div class="faq-q"><i class="fa-solid fa-q"></i> How can I access the PRO mock tests?</div>
+                <div class="faq-a">You can unlock all locked mock tests and previous year papers by purchasing the <strong>Mock Master Pass</strong> for just ₹149/month.</div>
+            </div>
+
+            <!-- FAQ 6 -->
+            <div class="faq-item">
+                <div class="faq-q"><i class="fa-solid fa-q"></i> Does this work on Mobile and Tablet?</div>
+                <div class="faq-a"><strong>Yes.</strong> Our platform is a highly optimized Web App that provides a seamless, App-like testing experience on any mobile or desktop browser.</div>
+            </div>
+        </div>
+    </div>
+
 </main>
 
 <!-- PREMIUM UPGRADE MODAL -->
 <div id="upgradeModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:9999; align-items:center; justify-content:center; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);">
-    <div class="glass-panel" style="width: 90%; max-width: 360px; padding: 25px; text-align: center; border-radius: 16px; position: relative;">
+    <div class="glass-panel" style="width: 90%; max-width: 360px; padding: 25px; text-align: center; border-radius: 16px; position: relative; background: var(--card-bg);">
         <button onclick="hideUpgradeModal()" style="position: absolute; top: 12px; right: 15px; background: transparent; border: none; font-size: 1.2rem; cursor: pointer; color: var(--text-sec); transition: color 0.2s;"><i class="fa-solid fa-xmark"></i></button>
         
         <div style="font-size: 2.5rem; color: var(--warning); margin-bottom: 12px;"><i class="fa-solid fa-crown"></i></div>
         <h2 style="margin: 0 0 8px 0; font-size: 1.2rem; font-weight: 800; color: var(--text-main);">Unlock Mock Master Pass</h2>
-        <p style="font-size: 0.85rem; color: var(--text-sec); margin-bottom: 20px; line-height: 1.5;">Get unlimited access to all premium full-length mock tests for HP Patwari, Police, and Allied exams at just <strong style="color: var(--text-main); font-size: 1rem;">₹149/mo</strong>.</p>
+        <p style="font-size: 0.85rem; color: var(--text-sec); margin-bottom: 20px; line-height: 1.5;">Get unlimited access to all premium full-length mock tests and Official PYPs for HP Patwari, Police, and Allied exams at just <strong style="color: var(--text-main); font-size: 1rem;">₹149/mo</strong>.</p>
         
         <div style="display: flex; flex-direction: column; gap: 10px;">
-            <a href="../../user/upgrade.html" class="btn-action" style="background: linear-gradient(135deg, #10b981, #059669); color: white; justify-content: center; padding: 12px; font-size: 0.85rem;">Upgrade Now <i class="fa-solid fa-bolt"></i></a>
-            <a href="../../user/dashboard.html" class="btn-action" style="background: var(--input-bg); color: var(--text-main); border: 1px solid var(--card-border); justify-content: center; padding: 12px; font-size: 0.85rem;">Go to Dashboard</a>
+            <a href="../../user/upgrade.html" class="btn-action" style="background: linear-gradient(135deg, #10b981, #059669); color: white; justify-content: center; padding: 10px; font-size: 0.85rem; height: auto;">Upgrade Now <i class="fa-solid fa-bolt"></i></a>
+            <a href="../../user/dashboard.html" class="btn-action" style="background: var(--input-bg); color: var(--text-main); border: 1px solid var(--card-border); justify-content: center; padding: 10px; font-size: 0.85rem; height: auto;">Go to Dashboard</a>
         </div>
     </div>
 </div>
@@ -352,6 +679,19 @@
             renderFooter('../..');
         }
     });
+
+    // Tab Switching Logic
+    function switchTab(tabId) {
+        // Remove active class from all buttons and content
+        document.getElementById('btn-mocks').classList.remove('active');
+        document.getElementById('btn-pyps').classList.remove('active');
+        document.getElementById('tab-mocks').classList.remove('active');
+        document.getElementById('tab-pyps').classList.remove('active');
+        
+        // Add active class to selected tab
+        document.getElementById('btn-' + tabId).classList.add('active');
+        document.getElementById('tab-' + tabId).classList.add('active');
+    }
 
     // Modal Control Scripts
     function showUpgradeModal() {
