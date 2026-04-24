@@ -189,16 +189,27 @@
         const qEnText = highlightText(q.questionEn, currentSearchTerm);
         const qHiText = highlightText(q.questionHi, currentSearchTerm);
 
-        const optionsHtml = q.options.map((opt, i) => {
+        // 🔥 NEW: Auto-Shuffle Options with Cache
+        if (!q._displayOptions) {
+            let opts = q.options.map((text, originalIndex) => ({ text, originalIndex }));
+            for (let i = opts.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [opts[i], opts[j]] = [opts[j], opts[i]];
+            }
+            q._displayOptions = opts;
+        }
+
+        const optionsHtml = q._displayOptions.map((optObj) => {
+            let originalIndex = optObj.originalIndex;
             let statusClass = '', iconHtml = '';
             if (isAnswered) {
-                if (i === q.answer) { statusClass = 'correct'; iconHtml = '<span class="status-icon"><i class="fa-solid fa-check"></i></span>'; } 
-                else if (i === savedAnswer) { statusClass = 'wrong'; iconHtml = '<span class="status-icon"><i class="fa-solid fa-xmark"></i></span>'; }
+                if (originalIndex === q.answer) { statusClass = 'correct'; iconHtml = '<span class="status-icon"><i class="fa-solid fa-check"></i></span>'; } 
+                else if (originalIndex === savedAnswer) { statusClass = 'wrong'; iconHtml = '<span class="status-icon"><i class="fa-solid fa-xmark"></i></span>'; }
             }
             return `
                 <div class="option-btn ${statusClass} ${isAnswered ? 'disabled' : ''}" 
-                     style="font-size: ${fontSize};" onclick="handleAnswer(this, '${q.id}', ${i})">
-                    <span>${highlightText(opt, currentSearchTerm)}</span>
+                     style="font-size: ${fontSize};" onclick="handleAnswer(this, '${q.id}', ${originalIndex})">
+                    <span>${highlightText(optObj.text, currentSearchTerm)}</span>
                     ${iconHtml}
                 </div>`;
         }).join('');
