@@ -3,6 +3,7 @@
  * HPGK MOCK TEST ENGINE (TCS/NTA Style Master Logic - PHASE 3 FINAL)
  * Includes Score Calculation, Detailed Analytics & Firebase DB Sync
  * Compact UI Updates, Production Paywall Fixes & Custom Watermark
+ * Auto-Shuffle Options Integrated
  * --------------------------------------------------------------------------
  */
 
@@ -435,12 +436,23 @@ const engine = (function() {
 
         DOM.qNum.innerText = `Question No. ${index + 1}`;
         
-        let optionsHtml = q.options.map((opt, i) => {
-            const isChecked = res.selected === i ? 'checked' : '';
+        // 🔥 NEW: Auto-Shuffle Options with Cache for Mock Test
+        if (!q._displayOptions) {
+            let opts = q.options.map((text, originalIndex) => ({ text, originalIndex }));
+            for (let i = opts.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [opts[i], opts[j]] = [opts[j], opts[i]];
+            }
+            q._displayOptions = opts;
+        }
+
+        let optionsHtml = q._displayOptions.map((optObj) => {
+            let originalIndex = optObj.originalIndex;
+            const isChecked = res.selected === originalIndex ? 'checked' : '';
             return `
                 <label class="option-label" style="position:relative; z-index:2;">
-                    <input type="radio" name="exam_q" value="${i}" ${isChecked} onchange="engine.selectOption(${i})">
-                    <span>${opt}</span>
+                    <input type="radio" name="exam_q" value="${originalIndex}" ${isChecked} onchange="engine.selectOption(${originalIndex})">
+                    <span>${optObj.text}</span>
                 </label>
             `;
         }).join('');
@@ -665,9 +677,13 @@ const engine = (function() {
                 statusBadge = '<span class="res-q-badge badge-wrong"><i class="fa-solid fa-xmark"></i> Incorrect</span>';
             }
 
-            let optsHtml = q.options.map((opt, optIdx) => {
+            // 🔥 NEW: Use _displayOptions to show the shuffled order in results too!
+            let optsToRender = q._displayOptions || q.options.map((text, idx) => ({ text, originalIndex: idx }));
+            
+            let optsHtml = optsToRender.map((optObj) => {
                 let optClass = '';
                 let icon = '<div style="width:16px;"></div>'; 
+                let optIdx = optObj.originalIndex;
                 
                 if (optIdx === q.answer) {
                     optClass = 'is-correct';
@@ -680,7 +696,7 @@ const engine = (function() {
                 return `
                     <div class="res-opt ${optClass}">
                         ${icon}
-                        <div style="flex:1; z-index:2; position:relative;">${opt}</div>
+                        <div style="flex:1; z-index:2; position:relative;">${optObj.text}</div>
                     </div>
                 `;
             }).join('');
