@@ -8,8 +8,8 @@
 
 (function() {
     window.HPGK_Guard = {
-        // Master passes that unlock everything
-        MASTER_KEYS: ['mega_combo_pass', 'vip_lifetime_pass'],
+        // 🔥 MASTER KEYS: Passes that unlock absolutely EVERYTHING (Including ₹39 MCQs)
+        MASTER_KEYS: ['mega_combo_pass', 'vip_lifetime_pass', 'mock_master_pass'],
 
         checkAccess: function(currentIndex) {
             // Read Page Config
@@ -21,19 +21,22 @@
             };
 
             // Read Global User State from core.js
-            const user = window.HPGK_User || { isLoggedIn: false, passes: [] };
+            const user = window.HPGK_User || { isLoggedIn: false, passes: {} };
 
-            // 1. VIP Check
+            // 1. VIP & MASTER PASS CHECK
             if (user.isLoggedIn && user.passes) {
-                const hasMasterKey = this.MASTER_KEYS.some(key => user.passes.includes(key));
+                // If user has ₹149 Mock Master Pass (or any other master key), Unlock Everything!
+                const hasMasterKey = this.MASTER_KEYS.some(key => user.passes[key]);
                 if (hasMasterKey) return { status: 'allowed' };
-                if (config.requiredPass && user.passes.includes(config.requiredPass)) return { status: 'allowed' };
+                
+                // Otherwise, check if they have the specific pass required for this page
+                if (config.requiredPass && user.passes[config.requiredPass]) return { status: 'allowed' };
             }
 
             // 2. Pro Limit (Paywall) - User crossed free Pro limit
             if (currentIndex >= config.proLimit) {
                 if (!user.isLoggedIn) return { status: 'blocked_pro_login', limit: config.proLimit };
-                return { status: 'blocked_pro_paywall', passId: config.requiredPass || 'premium_pass' };
+                return { status: 'blocked_pro_paywall', passId: config.requiredPass || 'mcq_pro_pass' };
             }
 
             // 3. Free Login Limit - User crossed anonymous limit
@@ -86,13 +89,14 @@
             // STATE 3: PRO LIMIT REACHED (LOGGED IN) -> RAZORPAY
             // -----------------------------------------------------------
             else if (accessState.status === 'blocked_pro_paywall') {
-                title = "Unlock Premium Experience";
-                desc = `Upgrade to the <strong>HPGK Premium Pass</strong> to unlock all remaining questions, mock tests, and exclusive PDFs.<br><br>Join 10,000+ top scorers today!`;
-                iconClass = "fa-solid fa-gem";
+                title = "Unlock MCQ Pro Pass";
+                desc = `Upgrade to the <strong>MCQ Pro Pass</strong> to unlock 3000+ premium topic-wise questions, detailed explanations, and your complete history.<br><br>Join 10,000+ top scorers today!`;
+                iconClass = "fa-solid fa-bolt";
                 borderColor = "var(--accent)"; // Orange accent
                 btnHtml = `
-                    <button class="login-btn" style="margin: 0 auto; padding: 10px 24px; font-size: 0.9rem; font-weight: 800; border-radius: 25px; border: none; background: linear-gradient(135deg, var(--accent), #c2410c); color: #fff; cursor: pointer; box-shadow: 0 4px 12px rgba(234, 88, 12, 0.3); display: inline-flex; align-items: center; justify-content: center; transition: all 0.2s;" onclick="alert('Razorpay Checkout will trigger here for: ${accessState.passId}')" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 15px rgba(234, 88, 12, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(234, 88, 12, 0.3)'">
-                        <span>Get Premium Pass (₹29)</span>
+                    <div style="font-size: 2rem; font-weight: 900; color: var(--text-main); margin-bottom: 15px; letter-spacing: -1px;">₹39<span style="font-size:0.85rem; color:var(--text-sec); font-weight:700;">/mo</span></div>
+                    <button class="login-btn" style="margin: 0 auto; padding: 12px 28px; font-size: 0.95rem; font-weight: 800; border-radius: 25px; border: none; background: linear-gradient(135deg, #f59e0b, #ea580c); color: #fff; cursor: pointer; box-shadow: 0 4px 15px rgba(234, 88, 12, 0.3); display: inline-flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.2s;" onclick="alert('Initiating Checkout for ₹39 MCQ Pro Pass...')" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 18px rgba(234, 88, 12, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(234, 88, 12, 0.3)'">
+                        <i class="fa-solid fa-rocket"></i> <span>Get MCQ Pro Pass</span>
                     </button>
                     <div style="margin-top: 16px; font-size: 0.75rem; color: var(--text-sec); font-weight: 600; letter-spacing: 0.5px; display: flex; align-items: center; justify-content: center; gap: 5px;">
                         <i class="fa-solid fa-shield-halved" style="color: #22c55e;"></i> SECURE 256-BIT RAZORPAY CHECKOUT
@@ -107,12 +111,20 @@
                         <i class="${iconClass}" style="font-size: 1.8rem; color: ${borderColor};"></i>
                     </div>
                     <h2 style="font-size: 1.4rem; margin-bottom: 12px; color: var(--text-main); font-weight: 800; letter-spacing: -0.3px;">${title}</h2>
-                    <p style="color: var(--text-sec); margin-bottom: 28px; font-size: 0.8rem; line-height: 1.5; max-width: 400px; margin-inline: auto;">
+                    <p style="color: var(--text-sec); margin-bottom: 24px; font-size: 0.85rem; line-height: 1.5; max-width: 400px; margin-inline: auto;">
                         ${desc}
                     </p>
                     ${btnHtml}
                 </div>
             `;
+            
+            // Add animation keyframes if not exists
+            if (!document.getElementById('guard-anim')) {
+                const style = document.createElement('style');
+                style.id = 'guard-anim';
+                style.innerHTML = `@keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }`;
+                document.head.appendChild(style);
+            }
         }
     };
 })();
