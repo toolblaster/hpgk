@@ -200,33 +200,33 @@
         .trust-pillars {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 15px;
-            margin: 0 auto 30px auto;
+            gap: 10px;
+            margin: 0 auto 15px auto;
             padding: 0 15px;
         }
         .trust-pillar-card {
-            border-radius: var(--radius-md); padding: 12px 15px;
-            display: flex; align-items: flex-start; gap: 12px;
+            border-radius: var(--radius-md); padding: 8px 12px;
+            display: flex; align-items: flex-start; gap: 10px;
         }
         .trust-pillar-icon {
             background: var(--input-bg); color: var(--primary);
-            width: 36px; height: 36px; border-radius: var(--radius-md);
+            width: 32px; height: 32px; border-radius: var(--radius-md);
             display: flex; align-items: center; justify-content: center;
-            font-size: 1rem; flex-shrink: 0; border: 1px solid var(--card-border);
+            font-size: 0.9rem; flex-shrink: 0; border: 1px solid var(--card-border);
         }
-        .trust-pillar-text { display: flex; flex-direction: column; gap: 4px; }
+        .trust-pillar-text { display: flex; flex-direction: column; gap: 2px; }
         .trust-pillar-text h3 { margin: 0; font-size: 0.8rem; font-weight: 800; color: var(--text-main); }
-        .trust-pillar-text p { margin: 0; font-size: 0.75rem; color: var(--text-sec); line-height: 1.4; font-weight: 500;}
+        .trust-pillar-text p { margin: 0; font-size: 0.7rem; color: var(--text-sec); line-height: 1.3; font-weight: 500;}
 
         /* MINIMALIST DIVIDER */
         .clean-divider {
-            width: 100%; max-width: 800px; height: 1px; margin: 0 auto 30px auto;
+            width: 100%; max-width: 800px; height: 1px; margin: 0 auto 15px auto;
             background: linear-gradient(90deg, transparent, var(--text-sec), transparent);
             opacity: 0.15;
         }
 
         /* --- FLAT TOGGLE TABS --- */
-        .toggle-wrapper { display: flex; justify-content: flex-start; margin-bottom: 20px; padding: 0 15px; border-bottom: 1px solid rgba(0,0,0,0.05); }
+        .toggle-wrapper { display: flex; justify-content: flex-start; margin-bottom: 15px; padding: 0 15px; border-bottom: 1px solid rgba(0,0,0,0.05); }
         [data-theme="dark"] .toggle-wrapper { border-bottom-color: rgba(255,255,255,0.05); }
         
         .toggle-container { display: flex; gap: 20px; margin: 0; padding: 0; }
@@ -250,34 +250,27 @@
         .tab-content.active { display: block; animation: fadeIn 0.3s ease; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(2px); } to { opacity: 1; transform: translateY(0); } }
 
-        .test-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 12px; padding: 0 15px; margin-bottom: 30px; }
-        .test-card { display: flex; align-items: center; justify-content: space-between; padding: 12px 15px; border-radius: var(--radius-md); transition: 0.2s ease; }
+        .test-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 0 15px; margin-bottom: 20px; }
+        .test-card { display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; border-radius: var(--radius-md); transition: 0.2s ease; }
         .test-card:hover { border-color: rgba(37, 99, 235, 0.4); background: var(--card-bg); }
         [data-theme="dark"] .test-card:hover { border-color: rgba(96, 165, 250, 0.4); }
         
-        .tc-left { display: flex; align-items: center; gap: 12px; }
-            padding: 12px 15px; border-radius: var(--radius-md); 
-            transition: border-color 0.2s ease, background 0.2s ease;
-        }
-        .test-card:hover { border-color: rgba(37, 99, 235, 0.4); background: var(--card-bg); }
-        [data-theme="dark"] .test-card:hover { border-color: rgba(96, 165, 250, 0.4); }
-
-        .tc-left { display: flex; align-items: center; gap: 12px; flex: 1; }
+        .tc-left { display: flex; align-items: center; gap: 10px; flex: 1; }
         
         .tc-icon { 
-            width: 40px; height: 40px; background: var(--input-bg); color: var(--text-main); 
+            width: 36px; height: 36px; background: var(--input-bg); color: var(--text-main); 
             border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; 
-            font-size: 1.1rem; flex-shrink: 0; border: 1px solid var(--card-border);
+            font-size: 1rem; flex-shrink: 0; border: 1px solid var(--card-border);
         }
         
-        .tc-info { display: flex; flex-direction: column; gap: 4px; }
-        .tc-info h3 { margin: 0; font-size: 0.9rem; color: var(--text-main); font-weight: 700; line-height: 1.2;}
-        .tc-meta { font-size: 0.7rem; color: var(--text-sec); font-weight: 500; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
-        .tc-badges { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-top: 2px; }
+        .tc-info { display: flex; flex-direction: column; gap: 2px; }
+        .tc-info h3 { margin: 0; font-size: 0.85rem; color: var(--text-main); font-weight: 700; line-height: 1.2;}
+        .tc-meta { font-size: 0.65rem; color: var(--text-sec); font-weight: 500; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+        .tc-badges { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; margin-top: 2px; }
         
         .tc-badge-common {
             display: inline-flex; align-items: center; justify-content: center; gap: 4px;
-            font-size: 0.6rem; font-weight: 700; padding: 2px 6px;
+            font-size: 0.55rem; font-weight: 700; padding: 2px 6px;
             border-radius: 4px; border: 1px solid var(--card-border);
             letter-spacing: 0.2px; text-transform: uppercase; background: var(--input-bg); color: var(--text-sec);
         }
@@ -292,7 +285,7 @@
 
         /* SOLID BUTTONS */
         .btn-action { 
-            padding: 8px 16px; border-radius: 6px; font-size: 0.75rem; font-weight: 600; text-decoration: none; 
+            padding: 6px 12px; border-radius: 6px; font-size: 0.7rem; font-weight: 600; text-decoration: none; 
             display: inline-flex; align-items: center; justify-content: center; gap: 6px; border: 1px solid transparent; 
             cursor: pointer; font-family: 'Inter', sans-serif; white-space: nowrap; flex-shrink: 0; transition: all 0.2s ease;
         }
@@ -359,18 +352,22 @@
         .modern-google-btn:hover { background: var(--card-border); }
 
         /* MOBILE OPTIMIZATIONS */
+        @media (max-width: 800px) {
+            .test-list { grid-template-columns: 1fr; }
+        }
+
         @media (max-width: 600px) {
-            .test-card { flex-direction: column; align-items: flex-start; gap: 12px; padding: 15px; }
+            .test-card { flex-direction: column; align-items: flex-start; gap: 8px; padding: 12px; }
             .tc-left { width: 100%; align-items: flex-start; }
-            .btn-action { width: 100%; padding: 10px; font-size: 0.8rem; }
+            .btn-action { width: 100%; padding: 8px; font-size: 0.8rem; }
             .tc-icon { display: none; }
             
-            .page-header-top { margin-top: 25px; margin-bottom: 20px;}
+            .page-header-top { margin-top: 20px; margin-bottom: 15px;}
             
-            .hero-title { font-size: 25px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
+            .hero-title { font-size: 22px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
             
-            .trust-pillars { grid-template-columns: 1fr; gap: 10px; }
-            .toggle-wrapper { padding: 0 15px; justify-content: center; }
+            .trust-pillars { grid-template-columns: 1fr; gap: 8px; margin-bottom: 15px;}
+            .toggle-wrapper { padding: 0 15px; justify-content: center; margin-bottom: 15px;}
             .toggle-container { gap: 10px; width: 100%; justify-content: space-between;}
             .toggle-btn { flex: 1; justify-content: center; font-size: 0.85rem;}
         }
@@ -437,8 +434,8 @@
 
     <div class="toggle-wrapper">
         <div class="toggle-container">
-            <button id="btn-mocks" class="toggle-btn active" onclick="switchTab('mocks')">Mock Tests <span class="t-count">5</span></button>
-            <button id="btn-pyps" class="toggle-btn" onclick="switchTab('pyps')">Previous Papers <span class="t-count">4</span></button>
+            <button id="btn-mocks" class="toggle-btn active" onclick="switchTab('mocks')">Mock Tests <span class="t-count">8</span></button>
+            <button id="btn-pyps" class="toggle-btn" onclick="switchTab('pyps')">Previous Papers <span class="t-count">5</span></button>
         </div>
     </div>
 
@@ -530,6 +527,57 @@
                 </button>
             </div>
 
+            <div class="test-card soft-glass">
+                <div class="tc-left">
+                    <div class="tc-icon"><i class="fa-solid fa-lock"></i></div>
+                    <div class="tc-info">
+                        <h3>HP Patwari Full Mock Test 6</h3>
+                        <div class="tc-meta">120 Qs • 120 Mins • Marks: <span class="mark-positive">+1</span> <span class="mark-negative">-0.25</span></div>
+                        <div class="tc-badges">
+                            <span class="tc-badge-common">EN / HI</span>
+                            <span class="tc-badge-common pro-badge"><i class="fa-solid fa-crown" style="font-size:0.5rem; margin-right:2px;"></i> PRO</span>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="handleTestClick('../../mock-engine/index.html?exam=hp-patwari-mock&testId=hpgkdata.patwari-mock-test-6', true)" class="btn-action btn-pro">
+                    Unlock <i class="fa-solid fa-lock"></i>
+                </button>
+            </div>
+
+            <div class="test-card soft-glass">
+                <div class="tc-left">
+                    <div class="tc-icon"><i class="fa-solid fa-lock"></i></div>
+                    <div class="tc-info">
+                        <h3>HP Patwari Full Mock Test 7</h3>
+                        <div class="tc-meta">120 Qs • 120 Mins • Marks: <span class="mark-positive">+1</span> <span class="mark-negative">-0.25</span></div>
+                        <div class="tc-badges">
+                            <span class="tc-badge-common">EN / HI</span>
+                            <span class="tc-badge-common pro-badge"><i class="fa-solid fa-crown" style="font-size:0.5rem; margin-right:2px;"></i> PRO</span>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="handleTestClick('../../mock-engine/index.html?exam=hp-patwari-mock&testId=hpgkdata.patwari-mock-test-7', true)" class="btn-action btn-pro">
+                    Unlock <i class="fa-solid fa-lock"></i>
+                </button>
+            </div>
+
+            <div class="test-card soft-glass">
+                <div class="tc-left">
+                    <div class="tc-icon"><i class="fa-solid fa-lock"></i></div>
+                    <div class="tc-info">
+                        <h3>HP Patwari Full Mock Test 8</h3>
+                        <div class="tc-meta">120 Qs • 120 Mins • Marks: <span class="mark-positive">+1</span> <span class="mark-negative">-0.25</span></div>
+                        <div class="tc-badges">
+                            <span class="tc-badge-common">EN / HI</span>
+                            <span class="tc-badge-common pro-badge"><i class="fa-solid fa-crown" style="font-size:0.5rem; margin-right:2px;"></i> PRO</span>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="handleTestClick('../../mock-engine/index.html?exam=hp-patwari-mock&testId=hpgkdata.patwari-mock-test-8', true)" class="btn-action btn-pro">
+                    Unlock <i class="fa-solid fa-lock"></i>
+                </button>
+            </div>
+
         </div>
     </div>
 
@@ -583,6 +631,19 @@
                 </div>
                 <button onclick="handleTestClick('../../mock-engine/index.html?exam=hp-patwari-mock&testId=hpgkdata.patwari-previous-year-paper-2013', true)" class="btn-action btn-pro">Unlock <i class="fa-solid fa-lock"></i></button>
             </div>
+            
+            <div class="test-card soft-glass">
+                <div class="tc-left">
+                    <div class="tc-icon" style="color:var(--accent);"><i class="fa-solid fa-clock-rotate-left"></i></div>
+                    <div class="tc-info">
+                        <h3>HP Patwari Official Paper (2012)</h3>
+                        <div class="tc-meta">100 Qs • 100 Mins • <span style="color:#15803d; font-weight:700;">+1</span></div>
+                        <div class="tc-badges"><span class="tc-badge-common">EN / HI</span><span class="tc-badge-common pro-badge"><i class="fa-solid fa-crown"></i> PRO</span></div>
+                    </div>
+                </div>
+                <button onclick="handleTestClick('../../mock-engine/index.html?exam=hp-patwari-mock&testId=hpgkdata.patwari-previous-year-paper-2012', true)" class="btn-action btn-pro">Unlock <i class="fa-solid fa-lock"></i></button>
+            </div>
+
         </div>
     </div>
 
