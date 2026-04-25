@@ -37,8 +37,10 @@
 
     // Triggered by core.js
     window.HPGK_Engine_Refresh = function() {
+        loadFromStorage();
+        updateStats();
         loadQuestion(currentIndex); 
-        triggerCloudSync(); 
+        // Removed triggerCloudSync() to prevent infinite freeze loop on login
     };
 
     function triggerCloudSync() {
@@ -67,7 +69,7 @@
         setTimeout(() => { initQuizNow(); }, 100);
     });
 
-    window.HPGK_ExportLocalData = function() {
+    window.exportProgress = function() {
         const dataStr = JSON.stringify(historyState);
         const dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
         const catName = window.QUIZ_CONFIG ? window.QUIZ_CONFIG.category : 'backup';
@@ -77,7 +79,7 @@
         linkElement.click();
     };
 
-    window.HPGK_ImportLocalData = function(input) {
+    window.importProgress = function(input) {
         const file = input.files[0];
         if (!file) return;
         const reader = new FileReader();
@@ -98,6 +100,13 @@
         };
         reader.readAsText(file);
         input.value = '';
+    };
+
+    window.toggleHelpModal = function() {
+        const modal = document.getElementById('quizHelpModal');
+        if (modal) {
+            modal.classList.toggle('show');
+        }
     };
 
     window.adjustFont = function(dir) {
@@ -145,7 +154,7 @@
         if (!quizContent || !cardArea) return;
         quizContent.scrollTop = 0;
 
-        // ðŸ”¥ THE MAGIC LINK: Ask Guard before rendering
+        // THE MAGIC LINK: Ask Guard before rendering
         if (window.HPGK_Guard) {
             const access = window.HPGK_Guard.checkAccess(index);
             if (access.status !== 'allowed') {
@@ -161,9 +170,9 @@
                     <i class="fa-solid fa-trophy" style="color:var(--accent); font-size:2.5rem; margin-bottom:10px;"></i>
                     <p style="font-size:1rem; font-weight:700; margin:0;">Quick Session Complete!</p>
                     <div class="summary-score">${quickSessionScore} / ${currentList.length}</div>
-                    <button class="summary-btn" onclick="continueQuickMode()">Next 10 <i class="fa-solid fa-arrow-right"></i></button>
+                    <button class="summary-btn" onclick="window.continueQuickMode()">Next 10 <i class="fa-solid fa-arrow-right"></i></button>
                     <br><br>
-                    <button style="background:transparent; color:var(--text-sec); font-size:0.75rem; border:none; cursor:pointer;" onclick="toggleQuickMode(false)">Exit Quick Mode</button>
+                    <button style="background:transparent; color:var(--text-sec); font-size:0.75rem; border:none; cursor:pointer;" onclick="window.toggleQuickMode(false)">Exit Quick Mode</button>
                 </div>
             `;
             updateControls(); return;
@@ -174,8 +183,8 @@
                 <div class="empty-state">
                     <i class="fa-solid fa-file-circle-question" style="font-size:2.5rem; color:var(--border-color); margin-bottom:10px;"></i>
                     <p>No questions found.</p>
-                    ${currentSearchTerm ? '<button class="nav-btn" onclick="clearSearch()" style="margin-top: 10px; margin-inline:auto;">Clear Search</button>' : ''}
-                    ${(isQuickModeActive || isMistakesFilterActive || isBookmarkFilterActive) ? '<button class="nav-btn" onclick="clearAllFilters()" style="margin-top: 10px; margin-inline:auto;">Clear Filters</button>' : ''}
+                    ${currentSearchTerm ? '<button class="nav-btn" onclick="window.clearSearch()" style="margin-top: 10px; margin-inline:auto;">Clear Search</button>' : ''}
+                    ${(isQuickModeActive || isMistakesFilterActive || isBookmarkFilterActive) ? '<button class="nav-btn" onclick="window.clearAllFilters()" style="margin-top: 10px; margin-inline:auto;">Clear Filters</button>' : ''}
                 </div>`;
             updateControls(); return;
         }
@@ -195,9 +204,10 @@
                 if (i === q.answer) { statusClass = 'correct'; iconHtml = '<span class="status-icon"><i class="fa-solid fa-check"></i></span>'; } 
                 else if (i === savedAnswer) { statusClass = 'wrong'; iconHtml = '<span class="status-icon"><i class="fa-solid fa-xmark"></i></span>'; }
             }
+            // Fix: Explicitly call window.handleAnswer
             return `
                 <div class="option-btn ${statusClass} ${isAnswered ? 'disabled' : ''}" 
-                     style="font-size: ${fontSize};" onclick="handleAnswer(this, '${q.id}', ${i})">
+                     style="font-size: ${fontSize};" onclick="window.handleAnswer(this, '${q.id}', ${i})">
                     <span>${highlightText(opt, currentSearchTerm)}</span>
                     ${iconHtml}
                 </div>`;
@@ -211,9 +221,10 @@
             
             let explToggleBtn = '';
             if (q.explanation) {
+                // Fix: Explicitly call window.toggleExpl
                 explToggleBtn = `
                 <div class="expl-wrapper">
-                    <button class="expl-btn" onclick="toggleExpl('${q.id}')" title="View Explanation">
+                    <button class="expl-btn" onclick="window.toggleExpl('${q.id}')" title="View Explanation">
                         <i class="fa-solid fa-lightbulb"></i>
                     </button>
                     <div id="expl-${q.id}" class="explanation-tooltip" style="font-size: ${fontSize};">
@@ -234,13 +245,14 @@
         const statusDisplay = isAnswered ? (savedAnswer === q.answer ? '<i class="fa-solid fa-check"></i> Solved' : '<i class="fa-solid fa-xmark"></i> Review') : 'Pending';
         const bookmarkIconClass = isBookmarked ? 'fa-solid fa-bookmark active' : 'fa-regular fa-bookmark';
 
+        // Fix: Explicitly call window.shareQuestion and window.toggleBookmark
         cardArea.innerHTML = `
             <div class="q-meta">
                 <span class="q-id">Q. ${q.id}</span>
                 <span class="q-actions">
                     <span class="q-status">${statusDisplay}</span>
-                    <i class="fa-solid fa-share-nodes share-icon" onclick="shareQuestion('${q.id}')" title="Share"></i>
-                    <i class="${bookmarkIconClass} bookmark-icon" onclick="toggleBookmark('${q.id}')" title="Bookmark"></i>
+                    <i class="fa-solid fa-share-nodes share-icon" onclick="window.shareQuestion('${q.id}')" title="Share"></i>
+                    <i class="${bookmarkIconClass} bookmark-icon" onclick="window.toggleBookmark('${q.id}')" title="Bookmark"></i>
                 </span>
             </div>
             <div class="q-text-en" style="font-size:${fontSize}">${qEnText}</div>
@@ -349,10 +361,13 @@
     window.handleAnswer = function(btn, qId, choiceIndex) {
         if (!currentList || !currentList[currentIndex]) return;
         const q = currentList[currentIndex];
-        if (historyState.answers[qId] !== undefined) return;
+        
+        // Saftey check: Double click or already answered
+        if (historyState.answers[qId] !== undefined && historyState.answers[qId] !== null) return;
+        
         if (isQuickModeActive && q.answer === choiceIndex) { quickSessionScore++; }
         
-        historyState.answers[qId] = choiceIndex;
+        historyState.answers[qId] = parseInt(choiceIndex);
         saveToStorage(); 
         updateStats(); 
         loadQuestion(currentIndex);
@@ -363,7 +378,7 @@
         const q = window.quizData.find(item => item.id == qId);
         if (!q) return;
         const link = `${window.location.origin}${window.location.pathname}?id=${qId}`;
-        const msg = `Can you solve this HPGK question? ðŸ¤”\n\nQ: ${q.questionEn}\n\nðŸ‘‰ Attempt here: ${link}`;
+        const msg = `Can you solve this HPGK question? 🤔\n\nQ: ${q.questionEn}\n\n👉 Attempt here: ${link}`;
         if (navigator.share) { try { await navigator.share({ title: 'HPGK Challenge', text: msg, url: link }); } catch (err) {} } 
         else { try { await navigator.clipboard.writeText(msg); alert('Link copied!'); } catch (err) { alert('Could not copy link.'); } }
     };
@@ -371,7 +386,7 @@
     if (nextBtn) {
         nextBtn.addEventListener('click', () => {
             const currentQ = currentList[currentIndex];
-            const isAnswered = currentQ && historyState.answers[currentQ.id] !== undefined;
+            const isAnswered = currentQ && historyState.answers[currentQ.id] !== undefined && historyState.answers[currentQ.id] !== null;
             if (!isAnswered && !isQuickModeActive) {
                 if(cardArea) { cardArea.classList.remove('apply-shake'); void cardArea.offsetWidth; cardArea.classList.add('apply-shake'); }
                 return; 
@@ -388,7 +403,7 @@
         if (!isSearchFocused) {
             if (e.key === 'ArrowRight') {
                 const currentQ = currentList[currentIndex];
-                const isAnswered = currentQ && historyState.answers[currentQ.id] !== undefined;
+                const isAnswered = currentQ && historyState.answers[currentQ.id] !== undefined && historyState.answers[currentQ.id] !== null;
                 if (nextBtn && !nextBtn.disabled && (isAnswered || isQuickModeActive)) { nextBtn.click(); } 
                 else if (cardArea && !isAnswered) { cardArea.classList.remove('apply-shake'); void cardArea.offsetWidth; cardArea.classList.add('apply-shake'); }
             }
@@ -415,7 +430,7 @@
         const isDone = isQuickModeActive && currentIndex >= currentList.length;
         prevBtn.disabled = currentIndex === 0 || isDone;
         const currentQ = currentList[currentIndex];
-        const isAnswered = currentQ && historyState.answers[currentQ.id] !== undefined;
+        const isAnswered = currentQ && historyState.answers[currentQ.id] !== undefined && historyState.answers[currentQ.id] !== null;
         nextBtn.disabled = (currentIndex === currentList.length - 1 && !isQuickModeActive) || isDone || !isAnswered;
         progressText.innerText = isDone ? "Done" : `${currentIndex + 1} / ${currentList.length}`;
         
@@ -437,10 +452,32 @@
     };
 
     function saveToStorage() { localStorage.setItem(STORAGE_KEY, JSON.stringify(historyState)); }
+    
+    // 🔥 DATA SANITIZER: Fixes Corrupted Firebase Data that Causes Jamming
     function loadFromStorage() {
         const saved = localStorage.getItem(STORAGE_KEY);
-        if (saved) { try { historyState = JSON.parse(saved); if (!historyState.answers) historyState.answers = {}; if (!historyState.bookmarks) historyState.bookmarks = []; } catch (e) {} }
+        if (saved) { 
+            try { 
+                const data = JSON.parse(saved); 
+                historyState.lastIndex = data.lastIndex || 0;
+                historyState.bookmarks = data.bookmarks || [];
+                historyState.answers = {};
+                
+                if (data.answers) {
+                    for (let key in data.answers) {
+                        if (data.answers[key] !== null && data.answers[key] !== undefined) {
+                            let parsed = parseInt(data.answers[key]);
+                            // If it's a valid number, keep it. Otherwise, discard it.
+                            if (!isNaN(parsed)) {
+                                historyState.answers[key] = parsed;
+                            }
+                        }
+                    }
+                }
+            } catch (e) {} 
+        }
     }
+    
     window.resetProgress = function() { if(confirm("Clear history for this section?")) { localStorage.removeItem(STORAGE_KEY); location.reload(); } };
 
     function initQuizNow() {
