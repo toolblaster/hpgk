@@ -34,20 +34,22 @@
     <link rel="stylesheet" href="../js/style.css">
 
     <style>
-        /* Ultra-Compact High-Density Theme Variables */
+        /* Minimal Light Glassmorphism Theme Variables - 1100px Width */
         :root {
-            --site-width: 1150px;
+            --site-width: 1100px;
             
+            /* Beautiful Soft Gradient Background */
             --bg-gradient: linear-gradient(135deg, #eff6ff 0%, #dbeafe 50%, #bfdbfe 100%);
             
+            /* Light, clean Glassmorphism */
             --card-bg: rgba(255, 255, 255, 0.85);
-            --card-border: rgba(255, 255, 255, 0.6);
+            --card-border: rgba(255, 255, 255, 0.7);
             --glass-shadow: 0 4px 15px 0 rgba(37, 99, 235, 0.05); 
+            --input-bg: rgba(255, 255, 255, 0.5);
             
             --primary: #2563eb;
             --primary-dark: #1e40af;
             --accent: #ea580c;
-            --accent-light: rgba(234, 88, 12, 0.1);
             --text-main: #0f172a;
             --text-body: #334155;
             --text-sec: #64748b;
@@ -65,11 +67,11 @@
             --card-bg: rgba(30, 41, 59, 0.75);
             --card-border: rgba(255, 255, 255, 0.08);
             --glass-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.3);
+            --input-bg: rgba(0, 0, 0, 0.2);
             
             --primary: #3b82f6;
             --primary-dark: #60a5fa;
             --accent: #f97316;
-            --accent-light: rgba(249, 115, 22, 0.15);
             --text-main: #f8fafc;
             --text-body: #cbd5e1;
             --text-sec: #94a3b8;
@@ -97,10 +99,11 @@
         
         h1, h2, h3, h4 { color: var(--text-main); margin-top: 0; letter-spacing: -0.3px; }
 
+        /* The Core Glass Panel */
         .glass-panel {
             background: var(--card-bg);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border: 1px solid var(--card-border);
             border-radius: var(--radius-lg);
             padding: 15px;
@@ -109,138 +112,171 @@
         }
 
         /* =========================================
-           TOP GRID: 30/70 SPLIT (Profile + Purchase/Store)
+           TOP GRID: 30/70 SPLIT
            ========================================= */
         .top-dashboard-grid {
-            display: grid;
-            grid-template-columns: 3fr 7fr;
-            gap: 12px;
-            margin-bottom: 15px;
+            display: grid; grid-template-columns: 3fr 7fr; gap: 15px; margin-bottom: 15px;
         }
 
         .compact-top-card { padding: 12px 15px; margin-bottom: 0; display: flex; }
 
         /* 30% Left: Profile Panel */
-        .profile-panel { align-items: center; gap: 12px; border-left: 4px solid var(--primary); }
+        .profile-panel { align-items: center; gap: 12px; }
         .avatar-wrapper { position: relative; flex-shrink: 0; }
         .avatar { width: 48px; height: 48px; border-radius: 10px; object-fit: cover; border: 2px solid var(--card-border); background: #fff; }
         .status-dot { position: absolute; bottom: -2px; right: -2px; width: 12px; height: 12px; background-color: var(--success); border: 2px solid var(--card-bg); border-radius: 50%; }
         .user-info { display: flex; flex-direction: column; justify-content: center; }
         .user-info h1 { font-size: 1rem; font-weight: 800; margin: 0 0 2px 0; }
         .user-info p { color: var(--text-sec); margin: 0 0 4px 0; font-size: 0.65rem; font-weight: 500; }
-        .badge { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; padding: 2px 6px; border-radius: 4px; display: inline-block; width: fit-content; }
+        .badge { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; padding: 2px 6px; border-radius: 4px; display: inline-block; width: fit-content; background: var(--input-bg); border: 1px solid var(--card-border); color: var(--text-main); }
 
         /* 70% Right: Purchases Panel */
-        .purchases-panel { border-top: 3px solid var(--accent); align-items: stretch; gap: 15px; }
+        .purchases-panel { align-items: stretch; gap: 15px; }
         .purchases-left { flex: 1; display: flex; flex-direction: column; justify-content: center; border-right: 1px dashed var(--card-border); padding-right: 15px; }
         .purchases-right { flex: 1; display: flex; flex-direction: column; justify-content: center; }
-        .mini-section-title { font-size: 0.65rem; font-weight: 800; color: var(--text-sec); text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.5px; }
+        .mini-section-title { font-size: 0.65rem; font-weight: 800; color: var(--text-sec); text-transform: uppercase; margin-bottom: 8px; letter-spacing: 0.5px; display: flex; align-items: center;}
 
-        .active-plan-box { background: var(--input-bg); border: 1px solid var(--card-border); border-radius: var(--radius-sm); padding: 8px 10px; }
-        [data-theme="dark"] .active-plan-box { background: rgba(0,0,0,0.2); }
+        /* PREMIUM ACTIVE PLAN BOX (EYE-CATCHING TICKET) */
+        .active-plan-box {
+            background: linear-gradient(135deg, var(--card-bg) 0%, rgba(16,185,129,0.05) 100%);
+            border: 1px solid rgba(16,185,129,0.3);
+            border-radius: var(--radius-md);
+            padding: 12px 15px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            margin-bottom: 8px;
+        }
+        [data-theme="dark"] .active-plan-box { background: linear-gradient(135deg, rgba(0,0,0,0.2) 0%, rgba(16,185,129,0.1) 100%); }
+        .active-plan-box::before { content: ''; position: absolute; left: 0; top: 0; height: 100%; width: 4px; background: var(--success); }
+        .active-plan-box .bg-icon { position: absolute; right: -10px; bottom: -15px; font-size: 4.5rem; opacity: 0.05; color: var(--success); }
+        .plan-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; position: relative; z-index: 2; }
+        .plan-name { font-size: 0.8rem; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 6px; }
+        .plan-details { font-size: 0.65rem; color: var(--text-sec); line-height: 1.5; font-weight: 500; position: relative; z-index: 2; }
+        .plan-details strong { color: var(--text-main); font-weight: 700; }
 
         .compact-upgrade-item { display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.4); border: 1px solid var(--card-border); padding: 6px 10px; border-radius: var(--radius-sm); margin-bottom: 6px; }
         .compact-upgrade-item:last-child { margin-bottom: 0; }
         [data-theme="dark"] .compact-upgrade-item { background: rgba(0,0,0,0.15); }
         
-        .compact-btn-buy { background: linear-gradient(135deg, #f59e0b, #ea580c); color: #fff; font-size: 0.65rem; font-weight: 800; padding: 4px 10px; border-radius: 12px; text-decoration: none; border: none; text-transform: uppercase; transition: 0.2s ease; box-shadow: 0 2px 8px rgba(234, 88, 12, 0.3); }
+        .compact-btn-buy { background: linear-gradient(135deg, #f59e0b, #ea580c); color: #fff; font-size: 0.65rem; font-weight: 800; padding: 4px 10px; border-radius: 12px; cursor: pointer; text-decoration: none; border: none; text-transform: uppercase; transition: 0.2s ease; box-shadow: 0 2px 8px rgba(234, 88, 12, 0.3); }
         .compact-btn-buy:hover { opacity: 0.9; }
 
         /* =========================================
-           STATS DENSITY GRID (5 Cards)
+           ADVANCED STATS DENSITY GRID (Anchor Header + 5 Cards) - COMPACT
            ========================================= */
-        .stats-density-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 15px; }
-        .stat-dense-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-md); padding: 10px 15px; display: flex; flex-direction: column; justify-content: center; box-shadow: var(--glass-shadow); }
-        .stat-dense-label { font-size: 0.65rem; color: var(--text-sec); font-weight: 700; text-transform: uppercase; margin-bottom: 2px; }
-        .stat-dense-val { font-size: 1.25rem; font-weight: 900; color: var(--text-main); display: flex; align-items: center; justify-content: space-between; }
-        .stat-dense-val i { font-size: 0.9rem; opacity: 0.4; }
+        .stats-density-grid { 
+            display: grid; 
+            grid-template-columns: 1.3fr repeat(5, 1fr); 
+            gap: 8px; 
+            margin-bottom: 10px; 
+        }
+
+        .stat-group-card {
+            border-radius: var(--radius-md); 
+            padding: 8px 12px; 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+            position: relative; 
+            overflow: hidden;
+            box-shadow: var(--glass-shadow);
+        }
+        .stat-group-card.mock-bg { 
+            background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%); 
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2); 
+        }
+        .stat-group-card.topic-bg { 
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); 
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2); 
+        }
+        .stat-group-bg-icon { position: absolute; right: -10px; bottom: -10px; font-size: 4rem; opacity: 0.1; color: white; z-index: 1; }
+        .stat-group-icon { font-size: 1.6rem; color: white; z-index: 2; opacity: 0.9; flex-shrink: 0;}
+        .stat-group-text { display: flex; flex-direction: column; z-index: 2; }
+        .stat-group-text h4 { color: white; margin: 0; font-size: 0.8rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.1;}
+        .stat-group-text p { color: rgba(255,255,255,0.8); margin: 0; font-size: 0.55rem; font-weight: 600; text-transform: uppercase; margin-top: 2px;}
+
+        .stat-dense-card { 
+            background: var(--card-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); 
+            border: 1px solid var(--card-border); border-radius: var(--radius-md); 
+            padding: 8px 10px; display: flex; flex-direction: column; justify-content: center; 
+            box-shadow: var(--glass-shadow); 
+        }
+        
+        .stat-dense-label { font-size: 0.55rem; color: var(--text-sec); font-weight: 700; text-transform: uppercase; margin-bottom: 1px; white-space: nowrap; letter-spacing: 0.2px; }
+        .stat-dense-val { font-size: 1rem; font-weight: 900; color: var(--text-main); display: flex; align-items: center; justify-content: space-between; line-height: 1.1; }
+        .stat-dense-val i { font-size: 0.7rem; opacity: 0.4; }
+
+        .cw-text { font-size: 0.9rem; display: flex; align-items: center; }
+        .cw-slash { font-size: 0.75rem; color: var(--card-border); margin: 0 3px; font-weight: 400; }
 
         /* =========================================
-           BOTTOM LAYOUT: 2 COLUMNS (50/50 Split)
+           BOTTOM LAYOUT: 2 COLUMNS (Mastery vs Practice)
            ========================================= */
         .dashboard-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
 
-        .section-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--card-border); padding-bottom: 4px; margin-bottom: 8px; }
+        .section-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--card-border); padding-bottom: 6px; margin-bottom: 10px; }
         .section-title { font-size: 0.85rem; font-weight: 800; margin: 0; display: flex; align-items: center; gap: 6px; color: var(--text-main); }
-        .section-title span { font-size: 0.6rem; background: var(--input-bg); padding: 2px 6px; border-radius: 4px; color: var(--text-sec); }
+        .section-title span { font-size: 0.6rem; background: var(--input-bg); padding: 2px 6px; border-radius: 4px; color: var(--text-sec); border: 1px solid var(--card-border); }
 
-        /* TABBED UI FOR HISTORY */
-        .history-tabs { display: flex; gap: 5px; background: var(--input-bg); padding: 4px; border-radius: 8px; border: 1px solid var(--card-border); width: fit-content; }
-        .h-tab { background: transparent; border: none; padding: 4px 12px; font-size: 0.7rem; font-weight: 700; color: var(--text-sec); border-radius: 4px; cursor: pointer; transition: 0.2s; }
-        .h-tab.active { background: var(--card-bg); color: var(--primary); box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-        [data-theme="dark"] .h-tab.active { background: var(--primary); color: #fff; }
+        .dense-list { display: flex; flex-direction: column; gap: 6px; } 
 
-        .dense-list { display: flex; flex-direction: column; gap: 5px; } 
-
-        /* ADVANCED HISTORY CARDS - VERTICALLY COMPACT */
-        .history-item {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 6px 10px; 
-            border-radius: var(--radius-sm);
-            background: rgba(255,255,255,0.3); border: 1px solid var(--card-border);
-            border-left: 3px solid var(--primary); transition: background 0.2s;
-        }
-        [data-theme="dark"] .history-item { background: rgba(0,0,0,0.15); }
-        .history-item.mock-type { border-left-color: var(--danger); background: linear-gradient(90deg, rgba(239,68,68,0.05), transparent); }
-        .history-item:hover { background: var(--input-bg); }
-        
-        .history-left { display: flex; flex-direction: column; gap: 0px; } 
-        .h-title-row { display: flex; align-items: center; gap: 5px; margin-bottom: 2px;}
-        .test-type-badge { font-size: 0.55rem; text-transform: uppercase; background: var(--primary); color: white; padding: 1px 4px; border-radius: 3px; font-weight: 800; letter-spacing: 0.5px;}
-        .h-title { font-weight: 800; font-size: 0.8rem; color: var(--text-main); }
-        .h-date { font-size: 0.65rem; color: var(--text-sec); font-weight: 600; display: flex; align-items: center; gap: 4px;}
-        
-        .history-right { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; } 
-        .h-score { font-size: 0.85rem; font-weight: 900; color: var(--text-main); background: var(--card-bg); padding: 1px 6px; border-radius: 4px; border: 1px solid var(--card-border); box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
-        
-        .h-stats-row { display: flex; align-items: center; gap: 4px; }
-        .h-badge { font-size: 0.6rem; padding: 2px 5px; border-radius: 4px; font-weight: 700; background: var(--input-bg); border: 1px solid var(--card-border); color: var(--text-sec); }
-        .h-badge.acc-good { color: #16a34a; background: rgba(34, 197, 94, 0.1); border-color: rgba(34, 197, 94, 0.2); }
-        .h-badge.acc-avg { color: #f59e0b; background: rgba(245, 158, 11, 0.1); border-color: rgba(245, 158, 11, 0.2); }
-        .h-badge.acc-bad { color: #dc2626; background: rgba(239, 68, 68, 0.1); border-color: rgba(239, 68, 68, 0.2); }
-
-        /* --- NEW: SUBJECT MASTERY BARS --- */
+        /* SUBJECT & MOCK MASTERY BARS */
         .subject-perf-item { margin-bottom: 10px; }
         .subject-perf-item:last-child { margin-bottom: 0; }
         .perf-labels { display: flex; justify-content: space-between; font-size: 0.75rem; font-weight: 700; color: var(--text-main); margin-bottom: 4px; }
-        .perf-track { width: 100%; height: 8px; background: rgba(0,0,0,0.05); border-radius: 4px; overflow: hidden; border: 1px solid var(--card-border); }
+        .perf-track { width: 100%; height: 6px; background: rgba(0,0,0,0.05); border-radius: 4px; overflow: hidden; border: 1px solid var(--card-border); }
         [data-theme="dark"] .perf-track { background: rgba(255,255,255,0.05); }
         .perf-fill { height: 100%; border-radius: 4px; transition: width 1s ease-out; }
 
-        /* Mocks List (Quick Actions) - VERTICALLY COMPACT */
-        .mock-item { display: flex; align-items: center; justify-content: space-between; padding: 6px 10px; border-radius: var(--radius-sm); border: 1px solid var(--card-border); background: var(--card-bg); margin-bottom: 6px; transition: 0.2s;}
-        .mock-item:hover { border-color: var(--primary); }
+        /* --- QUICK PRACTICE MOCKS (2 COLUMN GRID) --- */
+        .quick-practice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .mock-item { display: flex; align-items: center; justify-content: space-between; padding: 8px 10px; border-radius: var(--radius-sm); border: 1px solid var(--card-border); background: rgba(255,255,255,0.4); transition: 0.2s;}
+        [data-theme="dark"] .mock-item { background: rgba(0,0,0,0.15); }
+        .mock-item:hover { background: var(--input-bg); border-color: var(--primary); }
         .mock-info { display: flex; align-items: center; gap: 8px; }
         .mock-icon { width: 28px; height: 28px; border-radius: 6px; background: var(--primary-light); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 0.8rem; }
         .mock-details { display: flex; flex-direction: column; }
-        .mock-title { font-size: 0.8rem; font-weight: 700; color: var(--text-main); }
-        .mock-meta { font-size: 0.65rem; font-weight: 600; color: var(--text-sec); margin-top: 1px;}
+        .mock-title { font-size: 0.75rem; font-weight: 700; color: var(--text-main); }
+        .mock-meta { font-size: 0.6rem; font-weight: 600; color: var(--text-sec); margin-top: 1px;}
         .mock-play { background: var(--text-main); color: white; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; text-decoration: none; transition: 0.2s; box-shadow: 0 2px 5px rgba(0,0,0,0.1);}
         .mock-play:hover { transform: scale(1.1); background: var(--primary); }
         [data-theme="dark"] .mock-play { background: var(--primary); }
 
-        /* Auth Warning - Compact */
+        /* Auth Warning */
         .auth-warning { text-align: center; padding: 40px 20px; }
         .auth-warning h2 { font-size: 1.1rem; margin-bottom: 8px; }
         .auth-warning p { font-size: 0.8rem; margin-bottom: 20px; color: var(--text-sec); max-width: 400px; margin-inline: auto; }
         .modern-google-btn { background: #fff; color: #334155; border: 1px solid #cbd5e1; padding: 8px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); font-family: 'Inter', sans-serif; }
 
+        /* Quick Pay Modal Overlay */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6); z-index: 9999; display: none;
+            align-items: center; justify-content: center; backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+        }
+        .modal-close-btn {
+            position: absolute; top: 12px; right: 15px; background: transparent; border: none; 
+            font-size: 1.2rem; cursor: pointer; color: var(--text-sec); transition: color 0.2s;
+        }
+        .modal-close-btn:hover { color: var(--text-main); }
+
         @media (max-width: 1024px) {
             .stats-density-grid { grid-template-columns: repeat(3, 1fr); }
+            .stat-group-card { grid-column: span 3; }
         }
         @media (max-width: 850px) {
             .top-dashboard-grid { grid-template-columns: 1fr; }
-            .purchases-panel { border-top: none; border-left: 4px solid var(--accent); }
             .dashboard-cols { grid-template-columns: 1fr; }
         }
         @media (max-width: 600px) {
-            .stats-density-grid { grid-template-columns: repeat(2, 1fr); }
+            .stats-density-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+            .stat-group-card { grid-column: span 2; padding: 12px; }
+            
             .purchases-panel { flex-direction: column; gap: 10px; }
             .purchases-left { border-right: none; border-bottom: 1px dashed var(--card-border); padding-right: 0; padding-bottom: 10px; }
-            
-            /* Compact History on Mobile */
-            .history-item { flex-direction: column; align-items: flex-start; gap: 4px; padding: 8px 10px; } 
-            .history-right { align-items: flex-start; flex-direction: row; width: 100%; justify-content: space-between; margin-top: 2px;}
+            .quick-practice-grid { grid-template-columns: 1fr; gap: 8px; } 
         }
     </style>
     <script>
@@ -263,7 +299,7 @@
     <div id="logged-out-state" class="glass-panel auth-warning" style="display: none;">
         <i class="fa-solid fa-lock" style="font-size: 1.8rem; color: var(--text-sec); margin-bottom: 10px;"></i>
         <h2>Workspace Locked</h2>
-        <p>Login securely with Google to access your past history, active plans, and future mock tests.</p>
+        <p>Login securely with Google to access your active plans and mastery analytics.</p>
         <button class="modern-google-btn" onclick="if(window.loginWithGoogle) window.loginWithGoogle()">
             <svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
@@ -289,14 +325,16 @@
                 <div class="user-info">
                     <h1 id="user-name">Student</h1>
                     <p id="user-email">student@email.com</p>
-                    <span class="badge" style="background:var(--input-bg); border:1px solid var(--card-border); color:var(--text-main);">UID: <span id="user-short-id">...</span></span>
+                    <span class="badge">UID: <span id="user-short-id">...</span></span>
                 </div>
             </div>
 
             <div class="glass-panel compact-top-card purchases-panel">
                 
                 <div class="purchases-left">
-                    <div class="mini-section-title"><i class="fa-solid fa-id-card-clip"></i> My Active Plan</div>
+                    <div class="mini-section-title">
+                        <i class="fa-solid fa-id-card-clip"></i> My Active Plan
+                    </div>
                     <div id="top-plan-container">
                         <!-- Populated via JS -->
                     </div>
@@ -304,19 +342,21 @@
 
                 <div class="purchases-right">
                     <div class="mini-section-title"><i class="fa-solid fa-store"></i> Recommended Upgrades</div>
+                    
                     <div class="compact-upgrade-item">
                         <div>
                             <div style="font-size: 0.75rem; font-weight: 800; color: var(--text-main);"><i class="fa-solid fa-bolt" style="color:var(--accent);"></i> MCQ Pro Pass</div>
                             <div style="font-size: 0.6rem; color: var(--text-sec);">Unlock 3000+ Premium MCQs</div>
                         </div>
-                        <a href="../user/upgrade.html" class="compact-btn-buy">₹39/mo</a>
+                        <button onclick="openQuickPay('mcq_pro_pass', 39, 'MCQ Pro Pass')" class="compact-btn-buy">₹39/mo</button>
                     </div>
+                    
                     <div class="compact-upgrade-item">
                         <div>
                             <div style="font-size: 0.75rem; font-weight: 800; color: var(--text-main);"><i class="fa-solid fa-crown" style="color:var(--warning);"></i> Mock Master Pass</div>
                             <div style="font-size: 0.6rem; color: var(--text-sec);">Unlock All Full-Length Mocks</div>
                         </div>
-                        <a href="../user/upgrade.html" class="compact-btn-buy" style="background: linear-gradient(135deg, #10b981, #059669);">₹99/mo</a>
+                        <button onclick="openQuickPay('mock_master_pass', 149, 'Mock Master Pass')" class="compact-btn-buy" style="background: linear-gradient(135deg, #10b981, #059669);">₹149/mo</button>
                     </div>
                 </div>
 
@@ -324,68 +364,92 @@
             
         </div>
 
-        <!-- High Density Stats (5 Cards) -->
+        <!-- High Density Stats: Row 1 (MOCKS) -->
         <div class="stats-density-grid">
-            <div class="stat-dense-card">
-                <span class="stat-dense-label" title="Unique tests attempted">Total Tests</span>
-                <div class="stat-dense-val"><span id="stat-total-tests">0</span> <i class="fa-solid fa-file-signature" style="color:var(--primary);"></i></div>
+            <div class="stat-group-card mock-bg">
+                <i class="fa-solid fa-file-signature stat-group-bg-icon"></i>
+                <div class="stat-group-icon"><i class="fa-solid fa-file-signature"></i></div>
+                <div class="stat-group-text">
+                    <h4>Full Mocks</h4>
+                    <p>Performance</p>
+                </div>
             </div>
             <div class="stat-dense-card">
-                <span class="stat-dense-label" title="Total effort across all attempts">Questions Solved</span>
-                <div class="stat-dense-val"><span id="stat-total-questions">0</span> <i class="fa-solid fa-bolt" style="color:var(--accent);"></i></div>
+                <span class="stat-dense-label">Mocks Taken</span>
+                <div class="stat-dense-val"><span id="stat-mock-count">0</span> <i class="fa-solid fa-flag-checkered" style="color:var(--text-sec); opacity:0.3;"></i></div>
             </div>
             <div class="stat-dense-card">
-                <span class="stat-dense-label" title="Accuracy from latest attempts">Overall Acc.</span>
-                <div class="stat-dense-val"><span id="stat-avg-score">0%</span> <i class="fa-solid fa-bullseye" style="color:var(--success);"></i></div>
+                <span class="stat-dense-label">Qs Solved</span>
+                <div class="stat-dense-val"><span id="stat-mock-qs">0</span> <i class="fa-solid fa-list-ol" style="color:var(--text-sec); opacity:0.3;"></i></div>
             </div>
             <div class="stat-dense-card">
-                <span class="stat-dense-label">Active Passes</span>
-                <div class="stat-dense-val"><span id="stat-passes">0</span> <i class="fa-solid fa-ticket" style="color:var(--warning);"></i></div>
+                <span class="stat-dense-label">Right / Wrong</span>
+                <div class="stat-dense-val"><span id="stat-mock-cw" class="cw-text"><span style="color:var(--success);">0</span> <span class="cw-slash">/</span> <span style="color:var(--danger);">0</span></span> <i class="fa-solid fa-check-double" style="color:var(--text-main); opacity:0.2;"></i></div>
             </div>
             <div class="stat-dense-card">
-                <span class="stat-dense-label">Study Streak</span>
-                <div class="stat-dense-val"><span id="stat-streak">0</span> <i class="fa-solid fa-fire" style="color:var(--danger);"></i></div>
+                <span class="stat-dense-label">Accuracy</span>
+                <div class="stat-dense-val"><span id="stat-mock-acc" style="color:var(--primary);">0%</span> <i class="fa-solid fa-bullseye" style="color:var(--primary); opacity:0.8;"></i></div>
+            </div>
+            <div class="stat-dense-card">
+                <span class="stat-dense-label">Avg Time/Q</span>
+                <div class="stat-dense-val"><span id="stat-mock-time" style="color:var(--warning);">0s</span> <i class="fa-regular fa-clock" style="color:var(--warning); opacity:0.8;"></i></div>
             </div>
         </div>
 
-        <!-- MAIN GRID: 2 COLUMNS (Past History vs Analytics/Quick Actions) -->
+        <!-- High Density Stats: Row 2 (TOPICS) -->
+        <div class="stats-density-grid" style="margin-bottom: 18px;">
+            <div class="stat-group-card topic-bg">
+                <i class="fa-solid fa-layer-group stat-group-bg-icon"></i>
+                <div class="stat-group-icon"><i class="fa-solid fa-layer-group"></i></div>
+                <div class="stat-group-text">
+                    <h4>Topic MCQs</h4>
+                    <p>Performance</p>
+                </div>
+            </div>
+            <div class="stat-dense-card">
+                <span class="stat-dense-label">Topics Taken</span>
+                <div class="stat-dense-val"><span id="stat-topic-count">0</span> <i class="fa-solid fa-flag-checkered" style="color:var(--text-sec); opacity:0.3;"></i></div>
+            </div>
+            <div class="stat-dense-card">
+                <span class="stat-dense-label">Qs Solved</span>
+                <div class="stat-dense-val"><span id="stat-topic-qs">0</span> <i class="fa-solid fa-list-ol" style="color:var(--text-sec); opacity:0.3;"></i></div>
+            </div>
+            <div class="stat-dense-card">
+                <span class="stat-dense-label">Right / Wrong</span>
+                <div class="stat-dense-val"><span id="stat-topic-cw" class="cw-text"><span style="color:var(--success);">0</span> <span class="cw-slash">/</span> <span style="color:var(--danger);">0</span></span> <i class="fa-solid fa-check-double" style="color:var(--text-main); opacity:0.2;"></i></div>
+            </div>
+            <div class="stat-dense-card">
+                <span class="stat-dense-label">Accuracy</span>
+                <div class="stat-dense-val"><span id="stat-topic-acc" style="color:var(--primary);">0%</span> <i class="fa-solid fa-bullseye" style="color:var(--primary); opacity:0.8;"></i></div>
+            </div>
+            <div class="stat-dense-card">
+                <span class="stat-dense-label">Avg Time/Q</span>
+                <div class="stat-dense-val"><span id="stat-topic-time" style="color:var(--warning);">0s</span> <i class="fa-regular fa-clock" style="color:var(--warning); opacity:0.8;"></i></div>
+            </div>
+        </div>
+
+        <!-- MAIN GRID: 2 COLUMNS (Mastery vs Practice) -->
         <div class="dashboard-cols">
             
-            <!-- COL 1 (PAST): Detailed Learning History with Tabs -->
-            <div class="glass-panel" style="padding: 15px;">
-                <div class="section-header" style="flex-direction: column; align-items: flex-start; gap: 12px; border-bottom: none; padding-bottom: 0;">
-                    <div style="display: flex; justify-content: space-between; width: 100%; align-items: center;">
-                        <h2 class="section-title"><i class="fa-solid fa-clock-rotate-left"></i> My Test Reports</h2>
-                    </div>
-                    <!-- TABS IMPLEMENTED HERE -->
-                    <div class="history-tabs" style="margin-bottom: 10px;">
-                        <button class="h-tab active" id="tab-btn-mock" onclick="window.switchHistoryTab('mock')">Mock Exams</button>
-                        <button class="h-tab" id="tab-btn-topic" onclick="window.switchHistoryTab('topic')">Topic Quizzes</button>
-                    </div>
-                </div>
-                
-                <!-- Separate Lists -->
-                <div class="dense-list" id="history-list-mock">
-                    <div style="text-align: center; padding: 20px; color: var(--text-sec); font-size: 0.75rem;">
-                        <i class="fa-solid fa-spinner fa-spin" style="margin-bottom: 8px; font-size: 1.2rem;"></i><br>
-                        Fetching mock reports...
-                    </div>
-                </div>
-                <div class="dense-list" id="history-list-topic" style="display: none;">
-                    <div style="text-align: center; padding: 20px; color: var(--text-sec); font-size: 0.75rem;">
-                        <i class="fa-solid fa-spinner fa-spin" style="margin-bottom: 8px; font-size: 1.2rem;"></i><br>
-                        Fetching topic reports...
-                    </div>
-                </div>
-            </div>
-
-            <!-- COL 2 (ANALYTICS & PRESENT ACTION) -->
+            <!-- COL 1 (ANALYTICS: Mocks & Topics Mastery) -->
             <div style="display: flex; flex-direction: column; gap: 15px;">
                 
+                <!-- Mock Mastery Analytics -->
+                <div class="glass-panel" style="padding: 15px; margin-bottom: 0;">
+                    <div class="section-header">
+                        <h2 class="section-title"><i class="fa-solid fa-medal"></i> Mock Mastery <span>Latest 5</span></h2>
+                    </div>
+                    <div class="dense-list" id="mock-perf-list">
+                        <div style="text-align: center; padding: 15px; color: var(--text-sec); font-size: 0.75rem;">
+                            Analyzing your performance data...
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Subject Mastery Analytics -->
                 <div class="glass-panel" style="padding: 15px; margin-bottom: 0;">
                     <div class="section-header">
-                        <h2 class="section-title"><i class="fa-solid fa-chart-column"></i> Subject Mastery <span>Top 5</span></h2>
+                        <h2 class="section-title"><i class="fa-solid fa-chart-column"></i> Topic Mastery <span>Top 5</span></h2>
                     </div>
                     <div class="dense-list" id="subject-perf-list">
                         <div style="text-align: center; padding: 15px; color: var(--text-sec); font-size: 0.75rem;">
@@ -394,21 +458,36 @@
                     </div>
                 </div>
 
-                <!-- Quick Access Mocks -->
-                <div class="glass-panel" style="padding: 15px; margin-bottom: 0;">
+            </div>
+
+            <!-- COL 2 (QUICK ACTIONS) -->
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+                
+                <!-- Quick Access Mocks (2-Column Grid) -->
+                <div class="glass-panel" style="padding: 15px; margin-bottom: 0; height: 100%;">
                     <div class="section-header">
                         <h2 class="section-title"><i class="fa-solid fa-play"></i> Quick Practice <span>Free</span></h2>
                     </div>
-                    <div class="dense-list">
+                    <div class="quick-practice-grid">
                         <div class="mock-item">
                             <div class="mock-info">
                                 <div class="mock-icon" style="color:var(--danger); background:rgba(239,68,68,0.1);"><i class="fa-solid fa-file-signature"></i></div>
                                 <div class="mock-details">
-                                    <span class="mock-title">Patwari Mock Test 1</span>
+                                    <span class="mock-title">Patwari Mock 1</span>
                                     <span class="mock-meta">Full Mock • 120 Mins</span>
                                 </div>
                             </div>
-                            <a href="../mock-engine/index.html?exam=hp-patwari-mock&testId=patwari-mock-test-1" class="mock-play"><i class="fa-solid fa-play"></i></a>
+                            <a href="../mock-engine/index.html?exam=hp-patwari-mock&testId=hpgkdata.patwari-mock-test-1" class="mock-play"><i class="fa-solid fa-play"></i></a>
+                        </div>
+                        <div class="mock-item">
+                            <div class="mock-info">
+                                <div class="mock-icon" style="color:var(--warning); background:rgba(245,158,11,0.1);"><i class="fa-solid fa-clock-rotate-left"></i></div>
+                                <div class="mock-details">
+                                    <span class="mock-title">Patwari PYP (2019)</span>
+                                    <span class="mock-meta">Official Paper • 90 Mins</span>
+                                </div>
+                            </div>
+                            <a href="../mock-engine/index.html?exam=hp-patwari-mock&testId=hpgkdata.patwari-previous-year-paper-2019" class="mock-play"><i class="fa-solid fa-play"></i></a>
                         </div>
                         <div class="mock-item">
                             <div class="mock-info">
@@ -418,17 +497,37 @@
                                     <span class="mock-meta">Practice Quiz • Topic</span>
                                 </div>
                             </div>
-                            <a href="../agriculture-quiz/" class="mock-play"><i class="fa-solid fa-play"></i></a>
+                            <a href="../agriculture-quiz/index.html" class="mock-play"><i class="fa-solid fa-play"></i></a>
                         </div>
                         <div class="mock-item">
                             <div class="mock-info">
-                                <div class="mock-icon" style="color:var(--primary);"><i class="fa-solid fa-map-location-dot"></i></div>
+                                <div class="mock-icon" style="color:var(--primary); background:rgba(37,99,235,0.1);"><i class="fa-solid fa-map-location-dot"></i></div>
                                 <div class="mock-details">
                                     <span class="mock-title">District Mastery</span>
                                     <span class="mock-meta">Practice Quiz • Topic</span>
                                 </div>
                             </div>
-                            <a href="../himachal-pradesh-gk/district/" class="mock-play"><i class="fa-solid fa-play"></i></a>
+                            <a href="../himachal-pradesh-gk/district/index.html" class="mock-play"><i class="fa-solid fa-play"></i></a>
+                        </div>
+                        <div class="mock-item">
+                            <div class="mock-info">
+                                <div class="mock-icon" style="color:#8b5cf6; background:rgba(139,92,246,0.1);"><i class="fa-solid fa-landmark"></i></div>
+                                <div class="mock-details">
+                                    <span class="mock-title">History of HP</span>
+                                    <span class="mock-meta">Practice Quiz • Topic</span>
+                                </div>
+                            </div>
+                            <a href="../himachal-pradesh-gk/history/index.html" class="mock-play"><i class="fa-solid fa-play"></i></a>
+                        </div>
+                        <div class="mock-item">
+                            <div class="mock-info">
+                                <div class="mock-icon" style="color:#0ea5e9; background:rgba(14,165,233,0.1);"><i class="fa-solid fa-water"></i></div>
+                                <div class="mock-details">
+                                    <span class="mock-title">Rivers of HP</span>
+                                    <span class="mock-meta">Practice Quiz • Topic</span>
+                                </div>
+                            </div>
+                            <a href="../himachal-pradesh-gk/rivers/index.html" class="mock-play"><i class="fa-solid fa-play"></i></a>
                         </div>
                     </div>
                 </div>
@@ -440,17 +539,65 @@
     </div>
 </main>
 
+<!-- QUICK PAY MODAL -->
+<div id="quickPayModal" class="modal-overlay">
+    <div class="glass-panel" style="width: 90%; max-width: 320px; padding: 30px 20px; text-align: center; position: relative; border-radius: var(--radius-lg); margin: auto;">
+        <button onclick="closeQuickPay()" class="modal-close-btn"><i class="fa-solid fa-xmark"></i></button>
+        <div style="font-size: 2.5rem; color: var(--primary); margin-bottom: 10px;"><i class="fa-solid fa-shield-halved"></i></div>
+        <h3 id="qp-title" style="margin: 0 0 5px 0; font-size: 1.15rem; font-weight: 800; color: var(--text-main);">Plan Name</h3>
+        <div id="qp-price" style="font-size: 2.2rem; font-weight: 900; color: var(--text-main); margin-bottom: 20px; letter-spacing: -1px;">₹0</div>
+        
+        <button id="qp-pay-btn" style="width: 100%; background: var(--primary); color: white; border: none; padding: 12px; border-radius: 8px; font-weight: 800; font-size: 0.95rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 15px; box-shadow: 0 4px 12px rgba(37,99,235,0.3); transition: 0.2s;" onclick="processQuickPayment()">
+            Pay Securely <i class="fa-solid fa-arrow-right"></i>
+        </button>
+        
+        <a href="../user/upgrade.html" style="font-size: 0.75rem; color: var(--text-sec); text-decoration: underline; font-weight: 600;">View full features & comparison</a>
+    </div>
+</div>
+
 <div id="site-footer"></div>
 
 <!-- Load Scripts -->
 <script src="../js/core.js"></script>
 <script src="../js/layout.js"></script>
 
+<!-- Inline Scripts for Quick Pay Logic -->
+<script>
+    window.currentPayPlan = '';
+    window.currentPayPrice = 0;
+
+    window.openQuickPay = function(planId, price, planName) {
+        window.currentPayPlan = planId;
+        window.currentPayPrice = price;
+        document.getElementById('qp-title').innerText = planName;
+        document.getElementById('qp-price').innerText = '₹' + price;
+        document.getElementById('quickPayModal').style.display = 'flex';
+    };
+
+    window.closeQuickPay = function() {
+        document.getElementById('quickPayModal').style.display = 'none';
+    };
+
+    window.processQuickPayment = function() {
+        alert('Initiating Checkout for ₹' + window.currentPayPrice + '...\n\n(Once payment is successful, your account will be upgraded instantly and you will remain on this dashboard to see your new unlocked features!)');
+        window.closeQuickPay();
+        // In production, trigger Razorpay window here.
+    };
+
+    // Close modal if clicked outside
+    window.addEventListener('click', function(e) {
+        const modal = document.getElementById('quickPayModal');
+        if (e.target === modal) {
+            window.closeQuickPay();
+        }
+    });
+</script>
+
 <!-- Firebase Firestore Integration for fetching User History & Analytics -->
 <script type="module">
     import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
     import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
-    import { getFirestore, collection, getDocs, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
+    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
 
     const firebaseConfig = {
         apiKey: "AIzaSyDfz5Y4oVQHl-crnATIv5dMWsw7edSKddQ",
@@ -470,15 +617,6 @@
     const elLoggedIn = document.getElementById('logged-in-state');
     const topPlanContainer = document.getElementById('top-plan-container');
 
-    // Make tab switcher global so inline onclick can find it
-    window.switchHistoryTab = function(tabName) {
-        document.querySelectorAll('.h-tab').forEach(btn => btn.classList.remove('active'));
-        document.getElementById('tab-btn-' + tabName).classList.add('active');
-        
-        document.getElementById('history-list-mock').style.display = tabName === 'mock' ? 'flex' : 'none';
-        document.getElementById('history-list-topic').style.display = tabName === 'topic' ? 'flex' : 'none';
-    };
-
     onAuthStateChanged(auth, async (user) => {
         if (user) {
             document.getElementById('user-name').innerText = user.displayName || 'Student';
@@ -490,19 +628,20 @@
             let activePasses = 0;
             if(window.HPGK_User && window.HPGK_User.passes && Object.keys(window.HPGK_User.passes).length > 0) {
                 activePasses = Object.keys(window.HPGK_User.passes).length;
-                document.getElementById('stat-passes').innerText = activePasses;
 
                 let html = '';
                 for(const [passId, passData] of Object.entries(window.HPGK_User.passes)) {
                     html += `
                     <div class="active-plan-box">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
-                            <span style="font-size: 0.75rem; font-weight: 800; color: var(--text-main);"><i class="fa-solid fa-check-circle" style="color:var(--success);"></i> ${passData.name || 'Premium Pass'}</span>
-                            <span class="badge" style="background: rgba(16,185,129,0.1); color: var(--success); border: 1px solid rgba(16,185,129,0.2);">Active</span>
+                        <i class="fa-solid fa-gem bg-icon"></i>
+                        <div class="plan-header">
+                            <span class="plan-name"><i class="fa-solid fa-crown"></i> ${passData.name || 'Premium Pass'}</span>
+                            <span class="badge" style="background: rgba(16,185,129,0.1); color: var(--success); border: 1px solid rgba(16,185,129,0.2);"><i class="fa-solid fa-circle-check"></i> Active</span>
                         </div>
-                        <div style="font-size: 0.6rem; color: var(--text-sec); line-height: 1.4;">
-                            Purchased: ${passData.purchaseDate || 'N/A'} • Valid Till: ${passData.expiryDate || 'Lifetime'}<br>
-                            Includes: Premium MCQs & Features Unlocked.
+                        <div class="plan-details">
+                            Purchased: <strong>${passData.purchaseDate || 'N/A'}</strong><br>
+                            Valid Till: <strong>${passData.expiryDate || 'Lifetime'}</strong><br>
+                            <span style="color:var(--success); font-weight:700; margin-top:4px; display:inline-block;">Access Unlocked</span>
                         </div>
                     </div>`;
                 }
@@ -510,12 +649,14 @@
             } else {
                 topPlanContainer.innerHTML = `
                     <div class="active-plan-box">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
-                            <span style="font-size: 0.75rem; font-weight: 800; color: var(--text-main);">Free Explorer</span>
+                        <i class="fa-solid fa-user-astronaut bg-icon" style="color:var(--text-sec); opacity:0.03;"></i>
+                        <div class="plan-header">
+                            <span class="plan-name">Free Explorer</span>
                             <span class="badge" style="background: rgba(100,116,139,0.1); color: var(--text-sec); border: 1px solid rgba(100,116,139,0.2);">Basic</span>
                         </div>
-                        <div style="font-size: 0.6rem; color: var(--text-sec); line-height: 1.4;">
-                            Access limited free MCQs & history.<br>Valid Till: Lifetime
+                        <div class="plan-details">
+                            Valid Till: <strong>Lifetime</strong><br>
+                            Access limited free MCQs & history.
                         </div>
                     </div>
                 `;
@@ -552,51 +693,28 @@
                 'rivers of hp': 'Rivers of HP',
                 'hpgk rivers': 'Rivers of HP',
                 'geography': 'Geography of HP',
-                'geography of hp': 'Geography of HP',
-                'hpgk geography': 'Geography of HP',
                 'history': 'History of HP',
-                'history of hp': 'History of HP',
-                'hpgk history': 'History of HP',
                 'economy': 'Economy of HP',
-                'economy of hp': 'Economy of HP',
                 'polity': 'Polity of HP',
-                'polity of hp': 'Polity of HP',
                 'art culture': 'Art & Culture',
-                'art and culture': 'Art & Culture',
-                'art culture of hp': 'Art & Culture',
-                'hpgk art culture': 'Art & Culture',
-                'culture': 'Art & Culture',
                 'tourism': 'Tourism in HP',
-                'tourism in hp': 'Tourism in HP',
-                'hpgk tourism': 'Tourism in HP',
                 'agriculture': 'Agriculture',
-                'agriculture quiz': 'Agriculture',
-                'general agriculture': 'Agriculture',
                 'district': 'Districts of HP',
-                'districts': 'Districts of HP',
-                'district profiles of hp': 'Districts of HP',
-                'district profile': 'Districts of HP',
                 'environment': 'Environment of HP',
-                'environment of hp': 'Environment of HP',
                 'famous people': 'Famous People of HP',
                 'hp patwari mock': 'HP Patwari Mock',
-                'patwari mock': 'HP Patwari Mock',
-                'hp patwari exam': 'HP Patwari Mock',
-                'patwari exam': 'HP Patwari Mock',
-                'patwari': 'HP Patwari Mock',
-                'police exam': 'HP Police Mock',
-                'police': 'HP Police Mock'
+                'police exam': 'HP Police Mock'
             };
 
-            const practiceDays = new Set();
             const catStats = {}; 
             
-            // NEW: DEDUPLICATION MAPS (Store only the LATEST attempt per unique test)
+            // DEDUPLICATION MAPS (Store only the LATEST attempt per unique test)
             const latestMocks = {};
             const latestTopics = {};
 
-            // Calculate total effort (ALL attempts)
-            let totalQuestionsEffort = 0;
+            // Separate efforts
+            let mockTotalQuestionsEffort = 0;
+            let topicTotalQuestionsEffort = 0;
 
             records.forEach(data => {
                 const rawCat = data.category || 'Unknown Quiz';
@@ -604,7 +722,8 @@
                 data.cleanCatName = categoryMap[cleanString] || cleanString.replace(/\b\w/g, l => l.toUpperCase());
                 
                 if (data.testId) {
-                    let cleanTest = data.testId.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                    // Stripping the 'hpgkdata.' prefix for a cleaner display title
+                    let cleanTest = data.testId.replace('hpgkdata.', '').replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
                     data.displayTitle = `${data.cleanCatName} (${cleanTest})`;
                     data.isMock = true;
                 } else {
@@ -612,25 +731,34 @@
                     data.isMock = false;
                 }
 
+                // **SAFE FALLBACK FOR LEGACY DATA**
+                let parsedTotal = Number(data.total) || 0;
+                let parsedScore = Number(data.score) || 0;
+                let parsedCorrect = data.correct !== undefined ? Number(data.correct) : Math.max(0, Math.round(parsedScore));
+                let parsedWrong = data.wrong !== undefined ? Number(data.wrong) : Math.max(0, parsedTotal - parsedCorrect);
+                
+                data._safeTotal = parsedTotal;
+                data._safeCorrect = parsedCorrect;
+                data._safeWrong = parsedWrong;
+                data._safeTime = Number(data.timeTaken) || 0;
+
                 // Subject Analytics Aggregation (only topics)
                 if (!data.isMock) {
                     if (!catStats[data.cleanCatName]) catStats[data.cleanCatName] = { correct: 0, total: 0 };
-                    catStats[data.cleanCatName].correct += Number(data.score) || 0;
-                    catStats[data.cleanCatName].total += Number(data.total) || 0;
+                    catStats[data.cleanCatName].correct += parsedCorrect;
+                    catStats[data.cleanCatName].total += parsedTotal;
                 }
 
-                const dateOnly = new Date(data.timestamp).setHours(0,0,0,0);
-                practiceDays.add(dateOnly);
-                totalQuestionsEffort += (Number(data.total) || 0);
-
-                // DEDUPLICATION LOGIC: Only keep the most recent entry for a specific test
+                // DEDUPLICATION & EFFORT SPLIT LOGIC
                 if (data.isMock) {
+                    mockTotalQuestionsEffort += parsedTotal; 
                     if (!latestMocks[data.displayTitle] || latestMocks[data.displayTitle].timestamp < data.timestamp) {
-                        latestMocks[data.displayTitle] = data;
+                        latestMocks[data.displayTitle] = data; 
                     }
                 } else {
+                    topicTotalQuestionsEffort += parsedTotal; 
                     if (!latestTopics[data.displayTitle] || latestTopics[data.displayTitle].timestamp < data.timestamp) {
-                        latestTopics[data.displayTitle] = data;
+                        latestTopics[data.displayTitle] = data; 
                     }
                 }
             });
@@ -638,141 +766,139 @@
             // Convert map back to array and sort (newest first)
             const finalMocks = Object.values(latestMocks).sort((a,b) => b.timestamp - a.timestamp);
             const finalTopics = Object.values(latestTopics).sort((a,b) => b.timestamp - a.timestamp);
-            const finalRecords = [...finalMocks, ...finalTopics];
-
-            // Set default tab visibility based on data
-            if(finalMocks.length > 0) {
-                window.switchHistoryTab('mock');
-            } else if (finalTopics.length > 0) {
-                window.switchHistoryTab('topic');
-            } else {
-                window.switchHistoryTab('mock'); // fallback
-            }
 
             // =======================================================
-            // SMART TOP STATS LOGIC
+            // 10-CARD SMART STATS LOGIC (Symmetrical Mocks vs Topics)
             // =======================================================
-            // 1. Study Streak (Based on ALL raw activity)
-            document.getElementById('stat-streak').innerText = practiceDays.size;
-
-            // 2. Questions Solved (Based on ALL raw activity - tracking effort)
-            document.getElementById('stat-total-questions').innerText = totalQuestionsEffort;
-
-            if (finalRecords.length > 0) {
-                // 3. Total Tests (Based on Deduplicated UNIQUE tests only)
-                document.getElementById('stat-total-tests').innerText = finalRecords.length;
+            
+            // --- MOCKS CALCULATION ---
+            if (finalMocks.length > 0) {
+                document.getElementById('stat-mock-count').innerText = finalMocks.length;
+                let mockLatestCorrectQs = 0;
+                let mockLatestWrongQs = 0;
+                let mockTotalTimeSecs = 0;
                 
-                // 4. Overall Accuracy (Based on Latest attempts only - true mastery)
-                let latestTotalQs = 0;
-                let latestCorrectQs = 0;
-                finalRecords.forEach(data => {
-                    latestTotalQs += (Number(data.total) || 0);
-                    latestCorrectQs += (Number(data.score) || 0); 
+                finalMocks.forEach(data => {
+                    mockLatestCorrectQs += data._safeCorrect;
+                    mockLatestWrongQs += data._safeWrong;
+                    mockTotalTimeSecs += data._safeTime;
                 });
-                const trueAvgAcc = latestTotalQs > 0 ? Math.round((latestCorrectQs / latestTotalQs) * 100) : 0;
-                document.getElementById('stat-avg-score').innerText = trueAvgAcc + '%';
                 
-                // RENDER MOCKS TAB
-                const elHistoryMock = document.getElementById('history-list-mock');
-                if(finalMocks.length > 0) {
-                    elHistoryMock.innerHTML = finalMocks.map(data => generateHistoryHTML(data)).join('');
-                } else {
-                    elHistoryMock.innerHTML = `<div style="text-align: center; padding: 20px; color: var(--text-sec); font-size: 0.75rem;">No Mock Tests attempted yet.</div>`;
-                }
-
-                // RENDER TOPICS TAB
-                const elHistoryTopic = document.getElementById('history-list-topic');
-                if(finalTopics.length > 0) {
-                    elHistoryTopic.innerHTML = finalTopics.map(data => generateHistoryHTML(data)).join('');
-                } else {
-                    elHistoryTopic.innerHTML = `<div style="text-align: center; padding: 20px; color: var(--text-sec); font-size: 0.75rem;">No Topic Quizzes attempted yet.</div>`;
-                }
-
-                // RENDER SUBJECT MASTERY
-                const sortedCats = Object.keys(catStats).map(cat => ({
-                    name: cat,
-                    acc: Math.round((catStats[cat].correct / catStats[cat].total) * 100),
-                    total: catStats[cat].total
-                })).sort((a, b) => b.total - a.total).slice(0, 5); 
-
-                if (sortedCats.length > 0) {
-                    let subjectHtml = '';
-                    sortedCats.forEach(cat => {
-                        let barColor = 'var(--danger)';
-                        if (cat.acc >= 75) barColor = 'var(--success)';
-                        else if (cat.acc >= 50) barColor = 'var(--warning)';
-
-                        subjectHtml += `
-                        <div class="subject-perf-item">
-                            <div class="perf-labels">
-                                <span>${cat.name} <span style="font-size:0.6rem; color:var(--text-sec); font-weight:500;">(${cat.total} Qs)</span></span>
-                                <span style="color:${barColor};">${cat.acc}%</span>
-                            </div>
-                            <div class="perf-track">
-                                <div class="perf-fill" style="width: ${cat.acc}%; background: ${barColor}"></div>
-                            </div>
-                        </div>
-                        `;
-                    });
-                    document.getElementById('subject-perf-list').innerHTML = subjectHtml;
-                } else {
-                    document.getElementById('subject-perf-list').innerHTML = `<div style="text-align: center; padding: 15px; color: var(--text-sec); font-size: 0.75rem;">Attempt Topic Quizzes to generate Subject Mastery insights.</div>`;
-                }
-
+                let mockAttempted = mockLatestCorrectQs + mockLatestWrongQs;
+                const mockAvgAcc = mockAttempted > 0 ? Math.round((mockLatestCorrectQs / mockAttempted) * 100) : 0;
+                const mockAvgTime = mockAttempted > 0 ? Math.round(mockTotalTimeSecs / mockAttempted) : 0;
+                
+                document.getElementById('stat-mock-qs').innerText = mockTotalQuestionsEffort; // True effort
+                document.getElementById('stat-mock-cw').innerHTML = `<span style="color:var(--success);">${mockLatestCorrectQs}</span> <span class="cw-slash">/</span> <span style="color:var(--danger);">${mockLatestWrongQs}</span>`;
+                document.getElementById('stat-mock-acc').innerText = mockAvgAcc + '%';
+                document.getElementById('stat-mock-time').innerText = mockAvgTime + 's';
             } else {
-                document.getElementById('stat-total-tests').innerText = '0';
-                document.getElementById('stat-avg-score').innerText = '0%';
-                document.getElementById('history-list-mock').innerHTML = `<div style="text-align: center; padding: 20px; color: var(--text-sec); font-size: 0.75rem;">No history found. Start practicing!</div>`;
-                document.getElementById('history-list-topic').innerHTML = `<div style="text-align: center; padding: 20px; color: var(--text-sec); font-size: 0.75rem;">No history found. Start practicing!</div>`;
-                document.getElementById('subject-perf-list').innerHTML = `<div style="text-align: center; padding: 15px; color: var(--text-sec); font-size: 0.75rem;">Not enough data yet.</div>`;
+                document.getElementById('stat-mock-count').innerText = '0';
+                document.getElementById('stat-mock-qs').innerText = '0';
+                document.getElementById('stat-mock-cw').innerHTML = `<span style="color:var(--success);">0</span> <span class="cw-slash">/</span> <span style="color:var(--danger);">0</span>`;
+                document.getElementById('stat-mock-acc').innerText = '0%';
+                document.getElementById('stat-mock-time').innerText = '0s';
             }
+
+            // --- TOPICS CALCULATION ---
+            if (finalTopics.length > 0) {
+                document.getElementById('stat-topic-count').innerText = finalTopics.length;
+                let topicLatestCorrectQs = 0;
+                let topicLatestWrongQs = 0;
+                let topicTotalTimeSecs = 0;
+                
+                finalTopics.forEach(data => {
+                    topicLatestCorrectQs += data._safeCorrect;
+                    topicLatestWrongQs += data._safeWrong;
+                    topicTotalTimeSecs += data._safeTime;
+                });
+                
+                let topicAttempted = topicLatestCorrectQs + topicLatestWrongQs;
+                const topicAvgAcc = topicAttempted > 0 ? Math.round((topicLatestCorrectQs / topicAttempted) * 100) : 0;
+                const topicAvgTime = topicAttempted > 0 ? Math.round(topicTotalTimeSecs / topicAttempted) : 0;
+                
+                document.getElementById('stat-topic-qs').innerText = topicTotalQuestionsEffort; // True effort
+                document.getElementById('stat-topic-cw').innerHTML = `<span style="color:var(--success);">${topicLatestCorrectQs}</span> <span class="cw-slash">/</span> <span style="color:var(--danger);">${topicLatestWrongQs}</span>`;
+                document.getElementById('stat-topic-acc').innerText = topicAvgAcc + '%';
+                document.getElementById('stat-topic-time').innerText = topicAvgTime + 's';
+            } else {
+                document.getElementById('stat-topic-count').innerText = '0';
+                document.getElementById('stat-topic-qs').innerText = '0';
+                document.getElementById('stat-topic-cw').innerHTML = `<span style="color:var(--success);">0</span> <span class="cw-slash">/</span> <span style="color:var(--danger);">0</span>`;
+                document.getElementById('stat-topic-acc').innerText = '0%';
+                document.getElementById('stat-topic-time').innerText = '0s';
+            }
+
+            // =======================================================
+            // RENDER MOCK MASTERY (Latest 5 Mocks)
+            // =======================================================
+            const sortedMocks = finalMocks.slice(0, 5); 
+            if (sortedMocks.length > 0) {
+                let mockHtml = '';
+                sortedMocks.forEach(data => {
+                    let c = data._safeCorrect;
+                    let w = data._safeWrong;
+                    let attempted = c + w;
+                    let acc = data.accuracy !== undefined ? data.accuracy : (attempted > 0 ? Math.round((c / attempted) * 100) : 0);
+                    
+                    let barColor = 'var(--danger)';
+                    if (acc >= 75) barColor = 'var(--success)';
+                    else if (acc >= 50) barColor = 'var(--warning)';
+
+                    mockHtml += `
+                    <div class="subject-perf-item">
+                        <div class="perf-labels">
+                            <span>${data.displayTitle} <span style="font-size:0.6rem; color:var(--text-sec); font-weight:500;">(Score: ${data.score}/${data.total})</span></span>
+                            <span style="color:${barColor};">${acc}%</span>
+                        </div>
+                        <div class="perf-track">
+                            <div class="perf-fill" style="width: ${acc}%; background: ${barColor}"></div>
+                        </div>
+                    </div>
+                    `;
+                });
+                document.getElementById('mock-perf-list').innerHTML = mockHtml;
+            } else {
+                document.getElementById('mock-perf-list').innerHTML = `<div style="text-align: center; padding: 15px; color: var(--text-sec); font-size: 0.75rem;">Attempt Mock Tests to generate Mock Mastery insights.</div>`;
+            }
+
+            // =======================================================
+            // RENDER SUBJECT MASTERY (Top 5 Topics)
+            // =======================================================
+            const sortedCats = Object.keys(catStats).map(cat => ({
+                name: cat,
+                acc: Math.round((catStats[cat].correct / catStats[cat].total) * 100),
+                total: catStats[cat].total
+            })).sort((a, b) => b.total - a.total).slice(0, 5); 
+
+            if (sortedCats.length > 0) {
+                let subjectHtml = '';
+                sortedCats.forEach(cat => {
+                    let barColor = 'var(--danger)';
+                    if (cat.acc >= 75) barColor = 'var(--success)';
+                    else if (cat.acc >= 50) barColor = 'var(--warning)';
+
+                    subjectHtml += `
+                    <div class="subject-perf-item">
+                        <div class="perf-labels">
+                            <span>${cat.name} <span style="font-size:0.6rem; color:var(--text-sec); font-weight:500;">(${cat.total} Qs)</span></span>
+                            <span style="color:${barColor};">${cat.acc}%</span>
+                        </div>
+                        <div class="perf-track">
+                            <div class="perf-fill" style="width: ${cat.acc}%; background: ${barColor}"></div>
+                        </div>
+                    </div>
+                    `;
+                });
+                document.getElementById('subject-perf-list').innerHTML = subjectHtml;
+            } else {
+                document.getElementById('subject-perf-list').innerHTML = `<div style="text-align: center; padding: 15px; color: var(--text-sec); font-size: 0.75rem;">Attempt Topic Quizzes to generate Subject Mastery insights.</div>`;
+            }
+
         } catch (error) {
             console.error("Error fetching stats:", error);
-            document.getElementById('history-list-mock').innerHTML = `<div style="text-align: center; font-size:0.75rem; color: var(--danger);">Error loading history.</div>`;
+            document.getElementById('mock-perf-list').innerHTML = `<div style="text-align: center; font-size:0.75rem; color: var(--danger);">Error loading data.</div>`;
         }
-    }
-
-    // HELPER TO GENERATE CARD HTML
-    function generateHistoryHTML(data) {
-        const dateObj = new Date(data.timestamp);
-        const dateStr = dateObj.toLocaleDateString('en-IN', { day: '2-digit', month: 'short' });
-        const timeStr = dateObj.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
-        
-        let acc = data.accuracy;
-        if(acc === undefined) { acc = Math.round((data.score / data.total) * 100) || 0; }
-        
-        let badgeClass = 'acc-bad';
-        if (acc >= 75) badgeClass = 'acc-good';
-        else if (acc >= 50) badgeClass = 'acc-avg';
-
-        let timeBadge = '';
-        if (data.timeTaken) {
-            const m = Math.floor(data.timeTaken / 60);
-            const s = data.timeTaken % 60;
-            timeBadge = `<span class="h-badge"><i class="fa-regular fa-clock"></i> ${m > 0 ? m+'m ' : ''}${s}s</span>`;
-        }
-
-        const typeClass = data.isMock ? 'mock-type' : '';
-
-        return `
-            <div class="history-item ${typeClass}">
-                <div class="history-left">
-                    <div class="h-title-row">
-                        <span class="h-title" title="${data.displayTitle}">${data.displayTitle}</span>
-                    </div>
-                    <span class="h-date"><i class="fa-regular fa-calendar"></i> ${dateStr} • ${timeStr} 
-                        <span style="opacity:0.6; margin-left:4px;">(Latest)</span>
-                    </span>
-                </div>
-                <div class="history-right">
-                    <div class="h-score">${data.score} / ${data.total}</div>
-                    <div class="h-stats-row">
-                        ${timeBadge}
-                        <span class="h-badge ${badgeClass}">${acc}% Acc</span>
-                    </div>
-                </div>
-            </div>
-        `;
     }
 </script>
 
