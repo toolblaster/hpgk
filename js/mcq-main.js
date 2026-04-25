@@ -145,7 +145,7 @@
         if (!quizContent || !cardArea) return;
         quizContent.scrollTop = 0;
 
-        // 🔥 THE MAGIC LINK: Ask Guard before rendering
+        // ðŸ”¥ THE MAGIC LINK: Ask Guard before rendering
         if (window.HPGK_Guard) {
             const access = window.HPGK_Guard.checkAccess(index);
             if (access.status !== 'allowed') {
@@ -189,27 +189,16 @@
         const qEnText = highlightText(q.questionEn, currentSearchTerm);
         const qHiText = highlightText(q.questionHi, currentSearchTerm);
 
-        // 🔥 NEW: Auto-Shuffle Options with Cache
-        if (!q._displayOptions) {
-            let opts = q.options.map((text, originalIndex) => ({ text, originalIndex }));
-            for (let i = opts.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [opts[i], opts[j]] = [opts[j], opts[i]];
-            }
-            q._displayOptions = opts;
-        }
-
-        const optionsHtml = q._displayOptions.map((optObj) => {
-            let originalIndex = optObj.originalIndex;
+        const optionsHtml = q.options.map((opt, i) => {
             let statusClass = '', iconHtml = '';
             if (isAnswered) {
-                if (originalIndex === q.answer) { statusClass = 'correct'; iconHtml = '<span class="status-icon"><i class="fa-solid fa-check"></i></span>'; } 
-                else if (originalIndex === savedAnswer) { statusClass = 'wrong'; iconHtml = '<span class="status-icon"><i class="fa-solid fa-xmark"></i></span>'; }
+                if (i === q.answer) { statusClass = 'correct'; iconHtml = '<span class="status-icon"><i class="fa-solid fa-check"></i></span>'; } 
+                else if (i === savedAnswer) { statusClass = 'wrong'; iconHtml = '<span class="status-icon"><i class="fa-solid fa-xmark"></i></span>'; }
             }
             return `
                 <div class="option-btn ${statusClass} ${isAnswered ? 'disabled' : ''}" 
-                     style="font-size: ${fontSize};" onclick="handleAnswer(this, '${q.id}', ${originalIndex})">
-                    <span>${highlightText(optObj.text, currentSearchTerm)}</span>
+                     style="font-size: ${fontSize};" onclick="handleAnswer(this, '${q.id}', ${i})">
+                    <span>${highlightText(opt, currentSearchTerm)}</span>
                     ${iconHtml}
                 </div>`;
         }).join('');
@@ -374,7 +363,7 @@
         const q = window.quizData.find(item => item.id == qId);
         if (!q) return;
         const link = `${window.location.origin}${window.location.pathname}?id=${qId}`;
-        const msg = `Can you solve this HPGK question? 🤔\n\nQ: ${q.questionEn}\n\n👉 Attempt here: ${link}`;
+        const msg = `Can you solve this HPGK question? ðŸ¤”\n\nQ: ${q.questionEn}\n\nðŸ‘‰ Attempt here: ${link}`;
         if (navigator.share) { try { await navigator.share({ title: 'HPGK Challenge', text: msg, url: link }); } catch (err) {} } 
         else { try { await navigator.clipboard.writeText(msg); alert('Link copied!'); } catch (err) { alert('Could not copy link.'); } }
     };
