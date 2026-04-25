@@ -116,18 +116,19 @@ const engine = (function() {
                 avatarImg.src = 'https://ui-avatars.com/api/?name=' + encodeURIComponent(userName) + '&background=cbd5e1';
             }
 
+            // STRICT LOGIC: Only tests ending with "-1" are free
             const isFree = testParam.endsWith('-1'); 
             
-            const hasPass = user.passes && user.passes['mock_master_pass'];
+            // 🔥 FUTURE-PROOF MASTER KEYS FOR MOCK ENGINE
+            const hasPass = user.passes && (
+                user.passes['mock_master_pass'] || 
+                user.passes['mega_combo_pass'] || 
+                user.passes['vip_lifetime_pass']
+            );
             
             if (!isFree && !hasPass) {
-                const accessStatus = { status: 'blocked_pro_paywall', passId: 'mock_master_pass' };
-                if (window.HPGK_Guard) {
-                    window.HPGK_Guard.showBlocker(DOM.blocker, accessStatus);
-                    DOM.blocker.style.backgroundColor = "var(--card-bg)"; 
-                } else {
-                    triggerFatalError("Access Denied", "Premium pass required.");
-                }
+                // Trigger beautiful compact ₹149 Paywall
+                triggerPaywall();
                 return;
             }
 
@@ -179,6 +180,57 @@ const engine = (function() {
                 }
             }, 100);
         });
+    }
+
+    // Beautiful COMPACT Custom Paywall overriding the old 29 rs guard
+    function triggerPaywall() {
+        DOM.blocker.innerHTML = `
+            <div style="background: var(--card-bg); max-width: 340px; width: 90%; padding: 25px 20px; text-align: center; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); border: 1px solid var(--card-border); animation: popIn 0.3s ease-out; position: relative;">
+                <div style="width: 50px; height: 50px; background: rgba(245, 158, 11, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px auto; border: 1px solid rgba(245, 158, 11, 0.2);">
+                    <i class="fa-solid fa-crown" style="font-size: 1.8rem; color: #f59e0b;"></i>
+                </div>
+                <h2 style="margin: 0 0 8px 0; font-size: 1.3rem; font-weight: 900; color: var(--text-main); letter-spacing:-0.5px;">Unlock Mock Master</h2>
+                <p style="font-size: 0.8rem; color: var(--text-sec); margin-bottom: 15px; line-height: 1.4; font-weight:500;">Upgrade to the <strong>Mock Master Pass</strong> to unlock all premium full-length mock tests, Official PYQs, and detailed analytics.</p>
+                <div style="font-size: 1.8rem; font-weight: 900; color: var(--text-main); margin-bottom: 15px; letter-spacing: -1px;">₹149<span style="font-size:0.85rem; color:var(--text-sec); font-weight:700;">/mo</span></div>
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <button onclick="alert('Initiating Secure Checkout for ₹149...\\n\\n(After payment, test will unlock automatically!)')" style="background: linear-gradient(135deg, #10b981, #059669); color: white; border: none; padding: 10px; border-radius: 8px; font-weight: 800; font-size: 0.9rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3); transition: transform 0.2s;">
+                        <i class="fa-solid fa-rocket"></i> Get Mock Master Pass
+                    </button>
+                    <button onclick="window.location.href='../user/upgrade.html'" style="background: var(--input-bg); border: 1px solid var(--card-border); color: var(--text-main); padding: 8px; border-radius: 8px; font-weight: 700; font-size: 0.8rem; cursor: pointer; transition: 0.2s;">
+                        View All Features
+                    </button>
+                    <button onclick="window.location.href='../user/dashboard.html'" style="background: transparent; border: none; color: var(--text-sec); font-size: 0.75rem; font-weight: 600; text-decoration: underline; cursor: pointer; margin-top: 2px;">
+                        Back to Dashboard
+                    </button>
+                </div>
+                <div style="margin-top: 15px; font-size: 0.65rem; color: #10b981; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 5px; letter-spacing: 0.5px;">
+                    <i class="fa-solid fa-shield-halved"></i> SECURE 256-BIT CHECKOUT
+                </div>
+            </div>
+        `;
+        
+        if (!document.getElementById('paywall-anim')) {
+            const style = document.createElement('style');
+            style.id = 'paywall-anim';
+            style.innerHTML = `@keyframes popIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }`;
+            document.head.appendChild(style);
+        }
+        
+        DOM.blocker.style.backgroundColor = "rgba(15, 23, 42, 0.85)";
+        DOM.blocker.style.backdropFilter = "blur(8px)";
+        DOM.blocker.style.display = 'flex';
+    }
+
+    function triggerFatalError(title, desc) {
+        DOM.secTitle.innerText = title;
+        DOM.secDesc.innerText = desc;
+        DOM.blocker.innerHTML = `
+            <i class="fa-solid fa-lock" style="font-size: 3rem; color: #ef4444; margin-bottom: 15px;"></i>
+            <h2 style="margin:0; font-size: 1.4rem; color: var(--text-main);">${title}</h2>
+            <p style="font-size:0.9rem; color:var(--text-sec); margin-top: 10px; max-width: 400px;">${desc}</p>
+            <button onclick="window.location.href='../user/dashboard.html'" style="margin-top:20px; padding: 10px 20px; background:var(--primary); color:white; border:none; border-radius:4px; font-weight:700; cursor:pointer;">Go to Dashboard</button>
+        `;
+        DOM.blocker.style.display = 'flex';
     }
 
     async function fetchTestData() {
@@ -380,18 +432,6 @@ const engine = (function() {
             DOM.rightPanel.classList.remove('collapsed');
             DOM.panelArrow.classList.replace('fa-chevron-left', 'fa-chevron-right');
         }
-    }
-
-    function triggerFatalError(title, desc) {
-        DOM.secTitle.innerText = title;
-        DOM.secDesc.innerText = desc;
-        DOM.blocker.innerHTML = `
-            <i class="fa-solid fa-lock" style="font-size: 3rem; color: #ef4444; margin-bottom: 15px;"></i>
-            <h2 style="margin:0; font-size: 1.4rem; color: var(--text-main);">${title}</h2>
-            <p style="font-size:0.9rem; color:var(--text-sec); margin-top: 10px; max-width: 400px;">${desc}</p>
-            <button onclick="window.location.href='../user/dashboard.html'" style="margin-top:20px; padding: 10px 20px; background:var(--primary); color:white; border:none; border-radius:4px; font-weight:700; cursor:pointer;">Go to Dashboard</button>
-        `;
-        DOM.blocker.style.display = 'flex';
     }
 
     function startTimer() {
