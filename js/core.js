@@ -20,6 +20,7 @@
         try {
             const { getApp, getApps, initializeApp } = await import("https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js");
             const { getAuth, onAuthStateChanged, signInWithPopup, GoogleAuthProvider } = await import("https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js");
+            const { getFirestore, doc, getDoc, setDoc } = await import("https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js");
             
             const firebaseConfig = {
                 apiKey: "AIzaSyDfz5Y4oVQHl-crnATIv5dMWsw7edSKddQ",
@@ -39,6 +40,7 @@
             }
             
             const auth = getAuth(app);
+            const db = getFirestore(app);
             
             // Make login function globally accessible for local landing pages
             window.loginWithGoogle = async function() {
@@ -46,17 +48,56 @@
                 return signInWithPopup(auth, provider);
             };
             
-            onAuthStateChanged(auth, (user) => {
+            onAuthStateChanged(auth, async (user) => {
                 if (user) {
                     window.HPGK_User.isLoggedIn = true;
                     window.HPGK_User.uid = user.uid;
                     window.HPGK_User.displayName = user.displayName;
                     window.HPGK_User.photoURL = user.photoURL;
+
+                    // 🔥 FIX 1: Securely Fetch Passes from Cloud
+                    try {
+                        const userDoc = await getDoc(doc(db, 'artifacts', 'hpgk-quiz', 'users', user.uid));
+                        if (userDoc.exists() && userDoc.data().passes) {
+                            window.HPGK_User.passes = userDoc.data().passes;
+                        }
+                    } catch (e) {
+                        console.error("Error fetching passes:", e);
+                    }
+
+                    // Tell Engine to refresh and unlock UI
+                    if (typeof window.HPGK_Engine_Refresh === 'function') {
+                        window.HPGK_Engine_Refresh();
+                    }
+
                 } else {
                     window.HPGK_User.isLoggedIn = false;
                     window.HPGK_User.uid = null;
+                    window.HPGK_User.passes = {};
                 }
             });
+
+            // 🔥 FIX 2: Missing Firebase Score Upload Logic (Fixes the Dashboard)
+            window.HPGK_SaveScore = async function(category, correctCount, totalCount) {
+                if (!window.HPGK_User.isLoggedIn || !window.HPGK_User.uid) return;
+                try {
+                    // Create a clean document ID from the topic category
+                    const safeCatId = category.toLowerCase().replace(/[^a-z0-9]/g, '-');
+                    const scoreRef = doc(db, 'artifacts', 'hpgk-quiz', 'users', window.HPGK_User.uid, 'scores', 'topic_' + safeCatId);
+                    
+                    await setDoc(scoreRef, {
+                        category: category,
+                        correct: correctCount,
+                        total: totalCount,
+                        timestamp: Date.now()
+                    }, { merge: true });
+                    
+                    // console.log("Score successfully synced to Dashboard!");
+                } catch (e) {
+                    console.error("Cloud sync failed:", e);
+                }
+            };
+
         } catch (e) {
             console.error("Core initialization error:", e);
         }
@@ -86,27 +127,22 @@
     }
 
     // 4. UNIVERSAL DECOY INJECTOR (THE HONEYPOT)
-    // Confuses hackers by automatically appending fake security tokens to all mock links
     function injectDecoyTokens() {
         const decoyKey = '&_secToken=';
         
         function getFakeHash() {
-            // Generates a complex looking fake hash like: tx_8f9x2m4172a8b9_v9
             return 'tx_' + Math.random().toString(36).substring(2, 10) + Date.now().toString(16) + '_v9';
         }
 
-        // Inject into all <a> tags pointing to mock-engine
         document.querySelectorAll('a[href*="mock-engine/index.html"]').forEach(a => {
             if (!a.href.includes(decoyKey)) {
                 a.href = a.href + decoyKey + getFakeHash();
             }
         });
 
-        // Inject into all elements (buttons) with onclick pointing to mock-engine
         document.querySelectorAll('[onclick*="mock-engine/index.html"]').forEach(el => {
             let onclickStr = el.getAttribute('onclick');
             if (onclickStr && !onclickStr.includes(decoyKey)) {
-                // Find the URL part and append the fake hash seamlessly
                 let newOnclick = onclickStr.replace(
                     /(mock-engine\/index\.html\?[^'"]+)/, 
                     '$1' + decoyKey + getFakeHash()
