@@ -424,7 +424,8 @@
             </div>
             <div class="stat-dense-card">
                 <span class="stat-dense-label">Avg Time/Q</span>
-                <div class="stat-dense-val"><span id="stat-topic-time" style="color:var(--warning);">0s</span> <i class="fa-regular fa-clock" style="color:var(--warning); opacity:0.8;"></i></div>
+                <!-- FIX: Untimed/N-A logic applied here for topic quizzes -->
+                <div class="stat-dense-val"><span id="stat-topic-time" style="color:var(--text-sec);">N/A</span> <i class="fa-solid fa-infinity" style="color:var(--text-sec); opacity:0.5;"></i></div>
             </div>
         </div>
 
@@ -437,7 +438,7 @@
                 <!-- Mock Mastery Analytics -->
                 <div class="glass-panel" style="padding: 15px; margin-bottom: 0;">
                     <div class="section-header">
-                        <h2 class="section-title"><i class="fa-solid fa-medal"></i> Mock Mastery <span>Latest 5</span></h2>
+                        <h2 class="section-title"><i class="fa-solid fa-medal"></i> Mock Mastery <span>Latest 7</span></h2>
                     </div>
                     <div class="dense-list" id="mock-perf-list">
                         <div style="text-align: center; padding: 15px; color: var(--text-sec); font-size: 0.75rem;">
@@ -449,7 +450,7 @@
                 <!-- Subject Mastery Analytics -->
                 <div class="glass-panel" style="padding: 15px; margin-bottom: 0;">
                     <div class="section-header">
-                        <h2 class="section-title"><i class="fa-solid fa-chart-column"></i> Topic Mastery <span>Top 5</span></h2>
+                        <h2 class="section-title"><i class="fa-solid fa-chart-column"></i> Topic Mastery <span>Top 7</span></h2>
                     </div>
                     <div class="dense-list" id="subject-perf-list">
                         <div style="text-align: center; padding: 15px; color: var(--text-sec); font-size: 0.75rem;">
@@ -815,24 +816,32 @@
                 
                 let topicAttempted = topicLatestCorrectQs + topicLatestWrongQs;
                 const topicAvgAcc = topicAttempted > 0 ? Math.round((topicLatestCorrectQs / topicAttempted) * 100) : 0;
-                const topicAvgTime = topicAttempted > 0 ? Math.round(topicTotalTimeSecs / topicAttempted) : 0;
+                
+                // 🔥 SMART FIX: Show 'N/A' instead of '0s' for untimed practice
+                const topicAvgTime = topicTotalTimeSecs > 0 && topicAttempted > 0 ? Math.round(topicTotalTimeSecs / topicAttempted) + 's' : 'N/A';
                 
                 document.getElementById('stat-topic-qs').innerText = topicTotalQuestionsEffort; // True effort
                 document.getElementById('stat-topic-cw').innerHTML = `<span style="color:var(--success);">${topicLatestCorrectQs}</span> <span class="cw-slash">/</span> <span style="color:var(--danger);">${topicLatestWrongQs}</span>`;
                 document.getElementById('stat-topic-acc').innerText = topicAvgAcc + '%';
-                document.getElementById('stat-topic-time').innerText = topicAvgTime + 's';
+                
+                // Show 'N/A' and switch icon to infinity for untimed
+                if (topicAvgTime === 'N/A') {
+                    document.getElementById('stat-topic-time').parentNode.innerHTML = `<span id="stat-topic-time" style="color:var(--text-sec);">${topicAvgTime}</span> <i class="fa-solid fa-infinity" style="color:var(--text-sec); opacity:0.5;"></i>`;
+                } else {
+                    document.getElementById('stat-topic-time').innerText = topicAvgTime;
+                }
             } else {
                 document.getElementById('stat-topic-count').innerText = '0';
                 document.getElementById('stat-topic-qs').innerText = '0';
                 document.getElementById('stat-topic-cw').innerHTML = `<span style="color:var(--success);">0</span> <span class="cw-slash">/</span> <span style="color:var(--danger);">0</span>`;
                 document.getElementById('stat-topic-acc').innerText = '0%';
-                document.getElementById('stat-topic-time').innerText = '0s';
+                document.getElementById('stat-topic-time').innerText = 'N/A';
             }
 
             // =======================================================
-            // RENDER MOCK MASTERY (Latest 5 Mocks)
+            // RENDER MOCK MASTERY (Latest 7 Mocks)
             // =======================================================
-            const sortedMocks = finalMocks.slice(0, 5); 
+            const sortedMocks = finalMocks.slice(0, 7); 
             if (sortedMocks.length > 0) {
                 let mockHtml = '';
                 sortedMocks.forEach(data => {
@@ -863,13 +872,13 @@
             }
 
             // =======================================================
-            // RENDER SUBJECT MASTERY (Top 5 Topics)
+            // RENDER SUBJECT MASTERY (Top 7 Topics)
             // =======================================================
             const sortedCats = Object.keys(catStats).map(cat => ({
                 name: cat,
                 acc: Math.round((catStats[cat].correct / catStats[cat].total) * 100),
                 total: catStats[cat].total
-            })).sort((a, b) => b.total - a.total).slice(0, 5); 
+            })).sort((a, b) => b.total - a.total).slice(0, 7); 
 
             if (sortedCats.length > 0) {
                 let subjectHtml = '';
