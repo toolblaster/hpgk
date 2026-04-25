@@ -260,10 +260,9 @@
 
         .hero-badge { display: inline-flex; align-items: center; justify-content: center; height: 26px; background: var(--primary-light); color: var(--primary); padding: 0 12px; border-radius: 13px; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; margin: 0; border: 1px solid var(--primary); letter-spacing: 0.5px; white-space: nowrap; flex-shrink: 0; box-sizing: border-box; }
 
-        /* H1 Hero Styling - Sizes now centralized to style.css */
+        /* H1 Hero Styling */
         .hero-title { background: linear-gradient(135deg, var(--text-main) 0%, var(--primary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: var(--primary); }
         
-        /* FIXED: Hero Description forced to 14px with good line height */
         .hero-desc {
             font-size: 14px !important;
             color: var(--text-sec);
@@ -292,7 +291,7 @@
         .hero-interlinks .interlink-label i { color: var(--primary); margin-right: 4px; }
         .hero-interlinks a { font-size: 0.9rem; font-weight: 700; color: var(--primary-dark); text-decoration: none; transition: all 0.2s ease; }
         .hero-interlinks a:hover { color: var(--primary); text-decoration: underline; }
-        [data-theme="dark"] .hero-interlinks a { color: #a7f3d0; } /* Adjusted for green theme */
+        [data-theme="dark"] .hero-interlinks a { color: #a7f3d0; } 
         [data-theme="dark"] .hero-interlinks a:hover { color: #6ee7b7; }
         .hero-interlinks .dot { color: var(--text-sec); font-size: 0.8rem; opacity: 0.6; }
 
@@ -357,7 +356,6 @@
         .q-text-hi { font-weight: 600; color: var(--text-sec); margin-bottom: 12px; font-family: 'Noto Sans Devanagari', sans-serif; line-height: 1.4; font-size: 0.85rem; }
         mark.highlight { background: var(--accent); color: #fff; padding: 0 2px; border-radius: 3px; }
 
-        /* PERFECT BUG FIX: NO TEXT SHIFTING ON ANSWER SELECTION */
         .options-list { display: flex; flex-direction: column; gap: 8px; counter-reset: opt-counter; width: 100%; box-sizing: border-box; }
         .option-btn { width: 100%; text-align: left; padding: 12px 40px 12px 12px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-md); cursor: pointer; color: var(--text-body); font-weight: 600; transition: all 0.2s; display: flex; align-items: flex-start; line-height: 1.4; position: relative; box-sizing: border-box; }
         .option-btn::before { counter-increment: opt-counter; content: counter(opt-counter, upper-alpha) ". "; color: var(--primary); font-weight: 800; margin-right: 8px; min-width: 20px; flex-shrink: 0; margin-top: 1px; }
@@ -412,11 +410,31 @@
         .seo-list li { position: relative; padding-left: 18px; margin-bottom: 6px; font-size: 0.8rem; color: var(--text-body) !important; line-height: 1.35; }
         .seo-list li::before { content: "\f111"; font-family: "Font Awesome 6 Free"; font-weight: 900; color: var(--primary); position: absolute; left: 0; top: 5px; font-size: 0.4rem; }
 
-        /* Modal specific styles - Handled completely by global layout.js now */
+        /* Modal specific styles */
+        .quiz-modal-overlay {
+            position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important;
+            background: rgba(0,0,0,0.5) !important; backdrop-filter: blur(4px) !important; -webkit-backdrop-filter: blur(4px) !important;
+            z-index: 999999 !important; display: none; align-items: center !important; justify-content: center !important; padding: 20px;
+            opacity: 0; transition: opacity 0.2s ease;
+        }
+        .quiz-modal-overlay.show { display: flex !important; opacity: 1; }
+        
+        /* Solid background for the modal content */
+        .quiz-modal-content {
+            background: var(--tooltip-bg) !important; 
+            width: 100%; max-width: 320px; margin: auto !important;
+            border: 1px solid var(--card-border);
+            border-radius: 12px; padding: 15px;
+            box-shadow: var(--glass-shadow); transform: translateY(20px); transition: transform 0.2s ease;
+            position: relative !important; z-index: 1000000 !important;
+            box-sizing: border-box;
+        }
+        .quiz-modal-overlay.show .quiz-modal-content { transform: translateY(0); }
+        .quiz-modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--card-border); padding-bottom: 10px; margin-bottom: 10px; }
+
 
         /* EXACT MOBILE CSS COMPACTNESS */
         @media (max-width: 600px) {
-            /* FIXED: Pushes H1 down to avoid cluttering with the Breadcrumb */
             .page-header-top { margin-top: 25px; }
 
             .hero-title { white-space: normal; padding: 0 10px !important; }
@@ -837,6 +855,32 @@
 
 <div id="site-footer"></div>
 
+<!-- HTML HARDCODED HELP MODAL - EXTREME LOCK FOR CENTER POPUP -->
+<div id="quizHelpModal" class="quiz-modal-overlay" onclick="if(event.target === this) toggleHelpModal()">
+    <div class="quiz-modal-content glass-panel">
+        <div class="quiz-modal-header">
+            <h3 style="margin:0; font-size:1.1rem; display:flex; align-items:center; gap:8px; color:var(--text-main);">
+                <i class="fa-solid fa-circle-question" style="color:var(--primary)"></i> Toolbar Guide
+            </h3>
+            <button onclick="toggleHelpModal()" style="background:transparent; border:none; font-size:1.2rem; cursor:pointer; color:var(--text-sec); transition:color 0.2s;">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="quiz-modal-body" style="font-size:0.75rem; color:var(--text-body); line-height:1.4; padding-top:10px;">
+            <ul style="list-style:none; padding:0; margin:0; display:grid; gap:8px;">
+                <li style="display:flex; gap:8px; align-items:center;"><span style="width:20px; text-align:center;"><i class="fa-solid fa-download" style="color:var(--text-sec); font-size:0.9rem;"></i></span> <span><strong>Backup:</strong> Save your progress.</span></li>
+                <li style="display:flex; gap:8px; align-items:center;"><span style="width:20px; text-align:center;"><i class="fa-solid fa-upload" style="color:var(--text-sec); font-size:0.9rem;"></i></span> <span><strong>Restore:</strong> Load saved progress.</span></li>
+                <li style="display:flex; gap:8px; align-items:center;"><span style="width:20px; text-align:center;"><i class="fa-solid fa-rotate-right" style="color:var(--wrong-text); font-size:0.9rem;"></i></span> <span><strong>Reset:</strong> Clear all history.</span></li>
+                <li style="display:flex; gap:8px; align-items:center;"><span style="width:20px; text-align:center;"><i class="fa-solid fa-bolt" style="color:var(--accent); font-size:0.9rem;"></i></span> <span><strong>Quick 10:</strong> Start fast 10-Q session.</span></li>
+                <li style="display:flex; gap:8px; align-items:center;"><span style="width:20px; text-align:center;"><i class="fa-solid fa-shuffle" style="color:var(--primary); font-size:0.9rem;"></i></span> <span><strong>Shuffle:</strong> Randomize questions.</span></li>
+                <li style="display:flex; gap:8px; align-items:center;"><span style="width:20px; text-align:center;"><i class="fa-solid fa-triangle-exclamation" style="color:var(--wrong-text); font-size:0.9rem;"></i></span> <span><strong>Mistakes:</strong> Review incorrect answers.</span></li>
+                <li style="display:flex; gap:8px; align-items:center;"><span style="width:20px; text-align:center;"><i class="fa-regular fa-bookmark" style="color:var(--primary); font-size:0.9rem;"></i></span> <span><strong>Bookmarks:</strong> View saved questions.</span></li>
+                <li style="display:flex; gap:8px; align-items:center;"><span style="width:20px; text-align:center; font-weight:bold; color:var(--text-sec); font-size:0.9rem;">A&plusmn;</span> <span><strong>Text Size:</strong> Adjust font size.</span></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
 <script src="../js/layout.js"></script>
 
 <!-- Initialize Header & Footer -->
@@ -867,7 +911,7 @@
         category: 'agriculture',
         loginLimit: 30,         // Questions free for anonymous users
         proLimit: 9999,         // Questions free for logged-in users (before Paywall)
-        requiredPass: 'mcq_pass'// Pass required if proLimit is reached
+        requiredPass: 'mcq_pro_pass'// Pass required if proLimit is reached
     };
     
     // Legacy fallback for the engine
