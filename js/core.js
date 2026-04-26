@@ -55,7 +55,7 @@
                     window.HPGK_User.displayName = user.displayName;
                     window.HPGK_User.photoURL = user.photoURL;
 
-                    // 🔥 FIX 1: Securely Fetch Passes from Cloud
+                    // ðŸ”¥ FIX 1: Securely Fetch Passes from Cloud
                     try {
                         const userDoc = await getDoc(doc(db, 'artifacts', 'hpgk-quiz', 'users', user.uid));
                         if (userDoc.exists() && userDoc.data().passes) {
@@ -77,7 +77,8 @@
                 }
             });
 
-            // 🔥 FIX 2: Missing Firebase Score Upload Logic (Fixes the Dashboard)
+            // ðŸ”¥ SMART SYNC LOGIC: Saves strictly to Private Folder only.
+            // The Public XP Leaderboard sync is now handled smoothly by dashboard.html
             window.HPGK_SaveScore = async function(category, correctCount, totalCount) {
                 if (!window.HPGK_User.isLoggedIn || !window.HPGK_User.uid) return;
                 try {
@@ -92,7 +93,6 @@
                         timestamp: Date.now()
                     }, { merge: true });
                     
-                    // console.log("Score successfully synced to Dashboard!");
                 } catch (e) {
                     console.error("Cloud sync failed:", e);
                 }
