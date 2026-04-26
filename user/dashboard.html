@@ -57,9 +57,16 @@
             --warning: #f59e0b;
             --danger: #ef4444;
             
+            /* LEADERBOARD COLORS */
+            --gold: #fbbf24;
+            --silver: #94a3b8;
+            --bronze: #b45309;
+            
             --radius-sm: 6px;
             --radius-md: 10px;
             --radius-lg: 14px;
+            
+            --tooltip-bg: #ffffff;
         }
 
         [data-theme="dark"] {
@@ -75,6 +82,8 @@
             --text-main: #f8fafc;
             --text-body: #cbd5e1;
             --text-sec: #94a3b8;
+            
+            --tooltip-bg: #1e293b;
         }
 
         body { 
@@ -91,7 +100,7 @@
         main { 
             flex: 1; 
             width: 100%; 
-            padding: 15px; 
+            padding: 15px 0 !important; 
             box-sizing: border-box; 
             max-width: var(--site-width); 
             margin: 0 auto; 
@@ -211,17 +220,41 @@
         .cw-slash { font-size: 0.75rem; color: var(--card-border); margin: 0 3px; font-weight: 400; }
 
         /* =========================================
-           BOTTOM LAYOUT: 2 COLUMNS (Mastery vs Practice)
+           BOTTOM LAYOUT: 2 COLUMNS (Mastery vs Leaderboard)
            ========================================= */
         .dashboard-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
 
-        .section-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--card-border); padding-bottom: 6px; margin-bottom: 10px; }
+        .section-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--card-border); padding-bottom: 6px; margin-bottom: 10px; flex-wrap: wrap; gap: 8px;}
         .section-title { font-size: 0.85rem; font-weight: 800; margin: 0; display: flex; align-items: center; gap: 6px; color: var(--text-main); }
         .section-title span { font-size: 0.6rem; background: var(--input-bg); padding: 2px 6px; border-radius: 4px; color: var(--text-sec); border: 1px solid var(--card-border); }
 
+        .history-tabs { display: flex; gap: 5px; background: var(--input-bg); padding: 4px; border-radius: 8px; border: 1px solid var(--card-border); width: fit-content; margin-bottom: 10px; }
+        .h-tab { background: transparent; border: none; padding: 4px 12px; font-size: 0.7rem; font-weight: 700; color: var(--text-sec); border-radius: 4px; cursor: pointer; transition: 0.2s; }
+        .h-tab.active { background: var(--card-bg); color: var(--primary); box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        [data-theme="dark"] .h-tab.active { background: var(--primary); color: #fff; }
+
         .dense-list { display: flex; flex-direction: column; gap: 6px; } 
 
-        /* SUBJECT & MOCK MASTERY BARS */
+        .history-item {
+            display: flex; align-items: center; justify-content: space-between; gap: 10px;
+            padding: 10px 12px; border-radius: var(--radius-sm);
+            background: var(--card-bg); border: 1px solid var(--card-border);
+            border-left: 4px solid var(--primary);
+            transition: all 0.2s ease;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+        }
+        [data-theme="dark"] .history-item { background: rgba(30,41,59,0.6); }
+        .history-item:hover { background: var(--input-bg); transform: translateY(-1px); box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .h-info { flex: 1; display: flex; flex-direction: column; gap: 5px; overflow: hidden; }
+        .h-title { font-size: 0.8rem; font-weight: 700; color: var(--text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .h-meta-row { display: flex; align-items: center; gap: 10px; font-size: 0.65rem; color: var(--text-sec); font-weight: 600; flex-wrap: wrap;}
+        .h-meta-row i { opacity: 0.7; }
+        .h-metrics { display: flex; align-items: center; gap: 15px; flex-shrink: 0; }
+        .h-metric-box { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
+        .h-score-val { font-size: 0.9rem; font-weight: 800; color: var(--text-main); line-height: 1; }
+        .h-score-lbl { font-size: 0.55rem; text-transform: uppercase; font-weight: 700; color: var(--text-sec); letter-spacing: 0.5px;}
+        .h-acc-badge { padding: 5px 8px; border-radius: 6px; font-size: 0.8rem; font-weight: 800; display: flex; align-items: center; justify-content: center; min-width: 45px; }
+
         .subject-perf-item { margin-bottom: 10px; }
         .subject-perf-item:last-child { margin-bottom: 0; }
         .perf-labels { display: flex; justify-content: space-between; font-size: 0.75rem; font-weight: 700; color: var(--text-main); margin-bottom: 4px; }
@@ -229,32 +262,74 @@
         [data-theme="dark"] .perf-track { background: rgba(255,255,255,0.05); }
         .perf-fill { height: 100%; border-radius: 4px; transition: width 1s ease-out; }
 
-        /* --- QUICK PRACTICE MOCKS (2 COLUMN GRID) --- */
+        /* --- QUICK PRACTICE MOCKS --- */
         .quick-practice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
         .mock-item { display: flex; align-items: center; justify-content: space-between; padding: 8px 10px; border-radius: var(--radius-sm); border: 1px solid var(--card-border); background: rgba(255,255,255,0.4); transition: 0.2s;}
         [data-theme="dark"] .mock-item { background: rgba(0,0,0,0.15); }
-        .mock-item:hover { background: var(--input-bg); border-color: var(--primary); }
+        .mock-item:hover { background: var(--input-bg); border-color: var(--primary); box-shadow: 0 2px 8px rgba(37,99,235,0.05);}
         .mock-info { display: flex; align-items: center; gap: 8px; }
         .mock-icon { width: 28px; height: 28px; border-radius: 6px; background: var(--primary-light); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 0.8rem; }
+        [data-theme="dark"] .mock-icon { background: rgba(30,41,59,0.5); }
         .mock-details { display: flex; flex-direction: column; }
         .mock-title { font-size: 0.75rem; font-weight: 700; color: var(--text-main); }
         .mock-meta { font-size: 0.6rem; font-weight: 600; color: var(--text-sec); margin-top: 1px;}
-        .mock-play { background: var(--text-main); color: white; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; text-decoration: none; transition: 0.2s; box-shadow: 0 2px 5px rgba(0,0,0,0.1);}
-        .mock-play:hover { transform: scale(1.1); background: var(--primary); }
-        [data-theme="dark"] .mock-play { background: var(--primary); }
+        .mock-play { background: var(--card-bg); color: var(--text-main); border: 1px solid var(--card-border); width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; text-decoration: none; transition: 0.2s; box-shadow: 0 2px 5px rgba(0,0,0,0.05);}
+        .mock-play:hover { background: var(--primary); color: white; border-color: var(--primary); transform: scale(1.1); }
+        [data-theme="dark"] .mock-play { background: var(--primary); color: white; border-color: var(--primary); }
 
-        /* Auth Warning */
+        /* DOPAMINE LEADERBOARD UI WITH TIME FILTERS */
+        .leaderboard-tabs { display: flex; gap: 5px; margin-bottom: 12px; }
+        .lb-tab { flex: 1; text-align: center; background: rgba(255,255,255,0.4); border: 1px solid var(--card-border); padding: 6px; font-size: 0.7rem; font-weight: 800; color: var(--text-sec); border-radius: 6px; cursor: pointer; transition: 0.2s; text-transform: uppercase; letter-spacing: 0.5px;}
+        [data-theme="dark"] .lb-tab { background: rgba(0,0,0,0.2); }
+        .lb-tab.active.tab-ninja { background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: white; border-color: #2563eb; box-shadow: 0 4px 10px rgba(37,99,235,0.3);}
+        .lb-tab.active.tab-topper { background: linear-gradient(135deg, #ef4444, #b91c1c); color: white; border-color: #dc2626; box-shadow: 0 4px 10px rgba(239,68,68,0.3);}
+
+        .leaderboard-list { display: flex; flex-direction: column; gap: 8px; }
+        .lb-item { display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; background: rgba(255,255,255,0.5); border: 1px solid var(--card-border); border-radius: var(--radius-md); transition: transform 0.2s; position: relative; overflow: hidden;}
+        [data-theme="dark"] .lb-item { background: rgba(0,0,0,0.2); }
+        .lb-item:hover { transform: translateX(4px); background: var(--input-bg); border-color: var(--primary-light); }
+        
+        .lb-rank { font-size: 1.1rem; font-weight: 900; width: 30px; text-align: center; z-index: 2;}
+        .rank-1 { color: var(--gold); text-shadow: 0 0 10px rgba(251, 191, 36, 0.4); font-size: 1.4rem; }
+        .rank-2 { color: var(--silver); font-size: 1.2rem; }
+        .rank-3 { color: var(--bronze); font-size: 1.2rem; }
+        
+        .lb-item.is-first::before { content:''; position:absolute; top:0; left:0; width:4px; height:100%; background:var(--gold); box-shadow: 0 0 10px var(--gold); }
+        
+        .lb-user { display: flex; align-items: center; gap: 10px; flex: 1; margin-left: 5px; z-index: 2;}
+        .lb-avatar { width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--card-border); object-fit: cover; }
+        .lb-name { font-size: 0.8rem; font-weight: 800; color: var(--text-main); }
+        .lb-score-box { text-align: right; z-index: 2;}
+        .lb-score { font-size: 0.95rem; font-weight: 900; color: var(--accent); display: flex; align-items: center; gap: 4px; justify-content: flex-end;}
+        .lb-score i { font-size: 0.8rem; color: #f59e0b; }
+        .lb-qs { font-size: 0.55rem; font-weight: 700; color: var(--text-sec); text-transform: uppercase; margin-top: 2px;}
+
+        /* Select Time Filter */
+        .lb-time-filter { padding: 4px 8px; border-radius: 6px; border: 1px solid var(--card-border); background: var(--card-bg); color: var(--text-main); font-size: 0.7rem; font-weight: 700; outline: none; cursor: pointer; transition: 0.2s; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05); }
+        .lb-time-filter:hover { border-color: var(--primary); }
+        [data-theme="dark"] .lb-time-filter { background: rgba(0,0,0,0.2); }
+
         .auth-warning { text-align: center; padding: 40px 20px; }
         .auth-warning h2 { font-size: 1.1rem; margin-bottom: 8px; }
         .auth-warning p { font-size: 0.8rem; margin-bottom: 20px; color: var(--text-sec); max-width: 400px; margin-inline: auto; }
         .modern-google-btn { background: #fff; color: #334155; border: 1px solid #cbd5e1; padding: 8px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); font-family: 'Inter', sans-serif; }
 
-        /* Quick Pay Modal Overlay */
+        /* General Modal Styling (Solid Background for Readability) */
+        @keyframes popInModal {
+            0% { opacity: 0; transform: scale(0.95) translateY(10px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
         .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.6); z-index: 9999; display: none;
-            align-items: center; justify-content: center; backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); 
+            z-index: 9999; display: none; align-items: center; justify-content: center; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+        }
+        .modal-box {
+            background: var(--tooltip-bg); /* Solid background ensures high contrast over dark overlay */
+            border: 1px solid var(--card-border);
+            width: 90%; max-width: 380px; padding: 30px 25px; 
+            text-align: center; border-radius: var(--radius-lg); position: relative;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            animation: popInModal 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
         }
         .modal-close-btn {
             position: absolute; top: 12px; right: 15px; background: transparent; border: none; 
@@ -277,6 +352,12 @@
             .purchases-panel { flex-direction: column; gap: 10px; }
             .purchases-left { border-right: none; border-bottom: 1px dashed var(--card-border); padding-right: 0; padding-bottom: 10px; }
             .quick-practice-grid { grid-template-columns: 1fr; gap: 8px; } 
+            
+            .history-item { padding: 10px; gap: 8px; flex-direction: row; align-items: center;} 
+            .h-metrics { gap: 10px; }
+            .h-score-val { font-size: 0.85rem; }
+            .h-acc-badge { font-size: 0.75rem; padding: 4px 6px; min-width: 40px;}
+            .h-meta-row { gap: 8px; font-size: 0.6rem; }
         }
     </style>
     <script>
@@ -342,21 +423,8 @@
 
                 <div class="purchases-right">
                     <div class="mini-section-title"><i class="fa-solid fa-store"></i> Recommended Upgrades</div>
-                    
-                    <div class="compact-upgrade-item">
-                        <div>
-                            <div style="font-size: 0.75rem; font-weight: 800; color: var(--text-main);"><i class="fa-solid fa-bolt" style="color:var(--accent);"></i> MCQ Pro Pass</div>
-                            <div style="font-size: 0.6rem; color: var(--text-sec);">Unlock 3000+ Premium MCQs</div>
-                        </div>
-                        <button onclick="openQuickPay('mcq_pro_pass', 39, 'MCQ Pro Pass')" class="compact-btn-buy">₹39/mo</button>
-                    </div>
-                    
-                    <div class="compact-upgrade-item">
-                        <div>
-                            <div style="font-size: 0.75rem; font-weight: 800; color: var(--text-main);"><i class="fa-solid fa-crown" style="color:var(--warning);"></i> Mock Master Pass</div>
-                            <div style="font-size: 0.6rem; color: var(--text-sec);">Unlock All Full-Length Mocks</div>
-                        </div>
-                        <button onclick="openQuickPay('mock_master_pass', 149, 'Mock Master Pass')" class="compact-btn-buy" style="background: linear-gradient(135deg, #10b981, #059669);">₹149/mo</button>
+                    <div id="dynamic-upgrades-container" style="display: flex; flex-direction: column; gap: 6px;">
+                        <!-- Populated dynamically by JS -->
                     </div>
                 </div>
 
@@ -424,12 +492,11 @@
             </div>
             <div class="stat-dense-card">
                 <span class="stat-dense-label">Avg Time/Q</span>
-                <!-- FIX: Untimed/N-A logic applied here for topic quizzes -->
                 <div class="stat-dense-val"><span id="stat-topic-time" style="color:var(--text-sec);">N/A</span> <i class="fa-solid fa-infinity" style="color:var(--text-sec); opacity:0.5;"></i></div>
             </div>
         </div>
 
-        <!-- MAIN GRID: 2 COLUMNS (Mastery vs Practice) -->
+        <!-- MAIN GRID: 2 COLUMNS (Mastery vs Leaderboard) -->
         <div class="dashboard-cols">
             
             <!-- COL 1 (ANALYTICS: Mocks & Topics Mastery) -->
@@ -461,74 +528,34 @@
 
             </div>
 
-            <!-- COL 2 (QUICK ACTIONS) -->
+            <!-- COL 2 (DOPAMINE LEADERBOARD) -->
             <div style="display: flex; flex-direction: column; gap: 15px;">
                 
-                <!-- Quick Access Mocks (2-Column Grid) -->
-                <div class="glass-panel" style="padding: 15px; margin-bottom: 0; height: 100%;">
-                    <div class="section-header">
-                        <h2 class="section-title"><i class="fa-solid fa-play"></i> Quick Practice <span>Free</span></h2>
+                <!-- THE GAMIFIED DUAL LEADERBOARD WITH TIME FILTERS -->
+                <div class="glass-panel" style="padding: 15px; margin-bottom: 0; background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(251, 191, 36, 0.05)); height: 100%;">
+                    
+                    <div class="section-header" style="border-bottom: none; padding-bottom: 5px; margin-bottom:5px; flex-wrap: wrap; gap: 8px;">
+                        <h2 class="section-title">
+                            <i class="fa-solid fa-trophy" style="color:var(--gold);"></i> Wall of Fame <span>Global Top 5</span>
+                            <i class="fa-solid fa-circle-info" style="color: var(--text-sec); font-size: 0.9rem; cursor: pointer; margin-left: 5px;" onclick="openXPModal()" title="How XP Works?"></i>
+                        </h2>
+                        
+                        <!-- TIME FILTERS -->
+                        <select class="lb-time-filter" id="lb-time-select" onchange="window.changeLeaderboardTime(this.value)">
+                            <option value="all">All Time</option>
+                            <option value="month">This Month</option>
+                            <option value="week">This Week</option>
+                        </select>
                     </div>
-                    <div class="quick-practice-grid">
-                        <div class="mock-item">
-                            <div class="mock-info">
-                                <div class="mock-icon" style="color:var(--danger); background:rgba(239,68,68,0.1);"><i class="fa-solid fa-file-signature"></i></div>
-                                <div class="mock-details">
-                                    <span class="mock-title">Patwari Mock 1</span>
-                                    <span class="mock-meta">Full Mock • 120 Mins</span>
-                                </div>
-                            </div>
-                            <a href="../mock-engine/index.html?exam=hp-patwari-mock&testId=hpgkdata.patwari-mock-test-1" class="mock-play"><i class="fa-solid fa-play"></i></a>
-                        </div>
-                        <div class="mock-item">
-                            <div class="mock-info">
-                                <div class="mock-icon" style="color:var(--warning); background:rgba(245,158,11,0.1);"><i class="fa-solid fa-clock-rotate-left"></i></div>
-                                <div class="mock-details">
-                                    <span class="mock-title">Patwari PYP (2019)</span>
-                                    <span class="mock-meta">Official Paper • 90 Mins</span>
-                                </div>
-                            </div>
-                            <a href="../mock-engine/index.html?exam=hp-patwari-mock&testId=hpgkdata.patwari-previous-year-paper-2019" class="mock-play"><i class="fa-solid fa-play"></i></a>
-                        </div>
-                        <div class="mock-item">
-                            <div class="mock-info">
-                                <div class="mock-icon" style="color:var(--success); background:rgba(16,185,129,0.1);"><i class="fa-solid fa-seedling"></i></div>
-                                <div class="mock-details">
-                                    <span class="mock-title">Agriculture Mix</span>
-                                    <span class="mock-meta">Practice Quiz • Topic</span>
-                                </div>
-                            </div>
-                            <a href="../agriculture-quiz/index.html" class="mock-play"><i class="fa-solid fa-play"></i></a>
-                        </div>
-                        <div class="mock-item">
-                            <div class="mock-info">
-                                <div class="mock-icon" style="color:var(--primary); background:rgba(37,99,235,0.1);"><i class="fa-solid fa-map-location-dot"></i></div>
-                                <div class="mock-details">
-                                    <span class="mock-title">District Mastery</span>
-                                    <span class="mock-meta">Practice Quiz • Topic</span>
-                                </div>
-                            </div>
-                            <a href="../himachal-pradesh-gk/district/index.html" class="mock-play"><i class="fa-solid fa-play"></i></a>
-                        </div>
-                        <div class="mock-item">
-                            <div class="mock-info">
-                                <div class="mock-icon" style="color:#8b5cf6; background:rgba(139,92,246,0.1);"><i class="fa-solid fa-landmark"></i></div>
-                                <div class="mock-details">
-                                    <span class="mock-title">History of HP</span>
-                                    <span class="mock-meta">Practice Quiz • Topic</span>
-                                </div>
-                            </div>
-                            <a href="../himachal-pradesh-gk/history/index.html" class="mock-play"><i class="fa-solid fa-play"></i></a>
-                        </div>
-                        <div class="mock-item">
-                            <div class="mock-info">
-                                <div class="mock-icon" style="color:#0ea5e9; background:rgba(14,165,233,0.1);"><i class="fa-solid fa-water"></i></div>
-                                <div class="mock-details">
-                                    <span class="mock-title">Rivers of HP</span>
-                                    <span class="mock-meta">Practice Quiz • Topic</span>
-                                </div>
-                            </div>
-                            <a href="../himachal-pradesh-gk/rivers/index.html" class="mock-play"><i class="fa-solid fa-play"></i></a>
+                    
+                    <div class="leaderboard-tabs">
+                        <button class="lb-tab active tab-ninja" id="lb-btn-mcq" onclick="window.switchLeaderboardTab('mcq')">🥷 MCQ Ninjas</button>
+                        <button class="lb-tab" id="lb-btn-mock" onclick="window.switchLeaderboardTab('mock')">🎖️ Mock Toppers</button>
+                    </div>
+
+                    <div class="leaderboard-list" id="global-leaderboard">
+                        <div style="text-align: center; padding: 20px; color: var(--text-sec); font-size: 0.8rem;">
+                            <i class="fa-solid fa-spinner fa-spin" style="font-size: 1.5rem; margin-bottom:10px; color:var(--primary);"></i><br>Fetching Global Ranks...
                         </div>
                     </div>
                 </div>
@@ -540,9 +567,47 @@
     </div>
 </main>
 
+<!-- XP INFO MODAL (COMPACT, EYE-CATCHING & FULLY READABLE) -->
+<div id="xpModal" class="modal-overlay">
+    <div class="modal-box" style="max-width: 320px; padding: 25px 20px;">
+        <button onclick="closeXPModal()" class="modal-close-btn" style="top: 10px; right: 12px;"><i class="fa-solid fa-xmark"></i></button>
+        
+        <div style="width: 55px; height: 55px; margin: 0 auto 12px auto; background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(234, 88, 12, 0.15)); border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(245, 158, 11, 0.3); box-shadow: 0 4px 15px rgba(245, 158, 11, 0.1);">
+            <i class="fa-solid fa-bolt" style="font-size: 1.6rem; color: #f59e0b;"></i>
+        </div>
+        
+        <h3 style="margin: 0 0 6px 0; font-size: 1.15rem; font-weight: 800; color: var(--text-main); letter-spacing:-0.3px;">How XP Works</h3>
+        <p style="font-size: 0.75rem; color: var(--text-sec); margin: 0 0 15px 0; line-height: 1.4; font-weight: 500;"><strong>XP (Experience Points)</strong> fuels your Global Rank. High accuracy & consistency unlock the top spots! 🚀</p>
+        
+        <div style="display:flex; flex-direction:column; gap:8px; text-align:left;">
+            <!-- Ninja XP Box -->
+            <div style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(29, 78, 216, 0.05)); padding: 10px 12px; border-radius: 8px; border: 1px solid rgba(59, 130, 246, 0.2); display:flex; gap:12px; align-items:center;">
+                <div style="font-size:1.4rem; color:var(--primary);"><i class="fa-solid fa-user-ninja"></i></div>
+                <div style="flex:1;">
+                    <div style="color: var(--text-main); font-weight: 800; font-size:0.8rem; margin-bottom:2px;">Topic Ninjas XP</div>
+                    <div style="font-size:0.65rem; color:var(--text-sec); font-weight:700;"><span style="color:var(--primary);">(Correct Qs × 2) × Acc² × Speed</span></div>
+                    <div style="font-size:0.55rem; color:var(--text-sec); margin-top:2px;">Fast & accurate wins! Guessing is penalized.</div>
+                </div>
+            </div>
+
+            <!-- Topper XP Box -->
+            <div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.05), rgba(185, 28, 28, 0.05)); padding: 10px 12px; border-radius: 8px; border: 1px solid rgba(239, 68, 68, 0.2); display:flex; gap:12px; align-items:center;">
+                <div style="font-size:1.4rem; color:var(--danger);"><i class="fa-solid fa-medal"></i></div>
+                <div style="flex:1;">
+                    <div style="color: var(--text-main); font-weight: 800; font-size:0.8rem; margin-bottom:2px;">Mock Toppers XP</div>
+                    <div style="font-size:0.65rem; color:var(--text-sec); font-weight:700;"><span style="color:var(--danger);">(Final Score × 2.5) × Acc² × Speed</span></div>
+                    <div style="font-size:0.55rem; color:var(--text-sec); margin-top:2px;">Negative marking applies. Speed gives bonus.</div>
+                </div>
+            </div>
+        </div>
+        
+        <button style="width: 100%; background: var(--primary); color: white; border: none; padding: 10px; border-radius: 8px; font-weight: 800; font-size: 0.85rem; cursor: pointer; margin-top: 16px; box-shadow: 0 4px 10px rgba(37,99,235,0.2); transition:0.2s;" onclick="closeXPModal()">Got It, Let's Play!</button>
+    </div>
+</div>
+
 <!-- QUICK PAY MODAL -->
 <div id="quickPayModal" class="modal-overlay">
-    <div class="glass-panel" style="width: 90%; max-width: 320px; padding: 30px 20px; text-align: center; position: relative; border-radius: var(--radius-lg); margin: auto;">
+    <div class="modal-box" style="max-width: 320px; padding: 30px 20px;">
         <button onclick="closeQuickPay()" class="modal-close-btn"><i class="fa-solid fa-xmark"></i></button>
         <div style="font-size: 2.5rem; color: var(--primary); margin-bottom: 10px;"><i class="fa-solid fa-shield-halved"></i></div>
         <h3 id="qp-title" style="margin: 0 0 5px 0; font-size: 1.15rem; font-weight: 800; color: var(--text-main);">Plan Name</h3>
@@ -562,7 +627,7 @@
 <script src="../js/core.js"></script>
 <script src="../js/layout.js"></script>
 
-<!-- Inline Scripts for Quick Pay Logic -->
+<!-- Inline Scripts for Modals & Quick Pay Logic -->
 <script>
     window.currentPayPlan = '';
     window.currentPayPrice = 0;
@@ -582,23 +647,53 @@
     window.processQuickPayment = function() {
         alert('Initiating Checkout for ₹' + window.currentPayPrice + '...\n\n(Once payment is successful, your account will be upgraded instantly and you will remain on this dashboard to see your new unlocked features!)');
         window.closeQuickPay();
-        // In production, trigger Razorpay window here.
     };
 
-    // Close modal if clicked outside
+    window.openXPModal = function() {
+        document.getElementById('xpModal').style.display = 'flex';
+    };
+
+    window.closeXPModal = function() {
+        document.getElementById('xpModal').style.display = 'none';
+    };
+
     window.addEventListener('click', function(e) {
-        const modal = document.getElementById('quickPayModal');
-        if (e.target === modal) {
-            window.closeQuickPay();
-        }
+        const qpModal = document.getElementById('quickPayModal');
+        const xpModal = document.getElementById('xpModal');
+        if (e.target === qpModal) window.closeQuickPay();
+        if (e.target === xpModal) window.closeXPModal();
     });
+
+    // Globals for fast tab & time switching
+    window.rawLeaderboardUsers = [];
+    window.currentLbType = 'mcq';
+    window.currentLbTime = 'all';
+    
+    window.switchLeaderboardTab = function(tabName) {
+        document.getElementById('lb-btn-mcq').className = 'lb-tab';
+        document.getElementById('lb-btn-mock').className = 'lb-tab';
+        
+        const activeBtn = document.getElementById('lb-btn-' + tabName);
+        if(activeBtn) {
+            activeBtn.classList.add('active');
+            activeBtn.classList.add(tabName === 'mcq' ? 'tab-ninja' : 'tab-topper');
+        }
+        
+        window.currentLbType = tabName;
+        if(typeof window.renderLeaderboard === 'function') window.renderLeaderboard();
+    };
+
+    window.changeLeaderboardTime = function(timeVal) {
+        window.currentLbTime = timeVal;
+        if(typeof window.renderLeaderboard === 'function') window.renderLeaderboard();
+    };
 </script>
 
 <!-- Firebase Firestore Integration for fetching User History & Analytics -->
 <script type="module">
     import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
     import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
-    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
+    import { getFirestore, collection, getDocs, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
 
     const firebaseConfig = {
         apiKey: "AIzaSyDfz5Y4oVQHl-crnATIv5dMWsw7edSKddQ",
@@ -609,7 +704,10 @@
         appId: "1:273909571419:web:20d5e06d8b582f4d2dc47e"
     };
 
-    const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
+    // Safe Initialization to avoid race condition with core.js
+    let app;
+    try { app = getApp(); } catch (e) { app = initializeApp(firebaseConfig); }
+    
     const auth = getAuth(app);
     const db = getFirestore(app);
 
@@ -617,6 +715,76 @@
     const elLoggedOut = document.getElementById('logged-out-state');
     const elLoggedIn = document.getElementById('logged-in-state');
     const topPlanContainer = document.getElementById('top-plan-container');
+
+    // Timeout Promise Wrapper for Network Hangs
+    async function fetchWithTimeout(promise, ms = 8000) {
+        let timeoutId;
+        const timeoutPromise = new Promise((_, reject) => {
+            timeoutId = setTimeout(() => reject(new Error("Network timeout")), ms);
+        });
+        try {
+            const res = await Promise.race([promise, timeoutPromise]);
+            clearTimeout(timeoutId);
+            return res;
+        } catch (err) {
+            clearTimeout(timeoutId);
+            throw err;
+        }
+    }
+
+    window.renderLeaderboard = function() {
+        const lbContainer = document.getElementById('global-leaderboard');
+        if(!lbContainer) return;
+        
+        const users = window.rawLeaderboardUsers || [];
+        
+        let xpKey = '';
+        if(window.currentLbType === 'mcq') {
+            if(window.currentLbTime === 'all') xpKey = 'mcqXP';
+            if(window.currentLbTime === 'month') xpKey = 'monthlyMcqXP';
+            if(window.currentLbTime === 'week') xpKey = 'weeklyMcqXP';
+        } else {
+            if(window.currentLbTime === 'all') xpKey = 'mockXP';
+            if(window.currentLbTime === 'month') xpKey = 'monthlyMockXP';
+            if(window.currentLbTime === 'week') xpKey = 'weeklyMockXP';
+        }
+
+        const leaders = users.filter(u => (u[xpKey] || 0) > 0)
+                             .sort((a, b) => (b[xpKey] || 0) - (a[xpKey] || 0))
+                             .slice(0, 5);
+        
+        if (leaders.length === 0) {
+            lbContainer.innerHTML = `<div style="text-align: center; padding: 15px; color: var(--text-sec); font-size: 0.8rem;">No champions yet in this category for the selected timeframe! Go practice now.</div>`;
+            return;
+        }
+
+        let html = '';
+        leaders.forEach((u, index) => {
+            let rankDisplay = '';
+            let isFirst = index === 0 ? 'is-first' : '';
+            if(index === 0) rankDisplay = '<i class="fa-solid fa-crown rank-1"></i>';
+            else if(index === 1) rankDisplay = '<span class="lb-rank rank-2">2</span>';
+            else if(index === 2) rankDisplay = '<span class="lb-rank rank-3">3</span>';
+            else rankDisplay = `<span class="lb-rank" style="color:var(--text-sec); font-size:1rem;">${index + 1}</span>`;
+
+            let defaultPhoto = 'https://ui-avatars.com/api/?name=' + encodeURIComponent(u.name) + '&background=cbd5e1';
+
+            html += `
+            <div class="lb-item ${isFirst}">
+                ${rankDisplay}
+                <div class="lb-user">
+                    <img src="${u.photo || defaultPhoto}" class="lb-avatar" onerror="this.src='${defaultPhoto}'">
+                    <span class="lb-name">${u.name.substring(0, 15)}${u.name.length > 15 ? '...' : ''}</span>
+                </div>
+                <div class="lb-score-box">
+                    <div class="lb-score"><i class="fa-solid fa-bolt"></i> ${u[xpKey]} <span style="font-size:0.65rem; color:var(--text-sec);">XP</span></div>
+                    <div class="lb-qs">${u.qs || 0} Qs Mastered</div>
+                </div>
+            </div>
+            `;
+        });
+        lbContainer.innerHTML = html;
+    };
 
     onAuthStateChanged(auth, async (user) => {
         if (user) {
@@ -626,12 +794,15 @@
             document.getElementById('user-short-id').innerText = user.uid.substring(0, 6).toUpperCase();
             
             // Handle User Subscriptions / Passes UI
-            let activePasses = 0;
-            if(window.HPGK_User && window.HPGK_User.passes && Object.keys(window.HPGK_User.passes).length > 0) {
-                activePasses = Object.keys(window.HPGK_User.passes).length;
+            let hasMcqPro = false;
+            let hasMockMaster = false;
 
+            if(window.HPGK_User && window.HPGK_User.passes && Object.keys(window.HPGK_User.passes).length > 0) {
                 let html = '';
                 for(const [passId, passData] of Object.entries(window.HPGK_User.passes)) {
+                    if (passId === 'mcq_pro_pass') hasMcqPro = true;
+                    if (passId === 'mock_master_pass') hasMockMaster = true;
+
                     html += `
                     <div class="active-plan-box">
                         <i class="fa-solid fa-gem bg-icon"></i>
@@ -662,12 +833,57 @@
                     </div>
                 `;
             }
+
+            // 🔥 DYNAMIC UPGRADES CONTAINER
+            const upgradesContainer = document.getElementById('dynamic-upgrades-container');
+            if (hasMockMaster) {
+                upgradesContainer.innerHTML = `
+                    <div style="background: linear-gradient(135deg, #10b981, #059669); border-radius: var(--radius-md); padding: 15px; color: white; display: flex; align-items: center; gap: 15px; box-shadow: 0 4px 15px rgba(16,185,129,0.3); height: 100%; box-sizing: border-box;">
+                        <div style="font-size: 3rem; opacity: 0.9;"><i class="fa-solid fa-crown"></i></div>
+                        <div>
+                            <div style="font-size: 1rem; font-weight: 900; letter-spacing: 0.5px; text-transform: uppercase;">VIP Master Unlocked</div>
+                            <div style="font-size: 0.7rem; font-weight: 500; margin-top: 4px; opacity: 0.9;">You have unrestricted access to all Premium Mocks & MCQs. Keep conquering the leaderboard! 🚀</div>
+                        </div>
+                    </div>`;
+            } else if (hasMcqPro) {
+                upgradesContainer.innerHTML = `
+                    <div class="compact-upgrade-item" style="background: rgba(16,185,129,0.1); border-color: rgba(16,185,129,0.3);">
+                        <div>
+                            <div style="font-size: 0.75rem; font-weight: 800; color: var(--success);"><i class="fa-solid fa-check-circle"></i> MCQ Pro Active</div>
+                            <div style="font-size: 0.6rem; color: var(--text-sec);">3000+ MCQs Unlocked</div>
+                        </div>
+                    </div>
+                    <div class="compact-upgrade-item" style="background: linear-gradient(135deg, #fffbeb, #fef3c7); border-color: #fde68a;">
+                        <div>
+                            <div style="font-size: 0.75rem; font-weight: 800; color: var(--bronze);"><i class="fa-solid fa-crown" style="color:var(--warning);"></i> Mock Master Pass</div>
+                            <div style="font-size: 0.6rem; color: var(--text-sec);">Unlock All Full-Length Mocks</div>
+                        </div>
+                        <button onclick="openQuickPay('mock_master_pass', 149, 'Mock Master Pass')" class="compact-btn-buy" style="background: linear-gradient(135deg, #10b981, #059669);">₹149/mo</button>
+                    </div>`;
+            } else {
+                upgradesContainer.innerHTML = `
+                    <div class="compact-upgrade-item">
+                        <div>
+                            <div style="font-size: 0.75rem; font-weight: 800; color: var(--text-main);"><i class="fa-solid fa-bolt" style="color:var(--accent);"></i> MCQ Pro Pass</div>
+                            <div style="font-size: 0.6rem; color: var(--text-sec);">Unlock 3000+ Premium MCQs</div>
+                        </div>
+                        <button onclick="openQuickPay('mcq_pro_pass', 39, 'MCQ Pro Pass')" class="compact-btn-buy">₹39/mo</button>
+                    </div>
+                    <div class="compact-upgrade-item">
+                        <div>
+                            <div style="font-size: 0.75rem; font-weight: 800; color: var(--text-main);"><i class="fa-solid fa-crown" style="color:var(--warning);"></i> Mock Master Pass</div>
+                            <div style="font-size: 0.6rem; color: var(--text-sec);">Unlock All Full-Length Mocks</div>
+                        </div>
+                        <button onclick="openQuickPay('mock_master_pass', 149, 'Mock Master Pass')" class="compact-btn-buy" style="background: linear-gradient(135deg, #10b981, #059669);">₹149/mo</button>
+                    </div>`;
+            }
             
             elLoading.style.display = 'none';
             elLoggedOut.style.display = 'none';
             elLoggedIn.style.display = 'block';
 
-            await loadUserStats(user.uid);
+            await loadUserStatsAndSyncProfile(user);
+            await fetchGlobalLeaderboard();
         } else {
             elLoading.style.display = 'none';
             elLoggedIn.style.display = 'none';
@@ -675,20 +891,24 @@
         }
     });
 
-    async function loadUserStats(uid) {
+    async function loadUserStatsAndSyncProfile(user) {
         try {
             const appId = 'hpgk-quiz';
-            const scoresRef = collection(db, 'artifacts', appId, 'users', uid, 'scores');
-            const querySnapshot = await getDocs(scoresRef);
+            const scoresRef = collection(db, 'artifacts', appId, 'users', user.uid, 'scores');
+            
+            // Protected fetch with 8s timeout
+            let querySnapshot;
+            try {
+                querySnapshot = await fetchWithTimeout(getDocs(scoresRef), 8000);
+            } catch(networkErr) {
+                console.error("Firebase network timed out:", networkErr);
+                throw new Error("Timeout");
+            }
             
             const records = [];
             querySnapshot.forEach((doc) => { records.push({ id: doc.id, ...doc.data() }); });
-            // Sort original raw array chronologically (newest first)
             records.sort((a, b) => b.timestamp - a.timestamp); 
 
-            // =================================================================
-            // SUPER MAPPER
-            // =================================================================
             const categoryMap = {
                 'rivers': 'Rivers of HP',
                 'rivers of hp': 'Rivers of HP',
@@ -708,22 +928,15 @@
             };
 
             const catStats = {}; 
-            
-            // DEDUPLICATION MAPS (Store only the LATEST attempt per unique test)
             const latestMocks = {};
             const latestTopics = {};
-
-            // Separate efforts
-            let mockTotalQuestionsEffort = 0;
-            let topicTotalQuestionsEffort = 0;
 
             records.forEach(data => {
                 const rawCat = data.category || 'Unknown Quiz';
                 let cleanString = rawCat.toLowerCase().replace(/hpgk_/g, '').replace(/[-_]/g, ' ').replace(/\s+/g, ' ').trim();
                 data.cleanCatName = categoryMap[cleanString] || cleanString.replace(/\b\w/g, l => l.toUpperCase());
                 
-                if (data.testId) {
-                    // Stripping the 'hpgkdata.' prefix for a cleaner display title
+                if (data.testId && typeof data.testId === 'string') {
                     let cleanTest = data.testId.replace('hpgkdata.', '').replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
                     data.displayTitle = `${data.cleanCatName} (${cleanTest})`;
                     data.isMock = true;
@@ -732,7 +945,6 @@
                     data.isMock = false;
                 }
 
-                // **SAFE FALLBACK FOR LEGACY DATA**
                 let parsedTotal = Number(data.total) || 0;
                 let parsedScore = Number(data.score) || 0;
                 let parsedCorrect = data.correct !== undefined ? Number(data.correct) : Math.max(0, Math.round(parsedScore));
@@ -743,170 +955,237 @@
                 data._safeWrong = parsedWrong;
                 data._safeTime = Number(data.timeTaken) || 0;
 
-                // Subject Analytics Aggregation (only topics)
                 if (!data.isMock) {
                     if (!catStats[data.cleanCatName]) catStats[data.cleanCatName] = { correct: 0, total: 0 };
                     catStats[data.cleanCatName].correct += parsedCorrect;
                     catStats[data.cleanCatName].total += parsedTotal;
                 }
 
-                // DEDUPLICATION & EFFORT SPLIT LOGIC
                 if (data.isMock) {
-                    mockTotalQuestionsEffort += parsedTotal; 
                     if (!latestMocks[data.displayTitle] || latestMocks[data.displayTitle].timestamp < data.timestamp) {
                         latestMocks[data.displayTitle] = data; 
                     }
                 } else {
-                    topicTotalQuestionsEffort += parsedTotal; 
                     if (!latestTopics[data.displayTitle] || latestTopics[data.displayTitle].timestamp < data.timestamp) {
                         latestTopics[data.displayTitle] = data; 
                     }
                 }
             });
 
-            // Convert map back to array and sort (newest first)
             const finalMocks = Object.values(latestMocks).sort((a,b) => b.timestamp - a.timestamp);
             const finalTopics = Object.values(latestTopics).sort((a,b) => b.timestamp - a.timestamp);
 
-            // =======================================================
-            // 10-CARD SMART STATS LOGIC (Symmetrical Mocks vs Topics)
-            // =======================================================
-            
-            // --- MOCKS CALCULATION ---
-            if (finalMocks.length > 0) {
-                document.getElementById('stat-mock-count').innerText = finalMocks.length;
-                let mockLatestCorrectQs = 0;
-                let mockLatestWrongQs = 0;
-                let mockTotalTimeSecs = 0;
-                
-                finalMocks.forEach(data => {
-                    mockLatestCorrectQs += data._safeCorrect;
-                    mockLatestWrongQs += data._safeWrong;
-                    mockTotalTimeSecs += data._safeTime;
-                });
-                
-                let mockAttempted = mockLatestCorrectQs + mockLatestWrongQs;
-                const mockAvgAcc = mockAttempted > 0 ? Math.round((mockLatestCorrectQs / mockAttempted) * 100) : 0;
-                const mockAvgTime = mockAttempted > 0 ? Math.round(mockTotalTimeSecs / mockAttempted) : 0;
-                
-                document.getElementById('stat-mock-qs').innerText = mockTotalQuestionsEffort; // True effort
-                document.getElementById('stat-mock-cw').innerHTML = `<span style="color:var(--success);">${mockLatestCorrectQs}</span> <span class="cw-slash">/</span> <span style="color:var(--danger);">${mockLatestWrongQs}</span>`;
-                document.getElementById('stat-mock-acc').innerText = mockAvgAcc + '%';
-                document.getElementById('stat-mock-time').innerText = mockAvgTime + 's';
-            } else {
-                document.getElementById('stat-mock-count').innerText = '0';
-                document.getElementById('stat-mock-qs').innerText = '0';
-                document.getElementById('stat-mock-cw').innerHTML = `<span style="color:var(--success);">0</span> <span class="cw-slash">/</span> <span style="color:var(--danger);">0</span>`;
-                document.getElementById('stat-mock-acc').innerText = '0%';
-                document.getElementById('stat-mock-time').innerText = '0s';
-            }
+            const now = Date.now();
+            const oneWeek = 7 * 24 * 60 * 60 * 1000;
+            const oneMonth = 30 * 24 * 60 * 60 * 1000;
 
-            // --- TOPICS CALCULATION ---
-            if (finalTopics.length > 0) {
-                document.getElementById('stat-topic-count').innerText = finalTopics.length;
-                let topicLatestCorrectQs = 0;
-                let topicLatestWrongQs = 0;
-                let topicTotalTimeSecs = 0;
-                
-                finalTopics.forEach(data => {
-                    topicLatestCorrectQs += data._safeCorrect;
-                    topicLatestWrongQs += data._safeWrong;
-                    topicTotalTimeSecs += data._safeTime;
-                });
-                
-                let topicAttempted = topicLatestCorrectQs + topicLatestWrongQs;
-                const topicAvgAcc = topicAttempted > 0 ? Math.round((topicLatestCorrectQs / topicAttempted) * 100) : 0;
-                
-                // 🔥 SMART FIX: Show 'N/A' instead of '0s' for untimed practice
-                const topicAvgTime = topicTotalTimeSecs > 0 && topicAttempted > 0 ? Math.round(topicTotalTimeSecs / topicAttempted) + 's' : 'N/A';
-                
-                document.getElementById('stat-topic-qs').innerText = topicTotalQuestionsEffort; // True effort
-                document.getElementById('stat-topic-cw').innerHTML = `<span style="color:var(--success);">${topicLatestCorrectQs}</span> <span class="cw-slash">/</span> <span style="color:var(--danger);">${topicLatestWrongQs}</span>`;
-                document.getElementById('stat-topic-acc').innerText = topicAvgAcc + '%';
-                
-                // Show 'N/A' and switch icon to infinity for untimed
-                if (topicAvgTime === 'N/A') {
-                    document.getElementById('stat-topic-time').parentNode.innerHTML = `<span id="stat-topic-time" style="color:var(--text-sec);">${topicAvgTime}</span> <i class="fa-solid fa-infinity" style="color:var(--text-sec); opacity:0.5;"></i>`;
-                } else {
-                    document.getElementById('stat-topic-time').innerText = topicAvgTime;
+            let stats = {
+                all: { mockScore: 0, mockQs: 0, mockAtt: 0, mockCorr: 0, mockTime: 0, topicAtt: 0, topicCorr: 0, topicTime: 0 },
+                month: { mockScore: 0, mockQs: 0, mockAtt: 0, mockCorr: 0, mockTime: 0, topicAtt: 0, topicCorr: 0, topicTime: 0 },
+                week: { mockScore: 0, mockQs: 0, mockAtt: 0, mockCorr: 0, mockTime: 0, topicAtt: 0, topicCorr: 0, topicTime: 0 }
+            };
+
+            finalMocks.forEach(d => {
+                const score = Number(d.score) || 0;
+                const qs = d._safeTotal;
+                const att = d._safeCorrect + d._safeWrong;
+                const corr = d._safeCorrect;
+                const time = d._safeTime || 0;
+                stats.all.mockScore += score; stats.all.mockQs += qs; stats.all.mockAtt += att; stats.all.mockCorr += corr; stats.all.mockTime += time;
+                if (now - d.timestamp <= oneMonth) { stats.month.mockScore += score; stats.month.mockQs += qs; stats.month.mockAtt += att; stats.month.mockCorr += corr; stats.month.mockTime += time; }
+                if (now - d.timestamp <= oneWeek) { stats.week.mockScore += score; stats.week.mockQs += qs; stats.week.mockAtt += att; stats.week.mockCorr += corr; stats.week.mockTime += time; }
+            });
+
+            finalTopics.forEach(d => {
+                const att = d._safeCorrect + d._safeWrong; // actual attempted
+                const corr = d._safeCorrect;
+                const time = d._safeTime || 0;
+                stats.all.topicAtt += att; stats.all.topicCorr += corr; stats.all.topicTime += time;
+                if (now - d.timestamp <= oneMonth) { stats.month.topicAtt += att; stats.month.topicCorr += corr; stats.month.topicTime += time; }
+                if (now - d.timestamp <= oneWeek) { stats.week.topicAtt += att; stats.week.topicCorr += corr; stats.week.topicTime += time; }
+            });
+
+            // 🔥 TOUGH XP LOGIC: Accuracy Squared + Speed Multiplier + Custom Base (2 for MCQ, 2.5 for Mock)
+            const calcMcqXP = (corr, att, time) => {
+                if (att === 0 || corr <= 0) return 0;
+                const accuracy = corr / att;
+                let speed = 1.0;
+                if (time > 0) {
+                    let avgTime = time / att;
+                    speed = Math.min(2.0, Math.max(0.5, 45 / avgTime)); // 45s standard for MCQ
                 }
-            } else {
-                document.getElementById('stat-topic-count').innerText = '0';
-                document.getElementById('stat-topic-qs').innerText = '0';
-                document.getElementById('stat-topic-cw').innerHTML = `<span style="color:var(--success);">0</span> <span class="cw-slash">/</span> <span style="color:var(--danger);">0</span>`;
-                document.getElementById('stat-topic-acc').innerText = '0%';
-                document.getElementById('stat-topic-time').innerText = 'N/A';
+                return Math.floor((corr * 2) * (accuracy * accuracy) * speed);
+            };
+
+            const calcMockXP = (score, corr, att, time) => {
+                if (att === 0 || score <= 0) return 0;
+                const accuracy = corr / att;
+                let speed = 1.0;
+                if (time > 0) {
+                    let avgTime = time / att;
+                    speed = Math.min(2.0, Math.max(0.5, 60 / avgTime)); // 60s standard for Mock
+                }
+                return Math.floor((score * 2.5) * (accuracy * accuracy) * speed);
+            };
+
+            const xpData = {
+                mcqXP: calcMcqXP(stats.all.topicCorr, stats.all.topicAtt, stats.all.topicTime),
+                mockXP: calcMockXP(stats.all.mockScore, stats.all.mockCorr, stats.all.mockAtt, stats.all.mockTime),
+                monthlyMcqXP: calcMcqXP(stats.month.topicCorr, stats.month.topicAtt, stats.month.topicTime),
+                monthlyMockXP: calcMockXP(stats.month.mockScore, stats.month.mockCorr, stats.month.mockAtt, stats.month.mockTime),
+                weeklyMcqXP: calcMcqXP(stats.week.topicCorr, stats.week.topicAtt, stats.week.topicTime),
+                weeklyMockXP: calcMockXP(stats.week.mockScore, stats.week.mockCorr, stats.week.mockAtt, stats.week.mockTime),
+            };
+
+            // Sync silently
+            if (xpData.mcqXP > 0 || xpData.mockXP > 0) {
+                setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'leaderboard', user.uid), {
+                    uid: user.uid,
+                    name: user.displayName || 'HPGK Student',
+                    photo: user.photoURL || '',
+                    mcqXP: xpData.mcqXP,
+                    mockXP: xpData.mockXP,
+                    monthlyMcqXP: xpData.monthlyMcqXP,
+                    monthlyMockXP: xpData.monthlyMockXP,
+                    weeklyMcqXP: xpData.weeklyMcqXP,
+                    weeklyMockXP: xpData.weeklyMockXP,
+                    qs: stats.all.topicCorr + stats.all.mockQs,
+                    lastUpdated: Date.now()
+                }, { merge: true }).catch(e => console.log("Silent sync failed", e));
             }
 
-            // =======================================================
-            // RENDER MOCK MASTERY (Latest 7 Mocks)
-            // =======================================================
-            const sortedMocks = finalMocks.slice(0, 7); 
-            if (sortedMocks.length > 0) {
-                let mockHtml = '';
-                sortedMocks.forEach(data => {
-                    let c = data._safeCorrect;
-                    let w = data._safeWrong;
-                    let attempted = c + w;
-                    let acc = data.accuracy !== undefined ? data.accuracy : (attempted > 0 ? Math.round((c / attempted) * 100) : 0);
-                    
-                    let barColor = 'var(--danger)';
-                    if (acc >= 75) barColor = 'var(--success)';
-                    else if (acc >= 50) barColor = 'var(--warning)';
+            // SAFE UI UPDATE BLOCKS
+            try {
+                if (finalMocks.length > 0) {
+                    document.getElementById('stat-mock-count').innerText = finalMocks.length;
+                    let mockLatestTotalQs = 0; let mockLatestCorrectQs = 0; let mockLatestWrongQs = 0; let mockTotalTimeSecs = 0;
+                    finalMocks.forEach(data => {
+                        mockLatestTotalQs += data._safeTotal;
+                        mockLatestCorrectQs += data._safeCorrect;
+                        mockLatestWrongQs += data._safeWrong;
+                        mockTotalTimeSecs += data._safeTime;
+                    });
+                    const mockAvgAcc = mockLatestTotalQs > 0 ? Math.round((mockLatestCorrectQs / mockLatestTotalQs) * 100) : 0;
+                    const mockAvgTime = mockLatestTotalQs > 0 ? Math.round(mockTotalTimeSecs / mockLatestTotalQs) : 0;
+                    document.getElementById('stat-mock-qs').innerText = mockLatestTotalQs; 
+                    document.getElementById('stat-mock-cw').innerHTML = `<span style="color:var(--success);">${mockLatestCorrectQs}</span> <span class="cw-slash">/</span> <span style="color:var(--danger);">${mockLatestWrongQs}</span>`;
+                    document.getElementById('stat-mock-acc').innerText = mockAvgAcc + '%';
+                    document.getElementById('stat-mock-time').innerText = mockAvgTime + 's';
+                }
+            } catch(e) { console.error(e); }
 
-                    mockHtml += `
-                    <div class="subject-perf-item">
-                        <div class="perf-labels">
-                            <span>${data.displayTitle} <span style="font-size:0.6rem; color:var(--text-sec); font-weight:500;">(Score: ${data.score}/${data.total})</span></span>
-                            <span style="color:${barColor};">${acc}%</span>
-                        </div>
-                        <div class="perf-track">
-                            <div class="perf-fill" style="width: ${acc}%; background: ${barColor}"></div>
-                        </div>
-                    </div>
-                    `;
-                });
-                document.getElementById('mock-perf-list').innerHTML = mockHtml;
-            } else {
-                document.getElementById('mock-perf-list').innerHTML = `<div style="text-align: center; padding: 15px; color: var(--text-sec); font-size: 0.75rem;">Attempt Mock Tests to generate Mock Mastery insights.</div>`;
-            }
+            try {
+                if (finalTopics.length > 0) {
+                    document.getElementById('stat-topic-count').innerText = finalTopics.length;
+                    let topicLatestTotalQs = 0; let topicLatestCorrectQs = 0; let topicLatestWrongQs = 0; let topicTotalTimeSecs = 0;
+                    finalTopics.forEach(data => {
+                        topicLatestTotalQs += data._safeTotal;
+                        topicLatestCorrectQs += data._safeCorrect;
+                        topicLatestWrongQs += data._safeWrong;
+                        topicTotalTimeSecs += data._safeTime;
+                    });
+                    const topicAvgAcc = topicLatestTotalQs > 0 ? Math.round((topicLatestCorrectQs / topicLatestTotalQs) * 100) : 0;
+                    const topicAvgTime = topicLatestTotalQs > 0 && topicTotalTimeSecs > 0 ? Math.round(topicTotalTimeSecs / topicLatestTotalQs) + 's' : 'N/A';
+                    document.getElementById('stat-topic-qs').innerText = topicLatestTotalQs; 
+                    document.getElementById('stat-topic-cw').innerHTML = `<span style="color:var(--success);">${topicLatestCorrectQs}</span> <span class="cw-slash">/</span> <span style="color:var(--danger);">${topicLatestWrongQs}</span>`;
+                    document.getElementById('stat-topic-acc').innerText = topicAvgAcc + '%';
+                    if (topicAvgTime === 'N/A') {
+                        document.getElementById('stat-topic-time').parentNode.innerHTML = `<span id="stat-topic-time" style="color:var(--text-sec);">${topicAvgTime}</span> <i class="fa-solid fa-infinity" style="color:var(--text-sec); opacity:0.5;"></i>`;
+                    } else {
+                        document.getElementById('stat-topic-time').innerText = topicAvgTime;
+                    }
+                }
+            } catch(e) { console.error(e); }
 
-            // =======================================================
-            // RENDER SUBJECT MASTERY (Top 7 Topics)
-            // =======================================================
-            const sortedCats = Object.keys(catStats).map(cat => ({
-                name: cat,
-                acc: Math.round((catStats[cat].correct / catStats[cat].total) * 100),
-                total: catStats[cat].total
-            })).sort((a, b) => b.total - a.total).slice(0, 7); 
+            try {
+                const sortedMocks = finalMocks.slice(0, 7); 
+                if (sortedMocks.length > 0) {
+                    let mockHtml = '';
+                    sortedMocks.forEach(data => {
+                        let c = data._safeCorrect;
+                        let w = data._safeWrong;
+                        let attempted = c + w;
+                        let acc = data.accuracy !== undefined ? data.accuracy : (attempted > 0 ? Math.round((c / attempted) * 100) : 0);
+                        let barColor = 'var(--danger)';
+                        if (acc >= 75) barColor = 'var(--success)';
+                        else if (acc >= 50) barColor = 'var(--warning)';
 
-            if (sortedCats.length > 0) {
-                let subjectHtml = '';
-                sortedCats.forEach(cat => {
-                    let barColor = 'var(--danger)';
-                    if (cat.acc >= 75) barColor = 'var(--success)';
-                    else if (cat.acc >= 50) barColor = 'var(--warning)';
+                        mockHtml += `
+                        <div class="subject-perf-item">
+                            <div class="perf-labels">
+                                <span>${data.displayTitle} <span style="font-size:0.6rem; color:var(--text-sec); font-weight:500;">(Score: ${data.score}/${data.total})</span></span>
+                                <span style="color:${barColor};">${acc}%</span>
+                            </div>
+                            <div class="perf-track">
+                                <div class="perf-fill" style="width: ${acc}%; background: ${barColor}"></div>
+                            </div>
+                        </div>`;
+                    });
+                    document.getElementById('mock-perf-list').innerHTML = mockHtml;
+                }
+            } catch(e) { console.error(e); }
 
-                    subjectHtml += `
-                    <div class="subject-perf-item">
-                        <div class="perf-labels">
-                            <span>${cat.name} <span style="font-size:0.6rem; color:var(--text-sec); font-weight:500;">(${cat.total} Qs)</span></span>
-                            <span style="color:${barColor};">${cat.acc}%</span>
-                        </div>
-                        <div class="perf-track">
-                            <div class="perf-fill" style="width: ${cat.acc}%; background: ${barColor}"></div>
-                        </div>
-                    </div>
-                    `;
-                });
-                document.getElementById('subject-perf-list').innerHTML = subjectHtml;
-            } else {
-                document.getElementById('subject-perf-list').innerHTML = `<div style="text-align: center; padding: 15px; color: var(--text-sec); font-size: 0.75rem;">Attempt Topic Quizzes to generate Subject Mastery insights.</div>`;
-            }
+            try {
+                const sortedCats = Object.keys(catStats).map(cat => ({
+                    name: cat,
+                    acc: catStats[cat].total > 0 ? Math.round((catStats[cat].correct / catStats[cat].total) * 100) : 0,
+                    total: catStats[cat].total
+                })).sort((a, b) => b.total - a.total).slice(0, 5); 
+
+                if (sortedCats.length > 0) {
+                    let subjectHtml = '';
+                    sortedCats.forEach(cat => {
+                        let barColor = 'var(--danger)';
+                        if (cat.acc >= 75) barColor = 'var(--success)';
+                        else if (cat.acc >= 50) barColor = 'var(--warning)';
+
+                        subjectHtml += `
+                        <div class="subject-perf-item">
+                            <div class="perf-labels">
+                                <span>${cat.name} <span style="font-size:0.6rem; color:var(--text-sec); font-weight:500;">(${cat.total} Qs)</span></span>
+                                <span style="color:${barColor};">${cat.acc}%</span>
+                            </div>
+                            <div class="perf-track">
+                                <div class="perf-fill" style="width: ${cat.acc}%; background: ${barColor}"></div>
+                            </div>
+                        </div>`;
+                    });
+                    document.getElementById('subject-perf-list').innerHTML = subjectHtml;
+                }
+            } catch(e) { console.error(e); }
 
         } catch (error) {
             console.error("Error fetching stats:", error);
-            document.getElementById('mock-perf-list').innerHTML = `<div style="text-align: center; font-size:0.75rem; color: var(--danger);">Error loading data.</div>`;
+        }
+    }
+
+    async function fetchGlobalLeaderboard() {
+        try {
+            const lbRef = collection(db, 'artifacts', 'hpgk-quiz', 'public', 'data', 'leaderboard');
+            let lbSnap;
+            try {
+                lbSnap = await fetchWithTimeout(getDocs(lbRef), 8000);
+            } catch(networkErr) {
+                throw new Error("Timeout");
+            }
+            
+            let users = [];
+            lbSnap.forEach(doc => {
+                users.push(doc.data());
+            });
+
+            window.rawLeaderboardUsers = users;
+
+            if (window.switchLeaderboardTab) {
+                window.switchLeaderboardTab(window.currentLbType || 'mcq');
+            }
+
+        } catch (e) {
+            console.error("Leaderboard Error:", e);
+            const lbContainer = document.getElementById('global-leaderboard');
+            if (lbContainer) {
+                lbContainer.innerHTML = `<div style="text-align: center; padding:20px; font-size:0.8rem; color: var(--danger); font-weight:600;"><i class="fa-solid fa-triangle-exclamation"></i> Network Error.<br>Ranks could not be fetched.</div>`;
+            }
         }
     }
 </script>
