@@ -55,7 +55,7 @@
                     window.HPGK_User.displayName = user.displayName;
                     window.HPGK_User.photoURL = user.photoURL;
 
-                    // ðŸ”¥ FIX 1: Securely Fetch Passes from Cloud
+                    // 🔥 FIX 1: Securely Fetch Passes from Cloud
                     try {
                         const userDoc = await getDoc(doc(db, 'artifacts', 'hpgk-quiz', 'users', user.uid));
                         if (userDoc.exists() && userDoc.data().passes) {
@@ -77,7 +77,7 @@
                 }
             });
 
-            // ðŸ”¥ SMART SYNC LOGIC: Saves strictly to Private Folder only.
+            // 🔥 SMART SYNC LOGIC: Saves strictly to Private Folder only.
             // The Public XP Leaderboard sync is now handled smoothly by dashboard.html
             window.HPGK_SaveScore = async function(category, correctCount, totalCount) {
                 if (!window.HPGK_User.isLoggedIn || !window.HPGK_User.uid) return;
@@ -108,22 +108,52 @@
         // Block Right-Click (Context Menu)
         document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
 
-        // Block F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U, Ctrl+Shift+C
+        // Block F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U, Ctrl+Shift+C and Copy/Cut/Paste/Select All
         document.addEventListener('keydown', function(e) {
             if (e.key === 'F12' || e.keyCode === 123) { e.preventDefault(); }
-            if (e.ctrlKey) {
-                if (e.key === 'u' || e.key === 'U' || e.keyCode === 85) e.preventDefault();
-                if (e.key === 's' || e.key === 'S' || e.keyCode === 83) e.preventDefault();
+            // ctrlKey for Windows/Linux, metaKey for Mac (Command key)
+            if (e.ctrlKey || e.metaKey) {
+                if (e.key === 'u' || e.key === 'U' || e.keyCode === 85) e.preventDefault(); // View Source
+                if (e.key === 's' || e.key === 'S' || e.keyCode === 83) e.preventDefault(); // Save Page
+                if (e.key === 'c' || e.key === 'C' || e.keyCode === 67) e.preventDefault(); // Copy
+                if (e.key === 'x' || e.key === 'X' || e.keyCode === 88) e.preventDefault(); // Cut
+                if (e.key === 'v' || e.key === 'V' || e.keyCode === 86) e.preventDefault(); // Paste
+                if (e.key === 'a' || e.key === 'A' || e.keyCode === 65) e.preventDefault(); // Select All
                 if (e.shiftKey) {
-                    if (e.key === 'i' || e.key === 'I' || e.keyCode === 73) e.preventDefault();
-                    if (e.key === 'j' || e.key === 'J' || e.keyCode === 74) e.preventDefault();
-                    if (e.key === 'c' || e.key === 'C' || e.keyCode === 67) e.preventDefault();
+                    if (e.key === 'i' || e.key === 'I' || e.keyCode === 73) e.preventDefault(); // Inspect
+                    if (e.key === 'j' || e.key === 'J' || e.keyCode === 74) e.preventDefault(); // Console
+                    if (e.key === 'c' || e.key === 'C' || e.keyCode === 67) e.preventDefault(); // Inspect Element
                 }
             }
         });
         
-        // Extra Protection: Block Dragging
+        // Extra Protection: Block Dragging, Copy, Cut, Paste, and Text Selection via Mouse/Touch
         document.addEventListener('dragstart', function(e) { e.preventDefault(); });
+        document.addEventListener('copy', function(e) { e.preventDefault(); });
+        document.addEventListener('cut', function(e) { e.preventDefault(); });
+        document.addEventListener('paste', function(e) { e.preventDefault(); });
+        document.addEventListener('selectstart', function(e) { e.preventDefault(); });
+
+        // Inject Global CSS to disable text selection permanently, but allow inputs/textareas for typing
+        const noSelectStyle = document.createElement('style');
+        noSelectStyle.innerHTML = `
+            * {
+                -webkit-touch-callout: none !important;
+                -webkit-user-select: none !important;
+                -khtml-user-select: none !important;
+                -moz-user-select: none !important;
+                -ms-user-select: none !important;
+                user-select: none !important;
+            }
+            input, textarea, select {
+                -webkit-user-select: auto !important;
+                -khtml-user-select: auto !important;
+                -moz-user-select: auto !important;
+                -ms-user-select: auto !important;
+                user-select: auto !important;
+            }
+        `;
+        document.head.appendChild(noSelectStyle);
     }
 
     // 4. UNIVERSAL DECOY INJECTOR (THE HONEYPOT)
