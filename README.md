@@ -4,9 +4,9 @@ Welcome to the official documentation of the HPGK (Himachal Pradesh General Know
 
 Designed with a strict Mobile-First approach and ensuring WCAG AA Compliance for maximum accessibility, this platform delivers a seamless, app-like experience directly in the browser.
 
-🏗️ Core Architecture: The "Holy Trinity" Model
+🏗️ Core Architecture: The "Holy Trinity" Model (+ Extensions)
 
-The system has been meticulously decoupled into three independent core files to maximize speed, security, and maintainability.
+The system has been meticulously decoupled into independent core files to maximize speed, security, and maintainability.
 
 1. The Global Brain (js/core.js)
 
@@ -15,6 +15,8 @@ This is the foundational script loaded on every page.
 Role: Handles Firebase initialization, Google Authentication, and Firestore Database connections.
 
 Key Features: Manages the global window.HPGK_User object (storing UID and active passes) and handles cloud synchronization (HPGK_SaveScore).
+
+[NEW IN v2.0]: Now includes Universal UI Protection (permanently blocks Right-Click, F12, Inspect Element, Copy/Paste) and Decoy Routing (injects fake honeypot URLs to stop scrapers).
 
 2. The Bouncer (js/access-guard.js)
 
@@ -30,7 +32,9 @@ Pro Limit Reached (Not Logged In): Prompts to login to view premium plans.
 
 Pro Limit Reached (Logged In): Displays the Razorpay checkout button for the Premium Pass.
 
-3. The Teacher (js/main.js)
+[NEW IN v2.0]: Now identifies "Master Keys" (like mock_master_pass) that instantly bypass all paywalls across the platform.
+
+3. The Teacher (js/mcq-main.js) (Formerly main.js)
 
 The pure, lightweight MCQ rendering engine.
 
@@ -38,28 +42,43 @@ Role: Strictly handles the display of questions, options, explanations, and loca
 
 Key Features: Manages Quick 10 mode, Shuffle, Bookmarks, and Mistakes Review. It constantly communicates with the "Bouncer" before rendering any new question.
 
+4. The Examiner (js/mock-engine.js) [NEW IN v2.0]
+
+The hardcore, strict examination engine for Full-Length Mock Tests.
+
+Role: Simulates the exact TCS/NTA exam environment.
+
+Key Features: Time-bound countdown timer, Question Palette (Answered, Not Answered, Marked for Review), Negative marking calculation (e.g., -0.25), and Post-exam detailed analytics.
+
 📂 Directory & File Structure
 
 root/
 ├── index.html                 # Main Homepage & Subject Navigation
-├── dashboard.html             # User's Personalized Performance Dashboard
+├── dashboard.html             # User's Personalized Performance Dashboard [Moved to user/ in v2.0]
 ├── README.md                  # Project Documentation
 ├── js/
-│   ├── core.js                # [1] The Brain (Auth & Firebase)
+│   ├── core.js                # [1] The Brain (Auth, Firebase & Security)
 │   ├── access-guard.js        # [2] The Bouncer (Paywalls & Limits)
-│   ├── main.js                # [3] The Teacher (MCQ Engine)
+│   ├── mcq-main.js            # [3] The Teacher (MCQ Engine)
+│   ├── mock-engine.js         # [4] The Examiner (TCS/NTA Exam Engine) [NEW]
 │   ├── layout.js              # Global UI (Header, Footer, Mobile Menu, Modals)
 │   ├── style.css              # Global Design System (Glassmorphism, High-Contrast)
 │   └── favicon/               # Brand assets & PWA manifest files
-├── himachal-pradesh-gk/       # Core Content Directory
+├── user/                      # [NEW DIRECTORY]
+│   ├── dashboard.html         # Analytics, XP Leaderboard & Active Passes
+│   ├── upgrade.html           # Premium Subscription & Mock Test Bundles Page
+│   └── admin.html             # Super Admin Control Room (Secured)
+├── mock-engine/               # [NEW DIRECTORY]
+│   └── index.html             # Isolated Exam Interface for Full Mocks
+├── himachal-pradesh-gk/       # Core Content Directory (Topic-wise MCQs)
 │   ├── rivers/
 │   │   ├── index.html         # Topic Landing Page (Contains PAGE_ACCESS ID Card)
 │   │   └── river-part-1.js    # Raw Data Array
-│   ├── history/
-│   ├── geography/
 │   └── ... (other topics)
-└── user/
-    └── upgrade.html           # Premium Subscription & Mock Test Bundles Page
+└── hp-exam-full-mock-test/    # [NEW] Full Mock Tests Directory
+    └── hp-patwari-mock/
+        ├── index.html         # Mock Test Listing & Gateway
+        └── hpgkdata.patwari-mock-test-1.json # JSON Data for Exam Engine
 
 
 🔐 Freemium Logic & Page Configuration
@@ -69,7 +88,7 @@ Every topic page controls its own destiny using a simple configuration block pla
 The "ID Card" (PAGE_ACCESS)
 
 window.PAGE_ACCESS = {
-    category: 'hpgk_rivers',
+    category: 'rivers',      // Syncs with Firebase for Leaderboard
     loginLimit: 30,          // Questions free for anonymous guests
     proLimit: 9999,          // Questions free for logged-in users (9999 = no paywall)
     requiredPass: 'mcq_pass' // Pass ID required if proLimit is triggered
@@ -77,6 +96,16 @@ window.PAGE_ACCESS = {
 
 
 To lock a premium Mock Test after 10 questions, simply set proLimit: 10 and requiredPass: 'patwari_mock_pass'.
+
+🎮 Gamification & Admin Controls [NEW IN v2.0]
+
+Dopamine XP & Leaderboard (user/dashboard.html): Features an ultra-advanced Dual Leaderboard to boost retention.
+
+MCQ Ninjas XP Formula: (Correct Qs × 2) × (Accuracy²)
+
+Mock Toppers XP Formula: (Final Score × 2.5) × (Accuracy²)
+
+Super Admin Control Room (user/admin.html): A secure, cache-free command center explicitly locked to authorized Admin Emails. Features a 4-tab architecture: Command Center, User Matrix (with instant Pro/Free filters), Payment Desk, and 1-Click Email Extraction.
 
 🚀 Developer Guide: How to Add a New Topic
 
@@ -90,7 +119,7 @@ Setup HTML: Copy an existing index.html template.
 
 Update the ID Card: Modify window.PAGE_ACCESS and window.QUIZ_CONFIG to reflect the new category.
 
-Link Scripts: Ensure the Holy Trinity is linked in the exact order: core.js ➔ access-guard.js ➔ Data Files ➔ main.js.
+Link Scripts: Ensure the Holy Trinity is linked in the exact order: core.js ➔ access-guard.js ➔ Data Files ➔ mcq-main.js.
 
 🛠️ Tech Stack & Design System
 
@@ -112,8 +141,8 @@ Typography: 'Inter' for English, 'Noto Sans Devanagari' for Hindi.
 
 Payment Gateway Integration: Connecting upgrade.html and access-guard.js with Razorpay/Stripe for automated ticket unlocking.
 
-Advanced Mock Engine: Creating a specialized mock-engine.js for time-bound, negative-marking tests.
+Advanced Mock Engine: Creating a specialized mock-engine.js for time-bound, negative-marking tests. [COMPLETED IN v2.0]
 
-JSON API Migration: Upgrading static .js data files to dynamic .json fetch requests to further improve load times.
+JSON API Migration: Upgrading static .js data files to dynamic .json fetch requests to further improve load times. [PARTIALLY COMPLETED: Active in Mock Engine]
 
 Last Updated: April 2026 | Built by toolblaster.com
