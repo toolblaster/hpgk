@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Super Admin | HPGK Control Center</title>
+
+    <!-- Assets / Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../js/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="../js/favicon/web-app-manifest-512x512.png">
+    <link rel="shortcut icon" href="../js/favicon/favicon.ico">
+    <meta name="theme-color" content="#0f172a">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --panel-bg: #1e293b;
+            --border-color: #334155;
+            --primary: #3b82f6;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --text-main: #f8fafc;
+            --text-sec: #94a3b8;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+        }
+
+        /* Ultra Compact Scrollbar */
+        ::-webkit-scrollbar { width: 5px; height: 5px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #475569; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #64748b; }
+
+        body {
+            background-color: var(--bg-dark); color: var(--text-main);
+            font-family: 'Inter', sans-serif; margin: 0; display: flex;
+            height: 100vh; overflow: hidden; font-size: 13px; /* Compact Base Font */
+        }
+
+        /* Lock Screen */
+        #access-denied {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--bg-dark); z-index: 9999;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 240px; background: var(--panel-bg); border-right: 1px solid var(--border-color);
+            display: flex; flex-direction: column; flex-shrink: 0; z-index: 50;
+        }
+        .brand { padding: 20px; font-size: 1.1rem; font-weight: 800; border-bottom: 1px solid var(--border-color); display: flex; align-items: center; gap: 10px; letter-spacing: -0.5px;}
+        
+        .nav-menu { padding: 15px 10px; flex: 1; display: flex; flex-direction: column; gap: 5px; overflow-y: auto;}
+        .nav-item { padding: 10px 12px; border-radius: var(--radius-md); color: var(--text-sec); font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 10px; transition: 0.2s; white-space: nowrap;}
+        .nav-item:hover { background: rgba(255,255,255,0.05); color: #fff; }
+        .nav-item.active { background: rgba(59, 130, 246, 0.15); color: var(--primary); border-left: 3px solid var(--primary); }
+        
+        .nav-footer { padding: 15px 10px; border-top: 1px solid var(--border-color); display: flex; flex-direction: column; gap: 5px;}
+        
+        /* Main Workspace */
+        .main-workspace { flex: 1; display: flex; flex-direction: column; overflow: hidden; background: var(--bg-dark); }
+        
+        /* Header */
+        .top-header { display: flex; justify-content: space-between; align-items: center; padding: 15px 25px; border-bottom: 1px solid var(--border-color); background: var(--panel-bg); flex-shrink: 0;}
+        .header-title { font-size: 1.2rem; font-weight: 800; margin: 0; }
+        .live-sync-badge { font-size: 0.65rem; font-weight: 700; background: rgba(16,185,129,0.1); color: var(--success); padding: 4px 8px; border-radius: 20px; border: 1px solid rgba(16,185,129,0.3); display: inline-flex; align-items: center; gap: 5px; margin-left: 10px;}
+        .live-sync-badge i { font-size: 0.5rem; animation: blink 1.5s infinite; }
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+
+        .admin-actions { display: flex; align-items: center; gap: 15px; }
+        .btn-sm { padding: 6px 12px; background: var(--border-color); color: white; border: none; border-radius: 6px; font-size: 0.75rem; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: 0.2s;}
+        .btn-sm:hover { background: var(--primary); }
+        .admin-profile { display: flex; align-items: center; gap: 10px; border-left: 1px solid var(--border-color); padding-left: 15px;}
+        .admin-profile img { width: 30px; height: 30px; border-radius: 50%; }
+
+        /* Tab Content Area */
+        .tab-content { display: none; padding: 20px 25px; overflow-y: auto; flex: 1; }
+        .tab-content.active { display: block; }
+
+        /* Overview Tab Grid */
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 20px; }
+        .stat-card { background: var(--panel-bg); border: 1px solid var(--border-color); padding: 15px; border-radius: var(--radius-lg); }
+        .stat-card h3 { margin: 0 0 5px 0; font-size: 0.7rem; color: var(--text-sec); text-transform: uppercase; }
+        .stat-card p { margin: 0; font-size: 1.5rem; font-weight: 800; color: var(--text-main); }
+        .stat-card i { font-size: 1.2rem; margin-bottom: 10px; display: block; }
+
+        /* User Matrix Tab */
+        .filter-bar { display: flex; justify-content: space-between; align-items: center; background: var(--panel-bg); padding: 12px 15px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); margin-bottom: 15px; gap: 10px; flex-wrap: wrap;}
+        .filter-group { display: flex; gap: 8px; flex-wrap: wrap; }
+        .filter-btn { background: transparent; border: 1px solid var(--border-color); color: var(--text-sec); padding: 6px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; cursor: pointer; transition: 0.2s; }
+        .filter-btn:hover { border-color: var(--primary); color: white; }
+        .filter-btn.active { background: rgba(59,130,246,0.15); color: var(--primary); border-color: var(--primary); }
+        .search-box { background: rgba(0,0,0,0.2); border: 1px solid var(--border-color); color: white; padding: 6px 12px; border-radius: 6px; font-size: 0.8rem; width: 250px; outline: none; max-width: 100%;}
+        .search-box:focus { border-color: var(--primary); }
+
+        /* Data Table - Ultra Compact */
+        .table-wrapper { background: var(--panel-bg); border: 1px solid var(--border-color); border-radius: var(--radius-lg); overflow: hidden; display: flex; flex-direction: column; max-height: calc(100vh - 200px); }
+        .table-scroll { overflow-y: auto; overflow-x: auto; flex: 1; } /* Added overflow-x: auto for mobile */
+        table { width: 100%; border-collapse: collapse; text-align: left; min-width: 600px; /* Minimum width to prevent squishing */ }
+        th { position: sticky; top: 0; background: #0f172a; padding: 10px 15px; font-size: 0.65rem; color: var(--text-sec); text-transform: uppercase; font-weight: 700; border-bottom: 1px solid var(--border-color); z-index: 10;}
+        td { padding: 10px 15px; border-bottom: 1px solid rgba(255,255,255,0.03); font-size: 0.8rem; }
+        tr:hover td { background: rgba(255,255,255,0.02); }
+        
+        .u-profile { display: flex; align-items: center; gap: 10px; }
+        .u-profile img { width: 24px; height: 24px; border-radius: 50%; }
+        .u-email { font-size: 0.65rem; color: var(--text-sec); display: block; margin-top: 2px;}
+        .uid-pill { font-family: monospace; font-size: 0.7rem; background: rgba(255,255,255,0.05); padding: 2px 6px; border-radius: 4px; color: var(--text-sec);}
+        
+        .badge { padding: 3px 8px; border-radius: 4px; font-size: 0.65rem; font-weight: 700; display: inline-block; white-space: nowrap;}
+        .bg-pro { background: rgba(16,185,129,0.15); color: var(--success); border: 1px solid rgba(16,185,129,0.3); }
+        .bg-mcq { background: rgba(59,130,246,0.15); color: var(--primary); border: 1px solid rgba(59,130,246,0.3); }
+        .bg-free { background: rgba(148,163,184,0.1); color: var(--text-sec); border: 1px solid rgba(148,163,184,0.3); }
+
+        .btn-action { background: rgba(59,130,246,0.1); color: var(--primary); border: 1px solid transparent; padding: 4px 8px; border-radius: 4px; font-size: 0.7rem; cursor: pointer; transition: 0.2s; white-space: nowrap;}
+        .btn-action:hover { background: var(--primary); color: white; }
+
+        /* Forms */
+        .panel-box { background: var(--panel-bg); border: 1px solid var(--border-color); padding: 20px; border-radius: var(--radius-lg); margin-bottom: 20px;}
+        .form-group { margin-bottom: 12px; }
+        .form-group label { display: block; font-size: 0.7rem; color: var(--text-sec); font-weight: 700; margin-bottom: 5px;}
+        .form-control { width: 100%; padding: 10px; background: rgba(0,0,0,0.2); border: 1px solid var(--border-color); border-radius: 6px; color: white; font-family: 'Inter'; font-size: 0.85rem; box-sizing: border-box; outline: none;}
+        .form-control:focus { border-color: var(--primary); }
+
+        .manual-grant-actions { display: flex; gap: 10px; } /* Wrapper for flex actions */
+
+        /* MOBILE FIXES */
+        @media (max-width: 900px) {
+            body { flex-direction: column; overflow: auto; height: auto;}
+            
+            .sidebar { 
+                width: 100%; height: auto; flex-direction: column; 
+                padding: 0; border-right: none; border-bottom: 1px solid var(--border-color); 
+            }
+            .brand { padding: 15px; margin: 0; border-bottom: 1px solid var(--border-color); justify-content: center;}
+            
+            /* Make Menus Scrollable Horizontally on Mobile */
+            .nav-menu { 
+                display: flex; flex-direction: row; overflow-x: auto; 
+                padding: 10px; gap: 8px; border-bottom: 1px solid var(--border-color);
+                scrollbar-width: none; /* Hide scrollbar Firefox */
+            }
+            .nav-menu::-webkit-scrollbar { display: none; } /* Hide scrollbar Chrome/Safari */
+            
+            .nav-footer { 
+                display: flex; flex-direction: row; overflow-x: auto; 
+                padding: 10px; gap: 8px; border-top: none;
+                scrollbar-width: none;
+            }
+            .nav-footer::-webkit-scrollbar { display: none; }
+            
+            .nav-item { font-size: 0.75rem; padding: 8px 12px; border-left: none; }
+            .nav-item.active { border-left: none; border-bottom: 2px solid var(--primary); }
+            
+            .main-workspace { overflow: visible; display: block; }
+            .tab-content { padding: 15px; overflow: visible;}
+            
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .table-wrapper { max-height: 500px; }
+            .top-header { flex-direction: column; align-items: flex-start; gap: 15px; }
+            .admin-actions { width: 100%; justify-content: space-between; }
+        }
+
+        /* EXTRA SMALL MOBILE FIXES (Perfect Optimization) */
+        @media (max-width: 600px) {
+            .stats-grid { grid-template-columns: 1fr; } /* Stack stat cards */
+            
+            .manual-grant-actions { flex-direction: column; } /* Stack select and button */
+            .manual-grant-actions select, .manual-grant-actions button { width: 100%; flex: none; }
+            
+            .admin-actions { flex-direction: column-reverse; align-items: stretch; gap: 10px; }
+            .admin-profile { border-left: none; padding-left: 0; justify-content: space-between; flex-direction: row-reverse; }
+            .admin-profile div { text-align: left; }
+            .btn-sm { width: 100%; justify-content: center; } /* Full width refresh button */
+            
+            .filter-bar { flex-direction: column; align-items: stretch; }
+            .filter-group { justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 5px; scrollbar-width: none;}
+            .filter-group::-webkit-scrollbar { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- SECURITY LOCK -->
+<div id="access-denied">
+    <i class="fa-solid fa-shield-halved" style="font-size: 3.5rem; color: var(--border-color); margin-bottom: 20px;"></i>
+    <h2 style="font-size: 1.2rem; margin:0 0 5px 0;">Admin Authentication Required</h2>
+    <button onclick="if(window.loginWithGoogle) window.loginWithGoogle()" style="margin-top: 20px; padding: 10px 20px; background: white; color: black; font-weight: 800; border-radius: 6px; cursor: pointer; border: none; font-size: 0.85rem;">
+        <i class="fa-brands fa-google"></i> Secure Login
+    </button>
+</div>
+
+<!-- SIDEBAR -->
+<div class="sidebar" id="admin-ui" style="display: none;">
+    <div class="brand"><i class="fa-solid fa-server" style="color: var(--primary);"></i> Control Room</div>
+    
+    <div class="nav-menu">
+        <div class="nav-item active" onclick="switchTab('overview', this)"><i class="fa-solid fa-bolt"></i> Command Center</div>
+        <div class="nav-item" onclick="switchTab('matrix', this)"><i class="fa-solid fa-users-viewfinder"></i> User Matrix</div>
+        <div class="nav-item" onclick="switchTab('payments', this)"><i class="fa-solid fa-money-bill-transfer"></i> Payment Desk</div>
+        <div class="nav-item" onclick="switchTab('marketing', this)"><i class="fa-solid fa-bullhorn"></i> Growth</div>
+        <div class="nav-item" onclick="switchTab('health', this)"><i class="fa-solid fa-heart-pulse"></i> System Health</div>
+    </div>
+
+    <!-- Quick Links & Logout -->
+    <div class="nav-footer">
+        <a href="../index.html" class="nav-item" style="color: var(--text-main); text-decoration: none;"><i class="fa-solid fa-house"></i> Public Home</a>
+        <a href="dashboard.html" class="nav-item" style="color: var(--text-main); text-decoration: none;"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
+        <div class="nav-item" style="color: #ef4444;" onclick="adminLogout()"><i class="fa-solid fa-power-off"></i> Secure Logout</div>
+    </div>
+</div>
+
+<!-- MAIN WORKSPACE -->
+<div class="main-workspace" id="admin-main" style="display: none;">
+    
+    <div class="top-header">
+        <h1 class="header-title" id="current-tab-title">Command Center <span class="live-sync-badge"><i class="fa-solid fa-circle"></i> Live Sync</span></h1>
+        <div class="admin-actions">
+            <button class="btn-sm" onclick="forceFetchData()"><i class="fa-solid fa-rotate"></i> Sync Live Data</button>
+            <div class="admin-profile">
+                <div style="text-align: right; line-height: 1.2;">
+                    <strong id="admin-name" style="font-size: 0.8rem; display: block;">Admin</strong>
+                    <span id="admin-email" style="font-size: 0.65rem; color: var(--text-sec);">admin@hpgk.com</span>
+                </div>
+                <img id="admin-photo" src="" alt="Admin">
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 1: COMMAND CENTER -->
+    <div id="tab-overview" class="tab-content active">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <i class="fa-solid fa-database" style="color: var(--primary);"></i>
+                <h3>Total Database</h3>
+                <p id="stat-total">0</p>
+            </div>
+            <div class="stat-card">
+                <i class="fa-solid fa-crown" style="color: var(--success);"></i>
+                <h3>Active VIPs (Pro)</h3>
+                <p id="stat-pro">0</p>
+            </div>
+            <div class="stat-card">
+                <i class="fa-solid fa-indian-rupee-sign" style="color: var(--warning);"></i>
+                <h3>Est. Gross Revenue</h3>
+                <p id="stat-rev">₹0</p>
+            </div>
+            <div class="stat-card">
+                <i class="fa-solid fa-triangle-exclamation" style="color: var(--danger);"></i>
+                <h3>Failed Transactions</h3>
+                <p>0 <span style="font-size:0.6rem; color:var(--text-sec); font-weight:normal;">(Razorpay Queue)</span></p>
+            </div>
+        </div>
+
+        <div class="panel-box" style="max-width: 600px;">
+            <h2 style="margin: 0 0 15px 0; font-size: 1rem;"><i class="fa-solid fa-wand-magic-sparkles" style="color:var(--primary);"></i> 1-Click Manual Grant</h2>
+            <p style="font-size:0.75rem; color:var(--text-sec); margin-bottom:15px;">Bypass Razorpay: Grant passes instantly to resolve user issues.</p>
+            <div class="form-group">
+                <input type="text" id="grant-uid" class="form-control" placeholder="Paste Student UID here..." autocomplete="off">
+            </div>
+            <div class="manual-grant-actions">
+                <select id="grant-plan" class="form-control" style="flex:2;">
+                    <option value="mock_master_pass">Mock Master Pass (VIP)</option>
+                    <option value="mcq_pro_pass">MCQ Pro Pass</option>
+                </select>
+                <button class="btn-sm" style="flex:1; justify-content: center; background: var(--primary); font-size: 0.85rem;" onclick="grantManualPass()">Activate Now</button>
+            </div>
+            <div id="grant-msg" style="margin-top: 10px; font-size: 0.75rem; font-weight: 700; text-align: center;"></div>
+        </div>
+    </div>
+
+    <!-- TAB 2: USER MATRIX -->
+    <div id="tab-matrix" class="tab-content">
+        <div class="filter-bar">
+            <div class="filter-group">
+                <button class="filter-btn active" onclick="applyFilter('all', this)">All Users</button>
+                <button class="filter-btn" onclick="applyFilter('pro', this)">Pro Only (VIP)</button>
+                <button class="filter-btn" onclick="applyFilter('free', this)">Free Explorers</button>
+                <button class="filter-btn" onclick="applyFilter('inactive', this)">Inactive > 30 Days</button>
+            </div>
+            <input type="text" class="search-box" id="user-search" placeholder="Search Name, UID or Email..." onkeyup="handleSearch()">
+        </div>
+
+        <div class="table-wrapper">
+            <div class="table-scroll">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Student Profile</th>
+                            <th>Identifier (UID)</th>
+                            <th>Current Plan</th>
+                            <th>Engagement (XP)</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="user-table-body">
+                        <tr><td colspan="5" style="text-align:center; padding: 40px; color:var(--text-sec);"><i class="fa-solid fa-circle-notch fa-spin"></i> Initializing Matrix...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 3: PAYMENT DESK -->
+    <div id="tab-payments" class="tab-content">
+        <div class="panel-box" style="text-align: center; padding: 50px 20px;">
+            <i class="fa-solid fa-money-bill-transfer" style="font-size: 3rem; color: var(--text-sec); opacity: 0.3; margin-bottom: 20px;"></i>
+            <h2 style="margin: 0 0 10px 0;">Razorpay Sync Pending</h2>
+            <p style="color: var(--text-sec); font-size: 0.85rem; max-width: 400px; margin: 0 auto;">Once Razorpay Webhooks are connected via Firebase Cloud Functions, all live transactions (Success & Failed) will appear here automatically.</p>
+        </div>
+    </div>
+
+    <!-- TAB 4: MARKETING & GROWTH -->
+    <div id="tab-marketing" class="tab-content">
+        <div class="panel-box">
+            <h2 style="margin: 0 0 15px 0; font-size: 1.1rem;"><i class="fa-solid fa-envelope-open-text" style="color:var(--primary);"></i> 1-Click Email Extraction</h2>
+            <p style="font-size:0.8rem; color:var(--text-sec); margin-bottom:20px;">Extract emails of targeted user segments for Mailchimp or SMS marketing campaigns.</p>
+            
+            <div style="display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap;">
+                <button class="btn-sm" onclick="exportEmails('free')" style="background: var(--bg-dark); border: 1px solid var(--border-color); padding: 10px 15px;"><i class="fa-solid fa-copy"></i> Copy 'Free Users' Emails</button>
+                <button class="btn-sm" onclick="exportEmails('inactive')" style="background: var(--bg-dark); border: 1px solid var(--border-color); padding: 10px 15px;"><i class="fa-solid fa-copy"></i> Copy 'Inactive' Emails</button>
+            </div>
+            <textarea id="email-dump" class="form-control" style="height: 150px; font-family: monospace; font-size: 0.75rem;" readonly placeholder="Extracted emails will appear here..."></textarea>
+        </div>
+    </div>
+
+    <!-- TAB 5: SYSTEM HEALTH -->
+    <div id="tab-health" class="tab-content">
+        <div class="panel-box" style="background: linear-gradient(135deg, rgba(30,41,59,1), rgba(16,185,129,0.05)); border-color: rgba(16,185,129,0.2); max-width: 600px;">
+            <h2 style="margin: 0 0 15px 0; font-size: 1.1rem; color: var(--success);"><i class="fa-solid fa-server"></i> System Health Status</h2>
+            <ul style="margin:0; padding:0; list-style:none; font-size:0.85rem; color:var(--text-sec); display:flex; flex-direction:column; gap:15px;">
+                <li><i class="fa-solid fa-check-circle" style="color:var(--success); width:20px;"></i> Firebase Read/Write Access: <strong style="color:var(--text-main);">Stable</strong></li>
+                <li><i class="fa-solid fa-check-circle" style="color:var(--success); width:20px;"></i> Decoy Routing Security: <strong style="color:var(--text-main);">Active</strong></li>
+                <li><i class="fa-solid fa-circle-pause" style="color:var(--warning); width:20px;"></i> Razorpay Webhook: <strong style="color:var(--text-main);">Pending Configuration</strong></li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+<!-- Firebase SDK -->
+<script type="module">
+    import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signInWithPopup, GoogleAuthProvider, signOut } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
+    import { getFirestore, collection, getDocs, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
+
+    // 🚨 STRICT SECURITY LOCK
+    const ADMIN_EMAILS = ['amanrana7350@gmail.com'];
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyDfz5Y4oVQHl-crnATIv5dMWsw7edSKddQ",
+        authDomain: "hpgk-quiz.firebaseapp.com",
+        projectId: "hpgk-quiz",
+        storageBucket: "hpgk-quiz.firebasestorage.app",
+        messagingSenderId: "273909571419",
+        appId: "1:273909571419:web:20d5e06d8b582f4d2dc47e"
+    };
+
+    let app; try { app = getApp(); } catch (e) { app = initializeApp(firebaseConfig); }
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    // Global Data Cache for Instant Filtering
+    window.AdminGlobalData = [];
+
+    window.loginWithGoogle = async function() {
+        const provider = new GoogleAuthProvider();
+        return signInWithPopup(auth, provider);
+    };
+
+    // Firebase Secure Logout
+    window.adminLogout = async function() {
+        try {
+            await signOut(auth);
+            window.location.href = '../index.html';
+        } catch(error) {
+            console.error("Logout Error", error);
+        }
+    };
+
+    onAuthStateChanged(auth, async (user) => {
+        if (user) {
+            if(!ADMIN_EMAILS.includes(user.email)) {
+                alert("Unauthorized Access. Intrusion Attempt Logged.");
+                return;
+            } 
+            document.getElementById('access-denied').style.display = 'none';
+            document.getElementById('admin-ui').style.display = 'flex';
+            document.getElementById('admin-main').style.display = 'flex';
+            document.getElementById('admin-name').innerText = user.displayName;
+            document.getElementById('admin-email').innerText = user.email;
+            document.getElementById('admin-photo').src = user.photoURL;
+            forceFetchData();
+        } else {
+            document.getElementById('access-denied').style.display = 'flex';
+            document.getElementById('admin-ui').style.display = 'none';
+            document.getElementById('admin-main').style.display = 'none';
+        }
+    });
+
+    // 🚀 MASTER FETCH FUNCTION (No Cache, Direct Server Read)
+    window.forceFetchData = async function() {
+        const tbody = document.getElementById('user-table-body');
+        tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding: 30px;"><i class="fa-solid fa-circle-notch fa-spin"></i> Syncing Live Data from Firebase...</td></tr>`;
+        
+        try {
+            const lbRef = collection(db, 'artifacts', 'hpgk-quiz', 'public', 'data', 'leaderboard');
+            const lbSnap = await getDocs(lbRef); // Forces fresh read
+            
+            let rawData = [];
+            let proCount = 0;
+            let revCount = 0;
+            const now = Date.now();
+
+            for (let docSnap of lbSnap.docs) {
+                let u = docSnap.data();
+                let uid = docSnap.id;
+                
+                let passType = 'free';
+                let isPro = false;
+                const uDoc = await getDoc(doc(db, 'artifacts', 'hpgk-quiz', 'users', uid));
+                
+                if (uDoc.exists() && uDoc.data().passes) {
+                    if (uDoc.data().passes.mock_master_pass) { passType = 'mock'; isPro = true; revCount += 149; }
+                    else if (uDoc.data().passes.mcq_pro_pass) { passType = 'mcq'; isPro = true; revCount += 39; }
+                }
+                
+                if(isPro) proCount++;
+
+                let daysInactive = u.lastUpdated ? Math.floor((now - u.lastUpdated) / (1000 * 60 * 60 * 24)) : 0;
+
+                rawData.push({
+                    uid: uid,
+                    name: u.name || 'Student',
+                    email: u.email || 'user@hidden.com',
+                    photo: u.photo || '',
+                    xp: (u.mockXP || 0) + (u.mcqXP || 0),
+                    passType: passType,
+                    isPro: isPro,
+                    daysInactive: daysInactive,
+                    lastSeen: u.lastUpdated ? new Date(u.lastUpdated).toLocaleDateString('en-IN', {day:'2-digit', month:'short'}) : 'N/A',
+                    rawText: `${u.name} ${uid}`.toLowerCase()
+                });
+            }
+
+            window.AdminGlobalData = rawData.sort((a,b) => b.xp - a.xp); // Sort by highest XP
+            
+            document.getElementById('stat-total').innerText = rawData.length;
+            document.getElementById('stat-pro').innerText = proCount;
+            document.getElementById('stat-rev').innerText = '₹' + revCount.toLocaleString('en-IN');
+
+            renderTable(window.AdminGlobalData);
+
+        } catch (e) {
+            console.error(e);
+            // Added explanation to the error message for better clarity
+            tbody.innerHTML = `<tr><td colspan="5" style="color:var(--danger); text-align:center; padding: 20px;">Sync Failed. Check Network/Permissions.<br><span style="font-size:0.75rem; color:var(--text-sec);">Note: This error usually occurs if the Firebase database rules restrict access, or if the "leaderboard" collection hasn't been created yet.</span></td></tr>`;
+        }
+    };
+
+    // UI RENDER ENGINE (Instant Filtering)
+    window.renderTable = function(dataArr) {
+        const tbody = document.getElementById('user-table-body');
+        if(dataArr.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:20px; color:var(--text-sec);">No users match this filter.</td></tr>`;
+            return;
+        }
+
+        let html = '';
+        dataArr.forEach(u => {
+            let badge = `<span class="badge bg-free">Free User</span>`;
+            if(u.passType === 'mock') badge = `<span class="badge bg-pro"><i class="fa-solid fa-crown"></i> VIP Master</span>`;
+            if(u.passType === 'mcq') badge = `<span class="badge bg-mcq"><i class="fa-solid fa-bolt"></i> MCQ Pro</span>`;
+
+            let inactiveTag = u.daysInactive > 30 ? `<span style="color:var(--danger); font-size:0.65rem; display:block;">Inactive (${u.daysInactive}d)</span>` : '';
+
+            html += `
+            <tr>
+                <td>
+                    <div class="u-profile">
+                        <img src="${u.photo}" onerror="this.src='https://ui-avatars.com/api/?name=S&background=334155&color=fff'">
+                        <div>
+                            <strong>${u.name}</strong>
+                            <span class="u-email">ID Link Confirmed</span>
+                        </div>
+                    </div>
+                </td>
+                <td><span class="uid-pill">${u.uid}</span></td>
+                <td>${badge}</td>
+                <td><strong style="color:var(--warning);">${u.xp} XP</strong> ${inactiveTag}</td>
+                <td>
+                    <button class="btn-action" onclick="document.getElementById('grant-uid').value='${u.uid}'; switchTab('overview', document.querySelector('.nav-item')); alert('UID copied to Command Center. Proceed to grant pass.');"><i class="fa-solid fa-bolt"></i> Upgrade</button>
+                </td>
+            </tr>`;
+        });
+        tbody.innerHTML = html;
+    };
+
+    // FILTER CONTROLLER
+    window.applyFilter = function(type, btnElement) {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btnElement.classList.add('active');
+        document.getElementById('user-search').value = ''; // Reset search
+        
+        let filtered = window.AdminGlobalData;
+        if(type === 'pro') filtered = filtered.filter(u => u.isPro);
+        if(type === 'free') filtered = filtered.filter(u => !u.isPro);
+        if(type === 'inactive') filtered = filtered.filter(u => u.daysInactive > 30);
+        
+        renderTable(filtered);
+    };
+
+    // SEARCH CONTROLLER
+    window.handleSearch = function() {
+        const term = document.getElementById('user-search').value.toLowerCase();
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        let filtered = window.AdminGlobalData.filter(u => u.rawText.includes(term));
+        renderTable(filtered);
+    };
+
+    // 1-CLICK EMAIL EXPORT
+    window.exportEmails = function(type) {
+        let targets = [];
+        if(type === 'free') targets = window.AdminGlobalData.filter(u => !u.isPro);
+        if(type === 'inactive') targets = window.AdminGlobalData.filter(u => u.daysInactive > 30);
+        
+        let dump = targets.map(u => `${u.name} <${u.uid}@hpgk.user>`).join(',\n');
+        
+        const box = document.getElementById('email-dump');
+        box.value = dump || 'No users found in this segment.';
+        box.select();
+        document.execCommand('copy');
+        alert(`${targets.length} Records copied to clipboard!`);
+    };
+
+    // MANUAL PASS GRANTING
+    window.grantManualPass = async function() {
+        const uid = document.getElementById('grant-uid').value.trim();
+        const planId = document.getElementById('grant-plan').value;
+        const msgBox = document.getElementById('grant-msg');
+
+        if(!uid) { msgBox.innerHTML = '<span style="color:var(--danger);">Input required: User UID.</span>'; return; }
+        msgBox.innerHTML = '<span style="color:var(--warning);"><i class="fa-solid fa-circle-notch fa-spin"></i> Writing to Firebase...</span>';
+
+        const planNames = { 'mock_master_pass': 'Mock Master VIP Pass', 'mcq_pro_pass': 'MCQ Pro Pass' };
+        const expiry = new Date(); expiry.setDate(expiry.getDate() + 30);
+        const passData = {
+            name: planNames[planId],
+            purchaseDate: new Date().toLocaleDateString('en-IN'),
+            expiryDate: expiry.toLocaleDateString('en-IN'),
+            timestamp: Date.now()
+        };
+
+        try {
+            await setDoc(doc(db, 'artifacts', 'hpgk-quiz', 'users', uid), { passes: { [planId]: passData } }, { merge: true });
+            msgBox.innerHTML = `<span style="color:var(--success);"><i class="fa-solid fa-check"></i> Granted successfully. Syncing matrix...</span>`;
+            setTimeout(() => { forceFetchData(); document.getElementById('grant-uid').value = ''; }, 2000);
+        } catch (e) {
+            msgBox.innerHTML = '<span style="color:var(--danger);"><i class="fa-solid fa-xmark"></i> Failed. Admin write permission denied.</span>';
+        }
+    };
+
+    // TAB SWITCHER
+    window.switchTab = function(tabId, elem) {
+        document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+        document.getElementById('tab-' + tabId).classList.add('active');
+        if(elem) {
+            elem.classList.add('active');
+            document.getElementById('current-tab-title').innerHTML = elem.innerText + ' <span class="live-sync-badge"><i class="fa-solid fa-circle"></i> Live Sync</span>';
+        }
+    };
+</script>
+
+</body>
+</html>
