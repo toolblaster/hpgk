@@ -5,20 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
     
+    <!-- SEO Optimization -->
     <meta name="description" content="Access your personalized student dashboard to track quiz progress, review mock test scores, and manage premium access for HPAS and Agriculture exams.">
     <title>Student Dashboard: Track Quiz Progress | HPGK</title>
 
+    <!-- Canonical Link -->
     <link rel="canonical" href="https://hpgk.toolblaster.com/user/dashboard.html">
 
+    <!-- Assets -->
     <link rel="apple-touch-icon" sizes="180x180" href="../js/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="512x512" href="../js/favicon/web-app-manifest-512x512.png">
     <link rel="icon" type="image/png" sizes="192x192" href="../js/favicon/web-app-manifest-192x192.png">
     <link rel="shortcut icon" href="../js/favicon/favicon.ico">
     <meta name="theme-color" content="#eff6ff">
 
+    <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- Global CSS -->
     <link rel="stylesheet" href="../js/style.css">
 
     <style>
@@ -100,7 +105,7 @@
         .user-info p { color: var(--text-sec); margin: 0 0 4px 0; font-size: 0.65rem; font-weight: 500; }
         .badge { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; padding: 2px 6px; border-radius: 4px; display: inline-block; width: fit-content; background: var(--input-bg); border: 1px solid var(--card-border); color: var(--text-main); }
 
-        /* Purchases Panel - Now Optimized for Flex */
+        /* Purchases Panel */
         .purchases-panel { display: flex; align-items: stretch; gap: 15px; width: 100%; }
         .purchases-left { flex: 1; display: flex; flex-direction: column; justify-content: center; border-right: 1px dashed var(--card-border); padding-right: 15px; }
         .purchases-right { flex: 1; display: flex; flex-direction: column; justify-content: center; }
@@ -121,7 +126,7 @@
 
         .compact-upgrade-item { display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.4); border: 1px solid var(--card-border); padding: 8px 10px; border-radius: var(--radius-sm); margin-bottom: 6px; }
         [data-theme="dark"] .compact-upgrade-item { background: rgba(0,0,0,0.15); }
-        .compact-btn-buy { background: linear-gradient(135deg, #f59e0b, #ea580c); color: #fff; font-size: 0.65rem; font-weight: 800; padding: 6px 12px; border-radius: 6px; cursor: pointer; border: none; text-transform: uppercase; transition: 0.2s; box-shadow: 0 2px 8px rgba(234, 88, 12, 0.3); text-decoration: none;}
+        .compact-btn-buy { background: linear-gradient(135deg, #f59e0b, #ea580c); color: #fff; font-size: 0.65rem; font-weight: 800; padding: 6px 12px; border-radius: 6px; cursor: pointer; border: none; text-transform: uppercase; transition: 0.2s; box-shadow: 0 2px 8px rgba(234, 88, 12, 0.3); }
         .compact-btn-buy:hover { opacity: 0.9; transform: translateY(-1px); }
 
         /* STATS GRID */
@@ -186,6 +191,7 @@
             .stat-group-card { grid-column: span 2; padding: 12px; }
             .purchases-panel { flex-direction: column; gap: 10px; }
             .purchases-left { border-right: none; border-bottom: 1px dashed var(--card-border); padding-right: 0; padding-bottom: 10px; }
+            .h-score-val { font-size: 0.85rem; }
         }
     </style>
     <script>
@@ -195,20 +201,23 @@
 </head>
 <body>
 
+<!-- Payment Processing Overlay (Smart Verify) -->
 <div id="payment-processing-overlay">
     <div class="spinner"></div>
-    <h2 style="margin:0 0 10px 0; font-size: 1.5rem; font-weight:800;">Processing Payment...</h2>
-    <p style="margin:0; font-size: 0.9rem; color:#cbd5e1;">Please do not close or refresh this window.</p>
+    <h2 style="margin:0 0 10px 0; font-size: 1.5rem; font-weight:800;" id="verify-title">Securing Your Access...</h2>
+    <p style="margin:0; font-size: 0.9rem; color:#cbd5e1;" id="verify-desc">Please wait while we verify your transaction with the bank.</p>
 </div>
 
 <div id="site-header"></div>
 
 <main>
+    <!-- Loading State -->
     <div id="loading-state" class="glass-panel" style="text-align: center; padding: 30px 20px;">
         <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 1.8rem; color: var(--primary);"></i>
         <div style="font-size: 0.8rem; font-weight: 700; margin-top: 8px; color: var(--text-sec);">Loading Profile...</div>
     </div>
 
+    <!-- Logged Out State -->
     <div id="logged-out-state" class="glass-panel auth-warning" style="display: none;">
         <i class="fa-solid fa-lock" style="font-size: 1.8rem; color: var(--text-sec); margin-bottom: 10px;"></i>
         <h2>Workspace Locked</h2>
@@ -224,8 +233,10 @@
         </button>
     </div>
 
+    <!-- Logged In State -->
     <div id="logged-in-state" style="display: none;">
         
+        <!-- 30/70 SPLIT HEADER -->
         <div class="top-dashboard-grid">
             <div class="glass-panel compact-top-card profile-panel">
                 <div class="avatar-wrapper">
@@ -239,9 +250,11 @@
                 </div>
             </div>
 
+            <!-- SMART PURCHASES PANEL (Dynamic Content) -->
             <div class="glass-panel compact-top-card purchases-panel" id="smart-purchases-container"></div>
         </div>
 
+        <!-- High Density Stats: MOCKS -->
         <div class="stats-density-grid">
             <div class="stat-group-card mock-bg">
                 <i class="fa-solid fa-file-signature stat-group-bg-icon"></i>
@@ -273,7 +286,8 @@
             </div>
         </div>
 
-        <div class="stats-density-grid" style="margin-bottom: 10px;">
+        <!-- High Density Stats: TOPICS -->
+        <div class="stats-density-grid" style="margin-bottom: 18px;">
             <div class="stat-group-card topic-bg">
                 <i class="fa-solid fa-layer-group stat-group-bg-icon"></i>
                 <div class="stat-group-icon"><i class="fa-solid fa-layer-group"></i></div>
@@ -304,6 +318,7 @@
             </div>
         </div>
 
+        <!-- NEW LEADERBOARD BANNER -->
         <div class="glass-panel" style="padding: 12px 20px; display:flex; justify-content:space-between; align-items:center; background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(245, 158, 11, 0.05)); border-color: rgba(245, 158, 11, 0.3); margin-bottom: 18px;">
             <div style="display:flex; align-items:center; gap:15px;">
                 <div style="font-size:2rem; color:var(--warning);"><i class="fa-solid fa-trophy"></i></div>
@@ -312,10 +327,12 @@
                     <p style="margin:2px 0 0 0; font-size:0.75rem; color:var(--text-sec); font-weight: 500;">See where you rank among thousands of HP aspirants.</p>
                 </div>
             </div>
-            <a href="leaderboard.html" class="nav-btn" style="background: linear-gradient(135deg, #f59e0b, #d97706); color: white; padding: 8px 16px; border: none; font-size: 0.75rem; border-radius: 20px; text-decoration: none;">View Ranks <i class="fa-solid fa-arrow-right"></i></a>
+            <a href="leaderboard.html" class="nav-btn" style="background: linear-gradient(135deg, #f59e0b, #d97706); color: white; padding: 8px 16px; border: none; font-size: 0.75rem; text-decoration: none;">View Ranks <i class="fa-solid fa-arrow-right"></i></a>
         </div>
 
+        <!-- MAIN GRID: Mastery (2 Columns) -->
         <div class="dashboard-cols">
+            <!-- Mock Mastery Analytics -->
             <div class="glass-panel" style="padding: 15px; margin-bottom: 0;">
                 <div class="section-header">
                     <h2 class="section-title"><i class="fa-solid fa-medal"></i> Mock Mastery <span>Latest 7</span></h2>
@@ -325,6 +342,7 @@
                 </div>
             </div>
 
+            <!-- Subject Mastery Analytics -->
             <div class="glass-panel" style="padding: 15px; margin-bottom: 0;">
                 <div class="section-header">
                     <h2 class="section-title"><i class="fa-solid fa-chart-column"></i> Topic Mastery <span>Top 7</span></h2>
@@ -338,8 +356,9 @@
     </div>
 </main>
 
+<!-- QUICK PAY MODAL -->
 <div id="quickPayModal" class="modal-overlay">
-    <div class="modal-box" style="max-width: 320px; padding: 30px 20px;">
+    <div class="modal-box">
         <button onclick="closeQuickPay()" class="modal-close-btn"><i class="fa-solid fa-xmark"></i></button>
         <div style="font-size: 2.5rem; color: var(--primary); margin-bottom: 10px;"><i class="fa-solid fa-shield-halved"></i></div>
         <h3 id="qp-title" style="margin: 0 0 5px 0; font-size: 1.15rem; font-weight: 800; color: var(--text-main);">Plan Name</h3>
@@ -355,12 +374,18 @@
 
 <div id="site-footer"></div>
 
+<!-- 🚨 Add Razorpay Official SDK -->
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
+<!-- Load Scripts -->
 <script src="../js/core.js"></script>
 <script src="../js/layout.js"></script>
 
-<script>
+<!-- 99% Production Payment Logic -->
+<script type="module">
+    import { getApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
+    import { getFirestore, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
+
     window.currentPayPlan = '';
     window.currentPayPrice = 0;
 
@@ -382,36 +407,34 @@
         document.getElementById('verify-desc').innerText = "Waiting for bank confirmation. Do not refresh.";
         
         try {
-            // Using dynamically imported getFirestore if possible, else fallback wait
-            if(window._db) {
-                const docRef = window._doc(window._db, 'artifacts', 'hpgk-quiz', 'users', window.HPGK_User.uid);
-                let isReloaded = false;
+            const db = getFirestore(getApp());
+            const uid = window.HPGK_User.uid;
+            const userRef = doc(db, 'artifacts', 'hpgk-quiz', 'users', uid);
+            
+            let isReloaded = false;
 
-                const fallbackTimer = setTimeout(() => {
-                    if (!isReloaded) {
+            const fallbackTimer = setTimeout(() => {
+                if (!isReloaded) {
+                    isReloaded = true;
+                    alert("Payment Success! Syncing is taking a bit longer. Page will reload now.");
+                    window.location.reload();
+                }
+            }, 10000);
+
+            const unsubscribe = onSnapshot(userRef, (docSnap) => {
+                if (docSnap.exists()) {
+                    const passes = docSnap.data().passes || {};
+                    if (passes[planId] && !isReloaded) {
                         isReloaded = true;
-                        alert("Payment Success! Syncing is taking a bit longer. Page will reload now.");
-                        window.location.reload();
+                        clearTimeout(fallbackTimer);
+                        unsubscribe();
+                        window.location.reload(); // Instantly reload to show the pass
                     }
-                }, 10000);
-
-                const unsubscribe = window._onSnapshot(docRef, (docSnap) => {
-                    if (docSnap.exists()) {
-                        const passes = docSnap.data().passes || {};
-                        if (passes[planId] && !isReloaded) {
-                            isReloaded = true;
-                            clearTimeout(fallbackTimer);
-                            unsubscribe();
-                            window.location.reload(); 
-                        }
-                    }
-                });
-            } else {
-                setTimeout(() => { window.location.reload(); }, 4000);
-            }
+                }
+            });
         } catch(e) {
             console.error("Verification failed", e);
-            setTimeout(() => { window.location.reload(); }, 4000);
+            setTimeout(() => { window.location.reload(); }, 3000);
         }
     };
 
@@ -420,6 +443,7 @@
 
         const planNames = { 'mcq_pro_pass': 'MCQ Pro Pass (VIP)', 'mock_master_pass': 'Mock Master Pass' };
         var options = {
+            // 🚨 IMPORTANT: Change this to YOUR Razorpay Live/Test Key
             "key": "rzp_test_SiCgoJg1G0fb0m", 
             "amount": window.currentPayPrice * 100, 
             "currency": "INR",
@@ -430,12 +454,8 @@
                 document.getElementById('quickPayModal').style.display = 'none';
                 document.getElementById('payment-processing-overlay').style.display = 'flex';
                 
-                // Call the Real-Time Verification if methods are loaded
-                if(window.HPGK_verifyQuickPayAndReload && window._db) {
-                    window.HPGK_verifyQuickPayAndReload(window.currentPayPlan);
-                } else {
-                    setTimeout(() => { window.location.reload(); }, 4000);
-                }
+                // Call the Real-Time Verification
+                window.HPGK_verifyQuickPayAndReload(window.currentPayPlan);
             },
             "prefill": {
                 "name": window.HPGK_User.displayName || "",
@@ -459,6 +479,7 @@
     });
 </script>
 
+<!-- Firebase Firestore Integration for fetching User History & Analytics -->
 <script type="module">
     import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
     import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
@@ -479,15 +500,9 @@
     const auth = getAuth(app);
     const db = getFirestore(app);
 
-    // Export for payment listener
-    window._db = db;
-    window._doc = doc;
-    window._onSnapshot = onSnapshot;
-
     const elLoading = document.getElementById('loading-state');
     const elLoggedOut = document.getElementById('logged-out-state');
     const elLoggedIn = document.getElementById('logged-in-state');
-    const topPlanContainer = document.getElementById('smart-purchases-container');
 
     async function fetchWithTimeout(promise, ms = 8000) {
         let timeoutId;
@@ -511,120 +526,120 @@
             document.getElementById('user-photo').src = user.photoURL || 'https://ui-avatars.com/api/?name=' + encodeURIComponent(user.displayName || 'S') + '&background=e2e8f0&color=334155';
             document.getElementById('user-short-id').innerText = user.uid.substring(0, 6).toUpperCase();
             
-            // 🔥 CRITICAL FIX: Fetch fresh pass data directly from Firebase Database on load!
-            let passes = {};
-            try {
-                const uDoc = await getDoc(doc(db, 'artifacts', 'hpgk-quiz', 'users', user.uid));
+            const smartContainer = document.getElementById('smart-purchases-container');
+
+            // 🔥 THE FIX: Live Real-Time Listener for User Passes
+            // Bypasses local cache completely. If Admin clicks 'Grant', this updates instantly!
+            const userDocRef = doc(db, 'artifacts', 'hpgk-quiz', 'users', user.uid);
+            
+            onSnapshot(userDocRef, (uDoc) => {
+                let passes = {};
                 if (uDoc.exists() && uDoc.data().passes) {
                     passes = uDoc.data().passes;
-                    if(window.HPGK_User) window.HPGK_User.passes = passes; // Update core cache
+                    // Update core.js cache silently so other pages work smoothly
+                    if(window.HPGK_User) window.HPGK_User.passes = passes; 
                 }
-            } catch(e) {
-                console.error("Error fetching fresh passes:", e);
-                // Fallback to core.js cache if network fails
-                if(window.HPGK_User && window.HPGK_User.passes) passes = window.HPGK_User.passes;
-            }
 
-            let hasMcqPro = false;
-            let hasMockMaster = false;
-            let mockMasterData = null;
-            let mcqProData = null;
+                let hasMcqPro = false;
+                let hasMockMaster = false;
+                let mockMasterData = null;
+                let mcqProData = null;
 
-            if(Object.keys(passes).length > 0) {
-                for(const [passId, passData] of Object.entries(passes)) {
-                    if (passId === 'mcq_pro_pass') { hasMcqPro = true; mcqProData = passData; }
-                    if (passId === 'mock_master_pass' || passId === 'mega_combo_pass') { hasMockMaster = true; mockMasterData = passData; }
+                if(Object.keys(passes).length > 0) {
+                    for(const [passId, passData] of Object.entries(passes)) {
+                        if (passId === 'mcq_pro_pass') { hasMcqPro = true; mcqProData = passData; }
+                        if (passId === 'mock_master_pass' || passId === 'mega_combo_pass' || passId === 'vip_lifetime_pass') { hasMockMaster = true; mockMasterData = passData; }
+                    }
                 }
-            }
-
-            const smartContainer = document.getElementById('smart-purchases-container');
-            
-            if (hasMockMaster) {
-                smartContainer.innerHTML = `
-                    <div style="width: 100%;">
-                        <div class="mini-section-title"><i class="fa-solid fa-crown" style="color:var(--warning);"></i> VIP Access Active</div>
-                        <div class="active-plan-box" style="border-left: 4px solid var(--warning); background: linear-gradient(135deg, var(--card-bg) 0%, rgba(245, 158, 11, 0.05) 100%); width: 100%; box-sizing: border-box;">
-                            <i class="fa-solid fa-crown bg-icon" style="color:var(--warning); opacity:0.1;"></i>
-                            <div class="plan-header">
-                                <span class="plan-name" style="font-size: 1rem;"><i class="fa-solid fa-crown" style="color:var(--warning);"></i> ${mockMasterData.name}</span>
-                                <span class="badge" style="background: rgba(245,158,11,0.1); color: var(--warning); border: 1px solid rgba(245,158,11,0.2);">All Access Granted</span>
-                            </div>
-                            <div class="plan-details" style="font-size: 0.75rem;">
-                                Purchased: <strong>${mockMasterData.purchaseDate}</strong> &nbsp;|&nbsp; Valid Till: <strong>${mockMasterData.expiryDate || 'Lifetime'}</strong><br>
-                                <span style="color:var(--success); font-weight:700; margin-top:6px; display:inline-block;">✓ No further upgrades needed. Focus on your preparation!</span>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            } else if (hasMcqPro) {
-                smartContainer.innerHTML = `
-                    <div class="purchases-left">
-                        <div class="mini-section-title"><i class="fa-solid fa-bolt"></i> My Active Plan</div>
-                        <div class="active-plan-box" style="border-left: 4px solid var(--primary);">
-                            <i class="fa-solid fa-bolt bg-icon" style="color:var(--primary);"></i>
-                            <div class="plan-header">
-                                <span class="plan-name">${mcqProData.name}</span>
-                                <span class="badge" style="background: rgba(37,99,235,0.1); color: var(--primary); border: 1px solid rgba(37,99,235,0.2);">Active</span>
-                            </div>
-                            <div class="plan-details">
-                                Valid Till: <strong>${mcqProData.expiryDate}</strong><br>
-                                <span style="color:var(--success); font-weight:700; margin-top:4px; display:inline-block;">✓ MCQ Section Unlocked</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="purchases-right">
-                        <div class="mini-section-title"><i class="fa-solid fa-arrow-up-right-dots"></i> Upgrade Available</div>
-                        <div class="compact-upgrade-item" style="background: linear-gradient(135deg, #fffbeb, #fef3c7); border-color: #fde68a; flex-direction: column; align-items: flex-start; gap: 8px; padding: 10px;">
-                            <div>
-                                <div style="font-size: 0.75rem; font-weight: 800; color: var(--bronze);"><i class="fa-solid fa-crown" style="color:var(--warning);"></i> Mock Master Pass</div>
-                                <div style="font-size: 0.65rem; color: var(--text-sec); margin-top:2px;">Unlock All Full-Length Mocks & Exams</div>
-                            </div>
-                            <button onclick="openQuickPay('mock_master_pass', 149, 'Mock Master Pass')" class="compact-btn-buy" style="background: linear-gradient(135deg, #10b981, #059669); width: 100%; padding: 8px;">Upgrade for ₹149/mo</button>
-                        </div>
-                    </div>
-                `;
-            } else {
-                smartContainer.innerHTML = `
-                    <div class="purchases-left">
-                        <div class="mini-section-title"><i class="fa-solid fa-user-astronaut"></i> Current Status</div>
-                        <div class="active-plan-box" style="border-left: 4px solid var(--text-sec); opacity:0.8;">
-                            <i class="fa-solid fa-lock bg-icon" style="color:var(--text-sec);"></i>
-                            <div class="plan-header">
-                                <span class="plan-name">Free Explorer</span>
-                                <span class="badge" style="background: rgba(100,116,139,0.1); color: var(--text-sec); border: 1px solid rgba(100,116,139,0.2);">Basic</span>
-                            </div>
-                            <div class="plan-details">
-                                Access limited free MCQs & history.<br>
-                                Upgrade to unlock premium mock tests.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="purchases-right">
-                        <div class="mini-section-title"><i class="fa-solid fa-store"></i> Recommended Plans</div>
-                        <div style="display: flex; flex-direction: column; gap: 6px;">
-                            <div class="compact-upgrade-item">
-                                <div>
-                                    <div style="font-size: 0.75rem; font-weight: 800; color: var(--text-main);"><i class="fa-solid fa-bolt" style="color:var(--accent);"></i> MCQ Pro Pass</div>
-                                    <div style="font-size: 0.6rem; color: var(--text-sec);">Unlock 3000+ Premium MCQs</div>
+                
+                if (hasMockMaster) {
+                    smartContainer.innerHTML = `
+                        <div style="width: 100%;">
+                            <div class="mini-section-title"><i class="fa-solid fa-crown" style="color:var(--warning);"></i> VIP Access Active</div>
+                            <div class="active-plan-box" style="border-left: 4px solid var(--warning); background: linear-gradient(135deg, var(--card-bg) 0%, rgba(245, 158, 11, 0.05) 100%); width: 100%; box-sizing: border-box;">
+                                <i class="fa-solid fa-crown bg-icon" style="color:var(--warning); opacity:0.1;"></i>
+                                <div class="plan-header">
+                                    <span class="plan-name" style="font-size: 1rem;"><i class="fa-solid fa-crown" style="color:var(--warning);"></i> ${mockMasterData.name}</span>
+                                    <span class="badge" style="background: rgba(245,158,11,0.1); color: var(--warning); border: 1px solid rgba(245,158,11,0.2);">All Access Granted</span>
                                 </div>
-                                <button onclick="openQuickPay('mcq_pro_pass', 39, 'MCQ Pro Pass')" class="compact-btn-buy">₹39/mo</button>
-                            </div>
-                            <div class="compact-upgrade-item" style="background: linear-gradient(135deg, #fffbeb, #fef3c7); border-color: #fde68a;">
-                                <div>
-                                    <div style="font-size: 0.75rem; font-weight: 800; color: var(--text-main);"><i class="fa-solid fa-crown" style="color:var(--warning);"></i> Mock Master Pass</div>
-                                    <div style="font-size: 0.6rem; color: var(--text-sec);">Unlock All Full-Length Mocks</div>
+                                <div class="plan-details" style="font-size: 0.75rem;">
+                                    Purchased: <strong>${mockMasterData.purchaseDate}</strong> &nbsp;|&nbsp; Valid Till: <strong>${mockMasterData.expiryDate || 'Lifetime'}</strong><br>
+                                    <span style="color:var(--success); font-weight:700; margin-top:6px; display:inline-block;">✓ No further upgrades needed. Focus on your preparation!</span>
                                 </div>
-                                <button onclick="openQuickPay('mock_master_pass', 149, 'Mock Master Pass')" class="compact-btn-buy" style="background: linear-gradient(135deg, #f59e0b, #ea580c);">₹149/mo</button>
                             </div>
                         </div>
-                    </div>
-                `;
-            }
+                    `;
+                } else if (hasMcqPro) {
+                    smartContainer.innerHTML = `
+                        <div class="purchases-left">
+                            <div class="mini-section-title"><i class="fa-solid fa-bolt"></i> My Active Plan</div>
+                            <div class="active-plan-box" style="border-left: 4px solid var(--primary);">
+                                <i class="fa-solid fa-bolt bg-icon" style="color:var(--primary);"></i>
+                                <div class="plan-header">
+                                    <span class="plan-name">${mcqProData.name}</span>
+                                    <span class="badge" style="background: rgba(37,99,235,0.1); color: var(--primary); border: 1px solid rgba(37,99,235,0.2);">Active</span>
+                                </div>
+                                <div class="plan-details">
+                                    Valid Till: <strong>${mcqProData.expiryDate}</strong><br>
+                                    <span style="color:var(--success); font-weight:700; margin-top:4px; display:inline-block;">✓ MCQ Section Unlocked</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="purchases-right">
+                            <div class="mini-section-title"><i class="fa-solid fa-arrow-up-right-dots"></i> Upgrade Available</div>
+                            <div class="compact-upgrade-item" style="background: linear-gradient(135deg, #fffbeb, #fef3c7); border-color: #fde68a; flex-direction: column; align-items: flex-start; gap: 8px; padding: 10px;">
+                                <div>
+                                    <div style="font-size: 0.75rem; font-weight: 800; color: var(--bronze);"><i class="fa-solid fa-crown" style="color:var(--warning);"></i> Mock Master Pass</div>
+                                    <div style="font-size: 0.65rem; color: var(--text-sec); margin-top:2px;">Unlock All Full-Length Mocks & Exams</div>
+                                </div>
+                                <button onclick="openQuickPay('mock_master_pass', 149, 'Mock Master Pass')" class="compact-btn-buy" style="background: linear-gradient(135deg, #10b981, #059669); width: 100%; padding: 8px;">Upgrade for ₹149/mo</button>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    smartContainer.innerHTML = `
+                        <div class="purchases-left">
+                            <div class="mini-section-title"><i class="fa-solid fa-user-astronaut"></i> Current Status</div>
+                            <div class="active-plan-box" style="border-left: 4px solid var(--text-sec); opacity:0.8;">
+                                <i class="fa-solid fa-lock bg-icon" style="color:var(--text-sec);"></i>
+                                <div class="plan-header">
+                                    <span class="plan-name">Free Explorer</span>
+                                    <span class="badge" style="background: rgba(100,116,139,0.1); color: var(--text-sec); border: 1px solid rgba(100,116,139,0.2);">Basic</span>
+                                </div>
+                                <div class="plan-details">
+                                    Access limited free MCQs & history.<br>
+                                    Upgrade to unlock premium mock tests.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="purchases-right">
+                            <div class="mini-section-title"><i class="fa-solid fa-store"></i> Recommended Plans</div>
+                            <div style="display: flex; flex-direction: column; gap: 6px;">
+                                <div class="compact-upgrade-item">
+                                    <div>
+                                        <div style="font-size: 0.75rem; font-weight: 800; color: var(--text-main);"><i class="fa-solid fa-bolt" style="color:var(--accent);"></i> MCQ Pro Pass</div>
+                                        <div style="font-size: 0.6rem; color: var(--text-sec);">Unlock 3000+ Premium MCQs</div>
+                                    </div>
+                                    <button onclick="openQuickPay('mcq_pro_pass', 39, 'MCQ Pro Pass')" class="compact-btn-buy">₹39/mo</button>
+                                </div>
+                                <div class="compact-upgrade-item" style="background: linear-gradient(135deg, #fffbeb, #fef3c7); border-color: #fde68a;">
+                                    <div>
+                                        <div style="font-size: 0.75rem; font-weight: 800; color: var(--text-main);"><i class="fa-solid fa-crown" style="color:var(--warning);"></i> Mock Master Pass</div>
+                                        <div style="font-size: 0.6rem; color: var(--text-sec);">Unlock All Full-Length Mocks</div>
+                                    </div>
+                                    <button onclick="openQuickPay('mock_master_pass', 149, 'Mock Master Pass')" class="compact-btn-buy" style="background: linear-gradient(135deg, #f59e0b, #ea580c);">₹149/mo</button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
 
-            elLoading.style.display = 'none';
-            elLoggedOut.style.display = 'none';
-            elLoggedIn.style.display = 'block';
+                elLoading.style.display = 'none';
+                elLoggedOut.style.display = 'none';
+                elLoggedIn.style.display = 'block';
+            });
 
+            // Run the Heavy Analytics Fetcher ONLY ONCE
             await loadUserStatsAndSyncProfile(user);
         } else {
             elLoading.style.display = 'none';
@@ -642,7 +657,6 @@
             try {
                 querySnapshot = await fetchWithTimeout(getDocs(scoresRef), 8000);
             } catch(networkErr) {
-                console.error("Firebase network timed out:", networkErr);
                 throw new Error("Timeout");
             }
             
@@ -651,21 +665,9 @@
             records.sort((a, b) => b.timestamp - a.timestamp); 
 
             const categoryMap = {
-                'rivers': 'Rivers of HP',
-                'rivers of hp': 'Rivers of HP',
-                'hpgk rivers': 'Rivers of HP',
-                'geography': 'Geography of HP',
-                'history': 'History of HP',
-                'economy': 'Economy of HP',
-                'polity': 'Polity of HP',
-                'art culture': 'Art & Culture',
-                'tourism': 'Tourism in HP',
-                'agriculture': 'Agriculture',
-                'district': 'Districts of HP',
-                'environment': 'Environment of HP',
-                'famous people': 'Famous People of HP',
-                'hp patwari mock': 'HP Patwari Mock',
-                'police exam': 'HP Police Mock'
+                'rivers': 'Rivers of HP', 'geography': 'Geography of HP', 'history': 'History of HP',
+                'economy': 'Economy of HP', 'polity': 'Polity of HP', 'art culture': 'Art & Culture',
+                'agriculture': 'Agriculture', 'district': 'Districts of HP', 'hp patwari mock': 'HP Patwari Mock'
             };
 
             const catStats = {}; 
@@ -786,6 +788,7 @@
                 setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'leaderboard', user.uid), {
                     uid: user.uid,
                     name: user.displayName || 'HPGK Student',
+                    email: user.email || '', 
                     photo: user.photoURL || '',
                     mcqXP: xpData.mcqXP,
                     mockXP: xpData.mockXP,
@@ -794,7 +797,6 @@
                     weeklyMcqXP: xpData.weeklyMcqXP,
                     weeklyMockXP: xpData.weeklyMockXP,
                     qs: stats.all.topicCorr + stats.all.mockQs,
-                    // Extended Data for Micro Stats
                     mockAcc: mAcc,
                     mockAvgTime: mTime,
                     mockQs: stats.all.mockQs,
