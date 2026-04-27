@@ -131,19 +131,24 @@
         
         .lb-user { display: flex; align-items: center; gap: 10px; flex: 1; margin-left: 5px; z-index: 2;}
         .lb-avatar { width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--card-border); object-fit: cover; }
-        .lb-name { font-size: 0.85rem; font-weight: 800; color: var(--text-main); }
+        .lb-name { font-size: 0.85rem; font-weight: 800; color: var(--text-main); display: flex; align-items: center;}
+        
+        /* 🔥 INLINE MICRO STATS PILL (Accuracy Only) */
+        .lb-micro-stats { font-size: 0.65rem; color: var(--text-sec); font-weight: 700; display: inline-flex; align-items: center; gap: 4px; background: var(--input-bg); padding: 2px 6px; border-radius: 4px; border: 1px solid var(--card-border); margin: 0;}
+        .lb-micro-stats i { color: var(--primary); opacity: 0.9; font-size: 0.6rem;}
         
         .lb-score-box { text-align: right; z-index: 2;}
         .lb-score { font-size: 0.95rem; font-weight: 900; color: var(--accent); display: flex; align-items: center; gap: 4px; justify-content: flex-end;}
         .lb-score i { font-size: 0.8rem; color: #f59e0b; }
-        .lb-qs { font-size: 0.6rem; font-weight: 700; color: var(--text-sec); text-transform: uppercase; margin-top: 2px;}
 
-        /* AUTH WARNING (LOGGED OUT STATE) */
-        .auth-warning { text-align: center; padding: 40px 20px; }
-        .auth-warning h2 { font-size: 1.1rem; margin-bottom: 8px; color: var(--text-main); }
-        .auth-warning p { font-size: 0.8rem; margin-bottom: 20px; color: var(--text-sec); max-width: 400px; margin-inline: auto; }
-        .modern-google-btn { background: #fff; color: #334155; border: 1px solid #cbd5e1; padding: 8px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); font-family: 'Inter', sans-serif; transition: 0.2s;}
-        .modern-google-btn:hover { background: #f8fafc; transform: translateY(-1px); }
+        .login-nudge {
+            margin-top: 15px; padding: 12px; border-radius: var(--radius-md);
+            background: rgba(37, 99, 235, 0.05); border: 1px dashed rgba(37, 99, 235, 0.3);
+            text-align: center; display: none;
+        }
+        .login-nudge p { margin: 0 0 8px 0; font-size: 0.8rem; color: var(--text-sec); font-weight: 600; }
+        .btn-nudge { background: var(--primary); color: white; border: none; padding: 6px 16px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; cursor: pointer; transition: 0.2s; display: inline-flex; align-items: center; gap: 8px;}
+        .btn-nudge:hover { background: var(--primary-dark); }
 
         /* MODALS */
         @keyframes popInModal { 0% { opacity: 0; transform: scale(0.95) translateY(10px); } 100% { opacity: 1; transform: scale(1) translateY(0); } }
@@ -163,7 +168,7 @@
             .lb-avatar { width: 28px; height: 28px; }
             .lb-name { font-size: 0.8rem; }
             .lb-score { font-size: 0.9rem; }
-            .lb-qs { font-size: 0.55rem; }
+            .lb-micro-stats { font-size: 0.6rem; }
         }
     </style>
     <script>
@@ -190,56 +195,44 @@
 
     <div class="leaderboard-wrapper">
 
-        <!-- LOGGED OUT STATE (Shown to Guests) -->
-        <div id="logged-out-state" class="glass-panel auth-warning" style="display: none;">
-            <i class="fa-solid fa-lock" style="font-size: 1.8rem; color: var(--text-sec); margin-bottom: 10px;"></i>
-            <h2>Leaderboard Locked</h2>
-            <p>Please login securely with Google to view the Global Wall of Fame and check your live rank.</p>
-            <button class="modern-google-btn" onclick="if(window.loginWithGoogle) window.loginWithGoogle()">
-                <svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-                    <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-                    <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-                    <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-                </svg>
-                Secure Google Login
-            </button>
-        </div>
-
-        <!-- LOGGED IN STATE (The Gamified Leaderboard) -->
-        <div id="logged-in-state" style="display: none;">
-            <div class="glass-panel" style="padding: 15px; background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(251, 191, 36, 0.05));">
+        <div class="glass-panel" style="padding: 15px; background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(251, 191, 36, 0.05));">
+            
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fa-solid fa-trophy" style="color:var(--gold);"></i> Global Wall of Fame
+                    <i class="fa-solid fa-circle-info" style="color: var(--text-sec); font-size: 0.9rem; cursor: pointer; margin-left: 4px;" onclick="openXPModal()" title="How XP Works?"></i>
+                </h2>
                 
-                <div class="section-header">
-                    <h2 class="section-title">
-                        <i class="fa-solid fa-trophy" style="color:var(--gold);"></i> Global Wall of Fame
-                        <i class="fa-solid fa-circle-info" style="color: var(--text-sec); font-size: 0.9rem; cursor: pointer; margin-left: 4px;" onclick="openXPModal()" title="How XP Works?"></i>
-                    </h2>
-                    
-                    <select class="lb-time-filter" id="lb-time-select" onchange="window.changeLeaderboardTime(this.value)">
-                        <option value="all">All Time</option>
-                        <option value="month">This Month</option>
-                        <option value="week" selected>This Week</option>
-                    </select>
-                </div>
-                
-                <div class="leaderboard-tabs">
-                    <button class="lb-tab active tab-ninja" id="lb-btn-mcq" onclick="window.switchLeaderboardTab('mcq')">🥷 MCQ Ninjas</button>
-                    <button class="lb-tab" id="lb-btn-mock" onclick="window.switchLeaderboardTab('mock')">🎖️ Mock Toppers</button>
-                </div>
+                <select class="lb-time-filter" id="lb-time-select" onchange="window.changeLeaderboardTime(this.value)">
+                    <option value="all">All Time</option>
+                    <option value="month">This Month</option>
+                    <option value="week" selected>This Week</option>
+                </select>
+            </div>
+            
+            <div class="leaderboard-tabs">
+                <button class="lb-tab active tab-ninja" id="lb-btn-mcq" onclick="window.switchLeaderboardTab('mcq')">🥷 MCQ Ninjas</button>
+                <button class="lb-tab" id="lb-btn-mock" onclick="window.switchLeaderboardTab('mock')">🎖️ Mock Toppers</button>
+            </div>
 
-                <div class="leaderboard-list" id="global-leaderboard">
-                    <div style="text-align: center; padding: 30px; color: var(--text-sec); font-size: 0.85rem;">
-                        <i class="fa-solid fa-spinner fa-spin" style="font-size: 1.8rem; margin-bottom:12px; color:var(--primary);"></i><br>Fetching Global Ranks...
-                    </div>
+            <div class="leaderboard-list" id="global-leaderboard">
+                <div style="text-align: center; padding: 30px; color: var(--text-sec); font-size: 0.85rem;">
+                    <i class="fa-solid fa-spinner fa-spin" style="font-size: 1.8rem; margin-bottom:12px; color:var(--primary);"></i><br>Fetching Global Ranks...
                 </div>
             </div>
+
+            <div id="login-nudge" class="login-nudge">
+                <p>Want to see your name on the Wall of Fame?</p>
+                <button class="btn-nudge" onclick="handleLeaderboardLogin()">
+                    <i class="fa-brands fa-google"></i> Login to Play & Rank
+                </button>
+            </div>
+
         </div>
 
     </div>
 </main>
 
-<!-- XP INFO MODAL -->
 <div id="xpModal" class="modal-overlay" onclick="if(event.target === this) closeXPModal()">
     <div class="modal-box">
         <button onclick="closeXPModal()" class="modal-close-btn"><i class="fa-solid fa-xmark"></i></button>
@@ -252,7 +245,6 @@
         <p style="font-size: 0.75rem; color: var(--text-sec); margin: 0 0 15px 0; line-height: 1.4; font-weight: 500;"><strong>XP (Experience Points)</strong> fuels your Global Rank. High accuracy & consistency unlock the top spots! 🚀</p>
         
         <div style="display:flex; flex-direction:column; gap:8px; text-align:left;">
-            <!-- Ninja XP Box -->
             <div style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(29, 78, 216, 0.05)); padding: 10px 12px; border-radius: 8px; border: 1px solid rgba(59, 130, 246, 0.2); display:flex; gap:12px; align-items:center;">
                 <div style="font-size:1.4rem; color:var(--primary);"><i class="fa-solid fa-user-ninja"></i></div>
                 <div style="flex:1;">
@@ -260,8 +252,6 @@
                     <div style="font-size:0.65rem; color:var(--text-sec); font-weight:700;"><span style="color:var(--primary);">(Correct Qs × 2) × Acc² × Speed</span></div>
                 </div>
             </div>
-
-            <!-- Topper XP Box -->
             <div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.05), rgba(185, 28, 28, 0.05)); padding: 10px 12px; border-radius: 8px; border: 1px solid rgba(239, 68, 68, 0.2); display:flex; gap:12px; align-items:center;">
                 <div style="font-size:1.4rem; color:var(--danger);"><i class="fa-solid fa-medal"></i></div>
                 <div style="flex:1;">
@@ -280,12 +270,10 @@
 <script src="../js/core.js"></script>
 <script src="../js/layout.js"></script>
 
-<!-- Inline Scripts -->
 <script>
     window.openXPModal = () => { document.getElementById('xpModal').style.display = 'flex'; };
     window.closeXPModal = () => { document.getElementById('xpModal').style.display = 'none'; };
 
-    // Globals for fast tab & time switching
     window.rawLeaderboardUsers = [];
     window.currentLbType = 'mcq';
     window.currentLbTime = 'week'; 
@@ -313,11 +301,10 @@
     });
 </script>
 
-<!-- Firebase Firestore Integration for fetching Leaderboard -->
 <script type="module">
     import { initializeApp, getApp, getApps } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
     import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
-    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
+    import { getAuth, onAuthStateChanged, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
 
     const firebaseConfig = {
         apiKey: "AIzaSyDfz5Y4oVQHl-crnATIv5dMWsw7edSKddQ",
@@ -330,31 +317,38 @@
 
     let app;
     const apps = getApps();
-    if (apps.length === 0) {
-        app = initializeApp(firebaseConfig);
-    } else {
-        app = apps[0];
-    }
+    if (apps.length === 0) { app = initializeApp(firebaseConfig); } else { app = apps[0]; }
 
     const db = getFirestore(app);
     const auth = getAuth(app);
 
-    const elLoggedOut = document.getElementById('logged-out-state');
-    const elLoggedIn = document.getElementById('logged-in-state');
-
-    // 🔥 DYNAMIC & INSTANT SYNC: Reacts automatically when login state changes
-    onAuthStateChanged(auth, async (user) => {
-        if (user && !user.isAnonymous) {
-            // User is logged in securely
-            elLoggedOut.style.display = 'none';
-            elLoggedIn.style.display = 'block';
-            await fetchGlobalLeaderboard(); // Fetch fresh data instantly without reload
+    onAuthStateChanged(auth, (user) => {
+        const nudge = document.getElementById('login-nudge');
+        if (!user || user.isAnonymous) {
+            if (nudge) nudge.style.display = 'block';
         } else {
-            // User is logged out or a guest
-            elLoggedIn.style.display = 'none';
-            elLoggedOut.style.display = 'block';
+            if (nudge) nudge.style.display = 'none';
         }
     });
+
+    window.handleLeaderboardLogin = async function() {
+        if(window.loginWithGoogle) {
+            try {
+                const btn = document.querySelector('.btn-nudge');
+                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Authenticating...';
+                await window.loginWithGoogle();
+                
+                document.getElementById('login-nudge').style.display = 'none';
+                document.getElementById('global-leaderboard').innerHTML = `<div style="text-align: center; padding: 30px; color: var(--text-sec); font-size: 0.85rem;"><i class="fa-solid fa-spinner fa-spin" style="font-size: 1.8rem; margin-bottom:12px; color:var(--primary);"></i><br>Syncing your ranks securely...</div>`;
+                
+                await fetchGlobalLeaderboard();
+            } catch (err) {
+                console.error("Login Error", err);
+                const btn = document.querySelector('.btn-nudge');
+                if (btn) btn.innerHTML = '<i class="fa-brands fa-google"></i> Login to Play & Rank';
+            }
+        }
+    };
 
     async function fetchWithTimeout(promise, ms = 8000) {
         let timeoutId;
@@ -374,8 +368,8 @@
             ? (window.currentLbTime === 'all' ? 'mcqXP' : window.currentLbTime === 'month' ? 'monthlyMcqXP' : 'weeklyMcqXP')
             : (window.currentLbTime === 'all' ? 'mockXP' : window.currentLbTime === 'month' ? 'monthlyMockXP' : 'weeklyMockXP');
 
-        // 🔥 HARDCODED: Display strictly Top 7
-        const leaders = users.filter(u => (u[xpKey] || 0) > 0).sort((a, b) => (b[xpKey] || 0) - (a[xpKey] || 0)).slice(0, 7);
+        // 🔥 HARDCODED: Display Top 10 for the dedicated page
+        const leaders = users.filter(u => (u[xpKey] || 0) > 0).sort((a, b) => (b[xpKey] || 0) - (a[xpKey] || 0)).slice(0, 10);
         
         if (leaders.length === 0) {
             lbContainer.innerHTML = `<div style="text-align:center; padding:20px; color:var(--text-sec); font-size:0.85rem;">No champions yet in this timeframe! Be the first one.</div>`;
@@ -386,16 +380,22 @@
         leaders.forEach((u, index) => {
             let rankDisplay = index === 0 ? '<i class="fa-solid fa-crown rank-1"></i>' : index === 1 ? '<span class="lb-rank rank-2">2</span>' : index === 2 ? '<span class="lb-rank rank-3">3</span>' : `<span class="lb-rank" style="color:var(--text-sec); font-size:1rem;">${index + 1}</span>`;
             
-            // Highlight current user's row if logged in
             let isMe = (window.HPGK_User && window.HPGK_User.uid === u.uid) ? 'border-color: var(--primary); background: var(--primary-light);' : '';
             let meBadge = (window.HPGK_User && window.HPGK_User.uid === u.uid) ? ' <span style="font-size:0.55rem; background:var(--primary); color:white; padding:2px 4px; border-radius:4px; margin-left:4px;">YOU</span>' : '';
+
+            // 🔥 SMART MICRO STATS INJECTION (ACCURACY ONLY, INLINE WITH NAME)
+            let acc = (window.currentLbType === 'mcq') ? (u.mcqAcc || 0) : (u.mockAcc || 0);
+            let statsHtml = `<i class="fa-solid fa-bullseye"></i> ${acc}%`;
 
             html += `
             <div class="lb-item ${index === 0 ? 'is-first' : ''}" style="${isMe}">
                 ${rankDisplay}
-                <div class="lb-user">
+                <div class="lb-user" style="display:flex; align-items:center; gap:10px; flex:1; margin-left:5px; z-index:2;">
                     <img src="${u.photo || 'https://ui-avatars.com/api/?name='+u.name+'&background=cbd5e1'}" class="lb-avatar">
-                    <span class="lb-name">${u.name.substring(0, 15)}${u.name.length > 15 ? '...' : ''}${meBadge}</span>
+                    <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+                        <span class="lb-name">${u.name.substring(0, 15)}${u.name.length > 15 ? '...' : ''}${meBadge}</span>
+                        <span class="lb-micro-stats" style="margin:0;">${statsHtml}</span>
+                    </div>
                 </div>
                 <div class="lb-score-box">
                     <div class="lb-score"><i class="fa-solid fa-bolt"></i> ${u[xpKey]} <span style="font-size:0.65rem; color:var(--text-sec);">XP</span></div>
@@ -406,22 +406,44 @@
     };
 
     async function fetchGlobalLeaderboard() {
-        const lbContainer = document.getElementById('global-leaderboard');
-        lbContainer.innerHTML = `<div style="text-align: center; padding: 30px; color: var(--text-sec); font-size: 0.85rem;"><i class="fa-solid fa-spinner fa-spin" style="font-size: 1.8rem; margin-bottom:12px; color:var(--primary);"></i><br>Syncing Global Ranks...</div>`;
-        
         try {
-            // Because this is only called when logged in, we have proper token access
+            if (!auth.currentUser) throw new Error("unauthenticated");
             const lbSnap = await fetchWithTimeout(getDocs(collection(db, 'artifacts', 'hpgk-quiz', 'public', 'data', 'leaderboard')));
             window.rawLeaderboardUsers = [];
             lbSnap.forEach(doc => window.rawLeaderboardUsers.push(doc.data()));
             if (window.switchLeaderboardTab) window.switchLeaderboardTab(window.currentLbType || 'mcq');
         } catch (e) {
             console.error("Leaderboard Error:", e);
-            if (lbContainer) {
-                lbContainer.innerHTML = `<div style="text-align:center; padding:20px; font-size:0.85rem; color:var(--danger); font-weight:600;"><i class="fa-solid fa-triangle-exclamation"></i> Network Error.<br>Ranks could not be fetched. Check your connection.</div>`;
+            const lb = document.getElementById('global-leaderboard');
+            if (lb) {
+                if (e.message === "unauthenticated" || e.code === "permission-denied") {
+                    lb.innerHTML = `<div style="text-align:center; padding:20px; font-size:0.85rem; color:var(--danger); font-weight:600;"><i class="fa-solid fa-shield-halved"></i> Data Protected.<br><span style="font-size:0.75rem; color:var(--text-sec); font-weight:500;">(Please login to view ranks)</span></div>`;
+                } else {
+                    lb.innerHTML = `<div style="text-align:center; padding:20px; font-size:0.85rem; color:var(--danger); font-weight:600;"><i class="fa-solid fa-triangle-exclamation"></i> Network Error.<br>Ranks could not be fetched. Check your connection.</div>`;
+                }
             }
         }
     }
+
+    const initAuthAndFetch = async () => {
+        try {
+            if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                try {
+                    await signInWithCustomToken(auth, __initial_auth_token);
+                } catch(tokenErr) {
+                    console.warn("Custom token mismatch, attempting anonymous login...", tokenErr);
+                    if (!auth.currentUser) {
+                        await signInAnonymously(auth);
+                    }
+                }
+            } else if (!auth.currentUser) {
+                await signInAnonymously(auth);
+            }
+        } catch(e) { console.error("Auth init error:", e); }
+        fetchGlobalLeaderboard();
+    };
+
+    initAuthAndFetch();
 </script>
 
 </body>
