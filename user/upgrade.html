@@ -397,11 +397,11 @@
 </head>
 <body>
 
-<!-- Payment Processing Overlay -->
+<!-- Payment Processing Overlay (Smart Verify) -->
 <div id="payment-processing-overlay">
     <div class="spinner"></div>
-    <h2 style="margin:0 0 10px 0; font-size: 1.5rem; font-weight:800;">Processing Payment...</h2>
-    <p style="margin:0; font-size: 0.9rem; color:#cbd5e1;">Please do not close or refresh this window.</p>
+    <h2 style="margin:0 0 10px 0; font-size: 1.5rem; font-weight:800;" id="verify-title">Securing Your Access...</h2>
+    <p style="margin:0; font-size: 0.9rem; color:#cbd5e1;" id="verify-desc">Please wait while we verify your transaction with the bank.</p>
 </div>
 
 <!-- Dynamic Header Container -->
@@ -455,7 +455,7 @@
                     <li><i class="fa-solid fa-check"></i> <div>Save, Bookmark & <strong>Review Mistakes</strong></div></li>
                 </ul>
                 
-                <button class="buy-btn" onclick="initiatePayment('mcq_pro_pass', 39)"><i class="fa-solid fa-unlock-keyhole"></i> Get MCQ Pass</button>
+                <button id="btn-mcq" class="buy-btn" onclick="initiatePayment('mcq_pro_pass', 39)"><i class="fa-solid fa-unlock-keyhole"></i> Get MCQ Pass</button>
             </div>
 
             <!-- Card 2: Mock Master Pass (VIBRANT & MERGED) -->
@@ -480,7 +480,7 @@
                     <li><i class="fa-solid fa-check-double"></i> <div>100% <strong>Ad-Free</strong> Premium Experience</div></li>
                 </ul>
                 
-                <button class="buy-btn" onclick="initiatePayment('mock_master_pass', 149)"><i class="fa-solid fa-rocket"></i> Grab Mock Master Pass</button>
+                <button id="btn-mock" class="buy-btn" onclick="initiatePayment('mock_master_pass', 149)"><i class="fa-solid fa-rocket"></i> Grab Mock Master Pass</button>
             </div>
 
         </div>
@@ -529,8 +529,32 @@
 <script src="../js/core.js"></script>
 <script src="../js/layout.js"></script>
 
-<!-- 3. Smart Payment Logic (Webhook Driven - Test Mode) -->
-<script>
+<!-- 3. Smart 99% Production Payment Logic & Auto UI Locker -->
+<script type="module">
+    import { initializeApp, getApp, getApps } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
+    import { getFirestore, doc, onSnapshot, getDoc } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
+
+    // Safe Firebase Init
+    const firebaseConfig = {
+        apiKey: "AIzaSyDfz5Y4oVQHl-crnATIv5dMWsw7edSKddQ",
+        authDomain: "hpgk-quiz.firebaseapp.com",
+        projectId: "hpgk-quiz",
+        storageBucket: "hpgk-quiz.firebasestorage.app",
+        messagingSenderId: "273909571419",
+        appId: "1:273909571419:web:20d5e06d8b582f4d2dc47e"
+    };
+
+    let app;
+    if (getApps().length === 0) { app = initializeApp(firebaseConfig); } else { app = getApps()[0]; }
+    const db = getFirestore(app);
+    const auth = getAuth(app);
+
+    // Make db globally accessible for the payment listener
+    window._db = db;
+    window._doc = doc;
+    window._onSnapshot = onSnapshot;
+
     // Initialize Header & Footer
     document.addEventListener('DOMContentLoaded', () => {
         if (typeof renderHeader === 'function') {
@@ -548,7 +572,109 @@
         }
     });
 
-    // 🔥 WEBHOOK-DRIVEN PAYMENT LOGIC
+    // 🔥 SMART UI LOCKER: Automatically disables buy buttons if pass is owned
+    function updateUpgradeUI(passes) {
+        if (!passes) return;
+
+        const btnMcq = document.getElementById('btn-mcq');
+        const btnMock = document.getElementById('btn-mock');
+
+        // Check for highest tier first
+        if (passes.mock_master_pass || passes.mega_combo_pass || passes.vip_lifetime_pass) {
+            if (btnMcq) {
+                btnMcq.innerHTML = '<i class="fa-solid fa-circle-check"></i> Included in VIP';
+                btnMcq.style.background = 'var(--correct-bg)';
+                btnMcq.style.color = 'var(--correct-text)';
+                btnMcq.style.borderColor = 'var(--correct-border)';
+                btnMcq.style.boxShadow = 'none';
+                btnMcq.onclick = null;
+                btnMcq.style.cursor = 'default';
+            }
+            if (btnMock) {
+                btnMock.innerHTML = '<i class="fa-solid fa-circle-check"></i> VIP Pass Active';
+                btnMock.style.background = '#10b981';
+                btnMock.style.color = '#fff';
+                btnMock.style.boxShadow = 'none';
+                btnMock.onclick = null;
+                btnMock.style.cursor = 'default';
+            }
+        } 
+        // If they only have the MCQ Pro pass
+        else if (passes.mcq_pro_pass) {
+            if (btnMcq) {
+                btnMcq.innerHTML = '<i class="fa-solid fa-circle-check"></i> Pass Active';
+                btnMcq.style.background = 'var(--correct-bg)';
+                btnMcq.style.color = 'var(--correct-text)';
+                btnMcq.style.borderColor = 'var(--correct-border)';
+                btnMcq.style.boxShadow = 'none';
+                btnMcq.onclick = null;
+                btnMcq.style.cursor = 'default';
+            }
+            if (btnMock) {
+                btnMock.innerHTML = '<i class="fa-solid fa-arrow-up"></i> Upgrade to VIP (₹149)';
+            }
+        }
+    }
+
+    // Listen for Auth changes to lock UI on the upgrade page securely
+    onAuthStateChanged(auth, async (user) => {
+        if (user && !user.isAnonymous) {
+            try {
+                // Fetch fresh from database just in case
+                const uDoc = await getDoc(doc(db, 'artifacts', 'hpgk-quiz', 'users', user.uid));
+                if (uDoc.exists() && uDoc.data().passes) {
+                    updateUpgradeUI(uDoc.data().passes);
+                }
+            } catch (e) {
+                // Fallback to cache if network fails
+                if (window.HPGK_User && window.HPGK_User.passes) {
+                    updateUpgradeUI(window.HPGK_User.passes);
+                }
+            }
+        }
+    });
+
+    // Verify Function exposed to window for Razorpay Handler
+    window.HPGK_verifyAndRedirect = function(planId) {
+        document.getElementById('verify-title').innerText = "Payment Success! Syncing...";
+        document.getElementById('verify-desc').innerText = "Waiting for secure confirmation from the server.";
+        
+        try {
+            const uid = window.HPGK_User.uid;
+            const userRef = doc(db, 'artifacts', 'hpgk-quiz', 'users', uid);
+            
+            let isRedirected = false;
+
+            // Fallback Timer: If Webhook fails or internet drops, redirect anyway after 10 seconds
+            const fallbackTimer = setTimeout(() => {
+                if (!isRedirected) {
+                    isRedirected = true;
+                    alert("Payment received! The server might take a minute to sync your pass. Redirecting to Dashboard...");
+                    window.location.href = "dashboard.html";
+                }
+            }, 10000);
+
+            // LIVE LISTENER: Instantly detects when webhook updates the DB
+            const unsubscribe = onSnapshot(userRef, (docSnap) => {
+                if (docSnap.exists()) {
+                    const passes = docSnap.data().passes || {};
+                    if (passes[planId] && !isRedirected) {
+                        isRedirected = true;
+                        clearTimeout(fallbackTimer);
+                        unsubscribe();
+                        // Pass detected! Instant Redirect.
+                        window.location.href = "dashboard.html";
+                    }
+                }
+            });
+        } catch (e) {
+            console.error("Verification Listener Error:", e);
+            // Fail gracefully
+            setTimeout(() => { window.location.href = "dashboard.html"; }, 3000);
+        }
+    };
+
+    // Main Payment Trigger
     window.initiatePayment = function(planId, price) {
         // 1. Check Login Status
         if (!window.HPGK_User || !window.HPGK_User.isLoggedIn) {
@@ -567,28 +693,25 @@
 
         // 2. Razorpay Configuration Options
         var options = {
-            "key": "rzp_test_SiCgoJg1G0fb0m", // 🚨 Test API Key
+            // 🚨 IMPORTANT: Change this to YOUR Razorpay Live/Test Key
+            "key": "rzp_test_SiCgoJg1G0fb0m", 
             "amount": price * 100, // Razorpay takes amount in Paise
             "currency": "INR",
             "name": "HPGK Quiz Platform",
             "description": "Unlock " + planNames[planId],
             "image": "../js/favicon/web-app-manifest-192x192.png", 
             
-            // 3. Payment Success Handler (Webhook updates DB)
+            // 3. Payment Success Handler
             "handler": function (response) {
                 console.log("Payment Success ID:", response.razorpay_payment_id);
                 
                 // Show loading overlay
                 document.getElementById('payment-processing-overlay').style.display = 'flex';
                 
-                // The backend Webhook is updating Firebase now.
-                // We just wait 4 seconds and redirect to dashboard.
-                setTimeout(() => {
-                    window.location.href = "dashboard.html";
-                }, 4000);
+                // Start Real-Time Webhook Verification
+                window.HPGK_verifyAndRedirect(planId);
             },
             
-            // Auto-fill user details if available
             "prefill": {
                 "name": window.HPGK_User.displayName || "HPGK Student",
                 "email": window.HPGK_User.email || ""
@@ -603,10 +726,7 @@
             }
         };
 
-        // 4. Open Razorpay Popup
         var rzp1 = new Razorpay(options);
-        
-        // Handle User closing or failing payment
         rzp1.on('payment.failed', function (response){
             console.error("Payment Failed:", response.error);
             alert("Payment Failed or Cancelled!\nReason: " + response.error.description);
