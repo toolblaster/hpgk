@@ -15,6 +15,57 @@
         passes: {} 
     };
 
+    // 🔥 NEW: CENTRALIZED UI UNLOCKER
+    window.HPGK_AutoUnlockPremiumUI = function() {
+        if (!window.HPGK_User || !window.HPGK_User.passes) return;
+
+        const hasMockMaster = window.HPGK_User.passes['mock_master_pass'] || 
+                              window.HPGK_User.passes['vip_lifetime_pass'] || 
+                              window.HPGK_User.passes['mega_combo_pass'];
+
+        if (hasMockMaster) {
+            document.querySelectorAll('button[onclick*="true)"]').forEach(btn => {
+                btn.innerHTML = 'Attempt Free <i class="fa-solid fa-arrow-right"></i>';
+                btn.classList.remove('btn-pro');
+                btn.classList.add('btn-free');
+                // 🔥 BUG FIX: Removed the onclick parameter replacement logic. 
+                // We keep 'true)' intact so the Locker function can find them again upon logout!
+            });
+            
+            document.querySelectorAll('.pro-badge').forEach(badge => {
+                badge.className = 'tc-badge-common free-badge unlocked';
+                badge.innerHTML = '<i class="fa-solid fa-unlock"></i> UNLOCKED';
+            });
+
+            document.querySelectorAll('.tc-icon i.fa-lock').forEach(icon => {
+                icon.className = 'fa-solid fa-unlock';
+                if(icon.parentElement) icon.parentElement.style.color = 'var(--success)';
+            });
+        }
+    };
+
+    // 🔥 NEW: CENTRALIZED UI LOCKER (Fixes the Logout Bug)
+    window.HPGK_LockPremiumUI = function() {
+        // Find all buttons that have premium action (onclick containing 'true)')
+        document.querySelectorAll('button[onclick*="true)"]').forEach(btn => {
+            btn.innerHTML = 'Unlock <i class="fa-solid fa-lock"></i>';
+            btn.classList.remove('btn-free');
+            btn.classList.add('btn-pro');
+        });
+        
+        // Revert unlocked badges back to PRO
+        document.querySelectorAll('.unlocked').forEach(badge => {
+            badge.className = 'tc-badge-common pro-badge';
+            badge.innerHTML = '<i class="fa-solid fa-crown" style="font-size:0.5rem; margin-right:2px;"></i> PRO';
+        });
+
+        // Revert green unlock icons back to black locks
+        document.querySelectorAll('.tc-icon i.fa-unlock').forEach(icon => {
+            icon.className = 'fa-solid fa-lock';
+            if(icon.parentElement) icon.parentElement.style.color = 'var(--text-main)';
+        });
+    };
+
     // 2. FIREBASE INITIALIZATION & AUTH LISTENER
     async function initCore() {
         try {
@@ -65,6 +116,13 @@
                         console.error("Error fetching passes:", e);
                     }
 
+                    // 🔥 THE MISSING LINK: Dynamically Lock/Unlock UI based on fetched passes
+                    if (window.HPGK_User.passes && (window.HPGK_User.passes['mock_master_pass'] || window.HPGK_User.passes['vip_lifetime_pass'] || window.HPGK_User.passes['mega_combo_pass'])) {
+                        if (typeof window.HPGK_AutoUnlockPremiumUI === 'function') window.HPGK_AutoUnlockPremiumUI();
+                    } else {
+                        if (typeof window.HPGK_LockPremiumUI === 'function') window.HPGK_LockPremiumUI();
+                    }
+
                     // Tell Engine to refresh and unlock UI
                     if (typeof window.HPGK_Engine_Refresh === 'function') {
                         window.HPGK_Engine_Refresh();
@@ -74,6 +132,9 @@
                     window.HPGK_User.isLoggedIn = false;
                     window.HPGK_User.uid = null;
                     window.HPGK_User.passes = {};
+                    
+                    // 🔥 LOCK UI INSTANTLY ON LOGOUT
+                    if (typeof window.HPGK_LockPremiumUI === 'function') window.HPGK_LockPremiumUI();
                 }
             });
 
