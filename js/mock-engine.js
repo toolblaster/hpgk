@@ -29,13 +29,12 @@ const engine = (function() {
     function injectUIWatermark() {
         const wm = document.createElement('div');
         wm.innerHTML = 'HPGK.TOOLBLASTER.COM';
-        // Extremely light opacity, rotated, pushed behind text but above base background
         wm.style.cssText = 'position:fixed; top:50%; left:50%; transform:translate(-50%, -50%) rotate(-35deg); font-size:clamp(3rem, 6vw, 6rem); color:rgba(100, 116, 139, 0.04); z-index:0; pointer-events:none; white-space:nowrap; font-weight:900; letter-spacing:4px; font-family:Inter, sans-serif; user-select:none;';
         document.body.appendChild(wm);
     }
 
     function init() {
-        injectUIWatermark(); // Load watermark immediately
+        injectUIWatermark(); 
 
         DOM = {
             blocker: document.getElementById('security-blocker'),
@@ -93,12 +92,25 @@ const engine = (function() {
         state.exam = examParam;
         state.testId = testParam;
 
-        waitForAuth().then((isLoggedIn) => {
+        waitForAuth().then(async (isLoggedIn) => {
             const user = window.HPGK_User;
             
             if (!isLoggedIn || !user) {
                  triggerFatalError("Login Required", "You must be logged in to attempt any mock test (Free or Paid). Please log in securely from the Dashboard.");
                  return;
+            }
+
+            try {
+                const { getApp } = await import("https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js");
+                const { getFirestore, doc, getDoc } = await import("https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js");
+                const db = getFirestore(getApp());
+                const uDoc = await getDoc(doc(db, 'artifacts', 'hpgk-quiz', 'users', user.uid));
+                
+                if (uDoc.exists() && uDoc.data().passes) {
+                    user.passes = uDoc.data().passes;
+                }
+            } catch(e) {
+                console.error("Engine live pass sync failed:", e);
             }
 
             const userName = user.displayName || user.name || user.email || 'Candidate';
@@ -116,19 +128,39 @@ const engine = (function() {
                 avatarImg.src = 'https://ui-avatars.com/api/?name=' + encodeURIComponent(userName) + '&background=cbd5e1';
             }
 
-            // STRICT LOGIC: Only tests ending with "-1" are free
             const isFree = testParam.endsWith('-1'); 
             
-            // 🔥 FUTURE-PROOF MASTER KEYS FOR MOCK ENGINE
             const hasPass = user.passes && (
                 user.passes['mock_master_pass'] || 
-                user.passes['mega_combo_pass'] || 
-                user.passes['vip_lifetime_pass']
+                user.passes['vip_lifetime_pass'] || 
+                user.passes['mega_combo_pass']
             );
             
+            // 🔥 FIXED PAYWALL LOGIC: Direct Custom Injection (Independent of Guard)
             if (!isFree && !hasPass) {
-                // Trigger beautiful compact ₹149 Paywall
-                triggerPaywall();
+                DOM.blocker.style.backgroundColor = "rgba(15, 23, 42, 0.9)"; 
+                DOM.blocker.style.backdropFilter = "blur(8px)";
+                DOM.blocker.innerHTML = `
+                    <div style="background: #ffffff; border-radius: 14px; padding: 40px 30px; max-width: 400px; text-align: center; box-shadow: 0 10px 40px rgba(0,0,0,0.3); margin: 20px;">
+                        <div style="width: 60px; height: 60px; background: rgba(245, 158, 11, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px auto;">
+                            <i class="fa-solid fa-crown" style="font-size: 2rem; color: #f59e0b;"></i>
+                        </div>
+                        <h2 style="margin: 0 0 10px 0; font-size: 1.4rem; color: #0f172a; font-weight: 900;">Unlock Mock Master</h2>
+                        <p style="font-size: 0.85rem; color: #475569; margin-bottom: 20px; line-height: 1.5;">Upgrade to the <strong>Mock Master Pass</strong> to unlock all premium full-length mock tests, Official PYQs, and detailed analytics.</p>
+                        <div style="font-size: 2.2rem; font-weight: 900; color: #0f172a; margin-bottom: 20px; letter-spacing: -1px;">₹149<span style="font-size: 1rem; color: #64748b; font-weight: 600;">/mo</span></div>
+                        <button onclick="window.location.href='../user/upgrade.html'" style="width: 100%; background: #10b981; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: 800; font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 15px; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3); transition: 0.2s;">
+                            <i class="fa-solid fa-rocket"></i> Get Mock Master Pass
+                        </button>
+                        <div style="display: flex; flex-direction: column; gap: 10px;">
+                            <button onclick="window.location.href='../user/upgrade.html'" style="background: #f1f5f9; color: #334155; border: none; padding: 10px; border-radius: 8px; font-weight: 700; font-size: 0.85rem; cursor: pointer; transition: 0.2s;">View All Features</button>
+                            <button onclick="window.location.href='../user/dashboard.html'" style="background: transparent; color: #64748b; border: none; font-weight: 600; font-size: 0.8rem; cursor: pointer; text-decoration: underline;">Back to Dashboard</button>
+                        </div>
+                        <div style="margin-top: 18px; font-size: 0.7rem; color: #10b981; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                            <i class="fa-solid fa-shield-halved"></i> SECURE 256-BIT CHECKOUT
+                        </div>
+                    </div>
+                `;
+                DOM.blocker.style.display = 'flex';
                 return;
             }
 
@@ -180,45 +212,6 @@ const engine = (function() {
                 }
             }, 100);
         });
-    }
-
-    // Beautiful COMPACT Custom Paywall overriding the old 29 rs guard
-    function triggerPaywall() {
-        DOM.blocker.innerHTML = `
-            <div style="background: var(--card-bg); max-width: 340px; width: 90%; padding: 25px 20px; text-align: center; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); border: 1px solid var(--card-border); animation: popIn 0.3s ease-out; position: relative;">
-                <div style="width: 50px; height: 50px; background: rgba(245, 158, 11, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px auto; border: 1px solid rgba(245, 158, 11, 0.2);">
-                    <i class="fa-solid fa-crown" style="font-size: 1.8rem; color: #f59e0b;"></i>
-                </div>
-                <h2 style="margin: 0 0 8px 0; font-size: 1.3rem; font-weight: 900; color: var(--text-main); letter-spacing:-0.5px;">Unlock Mock Master</h2>
-                <p style="font-size: 0.8rem; color: var(--text-sec); margin-bottom: 15px; line-height: 1.4; font-weight:500;">Upgrade to the <strong>Mock Master Pass</strong> to unlock all premium full-length mock tests, Official PYQs, and detailed analytics.</p>
-                <div style="font-size: 1.8rem; font-weight: 900; color: var(--text-main); margin-bottom: 15px; letter-spacing: -1px;">₹149<span style="font-size:0.85rem; color:var(--text-sec); font-weight:700;">/mo</span></div>
-                <div style="display: flex; flex-direction: column; gap: 8px;">
-                    <button onclick="alert('Initiating Secure Checkout for ₹149...\\n\\n(After payment, test will unlock automatically!)')" style="background: linear-gradient(135deg, #10b981, #059669); color: white; border: none; padding: 10px; border-radius: 8px; font-weight: 800; font-size: 0.9rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3); transition: transform 0.2s;">
-                        <i class="fa-solid fa-rocket"></i> Get Mock Master Pass
-                    </button>
-                    <button onclick="window.location.href='../user/upgrade.html'" style="background: var(--input-bg); border: 1px solid var(--card-border); color: var(--text-main); padding: 8px; border-radius: 8px; font-weight: 700; font-size: 0.8rem; cursor: pointer; transition: 0.2s;">
-                        View All Features
-                    </button>
-                    <button onclick="window.location.href='../user/dashboard.html'" style="background: transparent; border: none; color: var(--text-sec); font-size: 0.75rem; font-weight: 600; text-decoration: underline; cursor: pointer; margin-top: 2px;">
-                        Back to Dashboard
-                    </button>
-                </div>
-                <div style="margin-top: 15px; font-size: 0.65rem; color: #10b981; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 5px; letter-spacing: 0.5px;">
-                    <i class="fa-solid fa-shield-halved"></i> SECURE 256-BIT CHECKOUT
-                </div>
-            </div>
-        `;
-        
-        if (!document.getElementById('paywall-anim')) {
-            const style = document.createElement('style');
-            style.id = 'paywall-anim';
-            style.innerHTML = `@keyframes popIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }`;
-            document.head.appendChild(style);
-        }
-        
-        DOM.blocker.style.backgroundColor = "rgba(15, 23, 42, 0.85)";
-        DOM.blocker.style.backdropFilter = "blur(8px)";
-        DOM.blocker.style.display = 'flex';
     }
 
     function triggerFatalError(title, desc) {
