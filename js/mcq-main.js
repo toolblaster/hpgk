@@ -3,8 +3,10 @@
  * HPGK MCQ PRACTICE ENGINE (The Teacher)
  * --------------------------------------------------------------------------
  * Purely renders questions, handles UI logic, and communicates with Guard.
+ * ADDED: Smart Quota Tracker & 100-Question Pool Limit for Random Modes.
  * FIXED: VIP Shuffle Bug (Now Pro users get unlimited pool in Random mode).
  * FIXED: Instant UI Refresh Sync after successful login/payment.
+ * 🔥 NEW: Firebase Cost Saver - Batched Database Writes (Syncs every 15 Qs)
  * --------------------------------------------------------------------------
  */
 (function() {
@@ -38,7 +40,9 @@
 
     let bookmarkFilterBtn, mistakeFilterBtn, shuffleBtn, quickModeBtn;
 
-    // 🔥 FIXED: Triggered by core.js upon login/logout/payment
+    // 🔥 NEW: Track last cloud sync to save 90% Firebase Write Costs
+    let lastSyncedCount = -1;
+
     window.HPGK_Engine_Refresh = function() {
         loadFromStorage();
         // Force the filter engine to recalculate the pool size instantly for VIPs
@@ -46,7 +50,8 @@
         updateStats();
     };
 
-    function triggerCloudSync() {
+    // 🔥 SMART CLOUD SYNC (Batched Updates)
+    function triggerCloudSync(forceSync = false) {
         if (!window.HPGK_SaveScore) return;
         let validDoneCount = 0;
         let validCorrectCount = 0;
@@ -59,9 +64,25 @@
             });
         }
         if (validDoneCount === 0) return;
-        const rawCategory = window.QUIZ_NAME || (window.QUIZ_CONFIG && window.QUIZ_CONFIG.category) || 'General Practice';
-        window.HPGK_SaveScore(rawCategory, validCorrectCount, validDoneCount);
+
+        // Initialize baseline on first call so we don't trigger unnecessarily
+        if (lastSyncedCount === -1) {
+            lastSyncedCount = validDoneCount;
+        }
+
+        // 🔥 FIREBASE COST SAVER: Sync to cloud only if FORCED, or every 15 new answers
+        if (forceSync || (validDoneCount - lastSyncedCount >= 15)) {
+            const rawCategory = window.QUIZ_NAME || (window.QUIZ_CONFIG && window.QUIZ_CONFIG.category) || 'General Practice';
+            window.HPGK_SaveScore(rawCategory, validCorrectCount, validDoneCount);
+            lastSyncedCount = validDoneCount; // Update the checkpoint
+            console.log(`☁️ Cloud Sync Successful! Batched at ${validDoneCount} Qs.`);
+        }
     }
+
+    // Force sync if the user is leaving the page
+    window.addEventListener('beforeunload', () => {
+        triggerCloudSync(true);
+    });
 
     window.addEventListener('DOMContentLoaded', () => {
         if (jumpTrigger) jumpTrigger.style.display = 'none'; 
@@ -96,7 +117,7 @@
                     currentIndex = (historyState.lastIndex && historyState.lastIndex < currentList.length) ? historyState.lastIndex : 0;
                     applyFilters(); 
                     updateStats();
-                    triggerCloudSync(); 
+                    triggerCloudSync(true); // Force sync after importing progress
                     alert('Progress restored successfully!');
                 } else { alert('Invalid backup file format.'); }
             } catch(err) { alert('Error reading file.'); }
@@ -357,10 +378,9 @@
         );
         
         const loginLimit = (window.PAGE_ACCESS && window.PAGE_ACCESS.loginLimit) || 30;
-        const proLimit = 100; // Legacy limit, now only applies to Non-VIP logged-in users
+        const proLimit = 100; 
 
         if (isShuffleActive || isQuickModeActive) {
-            // VIP Users get UNLIMITED Shuffle (filtered.length), otherwise standard limits apply
             const poolSize = hasProPass ? filtered.length : (isLoggedIn ? proLimit : loginLimit);
             filtered = filtered.slice(0, poolSize);
         }
@@ -372,7 +392,6 @@
                 [filtered[i], filtered[j]] = [filtered[j], filtered[i]]; 
             } 
         } else { 
-            // Normal Sequential Order
             filtered.sort((a, b) => a.id - b.id); 
         }
         
@@ -392,7 +411,6 @@
         // 5. QUICK MODE EXTRACTOR (Force Random if not already shuffled)
         if (isQuickModeActive) { 
             filtered = filtered.filter(q => historyState.answers[q.id] === undefined); 
-            // Ensure Quick Mode is truly random, not sequential 1 to 10
             if (!isShuffleActive) {
                 for (let i = filtered.length - 1; i > 0; i--) { 
                     const j = Math.floor(Math.random() * (i + 1)); 
@@ -417,9 +435,13 @@
         if (isQuickModeActive && q.answer === choiceIndex) { quickSessionScore++; }
         
         historyState.answers[qId] = choiceIndex;
+        
+        // 1. SAVE TO LOCAL STORAGE (Immediate, 100% Safe, 0 Cost)
         saveToStorage(); 
         updateStats(); 
         loadQuestion(currentIndex);
+        
+        // 2. TRIGGER CLOUD SYNC (Batched Logic handles Cost)
         triggerCloudSync(); 
     };
 
@@ -501,17 +523,32 @@
     };
 
     function saveToStorage() { localStorage.setItem(STORAGE_KEY, JSON.stringify(historyState)); }
+    
     function loadFromStorage() {
         const saved = localStorage.getItem(STORAGE_KEY);
         if (saved) { try { historyState = JSON.parse(saved); if (!historyState.answers) historyState.answers = {}; if (!historyState.bookmarks) historyState.bookmarks = []; } catch (e) {} }
     }
-    window.resetProgress = function() { if(confirm("Clear history for this section?")) { localStorage.removeItem(STORAGE_KEY); location.reload(); } };
+
+    window.resetProgress = function() { 
+        if(confirm("Clear history for this section?")) { 
+            localStorage.removeItem(STORAGE_KEY); 
+            location.reload(); 
+        } 
+    };
 
     function initQuizNow() {
         loadFromStorage();
         if (window.quizData && window.quizData.length > 0) {
             window.quizData.sort((a, b) => a.id - b.id);
             currentList = [...window.quizData];
+            
+            // Set initial sync count to avoid firing instantly
+            let initAnsweredCount = 0;
+            window.quizData.forEach(q => {
+                if (historyState.answers[q.id] !== undefined) initAnsweredCount++;
+            });
+            lastSyncedCount = initAnsweredCount;
+
             const urlParams = new URLSearchParams(window.location.search);
             const sharedId = urlParams.get('id');
             if (sharedId) { const target = currentList.findIndex(q => q.id == sharedId); if (target !== -1) { currentIndex = target; } } 
