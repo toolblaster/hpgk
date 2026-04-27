@@ -1,103 +1,86 @@
-🏔️ HPGK MCQ & Mock Test Platform (v2.0 - 2026)
+🏔️ HPGK Quiz Platform - Complete Documentation
 
-Welcome to the official documentation of the HPGK (Himachal Pradesh General Knowledge) web application. This platform is a high-performance, SEO-optimized, and centralized freemium system designed specifically for HPAS, HPPSC, and Allied Services aspirants.
+Welcome to the complete documentation for the HPGK Quiz Platform. This platform is designed to provide high-quality, bilingual mock tests and study materials for Himachal Pradesh competitive exams (HPAS, HPPSC, Allied Services, Patwari, etc.).
 
-Designed with a strict Mobile-First approach and ensuring WCAG AA Compliance for maximum accessibility, this platform delivers a seamless, app-like experience directly in the browser.
+🌟 1. Project Overview & Features
 
-🏗️ Core Architecture: The "Holy Trinity" Model (+ Extensions)
+Bilingual Engine: Questions, options, and explanations are rendered in both English and Hindi.
 
-The system has been meticulously decoupled into independent core files to maximize speed, security, and maintainability.
+Strict Exam Simulation: Features 0.25 negative marking, timer, and a real exam-like UI.
 
-1. The Global Brain (js/core.js)
+Local & Cloud Sync: Progress is saved locally (LocalStorage) and securely synced to Firebase Firestore.
 
-This is the foundational script loaded on every page.
+Automated Payments: Fully integrated with Razorpay and Google Cloud Webhooks for instant pass unlocking.
 
-Role: Handles Firebase initialization, Google Authentication, and Firestore Database connections.
+Super Admin Panel: A secure control room to monitor live users, revenue, and manually grant passes.
 
-Key Features: Manages the global window.HPGK_User object (storing UID and active passes) and handles cloud synchronization (HPGK_SaveScore).
+🛠️ 2. Tech Stack & Design System
 
-[NEW IN v2.0]: Now includes Universal UI Protection (permanently blocks Right-Click, F12, Inspect Element, Copy/Paste) and Decoy Routing (injects fake honeypot URLs to stop scrapers).
+Frontend Technologies: Pure HTML5, CSS3 (Custom Glassmorphism Variables), Vanilla JavaScript (ES6+).
 
-2. The Bouncer (js/access-guard.js)
+Backend Services: Firebase Authentication (Google OAuth), Firebase Firestore (NoSQL Document Database), Google Cloud Run (Node.js Webhook).
 
-The centralized security and monetization manager.
+Design Philosophy:
 
-Role: Reads the local HTML page configuration (window.PAGE_ACCESS) and decides whether the user can view the next question.
+Mobile-First: Fully responsive grid layouts optimized for touch interactions.
 
-Key Features: Injects a dynamic, high-converting premium UI (Paywall) if the user hits a limit. It operates in 3 distinct states:
+Glassmorphism: Premium frosted-glass effects utilizing CSS backdrop-filter.
 
-Guest Limit Reached: Prompts for a Free Google Login.
+Accessibility: WCAG AA compliant contrast ratios (--primary: #2563eb against white/dark backgrounds).
 
-Pro Limit Reached (Not Logged In): Prompts to login to view premium plans.
+Typography: 'Inter' for English, 'Noto Sans Devanagari' for Hindi.
 
-Pro Limit Reached (Logged In): Displays the Razorpay checkout button for the Premium Pass.
+🏗️ 3. Core Architecture: The "Holy Trinity" Model (+ Extensions)
 
-[NEW IN v2.0]: Now identifies "Master Keys" (like mock_master_pass) that instantly bypass all paywalls across the platform.
+Our frontend relies on a highly modular, decoupled architecture consisting of distinct scripts with specific responsibilities.
 
-3. The Teacher (js/mcq-main.js) (Formerly main.js)
+A. core.js (The Global Brain & Security Guard)
 
-The pure, lightweight MCQ rendering engine.
+Identity: Initializes Firebase and tracks the global window.HPGK_User session state.
 
-Role: Strictly handles the display of questions, options, explanations, and local statistics.
+Cloud Sync: Securely fetches user's active passes from Firestore upon login.
 
-Key Features: Manages Quick 10 mode, Shuffle, Bookmarks, and Mistakes Review. It constantly communicates with the "Bouncer" before rendering any new question.
+Global Security: Blocks DevTools (F12, Ctrl+Shift+I), disables right-click, and prevents text selection/copying to protect content.
 
-4. The Examiner (js/mock-engine.js) [NEW IN v2.0]
+Decoy Routing: Dynamically injects fake tokens into URLs (e.g., &_secToken=tx_1234abc) to prevent users from bypassing paywalls via direct URL manipulation.
 
-The hardcore, strict examination engine for Full-Length Mock Tests.
+B. access-guard.js (The Bouncer)
 
-Role: Simulates the exact TCS/NTA exam environment.
+Access Control: Evaluates the user's progress against the page's configuration (window.PAGE_ACCESS).
 
-Key Features: Time-bound countdown timer, Question Palette (Answered, Not Answered, Marked for Review), Negative marking calculation (e.g., -0.25), and Post-exam detailed analytics.
+Paywall Enforcement: Triggers the premium paywall UI if a user crosses the free threshold (proLimit) without a valid master key (like mock_master_pass or mcq_pro_pass).
 
-📂 Directory & File Structure
+Guest Limit: Prompts anonymous users to login after consuming a certain number of free questions (loginLimit).
 
-root/
-├── index.html                 # Main Homepage & Subject Navigation
-├── dashboard.html             # User's Personalized Performance Dashboard [Moved to user/ in v2.0]
-├── README.md                  # Project Documentation
-├── js/
-│   ├── core.js                # [1] The Brain (Auth, Firebase & Security)
-│   ├── access-guard.js        # [2] The Bouncer (Paywalls & Limits)
-│   ├── mcq-main.js            # [3] The Teacher (MCQ Engine)
-│   ├── mock-engine.js         # [4] The Examiner (TCS/NTA Exam Engine) [NEW]
-│   ├── layout.js              # Global UI (Header, Footer, Mobile Menu, Modals)
-│   ├── style.css              # Global Design System (Glassmorphism, High-Contrast)
-│   └── favicon/               # Brand assets & PWA manifest files
-├── user/                      # [NEW DIRECTORY]
-│   ├── dashboard.html         # Analytics, XP Leaderboard & Active Passes
-│   ├── upgrade.html           # Premium Subscription & Mock Test Bundles Page
-│   └── admin.html             # Super Admin Control Room (Secured)
-├── mock-engine/               # [NEW DIRECTORY]
-│   └── index.html             # Isolated Exam Interface for Full Mocks
-├── himachal-pradesh-gk/       # Core Content Directory (Topic-wise MCQs)
-│   ├── rivers/
-│   │   ├── index.html         # Topic Landing Page (Contains PAGE_ACCESS ID Card)
-│   │   └── river-part-1.js    # Raw Data Array
-│   └── ... (other topics)
-└── hp-exam-full-mock-test/    # [NEW] Full Mock Tests Directory
-    └── hp-patwari-mock/
-        ├── index.html         # Mock Test Listing & Gateway
-        └── hpgkdata.patwari-mock-test-1.json # JSON Data for Exam Engine
+C. mcq-main.js / mock-engine.js (The Teacher)
 
+Rendering Engine: Dynamically loads JSON data into the DOM (questions, options, explanations).
 
-🔐 Freemium Logic & Page Configuration
+State Management: Tracks right/wrong answers, calculates accuracy, handles the timer, and provides detailed analytics.
+
+Storage: Manages LocalStorage for offline resilience and pushes final scores to core.js for Cloud Sync.
+
+D. layout.js (The Builder - Extension)
+
+UI Injector: Dynamically loads the global <header> and <footer> components across all 100+ static HTML files to ensure centralized navigation management.
+
+🔐 4. Freemium Logic & Page Configuration
 
 Every topic page controls its own destiny using a simple configuration block placed at the bottom of its HTML file.
 
 The "ID Card" (PAGE_ACCESS)
 
-window.PAGE_ACCESS = {
-    category: 'rivers',      // Syncs with Firebase for Leaderboard
-    loginLimit: 30,          // Questions free for anonymous guests
-    proLimit: 9999,          // Questions free for logged-in users (9999 = no paywall)
-    requiredPass: 'mcq_pass' // Pass ID required if proLimit is triggered
+window.PAGE_ACCESS = { 
+    category: 'rivers',     // Syncs with Firebase for Leaderboard 
+    loginLimit: 30,         // Questions free for anonymous guests 
+    proLimit: 9999,         // Questions free for logged-in users (9999 = no paywall) 
+    requiredPass: 'mcq_pass'// Pass ID required if proLimit is triggered 
 };
 
 
-To lock a premium Mock Test after 10 questions, simply set proLimit: 10 and requiredPass: 'patwari_mock_pass'.
+To lock a premium Mock Test after 10 questions, simply set proLimit: 10 and requiredPass: 'mock_master_pass'.
 
-🎮 Gamification & Admin Controls [NEW IN v2.0]
+🎮 5. Gamification & Admin Controls [NEW IN v2.0]
 
 Dopamine XP & Leaderboard (user/dashboard.html): Features an ultra-advanced Dual Leaderboard to boost retention.
 
@@ -107,7 +90,153 @@ Mock Toppers XP Formula: (Final Score × 2.5) × (Accuracy²)
 
 Super Admin Control Room (user/admin.html): A secure, cache-free command center explicitly locked to authorized Admin Emails. Features a 4-tab architecture: Command Center, User Matrix (with instant Pro/Free filters), Payment Desk, and 1-Click Email Extraction.
 
-🚀 Developer Guide: How to Add a New Topic
+💳 6. Razorpay & Google Cloud Webhook (Automated Payments)
+
+The payment system is 100% automated. It prevents frontend "Inspect Element" hacking by relying entirely on a Google Cloud Run backend server to grant premium passes.
+
+The Payment Flow:
+
+Frontend Request: User clicks "Buy" on upgrade.html or dashboard.html.
+
+Razorpay Popup: Razorpay opens. The notes object securely passes the user's uid and planId to Razorpay servers.
+
+Webhook Trigger: Upon successful payment, Razorpay sends a hidden POST request to our Google Cloud Webhook.
+
+Backend Verification: The Webhook verifies the digital signature to ensure it's genuinely from Razorpay.
+
+Database Update: The Webhook uses Firebase Admin SDK to bypass client security rules and instantly writes the pass into the user's private Firestore vault.
+
+Frontend Implementation (upgrade.html snippet)
+
+When calling Razorpay, passing notes is mandatory:
+
+var options = {
+    "key": "rzp_test_YOUR_KEY_HERE", // Replace with LIVE key in production
+    "amount": price * 100, 
+    "currency": "INR",
+    "name": "HPGK Quiz Platform",
+    "handler": function (response) {
+        // Show loading state. Webhook handles DB update in the background.
+        setTimeout(() => { window.location.reload(); }, 3500);
+    },
+    // 🔥 CRITICAL: Webhook uses this to identify who gets the pass
+    "notes": {
+        "uid": window.HPGK_User.uid,
+        "planId": "mock_master_pass" 
+    }
+};
+
+
+☁️ 7. Backend Webhook Setup (Google Cloud Run)
+
+The backend is hosted on Google Cloud Run (Node.js 22). It requires firebase-admin to securely update Firestore.
+
+index.js (The Server Logic)
+
+const functions = require('firebase-functions');
+const admin = require('firebase-admin');
+const crypto = require('crypto');
+
+admin.initializeApp();
+const db = admin.firestore();
+
+// Secret from Razorpay Dashboard
+const RAZORPAY_WEBHOOK_SECRET = "hpgk_super_secret_key_123"; 
+
+exports.razorpayWebhook = functions.https.onRequest(async (req, res) => {
+    try {
+        // 1. Signature Verification
+        const signature = req.headers['x-razorpay-signature'];
+        const expectedSignature = crypto
+            .createHmac('sha256', RAZORPAY_WEBHOOK_SECRET)
+            .update(JSON.stringify(req.body))
+            .digest('hex');
+
+        if (expectedSignature !== signature) return res.status(400).send('Invalid signature');
+
+        // 2. Process Event
+        const event = req.body.event;
+        if (event === 'payment.captured' || event === 'payment.authorized') {
+            const payment = req.body.payload.payment.entity;
+            const uid = payment.notes ? payment.notes.uid : null;
+            const planId = payment.notes ? payment.notes.planId : null;
+
+            if (uid && planId) {
+                // Calculate Expiry (30 Days)
+                const expiry = new Date();
+                expiry.setDate(expiry.getDate() + 30); 
+
+                const passData = {
+                    name: planId === 'mock_master_pass' ? 'Mock Master Pass (All Inclusive)' : 'MCQ Pro Pass (VIP)',
+                    purchaseDate: new Date().toLocaleDateString('en-IN'),
+                    expiryDate: expiry.toLocaleDateString('en-IN'),
+                    timestamp: Date.now(),
+                    paymentId: payment.id,
+                    mode: "Razorpay_Webhook_Verified"
+                };
+
+                // 3. Update Database via Admin SDK
+                const userRef = db.collection('artifacts').doc('hpgk-quiz').collection('users').doc(uid);
+                await userRef.set({ passes: { [planId]: passData } }, { merge: true });
+            }
+        }
+        res.status(200).send('Processed');
+    } catch (error) {
+        res.status(500).send('Internal Error');
+    }
+});
+
+
+⚙️ 8. Razorpay Dashboard Webhook Configuration
+
+If you ever need to set up the webhook on a new Razorpay account:
+
+Go to Razorpay Dashboard -> Settings -> Webhooks.
+
+Click Add New Webhook.
+
+Webhook URL: Paste your Google Cloud Run URL.
+
+Secret: hpgk_super_secret_key_123 (Must exactly match the one in index.js).
+
+Active Events: Select payment.captured.
+
+Click Save.
+
+🔥 9. Firebase Configuration & Database Paths
+
+All Firebase initializations are handled securely inside js/core.js.
+
+Firestore Database Paths:
+
+Public Data (Leaderboard): /artifacts/hpgk-quiz/public/data/leaderboard/{uid}
+
+Private User Data (Passes Vault): /artifacts/hpgk-quiz/users/{uid}
+
+User Scores/History: /artifacts/hpgk-quiz/users/{uid}/scores/{testId}
+
+📂 10. Folder Structure
+
+/
+├── index.html                   # Main Landing Page
+├── js/
+│   ├── core.js                  # Global User Session & Security
+│   ├── layout.js                # Dynamic Header & Footer Injector
+│   ├── access-guard.js          # Paywall & Access Logic
+│   ├── mock-engine.js           # Full Mock Test rendering engine
+│   └── mcq-main.js              # Topic-wise practice engine
+├── css/
+│   └── style.css                # Global styles and responsive design
+├── user/
+│   ├── dashboard.html           # Student Dashboard (Stats, Passes, Leaderboard)
+│   ├── upgrade.html             # Pricing & Plans Page
+│   └── admin.html               # Super Admin Control Room
+├── hp-exam-full-mock-test/      # Exam specific folders (e.g., Patwari)
+│   └── hp-patwari-mock/         # JSON data files for mocks
+└── himachal-pradesh-gk/         # Topic-wise MCQs (History, Geo, etc.)
+
+
+🚀 11. Developer Guide: How to Add a New Topic
 
 Adding new content to the platform takes less than 2 minutes:
 
@@ -121,28 +250,4 @@ Update the ID Card: Modify window.PAGE_ACCESS and window.QUIZ_CONFIG to reflect 
 
 Link Scripts: Ensure the Holy Trinity is linked in the exact order: core.js ➔ access-guard.js ➔ Data Files ➔ mcq-main.js.
 
-🛠️ Tech Stack & Design System
-
-Frontend Technologies: Pure HTML5, CSS3 (Custom Glassmorphism Variables), Vanilla JavaScript (ES6+).
-
-Backend Services: Firebase Authentication (Google OAuth), Firebase Firestore (NoSQL Document Database).
-
-Design Philosophy:
-
-Mobile-First: Fully responsive grid layouts optimized for touch interactions.
-
-Glassmorphism: Premium frosted-glass effects utilizing CSS backdrop-filter.
-
-Accessibility: WCAG AA compliant contrast ratios (--primary: #2563eb against white/dark backgrounds).
-
-Typography: 'Inter' for English, 'Noto Sans Devanagari' for Hindi.
-
-📈 Future Roadmap
-
-Payment Gateway Integration: Connecting upgrade.html and access-guard.js with Razorpay/Stripe for automated ticket unlocking.
-
-Advanced Mock Engine: Creating a specialized mock-engine.js for time-bound, negative-marking tests. [COMPLETED IN v2.0]
-
-JSON API Migration: Upgrading static .js data files to dynamic .json fetch requests to further improve load times. [PARTIALLY COMPLETED: Active in Mock Engine]
-
-Last Updated: April 2026 | Built by toolblaster.com
+Maintained by ToolBlaster Dev Team.
