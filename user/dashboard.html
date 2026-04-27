@@ -57,11 +57,6 @@
             --warning: #f59e0b;
             --danger: #ef4444;
             
-            /* LEADERBOARD COLORS */
-            --gold: #fbbf24;
-            --silver: #94a3b8;
-            --bronze: #b45309;
-            
             --radius-sm: 6px;
             --radius-md: 10px;
             --radius-lg: 14px;
@@ -140,21 +135,16 @@
         .badge { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; padding: 2px 6px; border-radius: 4px; display: inline-block; width: fit-content; background: var(--input-bg); border: 1px solid var(--card-border); color: var(--text-main); }
 
         /* 70% Right: Purchases Panel */
-        .purchases-panel { align-items: stretch; gap: 15px; }
+        .purchases-panel { align-items: stretch; gap: 15px; width: 100%; }
         .purchases-left { flex: 1; display: flex; flex-direction: column; justify-content: center; border-right: 1px dashed var(--card-border); padding-right: 15px; }
         .purchases-right { flex: 1; display: flex; flex-direction: column; justify-content: center; }
-        .mini-section-title { font-size: 0.65rem; font-weight: 800; color: var(--text-sec); text-transform: uppercase; margin-bottom: 8px; letter-spacing: 0.5px; display: flex; align-items: center;}
+        .mini-section-title { font-size: 0.65rem; font-weight: 800; color: var(--text-sec); text-transform: uppercase; margin-bottom: 8px; letter-spacing: 0.5px; display: flex; align-items: center; gap: 4px;}
 
-        /* PREMIUM ACTIVE PLAN BOX (EYE-CATCHING TICKET) */
+        /* Active Plan Box */
         .active-plan-box {
             background: linear-gradient(135deg, var(--card-bg) 0%, rgba(16,185,129,0.05) 100%);
-            border: 1px solid rgba(16,185,129,0.3);
-            border-radius: var(--radius-md);
-            padding: 12px 15px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
-            margin-bottom: 8px;
+            border: 1px solid rgba(16,185,129,0.3); border-radius: var(--radius-md);
+            padding: 12px 15px; position: relative; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.02); margin-bottom: 8px;
         }
         [data-theme="dark"] .active-plan-box { background: linear-gradient(135deg, rgba(0,0,0,0.2) 0%, rgba(16,185,129,0.1) 100%); }
         .active-plan-box::before { content: ''; position: absolute; left: 0; top: 0; height: 100%; width: 4px; background: var(--success); }
@@ -164,12 +154,10 @@
         .plan-details { font-size: 0.65rem; color: var(--text-sec); line-height: 1.5; font-weight: 500; position: relative; z-index: 2; }
         .plan-details strong { color: var(--text-main); font-weight: 700; }
 
-        .compact-upgrade-item { display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.4); border: 1px solid var(--card-border); padding: 6px 10px; border-radius: var(--radius-sm); margin-bottom: 6px; }
-        .compact-upgrade-item:last-child { margin-bottom: 0; }
+        .compact-upgrade-item { display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.4); border: 1px solid var(--card-border); padding: 8px 10px; border-radius: var(--radius-sm); margin-bottom: 6px; }
         [data-theme="dark"] .compact-upgrade-item { background: rgba(0,0,0,0.15); }
-        
-        .compact-btn-buy { background: linear-gradient(135deg, #f59e0b, #ea580c); color: #fff; font-size: 0.65rem; font-weight: 800; padding: 4px 10px; border-radius: 12px; cursor: pointer; text-decoration: none; border: none; text-transform: uppercase; transition: 0.2s ease; box-shadow: 0 2px 8px rgba(234, 88, 12, 0.3); }
-        .compact-btn-buy:hover { opacity: 0.9; }
+        .compact-btn-buy { background: linear-gradient(135deg, #f59e0b, #ea580c); color: #fff; font-size: 0.65rem; font-weight: 800; padding: 6px 12px; border-radius: 6px; cursor: pointer; border: none; text-transform: uppercase; transition: 0.2s; box-shadow: 0 2px 8px rgba(234, 88, 12, 0.3); text-decoration: none;}
+        .compact-btn-buy:hover { opacity: 0.9; transform: translateY(-1px); }
 
         /* =========================================
            ADVANCED STATS DENSITY GRID (Anchor Header + 5 Cards) - COMPACT
@@ -182,23 +170,11 @@
         }
 
         .stat-group-card {
-            border-radius: var(--radius-md); 
-            padding: 8px 12px; 
-            display: flex; 
-            align-items: center; 
-            gap: 10px; 
-            position: relative; 
-            overflow: hidden;
-            box-shadow: var(--glass-shadow);
+            border-radius: var(--radius-md); padding: 8px 12px; display: flex; 
+            align-items: center; gap: 10px; position: relative; overflow: hidden; box-shadow: var(--glass-shadow);
         }
-        .stat-group-card.mock-bg { 
-            background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%); 
-            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2); 
-        }
-        .stat-group-card.topic-bg { 
-            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); 
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2); 
-        }
+        .stat-group-card.mock-bg { background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%); box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2); }
+        .stat-group-card.topic-bg { background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2); }
         .stat-group-bg-icon { position: absolute; right: -10px; bottom: -10px; font-size: 4rem; opacity: 0.1; color: white; z-index: 1; }
         .stat-group-icon { font-size: 1.6rem; color: white; z-index: 2; opacity: 0.9; flex-shrink: 0;}
         .stat-group-text { display: flex; flex-direction: column; z-index: 2; }
@@ -208,10 +184,8 @@
         .stat-dense-card { 
             background: var(--card-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); 
             border: 1px solid var(--card-border); border-radius: var(--radius-md); 
-            padding: 8px 10px; display: flex; flex-direction: column; justify-content: center; 
-            box-shadow: var(--glass-shadow); 
+            padding: 8px 10px; display: flex; flex-direction: column; justify-content: center; box-shadow: var(--glass-shadow); 
         }
-        
         .stat-dense-label { font-size: 0.55rem; color: var(--text-sec); font-weight: 700; text-transform: uppercase; margin-bottom: 1px; white-space: nowrap; letter-spacing: 0.2px; }
         .stat-dense-val { font-size: 1rem; font-weight: 900; color: var(--text-main); display: flex; align-items: center; justify-content: space-between; line-height: 1.1; }
         .stat-dense-val i { font-size: 0.7rem; opacity: 0.4; }
@@ -220,7 +194,7 @@
         .cw-slash { font-size: 0.75rem; color: var(--card-border); margin: 0 3px; font-weight: 400; }
 
         /* =========================================
-           BOTTOM LAYOUT: 2 COLUMNS (Mastery vs Leaderboard)
+           BOTTOM LAYOUT: MASTERY LISTS
            ========================================= */
         .dashboard-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
 
@@ -228,32 +202,7 @@
         .section-title { font-size: 0.85rem; font-weight: 800; margin: 0; display: flex; align-items: center; gap: 6px; color: var(--text-main); }
         .section-title span { font-size: 0.6rem; background: var(--input-bg); padding: 2px 6px; border-radius: 4px; color: var(--text-sec); border: 1px solid var(--card-border); }
 
-        .history-tabs { display: flex; gap: 5px; background: var(--input-bg); padding: 4px; border-radius: 8px; border: 1px solid var(--card-border); width: fit-content; margin-bottom: 10px; }
-        .h-tab { background: transparent; border: none; padding: 4px 12px; font-size: 0.7rem; font-weight: 700; color: var(--text-sec); border-radius: 4px; cursor: pointer; transition: 0.2s; }
-        .h-tab.active { background: var(--card-bg); color: var(--primary); box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
-        [data-theme="dark"] .h-tab.active { background: var(--primary); color: #fff; }
-
         .dense-list { display: flex; flex-direction: column; gap: 6px; } 
-
-        .history-item {
-            display: flex; align-items: center; justify-content: space-between; gap: 10px;
-            padding: 10px 12px; border-radius: var(--radius-sm);
-            background: var(--card-bg); border: 1px solid var(--card-border);
-            border-left: 4px solid var(--primary);
-            transition: all 0.2s ease;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
-        }
-        [data-theme="dark"] .history-item { background: rgba(30,41,59,0.6); }
-        .history-item:hover { background: var(--input-bg); transform: translateY(-1px); box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-        .h-info { flex: 1; display: flex; flex-direction: column; gap: 5px; overflow: hidden; }
-        .h-title { font-size: 0.8rem; font-weight: 700; color: var(--text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .h-meta-row { display: flex; align-items: center; gap: 10px; font-size: 0.65rem; color: var(--text-sec); font-weight: 600; flex-wrap: wrap;}
-        .h-meta-row i { opacity: 0.7; }
-        .h-metrics { display: flex; align-items: center; gap: 15px; flex-shrink: 0; }
-        .h-metric-box { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
-        .h-score-val { font-size: 0.9rem; font-weight: 800; color: var(--text-main); line-height: 1; }
-        .h-score-lbl { font-size: 0.55rem; text-transform: uppercase; font-weight: 700; color: var(--text-sec); letter-spacing: 0.5px;}
-        .h-acc-badge { padding: 5px 8px; border-radius: 6px; font-size: 0.8rem; font-weight: 800; display: flex; align-items: center; justify-content: center; min-width: 45px; }
 
         .subject-perf-item { margin-bottom: 10px; }
         .subject-perf-item:last-child { margin-bottom: 0; }
@@ -262,102 +211,34 @@
         [data-theme="dark"] .perf-track { background: rgba(255,255,255,0.05); }
         .perf-fill { height: 100%; border-radius: 4px; transition: width 1s ease-out; }
 
-        /* --- QUICK PRACTICE MOCKS --- */
-        .quick-practice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .mock-item { display: flex; align-items: center; justify-content: space-between; padding: 8px 10px; border-radius: var(--radius-sm); border: 1px solid var(--card-border); background: rgba(255,255,255,0.4); transition: 0.2s;}
-        [data-theme="dark"] .mock-item { background: rgba(0,0,0,0.15); }
-        .mock-item:hover { background: var(--input-bg); border-color: var(--primary); box-shadow: 0 2px 8px rgba(37,99,235,0.05);}
-        .mock-info { display: flex; align-items: center; gap: 8px; }
-        .mock-icon { width: 28px; height: 28px; border-radius: 6px; background: var(--primary-light); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 0.8rem; }
-        [data-theme="dark"] .mock-icon { background: rgba(30,41,59,0.5); }
-        .mock-details { display: flex; flex-direction: column; }
-        .mock-title { font-size: 0.75rem; font-weight: 700; color: var(--text-main); }
-        .mock-meta { font-size: 0.6rem; font-weight: 600; color: var(--text-sec); margin-top: 1px;}
-        .mock-play { background: var(--card-bg); color: var(--text-main); border: 1px solid var(--card-border); width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; text-decoration: none; transition: 0.2s; box-shadow: 0 2px 5px rgba(0,0,0,0.05);}
-        .mock-play:hover { background: var(--primary); color: white; border-color: var(--primary); transform: scale(1.1); }
-        [data-theme="dark"] .mock-play { background: var(--primary); color: white; border-color: var(--primary); }
-
-        /* DOPAMINE LEADERBOARD UI WITH TIME FILTERS */
-        .leaderboard-tabs { display: flex; gap: 5px; margin-bottom: 12px; }
-        .lb-tab { flex: 1; text-align: center; background: rgba(255,255,255,0.4); border: 1px solid var(--card-border); padding: 6px; font-size: 0.7rem; font-weight: 800; color: var(--text-sec); border-radius: 6px; cursor: pointer; transition: 0.2s; text-transform: uppercase; letter-spacing: 0.5px;}
-        [data-theme="dark"] .lb-tab { background: rgba(0,0,0,0.2); }
-        .lb-tab.active.tab-ninja { background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: white; border-color: #2563eb; box-shadow: 0 4px 10px rgba(37,99,235,0.3);}
-        .lb-tab.active.tab-topper { background: linear-gradient(135deg, #ef4444, #b91c1c); color: white; border-color: #dc2626; box-shadow: 0 4px 10px rgba(239,68,68,0.3);}
-
-        .leaderboard-list { display: flex; flex-direction: column; gap: 8px; }
-        .lb-item { display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; background: rgba(255,255,255,0.5); border: 1px solid var(--card-border); border-radius: var(--radius-md); transition: transform 0.2s; position: relative; overflow: hidden;}
-        [data-theme="dark"] .lb-item { background: rgba(0,0,0,0.2); }
-        .lb-item:hover { transform: translateX(4px); background: var(--input-bg); border-color: var(--primary-light); }
-        
-        .lb-rank { font-size: 1.1rem; font-weight: 900; width: 30px; text-align: center; z-index: 2;}
-        .rank-1 { color: var(--gold); text-shadow: 0 0 10px rgba(251, 191, 36, 0.4); font-size: 1.4rem; }
-        .rank-2 { color: var(--silver); font-size: 1.2rem; }
-        .rank-3 { color: var(--bronze); font-size: 1.2rem; }
-        
-        .lb-item.is-first::before { content:''; position:absolute; top:0; left:0; width:4px; height:100%; background:var(--gold); box-shadow: 0 0 10px var(--gold); }
-        
-        .lb-user { display: flex; align-items: center; gap: 10px; flex: 1; margin-left: 5px; z-index: 2;}
-        .lb-avatar { width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--card-border); object-fit: cover; }
-        .lb-name { font-size: 0.8rem; font-weight: 800; color: var(--text-main); }
-        .lb-score-box { text-align: right; z-index: 2;}
-        .lb-score { font-size: 0.95rem; font-weight: 900; color: var(--accent); display: flex; align-items: center; gap: 4px; justify-content: flex-end;}
-        .lb-score i { font-size: 0.8rem; color: #f59e0b; }
-        .lb-qs { font-size: 0.55rem; font-weight: 700; color: var(--text-sec); text-transform: uppercase; margin-top: 2px;}
-
-        /* Select Time Filter */
-        .lb-time-filter { padding: 4px 8px; border-radius: 6px; border: 1px solid var(--card-border); background: var(--card-bg); color: var(--text-main); font-size: 0.7rem; font-weight: 700; outline: none; cursor: pointer; transition: 0.2s; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05); }
-        .lb-time-filter:hover { border-color: var(--primary); }
-        [data-theme="dark"] .lb-time-filter { background: rgba(0,0,0,0.2); }
-
+        /* AUTH WARNING */
         .auth-warning { text-align: center; padding: 40px 20px; }
         .auth-warning h2 { font-size: 1.1rem; margin-bottom: 8px; }
         .auth-warning p { font-size: 0.8rem; margin-bottom: 20px; color: var(--text-sec); max-width: 400px; margin-inline: auto; }
         .modern-google-btn { background: #fff; color: #334155; border: 1px solid #cbd5e1; padding: 8px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); font-family: 'Inter', sans-serif; }
 
-        /* General Modal Styling (Solid Background for Readability) */
-        @keyframes popInModal {
-            0% { opacity: 0; transform: scale(0.95) translateY(10px); }
-            100% { opacity: 1; transform: scale(1) translateY(0); }
-        }
-        .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); 
-            z-index: 9999; display: none; align-items: center; justify-content: center; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
-        }
-        .modal-box {
-            background: var(--tooltip-bg); /* Solid background ensures high contrast over dark overlay */
-            border: 1px solid var(--card-border);
-            width: 90%; max-width: 380px; padding: 30px 25px; 
-            text-align: center; border-radius: var(--radius-lg); position: relative;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-            animation: popInModal 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-        }
-        .modal-close-btn {
-            position: absolute; top: 12px; right: 15px; background: transparent; border: none; 
-            font-size: 1.2rem; cursor: pointer; color: var(--text-sec); transition: color 0.2s;
-        }
+        /* MODALS */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 9999; display: none; align-items: center; justify-content: center; backdrop-filter: blur(4px); }
+        .modal-box { background: var(--tooltip-bg); border: 1px solid var(--card-border); width: 90%; max-width: 380px; padding: 30px 25px; text-align: center; border-radius: var(--radius-lg); position: relative; box-shadow: 0 10px 40px rgba(0,0,0,0.3); }
+        .modal-close-btn { position: absolute; top: 12px; right: 15px; background: transparent; border: none; font-size: 1.2rem; cursor: pointer; color: var(--text-sec); transition: color 0.2s; }
         .modal-close-btn:hover { color: var(--text-main); }
 
-        @media (max-width: 1024px) {
-            .stats-density-grid { grid-template-columns: repeat(3, 1fr); }
-            .stat-group-card { grid-column: span 3; }
+        /* 🚨 PAYMENT SPINNER */
+        #payment-processing-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(8px);
+            z-index: 99999; display: none; flex-direction: column; align-items: center; justify-content: center; color: white; text-align: center;
         }
-        @media (max-width: 850px) {
-            .top-dashboard-grid { grid-template-columns: 1fr; }
-            .dashboard-cols { grid-template-columns: 1fr; }
-        }
+        .spinner { width: 50px; height: 50px; border: 5px solid rgba(255,255,255,0.3); border-top-color: #10b981; border-radius: 50%; animation: spin 1s infinite linear; margin-bottom: 20px; }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) { .stats-density-grid { grid-template-columns: repeat(3, 1fr); } .stat-group-card { grid-column: span 3; } }
+        @media (max-width: 850px) { .top-dashboard-grid { grid-template-columns: 1fr; } .dashboard-cols { grid-template-columns: 1fr; } }
         @media (max-width: 600px) {
             .stats-density-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
             .stat-group-card { grid-column: span 2; padding: 12px; }
-            
             .purchases-panel { flex-direction: column; gap: 10px; }
             .purchases-left { border-right: none; border-bottom: 1px dashed var(--card-border); padding-right: 0; padding-bottom: 10px; }
-            .quick-practice-grid { grid-template-columns: 1fr; gap: 8px; } 
-            
-            .history-item { padding: 10px; gap: 8px; flex-direction: row; align-items: center;} 
-            .h-metrics { gap: 10px; }
-            .h-score-val { font-size: 0.85rem; }
-            .h-acc-badge { font-size: 0.75rem; padding: 4px 6px; min-width: 40px;}
-            .h-meta-row { gap: 8px; font-size: 0.6rem; }
         }
     </style>
     <script>
@@ -367,13 +248,19 @@
 </head>
 <body>
 
+<div id="payment-processing-overlay">
+    <div class="spinner"></div>
+    <h2 style="margin:0 0 10px 0; font-size: 1.5rem; font-weight:800;">Processing Payment...</h2>
+    <p style="margin:0; font-size: 0.9rem; color:#cbd5e1;">Please do not close or refresh this window.</p>
+</div>
+
 <div id="site-header"></div>
 
 <main>
     <!-- Loading State -->
     <div id="loading-state" class="glass-panel" style="text-align: center; padding: 30px 20px;">
         <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 1.8rem; color: var(--primary);"></i>
-        <div style="font-size: 0.8rem; font-weight: 700; margin-top: 8px; color: var(--text-sec);">Loading Workspace...</div>
+        <div style="font-size: 0.8rem; font-weight: 700; margin-top: 8px; color: var(--text-sec);">Loading Profile...</div>
     </div>
 
     <!-- Logged Out State -->
@@ -397,7 +284,6 @@
         
         <!-- 30/70 SPLIT HEADER -->
         <div class="top-dashboard-grid">
-            
             <div class="glass-panel compact-top-card profile-panel">
                 <div class="avatar-wrapper">
                     <img id="user-photo" src="" alt="Avatar" class="avatar">
@@ -410,29 +296,11 @@
                 </div>
             </div>
 
-            <div class="glass-panel compact-top-card purchases-panel">
-                
-                <div class="purchases-left">
-                    <div class="mini-section-title">
-                        <i class="fa-solid fa-id-card-clip"></i> My Active Plan
-                    </div>
-                    <div id="top-plan-container">
-                        <!-- Populated via JS -->
-                    </div>
-                </div>
-
-                <div class="purchases-right">
-                    <div class="mini-section-title"><i class="fa-solid fa-store"></i> Recommended Upgrades</div>
-                    <div id="dynamic-upgrades-container" style="display: flex; flex-direction: column; gap: 6px;">
-                        <!-- Populated dynamically by JS -->
-                    </div>
-                </div>
-
-            </div>
-            
+            <!-- SMART PURCHASES PANEL -->
+            <div class="glass-panel compact-top-card purchases-panel" id="smart-purchases-container"></div>
         </div>
 
-        <!-- High Density Stats: Row 1 (MOCKS) -->
+        <!-- High Density Stats: MOCKS -->
         <div class="stats-density-grid">
             <div class="stat-group-card mock-bg">
                 <i class="fa-solid fa-file-signature stat-group-bg-icon"></i>
@@ -464,8 +332,8 @@
             </div>
         </div>
 
-        <!-- High Density Stats: Row 2 (TOPICS) -->
-        <div class="stats-density-grid" style="margin-bottom: 18px;">
+        <!-- High Density Stats: TOPICS -->
+        <div class="stats-density-grid" style="margin-bottom: 10px;">
             <div class="stat-group-card topic-bg">
                 <i class="fa-solid fa-layer-group stat-group-bg-icon"></i>
                 <div class="stat-group-icon"><i class="fa-solid fa-layer-group"></i></div>
@@ -496,114 +364,49 @@
             </div>
         </div>
 
-        <!-- MAIN GRID: 2 COLUMNS (Mastery vs Leaderboard) -->
+        <!-- NEW LEADERBOARD BANNER -->
+        <div class="glass-panel" style="padding: 12px 20px; display:flex; justify-content:space-between; align-items:center; background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(245, 158, 11, 0.05)); border-color: rgba(245, 158, 11, 0.3); margin-bottom: 18px;">
+            <div style="display:flex; align-items:center; gap:15px;">
+                <div style="font-size:2rem; color:var(--warning);"><i class="fa-solid fa-trophy"></i></div>
+                <div>
+                    <h3 style="margin:0; font-size:0.95rem; color:var(--text-main); font-weight: 800;">Global Leaderboard & Rewards</h3>
+                    <p style="margin:2px 0 0 0; font-size:0.75rem; color:var(--text-sec); font-weight: 500;">See where you rank among thousands of HP aspirants.</p>
+                </div>
+            </div>
+            <a href="leaderboard.html" class="compact-btn-buy" style="background: linear-gradient(135deg, #f59e0b, #d97706); padding: 8px 16px; font-size: 0.75rem; text-decoration: none;">View Ranks <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <!-- MAIN GRID: Mastery (2 Columns Now) -->
         <div class="dashboard-cols">
             
-            <!-- COL 1 (ANALYTICS: Mocks & Topics Mastery) -->
-            <div style="display: flex; flex-direction: column; gap: 15px;">
-                
-                <!-- Mock Mastery Analytics -->
-                <div class="glass-panel" style="padding: 15px; margin-bottom: 0;">
-                    <div class="section-header">
-                        <h2 class="section-title"><i class="fa-solid fa-medal"></i> Mock Mastery <span>Latest 7</span></h2>
-                    </div>
-                    <div class="dense-list" id="mock-perf-list">
-                        <div style="text-align: center; padding: 15px; color: var(--text-sec); font-size: 0.75rem;">
-                            Analyzing your performance data...
-                        </div>
+            <!-- Mock Mastery Analytics -->
+            <div class="glass-panel" style="padding: 15px; margin-bottom: 0;">
+                <div class="section-header">
+                    <h2 class="section-title"><i class="fa-solid fa-medal"></i> Mock Mastery <span>Latest 7</span></h2>
+                </div>
+                <div class="dense-list" id="mock-perf-list">
+                    <div style="text-align: center; padding: 15px; color: var(--text-sec); font-size: 0.75rem;">
+                        Analyzing your performance data...
                     </div>
                 </div>
-
-                <!-- Subject Mastery Analytics -->
-                <div class="glass-panel" style="padding: 15px; margin-bottom: 0;">
-                    <div class="section-header">
-                        <h2 class="section-title"><i class="fa-solid fa-chart-column"></i> Topic Mastery <span>Top 7</span></h2>
-                    </div>
-                    <div class="dense-list" id="subject-perf-list">
-                        <div style="text-align: center; padding: 15px; color: var(--text-sec); font-size: 0.75rem;">
-                            Analyzing your performance data...
-                        </div>
-                    </div>
-                </div>
-
             </div>
 
-            <!-- COL 2 (DOPAMINE LEADERBOARD) -->
-            <div style="display: flex; flex-direction: column; gap: 15px;">
-                
-                <!-- THE GAMIFIED DUAL LEADERBOARD WITH TIME FILTERS -->
-                <div class="glass-panel" style="padding: 15px; margin-bottom: 0; background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(251, 191, 36, 0.05)); height: 100%;">
-                    
-                    <div class="section-header" style="border-bottom: none; padding-bottom: 5px; margin-bottom:5px; flex-wrap: wrap; gap: 8px;">
-                        <h2 class="section-title">
-                            <i class="fa-solid fa-trophy" style="color:var(--gold);"></i> Wall of Fame <span>Global Top 5</span>
-                            <i class="fa-solid fa-circle-info" style="color: var(--text-sec); font-size: 0.9rem; cursor: pointer; margin-left: 5px;" onclick="openXPModal()" title="How XP Works?"></i>
-                        </h2>
-                        
-                        <!-- TIME FILTERS -->
-                        <select class="lb-time-filter" id="lb-time-select" onchange="window.changeLeaderboardTime(this.value)">
-                            <option value="all">All Time</option>
-                            <option value="month">This Month</option>
-                            <option value="week">This Week</option>
-                        </select>
-                    </div>
-                    
-                    <div class="leaderboard-tabs">
-                        <button class="lb-tab active tab-ninja" id="lb-btn-mcq" onclick="window.switchLeaderboardTab('mcq')">🥷 MCQ Ninjas</button>
-                        <button class="lb-tab" id="lb-btn-mock" onclick="window.switchLeaderboardTab('mock')">🎖️ Mock Toppers</button>
-                    </div>
-
-                    <div class="leaderboard-list" id="global-leaderboard">
-                        <div style="text-align: center; padding: 20px; color: var(--text-sec); font-size: 0.8rem;">
-                            <i class="fa-solid fa-spinner fa-spin" style="font-size: 1.5rem; margin-bottom:10px; color:var(--primary);"></i><br>Fetching Global Ranks...
-                        </div>
+            <!-- Subject Mastery Analytics -->
+            <div class="glass-panel" style="padding: 15px; margin-bottom: 0;">
+                <div class="section-header">
+                    <h2 class="section-title"><i class="fa-solid fa-chart-column"></i> Topic Mastery <span>Top 7</span></h2>
+                </div>
+                <div class="dense-list" id="subject-perf-list">
+                    <div style="text-align: center; padding: 15px; color: var(--text-sec); font-size: 0.75rem;">
+                        Analyzing your performance data...
                     </div>
                 </div>
-
             </div>
 
         </div>
 
     </div>
 </main>
-
-<!-- XP INFO MODAL (COMPACT, EYE-CATCHING & FULLY READABLE) -->
-<div id="xpModal" class="modal-overlay">
-    <div class="modal-box" style="max-width: 320px; padding: 25px 20px;">
-        <button onclick="closeXPModal()" class="modal-close-btn" style="top: 10px; right: 12px;"><i class="fa-solid fa-xmark"></i></button>
-        
-        <div style="width: 55px; height: 55px; margin: 0 auto 12px auto; background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(234, 88, 12, 0.15)); border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(245, 158, 11, 0.3); box-shadow: 0 4px 15px rgba(245, 158, 11, 0.1);">
-            <i class="fa-solid fa-bolt" style="font-size: 1.6rem; color: #f59e0b;"></i>
-        </div>
-        
-        <h3 style="margin: 0 0 6px 0; font-size: 1.15rem; font-weight: 800; color: var(--text-main); letter-spacing:-0.3px;">How XP Works</h3>
-        <p style="font-size: 0.75rem; color: var(--text-sec); margin: 0 0 15px 0; line-height: 1.4; font-weight: 500;"><strong>XP (Experience Points)</strong> fuels your Global Rank. High accuracy & consistency unlock the top spots! 🚀</p>
-        
-        <div style="display:flex; flex-direction:column; gap:8px; text-align:left;">
-            <!-- Ninja XP Box -->
-            <div style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(29, 78, 216, 0.05)); padding: 10px 12px; border-radius: 8px; border: 1px solid rgba(59, 130, 246, 0.2); display:flex; gap:12px; align-items:center;">
-                <div style="font-size:1.4rem; color:var(--primary);"><i class="fa-solid fa-user-ninja"></i></div>
-                <div style="flex:1;">
-                    <div style="color: var(--text-main); font-weight: 800; font-size:0.8rem; margin-bottom:2px;">Topic Ninjas XP</div>
-                    <div style="font-size:0.65rem; color:var(--text-sec); font-weight:700;"><span style="color:var(--primary);">(Correct Qs × 2) × Acc² × Speed</span></div>
-                    <div style="font-size:0.55rem; color:var(--text-sec); margin-top:2px;">Fast & accurate wins! Guessing is penalized.</div>
-                </div>
-            </div>
-
-            <!-- Topper XP Box -->
-            <div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.05), rgba(185, 28, 28, 0.05)); padding: 10px 12px; border-radius: 8px; border: 1px solid rgba(239, 68, 68, 0.2); display:flex; gap:12px; align-items:center;">
-                <div style="font-size:1.4rem; color:var(--danger);"><i class="fa-solid fa-medal"></i></div>
-                <div style="flex:1;">
-                    <div style="color: var(--text-main); font-weight: 800; font-size:0.8rem; margin-bottom:2px;">Mock Toppers XP</div>
-                    <div style="font-size:0.65rem; color:var(--text-sec); font-weight:700;"><span style="color:var(--danger);">(Final Score × 2.5) × Acc² × Speed</span></div>
-                    <div style="font-size:0.55rem; color:var(--text-sec); margin-top:2px;">Negative marking applies. Speed gives bonus.</div>
-                </div>
-            </div>
-        </div>
-        
-        <button style="width: 100%; background: var(--primary); color: white; border: none; padding: 10px; border-radius: 8px; font-weight: 800; font-size: 0.85rem; cursor: pointer; margin-top: 16px; box-shadow: 0 4px 10px rgba(37,99,235,0.2); transition:0.2s;" onclick="closeXPModal()">Got It, Let's Play!</button>
-    </div>
-</div>
 
 <!-- QUICK PAY MODAL -->
 <div id="quickPayModal" class="modal-overlay">
@@ -622,6 +425,9 @@
 </div>
 
 <div id="site-footer"></div>
+
+<!-- 🚨 Add Razorpay Official SDK -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
 <!-- Load Scripts -->
 <script src="../js/core.js"></script>
@@ -645,55 +451,48 @@
     };
 
     window.processQuickPayment = function() {
-        alert('Initiating Checkout for ₹' + window.currentPayPrice + '...\n\n(Once payment is successful, your account will be upgraded instantly and you will remain on this dashboard to see your new unlocked features!)');
-        window.closeQuickPay();
-    };
+        if (!window.HPGK_User || !window.HPGK_User.isLoggedIn) return alert("Please login securely first.");
 
-    window.openXPModal = function() {
-        document.getElementById('xpModal').style.display = 'flex';
-    };
+        const planNames = { 'mcq_pro_pass': 'MCQ Pro Pass (VIP)', 'mock_master_pass': 'Mock Master Pass' };
+        var options = {
+            "key": "rzp_test_SiCgoJg1G0fb0m", 
+            "amount": window.currentPayPrice * 100, 
+            "currency": "INR",
+            "name": "HPGK Quiz Platform",
+            "description": "Unlock " + planNames[window.currentPayPlan],
+            "image": "../js/favicon/web-app-manifest-192x192.png",
+            "handler": function (response) {
+                document.getElementById('quickPayModal').style.display = 'none';
+                document.getElementById('payment-processing-overlay').style.display = 'flex';
+                setTimeout(() => { window.location.reload(); }, 4000);
+            },
+            "prefill": {
+                "name": window.HPGK_User.displayName || "",
+                "email": window.HPGK_User.email || ""
+            },
+            "notes": {
+                "uid": window.HPGK_User.uid,
+                "planId": window.currentPayPlan
+            },
+            "theme": { "color": "#047857" }
+        };
 
-    window.closeXPModal = function() {
-        document.getElementById('xpModal').style.display = 'none';
+        var rzp1 = new Razorpay(options);
+        rzp1.on('payment.failed', function (res){ alert("Payment Failed! " + res.error.description); });
+        rzp1.open();
     };
 
     window.addEventListener('click', function(e) {
         const qpModal = document.getElementById('quickPayModal');
-        const xpModal = document.getElementById('xpModal');
         if (e.target === qpModal) window.closeQuickPay();
-        if (e.target === xpModal) window.closeXPModal();
     });
-
-    // Globals for fast tab & time switching
-    window.rawLeaderboardUsers = [];
-    window.currentLbType = 'mcq';
-    window.currentLbTime = 'all';
-    
-    window.switchLeaderboardTab = function(tabName) {
-        document.getElementById('lb-btn-mcq').className = 'lb-tab';
-        document.getElementById('lb-btn-mock').className = 'lb-tab';
-        
-        const activeBtn = document.getElementById('lb-btn-' + tabName);
-        if(activeBtn) {
-            activeBtn.classList.add('active');
-            activeBtn.classList.add(tabName === 'mcq' ? 'tab-ninja' : 'tab-topper');
-        }
-        
-        window.currentLbType = tabName;
-        if(typeof window.renderLeaderboard === 'function') window.renderLeaderboard();
-    };
-
-    window.changeLeaderboardTime = function(timeVal) {
-        window.currentLbTime = timeVal;
-        if(typeof window.renderLeaderboard === 'function') window.renderLeaderboard();
-    };
 </script>
 
 <!-- Firebase Firestore Integration for fetching User History & Analytics -->
 <script type="module">
     import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
     import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
-    import { getFirestore, collection, getDocs, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
+    import { getFirestore, collection, getDocs, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
 
     const firebaseConfig = {
         apiKey: "AIzaSyDfz5Y4oVQHl-crnATIv5dMWsw7edSKddQ",
@@ -704,7 +503,6 @@
         appId: "1:273909571419:web:20d5e06d8b582f4d2dc47e"
     };
 
-    // Safe Initialization to avoid race condition with core.js
     let app;
     try { app = getApp(); } catch (e) { app = initializeApp(firebaseConfig); }
     
@@ -716,7 +514,6 @@
     const elLoggedIn = document.getElementById('logged-in-state');
     const topPlanContainer = document.getElementById('top-plan-container');
 
-    // Timeout Promise Wrapper for Network Hangs
     async function fetchWithTimeout(promise, ms = 8000) {
         let timeoutId;
         const timeoutPromise = new Promise((_, reject) => {
@@ -732,60 +529,6 @@
         }
     }
 
-    window.renderLeaderboard = function() {
-        const lbContainer = document.getElementById('global-leaderboard');
-        if(!lbContainer) return;
-        
-        const users = window.rawLeaderboardUsers || [];
-        
-        let xpKey = '';
-        if(window.currentLbType === 'mcq') {
-            if(window.currentLbTime === 'all') xpKey = 'mcqXP';
-            if(window.currentLbTime === 'month') xpKey = 'monthlyMcqXP';
-            if(window.currentLbTime === 'week') xpKey = 'weeklyMcqXP';
-        } else {
-            if(window.currentLbTime === 'all') xpKey = 'mockXP';
-            if(window.currentLbTime === 'month') xpKey = 'monthlyMockXP';
-            if(window.currentLbTime === 'week') xpKey = 'weeklyMockXP';
-        }
-
-        const leaders = users.filter(u => (u[xpKey] || 0) > 0)
-                             .sort((a, b) => (b[xpKey] || 0) - (a[xpKey] || 0))
-                             .slice(0, 5);
-        
-        if (leaders.length === 0) {
-            lbContainer.innerHTML = `<div style="text-align: center; padding: 15px; color: var(--text-sec); font-size: 0.8rem;">No champions yet in this category for the selected timeframe! Go practice now.</div>`;
-            return;
-        }
-
-        let html = '';
-        leaders.forEach((u, index) => {
-            let rankDisplay = '';
-            let isFirst = index === 0 ? 'is-first' : '';
-            if(index === 0) rankDisplay = '<i class="fa-solid fa-crown rank-1"></i>';
-            else if(index === 1) rankDisplay = '<span class="lb-rank rank-2">2</span>';
-            else if(index === 2) rankDisplay = '<span class="lb-rank rank-3">3</span>';
-            else rankDisplay = `<span class="lb-rank" style="color:var(--text-sec); font-size:1rem;">${index + 1}</span>`;
-
-            let defaultPhoto = 'https://ui-avatars.com/api/?name=' + encodeURIComponent(u.name) + '&background=cbd5e1';
-
-            html += `
-            <div class="lb-item ${isFirst}">
-                ${rankDisplay}
-                <div class="lb-user">
-                    <img src="${u.photo || defaultPhoto}" class="lb-avatar" onerror="this.src='${defaultPhoto}'">
-                    <span class="lb-name">${u.name.substring(0, 15)}${u.name.length > 15 ? '...' : ''}</span>
-                </div>
-                <div class="lb-score-box">
-                    <div class="lb-score"><i class="fa-solid fa-bolt"></i> ${u[xpKey]} <span style="font-size:0.65rem; color:var(--text-sec);">XP</span></div>
-                    <div class="lb-qs">${u.qs || 0} Qs Mastered</div>
-                </div>
-            </div>
-            `;
-        });
-        lbContainer.innerHTML = html;
-    };
-
     onAuthStateChanged(auth, async (user) => {
         if (user) {
             document.getElementById('user-name').innerText = user.displayName || 'Student';
@@ -793,97 +536,107 @@
             document.getElementById('user-photo').src = user.photoURL || 'https://ui-avatars.com/api/?name=' + encodeURIComponent(user.displayName || 'S') + '&background=e2e8f0&color=334155';
             document.getElementById('user-short-id').innerText = user.uid.substring(0, 6).toUpperCase();
             
-            // Handle User Subscriptions / Passes UI
             let hasMcqPro = false;
             let hasMockMaster = false;
+            let mockMasterData = null;
+            let mcqProData = null;
 
             if(window.HPGK_User && window.HPGK_User.passes && Object.keys(window.HPGK_User.passes).length > 0) {
-                let html = '';
                 for(const [passId, passData] of Object.entries(window.HPGK_User.passes)) {
-                    if (passId === 'mcq_pro_pass') hasMcqPro = true;
-                    if (passId === 'mock_master_pass') hasMockMaster = true;
-
-                    html += `
-                    <div class="active-plan-box">
-                        <i class="fa-solid fa-gem bg-icon"></i>
-                        <div class="plan-header">
-                            <span class="plan-name"><i class="fa-solid fa-crown"></i> ${passData.name || 'Premium Pass'}</span>
-                            <span class="badge" style="background: rgba(16,185,129,0.1); color: var(--success); border: 1px solid rgba(16,185,129,0.2);"><i class="fa-solid fa-circle-check"></i> Active</span>
-                        </div>
-                        <div class="plan-details">
-                            Purchased: <strong>${passData.purchaseDate || 'N/A'}</strong><br>
-                            Valid Till: <strong>${passData.expiryDate || 'Lifetime'}</strong><br>
-                            <span style="color:var(--success); font-weight:700; margin-top:4px; display:inline-block;">Access Unlocked</span>
-                        </div>
-                    </div>`;
+                    if (passId === 'mcq_pro_pass') { hasMcqPro = true; mcqProData = passData; }
+                    if (passId === 'mock_master_pass' || passId === 'mega_combo_pass') { hasMockMaster = true; mockMasterData = passData; }
                 }
-                topPlanContainer.innerHTML = html;
-            } else {
-                topPlanContainer.innerHTML = `
-                    <div class="active-plan-box">
-                        <i class="fa-solid fa-user-astronaut bg-icon" style="color:var(--text-sec); opacity:0.03;"></i>
-                        <div class="plan-header">
-                            <span class="plan-name">Free Explorer</span>
-                            <span class="badge" style="background: rgba(100,116,139,0.1); color: var(--text-sec); border: 1px solid rgba(100,116,139,0.2);">Basic</span>
+            }
+
+            const smartContainer = document.getElementById('smart-purchases-container');
+            
+            if (hasMockMaster) {
+                smartContainer.innerHTML = `
+                    <div style="width: 100%;">
+                        <div class="mini-section-title"><i class="fa-solid fa-crown" style="color:var(--warning);"></i> VIP Access Active</div>
+                        <div class="active-plan-box" style="border-left: 4px solid var(--warning); background: linear-gradient(135deg, var(--card-bg) 0%, rgba(245, 158, 11, 0.05) 100%); width: 100%; box-sizing: border-box;">
+                            <i class="fa-solid fa-crown bg-icon" style="color:var(--warning); opacity:0.1;"></i>
+                            <div class="plan-header">
+                                <span class="plan-name" style="font-size: 1rem;"><i class="fa-solid fa-crown" style="color:var(--warning);"></i> ${mockMasterData.name}</span>
+                                <span class="badge" style="background: rgba(245,158,11,0.1); color: var(--warning); border: 1px solid rgba(245,158,11,0.2);">All Access Granted</span>
+                            </div>
+                            <div class="plan-details" style="font-size: 0.75rem;">
+                                Purchased: <strong>${mockMasterData.purchaseDate}</strong> &nbsp;|&nbsp; Valid Till: <strong>${mockMasterData.expiryDate || 'Lifetime'}</strong><br>
+                                <span style="color:var(--success); font-weight:700; margin-top:6px; display:inline-block;">✓ No further upgrades needed. Focus on your preparation!</span>
+                            </div>
                         </div>
-                        <div class="plan-details">
-                            Valid Till: <strong>Lifetime</strong><br>
-                            Access limited free MCQs & history.
+                    </div>
+                `;
+            } else if (hasMcqPro) {
+                smartContainer.innerHTML = `
+                    <div class="purchases-left">
+                        <div class="mini-section-title"><i class="fa-solid fa-bolt"></i> My Active Plan</div>
+                        <div class="active-plan-box" style="border-left: 4px solid var(--primary);">
+                            <i class="fa-solid fa-bolt bg-icon" style="color:var(--primary);"></i>
+                            <div class="plan-header">
+                                <span class="plan-name">${mcqProData.name}</span>
+                                <span class="badge" style="background: rgba(37,99,235,0.1); color: var(--primary); border: 1px solid rgba(37,99,235,0.2);">Active</span>
+                            </div>
+                            <div class="plan-details">
+                                Valid Till: <strong>${mcqProData.expiryDate}</strong><br>
+                                <span style="color:var(--success); font-weight:700; margin-top:4px; display:inline-block;">✓ MCQ Section Unlocked</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="purchases-right">
+                        <div class="mini-section-title"><i class="fa-solid fa-arrow-up-right-dots"></i> Upgrade Available</div>
+                        <div class="compact-upgrade-item" style="background: linear-gradient(135deg, #fffbeb, #fef3c7); border-color: #fde68a; flex-direction: column; align-items: flex-start; gap: 8px; padding: 10px;">
+                            <div>
+                                <div style="font-size: 0.75rem; font-weight: 800; color: var(--bronze);"><i class="fa-solid fa-crown" style="color:var(--warning);"></i> Mock Master Pass</div>
+                                <div style="font-size: 0.65rem; color: var(--text-sec); margin-top:2px;">Unlock All Full-Length Mocks & Exams</div>
+                            </div>
+                            <button onclick="openQuickPay('mock_master_pass', 149, 'Mock Master Pass')" class="compact-btn-buy" style="background: linear-gradient(135deg, #10b981, #059669); width: 100%; padding: 8px;">Upgrade for ₹149/mo</button>
+                        </div>
+                    </div>
+                `;
+            } else {
+                smartContainer.innerHTML = `
+                    <div class="purchases-left">
+                        <div class="mini-section-title"><i class="fa-solid fa-user-astronaut"></i> Current Status</div>
+                        <div class="active-plan-box" style="border-left: 4px solid var(--text-sec); opacity:0.8;">
+                            <i class="fa-solid fa-lock bg-icon" style="color:var(--text-sec);"></i>
+                            <div class="plan-header">
+                                <span class="plan-name">Free Explorer</span>
+                                <span class="badge" style="background: rgba(100,116,139,0.1); color: var(--text-sec); border: 1px solid rgba(100,116,139,0.2);">Basic</span>
+                            </div>
+                            <div class="plan-details">
+                                Access limited free MCQs & history.<br>
+                                Upgrade to unlock premium mock tests.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="purchases-right">
+                        <div class="mini-section-title"><i class="fa-solid fa-store"></i> Recommended Plans</div>
+                        <div style="display: flex; flex-direction: column; gap: 6px;">
+                            <div class="compact-upgrade-item">
+                                <div>
+                                    <div style="font-size: 0.75rem; font-weight: 800; color: var(--text-main);"><i class="fa-solid fa-bolt" style="color:var(--accent);"></i> MCQ Pro Pass</div>
+                                    <div style="font-size: 0.6rem; color: var(--text-sec);">Unlock 3000+ Premium MCQs</div>
+                                </div>
+                                <button onclick="openQuickPay('mcq_pro_pass', 39, 'MCQ Pro Pass')" class="compact-btn-buy">₹39/mo</button>
+                            </div>
+                            <div class="compact-upgrade-item" style="background: linear-gradient(135deg, #fffbeb, #fef3c7); border-color: #fde68a;">
+                                <div>
+                                    <div style="font-size: 0.75rem; font-weight: 800; color: var(--text-main);"><i class="fa-solid fa-crown" style="color:var(--warning);"></i> Mock Master Pass</div>
+                                    <div style="font-size: 0.6rem; color: var(--text-sec);">Unlock All Full-Length Mocks</div>
+                                </div>
+                                <button onclick="openQuickPay('mock_master_pass', 149, 'Mock Master Pass')" class="compact-btn-buy" style="background: linear-gradient(135deg, #10b981, #059669);">₹149/mo</button>
+                            </div>
                         </div>
                     </div>
                 `;
             }
 
-            // 🔥 DYNAMIC UPGRADES CONTAINER
-            const upgradesContainer = document.getElementById('dynamic-upgrades-container');
-            if (hasMockMaster) {
-                upgradesContainer.innerHTML = `
-                    <div style="background: linear-gradient(135deg, #10b981, #059669); border-radius: var(--radius-md); padding: 15px; color: white; display: flex; align-items: center; gap: 15px; box-shadow: 0 4px 15px rgba(16,185,129,0.3); height: 100%; box-sizing: border-box;">
-                        <div style="font-size: 3rem; opacity: 0.9;"><i class="fa-solid fa-crown"></i></div>
-                        <div>
-                            <div style="font-size: 1rem; font-weight: 900; letter-spacing: 0.5px; text-transform: uppercase;">VIP Master Unlocked</div>
-                            <div style="font-size: 0.7rem; font-weight: 500; margin-top: 4px; opacity: 0.9;">You have unrestricted access to all Premium Mocks & MCQs. Keep conquering the leaderboard! 🚀</div>
-                        </div>
-                    </div>`;
-            } else if (hasMcqPro) {
-                upgradesContainer.innerHTML = `
-                    <div class="compact-upgrade-item" style="background: rgba(16,185,129,0.1); border-color: rgba(16,185,129,0.3);">
-                        <div>
-                            <div style="font-size: 0.75rem; font-weight: 800; color: var(--success);"><i class="fa-solid fa-check-circle"></i> MCQ Pro Active</div>
-                            <div style="font-size: 0.6rem; color: var(--text-sec);">3000+ MCQs Unlocked</div>
-                        </div>
-                    </div>
-                    <div class="compact-upgrade-item" style="background: linear-gradient(135deg, #fffbeb, #fef3c7); border-color: #fde68a;">
-                        <div>
-                            <div style="font-size: 0.75rem; font-weight: 800; color: var(--bronze);"><i class="fa-solid fa-crown" style="color:var(--warning);"></i> Mock Master Pass</div>
-                            <div style="font-size: 0.6rem; color: var(--text-sec);">Unlock All Full-Length Mocks</div>
-                        </div>
-                        <button onclick="openQuickPay('mock_master_pass', 149, 'Mock Master Pass')" class="compact-btn-buy" style="background: linear-gradient(135deg, #10b981, #059669);">₹149/mo</button>
-                    </div>`;
-            } else {
-                upgradesContainer.innerHTML = `
-                    <div class="compact-upgrade-item">
-                        <div>
-                            <div style="font-size: 0.75rem; font-weight: 800; color: var(--text-main);"><i class="fa-solid fa-bolt" style="color:var(--accent);"></i> MCQ Pro Pass</div>
-                            <div style="font-size: 0.6rem; color: var(--text-sec);">Unlock 3000+ Premium MCQs</div>
-                        </div>
-                        <button onclick="openQuickPay('mcq_pro_pass', 39, 'MCQ Pro Pass')" class="compact-btn-buy">₹39/mo</button>
-                    </div>
-                    <div class="compact-upgrade-item">
-                        <div>
-                            <div style="font-size: 0.75rem; font-weight: 800; color: var(--text-main);"><i class="fa-solid fa-crown" style="color:var(--warning);"></i> Mock Master Pass</div>
-                            <div style="font-size: 0.6rem; color: var(--text-sec);">Unlock All Full-Length Mocks</div>
-                        </div>
-                        <button onclick="openQuickPay('mock_master_pass', 149, 'Mock Master Pass')" class="compact-btn-buy" style="background: linear-gradient(135deg, #10b981, #059669);">₹149/mo</button>
-                    </div>`;
-            }
-            
             elLoading.style.display = 'none';
             elLoggedOut.style.display = 'none';
             elLoggedIn.style.display = 'block';
 
             await loadUserStatsAndSyncProfile(user);
-            await fetchGlobalLeaderboard();
         } else {
             elLoading.style.display = 'none';
             elLoggedIn.style.display = 'none';
@@ -896,12 +649,10 @@
             const appId = 'hpgk-quiz';
             const scoresRef = collection(db, 'artifacts', appId, 'users', user.uid, 'scores');
             
-            // Protected fetch with 8s timeout
             let querySnapshot;
             try {
                 querySnapshot = await fetchWithTimeout(getDocs(scoresRef), 8000);
             } catch(networkErr) {
-                console.error("Firebase network timed out:", networkErr);
                 throw new Error("Timeout");
             }
             
@@ -910,21 +661,9 @@
             records.sort((a, b) => b.timestamp - a.timestamp); 
 
             const categoryMap = {
-                'rivers': 'Rivers of HP',
-                'rivers of hp': 'Rivers of HP',
-                'hpgk rivers': 'Rivers of HP',
-                'geography': 'Geography of HP',
-                'history': 'History of HP',
-                'economy': 'Economy of HP',
-                'polity': 'Polity of HP',
-                'art culture': 'Art & Culture',
-                'tourism': 'Tourism in HP',
-                'agriculture': 'Agriculture',
-                'district': 'Districts of HP',
-                'environment': 'Environment of HP',
-                'famous people': 'Famous People of HP',
-                'hp patwari mock': 'HP Patwari Mock',
-                'police exam': 'HP Police Mock'
+                'rivers': 'Rivers of HP', 'geography': 'Geography of HP', 'history': 'History of HP',
+                'economy': 'Economy of HP', 'polity': 'Polity of HP', 'art culture': 'Art & Culture',
+                'agriculture': 'Agriculture', 'district': 'Districts of HP', 'hp patwari mock': 'HP Patwari Mock'
             };
 
             const catStats = {}; 
@@ -997,7 +736,7 @@
             });
 
             finalTopics.forEach(d => {
-                const att = d._safeCorrect + d._safeWrong; // actual attempted
+                const att = d._safeCorrect + d._safeWrong; 
                 const corr = d._safeCorrect;
                 const time = d._safeTime || 0;
                 stats.all.topicAtt += att; stats.all.topicCorr += corr; stats.all.topicTime += time;
@@ -1005,14 +744,13 @@
                 if (now - d.timestamp <= oneWeek) { stats.week.topicAtt += att; stats.week.topicCorr += corr; stats.week.topicTime += time; }
             });
 
-            // 🔥 TOUGH XP LOGIC: Accuracy Squared + Speed Multiplier + Custom Base (2 for MCQ, 2.5 for Mock)
             const calcMcqXP = (corr, att, time) => {
                 if (att === 0 || corr <= 0) return 0;
                 const accuracy = corr / att;
                 let speed = 1.0;
                 if (time > 0) {
                     let avgTime = time / att;
-                    speed = Math.min(2.0, Math.max(0.5, 45 / avgTime)); // 45s standard for MCQ
+                    speed = Math.min(2.0, Math.max(0.5, 45 / avgTime)); 
                 }
                 return Math.floor((corr * 2) * (accuracy * accuracy) * speed);
             };
@@ -1023,7 +761,7 @@
                 let speed = 1.0;
                 if (time > 0) {
                     let avgTime = time / att;
-                    speed = Math.min(2.0, Math.max(0.5, 60 / avgTime)); // 60s standard for Mock
+                    speed = Math.min(2.0, Math.max(0.5, 60 / avgTime)); 
                 }
                 return Math.floor((score * 2.5) * (accuracy * accuracy) * speed);
             };
@@ -1037,7 +775,7 @@
                 weeklyMockXP: calcMockXP(stats.week.mockScore, stats.week.mockCorr, stats.week.mockAtt, stats.week.mockTime),
             };
 
-            // Sync silently
+            // Silent Sync to Leaderboard
             if (xpData.mcqXP > 0 || xpData.mockXP > 0) {
                 setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'leaderboard', user.uid), {
                     uid: user.uid,
@@ -1072,7 +810,7 @@
                     document.getElementById('stat-mock-acc').innerText = mockAvgAcc + '%';
                     document.getElementById('stat-mock-time').innerText = mockAvgTime + 's';
                 }
-            } catch(e) { console.error(e); }
+            } catch(e) { }
 
             try {
                 if (finalTopics.length > 0) {
@@ -1095,7 +833,7 @@
                         document.getElementById('stat-topic-time').innerText = topicAvgTime;
                     }
                 }
-            } catch(e) { console.error(e); }
+            } catch(e) { }
 
             try {
                 const sortedMocks = finalMocks.slice(0, 7); 
@@ -1123,14 +861,14 @@
                     });
                     document.getElementById('mock-perf-list').innerHTML = mockHtml;
                 }
-            } catch(e) { console.error(e); }
+            } catch(e) { }
 
             try {
                 const sortedCats = Object.keys(catStats).map(cat => ({
                     name: cat,
                     acc: catStats[cat].total > 0 ? Math.round((catStats[cat].correct / catStats[cat].total) * 100) : 0,
                     total: catStats[cat].total
-                })).sort((a, b) => b.total - a.total).slice(0, 5); 
+                })).sort((a, b) => b.total - a.total).slice(0, 7); 
 
                 if (sortedCats.length > 0) {
                     let subjectHtml = '';
@@ -1152,40 +890,10 @@
                     });
                     document.getElementById('subject-perf-list').innerHTML = subjectHtml;
                 }
-            } catch(e) { console.error(e); }
+            } catch(e) { }
 
         } catch (error) {
             console.error("Error fetching stats:", error);
-        }
-    }
-
-    async function fetchGlobalLeaderboard() {
-        try {
-            const lbRef = collection(db, 'artifacts', 'hpgk-quiz', 'public', 'data', 'leaderboard');
-            let lbSnap;
-            try {
-                lbSnap = await fetchWithTimeout(getDocs(lbRef), 8000);
-            } catch(networkErr) {
-                throw new Error("Timeout");
-            }
-            
-            let users = [];
-            lbSnap.forEach(doc => {
-                users.push(doc.data());
-            });
-
-            window.rawLeaderboardUsers = users;
-
-            if (window.switchLeaderboardTab) {
-                window.switchLeaderboardTab(window.currentLbType || 'mcq');
-            }
-
-        } catch (e) {
-            console.error("Leaderboard Error:", e);
-            const lbContainer = document.getElementById('global-leaderboard');
-            if (lbContainer) {
-                lbContainer.innerHTML = `<div style="text-align: center; padding:20px; font-size:0.8rem; color: var(--danger); font-weight:600;"><i class="fa-solid fa-triangle-exclamation"></i> Network Error.<br>Ranks could not be fetched.</div>`;
-            }
         }
     }
 </script>
