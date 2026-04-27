@@ -1,11 +1,11 @@
 /**
  * --------------------------------------------------------------------------
- * MCQ PRACTICE ENGINE (The Teacher)
+ * HPGK MCQ PRACTICE ENGINE (The Teacher)
  * --------------------------------------------------------------------------
  * Purely renders questions, handles UI logic, and communicates with Guard.
- * ADDED: Smart Quota Tracker (Total 30 limit) & 100-Question Pool Limit for Random Modes.
- * FIXED: True Random Shuffle Logic (No Fixed Patterns) based on Login Status.
- * FIXED: Restored Toolbar Functions (Help Modal, Export, Import Progress).
+ * FIXED: VIP Shuffle Bug (Now Pro users get unlimited pool in Random mode).
+ * FIXED: Instant UI Refresh Sync after successful login/payment.
+ * --------------------------------------------------------------------------
  */
 (function() {
     const STORAGE_KEY = (window.QUIZ_CONFIG && window.QUIZ_CONFIG.category) 
@@ -38,12 +38,12 @@
 
     let bookmarkFilterBtn, mistakeFilterBtn, shuffleBtn, quickModeBtn;
 
-    // Triggered by core.js
+    // 🔥 FIXED: Triggered by core.js upon login/logout/payment
     window.HPGK_Engine_Refresh = function() {
         loadFromStorage();
+        // Force the filter engine to recalculate the pool size instantly for VIPs
+        applyFilters(false); 
         updateStats();
-        loadQuestion(currentIndex); 
-        // Removed triggerCloudSync() to prevent infinite freeze loop on login
     };
 
     function triggerCloudSync() {
@@ -72,7 +72,6 @@
         setTimeout(() => { initQuizNow(); }, 100);
     });
 
-    // RESTORED: Toolbar Export Progress Function
     window.exportProgress = function() {
         const dataStr = JSON.stringify(historyState);
         const dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
@@ -83,7 +82,6 @@
         linkElement.click();
     };
 
-    // RESTORED: Toolbar Import Progress Function
     window.importProgress = function(input) {
         const file = input.files[0];
         if (!file) return;
@@ -107,7 +105,6 @@
         input.value = '';
     };
 
-    // RESTORED: Toolbar Help Modal Toggle Function
     window.toggleHelpModal = function() {
         const modal = document.getElementById('quizHelpModal');
         if (modal) {
@@ -121,6 +118,7 @@
         if (currentFontSizePx < 12) currentFontSizePx = 12;
         loadQuestion(currentIndex);
     }
+    
     function getFontSize() { return `${currentFontSizePx}px`; }
 
     function updateStats() {
@@ -195,7 +193,7 @@
             // Find the original index of this question in the main database
             const originalIndex = window.quizData.findIndex(item => item.id === q.id);
 
-            // 1. Check strict Paywall based on original index (Blocks > 100 for non-pro)
+            // 1. Check strict Paywall based on original index
             let access = window.HPGK_Guard.checkAccess(originalIndex !== -1 ? originalIndex : index);
 
             // 2. Dynamic Override for Free Users: Block NEW questions if 30-quota is reached
@@ -288,7 +286,7 @@
     }
 
     // ------------------------------------------------------------------
-    // TOGGLES
+    // TOGGLES & FILTERS
     // ------------------------------------------------------------------
     window.clearAllFilters = function() {
         isBookmarkFilterActive = false; isMistakesFilterActive = false; isShuffleActive = false; isQuickModeActive = false;
@@ -348,15 +346,22 @@
         if (!window.quizData) return;
         let filtered = [...window.quizData];
 
-        // 1. DYNAMIC POOL RESTRICTOR based on Login Status
+        // 1. 🔥 DYNAMIC POOL RESTRICTOR (THE VIP BUG FIX)
         const userObj = window.HPGK_User || {};
         const isLoggedIn = userObj.isLoggedIn === true;
+        const hasProPass = userObj.passes && (
+            userObj.passes['mcq_pro_pass'] || 
+            userObj.passes['mock_master_pass'] || 
+            userObj.passes['mega_combo_pass'] || 
+            userObj.passes['vip_lifetime_pass']
+        );
+        
         const loginLimit = (window.PAGE_ACCESS && window.PAGE_ACCESS.loginLimit) || 30;
-        const proLimit = 100; // Fixed pool limit for logged-in users during shuffle/quick modes
+        const proLimit = 100; // Legacy limit, now only applies to Non-VIP logged-in users
 
-        // 🔥 Cut the pool size BEFORE shuffling, so we only shuffle within allowed limits
         if (isShuffleActive || isQuickModeActive) {
-            const poolSize = isLoggedIn ? proLimit : loginLimit;
+            // VIP Users get UNLIMITED Shuffle (filtered.length), otherwise standard limits apply
+            const poolSize = hasProPass ? filtered.length : (isLoggedIn ? proLimit : loginLimit);
             filtered = filtered.slice(0, poolSize);
         }
         
