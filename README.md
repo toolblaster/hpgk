@@ -4,15 +4,15 @@ Welcome to the complete documentation for the HPGK Quiz Platform. This platform 
 
 🌟 1. Project Overview & Features
 
-Bilingual Engine: Questions, options, and explanations are rendered in both English and Hindi.
+Bilingual Engine: Questions, options, and explanations are rendered in both English and Hindi seamlessly.
 
-Strict Exam Simulation: Features 0.25 negative marking, timer, and a real exam-like UI.
+Strict Exam Simulation: Features 0.25 negative marking, real-time timer, and an immersive exam-like UI.
 
-Local & Cloud Sync: Progress is saved locally (LocalStorage) and securely synced to Firebase Firestore.
+Cost-Optimized Cloud Sync: Progress is saved locally (LocalStorage) immediately and securely synced to Firebase Firestore using Smart Batched Writes to minimize costs.
 
-Automated Payments: Fully integrated with Razorpay and Google Cloud Webhooks for instant pass unlocking.
+Automated Payments: Fully integrated with Razorpay and Google Cloud Webhooks for instant, secure pass unlocking.
 
-Super Admin Panel: A secure control room to monitor live users, revenue, and manually grant passes.
+Super Admin Panel: A secure, multi-tab control room to monitor live users, revenue, track transactions, and manage premium access.
 
 🛠️ 2. Tech Stack & Design System
 
@@ -22,7 +22,7 @@ Backend Services: Firebase Authentication (Google OAuth), Firebase Firestore (No
 
 Design Philosophy:
 
-Mobile-First: Fully responsive grid layouts optimized for touch interactions.
+Mobile-First: Fully responsive grid layouts optimized for touch interactions across all devices.
 
 Glassmorphism: Premium frosted-glass effects utilizing CSS backdrop-filter.
 
@@ -40,7 +40,7 @@ Identity: Initializes Firebase and tracks the global window.HPGK_User session st
 
 Cloud Sync: Securely fetches user's active passes from Firestore upon login.
 
-Global Security: Blocks DevTools (F12, Ctrl+Shift+I), disables right-click, and prevents text selection/copying to protect content.
+Global Security: Blocks DevTools (F12, Ctrl+Shift+I), disables right-click, and prevents text selection/copying to protect premium content.
 
 Decoy Routing: Dynamically injects fake tokens into URLs (e.g., &_secToken=tx_1234abc) to prevent users from bypassing paywalls via direct URL manipulation.
 
@@ -50,15 +50,15 @@ Access Control: Evaluates the user's progress against the page's configuration (
 
 Paywall Enforcement: Triggers the premium paywall UI if a user crosses the free threshold (proLimit) without a valid master key (like mock_master_pass or mcq_pro_pass).
 
-Guest Limit: Prompts anonymous users to login after consuming a certain number of free questions (loginLimit).
+Guest Limit: Prompts anonymous users to login securely after consuming a certain number of free questions (loginLimit).
 
-C. mcq-main.js / mock-engine.js (The Teacher)
+C. mcq-main.js / mock-engine.js (The Teacher & Optimizer)
 
 Rendering Engine: Dynamically loads JSON data into the DOM (questions, options, explanations).
 
 State Management: Tracks right/wrong answers, calculates accuracy, handles the timer, and provides detailed analytics.
 
-Storage: Manages LocalStorage for offline resilience and pushes final scores to core.js for Cloud Sync.
+🔥 Smart Batch Cloud Sync: Instead of syncing on every click (which drains Firebase quota), mcq-main.js batches database writes. It syncs to Firestore every 15 questions or when the page unloads, saving over 90% in Firebase Read/Write costs.
 
 D. layout.js (The Builder - Extension)
 
@@ -68,7 +68,7 @@ UI Injector: Dynamically loads the global <header> and <footer> components acros
 
 Every topic page controls its own destiny using a simple configuration block placed at the bottom of its HTML file.
 
-The "ID Card" (PAGE_ACCESS)
+The "ID Card" (PAGE_ACCESS):
 
 window.PAGE_ACCESS = { 
     category: 'rivers',     // Syncs with Firebase for Leaderboard 
@@ -80,7 +80,7 @@ window.PAGE_ACCESS = {
 
 To lock a premium Mock Test after 10 questions, simply set proLimit: 10 and requiredPass: 'mock_master_pass'.
 
-🎮 5. Gamification & Admin Controls [NEW IN v2.0]
+🎮 5. Gamification & Admin Controls [v2.0 & v2.5 Updates]
 
 Dopamine XP & Leaderboard (user/dashboard.html): Features an ultra-advanced Dual Leaderboard to boost retention.
 
@@ -88,7 +88,17 @@ MCQ Ninjas XP Formula: (Correct Qs × 2) × (Accuracy²)
 
 Mock Toppers XP Formula: (Final Score × 2.5) × (Accuracy²)
 
-Super Admin Control Room (user/admin.html): A secure, cache-free command center explicitly locked to authorized Admin Emails. Features a 4-tab architecture: Command Center, User Matrix (with instant Pro/Free filters), Payment Desk, and 1-Click Email Extraction.
+🔥 Live Dashboard Sync: Utilizes Firebase onSnapshot. If an Admin grants a pass, the student's dashboard updates in real-time (under 1 second) without requiring a page refresh, completely bypassing local browser cache issues.
+
+Super Admin Control Room (user/admin.html): A secure, cache-free command center explicitly locked to authorized Admin Emails via robust Firestore Rules. Features include:
+
+Live User Matrix: Filter by Free, VIP, and Inactive users. Includes instant pass granting and a Red Revoke Pass button.
+
+Live Payment Desk: Tracks both Razorpay Webhook transactions and Manual Grants (with complimentary tags).
+
+1-Click Manual Grant: Bypass Razorpay to instantly grant passes to user UIDs, including an option to mark as Complimentary (₹0 Revenue) to keep stats accurate.
+
+1-Click Email Extraction: Copy target user emails (excluding auth-hidden guests) for immediate marketing campaigns.
 
 💳 6. Razorpay & Google Cloud Webhook (Automated Payments)
 
@@ -102,13 +112,11 @@ Razorpay Popup: Razorpay opens. The notes object securely passes the user's uid 
 
 Webhook Trigger: Upon successful payment, Razorpay sends a hidden POST request to our Google Cloud Webhook.
 
-Backend Verification: The Webhook verifies the digital signature to ensure it's genuinely from Razorpay.
+Backend Verification: The Webhook verifies the digital signature (x-razorpay-signature) using the secret key.
 
-Database Update: The Webhook uses Firebase Admin SDK to bypass client security rules and instantly writes the pass into the user's private Firestore vault.
+Database Update: The Webhook uses the Firebase Admin SDK to bypass client security rules and instantly writes the pass into the user's private Firestore vault.
 
-Frontend Implementation (upgrade.html snippet)
-
-When calling Razorpay, passing notes is mandatory:
+Frontend Implementation snippet:
 
 var options = {
     "key": "rzp_test_YOUR_KEY_HERE", // Replace with LIVE key in production
@@ -117,7 +125,7 @@ var options = {
     "name": "HPGK Quiz Platform",
     "handler": function (response) {
         // Show loading state. Webhook handles DB update in the background.
-        setTimeout(() => { window.location.reload(); }, 3500);
+        // HPGK_verifyQuickPayAndReload listens to Firestore for real-time unlock.
     },
     // 🔥 CRITICAL: Webhook uses this to identify who gets the pass
     "notes": {
@@ -131,7 +139,7 @@ var options = {
 
 The backend is hosted on Google Cloud Run (Node.js 22). It requires firebase-admin to securely update Firestore.
 
-index.js (The Server Logic)
+index.js (The Server Logic):
 
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
@@ -206,6 +214,7 @@ Click Save.
 🔥 9. Firebase Configuration & Database Paths
 
 All Firebase initializations are handled securely inside js/core.js.
+Database security is ensured via strict firestore.rules preventing unauthorized Read/Writes.
 
 Firestore Database Paths:
 
@@ -224,15 +233,15 @@ User Scores/History: /artifacts/hpgk-quiz/users/{uid}/scores/{testId}
 │   ├── layout.js                # Dynamic Header & Footer Injector
 │   ├── access-guard.js          # Paywall & Access Logic
 │   ├── mock-engine.js           # Full Mock Test rendering engine
-│   └── mcq-main.js              # Topic-wise practice engine
+│   └── mcq-main.js              # Topic-wise practice engine (Cloud Optimized)
 ├── css/
 │   └── style.css                # Global styles and responsive design
 ├── user/
-│   ├── dashboard.html           # Student Dashboard (Stats, Passes, Leaderboard)
+│   ├── dashboard.html           # Student Dashboard (Live Sync enabled)
 │   ├── upgrade.html             # Pricing & Plans Page
-│   └── admin.html               # Super Admin Control Room
+│   └── admin.html               # Super Admin Control Room (Cache-free)
 ├── hp-exam-full-mock-test/      # Exam specific folders (e.g., Patwari)
-│   └── hp-patwari-mock/         # JSON data files for mocks
+│   └── hp-patwari-mock/         # Index HTML & JSON data files for mocks
 └── himachal-pradesh-gk/         # Topic-wise MCQs (History, Geo, etc.)
 
 
