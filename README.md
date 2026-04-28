@@ -74,13 +74,15 @@ window.PAGE_ACCESS = {
     category: 'rivers',     // Syncs with Firebase for Leaderboard 
     loginLimit: 30,         // Questions free for anonymous guests 
     proLimit: 9999,         // Questions free for logged-in users (9999 = no paywall) 
-    requiredPass: 'mcq_pass'// Pass ID required if proLimit is triggered 
+    requiredPass: 'mcq_pro_pass'// Pass required if proLimit is reached
 };
 
 
 To lock a premium Mock Test after 10 questions, simply set proLimit: 10 and requiredPass: 'mock_master_pass'.
 
-🎮 5. Gamification & Admin Controls [v2.0 & v2.5 Updates]
+🎮 5. Gamification & Admin Controls 
+
+$$v2.0 & v2.5 Updates$$
 
 Dopamine XP & Leaderboard (user/dashboard.html): Features an ultra-advanced Dual Leaderboard to boost retention.
 
@@ -133,6 +135,7 @@ var options = {
         "planId": "mock_master_pass" 
     }
 };
+
 
 
 ☁️ 7. Backend Webhook Setup (Google Cloud Run)
@@ -195,6 +198,7 @@ exports.razorpayWebhook = functions.https.onRequest(async (req, res) => {
 });
 
 
+
 ⚙️ 8. Razorpay Dashboard Webhook Configuration
 
 If you ever need to set up the webhook on a new Razorpay account:
@@ -243,6 +247,7 @@ User Scores/History: /artifacts/hpgk-quiz/users/{uid}/scores/{testId}
 ├── hp-exam-full-mock-test/      # Exam specific folders (e.g., Patwari)
 │   └── hp-patwari-mock/         # Index HTML & JSON data files for mocks
 └── himachal-pradesh-gk/         # Topic-wise MCQs (History, Geo, etc.)
+
 
 
 🚀 11. Developer Guide: How to Add a New Topic
