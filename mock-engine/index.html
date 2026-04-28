@@ -15,15 +15,42 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <!-- 🔥 MathJax For Complex Mathematical Equations (IIT JEE, GATE, CAT Level) -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            startup: {
+                typeset: false // Will manually trigger to sync with JS engine
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
     <style>
+        /* 🔥 ULTIMATE VIEWPORT LOCK & LAYOUT RESET */
+        html, body {
+            width: 100vw; 
+            height: 100vh; /* Fallback */
+            height: 100dvh; /* Dynamic Viewport Height for mobile browsers */
+            min-height: -webkit-fill-available;
+            margin: 0; padding: 0; 
+            overflow: hidden;
+            position: fixed; /* Prevents whole-page scrolling and bounding box issues */
+            top: 0; left: 0; right: 0; bottom: 0;
+            touch-action: none;
+        }
+
         body {
             background-color: var(--bg-color);
-            margin: 0; padding: 0; height: 100dvh; 
-            overflow: hidden; display: flex; flex-direction: column;
+            display: flex; flex-direction: column;
             font-family: 'Inter', sans-serif;
             user-select: none; -webkit-user-select: none;
         }
 
+        /* --- LEFT MAIN COLUMN ELEMENTS --- */
         #mini-brand-bar {
             height: 28px; flex-shrink: 0; background: var(--primary-dark); color: #ffffff;
             display: flex; align-items: center; justify-content: space-between;
@@ -48,17 +75,42 @@
             cursor: pointer; color: var(--text-main); font-size: 1rem; transition: 0.2s;
         }
         .panel-toggle-btn:hover { background: var(--input-bg); }
-        #mobile-palette-toggle { display: none; }
-        #desktop-palette-toggle { display: flex; margin-left: 10px; }
 
-        #exam-workspace { display: flex; flex: 1; overflow: hidden; position: relative; min-height: 0; }
+        /* 🔥 FLOATING UNIVERSAL TOGGLE ARROW (For Desktop & Mobile) */
+        #floating-palette-toggle {
+            display: flex;
+            position: fixed;
+            right: 280px; /* Default desktop width */
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px 0 0 8px;
+            padding: 20px 8px;
+            z-index: 1050;
+            cursor: pointer;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.2);
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            transition: right 0.3s ease;
+        }
 
+        /* 🔥 ARROW ROTATION ANIMATION */
+        #ui-panel-arrow {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .arrow-open {
+            transform: rotate(180deg);
+        }
+
+        /* --- FULL OVERLAY PANELS --- */
         .full-overlay-panel {
-            position: fixed; top: 78px; left: 0; right: 0; bottom: 0;
+            position: absolute; /* Relative to left column */
+            top: 78px; left: 0; right: 0; bottom: 0;
             background: var(--bg-color); z-index: 1000; 
-            display: flex; flex-direction: column; display: none; 
-            height: calc(100vh - 78px); height: calc(100dvh - 78px); 
-            overflow: hidden; 
+            display: none; flex-direction: column; overflow: hidden; 
         }
         
         .inst-header { 
@@ -95,9 +147,7 @@
         .inst-table th, .inst-table td { border: 1px solid var(--border-color); padding: 6px 10px; text-align: left; color: var(--text-main); }
         .inst-table th { background: var(--input-bg); font-weight: 700; }
 
-        /* =========================================
-           COMPACT SUMMARY & RESULT STYLES
-           ========================================= */
+        /* --- COMPACT SUMMARY & RESULT STYLES --- */
         .sum-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; width: 100%; max-width: 500px; margin-bottom: 20px; }
         .sum-box { padding: 10px; border-radius: 6px; text-align: center; border: 1px solid var(--border-color); background: var(--card-bg); }
         .sum-box.green { background: rgba(34, 197, 94, 0.05); border-color: rgba(34, 197, 94, 0.3); }
@@ -134,8 +184,7 @@
         [data-theme="dark"] .res-opt.is-correct { color: #86efac; }
         [data-theme="dark"] .res-opt.is-wrong { color: #fca5a5; }
 
-        /* ========================================= */
-
+        /* --- MODALS & TOOLTIPS --- */
         #mid-test-modal {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.6); z-index: 9999; display: none;
@@ -147,12 +196,6 @@
             display: flex; flex-direction: column; max-height: 90vh;
         }
 
-        #left-panel {
-            flex: 1; display: flex; flex-direction: column;
-            background: var(--bg-color); border-right: 1px solid var(--border-color);
-            overflow: hidden; min-height: 0;
-        }
-        
         .sections-bar {
             display: flex; background: rgba(37, 99, 235, 0.05); border-bottom: 1px solid var(--border-color);
             overflow-x: auto; white-space: nowrap; flex-shrink: 0; scrollbar-width: none;
@@ -196,7 +239,10 @@
         .lang-btn { background: transparent; border: none; padding: 4px 8px; font-size: 0.7rem; font-weight: 700; color: var(--text-sec); cursor: pointer; transition: 0.2s; }
         .lang-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
         
-        .q-content-area { flex: 1; overflow-y: auto; padding: 15px; font-size: 14px; color: var(--text-main); line-height: 1.5; }
+        .q-content-area { 
+            flex: 1; overflow-y: auto; padding: 15px; font-size: 14px; color: var(--text-main); 
+            line-height: 1.5; min-height: 0; -webkit-overflow-scrolling: touch; 
+        }
         
         .option-label {
             display: flex; align-items: flex-start; padding: 10px 12px; margin-bottom: 8px; border: 1px solid var(--border-color);
@@ -205,10 +251,13 @@
         .option-label:hover { background: var(--input-bg); }
         .option-label input[type="radio"] { margin-right: 10px; margin-top: 2px; transform: scale(1.1); cursor: pointer; }
 
+        /* --- RIGHT PANEL & PALETTE --- */
         #right-panel {
             width: 280px; background: var(--card-bg);
             display: flex; flex-direction: column; flex-shrink: 0;
-            transition: width 0.3s ease, opacity 0.3s ease;
+            transition: width 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+            border-left: 1px solid var(--border-color);
+            z-index: 100;
         }
         #right-panel.collapsed { width: 0; opacity: 0; border-left: none; }
         
@@ -246,6 +295,7 @@
             flex-shrink: 0; white-space: nowrap;
         }
 
+        /* --- BOTTOM BAR (DESKTOP DEFAULT) --- */
         #exam-bottom-bar {
             background: var(--card-bg); border-top: 1px solid var(--border-color);
             display: flex; justify-content: space-between; align-items: center; padding: 8px 15px;
@@ -266,30 +316,72 @@
         .btn-review:hover { background: #7c3aed; } 
         .btn-submit { background: var(--primary); color: white; border-color: var(--primary-dark); width: 100%; padding: 8px; font-size: 0.85rem; }
         .btn-submit:hover { background: var(--primary-dark); } 
-        
+
+        #mobile-overlay { display: none; }
+
+        /* =========================================================================
+           🔥 ULTIMATE MOBILE RESPONSIVE TWEAKS 
+           ========================================================================= */
         @media (max-width: 800px) {
             .hide-mobile { display: none !important; }
+            .hide-desktop { display: flex !important; }
+
             .exam-title { font-size: 0.85rem; }
             #exam-top-bar { padding: 6px 10px; height: 44px; }
-            .full-overlay-panel { top: 72px; height: calc(100vh - 72px); height: calc(100dvh - 72px); }
-            .panel-toggle-btn { width: 30px; height: 30px; font-size: 0.9rem;}
+            
+            /* Overlay covers entire screen on mobile */
+            .full-overlay-panel { position: fixed; top: 72px; z-index: 9999; height: calc(100vh - 72px); height: calc(100dvh - 72px); }
             
             .timer-box { font-size: 0.8rem !important; gap: 4px; }
             .timer-box i { font-size: 0.85rem !important; }
 
-            #desktop-palette-toggle { display: none; }
-            #mobile-palette-toggle { display: flex; }
-            
+            /* Default mobile floating arrow position */
+            #floating-palette-toggle {
+                right: 0;
+                z-index: 996;
+            }
+
+            /* Smart Mobile Blur Overlay */
+            #mobile-overlay {
+                position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; height: 100dvh;
+                background: rgba(0,0,0,0.6); z-index: 990; display: none;
+                backdrop-filter: blur(2px); opacity: 0; transition: opacity 0.3s ease; cursor: pointer;
+            }
+            #mobile-overlay.show { display: block; opacity: 1; }
+
             #right-panel { 
                 position: absolute; right: 0; top: 0; bottom: 0; 
-                transform: translateX(100%); z-index: 50; box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+                transform: translateX(100%); z-index: 995; box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+                width: 280px; max-width: 85vw;
             }
             #right-panel.open { transform: translateX(0); }
             
-            #exam-bottom-bar { flex-direction: column; gap: 8px; padding: 8px; padding-bottom: calc(8px + env(safe-area-inset-bottom)); }
-            .action-group { width: 100%; justify-content: space-between; }
-            .exam-btn { padding: 8px 4px; font-size: 0.7rem; flex: 1; }
-            .btn-clear { flex: 0.5; } 
+            /* 🔥 EXTREME FIXED BOTTOM BAR FOR MOBILE - Gap Completely Fixed */
+            #exam-bottom-bar { 
+                display: grid !important;
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 45px 45px;
+                gap: 8px; 
+                padding: 10px 12px; 
+                padding-bottom: max(15px, env(safe-area-inset-bottom)) !important; 
+                background: var(--card-bg);
+                border-top: 1px solid var(--border-color);
+                box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+                box-sizing: border-box;
+                flex-shrink: 0;
+            }
+
+            .action-group { display: contents !important; }
+
+            .exam-btn { 
+                width: 100%; height: 100%; 
+                padding: 0; margin: 0;
+                font-size: 0.8rem; 
+                display: flex; align-items: center; justify-content: center;
+            }
+            
+            .right-panel-footer { padding-bottom: calc(12px + env(safe-area-inset-bottom)); }
+            .btn-submit { height: 48px; font-size: 0.9rem; }
             
             .inst-pre-footer { padding: 12px 15px; }
             .inst-lang-box { flex-direction: column; align-items: flex-start; gap: 4px; }
@@ -309,200 +401,180 @@
 </head>
 <body>
 
-    <div id="mini-brand-bar">
-        <span style="display:flex; align-items:center; gap:6px;">
-            <img src="../js/favicon/favicon-16x16.png" alt="Logo" style="border-radius:2px; width:16px; height:16px;"> 
-            HPGK Quiz
-        </span>
-        <span>Secure Exam Environment</span>
-    </div>
-
     <div id="security-blocker">
         <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 2.5rem; color: var(--primary); margin-bottom: 15px;"></i>
         <h2 style="margin:0; font-size: 1.2rem;" id="security-title">Authenticating Session...</h2>
         <p style="font-size:0.85rem; color:var(--text-sec);" id="security-desc">Verifying your test ticket and access rights.</p>
     </div>
 
-    <div id="exam-top-bar">
-        <div class="exam-title" id="ui-exam-title">Loading Test...</div>
-        <div style="display:flex; gap:8px; align-items:center;">
-            <button class="panel-toggle-btn" onclick="engine.toggleMidTestInstructions()" title="Important Instructions">
-                <i class="fa-solid fa-circle-info"></i>
-            </button>
-            <div class="timer-box"><i class="fa-regular fa-clock"></i> <span id="ui-timer">00:00:00</span></div>
-            
-            <button id="desktop-palette-toggle" class="panel-toggle-btn" onclick="engine.toggleRightPanel()" title="Hide/Show Question Palette">
-                <i class="fa-solid fa-chevron-right" id="ui-panel-arrow"></i>
-            </button>
-            <button id="mobile-palette-toggle" class="panel-toggle-btn" style="background:var(--primary-light); color:var(--primary); border-color:var(--primary);" onclick="document.getElementById('right-panel').classList.toggle('open')" title="View Questions & Submit">
-                <i class="fa-solid fa-table-cells"></i>
-            </button>
-        </div>
-    </div>
-
-    <div id="exam-workspace">
+    <!-- 🔥 APP WRAPPER: Splits screen securely between Main Area and Right Panel -->
+    <div style="display: flex; width: 100vw; height: 100dvh; overflow: hidden; position: relative;">
         
-        <!-- INITIAL INSTRUCTIONS OVERLAY -->
-        <div id="instructions-panel" class="full-overlay-panel" style="display: none;">
-            <div class="inst-header">Important Instructions</div>
-            <div class="inst-content">
-                <div style="display:flex; gap:15px; font-size:0.8rem; margin-bottom:12px; flex-wrap:wrap;">
-                    <span>Total Questions: <strong id="inst-total-qs">--</strong></span>
-                    <span>Maximum Marks: <strong id="inst-max-marks">--</strong></span>
-                    <span>Duration: <strong id="inst-duration">--</strong> mins</span>
-                </div>
-                
-                <strong>Please read the following instructions very carefully:</strong>
-                
-                <table class="inst-table">
-                    <thead>
-                        <tr>
-                            <th>S. No.</th>
-                            <th>Section</th>
-                            <th>Qs</th>
-                            <th>Marks</th>
-                            <th>Time</th>
-                        </tr>
-                    </thead>
-                    <tbody id="inst-table-body"></tbody>
-                </table>
-
-                <ol id="inst-general-list" style="padding-left:15px; margin-top:0; margin-bottom:0;">
-                    <li>You have <strong id="inst-time-text">-- minutes</strong> to complete the test.</li>
-                    <li>The test contains a total of <strong id="inst-qs-text">-- questions</strong>.</li>
-                    <li>You will be awarded <strong>1 mark</strong> for each correct answer.</li>
-                    <li>There is a <strong id="inst-penalty-text">0.25</strong> <strong>penalty</strong> for each wrong answer.</li>
-                    <li>You can unmark your answer by clicking on the "Clear Response" button.</li>
-                </ol>
-            </div>
+        <!-- LEFT MAIN COLUMN -->
+        <div id="left-main-column" style="position: relative; flex: 1; display: flex; flex-direction: column; overflow: hidden; min-width: 0;">
             
-            <div class="inst-pre-footer">
-                <div class="inst-lang-box">
-                    <label>Default Language:</label>
-                    <select id="inst-lang-select" onchange="engine.handleInstLanguageChange(this.value)">
-                        <option value="">-- Select --</option>
-                        <option value="en">English</option>
-                        <option value="hi">हिंदी</option>
-                    </select>
-                </div>
-                <div class="inst-warning">This language can be changed for a particular question later on.</div>
-                
-                <label class="inst-checkbox-area">
-                    <input type="checkbox" id="inst-agree-chk" disabled>
-                    <span>I have read and understood the instructions. I am not in possession of any prohibited gadgets.</span>
-                </label>
+            <div id="mini-brand-bar">
+                <span style="display:flex; align-items:center; gap:6px;">
+                    <img src="../js/favicon/favicon-16x16.png" alt="Logo" style="border-radius:2px; width:16px; height:16px;"> 
+                    HPGK Quiz
+                </span>
+                <span>Secure Exam Environment</span>
             </div>
 
-            <div class="inst-footer">
-                <button class="exam-btn btn-save-next" id="btn-start-exam" onclick="engine.startExam()" disabled style="opacity:0.5; cursor:not-allowed; background:var(--primary); border-color:var(--primary-dark); width: 100%; justify-content: center; padding: 10px;">I am ready to begin</button>
-            </div>
-        </div>
-
-        <!-- MID-TEST MODAL -->
-        <div id="mid-test-modal" onclick="if(event.target === this) engine.toggleMidTestInstructions()">
-            <div class="mid-modal-content">
-                <div class="inst-header" style="padding: 10px 15px;">Instructions <button class="panel-toggle-btn" onclick="engine.toggleMidTestInstructions()" style="border:none; background:transparent; width:24px; height:24px;"><i class="fa-solid fa-xmark"></i></button></div>
-                <div class="inst-content" style="padding-top:0; padding:15px;"><div id="mid-test-inst-clone"></div></div>
-            </div>
-        </div>
-
-        <!-- COMPACT SUMMARY OVERLAY (PRE-SUBMIT) -->
-        <div id="summary-panel" class="full-overlay-panel" style="z-index: 95; display: none;">
-            <div class="inst-header" style="justify-content:center;">Exam Summary</div>
-            <div class="inst-content" style="display:flex; flex-direction:column; align-items:center; padding:15px;">
-                <h3 style="margin-top:0; color:var(--text-main); font-weight:800; font-size: 1rem;">Are you sure you want to submit?</h3>
-                <p style="font-size:0.75rem; color:var(--text-sec); margin-bottom:15px; text-align:center;">Once submitted, you will not be able to change your answers.</p>
-                
-                <div class="sum-grid">
-                    <div class="sum-box green"><div class="val" id="sum-answered">0</div><div class="lbl">Answered</div></div>
-                    <div class="sum-box red"><div class="val" id="sum-not-answered">0</div><div class="lbl">Not Answered</div></div>
-                    <div class="sum-box purple"><div class="val" id="sum-review">0</div><div class="lbl">Marked Review</div></div>
-                    <div class="sum-box purple"><div class="val" id="sum-review-ans">0</div><div class="lbl">Review + Ans</div></div>
-                    <div class="sum-box gray" style="grid-column: span 2;"><div class="val" id="sum-not-visited">0</div><div class="lbl">Not Visited</div></div>
+            <div id="exam-top-bar">
+                <div class="exam-title" id="ui-exam-title">Loading Test...</div>
+                <div style="display:flex; gap:12px; align-items:center;">
+                    <button class="panel-toggle-btn" onclick="engine.toggleMidTestInstructions()" title="Important Instructions">
+                        <i class="fa-solid fa-circle-info"></i>
+                    </button>
+                    <!-- 🔥 Timer shifted gracefully to the left of the grid area! -->
+                    <div class="timer-box"><i class="fa-regular fa-clock"></i> <span id="ui-timer">00:00:00</span></div>
                 </div>
             </div>
-            <div class="inst-footer" style="justify-content:center; gap:15px; flex-wrap:wrap;">
-                <button class="exam-btn" onclick="engine.resumeTest()"><i class="fa-solid fa-arrow-left"></i> Resume</button>
-                <button class="exam-btn btn-submit" style="width:auto;" onclick="engine.finalSubmit()">Final Submit <i class="fa-solid fa-check"></i></button>
-            </div>
-        </div>
 
-        <!-- COMPACT RESULT & ANALYTICS OVERLAY -->
-        <div id="result-panel" class="full-overlay-panel" style="z-index: 101; display: none; background: var(--bg-color);">
-            <div class="inst-header" style="justify-content:center;">Test Result & Analytics</div>
-            
-            <div class="inst-content" style="padding: 12px; display: flex; flex-direction: column;">
-                
-                <div class="res-stat-grid">
-                    <div class="res-stat-card"><div class="lbl">Score</div><div class="val val-accent" id="res-score-val">0 / 0</div></div>
-                    <div class="res-stat-card"><div class="lbl">Accuracy</div><div class="val" id="res-acc-val">0%</div></div>
-                    <div class="res-stat-card"><div class="lbl">Time Taken</div><div class="val" id="res-time-val" style="font-size:1rem;">0m 0s</div></div>
+            <!-- WORKSPACE (Contains Questions and Bottom Nav Bar) -->
+            <div id="left-panel" style="flex: 1; display: flex; flex-direction: column; overflow: hidden;">
+                <div class="sections-wrapper">
+                    <div class="sections-bar" id="ui-sections-bar"></div>
                 </div>
 
-                <div class="res-stat-grid" style="margin-bottom: 10px;">
-                    <div class="res-stat-card"><div class="lbl">Correct</div><div class="val val-green" id="res-corr-val">0</div></div>
-                    <div class="res-stat-card"><div class="lbl">Wrong</div><div class="val val-red" id="res-wrong-val">0</div></div>
-                    <div class="res-stat-card"><div class="lbl">Skipped</div><div class="val" style="color:var(--text-sec);" id="res-skip-val">0</div></div>
-                </div>
-
-                <h3 style="margin: 10px 0; font-size: 0.95rem; color: var(--text-main); border-bottom: 1px solid var(--border-color); padding-bottom: 8px;">Detailed Solutions</h3>
-
-                <div id="res-detailed-list" style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 15px;"></div>
-            </div>
-
-            <div class="inst-footer" style="justify-content:center; gap:10px; flex-wrap:wrap; padding: 10px;">
-                <button class="exam-btn btn-clear" style="padding: 8px 12px;" onclick="window.location.href='../user/dashboard.html'"><i class="fa-solid fa-house"></i> Dashboard</button>
-                <button class="exam-btn btn-submit" style="width:auto; padding:8px 12px;" onclick="window.location.reload()"><i class="fa-solid fa-rotate-right"></i> Re-Attempt</button>
-            </div>
-        </div>
-
-        <div id="section-stats-tooltip">
-            <div class="sec-tt-header" id="tt-sec-name">Section Name</div>
-            <div class="sec-tt-body">
-                <div class="sec-tt-row"><div class="q-bubble answered" style="width:16px; height:16px;"></div> <span id="tt-ans">0</span> Answered</div>
-                <div class="sec-tt-row"><div class="q-bubble not-answered" style="width:16px; height:16px;"></div> <span id="tt-not-ans">0</span> Not Answered</div>
-                <div class="sec-tt-row"><div class="q-bubble review" style="width:16px; height:16px;"></div> <span id="tt-rev">0</span> Marked Review</div>
-                <div class="sec-tt-row"><div class="q-bubble review-answered" style="width:16px; height:16px;"></div> <span id="tt-rev-ans">0</span> Ans & Review</div>
-                <div class="sec-tt-row"><div class="q-bubble" style="width:16px; height:16px; color:transparent;">-</div> <span id="tt-not-vis">0</span> Not Visited</div>
-            </div>
-        </div>
-
-        <div id="left-panel">
-            <div class="sections-wrapper">
-                <div class="sections-bar" id="ui-sections-bar"></div>
-            </div>
-
-            <div class="q-header">
-                <div style="font-weight:800; font-size:0.9rem; color:var(--text-main);" id="ui-q-num">Question No. 1</div>
-                <div style="display:flex; align-items:center; gap:6px;">
-                    <div style="display:flex; align-items:center; gap:2px;" title="Resize Question Text">
-                        <span class="hide-mobile" style="font-size:0.6rem; color:var(--text-sec); font-weight:600;">Text:</span>
+                <div class="q-header">
+                    <div style="font-weight:800; font-size:0.9rem; color:var(--text-main);" id="ui-q-num">Question No. 1</div>
+                    <div style="display:flex; align-items:center; gap:6px;">
+                        <div style="display:flex; align-items:center; gap:2px;" title="Resize Question Text">
+                            <span class="hide-mobile" style="font-size:0.6rem; color:var(--text-sec); font-weight:600;">Text:</span>
+                            <div class="lang-toggle-group">
+                                <button class="lang-btn" onclick="engine.adjustFontSize(-1)">A-</button>
+                                <button class="lang-btn" onclick="engine.adjustFontSize(1)">A+</button>
+                            </div>
+                        </div>
                         <div class="lang-toggle-group">
-                            <button class="lang-btn" onclick="engine.adjustFontSize(-1)">A-</button>
-                            <button class="lang-btn" onclick="engine.adjustFontSize(1)">A+</button>
+                            <button id="lang-btn-en" class="lang-btn active" onclick="engine.changeLanguage('en')">EN</button>
+                            <button id="lang-btn-hi" class="lang-btn" onclick="engine.changeLanguage('hi')">HI</button>
                         </div>
                     </div>
-                    <div class="lang-toggle-group">
-                        <button id="lang-btn-en" class="lang-btn active" onclick="engine.changeLanguage('en')">EN</button>
-                        <button id="lang-btn-hi" class="lang-btn" onclick="engine.changeLanguage('hi')">HI</button>
+                </div>
+                
+                <div class="q-content-area" id="ui-q-content"></div>
+
+                <!-- 🔥 NATIVE FLEX BOTTOM BAR (NO GAPS!) -->
+                <div id="exam-bottom-bar">
+                    <div class="action-group">
+                        <button class="exam-btn btn-review" onclick="engine.markForReview()">Review & Next</button>
+                        <button class="exam-btn btn-clear" onclick="engine.clearResponse()">Clear</button>
+                    </div>
+                    <div class="action-group">
+                        <button class="exam-btn" onclick="engine.previousQuestion()"><i class="fa-solid fa-chevron-left"></i> Prev</button>
+                        <button class="exam-btn btn-save-next" onclick="engine.saveAndNext()">Save & Next <i class="fa-solid fa-chevron-right"></i></button>
                     </div>
                 </div>
             </div>
-            
-            <div class="q-content-area" id="ui-q-content"></div>
 
-            <div id="exam-bottom-bar">
-                <div class="action-group">
-                    <button class="exam-btn btn-review" onclick="engine.markForReview()">Review & Next</button>
-                    <button class="exam-btn btn-clear" onclick="engine.clearResponse()">Clear</button>
+            <!-- OVERLAYS RESTRICTED SAFELY WITHIN LEFT COLUMN (ON DESKTOP) -->
+            <div id="instructions-panel" class="full-overlay-panel" style="display: none;">
+                <div class="inst-header">Important Instructions</div>
+                <div class="inst-content">
+                    <div style="display:flex; gap:15px; font-size:0.8rem; margin-bottom:12px; flex-wrap:wrap;">
+                        <span>Total Questions: <strong id="inst-total-qs">--</strong></span>
+                        <span>Maximum Marks: <strong id="inst-max-marks">--</strong></span>
+                        <span>Duration: <strong id="inst-duration">--</strong> mins</span>
+                    </div>
+                    
+                    <strong>Please read the following instructions very carefully:</strong>
+                    
+                    <table class="inst-table">
+                        <thead>
+                            <tr>
+                                <th>S. No.</th>
+                                <th>Section</th>
+                                <th>Qs</th>
+                                <th>Marks</th>
+                                <th>Time</th>
+                            </tr>
+                        </thead>
+                        <tbody id="inst-table-body"></tbody>
+                    </table>
+
+                    <ol id="inst-general-list" style="padding-left:15px; margin-top:0; margin-bottom:0;">
+                        <li>You have <strong id="inst-time-text">-- minutes</strong> to complete the test.</li>
+                        <li>The test contains a total of <strong id="inst-qs-text">-- questions</strong>.</li>
+                        <li>You will be awarded <strong>1 mark</strong> for each correct answer.</li>
+                        <li>There is a <strong id="inst-penalty-text">0.25</strong> <strong>penalty</strong> for each wrong answer.</li>
+                        <li>You can unmark your answer by clicking on the "Clear Response" button.</li>
+                    </ol>
                 </div>
-                <div class="action-group">
-                    <button class="exam-btn" onclick="engine.previousQuestion()"><i class="fa-solid fa-chevron-left"></i> Prev</button>
-                    <button class="exam-btn btn-save-next" onclick="engine.saveAndNext()">Save & Next <i class="fa-solid fa-chevron-right"></i></button>
+                
+                <div class="inst-pre-footer">
+                    <div class="inst-lang-box">
+                        <label>Default Language:</label>
+                        <select id="inst-lang-select" onchange="engine.handleInstLanguageChange(this.value)">
+                            <option value="">-- Select --</option>
+                            <option value="en">English</option>
+                            <option value="hi">हिंदी</option>
+                        </select>
+                    </div>
+                    <div class="inst-warning">This language can be changed for a particular question later on.</div>
+                    
+                    <label class="inst-checkbox-area">
+                        <input type="checkbox" id="inst-agree-chk" disabled>
+                        <span>I have read and understood the instructions. I am not in possession of any prohibited gadgets.</span>
+                    </label>
+                </div>
+
+                <div class="inst-footer">
+                    <button class="exam-btn btn-save-next" id="btn-start-exam" onclick="engine.startExam()" disabled style="opacity:0.5; cursor:not-allowed; background:var(--primary); border-color:var(--primary-dark); width: 100%; justify-content: center; padding: 10px;">I am ready to begin</button>
                 </div>
             </div>
+
+            <div id="summary-panel" class="full-overlay-panel" style="z-index: 95; display: none;">
+                <div class="inst-header" style="justify-content:center;">Exam Summary</div>
+                <div class="inst-content" style="display:flex; flex-direction:column; align-items:center; padding:15px;">
+                    <h3 style="margin-top:0; color:var(--text-main); font-weight:800; font-size: 1rem;">Are you sure you want to submit?</h3>
+                    <p style="font-size:0.75rem; color:var(--text-sec); margin-bottom:15px; text-align:center;">Once submitted, you will not be able to change your answers.</p>
+                    
+                    <div class="sum-grid">
+                        <div class="sum-box green"><div class="val" id="sum-answered">0</div><div class="lbl">Answered</div></div>
+                        <div class="sum-box red"><div class="val" id="sum-not-answered">0</div><div class="lbl">Not Answered</div></div>
+                        <div class="sum-box purple"><div class="val" id="sum-review">0</div><div class="lbl">Marked Review</div></div>
+                        <div class="sum-box purple"><div class="val" id="sum-review-ans">0</div><div class="lbl">Review + Ans</div></div>
+                        <div class="sum-box gray" style="grid-column: span 2;"><div class="val" id="sum-not-visited">0</div><div class="lbl">Not Visited</div></div>
+                    </div>
+                </div>
+                <div class="inst-footer" style="justify-content:center; gap:15px; flex-wrap:wrap;">
+                    <button class="exam-btn" onclick="engine.resumeTest()"><i class="fa-solid fa-arrow-left"></i> Resume</button>
+                    <button class="exam-btn btn-submit" style="width:auto;" onclick="engine.finalSubmit()">Final Submit <i class="fa-solid fa-check"></i></button>
+                </div>
+            </div>
+
+            <div id="result-panel" class="full-overlay-panel" style="z-index: 101; display: none; background: var(--bg-color);">
+                <div class="inst-header" style="justify-content:center;">Test Result & Analytics</div>
+                
+                <div class="inst-content" style="padding: 12px; display: flex; flex-direction: column;">
+                    <div class="res-stat-grid">
+                        <div class="res-stat-card"><div class="lbl">Score</div><div class="val val-accent" id="res-score-val">0 / 0</div></div>
+                        <div class="res-stat-card"><div class="lbl">Accuracy</div><div class="val" id="res-acc-val">0%</div></div>
+                        <div class="res-stat-card"><div class="lbl">Time Taken</div><div class="val" id="res-time-val" style="font-size:1rem;">0m 0s</div></div>
+                    </div>
+
+                    <div class="res-stat-grid" style="margin-bottom: 10px;">
+                        <div class="res-stat-card"><div class="lbl">Correct</div><div class="val val-green" id="res-corr-val">0</div></div>
+                        <div class="res-stat-card"><div class="lbl">Wrong</div><div class="val val-red" id="res-wrong-val">0</div></div>
+                        <div class="res-stat-card"><div class="lbl">Skipped</div><div class="val" style="color:var(--text-sec);" id="res-skip-val">0</div></div>
+                    </div>
+
+                    <h3 style="margin: 10px 0; font-size: 0.95rem; color: var(--text-main); border-bottom: 1px solid var(--border-color); padding-bottom: 8px;">Detailed Solutions</h3>
+                    <div id="res-detailed-list" style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 15px;"></div>
+                </div>
+
+                <div class="inst-footer" style="justify-content:center; gap:10px; flex-wrap:wrap; padding: 10px;">
+                    <button class="exam-btn btn-clear" style="padding: 8px 12px;" onclick="window.location.href='../user/dashboard.html'"><i class="fa-solid fa-house"></i> Dashboard</button>
+                    <button class="exam-btn btn-submit" style="width:auto; padding:8px 12px;" onclick="window.location.reload()"><i class="fa-solid fa-rotate-right"></i> Re-Attempt</button>
+                </div>
+            </div>
+            
         </div>
 
+        <!-- RIGHT SIDEBAR (Candidate & Grid) -->
         <div id="right-panel">
             <div class="candidate-profile">
                 <img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" class="candidate-img" id="ui-user-avatar" onerror="this.src='https://ui-avatars.com/api/?name=C&background=cbd5e1'">
@@ -510,6 +582,10 @@
                     <span style="font-size:0.8rem; font-weight:700; color:var(--text-main); white-space:nowrap; text-overflow:ellipsis; overflow:hidden;" id="ui-user-name">Loading Profile...</span>
                     <span style="font-size:0.6rem; color:var(--text-sec);">Full Mock Test</span>
                 </div>
+                <!-- Mobile Close Btn inside profile -->
+                <button class="panel-toggle-btn hide-desktop" onclick="togglePanel()" style="margin-left: auto; border:none; background:transparent; width:30px; height:30px; color:var(--text-sec);">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
             </div>
             
             <div class="palette-legend">
@@ -531,6 +607,121 @@
         </div>
 
     </div>
+
+    <!-- 🔥 UNIVERSAL FLOATING ARROW (For Mobile & Desktop) -->
+    <button id="floating-palette-toggle" onclick="togglePanel()">
+        <i class="fa-solid fa-chevron-left" id="ui-panel-arrow"></i>
+    </button>
+
+    <!-- Global Overlays & Modals -->
+    <div id="mobile-overlay" onclick="togglePanel()"></div>
+    
+    <div id="mid-test-modal" onclick="if(event.target === this) engine.toggleMidTestInstructions()">
+        <div class="mid-modal-content">
+            <div class="inst-header" style="padding: 10px 15px;">Instructions <button class="panel-toggle-btn" onclick="engine.toggleMidTestInstructions()" style="border:none; background:transparent; width:24px; height:24px;"><i class="fa-solid fa-xmark"></i></button></div>
+            <div class="inst-content" style="padding-top:0; padding:15px;"><div id="mid-test-inst-clone"></div></div>
+        </div>
+    </div>
+
+    <div id="section-stats-tooltip">
+        <div class="sec-tt-header" id="tt-sec-name">Section Name</div>
+        <div class="sec-tt-body">
+            <div class="sec-tt-row"><div class="q-bubble answered" style="width:16px; height:16px;"></div> <span id="tt-ans">0</span> Answered</div>
+            <div class="sec-tt-row"><div class="q-bubble not-answered" style="width:16px; height:16px;"></div> <span id="tt-not-ans">0</span> Not Answered</div>
+            <div class="sec-tt-row"><div class="q-bubble review" style="width:16px; height:16px;"></div> <span id="tt-rev">0</span> Marked Review</div>
+            <div class="sec-tt-row"><div class="q-bubble review-answered" style="width:16px; height:16px;"></div> <span id="tt-rev-ans">0</span> Ans & Review</div>
+            <div class="sec-tt-row"><div class="q-bubble" style="width:16px; height:16px; color:transparent;">-</div> <span id="tt-not-vis">0</span> Not Visited</div>
+        </div>
+    </div>
+
+    <!-- 🔥 SMART SYNC SCRIPT -->
+    <script>
+        // Universal Panel Toggle
+        function togglePanel() {
+            const panel = document.getElementById('right-panel');
+            if (window.innerWidth > 800) {
+                // Ensure engine toggle is called if available so state updates cleanly
+                if (window.engine && window.engine.toggleRightPanel) {
+                    window.engine.toggleRightPanel();
+                } else {
+                    panel.classList.toggle('collapsed');
+                }
+            } else {
+                panel.classList.toggle('open');
+            }
+        }
+
+        // Auto-sync overlay, floating button state, and MathJax
+        let isMathJaxRendering = false;
+        const renderMath = () => {
+            if (window.MathJax && window.MathJax.typesetPromise && !isMathJaxRendering) {
+                isMathJaxRendering = true;
+                window.MathJax.typesetPromise().then(() => {
+                    isMathJaxRendering = false;
+                }).catch((err) => {
+                    console.error('MathJax Error:', err);
+                    isMathJaxRendering = false;
+                });
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const panel = document.getElementById('right-panel');
+            const overlay = document.getElementById('mobile-overlay');
+            const floatBtn = document.getElementById('floating-palette-toggle');
+            const arrow = document.getElementById('ui-panel-arrow');
+            const qContent = document.getElementById('ui-q-content');
+
+            // Initialize Arrow & Button placement depending on screen size
+            if (window.innerWidth > 800) {
+                if(arrow) arrow.classList.add('arrow-open'); // Desktop starts with open panel, arrow pointing '>'
+            } else {
+                if(arrow) arrow.classList.remove('arrow-open'); // Mobile starts closed, arrow pointing '<'
+            }
+
+            if(panel) {
+                const panelObserver = new MutationObserver((mutations) => {
+                    mutations.forEach((mutation) => {
+                        if (mutation.attributeName === 'class') {
+                            if (window.innerWidth <= 800) {
+                                // --- Mobile Sync ---
+                                if (!panel.classList.contains('open')) {
+                                    if(overlay) overlay.classList.remove('show');
+                                    if(arrow) arrow.classList.remove('arrow-open');
+                                    if(floatBtn) floatBtn.style.right = '0';
+                                } else {
+                                    if(overlay) overlay.classList.add('show');
+                                    if(arrow) arrow.classList.add('arrow-open');
+                                    // Move arrow button with panel
+                                    if(floatBtn) floatBtn.style.right = panel.offsetWidth + 'px';
+                                }
+                            } else {
+                                // --- Desktop Sync ---
+                                if (panel.classList.contains('collapsed')) {
+                                    if(floatBtn) floatBtn.style.right = '0';
+                                    if(arrow) arrow.classList.remove('arrow-open');
+                                } else {
+                                    if(floatBtn) floatBtn.style.right = '280px';
+                                    if(arrow) arrow.classList.add('arrow-open');
+                                }
+                            }
+                        }
+                    });
+                });
+                panelObserver.observe(panel, { attributes: true });
+            }
+
+            // Bind MathJax Observer to Question Area changes
+            if(qContent) {
+                const contentObserver = new MutationObserver(() => {
+                    renderMath();
+                });
+                contentObserver.observe(qContent, { childList: true, subtree: true });
+            }
+
+            setTimeout(renderMath, 1000);
+        });
+    </script>
 
     <script src="../js/core.js"></script>
     <script src="../js/access-guard.js"></script>
