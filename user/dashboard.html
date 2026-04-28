@@ -131,7 +131,15 @@
 
         /* STATS GRID */
         .stats-density-grid { display: grid; grid-template-columns: 1.3fr repeat(5, 1fr); gap: 8px; margin-bottom: 10px; }
-        .stat-group-card { border-radius: var(--radius-md); padding: 8px 12px; display: flex; align-items: center; gap: 10px; position: relative; overflow: hidden; box-shadow: var(--glass-shadow); }
+        
+        /* 🔥 Make group cards clickable with hover effects */
+        .stat-group-card { 
+            border-radius: var(--radius-md); padding: 8px 12px; display: flex; align-items: center; gap: 10px; 
+            position: relative; overflow: hidden; box-shadow: var(--glass-shadow); 
+            text-decoration: none; cursor: pointer; transition: transform 0.2s, filter 0.2s;
+        }
+        .stat-group-card:hover { transform: translateY(-2px); filter: brightness(1.05); }
+        
         .stat-group-card.mock-bg { background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%); box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2); }
         .stat-group-card.topic-bg { background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2); }
         .stat-group-bg-icon { position: absolute; right: -10px; bottom: -10px; font-size: 4rem; opacity: 0.1; color: white; z-index: 1; }
@@ -140,12 +148,31 @@
         .stat-group-text h4 { color: white; margin: 0; font-size: 0.8rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.1;}
         .stat-group-text p { color: rgba(255,255,255,0.8); margin: 0; font-size: 0.55rem; font-weight: 600; text-transform: uppercase; margin-top: 2px;}
 
+        /* 🔥 Updated stat cards to support inline icons cleanly */
         .stat-dense-card { background: var(--card-bg); backdrop-filter: blur(12px); border: 1px solid var(--card-border); border-radius: var(--radius-md); padding: 8px 10px; display: flex; flex-direction: column; justify-content: center; box-shadow: var(--glass-shadow); }
-        .stat-dense-label { font-size: 0.55rem; color: var(--text-sec); font-weight: 700; text-transform: uppercase; margin-bottom: 1px; white-space: nowrap; letter-spacing: 0.2px; }
-        .stat-dense-val { font-size: 1rem; font-weight: 900; color: var(--text-main); display: flex; align-items: center; justify-content: space-between; line-height: 1.1; }
-        .stat-dense-val i { font-size: 0.7rem; opacity: 0.4; }
+        .stat-dense-label { font-size: 0.55rem; color: var(--text-sec); font-weight: 700; text-transform: uppercase; margin-bottom: 3px; white-space: nowrap; letter-spacing: 0.2px; display: flex; align-items: center; gap: 4px; }
+        .stat-dense-label i { font-size: 0.65rem; opacity: 0.6; }
+        .stat-dense-val { font-size: 1.1rem; font-weight: 900; color: var(--text-main); display: flex; align-items: center; line-height: 1.1; }
         .cw-text { font-size: 0.9rem; display: flex; align-items: center; }
         .cw-slash { font-size: 0.75rem; color: var(--card-border); margin: 0 3px; font-weight: 400; }
+
+        /* 🔥 Clean Leaderboard Banner Classes */
+        .lb-banner {
+            padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; 
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(245, 158, 11, 0.05)); 
+            border-color: rgba(245, 158, 11, 0.3); margin-bottom: 18px; gap: 15px;
+        }
+        .lb-left { display: flex; align-items: center; gap: 15px; }
+        .lb-icon { font-size: 2rem; color: var(--warning); flex-shrink: 0; }
+        .lb-text h3 { margin: 0; font-size: 0.95rem; color: var(--text-main); font-weight: 800; }
+        .lb-text p { margin: 2px 0 0 0; font-size: 0.75rem; color: var(--text-sec); font-weight: 500; }
+        .lb-btn { 
+            background: linear-gradient(135deg, #f59e0b, #d97706); color: white; padding: 8px 16px; 
+            border: none; font-size: 0.75rem; text-decoration: none; border-radius: var(--radius-sm); 
+            font-weight: 700; white-space: nowrap; flex-shrink: 0; transition: transform 0.2s; 
+            display: inline-flex; align-items: center; gap: 6px; 
+        }
+        .lb-btn:hover { transform: translateY(-1px); }
 
         /* BOTTOM LAYOUT */
         .dashboard-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
@@ -187,11 +214,34 @@
         @media (max-width: 1024px) { .stats-density-grid { grid-template-columns: repeat(3, 1fr); } .stat-group-card { grid-column: span 3; } }
         @media (max-width: 850px) { .top-dashboard-grid { grid-template-columns: 1fr; } .dashboard-cols { grid-template-columns: 1fr; } }
         @media (max-width: 600px) {
-            .stats-density-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
-            .stat-group-card { grid-column: span 2; padding: 12px; }
+            .stats-density-grid { 
+                display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 15px;
+            }
+            .stat-group-card { 
+                width: 100%; padding: 12px 15px; margin-bottom: 4px; box-sizing: border-box;
+            }
+            /* 🔥 Center all content vertically and horizontally inside stat cards on mobile */
+            .stat-dense-card { 
+                width: calc(50% - 4px); box-sizing: border-box; 
+                padding: 14px 10px; text-align: center; align-items: center; 
+            }
+            .stat-dense-label { justify-content: center; width: 100%; margin-bottom: 6px; }
+            .stat-dense-val { justify-content: center; width: 100%; }
+            .cw-text { justify-content: center; }
+
             .purchases-panel { flex-direction: column; gap: 10px; }
             .purchases-left { border-right: none; border-bottom: 1px dashed var(--card-border); padding-right: 0; padding-bottom: 10px; }
             .h-score-val { font-size: 0.85rem; }
+
+            /* 🔥 Mobile Leaderboard Punchy Look */
+            .lb-banner { 
+                padding: 10px 12px; gap: 8px; flex-direction: row; flex-wrap: nowrap; align-items: center; 
+            }
+            .lb-left { gap: 10px; }
+            .lb-icon { font-size: 1.4rem; } 
+            .lb-text h3 { font-size: 0.85rem; line-height: 1.1; margin-bottom: 2px; }
+            .lb-text p { font-size: 0.65rem; line-height: 1.2; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; } 
+            .lb-btn { padding: 6px 12px; font-size: 0.7rem; width: auto; }
         }
     </style>
     <script>
@@ -256,78 +306,78 @@
 
         <!-- High Density Stats: MOCKS -->
         <div class="stats-density-grid">
-            <div class="stat-group-card mock-bg">
+            <a href="https://hpgk.toolblaster.com/hp-exam-full-mock-test/" class="stat-group-card mock-bg">
                 <i class="fa-solid fa-file-signature stat-group-bg-icon"></i>
                 <div class="stat-group-icon"><i class="fa-solid fa-file-signature"></i></div>
                 <div class="stat-group-text">
                     <h4>Full Mocks</h4>
                     <p>Performance</p>
                 </div>
+            </a>
+            <div class="stat-dense-card">
+                <span class="stat-dense-label"><i class="fa-solid fa-flag-checkered"></i> Mocks Taken</span>
+                <div class="stat-dense-val"><span id="stat-mock-count">0</span></div>
             </div>
             <div class="stat-dense-card">
-                <span class="stat-dense-label">Mocks Taken</span>
-                <div class="stat-dense-val"><span id="stat-mock-count">0</span> <i class="fa-solid fa-flag-checkered" style="color:var(--text-sec); opacity:0.3;"></i></div>
+                <span class="stat-dense-label"><i class="fa-solid fa-list-ol"></i> Qs Solved</span>
+                <div class="stat-dense-val"><span id="stat-mock-qs">0</span></div>
             </div>
             <div class="stat-dense-card">
-                <span class="stat-dense-label">Qs Solved</span>
-                <div class="stat-dense-val"><span id="stat-mock-qs">0</span> <i class="fa-solid fa-list-ol" style="color:var(--text-sec); opacity:0.3;"></i></div>
+                <span class="stat-dense-label"><i class="fa-solid fa-check-double"></i> Right / Wrong</span>
+                <div class="stat-dense-val"><span id="stat-mock-cw" class="cw-text"><span style="color:var(--success);">0</span> <span class="cw-slash">/</span> <span style="color:var(--danger);">0</span></span></div>
             </div>
             <div class="stat-dense-card">
-                <span class="stat-dense-label">Right / Wrong</span>
-                <div class="stat-dense-val"><span id="stat-mock-cw" class="cw-text"><span style="color:var(--success);">0</span> <span class="cw-slash">/</span> <span style="color:var(--danger);">0</span></span> <i class="fa-solid fa-check-double" style="color:var(--text-main); opacity:0.2;"></i></div>
+                <span class="stat-dense-label"><i class="fa-solid fa-bullseye"></i> Accuracy</span>
+                <div class="stat-dense-val"><span id="stat-mock-acc" style="color:var(--primary);">0%</span></div>
             </div>
             <div class="stat-dense-card">
-                <span class="stat-dense-label">Accuracy</span>
-                <div class="stat-dense-val"><span id="stat-mock-acc" style="color:var(--primary);">0%</span> <i class="fa-solid fa-bullseye" style="color:var(--primary); opacity:0.8;"></i></div>
-            </div>
-            <div class="stat-dense-card">
-                <span class="stat-dense-label">Avg Time/Q</span>
-                <div class="stat-dense-val"><span id="stat-mock-time" style="color:var(--warning);">0s</span> <i class="fa-regular fa-clock" style="color:var(--warning); opacity:0.8;"></i></div>
+                <span class="stat-dense-label"><i class="fa-regular fa-clock"></i> Avg Time/Q</span>
+                <div class="stat-dense-val"><span id="stat-mock-time" style="color:var(--warning);">0s</span></div>
             </div>
         </div>
 
         <!-- High Density Stats: TOPICS -->
-        <div class="stats-density-grid" style="margin-bottom: 18px;">
-            <div class="stat-group-card topic-bg">
+        <div class="stats-density-grid">
+            <a href="https://hpgk.toolblaster.com/himachal-pradesh-gk/" class="stat-group-card topic-bg">
                 <i class="fa-solid fa-layer-group stat-group-bg-icon"></i>
                 <div class="stat-group-icon"><i class="fa-solid fa-layer-group"></i></div>
                 <div class="stat-group-text">
                     <h4>Topic MCQs</h4>
                     <p>Performance</p>
                 </div>
+            </a>
+            <div class="stat-dense-card">
+                <span class="stat-dense-label"><i class="fa-solid fa-flag-checkered"></i> Topics Taken</span>
+                <div class="stat-dense-val"><span id="stat-topic-count">0</span></div>
             </div>
             <div class="stat-dense-card">
-                <span class="stat-dense-label">Topics Taken</span>
-                <div class="stat-dense-val"><span id="stat-topic-count">0</span> <i class="fa-solid fa-flag-checkered" style="color:var(--text-sec); opacity:0.3;"></i></div>
+                <span class="stat-dense-label"><i class="fa-solid fa-list-ol"></i> Qs Solved</span>
+                <div class="stat-dense-val"><span id="stat-topic-qs">0</span></div>
             </div>
             <div class="stat-dense-card">
-                <span class="stat-dense-label">Qs Solved</span>
-                <div class="stat-dense-val"><span id="stat-topic-qs">0</span> <i class="fa-solid fa-list-ol" style="color:var(--text-sec); opacity:0.3;"></i></div>
+                <span class="stat-dense-label"><i class="fa-solid fa-check-double"></i> Right / Wrong</span>
+                <div class="stat-dense-val"><span id="stat-topic-cw" class="cw-text"><span style="color:var(--success);">0</span> <span class="cw-slash">/</span> <span style="color:var(--danger);">0</span></span></div>
             </div>
             <div class="stat-dense-card">
-                <span class="stat-dense-label">Right / Wrong</span>
-                <div class="stat-dense-val"><span id="stat-topic-cw" class="cw-text"><span style="color:var(--success);">0</span> <span class="cw-slash">/</span> <span style="color:var(--danger);">0</span></span> <i class="fa-solid fa-check-double" style="color:var(--text-main); opacity:0.2;"></i></div>
+                <span class="stat-dense-label"><i class="fa-solid fa-bullseye"></i> Accuracy</span>
+                <div class="stat-dense-val"><span id="stat-topic-acc" style="color:var(--primary);">0%</span></div>
             </div>
             <div class="stat-dense-card">
-                <span class="stat-dense-label">Accuracy</span>
-                <div class="stat-dense-val"><span id="stat-topic-acc" style="color:var(--primary);">0%</span> <i class="fa-solid fa-bullseye" style="color:var(--primary); opacity:0.8;"></i></div>
-            </div>
-            <div class="stat-dense-card">
-                <span class="stat-dense-label">Avg Time/Q</span>
-                <div class="stat-dense-val"><span id="stat-topic-time" style="color:var(--text-sec);">N/A</span> <i class="fa-solid fa-infinity" style="color:var(--text-sec); opacity:0.5;"></i></div>
+                <span class="stat-dense-label"><i class="fa-solid fa-infinity"></i> Avg Time/Q</span>
+                <div class="stat-dense-val"><span id="stat-topic-time" style="color:var(--text-sec);">N/A</span></div>
             </div>
         </div>
 
         <!-- NEW LEADERBOARD BANNER -->
-        <div class="glass-panel" style="padding: 12px 20px; display:flex; justify-content:space-between; align-items:center; background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(245, 158, 11, 0.05)); border-color: rgba(245, 158, 11, 0.3); margin-bottom: 18px;">
-            <div style="display:flex; align-items:center; gap:15px;">
-                <div style="font-size:2rem; color:var(--warning);"><i class="fa-solid fa-trophy"></i></div>
-                <div>
-                    <h3 style="margin:0; font-size:0.95rem; color:var(--text-main); font-weight: 800;">Global Leaderboard & Rewards</h3>
-                    <p style="margin:2px 0 0 0; font-size:0.75rem; color:var(--text-sec); font-weight: 500;">See where you rank among thousands of HP aspirants.</p>
+        <div class="glass-panel lb-banner">
+            <div class="lb-left">
+                <div class="lb-icon"><i class="fa-solid fa-trophy"></i></div>
+                <div class="lb-text">
+                    <h3>Global Leaderboard & Rewards</h3>
+                    <p>See where you rank among thousands of HP aspirants.</p>
                 </div>
             </div>
-            <a href="leaderboard.html" class="nav-btn" style="background: linear-gradient(135deg, #f59e0b, #d97706); color: white; padding: 8px 16px; border: none; font-size: 0.75rem; text-decoration: none;">View Ranks <i class="fa-solid fa-arrow-right"></i></a>
+            <a href="leaderboard.html" class="lb-btn">View Ranks <i class="fa-solid fa-arrow-right"></i></a>
         </div>
 
         <!-- MAIN GRID: Mastery (2 Columns) -->
@@ -841,11 +891,9 @@
                     document.getElementById('stat-topic-qs').innerText = topicLatestTotalQs; 
                     document.getElementById('stat-topic-cw').innerHTML = `<span style="color:var(--success);">${topicLatestCorrectQs}</span> <span class="cw-slash">/</span> <span style="color:var(--danger);">${topicLatestWrongQs}</span>`;
                     document.getElementById('stat-topic-acc').innerText = topicAvgAcc + '%';
-                    if (topicAvgTime === 'N/A') {
-                        document.getElementById('stat-topic-time').parentNode.innerHTML = `<span id="stat-topic-time" style="color:var(--text-sec);">${topicAvgTime}</span> <i class="fa-solid fa-infinity" style="color:var(--text-sec); opacity:0.5;"></i>`;
-                    } else {
-                        document.getElementById('stat-topic-time').innerText = topicAvgTime;
-                    }
+                    
+                    // Fixed logic since icon is now in the label
+                    document.getElementById('stat-topic-time').innerText = topicAvgTime;
                 }
             } catch(e) { }
 
