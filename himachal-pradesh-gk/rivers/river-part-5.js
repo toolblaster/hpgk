@@ -319,5 +319,405 @@ window.quizData = window.quizData.concat([
         options: ["Dehra (देहरा)", "Pong (पोंग)", "Mirthal (मिर्थल)", "Pathankot (पठानकोट)"],
         answer: 3,
         explanation: "The Chakki khad joins the Beas river near Pathankot.\n\nचक्की खड्ड पठानकोट के पास व्यास नदी में मिलती है।"
+    },
+    {
+        id: 301,
+        questionEn: "The 'Flachan' stream joins the Tirthan river near which place?",
+        questionHi: "'फ्लाचन' धारा तीर्थन नदी में किस स्थान के पास मिलती है?",
+        options: ["Banjar (बंजार)", "Aut (औट)", "Gushaini (गुशैनी)", "Bali Chowki (बाली चौकी)"],
+        answer: 2,
+        explanation: "The Flachan stream is a major tributary that joins the Tirthan river at Gushaini in Kullu district.\n\nफ्लाचन धारा एक प्रमुख सहायक नदी है जो कुल्लू जिले के गुशैनी में तीर्थन नदी में मिलती है।"
+    },
+    {
+        id: 302,
+        questionEn: "'Jiwa Nala' is an important tributary of which river in Kullu?",
+        questionHi: "'जिवा नाला' कुल्लू में किस नदी की एक महत्वपूर्ण सहायक नदी है?",
+        options: ["Tirthan (तीर्थन)", "Sainj (सैंज)", "Parbati (पार्वती)", "Sarvari (सरवरी)"],
+        answer: 1,
+        explanation: "Jiwa Nala flows through the Great Himalayan National Park and joins the Sainj river.\n\nजिवा नाला ग्रेट हिमालयन नेशनल पार्क से होकर बहता है और सैंज नदी में मिलता है।"
+    },
+    {
+        id: 303,
+        questionEn: "The 'Harla' (Hurla) stream originates from the vicinity of which pass?",
+        questionHi: "'हारला' (हुरला) धारा किस दर्रे के आसपास से निकलती है?",
+        options: ["Bhubu Pass (भूबू दर्रा)", "Jalori Pass (जलोड़ी दर्रा)", "Rohtang Pass (रोहतांग दर्रा)", "Bashleo Pass (बशलेओ दर्रा)"],
+        answer: 0,
+        explanation: "The Harla stream originates from the Bhubu Pass area and joins Beas at Bhuntar.\n\nहारला धारा भूबू दर्रे के क्षेत्र से निकलती है और भुंतर में व्यास में मिलती है।"
+    },
+    {
+        id: 304,
+        questionEn: "'Kaza', the sub-divisional headquarters of Spiti, is situated on the bank of which river?",
+        questionHi: "स्पीति का उप-मंडलीय मुख्यालय 'काज़ा' किस नदी के किनारे स्थित है?",
+        options: ["Pin (पिन)", "Lingti (लिंगती)", "Spiti (स्पीति)", "Parechu (पारेचू)"],
+        answer: 2,
+        explanation: "The town of Kaza is situated on the left bank of the Spiti river.\n\nकाज़ा शहर स्पीति नदी के बाएं किनारे पर स्थित है।"
+    },
+    {
+        id: 305,
+        questionEn: "'Keylong', the headquarters of Lahaul-Spiti, is situated on the banks of which river?",
+        questionHi: "लाहौल-स्पीति का मुख्यालय 'केलंग' किस नदी के किनारे स्थित है?",
+        options: ["Chandra (चंद्रा)", "Bhaga (भागा)", "Chenab (चिनाब)", "Miyar (मियार)"],
+        answer: 1,
+        explanation: "Keylong is beautifully situated on the banks of the Bhaga river in Lahaul valley.\n\nकेलंग लाहौल घाटी में भागा नदी के किनारे खूबसूरती से स्थित है।"
+    },
+    {
+        id: 306,
+        questionEn: "'Udaipur' town in Lahaul is situated near the confluence of Chenab and which stream?",
+        questionHi: "लाहौल में 'उदयपुर' शहर चिनाब और किस धारा के संगम के पास स्थित है?",
+        options: ["Thirot Nala (थिरोट नाला)", "Sissu Nala (सिस्सू नाला)", "Teling Nala (तेलिंग नाला)", "Miyar Nala (मियार नाला)"],
+        answer: 3,
+        explanation: "Udaipur is located where the Miyar Nala meets the Chandrabhaga (Chenab) river.\n\nउदयपुर वहां स्थित है जहां मियार नाला चंद्रभागा (चिनाब) नदी से मिलता है।"
+    },
+    {
+        id: 307,
+        questionEn: "The 'Sechu' nala is a prominent tributary of which river in the Pangi valley?",
+        questionHi: "पांगी घाटी में 'सेचु' नाला किस नदी की एक प्रमुख सहायक नदी है?",
+        options: ["Chenab (चिनाब)", "Ravi (रावी)", "Beas (व्यास)", "Satluj (सतलुज)"],
+        answer: 0,
+        explanation: "The Sechu nala is an important stream joining the Chenab river in the remote Pangi valley.\n\nसेचु नाला दूरस्थ पांगी घाटी में चिनाब नदी में मिलने वाली एक महत्वपूर्ण धारा है।"
+    },
+    {
+        id: 308,
+        questionEn: "'Killar', the headquarters of Pangi valley, is situated on the bank of which river?",
+        questionHi: "पांगी घाटी का मुख्यालय 'किलर' किस नदी के किनारे स्थित है?",
+        options: ["Ravi (रावी)", "Beas (व्यास)", "Chenab (चिनाब)", "Spiti (स्पीति)"],
+        answer: 2,
+        explanation: "Killar is situated deep in the Himalayas on the banks of the Chenab river.\n\nकिलर हिमालय की गहराई में चिनाब नदी के किनारे स्थित है।"
+    },
+    {
+        id: 309,
+        questionEn: "'Tarela' and 'Saho' streams are tributaries of which river?",
+        questionHi: "'तारेला' और 'साहो' धाराएँ किस नदी की सहायक नदियाँ हैं?",
+        options: ["Chenab (चिनाब)", "Ravi (रावी)", "Beas (व्यास)", "Satluj (सतलुज)"],
+        answer: 1,
+        explanation: "Tarela and Saho are small but significant tributaries that join the Ravi river in Chamba.\n\nतारेला और साहो छोटी लेकिन महत्वपूर्ण सहायक नदियाँ हैं जो चंबा में रावी नदी में मिलती हैं।"
+    },
+    {
+        id: 310,
+        questionEn: "The 'Bhandal' valley in Chamba is primarily drained by which stream?",
+        questionHi: "चंबा की 'भंडल' घाटी मुख्य रूप से किस धारा द्वारा सिंचित होती है?",
+        options: ["Baira (बैरा)", "Budhil (बुधिल)", "Siul (सियूल)", "Tundah (टुंडाह)"],
+        answer: 2,
+        explanation: "The Bhandal valley is drained by the Siul river, which eventually meets the Ravi.\n\nभंडल घाटी सियूल नदी द्वारा सिंचित होती है, जो अंततः रावी में मिलती है।"
+    },
+    {
+        id: 311,
+        questionEn: "The 'Gaddi' tribal region of Bharmour is primarily drained by which river?",
+        questionHi: "भरमौर का 'गद्दी' जनजातीय क्षेत्र मुख्य रूप से किस नदी द्वारा सिंचित होता है?",
+        options: ["Siul (सियूल)", "Budhil (बुधिल)", "Sal (साल)", "Tundah (टुंडाह)"],
+        answer: 1,
+        explanation: "The Bharmour region, home to the Gaddi tribe, is heavily dependent on the Budhil river.\n\nगद्दी जनजाति का घर, भरमौर क्षेत्र काफी हद तक बुधिल नदी पर निर्भर है।"
+    },
+    {
+        id: 312,
+        questionEn: "Which stream flows through the historical 'Kangra Fort' area before joining the Beas?",
+        questionHi: "व्यास में मिलने से पहले ऐतिहासिक 'कांगड़ा किला' क्षेत्र से होकर कौन सी धारा बहती है?",
+        options: ["Baner (बनेर)", "Gaj (गज)", "Banganga (बाणगंगा)", "Dehar (देहर)"],
+        answer: 2,
+        explanation: "The Banganga stream flows directly below the majestic Kangra Fort.\n\nबाणगंगा धारा राजसी कांगड़ा किले के ठीक नीचे बहती है।"
+    },
+    {
+        id: 313,
+        questionEn: "'Maan' and 'Kunah' khads flow entirely within which district before joining the Beas?",
+        questionHi: "'मान' और 'कुनाह' खड्ड व्यास में मिलने से पहले पूरी तरह से किस जिले के भीतर बहती हैं?",
+        options: ["Kangra (कांगड़ा)", "Mandi (मंडी)", "Hamirpur (हमीरपुर)", "Bilaspur (बिलासपुर)"],
+        answer: 2,
+        explanation: "Maan and Kunah khads are major streams originating and flowing entirely within Hamirpur district.\n\nमान और कुनाह खड्ड प्रमुख धाराएं हैं जो पूरी तरह से हमीरपुर जिले के भीतर निकलती और बहती हैं।"
+    },
+    {
+        id: 314,
+        questionEn: "'Bakar' khad is a tributary of Beas that primarily flows through which district?",
+        questionHi: "'बक्कर' खड्ड व्यास की एक सहायक नदी है जो मुख्य रूप से किस जिले से होकर बहती है?",
+        options: ["Mandi (मंडी)", "Hamirpur (हमीरपुर)", "Kangra (कांगड़ा)", "Kullu (कुल्लू)"],
+        answer: 0,
+        explanation: "Bakar khad is an important stream that drains parts of the Mandi district before joining Beas.\n\nबक्कर खड्ड एक महत्वपूर्ण धारा है जो व्यास में मिलने से पहले मंडी जिले के कुछ हिस्सों को सिंचित करती है।"
+    },
+    {
+        id: 315,
+        questionEn: "The 'Binwa' stream, a tributary of Beas, flows through which prominent town?",
+        questionHi: "व्यास की सहायक नदी, 'बिनवा' धारा किस प्रमुख शहर से होकर बहती है?",
+        options: ["Palampur (पालमपुर)", "Jogindernagar (जोगिंदरनगर)", "Baijnath (बैजनाथ)", "Dharamshala (धर्मशाला)"],
+        answer: 2,
+        explanation: "The Binwa stream flows right past the ancient Shiva temple town of Baijnath.\n\nबिनवा धारा बैजनाथ के प्राचीन शिव मंदिर वाले शहर के ठीक पास से बहती है।"
+    },
+    {
+        id: 316,
+        questionEn: "'Suketi' khad merges with the Beas river at which town?",
+        questionHi: "'सुकेती' खड्ड किस शहर में व्यास नदी में मिल जाती है?",
+        options: ["Pandoh (पंडोह)", "Aut (औट)", "Mandi (मंडी)", "Sundernagar (सुंदरनगर)"],
+        answer: 2,
+        explanation: "Suketi Khad, which flows through Balh valley, joins the Beas river right at Mandi town.\n\nसुकेती खड्ड, जो बल्ह घाटी से होकर बहती है, मंडी शहर में व्यास नदी में मिल जाती है।"
+    },
+    {
+        id: 317,
+        questionEn: "'Son' and 'Ali' khads are the tributaries of which major river?",
+        questionHi: "'सोन' और 'अली' खड्डें किस प्रमुख नदी की सहायक नदियाँ हैं?",
+        options: ["Satluj (सतलुज)", "Beas (व्यास)", "Ravi (रावी)", "Yamuna (यमुना)"],
+        answer: 0,
+        explanation: "Both Son and Ali khads are prominent tributaries joining the Satluj river in Bilaspur district.\n\nसोन और अली दोनों प्रमुख खड्डें हैं जो बिलासपुर जिले में सतलुज नदी में मिलती हैं।"
+    },
+    {
+        id: 318,
+        questionEn: "'Ghamber' khad forms a natural boundary between which two districts for some distance?",
+        questionHi: "'गंभर' खड्ड कुछ दूरी तक किन दो जिलों के बीच एक प्राकृतिक सीमा बनाती है?",
+        options: ["Mandi and Bilaspur (मंडी और बिलासपुर)", "Solan and Bilaspur (सोलन और बिलासपुर)", "Shimla and Solan (शिमला और सोलन)", "Una and Hamirpur (ऊना और हमीरपुर)"],
+        answer: 1,
+        explanation: "Ghamber Khad serves as a border stream between Solan and Bilaspur before merging into Satluj.\n\nगंभर खड्ड सतलुज में मिलने से पहले सोलन और बिलासपुर के बीच एक सीमा धारा के रूप में काम करती है।"
+    },
+    {
+        id: 319,
+        questionEn: "The 'Bhabha' valley is situated along the Bhaba river, which is also known by what local name?",
+        questionHi: "'भाभा' घाटी भाभा नदी के किनारे स्थित है, जिसे किस स्थानीय नाम से भी जाना जाता है?",
+        options: ["Pejur river (पेजूर नदी)", "Kashang river (काशंग नदी)", "Wangar river (वांगर नदी)", "Ropa river (रोपा नदी)"],
+        answer: 2,
+        explanation: "The Bhaba river is often referred to locally as the Wangar river in Kinnaur.\n\nभाभा नदी को अक्सर किन्नौर में स्थानीय रूप से वांगर नदी कहा जाता है।"
+    },
+    {
+        id: 320,
+        questionEn: "The 'Tidong' stream joins the Satluj river near which place in Kinnaur?",
+        questionHi: "'तिदोंग' धारा किन्नौर में किस स्थान के पास सतलुज नदी में मिलती है?",
+        options: ["Kalpa (कल्पा)", "Rekong Peo (रिकांग पिओ)", "Pooh (पूह)", "Morang (मूरंग)"],
+        answer: 3,
+        explanation: "The Tidong stream joins the mighty Satluj near the Morang tehsil area of Kinnaur.\n\nतिदोंग धारा किन्नौर के मूरंग तहसील क्षेत्र के पास शक्तिशाली सतलुज में मिलती है।"
+    },
+    {
+        id: 321,
+        questionEn: "'Pejur' and 'Kashang' streams join the Satluj river in which district?",
+        questionHi: "'पेजूर' और 'काशंग' धाराएँ किस जिले में सतलुज नदी में मिलती हैं?",
+        options: ["Shimla (शिमला)", "Kinnaur (किन्नौर)", "Kullu (कुल्लू)", "Mandi (मंडी)"],
+        answer: 1,
+        explanation: "Both Pejur and Kashang are rugged mountain streams merging with Satluj in Kinnaur.\n\nपेजूर और काशंग दोनों ऊबड़-खाबड़ पहाड़ी धाराएँ हैं जो किन्नौर में सतलुज में मिल जाती हैं।"
+    },
+    {
+        id: 322,
+        questionEn: "The 'Ropa' valley in Kinnaur is drained by the Ropa stream, locally also called?",
+        questionHi: "किन्नौर में 'रोपा' घाटी रोपा धारा द्वारा सिंचित है, जिसे स्थानीय रूप से और क्या कहा जाता है?",
+        options: ["Gyanthing Khad (ज्ञानथिंग खड्ड)", "Shyaso Khad (श्यासो खड्ड)", "Baspa Khad (बास्पा खड्ड)", "Yula Khad (युला खड्ड)"],
+        answer: 1,
+        explanation: "The Ropa stream is alternatively and locally known as the Shyaso Khad.\n\nरोपा धारा को वैकल्पिक और स्थानीय रूप से श्यासो खड्ड के नाम से जाना जाता है।"
+    },
+    {
+        id: 323,
+        questionEn: "'Kut' and 'Nogli' streams join the Satluj river near which major town?",
+        questionHi: "'कुट' और 'नोगली' धाराएँ किस प्रमुख शहर के पास सतलुज नदी में मिलती हैं?",
+        options: ["Kumarsain (कुमारसैन)", "Nirath (निरथ)", "Rampur (रामपुर)", "Sunni (सुन्नी)"],
+        answer: 2,
+        explanation: "Kut and Nogli are significant local streams that join Satluj near Rampur Bushahr.\n\nकुट और नोगली महत्वपूर्ण स्थानीय धाराएँ हैं जो रामपुर बुशहर के पास सतलुज में मिलती हैं।"
+    },
+    {
+        id: 324,
+        questionEn: "The 'Jalal' river originates from which place in Sirmaur district?",
+        questionHi: "'जलाल' नदी सिरमौर जिले में किस स्थान से निकलती है?",
+        options: ["Nahan (नाहन)", "Bani village (Pachhad) (बानी गाँव - पच्छाद)", "Renuka (रेणुका)", "Shillai (शिलाई)"],
+        answer: 1,
+        explanation: "The Jalal river originates near Bani village in the Pachhad area of Sirmaur.\n\nजलाल नदी सिरमौर के पच्छाद क्षेत्र में बानी गाँव के पास से निकलती है।"
+    },
+    {
+        id: 325,
+        questionEn: "'Nahan' town is located near the banks of which river?",
+        questionHi: "'नाहन' शहर किस नदी के किनारे स्थित है?",
+        options: ["Bata (बाटा)", "Giri (गिरी)", "Markanda (मारकंडा)", "Jalal (जलाल)"],
+        answer: 2,
+        explanation: "The historical town of Nahan is situated near the Markanda river basin.\n\nऐतिहासिक शहर नाहन मार्कंडा नदी बेसिन के पास स्थित है।"
+    },
+    {
+        id: 326,
+        questionEn: "The 'Sal' river joins the Ravi river at which place?",
+        questionHi: "'साल' नदी रावी नदी में किस स्थान पर मिलती है?",
+        options: ["Rakh (रख)", "Kharamukh (खड़मुख)", "Balu (बालू)", "Tissa (तित्सा)"],
+        answer: 2,
+        explanation: "The Sal river meets the Ravi river near Balu in the vicinity of Chamba town.\n\nसाल नदी चंबा शहर के आसपास बालू के पास रावी नदी से मिलती है।"
+    },
+    {
+        id: 327,
+        questionEn: "The 'Pabbar' river is a major tributary of which river?",
+        questionHi: "'पब्बर' नदी किस नदी की एक प्रमुख सहायक नदी है?",
+        options: ["Yamuna (यमुना)", "Giri (गिरी)", "Tons (टोंस)", "Bata (बाटा)"],
+        answer: 2,
+        explanation: "The Pabbar river joins the Tons river, which is the largest tributary of Yamuna.\n\nपब्बर नदी टोंस नदी में मिलती है, जो यमुना की सबसे बड़ी सहायक नदी है।"
+    },
+    {
+        id: 328,
+        questionEn: "'Rupin' and 'Supin' rivers meet at which place to form the Tons river?",
+        questionHi: "'रूपिन' और 'सुपिन' नदियाँ टोंस नदी बनाने के लिए किस स्थान पर मिलती हैं?",
+        options: ["Tiuni (तियूनी)", "Naitwar (नैटवार)", "Kalsi (कालसी)", "Dakpatthar (डाकपत्थर)"],
+        answer: 1,
+        explanation: "Rupin and Supin streams merge at Naitwar in Uttarakhand to form the Tons river.\n\nरूपिन और सुपिन धाराएँ उत्तराखंड के नैटवार में टोंस नदी बनाने के लिए मिलती हैं।"
+    },
+    {
+        id: 329,
+        questionEn: "The 'Asan' river joins the Yamuna at which barrage/lake?",
+        questionHi: "'आसन' नदी यमुना में किस बैराज/झील में मिलती है?",
+        options: ["Dakpatthar (डाकपत्थर)", "Hathni Kund (हथनी कुंड)", "Tajewala (ताजेवाला)", "Dhalipur (Asan Barrage) (ढालीपुर - आसन बैराज)"],
+        answer: 3,
+        explanation: "The Asan river joins the Yamuna at the Dhalipur (Asan Barrage) near the HP-UK border.\n\nआसन नदी हि.प्र.-उत्तराखंड सीमा के पास ढालीपुर (आसन बैराज) में यमुना में मिलती है।"
+    },
+    {
+        id: 330,
+        questionEn: "The 'Pabbar' river joins the Tons river at which place?",
+        questionHi: "'पब्बर' नदी टोंस नदी में किस स्थान पर मिलती है?",
+        options: ["Naitwar (नैटवार)", "Tiuni (तियूनी)", "Kalsi (कालसी)", "Hatkoti (हाटकोटी)"],
+        answer: 1,
+        explanation: "The Pabbar river merges into the Tons river at Tiuni (bordering HP and Uttarakhand).\n\nपब्बर नदी तियूनी (हि.प्र. और उत्तराखंड की सीमा) पर टोंस नदी में मिल जाती है।"
+    },
+    {
+        id: 331,
+        questionEn: "The historical 'Chamba' town is located on which bank of the Ravi river?",
+        questionHi: "ऐतिहासिक 'चंबा' शहर रावी नदी के किस तट पर स्थित है?",
+        options: ["Left Bank (बायां तट)", "Both Banks (दोनों तट)", "Right Bank (दायां तट)", "None (कोई नहीं)"],
+        answer: 2,
+        explanation: "Chamba town is picturesquely situated on the right bank of the Ravi river.\n\nचंबा शहर रावी नदी के दाहिने किनारे पर खूबसूरती से स्थित है।"
+    },
+    {
+        id: 332,
+        questionEn: "The 'Mandi' town is located on which bank of the Beas river?",
+        questionHi: "'मंडी' शहर व्यास नदी के किस तट पर स्थित है?",
+        options: ["Left Bank (बायां तट)", "Right Bank (दायां तट)", "Both Banks (दोनों तट)", "None (कोई नहीं)"],
+        answer: 0,
+        explanation: "Mandi is historically situated on the left bank of the Beas river.\n\nमंडी ऐतिहासिक रूप से व्यास नदी के बाएं किनारे पर स्थित है।"
+    },
+    {
+        id: 333,
+        questionEn: "'Manali' is situated on which bank of the Beas river?",
+        questionHi: "'मनाली' व्यास नदी के किस तट पर स्थित है?",
+        options: ["Right Bank (दायां तट)", "Left Bank (बायां तट)", "Both Banks (दोनों तट)", "None (कोई नहीं)"],
+        answer: 0,
+        explanation: "The original Manali town developed on the right bank of the Beas river.\n\nमूल मनाली शहर व्यास नदी के दाहिने किनारे पर विकसित हुआ।"
+    },
+    {
+        id: 334,
+        questionEn: "The 'Govind Sagar' reservoir on Satluj extends up to which place in Bilaspur?",
+        questionHi: "सतलुज पर 'गोविंद सागर' जलाशय बिलासपुर में किस स्थान तक फैला हुआ है?",
+        options: ["Dehar (देहर)", "Kandrour (कंदरौर)", "Koldam (कोलडैम)", "Slapper (स्लप्पड़)"],
+        answer: 3,
+        explanation: "The tail end of the massive Govind Sagar reservoir reaches near Slapper.\n\nविशाल गोविंद सागर जलाशय का अंतिम सिरा स्लप्पड़ के पास तक पहुँचता है।"
+    },
+    {
+        id: 335,
+        questionEn: "The 'Pong Dam' reservoir on the Beas river is famous as a Ramsar site primarily for?",
+        questionHi: "व्यास नदी पर 'पोंग बांध' जलाशय मुख्य रूप से एक रामसर स्थल के रूप में किसके लिए प्रसिद्ध है?",
+        options: ["Snow Leopards (हिम तेंदुए)", "Mahseer fishing (महसीर मछली पकड़ना)", "Migratory birds (प्रवासी पक्षी)", "Water sports (जल क्रीड़ा)"],
+        answer: 2,
+        explanation: "The Pong Dam lake is a globally recognized wetland (Ramsar site) crucial for wintering migratory birds.\n\nपोंग बांध झील एक विश्व स्तर पर मान्यता प्राप्त आर्द्रभूमि (रामसर स्थल) है जो सर्दियों में आने वाले प्रवासी पक्षियों के लिए महत्वपूर्ण है।"
+    },
+    {
+        id: 336,
+        questionEn: "'Gyephang' peak, which feeds the Bhaga river, is considered the patron deity of which valley?",
+        questionHi: "'ग्येफंग' चोटी, जो भागा नदी को पानी देती है, किस घाटी के संरक्षक देवता मानी जाती है?",
+        options: ["Spiti (स्पीति)", "Pangi (पांगी)", "Lahaul (लाहौल)", "Kinnaur (किन्नौर)"],
+        answer: 2,
+        explanation: "Gyephang is the presiding deity of Lahaul, and its namesake peak dominates the valley.\n\nग्येफंग लाहौल के पीठासीन देवता हैं, और उनके नाम वाली चोटी घाटी पर हावी है।"
+    },
+    {
+        id: 337,
+        questionEn: "The 'Bhaga' river is locally known by which name in its upper reaches before Tandi?",
+        questionHi: "तांडी से पहले अपने ऊपरी मार्ग में 'भागा' नदी को स्थानीय रूप से किस नाम से जाना जाता है?",
+        options: ["Rangoli (रंगोली)", "Gara (गारा)", "Lee (ली)", "Zangska (ज़ांग्स्का)"],
+        answer: 1,
+        explanation: "The valley and upper course of the Bhaga river are often referred to as Gara.\n\nभागा नदी की घाटी और ऊपरी मार्ग को अक्सर गारा कहा जाता है।"
+    },
+    {
+        id: 338,
+        questionEn: "The 'Chandra' river is locally known by which name in its upper reaches before Tandi?",
+        questionHi: "तांडी से पहले अपने ऊपरी मार्ग में 'चंद्रा' नदी को स्थानीय रूप से किस नाम से जाना जाता है?",
+        options: ["Gara (गारा)", "Lee (ली)", "Zangska (ज़ांग्स्का)", "Rangoli (रंगोली)"],
+        answer: 3,
+        explanation: "The valley associated with the Chandra river is locally called the Rangoli valley.\n\nचंद्रा नदी से जुड़ी घाटी को स्थानीय रूप से रंगोली घाटी कहा जाता है।"
+    },
+    {
+        id: 339,
+        questionEn: "The 'Spiti' river is locally known by which name in its uppermost reaches?",
+        questionHi: "अपनी सबसे ऊपरी पहुँच में 'स्पीति' नदी को स्थानीय रूप से किस नाम से जाना जाता है?",
+        options: ["Tsarab (त्सराब)", "Gara (गारा)", "Lee (ली)", "Piti (पीती)"],
+        answer: 2,
+        explanation: "In its absolute upper parts, near its glacial origins, Spiti is sometimes called the Lee river.\n\nअपने बिल्कुल ऊपरी हिस्सों में, इसके हिमनद उद्गम के पास, स्पीति को कभी-कभी ली नदी कहा जाता है।"
+    },
+    {
+        id: 340,
+        questionEn: "The channelization of the 'Swan' river in Una was primarily taken up with the financial assistance of which country?",
+        questionHi: "ऊना में 'स्वान' नदी का चैनलाइजेशन मुख्य रूप से किस देश की वित्तीय सहायता से शुरू किया गया था?",
+        options: ["Germany (जर्मनी)", "Japan (जापान)", "USA (संयुक्त राज्य अमेरिका)", "France (फ्रांस)"],
+        answer: 1,
+        explanation: "The Swan river channelization project was massively supported by Japanese (JICA) funding to prevent floods.\n\nबाढ़ को रोकने के लिए स्वान नदी चैनलाइजेशन परियोजना को जापानी (JICA) फंडिंग द्वारा भारी समर्थन दिया गया था।"
+    },
+    {
+        id: 341,
+        questionEn: "The 'Satluj' river enters the Punjab plains at which place?",
+        questionHi: "'सतलुज' नदी पंजाब के मैदानों में किस स्थान पर प्रवेश करती है?",
+        options: ["Ropar (रोपड़)", "Nangal (नंगल)", "Harike (हरीके)", "Ferozepur (फ़िरोज़पुर)"],
+        answer: 1,
+        explanation: "After leaving the hills of HP, Satluj enters the plains of Punjab at Nangal.\n\nहि.प्र. की पहाड़ियों को छोड़ने के बाद, सतलुज नंगल में पंजाब के मैदानों में प्रवेश करती है।"
+    },
+    {
+        id: 342,
+        questionEn: "The 'Ravi' river enters the plains of Punjab at which place?",
+        questionHi: "'रावी' नदी पंजाब के मैदानों में किस स्थान पर प्रवेश करती है?",
+        options: ["Pathankot (पठानकोट)", "Shahpur Kandi (शाहपुर कंडी)", "Mirthal (मिर्थल)", "Madhopur (माधोपुर)"],
+        answer: 3,
+        explanation: "The Ravi enters the Punjab plains at Madhopur near Pathankot.\n\nरावी पठानकोट के पास माधोपुर में पंजाब के मैदानों में प्रवेश करती है।"
+    },
+    {
+        id: 343,
+        questionEn: "The 'Beas' river enters the plains of Punjab at which place?",
+        questionHi: "'व्यास' नदी पंजाब के मैदानों में किस स्थान पर प्रवेश करती है?",
+        options: ["Talwara (तलवाड़ा)", "Mirthal (मिर्थल)", "Mukerian (मुकेरियां)", "Pathankot (पठानकोट)"],
+        answer: 1,
+        explanation: "The Beas river leaves the hilly terrain and enters the plains at Mirthal.\n\nव्यास नदी पहाड़ी इलाके को छोड़ देती है और मिर्थल में मैदानों में प्रवेश करती है।"
+    },
+    {
+        id: 344,
+        questionEn: "The 'Chenab' river enters the plains of Jammu & Kashmir at which place?",
+        questionHi: "'चिनाब' नदी जम्मू और कश्मीर के मैदानों में किस स्थान पर प्रवेश करती है?",
+        options: ["Kishtwar (किश्तवाड़)", "Doda (डोडा)", "Akhnoor (अखनूर)", "Reasi (रियासी)"],
+        answer: 2,
+        explanation: "After flowing through the mountains of HP and J&K, Chenab finally enters the plains at Akhnoor.\n\nहि.प्र. और जम्मू-कश्मीर के पहाड़ों से बहने के बाद, चिनाब अंततः अखनूर में मैदानों में प्रवेश करती है।"
+    },
+    {
+        id: 345,
+        questionEn: "The 'Shanan' hydroelectric project in Jogindernagar was commissioned in which year?",
+        questionHi: "जोगिंदरनगर में 'शानन' जलविद्युत परियोजना को किस वर्ष चालू किया गया था?",
+        options: ["1948", "1966", "1971", "1932"],
+        answer: 3,
+        explanation: "Built by Col B.C. Battye, the historic Shanan powerhouse was commissioned in 1932.\n\nकर्नल बी.सी. बैटी द्वारा निर्मित, ऐतिहासिक शानन पावरहाउस 1932 में चालू किया गया था।"
+    },
+    {
+        id: 346,
+        questionEn: "The 'Sanjay Vidyut Pariyojana' (Bhaba project) holds the distinction of being Asia's first what?",
+        questionHi: "'संजय विद्युत परियोजना' (भाभा परियोजना) को एशिया की पहली क्या होने का गौरव प्राप्त है?",
+        options: ["Run-of-the-river project (रन-ऑफ-द-रिवर परियोजना)", "Earth-fill dam (अर्थ-फिल बांध)", "Gravity dam (गुरुत्वाकर्षण बांध)", "Underground hydel project (भूमिगत जलविद्युत परियोजना)"],
+        answer: 3,
+        explanation: "The 120 MW Sanjay Vidyut Pariyojana in Kinnaur is uniquely designed as Asia's first fully underground hydroelectric project.\n\nकिन्नौर में 120 मेगावाट की संजय विद्युत परियोजना को विशिष्ट रूप से एशिया की पहली पूरी तरह से भूमिगत जलविद्युत परियोजना के रूप में डिज़ाइन किया गया है।"
+    },
+    {
+        id: 347,
+        questionEn: "The massive 'Nathpa Jhakri' project (1500 MW) was completed with the financial assistance of which international organization?",
+        questionHi: "विशाल 'नाथपा झाकड़ी' परियोजना (1500 मेगावाट) किस अंतर्राष्ट्रीय संगठन की वित्तीय सहायता से पूरी की गई थी?",
+        options: ["Asian Development Bank (ADB) (एशियाई विकास बैंक - एडीबी)", "World Bank (विश्व बैंक)", "JICA (जाइका)", "IMF (आईएमएफ)"],
+        answer: 1,
+        explanation: "The World Bank provided significant funding for the completion of the Nathpa Jhakri project.\n\nविश्व बैंक ने नाथपा झाकड़ी परियोजना को पूरा करने के लिए महत्वपूर्ण धन मुहैया कराया।"
+    },
+    {
+        id: 348,
+        questionEn: "The 'Kol Dam' hydroelectric project (800 MW) is executed by which central public sector undertaking?",
+        questionHi: "'कोल बांध' जलविद्युत परियोजना (800 मेगावाट) किस केंद्रीय सार्वजनिक क्षेत्र के उपक्रम द्वारा निष्पादित की गई है?",
+        options: ["NHPC (एनएचपीसी)", "SJVNL (एसजेवीएनएल)", "BBMB (बीबीएमबी)", "NTPC (एनटीपीसी)"],
+        answer: 3,
+        explanation: "Kol Dam on the Satluj river is executed and managed by the National Thermal Power Corporation (NTPC).\n\nसतलुज नदी पर कोल बांध का निष्पादन और प्रबंधन राष्ट्रीय ताप विद्युत निगम (एनटीपीसी) द्वारा किया जाता है।"
+    },
+    {
+        id: 349,
+        questionEn: "The 'Chamera' hydroelectric projects on the Ravi river are executed by which organization?",
+        questionHi: "रावी नदी पर 'चमेरा' जलविद्युत परियोजनाओं का निष्पादन किस संगठन द्वारा किया जाता है?",
+        options: ["NTPC (एनटीपीसी)", "NHPC (एनएचपीसी)", "SJVNL (एसजेवीएनएल)", "HPSEB (एचपीएसईबी)"],
+        answer: 1,
+        explanation: "Chamera Stage I, II, and III are all executed by the National Hydroelectric Power Corporation (NHPC).\n\nचमेरा चरण I, II, और III सभी राष्ट्रीय जलविद्युत निगम (एनएचपीसी) द्वारा निष्पादित किए जाते हैं।"
+    },
+    {
+        id: 350,
+        questionEn: "The 'Parbati' hydroelectric project, one of the largest in HP, is executed by which organization?",
+        questionHi: "हि.प्र. की सबसे बड़ी परियोजनाओं में से एक, 'पार्वती' जलविद्युत परियोजना का निष्पादन किस संगठन द्वारा किया जाता है?",
+        options: ["NTPC (एनटीपीसी)", "SJVNL (एसजेवीएनएल)", "NHPC (एनएचपीसी)", "BBMB (बीबीएमबी)"],
+        answer: 2,
+        explanation: "The massive Parbati Hydroelectric Project stages are executed by NHPC.\n\nविशाल पार्वती जलविद्युत परियोजना के चरणों का निष्पादन एनएचपीसी द्वारा किया जाता है।"
     }
 ]);
