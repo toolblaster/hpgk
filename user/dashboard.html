@@ -129,17 +129,16 @@
         .compact-btn-buy { background: linear-gradient(135deg, #f59e0b, #ea580c); color: #fff; font-size: 0.65rem; font-weight: 800; padding: 6px 12px; border-radius: 6px; cursor: pointer; border: none; text-transform: uppercase; transition: 0.2s; box-shadow: 0 2px 8px rgba(234, 88, 12, 0.3); }
         .compact-btn-buy:hover { opacity: 0.9; transform: translateY(-1px); }
 
-        /* STATS GRID */
+        /* 🔥 ORIGINAL DESKTOP STATS GRID - DO NOT BREAK 🔥 */
         .stats-density-grid { display: grid; grid-template-columns: 1.3fr repeat(5, 1fr); gap: 8px; margin-bottom: 10px; }
         
-        /* 🔥 Make group cards clickable with hover effects */
         .stat-group-card { 
             border-radius: var(--radius-md); padding: 8px 12px; display: flex; align-items: center; gap: 10px; 
             position: relative; overflow: hidden; box-shadow: var(--glass-shadow); 
-            text-decoration: none; cursor: pointer; transition: transform 0.2s, filter 0.2s;
+            text-decoration: none; cursor: pointer; transition: transform 0.2s ease, filter 0.2s ease;
         }
         .stat-group-card:hover { transform: translateY(-2px); filter: brightness(1.05); }
-        
+
         .stat-group-card.mock-bg { background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%); box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2); }
         .stat-group-card.topic-bg { background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2); }
         .stat-group-bg-icon { position: absolute; right: -10px; bottom: -10px; font-size: 4rem; opacity: 0.1; color: white; z-index: 1; }
@@ -148,15 +147,14 @@
         .stat-group-text h4 { color: white; margin: 0; font-size: 0.8rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.1;}
         .stat-group-text p { color: rgba(255,255,255,0.8); margin: 0; font-size: 0.55rem; font-weight: 600; text-transform: uppercase; margin-top: 2px;}
 
-        /* 🔥 Updated stat cards to support inline icons cleanly */
         .stat-dense-card { background: var(--card-bg); backdrop-filter: blur(12px); border: 1px solid var(--card-border); border-radius: var(--radius-md); padding: 8px 10px; display: flex; flex-direction: column; justify-content: center; box-shadow: var(--glass-shadow); }
-        .stat-dense-label { font-size: 0.55rem; color: var(--text-sec); font-weight: 700; text-transform: uppercase; margin-bottom: 3px; white-space: nowrap; letter-spacing: 0.2px; display: flex; align-items: center; gap: 4px; }
+        .stat-dense-label { font-size: 0.55rem; color: var(--text-sec); font-weight: 700; text-transform: uppercase; margin-bottom: 4px; white-space: nowrap; letter-spacing: 0.2px; display: flex; align-items: center; gap: 4px; }
         .stat-dense-label i { font-size: 0.65rem; opacity: 0.6; }
-        .stat-dense-val { font-size: 1.1rem; font-weight: 900; color: var(--text-main); display: flex; align-items: center; line-height: 1.1; }
+        .stat-dense-val { font-size: 1rem; font-weight: 900; color: var(--text-main); display: flex; align-items: center; justify-content: space-between; line-height: 1.1; }
         .cw-text { font-size: 0.9rem; display: flex; align-items: center; }
         .cw-slash { font-size: 0.75rem; color: var(--card-border); margin: 0 3px; font-weight: 400; }
 
-        /* 🔥 Clean Leaderboard Banner Classes */
+        /* 🔥 LEADERBOARD BANNER */
         .lb-banner {
             padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; 
             background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(245, 158, 11, 0.05)); 
@@ -170,7 +168,6 @@
             background: linear-gradient(135deg, #f59e0b, #d97706); color: white; padding: 8px 16px; 
             border: none; font-size: 0.75rem; text-decoration: none; border-radius: var(--radius-sm); 
             font-weight: 700; white-space: nowrap; flex-shrink: 0; transition: transform 0.2s; 
-            display: inline-flex; align-items: center; gap: 6px; 
         }
         .lb-btn:hover { transform: translateY(-1px); }
 
@@ -211,19 +208,23 @@
         @keyframes spin { 100% { transform: rotate(360deg); } }
 
         /* RESPONSIVE */
-        @media (max-width: 1024px) { .stats-density-grid { grid-template-columns: repeat(3, 1fr); } .stat-group-card { grid-column: span 3; } }
+        @media (max-width: 1024px) { 
+            .stats-density-grid { grid-template-columns: repeat(3, 1fr); } 
+            .stat-group-card { grid-column: span 3; } 
+        }
         @media (max-width: 850px) { .top-dashboard-grid { grid-template-columns: 1fr; } .dashboard-cols { grid-template-columns: 1fr; } }
         @media (max-width: 600px) {
+            /* 🔥 MOBILE CENTERED FLEXBOX FIX 🔥 */
             .stats-density-grid { 
                 display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 15px;
             }
             .stat-group-card { 
                 width: 100%; padding: 12px 15px; margin-bottom: 4px; box-sizing: border-box;
             }
-            /* 🔥 Center all content vertically and horizontally inside stat cards on mobile */
             .stat-dense-card { 
                 width: calc(50% - 4px); box-sizing: border-box; 
-                padding: 14px 10px; text-align: center; align-items: center; 
+                padding: 14px 10px; display: flex; flex-direction: column; 
+                align-items: center; text-align: center; 
             }
             .stat-dense-label { justify-content: center; width: 100%; margin-bottom: 6px; }
             .stat-dense-val { justify-content: center; width: 100%; }
@@ -233,10 +234,8 @@
             .purchases-left { border-right: none; border-bottom: 1px dashed var(--card-border); padding-right: 0; padding-bottom: 10px; }
             .h-score-val { font-size: 0.85rem; }
 
-            /* 🔥 Mobile Leaderboard Punchy Look */
-            .lb-banner { 
-                padding: 10px 12px; gap: 8px; flex-direction: row; flex-wrap: nowrap; align-items: center; 
-            }
+            /* 🔥 Mobile Leaderboard Refinements */
+            .lb-banner { padding: 10px 15px; flex-direction: row; flex-wrap: nowrap; align-items: center; gap: 8px; }
             .lb-left { gap: 10px; }
             .lb-icon { font-size: 1.4rem; } 
             .lb-text h3 { font-size: 0.85rem; line-height: 1.1; margin-bottom: 2px; }
@@ -306,6 +305,7 @@
 
         <!-- High Density Stats: MOCKS -->
         <div class="stats-density-grid">
+            <!-- 🔥 ORIGINAL GRID KE ANDAR CLICKABLE <a> TAG -->
             <a href="https://hpgk.toolblaster.com/hp-exam-full-mock-test/" class="stat-group-card mock-bg">
                 <i class="fa-solid fa-file-signature stat-group-bg-icon"></i>
                 <div class="stat-group-icon"><i class="fa-solid fa-file-signature"></i></div>
@@ -314,6 +314,7 @@
                     <p>Performance</p>
                 </div>
             </a>
+            
             <div class="stat-dense-card">
                 <span class="stat-dense-label"><i class="fa-solid fa-flag-checkered"></i> Mocks Taken</span>
                 <div class="stat-dense-val"><span id="stat-mock-count">0</span></div>
@@ -337,7 +338,8 @@
         </div>
 
         <!-- High Density Stats: TOPICS -->
-        <div class="stats-density-grid">
+        <div class="stats-density-grid" style="margin-bottom: 18px;">
+            <!-- 🔥 ORIGINAL GRID KE ANDAR CLICKABLE <a> TAG -->
             <a href="https://hpgk.toolblaster.com/himachal-pradesh-gk/" class="stat-group-card topic-bg">
                 <i class="fa-solid fa-layer-group stat-group-bg-icon"></i>
                 <div class="stat-group-icon"><i class="fa-solid fa-layer-group"></i></div>
@@ -346,6 +348,7 @@
                     <p>Performance</p>
                 </div>
             </a>
+            
             <div class="stat-dense-card">
                 <span class="stat-dense-label"><i class="fa-solid fa-flag-checkered"></i> Topics Taken</span>
                 <div class="stat-dense-val"><span id="stat-topic-count">0</span></div>
@@ -368,7 +371,7 @@
             </div>
         </div>
 
-        <!-- NEW LEADERBOARD BANNER -->
+        <!-- LEADERBOARD BANNER -->
         <div class="glass-panel lb-banner">
             <div class="lb-left">
                 <div class="lb-icon"><i class="fa-solid fa-trophy"></i></div>
@@ -385,7 +388,7 @@
             <!-- Mock Mastery Analytics -->
             <div class="glass-panel" style="padding: 15px; margin-bottom: 0;">
                 <div class="section-header">
-                    <h2 class="section-title"><i class="fa-solid fa-medal"></i> Mock Mastery <span>Latest 7</span></h2>
+                    <h2 class="section-title"><i class="fa-solid fa-medal"></i> Mock Mastery <span>Latest 10</span></h2>
                 </div>
                 <div class="dense-list" id="mock-perf-list">
                     <div style="text-align: center; padding: 15px; color: var(--text-sec); font-size: 0.75rem;">Analyzing performance data...</div>
@@ -395,7 +398,7 @@
             <!-- Subject Mastery Analytics -->
             <div class="glass-panel" style="padding: 15px; margin-bottom: 0;">
                 <div class="section-header">
-                    <h2 class="section-title"><i class="fa-solid fa-chart-column"></i> Topic Mastery <span>Top 7</span></h2>
+                    <h2 class="section-title"><i class="fa-solid fa-chart-column"></i> Topic Mastery <span>Top 10</span></h2>
                 </div>
                 <div class="dense-list" id="subject-perf-list">
                     <div style="text-align: center; padding: 15px; color: var(--text-sec); font-size: 0.75rem;">Analyzing performance data...</div>
@@ -579,14 +582,12 @@
             const smartContainer = document.getElementById('smart-purchases-container');
 
             // 🔥 THE FIX: Live Real-Time Listener for User Passes
-            // Bypasses local cache completely. If Admin clicks 'Grant', this updates instantly!
             const userDocRef = doc(db, 'artifacts', 'hpgk-quiz', 'users', user.uid);
             
             onSnapshot(userDocRef, (uDoc) => {
                 let passes = {};
                 if (uDoc.exists() && uDoc.data().passes) {
                     passes = uDoc.data().passes;
-                    // Update core.js cache silently so other pages work smoothly
                     if(window.HPGK_User) window.HPGK_User.passes = passes; 
                 }
 
@@ -729,13 +730,18 @@
                 let cleanString = rawCat.toLowerCase().replace(/hpgk_/g, '').replace(/[-_]/g, ' ').replace(/\s+/g, ' ').trim();
                 data.cleanCatName = categoryMap[cleanString] || cleanString.replace(/\b\w/g, l => l.toUpperCase());
                 
+                // 🔥 SMART IDENTIFIER LOGIC
+                let uniqueQuizId;
+
                 if (data.testId && typeof data.testId === 'string') {
                     let cleanTest = data.testId.replace('hpgkdata.', '').replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
                     data.displayTitle = `${data.cleanCatName} (${cleanTest})`;
                     data.isMock = true;
+                    uniqueQuizId = data.testId; // Mock ka unique identifier
                 } else {
                     data.displayTitle = data.cleanCatName;
                     data.isMock = false;
+                    uniqueQuizId = data.category || data.cleanCatName; // Topic ka unique identifier
                 }
 
                 let parsedTotal = Number(data.total) || 0;
@@ -748,25 +754,28 @@
                 data._safeWrong = parsedWrong;
                 data._safeTime = Number(data.timeTaken) || 0;
 
-                if (!data.isMock) {
-                    if (!catStats[data.cleanCatName]) catStats[data.cleanCatName] = { correct: 0, total: 0 };
-                    catStats[data.cleanCatName].correct += parsedCorrect;
-                    catStats[data.cleanCatName].total += parsedTotal;
-                }
-
+                // 🔥 SMART DEDUPLICATION: Agar same quiz dobara diya hai, toh purana ignore hoga, sirf LATEST bachega!
                 if (data.isMock) {
-                    if (!latestMocks[data.displayTitle] || latestMocks[data.displayTitle].timestamp < data.timestamp) {
-                        latestMocks[data.displayTitle] = data; 
+                    if (!latestMocks[uniqueQuizId] || latestMocks[uniqueQuizId].timestamp < data.timestamp) {
+                        latestMocks[uniqueQuizId] = data; 
                     }
                 } else {
-                    if (!latestTopics[data.displayTitle] || latestTopics[data.displayTitle].timestamp < data.timestamp) {
-                        latestTopics[data.displayTitle] = data; 
+                    if (!latestTopics[uniqueQuizId] || latestTopics[uniqueQuizId].timestamp < data.timestamp) {
+                        latestTopics[uniqueQuizId] = data; 
                     }
                 }
             });
 
+            // Yahan finalMocks aur finalTopics mein ab sirf UNIQUE quizzes ke LATEST attempts hain
             const finalMocks = Object.values(latestMocks).sort((a,b) => b.timestamp - a.timestamp);
             const finalTopics = Object.values(latestTopics).sort((a,b) => b.timestamp - a.timestamp);
+
+            // Ab topics ke calculation mein bhi koi double counting nahi hogi
+            finalTopics.forEach(data => {
+                if (!catStats[data.cleanCatName]) catStats[data.cleanCatName] = { correct: 0, total: 0 };
+                catStats[data.cleanCatName].correct += data._safeCorrect;
+                catStats[data.cleanCatName].total += data._safeTotal;
+            });
 
             const now = Date.now();
             const oneWeek = 7 * 24 * 60 * 60 * 1000;
@@ -778,6 +787,7 @@
                 week: { mockScore: 0, mockQs: 0, mockAtt: 0, mockCorr: 0, mockTime: 0, topicAtt: 0, topicCorr: 0, topicTime: 0 }
             };
 
+            // Calculate Mock Stats
             finalMocks.forEach(d => {
                 const score = Number(d.score) || 0;
                 const qs = d._safeTotal;
@@ -789,6 +799,7 @@
                 if (now - d.timestamp <= oneWeek) { stats.week.mockScore += score; stats.week.mockQs += qs; stats.week.mockAtt += att; stats.week.mockCorr += corr; stats.week.mockTime += time; }
             });
 
+            // Calculate Topic Stats
             finalTopics.forEach(d => {
                 const att = d._safeCorrect + d._safeWrong; 
                 const corr = d._safeCorrect;
@@ -898,7 +909,8 @@
             } catch(e) { }
 
             try {
-                const sortedMocks = finalMocks.slice(0, 7); 
+                // 🔥 TOP 10 MOCKS
+                const sortedMocks = finalMocks.slice(0, 10); 
                 if (sortedMocks.length > 0) {
                     let mockHtml = '';
                     sortedMocks.forEach(data => {
@@ -926,11 +938,12 @@
             } catch(e) { }
 
             try {
+                // 🔥 TOP 10 TOPICS
                 const sortedCats = Object.keys(catStats).map(cat => ({
                     name: cat,
                     acc: catStats[cat].total > 0 ? Math.round((catStats[cat].correct / catStats[cat].total) * 100) : 0,
                     total: catStats[cat].total
-                })).sort((a, b) => b.total - a.total).slice(0, 7); 
+                })).sort((a, b) => b.total - a.total).slice(0, 10); 
 
                 if (sortedCats.length > 0) {
                     let subjectHtml = '';
