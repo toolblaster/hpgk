@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- 🔥 MathJax For Complex Mathematical Equations (IIT JEE, GATE, CAT Level) -->
+    <!-- ðŸ”¥ MathJax For Complex Mathematical Equations (IIT JEE, GATE, CAT Level) -->
     <script>
         window.MathJax = {
             tex: {
@@ -30,7 +30,7 @@
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
     <style>
-        /* 🔥 ULTIMATE VIEWPORT LOCK & LAYOUT RESET */
+        /* ðŸ”¥ ULTIMATE VIEWPORT LOCK & LAYOUT RESET */
         html, body {
             width: 100vw; 
             height: 100vh; /* Fallback */
@@ -76,7 +76,7 @@
         }
         .panel-toggle-btn:hover { background: var(--input-bg); }
 
-        /* 🔥 FLOATING UNIVERSAL TOGGLE ARROW (For Desktop & Mobile) */
+        /* ðŸ”¥ FLOATING UNIVERSAL TOGGLE ARROW (For Desktop & Mobile) */
         #floating-palette-toggle {
             display: flex;
             position: fixed;
@@ -97,7 +97,7 @@
             transition: right 0.3s ease;
         }
 
-        /* 🔥 ARROW ROTATION ANIMATION */
+        /* ðŸ”¥ ARROW ROTATION ANIMATION */
         #ui-panel-arrow {
             transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -237,7 +237,7 @@
             background: var(--bg-color); flex-shrink: 0;
         }
         
-        /* 🔥 NEW: Marking Scheme Badge Styles */
+        /* ðŸ”¥ NEW: Marking Scheme Badge Styles */
         .marking-badge {
             display: flex; align-items: center; gap: 6px;
             background: var(--input-bg); border: 1px solid var(--border-color);
@@ -271,7 +271,7 @@
             transition: width 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
             border-left: 1px solid var(--border-color);
             z-index: 100;
-            overflow: hidden; /* 🔥 FIX: Ensures contents inside don't stretch layout */
+            overflow: hidden; /* ðŸ”¥ FIX: Ensures contents inside don't stretch layout */
         }
         #right-panel.collapsed { width: 0; opacity: 0; border-left: none; }
         
@@ -289,11 +289,11 @@
         }
         .legend-item { display: flex; align-items: center; gap: 8px; }
         
-        /* 🔥 FIX: min-height:0 allows flex-item to scroll instead of pushing footer */
+        /* ðŸ”¥ FIX: min-height:0 allows flex-item to scroll instead of pushing footer */
         .palette-grid-wrapper { flex: 1; padding: 12px 15px; overflow-y: auto; min-height: 0; }
         .palette-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; } 
         
-        /* 🔥 UPGRADED Q-BUBBLE SIZE TO MAKE NUMBERS MORE VISIBLE */
+        /* ðŸ”¥ UPGRADED Q-BUBBLE SIZE TO MAKE NUMBERS MORE VISIBLE */
         .q-bubble {
             width: 100%; aspect-ratio: 1; border-radius: 4px;
             display: flex; align-items: center; justify-content: center;
@@ -305,7 +305,7 @@
         .q-bubble.review { background: #8b5cf6; color: white; border-color: #7c3aed; border-radius: 50%; }
         .q-bubble.review-answered { background: #8b5cf6; color: white; border-color: #7c3aed; border-radius: 50%; }
         
-        /* 🔥 ADJUSTED DOT FOR REVIEW-ANSWERED SO IT DOESN'T HIDE THE NUMBER */
+        /* ðŸ”¥ ADJUSTED DOT FOR REVIEW-ANSWERED SO IT DOESN'T HIDE THE NUMBER */
         .q-bubble.review-answered::after { 
             content:''; position:absolute; 
             bottom: -2px; right: -2px; 
@@ -344,7 +344,7 @@
         #mobile-overlay { display: none; }
 
         /* =========================================================================
-           🔥 ULTIMATE MOBILE RESPONSIVE TWEAKS 
+           ðŸ”¥ ULTIMATE MOBILE RESPONSIVE TWEAKS 
            ========================================================================= */
         @media (max-width: 800px) {
             .hide-mobile { display: none !important; }
@@ -380,14 +380,14 @@
             }
             #right-panel.open { transform: translateX(0); }
             
-            /* 🔥 EXTREME FIXED BOTTOM BAR FOR MOBILE - Gap Completely Fixed */
+            /* ðŸ”¥ EXTREME FIXED BOTTOM BAR FOR MOBILE - Gap Completely Fixed */
             #exam-bottom-bar { 
                 display: grid !important;
                 grid-template-columns: 1fr 1fr;
                 grid-template-rows: 45px 45px;
                 gap: 8px; 
                 padding: 10px 12px; 
-                /* 🔥 MAX function ensures bottom space stays solid, hiding any gaps */
+                /* ðŸ”¥ MAX function ensures bottom space stays solid, hiding any gaps */
                 padding-bottom: max(15px, env(safe-area-inset-bottom)) !important; 
                 background: var(--card-bg);
                 border-top: 1px solid var(--border-color);
@@ -416,7 +416,7 @@
             .inst-lang-box { flex-direction: column; align-items: flex-start; gap: 4px; }
             .inst-lang-box select { width: 100%; padding: 6px; }
             
-            /* 🔥 FIX: Footer in Modals (Summary / Result) should be nice side-by-side or grid */
+            /* ðŸ”¥ FIX: Footer in Modals (Summary / Result) should be nice side-by-side or grid */
             .inst-footer { padding: 12px 15px; padding-bottom: calc(12px + env(safe-area-inset-bottom)); }
             .sum-footer { display: flex !important; flex-direction: row !important; gap: 10px !important; }
             .sum-footer .exam-btn { flex: 1; margin: 0; }
@@ -443,7 +443,7 @@
         <p style="font-size:0.85rem; color:var(--text-sec);" id="security-desc">Verifying your test ticket and access rights.</p>
     </div>
 
-    <!-- 🔥 APP WRAPPER: Splits screen securely between Main Area and Right Panel -->
+    <!-- ðŸ”¥ APP WRAPPER: Splits screen securely between Main Area and Right Panel -->
     <div style="display: flex; width: 100vw; height: 100dvh; overflow: hidden; position: relative;">
         
         <!-- LEFT MAIN COLUMN -->
@@ -463,7 +463,7 @@
                     <button class="panel-toggle-btn" onclick="engine.toggleMidTestInstructions()" title="Important Instructions">
                         <i class="fa-solid fa-circle-info"></i>
                     </button>
-                    <!-- 🔥 Timer shifted gracefully to the left of the grid area! -->
+                    <!-- ðŸ”¥ Timer shifted gracefully to the left of the grid area! -->
                     <div class="timer-box"><i class="fa-regular fa-clock"></i> <span id="ui-timer">00:00:00</span></div>
                 </div>
             </div>
@@ -478,7 +478,7 @@
                     <div style="font-weight:800; font-size:0.9rem; color:var(--text-main);" id="ui-q-num">Question No. 1</div>
                     <div style="display:flex; align-items:center; gap:6px;">
                         
-                        <!-- 🔥 NEW: DYNAMIC MARKING SCHEME BADGE -->
+                        <!-- ðŸ”¥ NEW: DYNAMIC MARKING SCHEME BADGE -->
                         <div class="marking-badge" title="Marking Scheme">
                             <span class="mark-plus">+1</span>
                             <span style="color:var(--border-color); margin:0 2px;">|</span>
@@ -501,7 +501,7 @@
                 
                 <div class="q-content-area" id="ui-q-content"></div>
 
-                <!-- 🔥 NATIVE FLEX BOTTOM BAR (NO GAPS!) -->
+                <!-- ðŸ”¥ NATIVE FLEX BOTTOM BAR (NO GAPS!) -->
                 <div id="exam-bottom-bar">
                     <div class="action-group">
                         <button class="exam-btn btn-review" onclick="engine.markForReview()">Review & Next</button>
@@ -554,7 +554,7 @@
                         <select id="inst-lang-select" onchange="engine.handleInstLanguageChange(this.value)">
                             <option value="">-- Select --</option>
                             <option value="en">English</option>
-                            <option value="hi">हिंदी</option>
+                            <option value="hi">à¤¹à¤¿à¤‚à¤¦à¥€</option>
                         </select>
                     </div>
                     <div class="inst-warning">This language can be changed for a particular question later on.</div>
@@ -584,7 +584,7 @@
                         <div class="sum-box gray" style="grid-column: span 2;"><div class="val" id="sum-not-visited">0</div><div class="lbl">Not Visited</div></div>
                     </div>
                 </div>
-                <!-- 🔥 FIXED: Summary buttons perfectly aligned side-by-side -->
+                <!-- ðŸ”¥ FIXED: Summary buttons perfectly aligned side-by-side -->
                 <div class="inst-footer sum-footer" style="justify-content:center; gap:15px; flex-wrap:wrap;">
                     <button class="exam-btn" onclick="engine.resumeTest()"><i class="fa-solid fa-arrow-left"></i> Resume</button>
                     <button class="exam-btn btn-submit" style="width:auto; margin:0;" onclick="engine.finalSubmit()">Final Submit <i class="fa-solid fa-check"></i></button>
@@ -612,10 +612,10 @@
                     <div id="res-detailed-list" style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 15px;"></div>
                 </div>
 
-                <!-- 🔥 FIXED: Result buttons perfectly aligned -->
+                <!-- ðŸ”¥ FIXED: Result buttons perfectly aligned -->
                 <div class="inst-footer res-footer" style="justify-content:center; gap:10px; flex-wrap:wrap; padding: 10px;">
                     <button class="exam-btn btn-clear" style="padding: 8px 12px; margin:0;" onclick="window.location.href='../user/dashboard.html'"><i class="fa-solid fa-house"></i> Dashboard</button>
-                    <!-- 🔥 NEW: Dynamic Back to Category Button -->
+                    <!-- ðŸ”¥ NEW: Dynamic Back to Category Button -->
                     <button class="exam-btn" style="padding: 8px 12px; background: var(--accent); color: white; border-color: var(--accent); margin:0;" onclick="goBackToCategory()"><i class="fa-solid fa-layer-group"></i> More Tests</button>
                     <button class="exam-btn btn-submit" style="width:auto; padding:8px 12px; margin:0;" onclick="window.location.reload()"><i class="fa-solid fa-rotate-right"></i> Re-Attempt</button>
                 </div>
@@ -638,7 +638,7 @@
             </div>
             
             <div class="palette-legend">
-                <!-- 🔥 INCREASED BUBBLE SIZE (width:18px, font-size:10px) FOR BETTER READABILITY -->
+                <!-- ðŸ”¥ INCREASED BUBBLE SIZE (width:18px, font-size:10px) FOR BETTER READABILITY -->
                 <div class="legend-item"><div class="q-bubble answered" style="width:18px; font-size:10px;" id="leg-ans">0</div> Answered</div>
                 <div class="legend-item"><div class="q-bubble not-answered" style="width:18px; font-size:10px;" id="leg-not-ans">0</div> Not Answered</div>
                 <div class="legend-item"><div class="q-bubble review" style="width:18px; font-size:10px;" id="leg-rev">0</div> Marked Review</div>
@@ -646,7 +646,7 @@
                 <div class="legend-item" style="grid-column: span 2;"><div class="q-bubble" style="width:18px; font-size:10px;" id="leg-not-vis">0</div> Not Visited</div>
             </div>
 
-            <!-- 🔥 FIX: Ensure scrolling works by strictly limiting flex space -->
+            <!-- ðŸ”¥ FIX: Ensure scrolling works by strictly limiting flex space -->
             <div class="palette-grid-wrapper">
                 <div style="font-size:0.7rem; font-weight:700; margin-bottom:8px; color:var(--text-main);" id="ui-palette-title">Choose a Question:</div>
                 <div class="palette-grid" id="ui-palette-grid"></div>
@@ -659,7 +659,7 @@
 
     </div>
 
-    <!-- 🔥 UNIVERSAL FLOATING ARROW (For Mobile & Desktop) -->
+    <!-- ðŸ”¥ UNIVERSAL FLOATING ARROW (For Mobile & Desktop) -->
     <button id="floating-palette-toggle" onclick="togglePanel()">
         <i class="fa-solid fa-chevron-left" id="ui-panel-arrow"></i>
     </button>
@@ -685,7 +685,7 @@
         </div>
     </div>
 
-    <!-- 🔥 SMART SYNC SCRIPT -->
+    <!-- ðŸ”¥ SMART SYNC SCRIPT -->
     <script>
         // Universal Panel Toggle
         function togglePanel() {
@@ -773,7 +773,7 @@
                 panelObserver.observe(panel, { attributes: true });
             }
 
-            // 🔥 NEW: Observer to hide Right Panel during Instructions, Summary and Result Screens
+            // ðŸ”¥ NEW: Observer to hide Right Panel during Instructions, Summary and Result Screens
             const summaryPanel = document.getElementById('summary-panel');
             const resultPanel = document.getElementById('result-panel');
             const instPanel = document.getElementById('instructions-panel');
@@ -811,7 +811,7 @@
                 contentObserver.observe(qContent, { childList: true, subtree: true });
             }
             
-            // 🔥 NEW: Sync Dynamic Negative Marking from Instructions to Header Badge
+            // ðŸ”¥ NEW: Sync Dynamic Negative Marking from Instructions to Header Badge
             const penaltyText = document.getElementById('inst-penalty-text');
             const headerNegativeMark = document.getElementById('header-negative-mark');
             
