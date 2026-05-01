@@ -1,0 +1,114 @@
+{
+  "testTitle": "HP Police Constable Official Paper (2018)",
+  "durationMinutes": 60,
+  "negativeMarking": "0",
+  "customInstructions": [
+    "This is the Official Previous Year Paper (PYP) of HP Police Constable conducted in 2018 (Memory Based).",
+    "Total Questions: 80, Total Marks: 80, Total Time: 60 Minutes.",
+    "Every correct answer awards +1 Mark.",
+    "Historically, there was NO negative marking in this specific exam pattern.",
+    "Questions are exactly as they appeared in the actual exam."
+  ],
+  "sections": [
+    {
+      "name": "English Language",
+      "questions": [
+        { "questionEn": "How is the word 'enough' used in these two sentences?\n(i) There is time 'enough' and to spare.\n(ii) You know well 'enough' what I mean.", "questionHi": "", "options": ["Adjective and Adverb", "Noun and Verb", "Conjunction and Preposition", "Adverb and Preposition"], "answer": 0 },
+        { "questionEn": "Find the wrongly spelt or inappropriate word in the sentence:\nIt is better to seek advice from a financial CONSULTANT on how to SAFE your business.", "questionHi": "", "options": ["seek advice", "CONSULTANT", "SAFE", "business"], "answer": 2 },
+        { "questionEn": "Find the wrongly spelt or inappropriate word in the sentence:\nOn two CONSECUTIVE nights two greatest ICONES of show business were honoured with UNPRECEDENTED AFFECTION.", "questionHi": "", "options": ["CONSECUTIVE", "ICONES", "UNPRECEDENTED", "AFFECTION"], "answer": 1 },
+        { "questionEn": "Public declaration by a political party, ruler, etc. of principles and policy:", "questionHi": "", "options": ["Promise", "Manifesto", "Advertisement", "Blue book"], "answer": 1 },
+        { "questionEn": "Custom of having more than one husband at the same time:", "questionHi": "", "options": ["Polyandry", "Polygamy", "Monogamy", "Bigamy"], "answer": 0 },
+        { "questionEn": "Choose the word which is most nearly the same in meaning to: PREMIUM", "questionHi": "", "options": ["Superior", "Bonus", "Payable", "Promotional"], "answer": 0 },
+        { "questionEn": "Choose the word which is most nearly the same in meaning to: EXHORT", "questionHi": "", "options": ["Threaten", "Show", "Encourage", "Alert"], "answer": 2 },
+        { "questionEn": "Choose the word which is most opposite in meaning of: ESTABLISHED", "questionHi": "", "options": ["Small", "New", "Orthodox", "Modern"], "answer": 1 },
+        { "questionEn": "Choose the word which is most opposite in meaning of: AFFLUENT", "questionHi": "", "options": ["Affected", "Poor", "Uneducated", "Usual"], "answer": 1 },
+        { "questionEn": "Choose the correct meaning of the idiom: His behavior compelled me to \"give him a piece of my mind\".", "questionHi": "", "options": ["Scold him", "Pardon him", "Make him my friend", "Take him into confidence"], "answer": 0 },
+        { "questionEn": "Choose the correct meaning of the idiom: \"In black and white\"", "questionHi": "", "options": ["In short", "Useless", "In writing", "In full swing"], "answer": 2 },
+        { "questionEn": "Tonight's game was ________ because of the rain.", "questionHi": "", "options": ["struck off", "called off", "winning", "played"], "answer": 1 },
+        { "questionEn": "________ having worked really hard in office, Vikas did not get the much expected promotion.", "questionHi": "", "options": ["In spite of", "On", "Since", "Despite of"], "answer": 0 },
+        { "questionEn": "The emperor of China had ____ some peaches to the king of Turkey.", "questionHi": "", "options": ["parcel", "grown", "bought", "sent"], "answer": 3 },
+        { "questionEn": "...with a note ____ that the fruit gives long life to anyone who eats them.", "questionHi": "", "options": ["stating", "attach", "stuck", "telling"], "answer": 0 },
+        { "questionEn": "As the fruits were being shown to the ruler Ram giving into the temptation ____ up one of the luscious peaches and bit into it.", "questionHi": "", "options": ["reached", "picked", "take", "secured"], "answer": 1 }
+      ]
+    },
+    {
+      "name": "Hindi Language",
+      "questions": [
+        { "questionEn": "", "questionHi": "निम्नलिखित में से अशुद्ध वाक्य कौन सा है?", "options": ["हमारे शिक्षक बहुत अच्छे हैं", "वहाँ बहुत भीड़ है", "श्रीकृष्ण के अनेकों नाम है", "राम ने खाना खाया"], "answer": 2 },
+        { "questionEn": "", "questionHi": "\"जो सब कुछ जानता है\" इस वाक्यांश के लिये सही शब्द क्या है?", "options": ["बहुज्ञ", "अल्पज्ञ", "सर्वज्ञ", "अभिज्ञ"], "answer": 2 },
+        { "questionEn": "", "questionHi": "'क्रूर' शब्द है-", "options": ["सर्वनाम", "विशेषण", "संज्ञा", "क्रिया"], "answer": 1 },
+        { "questionEn": "", "questionHi": "'शांति' शब्द का समानार्थ नहीं है-", "options": ["चुप्पी", "मौन", "नीरवता", "आकाश"], "answer": 3 },
+        { "questionEn": "", "questionHi": "'लकीर का फकीर होना' मुहावरे का अर्थ है:", "options": ["सरल जीवन यापन करना", "परम्परावादी होना", "झाड़फूक पर विश्वास करना", "आडम्बर विरोधी होना"], "answer": 1 },
+        { "questionEn": "", "questionHi": "'ताप' शब्द का विलोम होता है:", "options": ["तम", "तामसिक", "शरद", "शीत"], "answer": 3 },
+        { "questionEn": "", "questionHi": "निम्न मे से 'कुसुम' का पर्यायवाची शब्द नहीं है:", "options": ["कमल", "पुष्प", "सुमन", "प्रसून"], "answer": 0 },
+        { "questionEn": "", "questionHi": "'दाता' शब्द का स्त्रीलिंग होता है:", "options": ["दातृ", "दाती", "दार्त", "दात्री"], "answer": 3 },
+        { "questionEn": "", "questionHi": "\"जीतने की इच्छा रखने वाला\" कहलाता है:", "options": ["उन्माद", "जिगिषु", "आकांक्षी", "जिगीषा"], "answer": 1 },
+        { "questionEn": "", "questionHi": "\"उल्लास\" का सन्धिविच्छेद होगा:", "options": ["उत् + लास", "उल् + लास", "उल + लास", "उल्ल + आस"], "answer": 0 },
+        { "questionEn": "", "questionHi": "वृद्धा ने बौद्ध भिक्षु को ________ दी।", "options": ["दीक्षा", "परीक्षा", "भिक्षा", "बुभुक्षा"], "answer": 2 },
+        { "questionEn": "", "questionHi": "\"जो अच्छे कुल मे पैदा हुआ हो\" कहलाता है:", "options": ["कुलीन", "संस्कारी", "सर्वज्ञ", "बहुज्ञ"], "answer": 0 },
+        { "questionEn": "", "questionHi": "\"उत्कृष्ट\" शब्द का विलोम है:", "options": ["अपकृष्ट", "व्यर्थ", "निकृष्ट", "विकराल"], "answer": 2 },
+        { "questionEn": "", "questionHi": "'नाक में दम कर देना' मुहावरे का अर्थ बताइये:", "options": ["बहुत प्रसन्न होना", "बहुत परेशान करना", "जिज्ञासा शांत करना", "निंदा करना"], "answer": 1 },
+        { "questionEn": "", "questionHi": "'यथार्थ' का विलोम है:", "options": ["कृत्रिम", "आदर्श", "उचित", "अनुचित"], "answer": 0 },
+        { "questionEn": "", "questionHi": "बहुत सी भाषाओं को जानने वाला कहलाता है:", "options": ["बहुभाषाविद्", "बहुभाषाभाषी", "बहुश्रुत", "बहुदर्शी"], "answer": 1 }
+      ]
+    },
+    {
+      "name": "Mathematics & Logical Reasoning",
+      "questions": [
+        { "questionEn": "If P means 'divide', R means 'add', T means 'subtract' and V means 'multiply', then what is the value of: 12 V 4 R 16 P 8 T 6 = ?", "questionHi": "अगर P का अर्थ है 'भाग'; R का अर्थ 'जमा'; T का अर्थ 'घटाना'; V का अर्थ 'गुणा'; तब 12 V 4 R 16 P 8 T 6 = ?", "options": ["138", "50", "44", "72"], "answer": 2 },
+        { "questionEn": "What will come next in the series? ABCD, PQRS, ABCDE, PQRST, ABCDEF, ?", "questionHi": "इस क्रमांक मे आगे क्या आयेगा? ABCD, PQRS, ABCDE, PQRST, ABCDEF, ?", "options": ["A", "V", "U", "W"], "answer": 2 },
+        { "questionEn": "Direction (Q. 35-39): A, B, C, D, E, F & G are sitting in a circle facing the center. D is not to the left of F. D is 2nd to the right of A. C is 3rd to the left of A. C is 2nd to the left of G. B is an immediate neighbor of G.\n\nWho is to the immediate right of C?", "questionHi": "A, B, C, D, E, F & G एक गोलाकार में बीच की तरफ मुँह कर के बैठे हैं। D, F के बांऐ नहीं है; D, A के दाँए में दूसरे नम्बर पर है; C, A के बाँए पर तीसरे नम्बर पर है; C, G के बाँए में दूसरे नम्बर पर है; B, G का एकदम पड़ोसी है।\n\nC से एकदम दाँए पर कौन है?", "options": ["D", "G", "E", "B"], "answer": 3 },
+        { "questionEn": "Who is between A and G?", "questionHi": "A एवं G के बीच में कौन है?", "options": ["F", "D", "कोई नहीं / None", "E"], "answer": 2 },
+        { "questionEn": "Who is to the immediate left of D?", "questionHi": "D के एकदम बाँए पर कौन है?", "options": ["B", "C", "F", "नही जाना जा सकता"], "answer": 2 },
+        { "questionEn": "Who is second to the left of C?", "questionHi": "C के बाँए पर दूसरे नम्बर पर कौन है?", "options": ["B", "G", "D", "नही जाना जा सकता"], "answer": 2 },
+        { "questionEn": "What is the position of E with respect to D?", "questionHi": "E का स्थान D के मुकाबले कहाँ है?", "options": ["एकदम दाँए (Immediate right)", "दाँए से तीसरे (3rd right)", "दाँए से दूसरे (2nd right)", "बाँए से तीसरे (3rd left)"], "answer": 0 },
+        { "questionEn": "Rohan walked 10 km North, then turned left and walked 20 km. He again turned left and walked 10 km. Finally, he turned RIGHT and walked 5 km. How far is he from the starting point?", "questionHi": "रोहन उत्तर दिशा में 10 कि.मी. चला फिर वह बायें मुड़कर 20 कि.मी. चला। फिर वहां से बायें मुड़कर 10 कि.मी. चला वह फिर दायें मुड़ा और 5 कि.मी. चला। वह शुरूआती जगह से कितना दूर है?", "options": ["10 km", "15 km", "20 km", "25 km"], "answer": 3 },
+        { "questionEn": "How many meaningful English words can be made from NSIK, starting with 'S'?", "questionHi": "NSIK से कितने सार्थक अंग्रेजी शब्द बनाये जा सकते हैं, जो 'S' से शुरू होते है?", "options": ["One", "Two", "Three", "Four"], "answer": 1 },
+        { "questionEn": "How many meaningful English words can be made from NREA using each letter exactly once?", "questionHi": "NREA से कितने सार्थक अंग्रेजी शब्द बनाए जा सकते हैं? एक अक्षर का प्रयोग केवल एक ही बार करना है।", "options": ["None", "One", "Two", "Three"], "answer": 2 },
+        { "questionEn": "Find the odd one out:", "questionHi": "चार में से तीन एक समान हैं तथा एक समूह बनाते हैं। कौन समूह से बाहर है?", "options": ["Copper / ताम्बा", "Silver / चांदी", "Gold / सोना", "Diamond / हीरा"], "answer": 3 },
+        { "questionEn": "Find the odd one out:", "questionHi": "चार में से तीन समान हैं। कौन समूह से बाहर है?", "options": ["Blue / नीला", "Red / लाल", "Violet / बैंगनी", "Grey / धूसर"], "answer": 3 },
+        { "questionEn": "Analogy: 'KN' is related to 'QT' in the same way as 'DG' is related to:", "questionHi": "'KN' का रिश्ता 'QT' से वही है जो 'D, G' का _________ से है।", "options": ["JN", "IM", "JM", "IN"], "answer": 2 },
+        { "questionEn": "What will come next in the series? 311, 300, 278, 245, 201, 146, ?", "questionHi": "इस कमाँक में आगे क्या आयेगा? 311, 300, 278, 245, 201, 146, ?", "options": ["70", "90", "80", "110"], "answer": 2 },
+        { "questionEn": "Analogy: Crime is related to Police in the same way as Flood is related to:", "questionHi": "अपराध उसी प्रकार पुलिस से सम्बधित है जिस प्रकार बाढ़ _________ सम्बन्धित हैः", "options": ["River / नदी से", "Pond / तालाब से", "Well / कूएं से", "Dam / बाँध से"], "answer": 3 },
+        { "questionEn": "If 'GUEST' is coded as 'HVFTU', how will 'NEST' be coded?", "questionHi": "किसी निश्चित भाषा में 'GUEST' को 'HVFTU' के रूप मे लिखा जाता है, तो 'NEST' को क्या लिखा जायेगा?", "options": ["IWTU", "XWTU", "OFTU", "MDTU"], "answer": 2 },
+        { "questionEn": "Evaluate: 13% of 258 - ? = 10", "questionHi": "हल करें: 258 का 13% - ? = 10", "options": ["23.45", "24.53", "23.54", "24.35"], "answer": 2 },
+        { "questionEn": "The cost of 27 toasters and 18 mixers is Rs 80,100. What is the combined cost of 12 toasters and 8 mixers?", "questionHi": "27 टोसटर और 18 मिक्सर का दाम रू. 80,100/- है। 12 टोसटर और 8 मिक्सर का दाम मिलाकर कितना होगा?", "options": ["36,000/-", "36,500/-", "35,600/-", "Cannot be determined"], "answer": 2 },
+        { "questionEn": "Evaluate: 5437 - 3153 + 2284 = ? × 50", "questionHi": "हल करें: 5437 - 3153 + 2284 = ? × 50", "options": ["96.66", "91.36", "96.13", "93.16"], "answer": 1 },
+        { "questionEn": "Raju bought an item for Rs 4500 and sold it at a 15% profit. With this money, he bought another item and sold it at a 10% loss. What is his overall profit or loss?", "questionHi": "राजू ने एक वस्तु रू. 4500/- में खरीदी और उसे 15% के लाभ पर बेच दिया। इस पैसे से उसने एक और वस्तु खरीदी और उसे 10% के नुकसान पर बेच दिया। उसका कुल लाभ या हानि क्या है?", "options": ["Rs 151.60 Profit", "Rs 157.50 Profit / रू. 157.50 का लाभ", "Rs 157.50 Loss / रू. 157.50 की हानि", "No profit no loss"], "answer": 2 },
+        { "questionEn": "Evaluate: 5 1/5 + 2 3/5 + 1 2/5 = ?", "questionHi": "हल करें: $5 \\frac{1}{5} + 2 \\frac{3}{5} + 1 \\frac{2}{5} = ?$", "options": ["$7 \\frac{5}{4}$", "$8 \\frac{3}{5}$", "$6 \\frac{2}{5}$", "$9 \\frac{1}{5}$"], "answer": 3 },
+        { "questionEn": "What will be the simple interest on a principal of Rs 16,500 at 16% per annum for 4 years?", "questionHi": "रू 16,500/- के मूलधन पर 16% की दर से चार साल में साधारण ब्याज कितना होगा?", "options": ["11,560/-", "10,560/-", "12,500/-", "9,980/-"], "answer": 1 },
+        { "questionEn": "10 men and 8 women together can finish a work in 5 days. Work done by a woman in a day is half of the work done by a man in a day. How many days will 4 men and 6 women take to finish this work?", "questionHi": "10 आदमी और 8 औरतें एक काम को मिलकर 5 दिन में खत्म करते हैं। औरत द्वारा एक दिन मे किया गया काम आदमी द्वारा एक दिन में किये गये काम का आधा है। 4 आदमी और 6 औरतें इस काम को करने में कितने दिन लेंगे?", "options": ["12 days", "10 days", "8 2/3 days", "9 3/4 days"], "answer": 1 },
+        { "questionEn": "The length of a rectangle is 7 cm more than its breadth. If the perimeter of the rectangle is 126 cm, what is its breadth?", "questionHi": "एक आयत की लम्बाई उसकी चौड़ाई से 7 cm अधिक है। अगर आयत की परिधि 126 cm है तो आयत की चौड़ाई क्या होगी?", "options": ["56 cm", "38 cm", "28 cm", "32 cm"], "answer": 2 }
+      ]
+    },
+    {
+      "name": "General Awareness & Science",
+      "questions": [
+        { "questionEn": "Who was the Chief of the Indian Army in 2018?", "questionHi": "भारतीय सेना के प्रमुख कौन थे? (2018 के अनुसार)", "options": ["Shri Vikram Singh Rathore", "Gen. Bipin Rawat / बिपिन रावत", "Shri Velu Nair", "Shri Virender Singh"], "answer": 1 },
+        { "questionEn": "Where is India's first Uranium mine located?", "questionHi": "भारत की पहली यूरेनियम (Uranium) खान कहाँ स्थित है?", "options": ["Jaduguda / जादुगौड़ा", "Tummalapalle / तुमल्ला पुल्ले", "Pichli / पिचली", "Dalbhum / दलभूम"], "answer": 0 },
+        { "questionEn": "Tabo Monastery is located in which state/region?", "questionHi": "ताबो मठ कहाँ है?", "options": ["Arunachal Pradesh / अरूणाचल प्रदेश", "Lahaul-Spiti, Himachal Pradesh / लाहौल-स्पीति (हिमाचल)", "Jammu & Kashmir / जम्मू व कश्मीर", "Sikkim / सिक्किम"], "answer": 1 },
+        { "questionEn": "India's first Technicolor film produced in 1950 was:", "questionHi": "भारत में पहली Technicolor film 1950 में ________ द्वारा निर्मित की गई थी?", "options": ["Jhansi Ki Rani - Sohrab Modi / झांसी की रानी - सोहराब मोदी", "Jhansi Ki Rani - Syed Modi", "Mirza Ghalib - Sohrab Modi", "Mirza Ghalib - Munshi Premchand"], "answer": 0 },
+        { "questionEn": "India has the largest reserves of which mineral?", "questionHi": "भारत में सबसे अधिक भण्डार किस खनिज के है?", "options": ["Gold / सोना", "Copper / ताम्बा", "Mica / माइका", "None of these / इन में से कोई नहीं"], "answer": 2 },
+        { "questionEn": "In which season do we need more fat?", "questionHi": "किस मौसम में ज्यादा चर्बी की जरूरत होती है?", "options": ["Rainy / वर्षा", "Spring / बसन्त", "Winter / सर्दी", "Summer / गर्मी"], "answer": 2 },
+        { "questionEn": "When is World Human Rights Day celebrated?", "questionHi": "विश्व मानव अधिकार दिवस कब मनाया जाता है?", "options": ["24 February / 24 फरवरी", "10 December / 10 दिसम्बर", "15 May / 15 मई", "21 July / 21 जुलाई"], "answer": 1 },
+        { "questionEn": "What does a Hygrometer measure?", "questionHi": "Hygrometer क्या नापता है?", "options": ["Relative humidity / सापेक्षिक आर्द्रता", "Purity of milk / दूध की शुद्धता", "Specific gravity of liquids", "None of these"], "answer": 0 },
+        { "questionEn": "Who was the last ruler of the Mughal Empire?", "questionHi": "मुगल साम्राज्य का अंतिम शासक कौन था?", "options": ["Babar / बाबर", "Bahadur Shah Zafar / बहादुर शाह जफर", "Akbar / अकबर", "None of these"], "answer": 1 },
+        { "questionEn": "Where is the headquarters of the International Court of Justice located?", "questionHi": "अन्तराष्ट्रीय न्यायालय का मुख्यालय कहाँ पर है?", "options": ["Hague / हेग", "Addis Ababa / एडीस अबाबा", "Paris / पेरिस", "New York / न्यू यार्क"], "answer": 0 },
+        { "questionEn": "Where were the Winter Olympics of 2018 held?", "questionHi": "पिछले शीतकालीन ओलम्पिक (2018) कहां हुए?", "options": ["Albertville", "Lillehammer", "South Korea / साऊथ कोरिया", "Salt Lake City - USA"], "answer": 2 },
+        { "questionEn": "Renowned scientist Professor Yash Pal was associated with which organizations?", "questionHi": "प्रसिद्ध वैज्ञानिक प्रौफेसर यशपाल किस संस्था से जुड़े हुए थे?", "options": ["ISRO / इसरो", "Jawaharlal Nehru University / JNU", "University Grants Commission / UGC", "All of the above / सभी से"], "answer": 3 },
+        { "questionEn": "Where is India's first nuclear power station located?", "questionHi": "भारत का पहला परमाणु Reactor (Power Station) कहां पर है?", "options": ["Surat / सूरत", "Tarapur / तारापुर", "Trombay / ट्रामबे", "Sholapur / शोलापुर"], "answer": 1 },
+        { "questionEn": "Which is the last month of the Saka Samvat calendar?", "questionHi": "शक् संवत् का अन्तिम महीना कौन सा है?", "options": ["Phalguna / फाल्गुन", "Chaitra / चैत्र", "Ashadha / आषाड़", "Pausha / पौष"], "answer": 0 },
+        { "questionEn": "What problem has been caused by the excessive use of groundwater?", "questionHi": "भूमिगत जल के अधिक प्रयोग से क्या समस्या उत्पन्न हुई है?", "options": ["Salinity / खारापन", "Lowering of water table / जल स्तर का नीचे गिरना", "Water logging / जल भराव", "All of the above / ऊपर सभी"], "answer": 1 },
+        { "questionEn": "When did the Indian Air Force celebrate its Golden Jubilee?", "questionHi": "भारतीय वायुसेना ने अपनी स्वर्ण जयंती कब मनाई थी?", "options": ["1962", "1972", "1982", "1992"], "answer": 2 },
+        { "questionEn": "Alexander Fleming discovered:", "questionHi": "एलेक्जेंडर फ्लेमिंग ने किसकी खोज की?", "options": ["Penicillin / पेनिसिलीन", "X-Ray / एक्स-रे", "Telephone / टेलीफोन", "Wireless / वायरलेस"], "answer": 0 },
+        { "questionEn": "Which of the following materials is used in making a pencil?", "questionHi": "Pencil बनाने में किस वस्तु का प्रयोग होता है?", "options": ["Graphite / ग्रेफाइट", "Silicon / सिलिकॉन", "Charcoal / कटकोयला", "Phosphorus / भास्वर"], "answer": 0 },
+        { "questionEn": "What is Coral?", "questionHi": "Coral (कोरल क्या है)?", "options": ["Plant / पौधा", "Fungi / कवक", "Animal / जानवर", "Fern / प्रर्णग"], "answer": 2 },
+        { "questionEn": "Which blood cell is known as the 'Soldier' of the body?", "questionHi": "किस रक्त कणिका (Blood Cell) को शरीर का सिपाही कहां जाता है?", "options": ["White Blood Cells / सफेद रक्त कोशिका", "Platelets", "Red Blood Cells / लाल रक्त कोशिका", "All of the above / ऊपर के सभी"], "answer": 0 },
+        { "questionEn": "Light year is a unit of measurement for:", "questionHi": "प्रकाश वर्ष किसका माप है?", "options": ["Stellar distance / तारकीय दूरी", "Speed of airplanes / हवाई जहाज की गति", "Speed of light / प्रकाश की गति", "Speed of rockets / रॉकेट की गति"], "answer": 0 },
+        { "questionEn": "H1N1 Flu is caused by which of the following?", "questionHi": "H1N1-FLU किसकी वजह से होता है?", "options": ["Virus / विषाणु", "Bacteria / जीवाणु", "Cold / सर्दी", "Fungi / कवक"], "answer": 0 },
+        { "questionEn": "What does a 'saved document' refer to in computing?", "questionHi": "सहेजे गये दस्तावेज (Saved Documents) का मतलब क्या है?", "options": ["File / फाइल", "Word / शब्द", "Folder / फोल्डर", "Project / प्रोजेक्ट"], "answer": 0 },
+        { "questionEn": "The process of digestion of food in humans begins in which organ?", "questionHi": "भोजन की प्रक्रिया किस अंग से शुरू होती है?", "options": ["Stomach / पेट", "Esophagus / भोजन नली", "Mouth / मुंह से", "Small Intestine / छोटी आँत"], "answer": 2 }
+      ]
+    }
+  ]
+}

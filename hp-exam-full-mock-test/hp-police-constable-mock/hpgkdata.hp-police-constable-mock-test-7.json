@@ -1,0 +1,129 @@
+{
+  "testTitle": "HP Police Constable Full Mock Test 7",
+  "durationMinutes": 120,
+  "negativeMarking": "0.25",
+  "customInstructions": [
+    "This mock test strictly follows the latest HP Police Constable Exam Pattern.",
+    "Total Questions: 90, Total Marks: 90, Total Time: 120 Minutes.",
+    "Every correct answer awards +1 Mark.",
+    "Every incorrect answer will deduct 0.25 Marks (Negative Marking).",
+    "Questions are available in both English and Hindi."
+  ],
+  "sections": [
+    {
+      "name": "English Grammar",
+      "questions": [
+        { "questionEn": "Identify the part of speech of the underlined word: <u>Honesty</u> is the best policy.", "questionHi": "", "options": ["Adjective", "Noun", "Verb", "Adverb"], "answer": 1 },
+        { "questionEn": "Identify the part of speech of the underlined word: She is poor <u>but</u> she is happy.", "questionHi": "", "options": ["Preposition", "Pronoun", "Conjunction", "Interjection"], "answer": 2 },
+        { "questionEn": "Fill in the blank with the correct tense: I _____ for the bus since 4 PM.", "questionHi": "", "options": ["am waiting", "have been waiting", "wait", "was waiting"], "answer": 1 },
+        { "questionEn": "Fill in the blank with the correct tense: The train _____ before I reached the station.", "questionHi": "", "options": ["left", "had left", "has left", "was leaving"], "answer": 1 },
+        { "questionEn": "Change into Indirect Speech: She said, \"I like apples.\"", "questionHi": "", "options": ["She said that she liked apples.", "She says that she likes apples.", "She said that I liked apples.", "She asked if she liked apples."], "answer": 0 },
+        { "questionEn": "Change into Indirect Speech: He said to me, \"Where are you going?\"", "questionHi": "", "options": ["He asked me where I was going.", "He told me where I am going.", "He asked me where are you going.", "He said to me where I was going."], "answer": 0 },
+        { "questionEn": "Change the voice: \"Close the window.\"", "questionHi": "", "options": ["The window is closed.", "Let the window be closed.", "The window was closed.", "You are requested to closing the window."], "answer": 1 },
+        { "questionEn": "Change the voice: \"They are building a house.\"", "questionHi": "", "options": ["A house was being built by them.", "A house is being built by them.", "A house has been built by them.", "A house is built by them."], "answer": 1 },
+        { "questionEn": "Spot the error in the sentence: \"He is more taller than his brother.\"", "questionHi": "", "options": ["He is", "more taller", "than his", "brother."], "answer": 1 },
+        { "questionEn": "Spot the error in the sentence: \"I have two sister-in-laws.\"", "questionHi": "", "options": ["I have", "two", "sister-in-laws.", "No error"], "answer": 2 },
+        { "questionEn": "Choose the correct article: He is ____ NCC officer.", "questionHi": "", "options": ["a", "an", "the", "no article"], "answer": 1 },
+        { "questionEn": "Choose the correct article: She plays ____ piano very well.", "questionHi": "", "options": ["a", "an", "the", "no article"], "answer": 2 },
+        { "questionEn": "Fill in the blank with the correct determiner: There is ____ milk in the jug.", "questionHi": "", "options": ["some", "any", "many", "few"], "answer": 0 },
+        { "questionEn": "Fill in the blank with the correct determiner: I don't have ____ friends in this city.", "questionHi": "", "options": ["some", "any", "much", "little"], "answer": 1 },
+        { "questionEn": "Identify the correct preposition: The book is ____ the table.", "questionHi": "", "options": ["in", "at", "on", "over"], "answer": 2 },
+        { "questionEn": "Identify the part of speech of the underlined word: <u>Who</u> is knocking at the door?", "questionHi": "", "options": ["Noun", "Pronoun", "Adjective", "Verb"], "answer": 1 },
+        { "questionEn": "Change the voice: \"Who taught you English?\"", "questionHi": "", "options": ["By whom you were taught English?", "By whom were you taught English?", "English is taught by whom?", "Who has taught you English?"], "answer": 1 },
+        { "questionEn": "Change into Indirect Speech: The teacher said, \"Honesty is the best policy.\"", "questionHi": "", "options": ["The teacher said that honesty was the best policy.", "The teacher said that honesty is the best policy.", "The teacher advised that honesty is the best policy.", "The teacher ordered that honesty was the best policy."], "answer": 1 },
+        { "questionEn": "Fill in the blank with the correct tense: I _____ the Taj Mahal last year.", "questionHi": "", "options": ["visit", "visited", "have visited", "had visited"], "answer": 1 },
+        { "questionEn": "Spot the error in the sentence: \"The sceneries of Kashmir are beautiful.\"", "questionHi": "", "options": ["The sceneries", "of Kashmir", "are", "beautiful."], "answer": 0 }
+      ]
+    },
+    {
+      "name": "Hindi Grammar",
+      "questions": [
+        { "questionEn": "", "questionHi": "'ऐ' किस प्रकार का स्वर है?", "options": ["ह्रस्व स्वर", "दीर्घ स्वर", "संयुक्त स्वर", "प्लुत स्वर"], "answer": 2 },
+        { "questionEn": "", "questionHi": "'क्ष, त्र, ज्ञ, श्र' क्या कहलाते हैं?", "options": ["ऊष्म व्यंजन", "अन्तःस्थ व्यंजन", "संयुक्त व्यंजन", "स्पर्श व्यंजन"], "answer": 2 },
+        { "questionEn": "", "questionHi": "'पावक' निम्नलिखित में से किसका पर्यायवाची है?", "options": ["जल", "वायु", "आग", "पृथ्वी"], "answer": 2 },
+        { "questionEn": "", "questionHi": "'आयात' का विलोमार्थी शब्द क्या है?", "options": ["आगमन", "निर्यात", "प्रस्थान", "विदेशी"], "answer": 1 },
+        { "questionEn": "", "questionHi": "'जिसके हृदय में दया न हो' के लिए एकार्थी शब्द है:", "options": ["निर्दय", "सदय", "कठोर", "निष्ठुर"], "answer": 0 },
+        { "questionEn": "", "questionHi": "'अंक' शब्द का अनेकार्थी अर्थ इनमें से कौन सा नहीं है?", "options": ["संख्या", "नाटक का भाग", "गोद", "आकाश"], "answer": 3 },
+        { "questionEn": "", "questionHi": "'मिठास' शब्द में कौन सी संज्ञा है?", "options": ["व्यक्तिवाचक", "जातिवाचक", "भाववाचक", "समूहवाचक"], "answer": 2 },
+        { "questionEn": "", "questionHi": "'यह मेरी पुस्तक है।' वाक्य में 'यह' किस प्रकार का सर्वनाम है?", "options": ["निश्चयवाचक सर्वनाम", "अनिश्चयवाचक सर्वनाम", "प्रश्नवाचक सर्वनाम", "निजवाचक सर्वनाम"], "answer": 0 },
+        { "questionEn": "", "questionHi": "'लाल टमाटर' में 'लाल' क्या है?", "options": ["संज्ञा", "गुणवाचक विशेषण", "परिमाणवाचक विशेषण", "सार्वनामिक विशेषण"], "answer": 1 },
+        { "questionEn": "", "questionHi": "'राम सोता है।' यह किस प्रकार की क्रिया है?", "options": ["सकर्मक क्रिया", "अकर्मक क्रिया", "द्विकर्मक क्रिया", "प्रेरणार्थक क्रिया"], "answer": 1 },
+        { "questionEn": "", "questionHi": "'वाह! क्या दृश्य है।' इस वाक्य में 'वाह!' क्या है?", "options": ["क्रियाविशेषण अव्यय", "समुच्चयबोधक अव्यय", "संबंधबोधक अव्यय", "विस्मयादिबोधक अव्यय"], "answer": 3 },
+        { "questionEn": "", "questionHi": "मुहावरा 'अक्ल का दुश्मन' का क्या अर्थ है?", "options": ["चतुर होना", "महामूर्ख होना", "दुश्मनी मोल लेना", "बहुत ज्ञानी होना"], "answer": 1 },
+        { "questionEn": "", "questionHi": "लोकोक्ति 'ऊँट के मुँह में जीरा' का अर्थ है:", "options": ["ऊँट को जीरा खिलाना", "बीमारी का इलाज", "जरूरत से बहुत कम मात्रा में देना", "बड़ा जानवर होना"], "answer": 2 },
+        { "questionEn": "", "questionHi": "'प' वर्ग का उच्चारण स्थान क्या है?", "options": ["कंठ", "तालु", "दन्त", "ओष्ठ"], "answer": 3 },
+        { "questionEn": "", "questionHi": "हिंदी में अनुस्वार (ं) और विसर्ग (ः) क्या कहलाते हैं?", "options": ["स्वर", "व्यंजन", "अयोगवाह", "संयुक्त अक्षर"], "answer": 2 },
+        { "questionEn": "", "questionHi": "'कमल' का पर्यायवाची शब्द है:", "options": ["जलज", "जलद", "पयोद", "वारिद"], "answer": 0 },
+        { "questionEn": "", "questionHi": "'सत्कार' का विलोमार्थी शब्द क्या है?", "options": ["आदर", "सम्मान", "तिरस्कार", "स्वागत"], "answer": 2 },
+        { "questionEn": "", "questionHi": "'हिमालय' शब्द कौन सी संज्ञा है?", "options": ["भाववाचक", "व्यक्तिवाचक", "जातिवाचक", "समूहवाचक"], "answer": 1 },
+        { "questionEn": "", "questionHi": "'मोहन ने पत्र लिखा।' यह किस क्रिया का उदाहरण है?", "options": ["अकर्मक क्रिया", "सकर्मक क्रिया", "संयुक्त क्रिया", "प्रेरणार्थक क्रिया"], "answer": 1 },
+        { "questionEn": "", "questionHi": "'हाथ मलना' मुहावरे का अर्थ है:", "options": ["हाथ साफ करना", "तैयारी करना", "पछताना", "खुश होना"], "answer": 2 }
+      ]
+    },
+    {
+      "name": "General Knowledge",
+      "questions": [
+        { "questionEn": "Where is the headquarters of SAARC located?", "questionHi": "SAARC (सार्क) का मुख्यालय कहाँ स्थित है?", "options": ["New Delhi / नई दिल्ली", "Dhaka / ढाका", "Kathmandu / काठमांडू", "Colombo / कोलंबो"], "answer": 2 },
+        { "questionEn": "Who is the author of the book \"Discovery of India\"?", "questionHi": "\"डिस्कवरी ऑफ इंडिया\" पुस्तक के लेखक कौन हैं?", "options": ["Mahatma Gandhi / महात्मा गांधी", "Jawaharlal Nehru / जवाहरलाल नेहरू", "B.R. Ambedkar / B.R. अंबेडकर", "Rabindranath Tagore / रवींद्रनाथ टैगोर"], "answer": 1 },
+        { "questionEn": "Who is credited with the invention of the electric light bulb?", "questionHi": "विद्युत प्रकाश बल्ब के आविष्कार का श्रेय किसे दिया जाता है?", "options": ["Alexander Graham Bell / अलेक्जेंडर ग्राहम बेल", "Thomas Edison / थॉमस एडिसन", "Nikola Tesla / निकोला टेस्ला", "James Watt / जेम्स वाट"], "answer": 1 },
+        { "questionEn": "What is the capital of Japan?", "questionHi": "जापान की राजधानी क्या है?", "options": ["Beijing / बीजिंग", "Seoul / सियोल", "Tokyo / टोक्यो", "Kyoto / क्योटो"], "answer": 2 },
+        { "questionEn": "Who is the current Chancellor of Germany (who assumed office in 2025)?", "questionHi": "जर्मनी के वर्तमान चांसलर कौन हैं (जिन्होंने 2025 में पदभार संभाला)?", "options": ["Olaf Scholz / ओलाफ शोल्ज़", "Angela Merkel / एंजेला मर्केल", "Friedrich Merz / फ्रीड्रिच मर्ज़", "Emmanuel Macron / इमैनुएल मैक्रों"], "answer": 2 },
+        { "questionEn": "International Women's Day is celebrated annually on:", "questionHi": "अंतर्राष्ट्रीय महिला दिवस प्रतिवर्ष कब मनाया जाता है?", "options": ["8th March / 8 मार्च", "5th June / 5 जून", "21st June / 21 जून", "10th December / 10 दिसंबर"], "answer": 0 },
+        { "questionEn": "What does the abbreviation ISRO stand for?", "questionHi": "ISRO का पूर्ण रूप क्या है?", "options": ["International Space Research Organisation", "Indian Space Research Organisation", "Indian Scientific Research Organisation", "Inter-State Research Organisation"], "answer": 1 },
+        { "questionEn": "Which is the highest civilian award in India?", "questionHi": "भारत में सर्वोच्च नागरिक पुरस्कार कौन सा है?", "options": ["Padma Vibhushan / पद्म विभूषण", "Param Vir Chakra / परम वीर चक्र", "Bharat Ratna / भारत रत्न", "Ashok Chakra / अशोक चक्र"], "answer": 2 },
+        { "questionEn": "The 'Ranji Trophy' is a prestigious tournament associated with which sport?", "questionHi": "'रणजी ट्रॉफी' एक प्रतिष्ठित टूर्नामेंट है जो किस खेल से संबंधित है?", "options": ["Hockey / हॉकी", "Football / फुटबॉल", "Badminton / बैडमिंटन", "Cricket / क्रिकेट"], "answer": 3 },
+        { "questionEn": "Which is the largest artificial (man-made) lake in Himachal Pradesh?", "questionHi": "हिमाचल प्रदेश की सबसे बड़ी कृत्रिम (मानव निर्मित) झील कौन सी है?", "options": ["Pong Dam Lake / पोंग बांध झील", "Govind Sagar Lake / गोविंद सागर झील", "Pandoh Lake / पंडोह झील", "Chamera Lake / चमेरा झील"], "answer": 1 },
+        { "questionEn": "The famous 'Minjar Fair' is celebrated with great pomp in which district of HP?", "questionHi": "प्रसिद्ध 'मिंजर मेला' HP के किस जिले में बड़ी धूमधाम से मनाया जाता है?", "options": ["Mandi / मंडी", "Kullu / कुल्लू", "Chamba / चंबा", "Kinnaur / किन्नौर"], "answer": 2 },
+        { "questionEn": "The 'Ayushman Bharat Yojana' (PMJAY) is a government scheme primarily related to:", "questionHi": "'आयुष्मान भारत योजना' (PMJAY) मुख्य रूप से किससे संबंधित सरकारी योजना है?", "options": ["Education / शिक्षा", "Health Insurance / स्वास्थ्य बीमा", "Agriculture subsidies / कृषि सब्सिडी", "Rural employment / ग्रामीण रोजगार"], "answer": 1 },
+        { "questionEn": "Who discovered the X-Rays?", "questionHi": "X-रे की खोज किसने की?", "options": ["Marie Curie / मैरी क्यूरी", "Wilhelm C. Röntgen / विल्हेम सी. रोंटजेन", "Alexander Fleming / अलेक्जेंडर फ्लेमिंग", "Isaac Newton / आइजैक न्यूटन"], "answer": 1 },
+        { "questionEn": "The 'Rohtang Pass' mainly connects the Kullu Valley with:", "questionHi": "'रोहतांग दर्रा' मुख्य रूप से कुल्लू घाटी को किससे जोड़ता है?", "options": ["Kangra Valley / कांगड़ा घाटी", "Lahaul and Spiti Valleys / लाहौल और स्पीति घाटियाँ", "Pangi Valley / पांगी घाटी", "Kinnaur / किन्नौर"], "answer": 1 },
+        { "questionEn": "Where is the headquarters of UNICEF located?", "questionHi": "UNICEF का मुख्यालय कहाँ स्थित है?", "options": ["Geneva / जिनेवा", "Paris / पेरिस", "New York / न्यूयॉर्क", "Rome / रोम"], "answer": 2 },
+        { "questionEn": "What does the abbreviation BCCI stand for in Indian sports?", "questionHi": "भारतीय खेलों में BCCI का पूर्ण रूप क्या है?", "options": ["Board of Control for Cricket in India", "Bureau of Cricket Control in India", "Board of Council for Cricket in India", "Broad Control of Cricket in India"], "answer": 0 },
+        { "questionEn": "Who is the author of the autobiography 'The Story of My Experiments with Truth'?", "questionHi": "आत्मकथा 'द स्टोरी ऑफ माई एक्सपेरिमेंट्स विद ट्रुथ' के लेखक कौन हैं?", "options": ["Jawaharlal Nehru / जवाहरलाल नेहरू", "Sardar Vallabhbhai Patel / सरदार वल्लभभाई पटेल", "Mahatma Gandhi / महात्मा गांधी", "B.R. Ambedkar / B.R. अंबेडकर"], "answer": 2 },
+        { "questionEn": "What is the capital city of Australia?", "questionHi": "ऑस्ट्रेलिया की राजधानी क्या है?", "options": ["Sydney / सिडनी", "Melbourne / मेलबर्न", "Canberra / कैनबरा", "Brisbane / ब्रिस्बेन"], "answer": 2 },
+        { "questionEn": "The famous 'Nati' dance is an integral part of the culture of which state?", "questionHi": "प्रसिद्ध 'नाटी' नृत्य किस राज्य की संस्कृति का एक अभिन्न अंग है?", "options": ["Punjab / पंजाब", "Uttarakhand / उत्तराखंड", "Himachal Pradesh / हिमाचल प्रदेश", "Jammu & Kashmir / जम्मू और कश्मीर"], "answer": 2 },
+        { "questionEn": "Which is the longest river in Himachal Pradesh?", "questionHi": "हिमाचल प्रदेश की सबसे लंबी नदी कौन सी है?", "options": ["Beas / ब्यास", "Chenab / चिनाब", "Ravi / रावी", "Satluj / सतलुज"], "answer": 3 }
+      ]
+    },
+    {
+      "name": "Mathematics",
+      "questions": [
+        { "questionEn": "Which of the following is a rational number?", "questionHi": "निम्नलिखित में से कौन सी एक परिमेय संख्या (Rational Number) है?", "options": ["$\\sqrt{2}$", "$\\pi$", "$\\sqrt{4}$", "$\\sqrt{7}$"], "answer": 2 },
+        { "questionEn": "Convert $0.75$ into a fraction in its simplest form.", "questionHi": "$0.75$ को इसके सरलतम रूप में भिन्न (Fraction) में बदलें।", "options": ["1/4", "3/4", "1/2", "4/5"], "answer": 1 },
+        { "questionEn": "What is the perimeter of a rectangle with length 12 cm and breadth 8 cm?", "questionHi": "लंबाई 12 सेमी और चौड़ाई 8 सेमी वाले आयत का परिमाप क्या है?", "options": ["20 cm", "40 cm", "48 cm", "96 cm"], "answer": 1 },
+        { "questionEn": "Find the volume of a cube having a side of 5 cm.", "questionHi": "5 सेमी भुजा वाले घन का आयतन ज्ञात कीजिए।", "options": ["25 cubic cm", "100 cubic cm", "125 cubic cm", "150 cubic cm"], "answer": 2 },
+        { "questionEn": "A shopkeeper buys an article for Rs 500 and sells it for Rs 600. What is his profit percentage?", "questionHi": "एक दुकानदार एक वस्तु को 500 रुपये में खरीदता है और 600 रुपये में बेचता है। उसका लाभ प्रतिशत क्या है?", "options": ["10%", "15%", "20%", "25%"], "answer": 2 },
+        { "questionEn": "A car travels a distance of 240 km at a speed of 60 km/h. How much time does it take?", "questionHi": "एक कार 60 किमी/घंटा की गति से 240 किमी की दूरी तय करती है। इसे कितना समय लगता है?", "options": ["3 hours", "4 hours", "5 hours", "6 hours"], "answer": 1 },
+        { "questionEn": "The sum of the three interior angles of a triangle is always equal to:", "questionHi": "एक त्रिभुज के तीनों आंतरिक कोणों का योग हमेशा किसके बराबर होता है?", "options": ["$90^\\circ$", "$180^\\circ$", "$270^\\circ$", "$360^\\circ$"], "answer": 1 },
+        { "questionEn": "Find the mean (average) of the numbers: 2, 4, 6, 8, 10.", "questionHi": "संख्याओं: 2, 4, 6, 8, 10 का माध्य (औसत) ज्ञात कीजिए।", "options": ["4", "5", "6", "8"], "answer": 2 },
+        { "questionEn": "If a standard six-sided die is rolled, what is the probability of getting a prime number (2, 3, or 5)?", "questionHi": "यदि एक मानक छह-तरफा पासा फेंका जाता है, तो अभाज्य संख्या (2, 3, या 5) आने की प्रायिकता क्या है?", "options": ["1/6", "1/3", "1/2", "2/3"], "answer": 2 },
+        { "questionEn": "Which of the following is an irrational number?", "questionHi": "निम्नलिखित में से कौन सी एक अपरिमेय संख्या (Irrational Number) है?", "options": ["$\\sqrt{9}$", "$\\sqrt{3}$", "22/7", "0.5"], "answer": 1 },
+        { "questionEn": "Add the fractions: $1/4 + 1/2 = ?$", "questionHi": "भिन्नों को जोड़ें: $1/4 + 1/2 = ?$", "options": ["2/6", "3/4", "1/8", "1/3"], "answer": 1 },
+        { "questionEn": "Multiply the decimals: $0.5 \\times 0.2 = ?$", "questionHi": "दशमलव का गुणा करें: $0.5 \\times 0.2 = ?$", "options": ["0.01", "0.1", "1.0", "10.0"], "answer": 1 },
+        { "questionEn": "Find the area of a circle with a radius of 7 cm. (Use $\\pi = 22/7$)", "questionHi": "7 सेमी त्रिज्या वाले वृत्त का क्षेत्रफल ज्ञात कीजिए। ($\\pi = 22/7$ का प्रयोग करें)", "options": ["44 sq cm", "88 sq cm", "154 sq cm", "308 sq cm"], "answer": 2 },
+        { "questionEn": "The volume of a cylinder is $\\pi r^2 h$. Find the volume if radius $r = 7$ cm and height $h = 10$ cm.", "questionHi": "एक बेलन का आयतन $\\pi r^2 h$ है। आयतन ज्ञात कीजिए यदि त्रिज्या $r = 7$ सेमी और ऊंचाई $h = 10$ सेमी है।", "options": ["770 cubic cm", "1540 cubic cm", "2200 cubic cm", "3080 cubic cm"], "answer": 1 },
+        { "questionEn": "A radio is bought for Rs 800 and sold at a loss of 10%. What is the selling price?", "questionHi": "एक रेडियो 800 रुपये में खरीदा जाता है और 10% की हानि पर बेचा जाता है। विक्रय मूल्य क्या है?", "options": ["Rs 700", "Rs 720", "Rs 750", "Rs 880"], "answer": 1 },
+        { "questionEn": "A train 150 m long crosses a standing pole in 10 seconds. What is its speed in m/s?", "questionHi": "150 मीटर लंबी एक ट्रेन 10 सेकंड में एक खड़े खंभे को पार करती है। मी/से में इसकी गति क्या है?", "options": ["10 m/s", "12 m/s", "15 m/s", "18 m/s"], "answer": 2 },
+        { "questionEn": "In a right-angled triangle, if the base is 3 cm and the height (perpendicular) is 4 cm, what is the length of the hypotenuse?", "questionHi": "एक समकोण त्रिभुज में, यदि आधार 3 सेमी और ऊंचाई 4 सेमी है, तो कर्ण (hypotenuse) की लंबाई क्या है?", "options": ["5 cm", "6 cm", "7 cm", "12 cm"], "answer": 0 },
+        { "questionEn": "What is the median of the following set of numbers: 8, 2, 5, 1, 9?", "questionHi": "निम्नलिखित संख्याओं के समूह की माध्यिका (Median) क्या है: 8, 2, 5, 1, 9?", "options": ["2", "5", "8", "9"], "answer": 1 },
+        { "questionEn": "If a single card is drawn from a well-shuffled standard deck of 52 playing cards, what is the probability that it is a red card?", "questionHi": "यदि 52 ताश के पत्तों के डेक से एक पत्ता निकाला जाता है, तो इसके लाल पत्ता होने की प्रायिकता क्या है?", "options": ["1/4", "1/3", "1/2", "2/3"], "answer": 2 },
+        { "questionEn": "The Total Surface Area of a cube with side '$a$' is given by the formula:", "questionHi": "भुजा '$a$' वाले घन का कुल पृष्ठीय क्षेत्रफल किस सूत्र द्वारा दिया जाता है?", "options": ["$4a^2$", "$6a^2$", "$a^3$", "$2a^2$"], "answer": 1 }
+      ]
+    },
+    {
+      "name": "Logical Reasoning",
+      "questions": [
+        { "questionEn": "Find the odd one out from the following figures:", "questionHi": "निम्नलिखित आकृतियों में से विषम चुनें:", "options": ["Square / वर्ग", "Triangle / त्रिभुज", "Rectangle / आयत", "Circle / वृत्त"], "answer": 3 },
+        { "questionEn": "What is the angle between the hour hand and the minute hand of a clock exactly at 3:00?", "questionHi": "घड़ी में ठीक 3:00 बजे घंटे और मिनट की सुइयों के बीच का कोण क्या होता है?", "options": ["$45^\\circ$", "$60^\\circ$", "$90^\\circ$", "$180^\\circ$"], "answer": 2 },
+        { "questionEn": "If today is Monday, what day of the week will it be after exactly 15 days?", "questionHi": "यदि आज सोमवार है, तो ठीक 15 दिनों के बाद सप्ताह का कौन सा दिन होगा?", "options": ["Monday / सोमवार", "Tuesday / मंगलवार", "Wednesday / बुधवार", "Thursday / गुरुवार"], "answer": 1 },
+        { "questionEn": "Find the next number in the series: 2, 5, 10, 17, ?", "questionHi": "श्रृंखला में अगली संख्या ज्ञात करें: 2, 5, 10, 17, ?", "options": ["24", "25", "26", "27"], "answer": 2 },
+        { "questionEn": "In a row of boys, Rahul is 10th from the left end and 20th from the right end. How many boys are there in the row?", "questionHi": "लड़कों की एक पंक्ति में, राहुल बाएँ छोर से 10वें और दाएँ छोर से 20वें स्थान पर है। पंक्ति में कुल कितने लड़के हैं?", "options": ["28", "29", "30", "31"], "answer": 1 },
+        { "questionEn": "A farm has some cows and hens. If the total number of heads is 50 and the total number of legs is 140, how many cows are there?", "questionHi": "एक खेत में कुछ गायें और मुर्गियां हैं। यदि सिरों की कुल संख्या 50 है और पैरों की कुल संख्या 140 है, तो गायें कितनी हैं?", "options": ["10", "20", "30", "40"], "answer": 1 },
+        { "questionEn": "Find the next letter in the alphabet series: A, C, E, G, ?", "questionHi": "वर्णमाला श्रृंखला में अगला अक्षर ज्ञात करें: A, C, E, G, ?", "options": ["H", "I", "J", "K"], "answer": 1 },
+        { "questionEn": "In a standard dice, what number is on the face opposite to 1?", "questionHi": "एक मानक पासे (डाइस) में, 1 वाले फलक के विपरीत कौन सी संख्या होती है?", "options": ["3", "4", "5", "6"], "answer": 3 },
+        { "questionEn": "Analogy - Book : Author :: Painting : ?", "questionHi": "समानता - किताब : लेखक :: पेंटिंग : ?", "options": ["Museum / संग्रहालय", "Brush / ब्रश", "Painter / चित्रकार", "Colors / रंग"], "answer": 2 },
+        { "questionEn": "Pointing to a man, a woman said, \"He is the son of my mother's brother.\" How is the man related to the woman?", "questionHi": "एक आदमी की ओर इशारा करते हुए एक महिला ने कहा, \"वह मेरी माँ के भाई का बेटा है।\" वह आदमी उस महिला से कैसे संबंधित है?", "options": ["Brother / भाई", "Cousin / चचेरा/ममेरा भाई", "Uncle / चाचा", "Nephew / भतीजा"], "answer": 1 }
+      ]
+    }
+  ]
+}

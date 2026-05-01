@@ -1,0 +1,106 @@
+{
+  "testTitle": "HP Police Constable Official Paper (2015)",
+  "durationMinutes": 60,
+  "negativeMarking": "0",
+  "customInstructions": [
+    "This is the Official Previous Year Paper (PYP) of HP Police Constable conducted in 2015.",
+    "Total Questions: 80, Total Marks: 80, Total Time: 60 Minutes.",
+    "Every correct answer awards +1 Mark.",
+    "Historically, there was NO negative marking in this specific exam pattern.",
+    "Questions are exactly as they appeared in the actual exam."
+  ],
+  "sections": [
+    {
+      "name": "English Language",
+      "questions": [
+        { "questionEn": "Fill in the blank with the correct conjunction: He will not leave the place ____ Ram comes back.", "questionHi": "", "options": ["until", "because", "if", "although"], "answer": 0 },
+        { "questionEn": "Change into Passive Voice: \"I take tea every morning.\"", "questionHi": "", "options": ["Tea is taken by me every morning.", "Tea was taken by me every morning.", "Tea has been taken by me every morning.", "Tea is being taken by me every morning."], "answer": 0 },
+        { "questionEn": "Change into Negative: \"He does his study.\"", "questionHi": "", "options": ["He does not his study.", "He do not do his study.", "He does not do his study.", "He did not do his study."], "answer": 2 },
+        { "questionEn": "Convert into Future Perfect Tense: \"I know him.\"", "questionHi": "", "options": ["I will know him.", "I shall have known him.", "I am knowing him.", "I have known him."], "answer": 1 },
+        { "questionEn": "Fill in the blank: How dare you ____ my cupboard.", "questionHi": "", "options": ["opening", "to open", "open", "opened"], "answer": 2 },
+        { "questionEn": "Combine the two sentences using 'in spite of': He failed. He did not lose heart.", "questionHi": "", "options": ["In spite of fail, he did not lose heart.", "In spite of having failed, he did not lose heart.", "In spite he failed, he did not lose heart.", "In spite of failure, he does not lose heart."], "answer": 1 },
+        { "questionEn": "What is the plural of 'Mouse'?", "questionHi": "", "options": ["Mouses", "Mice", "Mices", "Mouse"], "answer": 1 },
+        { "questionEn": "What is the feminine gender of 'Gentleman'?", "questionHi": "", "options": ["Gentlewoman / Lady", "Woman", "Maid", "Madam"], "answer": 0 },
+        { "questionEn": "Fill in the blank: She ____ me to walk straight.", "questionHi": "", "options": ["said", "spoken", "told", "ask"], "answer": 2 },
+        { "questionEn": "What is the meaning of the idiom \"To hang one's boots\"?", "questionHi": "", "options": ["To play hard", "To retire", "To travel", "To clean boots"], "answer": 1 },
+        { "questionEn": "Choose the synonym of 'Kind':", "questionHi": "", "options": ["Cruel", "Benevolent", "Harsh", "Angry"], "answer": 1 },
+        { "questionEn": "Rearrange the following to form a meaningful sentence: (A) Study (B) is (C) Chemicals (D) The (E) of (F) Chemistry", "questionHi": "", "options": ["D A E C B F", "D E A C B F", "A E C B D F", "D C E A B F"], "answer": 0 },
+        { "questionEn": "Rearrange the following to form a meaningful sentence: (A) basic elements (B) hundred (C) gold (D) there are (E) such as (F) oxygen and", "questionHi": "", "options": ["D B A E F C", "D A B E F C", "B D A E F C", "D B E A F C"], "answer": 0 },
+        { "questionEn": "Spot the correct sentence form:", "questionHi": "", "options": ["When he was going he can have crossed the river.", "When he was going he could have crossed the river.", "When he was going he could crossed the river.", "When he is going he could have crossed the river."], "answer": 1 },
+        { "questionEn": "Choose the correct preposition: He deals ____ stationery.", "questionHi": "", "options": ["with", "on", "in", "for"], "answer": 2 },
+        { "questionEn": "Choose the correct antonym of 'Always':", "questionHi": "", "options": ["Sometimes", "Never", "Often", "Rarely"], "answer": 1 }
+      ]
+    },
+    {
+      "name": "Hindi Language",
+      "questions": [
+        { "questionEn": "", "questionHi": "\"तुम्हें किसने डांटा\" - यह किस प्रकार का वाक्य है?", "options": ["निषेधवाचक", "प्रश्नवाचक", "आज्ञावाचक", "विस्मयादिबोधक"], "answer": 1 },
+        { "questionEn": "", "questionHi": "\"मेरी कमीज में ढाई मीटर कपड़ा लगता है।\" - इसमें विशेषण क्या है?", "options": ["कमीज", "कपड़ा", "ढाई मीटर", "लगता है"], "answer": 2 },
+        { "questionEn": "", "questionHi": "'बालक' का स्त्रीलिंग रूप क्या है?", "options": ["बालकी", "बालिका", "लड़की", "बालिकाएं"], "answer": 1 },
+        { "questionEn": "", "questionHi": "\"कृष्ण ने कंस को मारा।\" - इस वाक्य में 'कृष्ण' और 'कंस' क्रमशः क्या हैं?", "options": ["कर्म और कर्त्ता", "कर्त्ता और कर्म", "करण और अपादान", "कर्त्ता और करण"], "answer": 1 },
+        { "questionEn": "", "questionHi": "मुहावरे 'सिर पर कफन बांधना' का क्या अर्थ है?", "options": ["बीमार पड़ना", "सो जाना", "मरने को तैयार रहना", "हार मान लेना"], "answer": 2 },
+        { "questionEn": "", "questionHi": "'विद्यालय' का सही संधि विच्छेद क्या है?", "options": ["विद्या + लय", "विद्य + आलय", "विद्या + आलय", "विदि + आलय"], "answer": 2 },
+        { "questionEn": "", "questionHi": "\"वह सैर को जाया करता है।\" - यह किस प्रकार की क्रिया है?", "options": ["अकर्मक क्रिया", "सकर्मक क्रिया", "प्रेरणार्थक क्रिया", "संयुक्त क्रिया"], "answer": 1 },
+        { "questionEn": "", "questionHi": "मुहावरे 'रोंगटे खड़े होना' का क्या अर्थ है?", "options": ["हैरान होना / डर जाना", "खुश होना", "गुस्सा आना", "ठंड लगना"], "answer": 0 },
+        { "questionEn": "", "questionHi": "'नूतन' का विलोम शब्द क्या है?", "options": ["नया", "आधुनिक", "पुरातन", "प्राचीन"], "answer": 2 },
+        { "questionEn": "", "questionHi": "'जो बहुत बोलता है' के लिए एक शब्द है:", "options": ["मूक", "वाचाल", "बधिर", "अल्पभाषी"], "answer": 1 },
+        { "questionEn": "", "questionHi": "'चतुर' शब्द की भाववाचक संज्ञा क्या है?", "options": ["चतुराई", "चतुरता", "चातुर्य", "चतुरपन"], "answer": 0 },
+        { "questionEn": "", "questionHi": "मुहावरे 'बहती गंगा में हाथ धोना' का क्या अर्थ है?", "options": ["गंगा में नहाना", "पुण्य कमाना", "समय का लाभ उठाना", "पाप धोना"], "answer": 2 },
+        { "questionEn": "", "questionHi": "इनमें से कौन सा मुहावरा नहीं है?", "options": ["नाक काटना", "नाक साफ करना", "नाक रगड़ना", "नाक में दम करना"], "answer": 1 },
+        { "questionEn": "", "questionHi": "'गुदड़ी का लाल' मुहावरे का क्या अर्थ है?", "options": ["गरीब परिवार में जन्मा गुणवान व्यक्ति", "लाल रंग की गुदड़ी", "बहुत प्यारा होना", "धोखेबाज"], "answer": 0 },
+        { "questionEn": "", "questionHi": "\"जब सौनिका आई तभी चली गई।\" इसमें वाक्य का कौन सा भेद है?", "options": ["सरल वाक्य", "मिश्रित वाक्य", "संयुक्त वाक्य", "प्रश्नवाचक वाक्य"], "answer": 2 },
+        { "questionEn": "", "questionHi": "साहित्य में 'कृशानु' का क्या अर्थ होता है?", "options": ["क्रोध", "आग", "पानी", "हवा"], "answer": 1 }
+      ]
+    },
+    {
+      "name": "General Awareness",
+      "questions": [
+        { "questionEn": "Ustad Amjad Ali Khan is famous for playing which musical instrument?", "questionHi": "अमजद अली खान किस वाद्य यंत्र को बजाने के लिए प्रसिद्ध हैं?", "options": ["Tabla / तबला", "Sitar / सितार", "Sarod / सरोद", "Flute / बांसुरी"], "answer": 1 },
+        { "questionEn": "Who invented the Telephone?", "questionHi": "टेलीफोन का आविष्कार किसने किया था?", "options": ["Thomas Edison / थॉमस एडिसन", "Alexander Graham Bell / अलेक्जेंडर ग्राहम बेल", "Guglielmo Marconi / गुग्लिल्मो मार्कोनी", "Nikola Tesla / निकोला टेस्ला"], "answer": 1 },
+        { "questionEn": "What does 'RAM' stand for in a computer?", "questionHi": "कंप्यूटर में 'RAM' का क्या अर्थ है?", "options": ["Read Access Memory", "Random Access Memory", "Run Arithmetic Memory", "Random Active Memory"], "answer": 1 },
+        { "questionEn": "Which is the largest district of Himachal Pradesh by area?", "questionHi": "क्षेत्रफल के आधार पर हिमाचल प्रदेश का सबसे बड़ा जिला कौन सा है?", "options": ["Kangra / कांगड़ा", "Mandi / मंडी", "Kinnaur / किन्नौर", "Lahaul Spiti / लाहौल स्पीति"], "answer": 3 },
+        { "questionEn": "What is measured on the Richter scale?", "questionHi": "रिक्टर स्केल पर क्या मापा जाता है?", "options": ["Wind Speed / हवा की गति", "Temperature / तापमान", "Earthquake / भूकंप", "Depth of Ocean / समुद्र की गहराई"], "answer": 2 },
+        { "questionEn": "What is the full form of IPL?", "questionHi": "'IPL' का पूर्ण रूप क्या है?", "options": ["Indian Premier League", "International Premier League", "Indian Players League", "Indoor Premier League"], "answer": 0 },
+        { "questionEn": "Who was the Health Minister of India during the 2015 period?", "questionHi": "2015 के दौरान भारत के स्वास्थ्य मंत्री कौन थे? (वर्तमान में भी वही हैं)", "options": ["Rajnath Singh / राजनाथ सिंह", "J.P. Nadda / जे.पी. नड्डा", "Sushma Swaraj / सुषमा स्वराज", "Dr. Harsh Vardhan / डॉ. हर्षवर्धन"], "answer": 1 },
+        { "questionEn": "What does BCCI stand for?", "questionHi": "'BCCI' का पूर्ण रूप क्या है?", "options": ["Board of Control for Cricket in India", "Bureau of Cricket Control in India", "Board of Council for Cricket in India", "Broad Control of Cricket in India"], "answer": 0 },
+        { "questionEn": "When did the Constitution of India come into force?", "questionHi": "भारत का संविधान कब लागू हुआ?", "options": ["15 August 1947 / 15 अगस्त 1947", "26 November 1949 / 26 नवंबर 1949", "26 January 1950 / 26 जनवरी 1950", "2nd October 1952 / 2 अक्टूबर 1952"], "answer": 2 },
+        { "questionEn": "Before 1947, Shimla was the summer capital of:", "questionHi": "1947 से पहले शिमला किसकी ग्रीष्मकालीन राजधानी थी?", "options": ["Punjab / पंजाब", "Undivided India / अविभाजित भारत", "Himachal Pradesh / हिमाचल प्रदेश", "Haryana / हरियाणा"], "answer": 1 },
+        { "questionEn": "Who was the first Chief Minister of Himachal Pradesh?", "questionHi": "हिमाचल प्रदेश के प्रथम मुख्यमंत्री कौन थे?", "options": ["Shanta Kumar / शांता कुमार", "Virbhadra Singh / वीरभद्र सिंह", "Ram Lal / राम लाल", "Dr. Y.S. Parmar / डॉ. वाई.एस. परमार"], "answer": 3 },
+        { "questionEn": "Who is the author of 'Ramcharitmanas'?", "questionHi": "'रामचरितमानस' के लेखक कौन थे?", "options": ["Valmiki / वाल्मीकि", "Tulsidas / तुलसीदास", "Surdas / सूरदास", "Kabirdas / कबीरदास"], "answer": 1 },
+        { "questionEn": "Is the city of Mathura situated on the banks of the river Ganga?", "questionHi": "क्या मथुरा शहर गंगा नदी के किनारे स्थित है?", "options": ["Yes / हाँ", "No (It is on Yamuna) / नहीं (यमुना पर)", "No (It is on Narmada) / नहीं (नर्मदा पर)", "No (It is on Godavari) / नहीं (गोदावरी पर)"], "answer": 1 },
+        { "questionEn": "'Red Delicious' is a popular variety of which fruit?", "questionHi": "'रेड डिलीशियस' (Red Delicious) किस फल की एक किस्म है?", "options": ["Mango / आम", "Apple / सेब", "Orange / संतरा", "Banana / केला"], "answer": 1 },
+        { "questionEn": "Who is the first Indian to win an individual Gold Medal at the Olympic Games?", "questionHi": "व्यक्तिगत स्पर्धा में ओलंपिक में स्वर्ण पदक जीतने वाले पहले भारतीय कौन हैं?", "options": ["Neeraj Chopra / नीरज चोपड़ा", "K.D. Jadhav / के.डी. जाधव", "Abhinav Bindra / अभिनव बिंद्रा", "P.V. Sindhu / पी.वी. सिंधु"], "answer": 2 },
+        { "questionEn": "Who gave the slogan \"Swaraj is my birthright\"?", "questionHi": "\"स्वराज मेरा जन्मसिद्ध अधिकार है\", यह किसने कहा था?", "options": ["Mahatma Gandhi / महात्मा गांधी", "Subhash Chandra Bose / सुभाष चंद्र बोस", "Lokmanya Tilak / लोकमान्य तिलक", "Bhagat Singh / भगत सिंह"], "answer": 2 },
+        { "questionEn": "Where is the headquarters of SAARC located?", "questionHi": "SAARC का मुख्यालय कहाँ स्थित है?", "options": ["New Delhi / नई दिल्ली", "Dhaka / ढाका", "Kathmandu / काठमांडू", "Colombo / कोलंबो"], "answer": 2 },
+        { "questionEn": "How many languages are recognized in the 8th Schedule of the Indian Constitution?", "questionHi": "भारतीय संविधान की 8वीं अनुसूची में कितनी भाषाओं को मान्यता प्राप्त है?", "options": ["14", "18", "22", "24"], "answer": 2 },
+        { "questionEn": "What does KYC stand for in banking?", "questionHi": "बैंकिंग में 'KYC' का क्या अर्थ है?", "options": ["Know Your Character", "Know Your Customer", "Know Your Code", "Keep Your Cash"], "answer": 1 },
+        { "questionEn": "What was the ancient name of Patna?", "questionHi": "'पाटलिपुत्र' किस शहर का पुराना नाम है?", "options": ["Varanasi / वाराणसी", "Patna / पटना", "Gaya / गया", "Kashi / काशी"], "answer": 1 },
+        { "questionEn": "Where is India's satellite launch center located?", "questionHi": "भारत का उपग्रह प्रक्षेपण स्टेशन कहाँ स्थित है?", "options": ["Trombay / ट्रॉम्बे", "Bengaluru / बेंगलुरु", "Sriharikota / श्रीहरिकोटा", "Ahmedabad / अहमदाबाद"], "answer": 2 },
+        { "questionEn": "Who was the Speaker of the Himachal Pradesh Vidhan Sabha during 2013-2017?", "questionHi": "2013-2017 के दौरान हिमाचल प्रदेश विधान सभा के अध्यक्ष कौन थे? (पेपर के अनुसार)", "options": ["Dr. Rajiv Bindal / डॉ. राजीव बिंदल", "Brij Bihari Butel / बृज बिहारी बुटेल", "Vipin Singh Parmar / विपिन सिंह परमार", "Kuldeep Singh Pathania / कुलदीप सिंह पठानिया"], "answer": 1 },
+        { "questionEn": "Vijay Kumar, the Olympic medalist from HP, is associated with which sport?", "questionHi": "हिमाचल प्रदेश के ओलंपिक पदक विजेता विजय कुमार किस खेल से संबंध रखते हैं?", "options": ["Boxing / बॉक्सिंग", "Archery / तीरंदाजी", "Shooting / शूटिंग", "Weightlifting / भारोत्तोलन"], "answer": 2 },
+        { "questionEn": "The Shimla Agreement was signed in which year?", "questionHi": "शिमला समझौता किस वर्ष हस्ताक्षरित किया गया था?", "options": ["1947", "1965", "1971", "1972"], "answer": 3 }
+      ]
+    },
+    {
+      "name": "Mathematics & Logical Reasoning",
+      "questions": [
+        { "questionEn": "Arrange in logical order: (1) Network (2) Number (3) Mobile (4) Talk", "questionHi": "तार्किक क्रम बनाएँ: (1) नेटवर्क (2) नंबर (3) मोबाइल (4) बात करना", "options": ["1, 2, 3, 4", "3, 2, 1, 4", "4, 3, 2, 1", "2, 3, 1, 4"], "answer": 1 },
+        { "questionEn": "Arrange in logical order: (1) Court (2) Justice (3) Lawsuit (4) Dispute", "questionHi": "तार्किक क्रम बनाएँ: (1) न्यायालय (2) इंसाफ (3) मुकद्दमा (4) झगड़ा", "options": ["4, 3, 1, 2", "1, 2, 3, 4", "3, 4, 1, 2", "4, 1, 3, 2"], "answer": 0 },
+        { "questionEn": "Three traffic lights flash at intervals of 10, 15, and 20 seconds. If they flash together at 6:10 AM, when will they flash together again?", "questionHi": "तीन ट्रैफिक बत्तियाँ क्रमशः 10, 15 और 20 सेकंड पर चमकती हैं। यदि वे प्रातः 6:10 पर एक साथ चमकती हैं, तो दोबारा एक साथ कब चमकेंगी?", "options": ["6:10:30 AM", "6:11:00 AM", "6:15:00 AM", "7:10:00 AM"], "answer": 1 },
+        { "questionEn": "A is the sister of B, B is the brother of C, D is the father of C. How is A related to D?", "questionHi": "A, B की बहन है; B, C का भाई है; D, C का पिता है। A, D की क्या लगती है?", "options": ["Mother / माँ", "Sister / बहन", "Daughter / बेटी", "Niece / भतीजी"], "answer": 2 },
+        { "questionEn": "If A=2, M=26, Z=52, then what is the value of B+E+T?", "questionHi": "यदि A=2, M=26, Z=52 है, तो B+E+T का मान क्या होगा?", "options": ["44", "50", "54", "64"], "answer": 2 },
+        { "questionEn": "If CENTRAL is coded as ABCDEFG and PLANETARIUM as HGDCBDEFIJK, then LANTERN is coded as?", "questionHi": "यदि CENTRAL का कोड ABCDEFG है और PLANETARIUM का कोड HGDCBDEFIJK है, तो LANTERN का कोड क्या होगा?", "options": ["GFCDCEB", "GFCDBEC", "GFCDBCE", "GCFDBEC"], "answer": 1 },
+        { "questionEn": "The price of 3 chairs and 2 tables is Rs 700. The price of 5 chairs and 3 tables is Rs 1100. What is the price of 2 chairs and 2 tables?", "questionHi": "3 कुर्सियों और 2 मेजों की कीमत 700 रुपये है। 5 कुर्सियों और 3 मेजों की कीमत 1100 रुपये है। 2 कुर्सियों और 2 मेजों की कीमत क्या होगी?", "options": ["Rs 400", "Rs 500", "Rs 600", "Rs 800"], "answer": 2 },
+        { "questionEn": "Money was divided between two persons in the ratio 4:5. If the first got Rs 5 less than the second, what was the total amount distributed?", "questionHi": "दो व्यक्तियों को 4:5 के अनुपात में रुपये बांटे गए। यदि पहले व्यक्ति को दूसरे से 5 रुपये कम मिले, तो कुल कितने रुपये बांटे गए थे?", "options": ["Rs 25", "Rs 40", "Rs 45", "Rs 50"], "answer": 2 },
+        { "questionEn": "A shopkeeper gives a discount of 20% on the marked price and makes a profit of 30% on the cost price. If he gives no discount, what will be his profit percentage?", "questionHi": "एक दुकानदार अंकित मूल्य पर 20% की छूट देता है और क्रय मूल्य पर 30% का लाभ कमाता है। यदि वह कोई छूट न दे, तो उसका लाभ प्रतिशत क्या होगा?", "options": ["50%", "60%", "62.5%", "65%"], "answer": 2 },
+        { "questionEn": "A bag contains 8 blue, 5 red, 4 green, and 7 black balls. If one ball is drawn at random, what is the probability that it is NOT green?", "questionHi": "एक बैग में 8 नीली, 5 लाल, 4 हरी और 7 काली गेंदें हैं। यदि एक गेंद निकाली जाती है, तो उसके हरी गेंद न होने की प्रायिकता क्या है?", "options": ["1/6", "5/6", "4/24", "19/24"], "answer": 1 },
+        { "questionEn": "Some friends planned a picnic and decided to spend Rs 96 on food. 4 friends failed to go, and as a result, the remaining friends had to pay Rs 4 extra each. How many people attended the picnic?", "questionHi": "कुछ मित्रों ने पिकनिक पर 96 रुपये खर्च करने की योजना बनाई। 4 मित्र नहीं जा सके, जिससे बाकी प्रत्येक को 4 रुपये अधिक देने पड़े। कितने लोग पिकनिक पर गए?", "options": ["8", "12", "16", "24"], "answer": 0 },
+        { "questionEn": "In a field, there are some ducks and some goats. If the total number of heads is 77 and the total number of legs is 224, find the number of ducks.", "questionHi": "एक मैदान में कुछ बत्तखें और कुछ बकरे हैं। उनके कुल 77 सिर और 224 पैर हैं। बत्तखों की कुल संख्या कितनी है?", "options": ["35", "42", "50", "60"], "answer": 1 },
+        { "questionEn": "Analogy: 7:49 :: 6:36 :: 4:16 :: 9:?", "questionHi": "सादृश्यता: 7:49 :: 6:36 :: 4:16 :: 9:?", "options": ["64", "72", "81", "100"], "answer": 2 },
+        { "questionEn": "A thief is running at a speed of 6 km/h. A policeman is chasing him at 8 km/h. If the initial distance between them is 500 meters, at what distance will the policeman catch him?", "questionHi": "एक चोर 6 किमी/घंटा की गति से दौड़ रहा है। पुलिस 8 किमी/घंटा की गति से उसका पीछा कर रही है। यदि उनके बीच की दूरी 500 मीटर है, तो सिपाही उसे कितनी दूरी पर पकड़ लेगा?", "options": ["1 km", "1.5 km", "2 km", "2.5 km"], "answer": 2 },
+        { "questionEn": "Shyam bought 20 dozen toys at Rs 375 per dozen and sold each toy for Rs 33. What is his profit percentage?", "questionHi": "श्याम ने 20 दर्जन खिलौने 375 रुपये प्रति दर्जन की दर से खरीदे और प्रत्येक को 33 रुपये में बेच दिया। उसका लाभ प्रतिशत क्या है?", "options": ["4.6%", "5.6%", "6.6%", "7.6%"], "answer": 1 },
+        { "questionEn": "What comes next in the series: 9, 11, 33, 13, 15, 33, 17, ?, 33", "questionHi": "श्रृंखला में अगला पद क्या होगा? 9, 11, 33, 13, 15, 33, 17, ?, 33", "options": ["18", "19", "20", "21"], "answer": 1 }
+      ]
+    }
+  ]
+}

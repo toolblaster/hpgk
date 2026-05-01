@@ -1,0 +1,114 @@
+{
+  "testTitle": "HP Police Constable Official Paper (27 March 2022)",
+  "durationMinutes": 60,
+  "negativeMarking": "0",
+  "customInstructions": [
+    "Dis na di Ofishal Pribyɔs Yia Pepa (PYP) fɔ HP Polis Kɔnstebul we dɛn bin du pan 27 Mach 2022.",
+    "Tota Kwɛstyɔn dɛn: 80, Tota Mak dɛn: 80, Tota Tɛm: 60 Minit.",
+    "Yu go gɛt +1 Mak fɔ ɛvri kɔrɛkt ansa.",
+    "Lida, dɛn nɔ bin gɛt nɛgetiv makin fɔ dis patikula egzam.",
+    "Dɛn kwɛstyɔn ya na di sem wan dɛn we bin kam pan di rial egzam."
+  ],
+  "sections": [
+    {
+      "name": "General Awareness & Science",
+      "questions": [
+        { "questionEn": "Which among the following states of India has the largest coal reserve?", "questionHi": "निम्नलिखित में से भारत के कौन से राज्य में कोयले के सबसे बड़े भंडार मौजूद है?", "options": ["Andhra Pradesh / आंध्रा प्रदेश", "Jharkhand / झारखण्ड", "West Bengal / पश्चिम बंगाल", "Madhya Pradesh / मध्य प्रदेश"], "answer": 1 },
+        { "questionEn": "_______ soils are mostly confined to river basin and coastal plains of India?", "questionHi": "_______ प्रकार की मिट्टी भारत की अधिकतर नदी घाटियों व तटीय मैदानों में ही पायी जाती है?", "options": ["Alluvial soils / जलोढ़क", "Black soils / काली मिट्टी", "Laterite soils / लेटराइट मिट्टी", "Red soils / लाल मिट्टी"], "answer": 0 },
+        { "questionEn": "Which of the following groups of rivers originate from the Himachal mountains?", "questionHi": "निम्नलिखित में से कौन सी नदियां हिमाचल प्रदेश के पर्वतों से निकलती है?", "options": ["Beas, Ravi and Chenab / ब्यास, रावी व चिनाब", "Ravi, Chenab and Jhelum / रावी, चिनाब व झेलम", "Sutluj, Beas and Ravi / सतलुज, व्यास व रावी", "Sutluj, Ravi And Jhelum / सतलुज, रावी व झेलम"], "answer": 0 },
+        { "questionEn": "In which state do the Monsoon arrive first?", "questionHi": "किस राज्य में मानसून सर्वप्रथम पहुँचता है?", "options": ["Assam / आसाम", "Maharashtra / महाराष्ट्रा", "Kerala / केरला", "Himachal Pradesh / हिमाचल प्रदेश"], "answer": 2 },
+        { "questionEn": "Larji Hydroelectric Power Project is made on _______ river?", "questionHi": "लारजी विद्युत परियोजना _______ नदी पर बनाई गई है?", "options": ["Parbati / पार्वती", "Baner / बनेर", "Baspa / बासपा", "Beas / ब्यास"], "answer": 3 },
+        { "questionEn": "Which cultural festival is celebrated at Varanasi of the hills or Chhoti Kashi?", "questionHi": "पहाड़ों की वाराणसी अथवा छोटी काशी में कौन सा सांस्कृतिक उत्सव मनाया जाता है?", "options": ["Maha Shivratri / महा शिवरात्रि", "Losar / लोसर", "Sazo / साजो", "Doongri / डूंगरी"], "answer": 0 },
+        { "questionEn": "As seen in recent news “E-Daakhil Portal” is associated with which Sector?", "questionHi": "वर्तमान में समाचारों में वर्णित “E-Daakhil Portal” किस क्षेत्र के साथ सम्बंधित है?", "options": ["Right to Education / शिक्षा के अधिकार", "Consumer Complaints / उपभोक्ता शिकायतें", "Life Certificate / जीवन प्रमाणपत्र", "Income Tax / आयकर"], "answer": 1 },
+        { "questionEn": "_______ fraction of Rajya Sabha members retire after every two years?", "questionHi": "राज्य सभा के सदस्य प्रत्येक दो वर्ष की अवधि के उपरान्त _______ अंश के मुताबिक सेवानिवृत हो जाते हैं?", "options": ["2/3", "1/2", "1/3", "1/6"], "answer": 2 },
+        { "questionEn": "Jallianwala Bagh massacre took place on the festival day of:", "questionHi": "जलियां वाला बाग हत्याकांड किस त्यौहार के दिन घटित हुआ था?", "options": ["Deepawali / दीपावली", "Baisakhi / बैसाखी", "Lohri / लोहड़ी", "Holi / होली"], "answer": 1 },
+        { "questionEn": "Which movement is known as August Movement / Kranti?", "questionHi": "किस आंदोलन को अगस्त आंदोलन / क्रांति के नाम से जाना जाता है?", "options": ["Non-Cooperation Movement / असहयोग आंदोलन", "Khilafat Movement / खिलाफत आंदोलन", "Swadeshi Movement / स्वदेशी आंदोलन", "Quit India Movement / भारत छोड़ो आंदोलन"], "answer": 3 },
+        { "questionEn": "The Non-Cooperation Movement was suspended in-", "questionHi": "असहयोग आंदोलन को किस वर्ष में निलंबित कर दिया गया था?", "options": ["1922", "1929", "1921", "1927"], "answer": 0 },
+        { "questionEn": "The Pir Panjal range is located in which neighbouring state of Himachal Pradesh?", "questionHi": "पीर पंजाल पर्वत श्रृंखला हिमाचल प्रदेश के किस पड़ोसी राज्य में स्थित है?", "options": ["Haryana / हरियाणा", "Punjab / पंजाब", "Jammu & Kashmir / जम्मू व कश्मीर", "Uttarakhand / उत्तराखंड"], "answer": 2 },
+        { "questionEn": "What is the name of the highest mountain in India?", "questionHi": "भारत की सबसे ऊँची चोटी का नाम क्या है?", "options": ["Kanchenjunga / कंचनजंगा", "Nanda Devi / नंदा देवी", "Sri Kailash / श्री कैलाश", "Jong song Peak / जोंग सोंग चोटी"], "answer": 0 },
+        { "questionEn": "State animal of Himachal Pradesh is?", "questionHi": "हिमाचल प्रदेश का राज्य पशु कौन है?", "options": ["Tiger / बाघ", "Lion / शेर", "Bison / बाइसन", "Snow leopard / हिम तेंदुआ"], "answer": 3 },
+        { "questionEn": "Which is the biggest natural lake in Himachal Pradesh?", "questionHi": "हिमाचल प्रदेश की सबसे बड़ी प्राकृतिक झील कौन सी है?", "options": ["Renuka Lake / रेणुका झील", "Rewalsar Lake / रिवालसर झील", "Khajjiar Lake / खजियार झील", "Brighu Lake / भृगु झील"], "answer": 0 },
+        { "questionEn": "Shimla was declared as summer capital of British India in year?", "questionHi": "शिमला को ब्रिटिश भारत की ग्रीष्मकालीन राजधानी किस वर्ष में घोषित किया गया था?", "options": ["1858", "1864", "1869", "1871"], "answer": 1 },
+        { "questionEn": "Omega-3 fatty acid is not found in-", "questionHi": "इनमें से किस में ओमेगा-3 फैटी एसिड नहीं पाया जाता है?", "options": ["Fish oil / मछली का तेल", "Walnuts / अखरोट", "Flax seeds / अलसी", "Lettuce / सलाद पत्ता"], "answer": 3 },
+        { "questionEn": "Mirage can most likely be associated with which of the following phenomenon-", "questionHi": "मृगतृष्णा इसमें से किस सिद्धांत / घटना के साथ सम्बंधित है?", "options": ["Reflection / परावर्तन", "Refraction / उपवर्तन (अपवर्तन)", "Dispersion / फैलाव", "Diffraction / विवर्तन"], "answer": 1 },
+        { "questionEn": "BCG Vaccine is used to prevent?", "questionHi": "BCG का टीका किसे रोकने में सहायक है?", "options": ["Measles / मीजल्स", "Tuberculosis / यक्ष्मा (टीबी)", "Diphtheria / डिपथीरिया", "Leprosy / लेपरसी (कुष्ठ रोग)"], "answer": 1 },
+        { "questionEn": "Colours of light which deviate the least and most.", "questionHi": "किरणों के रंग जो सबसे कम व अधिक विचलित होते हैं।", "options": ["Red and Violet / लाल व बैंगनी रंग", "Red and Blue / लाल एवं नीला", "Violet and Blue / बैंगनी रंग एवं नीला", "Green and Red / हरा एवं लाल"], "answer": 0 },
+        { "questionEn": "Which of the following is a synthetic drug?", "questionHi": "निम्नलिखित में कौन सी सिंथेटिक ड्रग है?", "options": ["Charas / चरस", "Opium / अफीम", "Heroin / हेरोइन", "Hashish / हशीश"], "answer": 2 },
+        { "questionEn": "Which of the following is not a radioactive element?", "questionHi": "इनमे से कौन सा रेडियोधर्मी तत्व नहीं है?", "options": ["Uranium / यूरेनियम", "Boron / बोरोन", "Radium / रेडियम", "Plutonium / प्लूटोनियम"], "answer": 1 },
+        { "questionEn": "_______ oil is used in froth flotation process?", "questionHi": "_______ तेल का उपयोग झाग प्लवनशीलता प्रक्रिया में होता है?", "options": ["Coconut oil / नारियल तेल", "Olive oil / जैतून तेल", "Pine oil / चीड़ का तेल", "Kerosine / मिट्टी का तेल"], "answer": 2 },
+        { "questionEn": "Salmonella Typhi bacteria causes life threatening disease of-", "questionHi": "सालमोनेला टायफी जीवाणु कौन सी प्राण घातक बीमारी के लिए जिम्मेदार है?", "options": ["Tetanus / टेटनस", "Tuberculosis / यक्ष्मा", "Trichinosis / त्रिचिनोसिस", "Typhoid / आंत्र ज्वर (टाइफाइड)"], "answer": 3 }
+      ]
+    },
+    {
+      "name": "Hindi Language",
+      "questions": [
+        { "questionEn": "", "questionHi": "शुद्ध सन्धि चयन करें:- परीक्षक", "options": ["पर + यिक्षक", "परि + इक्षक (ईक्षक)", "परि + अक्षक", "परी + इक्षक"], "answer": 1 },
+        { "questionEn": "", "questionHi": "निम्न में से भाववाचक संज्ञा कौन सी है?", "options": ["मिठास", "मीठा", "मिठाई", "मिष्ठान"], "answer": 0 },
+        { "questionEn": "", "questionHi": "“अधजल गगरी छलकत जाये” मुहावरे / लोकोक्ति का क्या अर्थ है?", "options": ["बड़े आदमी का दिखावा", "आधी पानी से भरी गागर", "छोटे आदमी का अधिक दिखावा", "गगरी का छलकना"], "answer": 2 },
+        { "questionEn": "", "questionHi": "शुद्ध वर्तनी का चयन करें?", "options": ["उतकंठित", "उत्कंठित", "उत्कंठीक", "उतकंठीत"], "answer": 1 },
+        { "questionEn": "", "questionHi": "शुद्ध शब्द है:", "options": ["कंठ", "कण्ठ", "कन्ठ", "इनमे से कोई नहीं"], "answer": 1 },
+        { "questionEn": "", "questionHi": "‘व्याख्या’ का संधि-विच्छेद है:-", "options": ["व्या+अख्या", "वे+आख्या", "व्य+अख्या", "वि+आख्या"], "answer": 3 },
+        { "questionEn": "", "questionHi": "‘अवकाश’ का विलोम है:", "options": ["अपकर्ष", "अनवकाश", "अनुपस्थित", "छुट्टी"], "answer": 1 },
+        { "questionEn": "", "questionHi": "इनमें से कौन सा शब्द संज्ञा है?", "options": ["प्राथमिक", "प्रथम", "सुशोभित", "इनमे से कोई नहीं"], "answer": 3 },
+        { "questionEn": "", "questionHi": "निम्नलिखित में से कौन सा शब्द बिजली का पर्यायवाची नहीं है?", "options": ["चपला", "चंचला", "तड़ित", "ज्योत्सना"], "answer": 3 },
+        { "questionEn": "", "questionHi": "निम्नलिखित में से स्त्रीलिंग है?", "options": ["माली", "खत्री", "चौधरी", "धनवती"], "answer": 3 },
+        { "questionEn": "", "questionHi": "उत्थान का विपरीतार्थक शब्द क्या है?", "options": ["पतन", "उपकर्ष", "हास", "अपकर्ष"], "answer": 0 },
+        { "questionEn": "", "questionHi": "‘वह’ का बहुवचन क्या है?", "options": ["वो", "वह सब", "वे", "उन"], "answer": 2 },
+        { "questionEn": "", "questionHi": "‘जिसका जन्म पहले हुआ हो’ के लिए एक शब्द है:", "options": ["आग्रज", "अग्रज", "अग्रजा", "अरगजा"], "answer": 1 },
+        { "questionEn": "", "questionHi": "शुद्ध शब्द है:", "options": ["आनुषंगिक", "अणूशंगिक", "अणुशंगिक", "आनुसंगिक"], "answer": 0 },
+        { "questionEn": "", "questionHi": "सर्वथा भिन्न शब्द हैः", "options": ["अकेला", "चुपचाप", "सुनसान", "एकाकी"], "answer": 1 },
+        { "questionEn": "", "questionHi": "“जिस वस्तु को पाने की इच्छा की जाए’ के लिए एक शब्द है:", "options": ["अलौकिक", "अभीष्ट", "अनायास", "अनोखा"], "answer": 1 }
+      ]
+    },
+    {
+      "name": "English Language",
+      "questions": [
+        { "questionEn": "In each of questions given below, a sentence is given with three words in bold. Choose the option which gives the correct sequence of those words to make the sentence grammatically and contextually correct.\nThe H.P. Ordinance not only (A) CONFLICT guaranteed fundamental rights but is also in (B) VIOLATES with (C) EXISTING personal laws.", "questionHi": "", "options": ["ABC", "CAB", "BAC", "ACB"], "answer": 2 },
+        { "questionEn": "The Supreme Court has been asking states to (A) RESERVATION quantifiable data to (B) JUSTIFY their level of (C) PRODUCE.", "questionHi": "", "options": ["CAB", "ACB", "BCA", "CBA"], "answer": 3 },
+        { "questionEn": "Choose the correctly spelt word:", "questionHi": "", "options": ["Harasment", "Harrasmant", "Harassment", "Harresment"], "answer": 2 },
+        { "questionEn": "Choose the correctly spelt word:", "questionHi": "", "options": ["Consensus", "Concensus", "Consencus", "Consansus"], "answer": 0 },
+        { "questionEn": "Select the option which best expresses the sentence in Active/Passive voice.\nSomebody told me that there had been an explosion in the Mall.", "questionHi": "", "options": ["I was told by somebody about the explosion in the Mall.", "I was told about the explosion in the Mall.", "I was informed that there was an explosion in the Mall.", "I was told by somebody that there had been an explosion in the Mall."], "answer": 3 },
+        { "questionEn": "Choose the correct option for sentence improvement if any.\nHe has fallen out with the girl he wanted to marry.", "questionHi": "", "options": ["fallen off", "fallen in love", "fallen for", "no improvement"], "answer": 3 },
+        { "questionEn": "Choose the correct option for sentence improvement if any.\nIt is the time the three years old is learning how to read and write.", "questionHi": "", "options": ["was learning", "has learning", "must learn", "no improvement"], "answer": 0 },
+        { "questionEn": "Choose the option having similar meaning to Capital word: PIOUS", "questionHi": "", "options": ["Religious", "Sympathetic", "Afraid", "Faithful"], "answer": 0 },
+        { "questionEn": "Choose the option having similar meaning to Capital word: REPLENISH", "questionHi": "", "options": ["Restore", "Recharge", "Accelerate", "Exhaust"], "answer": 0 },
+        { "questionEn": "Choose the option correct for the sentence: A hater of knowledge and learning", "questionHi": "", "options": ["Bibliophile", "Philologist", "Misogynist", "Misologist"], "answer": 3 },
+        { "questionEn": "Choose the correct option for filling up the blanks.\nIn ____ to picking up milk from the grocery store we also need to get some bread because my cousin ate all of it in past week.", "questionHi": "", "options": ["further", "addition", "aftermath", "besides"], "answer": 1 },
+        { "questionEn": "Select the most appropriate option to change the sentence from Direct Speech to Reported Speech and vice versa.\n“I am going out tonight” Luxmi said.", "questionHi": "", "options": ["Luxmi said that she was going out tonight.", "Luxmi said that she was going out that night.", "Luxmi said she was going out that night.", "Luxmi said that she will be going out that night."], "answer": 1 },
+        { "questionEn": "The King ordered that they should celebrate their victory.", "questionHi": "", "options": ["The King said, “One should celebrate their victory”.", "The King said, “I order everyone to celebrate”.", "The King said, “We should celebrate our victory”.", "The King said, “We may celebrate”."], "answer": 2 },
+        { "questionEn": "The given phrase in bold may or may not contain an error. The options following can replace the incorrect phrase. The correct phrase that is to be replaced will be your answer.\nEverything is funny as long as it (IS HAPPENING TOO) somebody else.", "questionHi": "", "options": ["has been happening for", "could have happened to", "was happening to", "is happening to"], "answer": 3 },
+        { "questionEn": "Choose the correct meaning of the idiom as underlined.\nEveryone likes her since she always remains (in high spirits).", "questionHi": "", "options": ["talkative", "cheerful", "well dressed", "courteous"], "answer": 1 },
+        { "questionEn": "He was a King who ruled his subjects (with a high hand).", "questionHi": "", "options": ["oppressively", "kindly", "conveniently", "sympathetically"], "answer": 0 }
+      ]
+    },
+    {
+      "name": "Mathematics & Reasoning",
+      "questions": [
+        { "questionEn": "30% apples out of 450 are rotten. How many apples are in good condition?", "questionHi": "450 सेबों में से 30% सड़े हुए हैं। कितने सेब अच्छी स्तिथि में हैं?", "options": ["135", "315", "240", "180"], "answer": 1 },
+        { "questionEn": "Veena obtained an amount of Rs. 8376 as simple interest on a certain amount at 8% p.a. after 6 years. What is the amount invested by Veena?", "questionHi": "वीणा एक निश्चित राशि को 8% वार्षिक दर पर रखती है। तो उसे 6 वर्ष बाद साधारण व्याज के 8376 रु मिलते हैं। वीणा द्वारा कितनी राशि निवेश की गई?", "options": ["Rs. 16660", "Rs. 17180", "Rs. 17450", "Rs. 18110"], "answer": 2 },
+        { "questionEn": "In a rhombus, if its diagonals are 19 cm and 13 cm, its area will be?", "questionHi": "एक समचतुर्भुज में अगर इसके विकर्ण 19 cm तथा 13 cm है तो इसका क्षेत्रफल कितना होगा?", "options": ["1/2 (19+13) cm²", "1/2 (19×13) cm²", "1/2 (19-13) cm²", "244.5 cm²"], "answer": 1 },
+        { "questionEn": "If the area of a circular garden is 15400 m², then its perimeter is?", "questionHi": "अगर एक गोलाकार (वृत्त) बगीचे का क्षेत्रफल 15400 m² है तो उसका परिमाप कितना होगा?", "options": ["440 m", "220 m", "110 m", "550 m"], "answer": 0 },
+        { "questionEn": "A student goes to School at the rate of 2½ km/hr and reaches 6 min late. If he travels at the speed of 3km/hr, he is 10 min early. What is the distance to School?", "questionHi": "एक विद्यार्थी 2½ km/hr की गति से स्कूल जाता है तो वो 6 मिनट देरी से पहुँचता है। अगर वो 3 km/hr की गति से यात्रा करता है तो वह 10 मिनट जल्दी पहुंच जाता है। स्कूल तक दूरी कितनी है?", "options": ["4 km", "5 km", "3.5 km", "4.5 km"], "answer": 0 },
+        { "questionEn": "Find value of x in: 28.5 x 34 + 2320 ÷ 8 = (36)² - x", "questionHi": "x का मूल्य निकालें: 28.5 x 34 + 2320 ÷ 8 = (36)² - x", "options": ["51", "47", "43", "37"], "answer": 3 },
+        { "questionEn": "If HCF (a,b) = 15 and a x b = 1800 then LCM (a, b) is?", "questionHi": "अगर (a, b) का उच्चतम आम कारक 15 है तथा a x b = 1800 है तो (a, b) का न्यूनतम सामान्य कारक बताएं।", "options": ["3600", "900", "90", "120"], "answer": 3 },
+        { "questionEn": "75% of 2 is equal to?", "questionHi": "2 का 75% किसके बराबर है?", "options": ["37.5", "15", "1.5", "0.15"], "answer": 2 },
+        { "questionEn": "Which one of the following is different from the rest?", "questionHi": "निम्नलिखित में कौन सा अन्य से भिन्न है?", "options": ["Barley / जौं", "Ground nut / मूंगफली", "Mustard / सरसों", "Peas / मटर"], "answer": 1 },
+        { "questionEn": "In a code ‘TOGETHER’ is denoted by ‘RQEGRICT’ then ‘FRIEND’ will be denoted by?", "questionHi": "एक कोड में ‘TOGETHER’ को ‘RQEGRICT’ से दर्शाया जाता है, तो ‘FRIEND' को उसी कोड में किससे दर्शाया जायेगा?", "options": ["DSHGFL", "FLGGTD", "GGLFDT", "DTGGLF"], "answer": 3 },
+        { "questionEn": "Ram’s position is thirteenth from upwards in a class of 53 students. What will be his position from downwards?", "questionHi": "53 छात्रों की एक कक्षा में राम का स्थान ऊपर से 13वाँ है। उसका स्थान नीचे से कौन सा होगा?", "options": ["42", "43", "41", "40"], "answer": 2 },
+        { "questionEn": "February 1, 2009 was Sunday. What day of the week was on March 1st, 2011?", "questionHi": "फरवरी 1, 2009 को रविवार था। मार्च 1, 2011 को सप्ताह का कौन सा दिन होगा?", "options": ["Wednesday", "Tuesday", "Friday", "Sunday"], "answer": 1 },
+        { "questionEn": "If Everest is to Himalayas, then Mount Abu is to?", "questionHi": "अगर ऐवरेस्ट का सम्बन्ध हिमालय से है, तो माउंट आबू का सम्बन्ध किससे होगा?", "options": ["Nilgiri / नीलगिरी", "Aravali / अरावली", "Vindhyas / विंध्या", "None of these / इनमे से कोई नहीं"], "answer": 1 },
+        { "questionEn": "Eight boxes are placed one above the other. Only two boxes are placed between box U&T. Only one box is placed between box T&R. Only two boxes are placed between boxes R&V. Box V is placed below box R. Three boxes are placed between boxes S&Q. Both S&Q boxes are placed above box T. Box W is placed below box V. No box is placed between box S&P.\n\nHow many boxes are placed between box T and box S?", "questionHi": "8 डब्बे एक दूसरे पर रखे गए हैं। U एवं T डब्बों के मध्य केवल दो डब्बे हैं। T एवं R डब्बों के मध्य केवल एक डब्बा है। R एवं V डब्बों के मध्य केवल दो डब्बे हैं। डब्बा V, डब्बा R के नीचे है। S एवं Q डब्बों के मध्य तीन डब्बे हैं। S एवं Q डब्बे, डब्बा T के ऊपर रखे हैं। डब्बा W, डब्बा V के नीचे रखा है। S एवं P डब्बों के मध्य कोई डब्बा नहीं है।\n\nडब्बा T एवं डब्बा S के मध्य कितने डब्बे हैं?", "options": ["None / कोई नहीं", "1 / एक", "3 / तीन", "More than 3 / तीन से ज्यादा"], "answer": 3 },
+        { "questionEn": "Which of the following box is placed at the bottom most position?", "questionHi": "निम्न में से कौन सा डब्बा सबसे नीचे है?", "options": ["W", "U", "R", "None of these / इनमे से कोई नहीं"], "answer": 0 },
+        { "questionEn": "How many boxes are there between box W and box R?", "questionHi": "डब्बा W एवं R के मध्य कितने डब्बे हैं?", "options": ["None / कोई नहीं", "1 / एक", "2 / दो", "3 / तीन"], "answer": 3 },
+        { "questionEn": "If dog is called cat, cat is called lion, lion is called ox, ox is called cock, cock is called elephant and elephant is called donkey, then farmer ploughs with which animal?", "questionHi": "यदि कुत्ते को बिल्ली कहा जाये, बिल्ली को शेर, शेर को बैल, बैल को मुर्गा, मुर्गे को हाथी तथा हाथी को गधा कहा जाये, तो बताइये कि एक किसान किससे खेती करेगा?", "options": ["dog / कुत्ता", "lion / शेर", "donkey / गधा", "cock / मुर्गा"], "answer": 3 },
+        { "questionEn": "Ram is taller than Shyam but not as much as Rajan. Arjun is taller than Sohan who is shorter than Shyam. Who is the shortest?", "questionHi": "राम, श्याम से ऊँचा है, पर राजन जितना नहीं। अर्जुन, सोहन से ऊँचा है जो श्याम से छोटा है। सबसे छोटा कौन है?", "options": ["Rajan / राजन", "Ram / राम", "Arjun / अर्जुन", "Sohan / सोहन"], "answer": 3 },
+        { "questionEn": "Shyam Lal goes 8 Kms in the west from a certain point. Then he moves to his right and goes 8 Kms. In the end he goes 25 Kms. in south east direction. How far is he from his starting point?", "questionHi": "किसी निश्चित बिंदु से श्याम लाल पश्चिम में 8 कि.मी. चला। फिर दायीं ओर मुड़कर 8 कि.मी. चला। आखिर में वह दक्षिण-पूर्व दिशा में 25 कि.मी. चला। वह अपने प्रारंभिक बिंदु से कितना दूर है?", "options": ["10 Kms / 10 कि.मी.", "20 Kms / 20 कि.मी.", "15 Kms / 15 कि.मी.", "None of these / इनमे से कोई नहीं"], "answer": 3 },
+        { "questionEn": "If ‘a’ means ‘+’, ‘b’ means ‘-‘, ‘c’ means ‘÷’ and ‘d’ means ‘x’ then 16a4b3c4d2=?", "questionHi": "यदि ‘a’ का मतलब ‘+’, ‘b’ का मतलब ‘-‘, ‘c’ का मतलब ‘÷’ तथा ‘d’ का मतलब ‘x’ तो 16a4b3c4d2=?", "options": ["10", "17", "18.5", "21/2"], "answer": 2 },
+        { "questionEn": "Fill in the blanks with Correct option: 200, 193, 179, 158, _, 95", "questionHi": "सही विकल्प से रिक्त स्थान को भरें: 200, 193, 179, 158, _, 95", "options": ["135", "133", "132", "130"], "answer": 3 },
+        { "questionEn": "Fill in the blanks with Correct option: 51, 49, 44, 42, 37, _", "questionHi": "सही विकल्प से रिक्त स्थान को भरें: 51, 49, 44, 42, 37, _", "options": ["35", "34", "33", "32"], "answer": 0 },
+        { "questionEn": "Find the odd one out: Ranjit Sagar lake, Gobind Sagar lake, Maharana Pratap Sagar, Prashar lake.", "questionHi": "अजीब / अलग का चयन करें: रणजीत सागर झील, गोबिंद सागर झील, महाराणा प्रताप सागर, पराशर झील ।", "options": ["Prashar lake / पराशर झील", "Gobind Sagar lake / गोबिंद सागर झील", "Maharana Pratap Sagar / महाराणा प्रताप सागर", "Ranjit Sagar lake / रणजीत सागर झील"], "answer": 0 },
+        { "questionEn": "If in a code ‘CAB’ is written as 312, ‘BIG’ is written as 297, then ‘FEED’ will be written in code as-", "questionHi": "एक कोड में यदि ‘CAB’ को 312 लिखा जाता है, ‘BIG’ को 297 लिखा जाता है, तो इसी कोड में ‘FEED’ को कैसे लिखा जायेगा?", "options": ["6554", "5444", "6534", "5464"], "answer": 0 }
+      ]
+    }
+  ]
+}

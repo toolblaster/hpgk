@@ -1,0 +1,129 @@
+{
+  "testTitle": "HP Police Constable Full Mock Test 6",
+  "durationMinutes": 120,
+  "negativeMarking": "0.25",
+  "customInstructions": [
+    "This mock test strictly follows the latest HP Police Constable Exam Pattern.",
+    "Total Questions: 90, Total Marks: 90, Total Time: 120 Minutes.",
+    "Every correct answer awards +1 Mark.",
+    "Every incorrect answer will deduct 0.25 Marks (Negative Marking).",
+    "Questions are available in both English and Hindi."
+  ],
+  "sections": [
+    {
+      "name": "English Grammar",
+      "questions": [
+        { "questionEn": "Identify the part of speech of the underlined word: We waited <u>outside</u> the gate.", "questionHi": "", "options": ["Adjective", "Adverb", "Preposition", "Conjunction"], "answer": 2 },
+        { "questionEn": "Identify the part of speech of the underlined word: <u>Alas!</u> We have lost the match.", "questionHi": "", "options": ["Pronoun", "Conjunction", "Interjection", "Adverb"], "answer": 2 },
+        { "questionEn": "Fill in the blank with the correct form of the verb: He usually _____ up early in the morning.", "questionHi": "", "options": ["get", "gets", "got", "is getting"], "answer": 1 },
+        { "questionEn": "Choose the correct tense: They _____ working on this project since January.", "questionHi": "", "options": ["are", "were", "have been", "will be"], "answer": 2 },
+        { "questionEn": "Fill in the blank with the appropriate verb: By the time you arrive, I _____ my homework.", "questionHi": "", "options": ["will finish", "have finished", "finish", "will have finished"], "answer": 3 },
+        { "questionEn": "Change the voice: \"The chef is repairing my car.\"", "questionHi": "", "options": ["My car is repaired by the chef.", "My car was being repaired by the chef.", "My car is being repaired by the chef.", "My car has been repaired by the chef."], "answer": 2 },
+        { "questionEn": "Change the voice: \"Who broke this window?\"", "questionHi": "", "options": ["By whom this window was broken?", "By whom was this window broken?", "Who was broken this window?", "By who is this window broken?"], "answer": 1 },
+        { "questionEn": "Change the voice: \"Shut the door.\"", "questionHi": "", "options": ["Let the door shut.", "Let the door be shut.", "The door is shut.", "You should shut the door."], "answer": 1 },
+        { "questionEn": "Change into Indirect Speech: Ram said, \"I am very busy now.\"", "questionHi": "", "options": ["Ram said that he is very busy now.", "Ram said that I was very busy then.", "Ram said that he was very busy then.", "Ram told that he is very busy then."], "answer": 2 },
+        { "questionEn": "Change into Indirect Speech: The teacher said to the students, \"The earth is round.\"", "questionHi": "", "options": ["The teacher told the students that the earth was round.", "The teacher told the students that the earth is round.", "The teacher said the earth has been round.", "The teacher asked if the earth is round."], "answer": 1 },
+        { "questionEn": "Change into Direct Speech: He asked me where I lived.", "questionHi": "", "options": ["He said to me, \"Where do you live?\"", "He said, \"Where I live?\"", "He said to me, \"Where did you live?\"", "He says, \"Where do you live?\""], "answer": 0 },
+        { "questionEn": "Spot the error: \"Each of the boys have a notebook.\"", "questionHi": "", "options": ["Each of", "the boys", "have", "a notebook."], "answer": 2 },
+        { "questionEn": "Spot the error: \"She is listening the music.\"", "questionHi": "", "options": ["She is", "listening", "the music", "No error"], "answer": 2 },
+        { "questionEn": "Spot the error: \"He runs very fastly.\"", "questionHi": "", "options": ["He", "runs", "very fastly", "No error"], "answer": 2 },
+        { "questionEn": "Choose the correct article: She bought ____ umbrella yesterday.", "questionHi": "", "options": ["a", "an", "the", "no article"], "answer": 1 },
+        { "questionEn": "Choose the correct article: ____ Ganges is a holy river.", "questionHi": "", "options": ["A", "An", "The", "No article"], "answer": 2 },
+        { "questionEn": "Fill in the blank with the correct determiner: I don't have ____ money left.", "questionHi": "", "options": ["some", "any", "many", "few"], "answer": 1 },
+        { "questionEn": "Fill in the blank with the correct determiner: ____ students attended the seminar.", "questionHi": "", "options": ["Much", "Little", "Many", "Any"], "answer": 2 },
+        { "questionEn": "Spot the error: \"He has been working here from 2010.\"", "questionHi": "", "options": ["He has been", "working here", "from 2010", "No error"], "answer": 2 },
+        { "questionEn": "Identify the part of speech of the underlined word: The <u>brave</u> soldier fought valiantly.", "questionHi": "", "options": ["Noun", "Pronoun", "Adjective", "Adverb"], "answer": 2 }
+      ]
+    },
+    {
+      "name": "Hindi Grammar",
+      "questions": [
+        { "questionEn": "", "questionHi": "हिंदी वर्णमाला में स्वरों को मुख्य रूप से कितने भागों में बाँटा गया है?", "options": ["2 (ह्रस्व और दीर्घ)", "3 (ह्रस्व, दीर्घ और प्लुत)", "4", "5"], "answer": 1 },
+        { "questionEn": "", "questionHi": "निम्नलिखित में से कौन सा 'ऊष्म' व्यंजन है?", "options": ["य", "र", "ल", "स"], "answer": 3 },
+        { "questionEn": "", "questionHi": "'बादल' का पर्यायवाची शब्द कौन सा है?", "options": ["जलज", "पयोज", "जलद", "अंबुज"], "answer": 2 },
+        { "questionEn": "", "questionHi": "'कृतज्ञ' का विलोम शब्द क्या है?", "options": ["कृतघ्न", "अकृतज्ञ", "पापी", "निर्दयी"], "answer": 0 },
+        { "questionEn": "", "questionHi": "'जिसे जाना न जा सके' के लिए एक शब्द है:", "options": ["अज्ञेय", "अज्ञात", "अगम्य", "अदृश्य"], "answer": 0 },
+        { "questionEn": "", "questionHi": "'कर' शब्द का अनेकार्थी शब्द क्या है?", "options": ["हाथ, टैक्स", "सोना, धतूरा", "पत्ता, चिट्ठी", "पानी, चमक"], "answer": 0 },
+        { "questionEn": "", "questionHi": "निम्नलिखित में से कौन सी 'भाववाचक' संज्ञा है?", "options": ["हिमालय", "नदी", "मिठास", "सेना"], "answer": 2 },
+        { "questionEn": "", "questionHi": "'दरवाजे पर कौन खड़ा है?' वाक्य में 'कौन' किस प्रकार का सर्वनाम है?", "options": ["निश्चयवाचक सर्वनाम", "अनिश्चयवाचक सर्वनाम", "प्रश्नवाचक सर्वनाम", "संबंधवाचक सर्वनाम"], "answer": 2 },
+        { "questionEn": "", "questionHi": "'मुझे दो किलो चीनी चाहिए।' इस वाक्य में 'दो किलो' किस प्रकार का विशेषण है?", "options": ["गुणवाचक विशेषण", "संख्यावाचक विशेषण", "परिमाणवाचक विशेषण", "सार्वनामिक विशेषण"], "answer": 2 },
+        { "questionEn": "", "questionHi": "'पक्षी आकाश में उड़ते हैं।' यह किस प्रकार की क्रिया है?", "options": ["सकर्मक क्रिया", "अकर्मक क्रिया", "द्विकर्मक क्रिया", "प्रेरणार्थक क्रिया"], "answer": 1 },
+        { "questionEn": "", "questionHi": "'राम और श्याम खेल रहे हैं।' इस वाक्य में 'और' क्या है?", "options": ["क्रियाविशेषण अव्यय", "समुच्चयबोधक अव्यय", "संबंधबोधक अव्यय", "विस्मयादिबोधक अव्यय"], "answer": 1 },
+        { "questionEn": "", "questionHi": "मुहावरा 'आसमान से बातें करना' का अर्थ है:", "options": ["बहुत ऊँचा होना", "पागल हो जाना", "घमंड करना", "हवा में उड़ना"], "answer": 0 },
+        { "questionEn": "", "questionHi": "लोकोक्ति 'जिसकी लाठी उसकी भैंस' का क्या अर्थ है?", "options": ["लाठी से भैंस हाँकना", "शक्तिशाली की ही जीत होती है", "भैंस पालना लाभदायक है", "मूर्ख व्यक्ति का शासन"], "answer": 1 },
+        { "questionEn": "", "questionHi": "'ओ३म्' में 'ओ' का उच्चारण किस स्वर के रूप में होता है?", "options": ["ह्रस्व स्वर", "दीर्घ स्वर", "प्लुत स्वर", "संयुक्त स्वर"], "answer": 2 },
+        { "questionEn": "", "questionHi": "हिंदी वर्णमाला में स्पर्श व्यंजनों की कुल संख्या कितनी है?", "options": ["11", "25", "33", "4"], "answer": 1 },
+        { "questionEn": "", "questionHi": "'गंगा' का पर्यायवाची शब्द है:", "options": ["भागीरथी", "कालिंदी", "तरणि", "सरिता"], "answer": 0 },
+        { "questionEn": "", "questionHi": "'अनिवार्य' का विलोमार्थी शब्द क्या है?", "options": ["आवश्यक", "ऐच्छिक", "निरर्थक", "वैकल्पिक"], "answer": 1 },
+        { "questionEn": "", "questionHi": "'जो पहले कभी न हुआ हो' के लिए एक शब्द:", "options": ["अद्भुत", "अपूर्व", "अभूतपूर्व", "अनुपम"], "answer": 2 },
+        { "questionEn": "", "questionHi": "'मित्र' शब्द की भाववाचक संज्ञा क्या होगी?", "options": ["मित्रवत", "मैत्री", "मित्रता", "B और C दोनों"], "answer": 3 },
+        { "questionEn": "", "questionHi": "'ईद का चाँद होना' मुहावरे का अर्थ है:", "options": ["त्योहार मनाना", "बहुत सुंदर होना", "बहुत दिनों बाद दिखाई देना", "खुशी का मौका आना"], "answer": 2 }
+      ]
+    },
+    {
+      "name": "General Awareness",
+      "questions": [
+        { "questionEn": "Chandranahan Lake is located in which district of Himachal Pradesh?", "questionHi": "चंद्रनाहन झील हिमाचल प्रदेश के किस जिले में स्थित है?", "options": ["Shimla / शिमला", "Kullu / कुल्लू", "Kinnaur / किन्नौर", "Mandi / मंडी"], "answer": 0 },
+        { "questionEn": "The International Renuka Fair is celebrated in which district?", "questionHi": "अंतर्राष्ट्रीय रेणुका मेला किस जिले में मनाया जाता है?", "options": ["Kangra / कांगड़ा", "Sirmaur / सिरमौर", "Chamba / चंबा", "Solan / सोलन"], "answer": 1 },
+        { "questionEn": "Where is the headquarters of UNICEF located?", "questionHi": "UNICEF का मुख्यालय कहाँ स्थित है?", "options": ["Paris / पेरिस", "Geneva / जिनेवा", "New York / न्यूयॉर्क", "Rome / रोम"], "answer": 2 },
+        { "questionEn": "The headquarters of Defense Research and Development Organisation (DRDO) is in:", "questionHi": "रक्षा अनुसंधान एवं विकास संगठन (DRDO) का मुख्यालय कहाँ है?", "options": ["Bengaluru / बेंगलुरु", "Hyderabad / हैदराबाद", "New Delhi / नई दिल्ली", "Pune / पुणे"], "answer": 2 },
+        { "questionEn": "Who is the author of the famous Hindi novel 'Godan'?", "questionHi": "प्रसिद्ध हिंदी उपन्यास 'गोदान' के लेखक कौन हैं?", "options": ["Harivansh Rai Bachchan / हरिवंश राय बच्चन", "Munshi Premchand / मुंशी प्रेमचंद", "Ramdhari Singh Dinkar / रामधारी सिंह दिनकर", "Mahadevi Varma / महादेवी वर्मा"], "answer": 1 },
+        { "questionEn": "Who is credited with the invention of the Television?", "questionHi": "टेलीविजन के आविष्कार का श्रेय किसे दिया जाता है?", "options": ["Thomas Edison / थॉमस एडिसन", "J.L. Baird / J.L. बेयर्ड", "Alexander Graham Bell / अलेक्जेंडर ग्राहम बेल", "Nikola Tesla / निकोला टेस्ला"], "answer": 1 },
+        { "questionEn": "What is the capital of South Korea?", "questionHi": "दक्षिण कोरिया की राजधानी क्या है?", "options": ["Pyongyang / प्योंगयांग", "Tokyo / टोक्यो", "Seoul / सियोल", "Beijing / बीजिंग"], "answer": 2 },
+        { "questionEn": "Who is the current Chancellor of Germany (who assumed office in 2025)?", "questionHi": "जर्मनी के वर्तमान चांसलर कौन हैं (जिन्होंने 2025 में पदभार ग्रहण किया)?", "options": ["Olaf Scholz / ओलाफ शोल्ज़", "Angela Merkel / एंजेला मर्केल", "Friedrich Merz / फ्रीड्रिच मर्ज़", "Emmanuel Macron / इमैनुएल मैक्रों"], "answer": 2 },
+        { "questionEn": "Which city hosted the 2024 Summer Olympics?", "questionHi": "2024 ग्रीष्मकालीन ओलंपिक की मेजबानी किस शहर ने की?", "options": ["Los Angeles / लॉस एंजिल्स", "Tokyo / टोक्यो", "Paris / पेरिस", "London / लंदन"], "answer": 2 },
+        { "questionEn": "Earth Day is celebrated globally on:", "questionHi": "पृथ्वी दिवस विश्व स्तर पर कब मनाया जाता है?", "options": ["22 March / 22 मार्च", "22 April / 22 अप्रैल", "5 June / 5 जून", "16 September / 16 सितंबर"], "answer": 1 },
+        { "questionEn": "What is the full form of WHO?", "questionHi": "WHO का पूर्ण रूप क्या है?", "options": ["World Health Organization", "World Human Organization", "Wide Health Organization", "World Habitat Organization"], "answer": 0 },
+        { "questionEn": "The highest gallantry award for military personnel in India is:", "questionHi": "भारत में सैन्य कर्मियों के लिए सर्वोच्च वीरता पुरस्कार कौन सा है?", "options": ["Ashok Chakra / अशोक चक्र", "Param Vir Chakra / परम वीर चक्र", "Mahavir Chakra / महावीर चक्र", "Kirti Chakra / कीर्ति चक्र"], "answer": 1 },
+        { "questionEn": "The 'Ranji Trophy' is associated with which sport?", "questionHi": "'रणजी ट्रॉफी' किस खेल से संबंधित है?", "options": ["Hockey / हॉकी", "Football / फुटबॉल", "Cricket / क्रिकेट", "Badminton / बैडमिंटन"], "answer": 2 },
+        { "questionEn": "The 'Pradhan Mantri Ujjwala Yojana' aims to provide:", "questionHi": "'प्रधानमंत्री उज्ज्वला योजना' का उद्देश्य क्या प्रदान करना है?", "options": ["Free Electricity / मुफ्त बिजली", "LPG Connections / LPG कनेक्शन", "Free Education / मुफ्त शिक्षा", "Housing / आवास"], "answer": 1 },
+        { "questionEn": "Churdhar, the highest peak of Sirmaur district, is also known as:", "questionHi": "सिरमौर जिले की सबसे ऊँची चोटी चूड़धार को और किस नाम से जाना जाता है?", "options": ["Chur Chandni / चूड़ चाँदनी", "Shrikhand Mahadev / श्रीखंड महादेव", "Kinner Kailash / किन्नर कैलाश", "Manimahesh / मणिमहेश"], "answer": 0 },
+        { "questionEn": "The 'Chola and Dora' is the traditional dress of which tribe in HP?", "questionHi": "'चोला और डोरा' HP की किस जनजाति की पारंपरिक पोशाक है?", "options": ["Kinnaura / किन्नौरा", "Lahaula / लाहौला", "Gaddi / गद्दी", "Gujjar / गुज्जर"], "answer": 2 },
+        { "questionEn": "Who discovered Radium?", "questionHi": "रेडियम की खोज किसने की?", "options": ["Albert Einstein / अल्बर्ट आइंस्टीन", "Isaac Newton / आइजैक न्यूटन", "Marie Curie and Pierre Curie / मैरी क्यूरी और पियरे क्यूरी", "J.J. Thomson / J.J. थॉमसन"], "answer": 2 },
+        { "questionEn": "National Voters' Day is celebrated on:", "questionHi": "राष्ट्रीय मतदाता दिवस कब मनाया जाता है?", "options": ["15th August / 15 अगस्त", "26th January / 26 जनवरी", "25th January / 25 जनवरी", "2nd October / 2 अक्टूबर"], "answer": 2 },
+        { "questionEn": "What does GDP stand for in Economics?", "questionHi": "अर्थशास्त्र में GDP का पूर्ण रूप क्या है?", "options": ["Gross Domestic Product", "Gross Development Product", "General Domestic Product", "Global Development Process"], "answer": 0 },
+        { "questionEn": "Which country won the ICC Men's T20 World Cup in 2024?", "questionHi": "2024 में ICC पुरुष T20 विश्व कप किस देश ने जीता?", "options": ["Australia / ऑस्ट्रेलिया", "England / इंग्लैंड", "India / भारत", "South Africa / दक्षिण अफ्रीका"], "answer": 2 }
+      ]
+    },
+    {
+      "name": "Mathematics & Science",
+      "questions": [
+        { "questionEn": "Which of the following is a rational number?", "questionHi": "निम्नलिखित में से कौन सी एक परिमेय संख्या (Rational Number) है?", "options": ["$\\sqrt{2}$", "$\\pi$", "0", "$\\sqrt{3}$"], "answer": 2 },
+        { "questionEn": "Add the fractions: $1/3 + 1/6 = ?$", "questionHi": "भिन्नों को जोड़ें: $1/3 + 1/6 = ?$", "options": ["1/2", "2/9", "1/3", "2/3"], "answer": 0 },
+        { "questionEn": "Multiply the decimals: $0.12 \\times 0.5 = ?$", "questionHi": "दशमलव का गुणा करें: $0.12 \\times 0.5 = ?$", "options": ["0.6", "0.06", "0.006", "6.0"], "answer": 1 },
+        { "questionEn": "The perimeter of a rectangle is $2(L + B)$. If length is 10 cm and breadth is 5 cm, find the perimeter.", "questionHi": "एक आयत का परिमाप $2(L + B)$ होता है। यदि लंबाई 10 सेमी और चौड़ाई 5 सेमी है, तो परिमाप ज्ञात कीजिए।", "options": ["15 cm", "30 cm", "50 cm", "60 cm"], "answer": 1 },
+        { "questionEn": "Find the area of a circle with a radius of 14 cm. (Use $\\pi = 22/7$)", "questionHi": "14 सेमी त्रिज्या वाले वृत्त का क्षेत्रफल ज्ञात कीजिए। ($\\pi = 22/7$ का प्रयोग करें)", "options": ["88 sq cm", "154 sq cm", "616 sq cm", "308 sq cm"], "answer": 2 },
+        { "questionEn": "What is the total surface area of a cube with side $a=3$ cm? (Formula: $6a^2$)", "questionHi": "भुजा $a=3$ सेमी वाले घन का कुल पृष्ठीय क्षेत्रफल क्या है? (सूत्र: $6a^2$)", "options": ["18 sq cm", "27 sq cm", "54 sq cm", "36 sq cm"], "answer": 2 },
+        { "questionEn": "The volume of a cylinder is $\\pi r^2 h$. Find the volume if $r=7$ cm and $h=10$ cm. (Use $\\pi = 22/7$)", "questionHi": "एक बेलन का आयतन $\\pi r^2 h$ है। आयतन ज्ञात कीजिए यदि $r=7$ सेमी और $h=10$ सेमी है।", "options": ["1540 cubic cm", "770 cubic cm", "440 cubic cm", "2200 cubic cm"], "answer": 0 },
+        { "questionEn": "The cost price of an item is Rs 400 and it is sold for Rs 500. Find the profit percentage.", "questionHi": "एक वस्तु का क्रय मूल्य 400 रुपये है और इसे 500 रुपये में बेचा जाता है। लाभ प्रतिशत ज्ञात करें।", "options": ["10%", "20%", "25%", "40%"], "answer": 2 },
+        { "questionEn": "A shopkeeper bought a bag for Rs 500 and sold it at a loss of 10%. What is the selling price?", "questionHi": "एक दुकानदार ने 500 रुपये में एक बैग खरीदा और उसे 10% की हानि पर बेच दिया। विक्रय मूल्य क्या है?", "options": ["Rs 400", "Rs 450", "Rs 490", "Rs 550"], "answer": 1 },
+        { "questionEn": "A car travels at a speed of 60 km/h. How much time will it take to cover a distance of 150 km?", "questionHi": "एक कार 60 किमी/घंटा की गति से यात्रा करती है। 150 किमी की दूरी तय करने में उसे कितना समय लगेगा?", "options": ["2 hours", "2.5 hours", "3 hours", "3.5 hours"], "answer": 1 },
+        { "questionEn": "A train 200 m long passes a standing pole in 10 seconds. What is its speed in m/s?", "questionHi": "200 मीटर लंबी एक ट्रेन 10 सेकंड में एक खड़े खंभे को पार करती है। इसकी गति मी/से में क्या है?", "options": ["10 m/s", "15 m/s", "20 m/s", "25 m/s"], "answer": 2 },
+        { "questionEn": "The sum of the interior angles of a triangle is always:", "questionHi": "एक त्रिभुज के आंतरिक कोणों का योग हमेशा होता है:", "options": ["$90^\\circ$", "$180^\\circ$", "$270^\\circ$", "$360^\\circ$"], "answer": 1 },
+        { "questionEn": "In a right-angled triangle, if the base is 6 cm and the height (perpendicular) is 8 cm, what is the length of the hypotenuse?", "questionHi": "एक समकोण त्रिभुज में, यदि आधार 6 सेमी और ऊँचाई (लंब) 8 सेमी है, तो कर्ण (hypotenuse) की लंबाई क्या है?", "options": ["10 cm", "12 cm", "14 cm", "100 cm"], "answer": 0 },
+        { "questionEn": "Find the mean (average) of the first 5 whole numbers (0, 1, 2, 3, 4).", "questionHi": "प्रथम 5 पूर्ण संख्याओं (0, 1, 2, 3, 4) का माध्य (औसत) ज्ञात कीजिए।", "options": ["1", "2", "3", "4"], "answer": 1 },
+        { "questionEn": "Find the median of the following set of numbers: 2, 5, 8, 1, 9.", "questionHi": "निम्नलिखित संख्याओं के समूह की माध्यिका (Median) ज्ञात कीजिए: 2, 5, 8, 1, 9.", "options": ["2", "5", "8", "4"], "answer": 1 },
+        { "questionEn": "If a standard six-sided die is rolled, what is the probability of getting an even number?", "questionHi": "यदि एक मानक छह-तरफा पासा फेंका जाता है, तो सम संख्या आने की प्रायिकता क्या है?", "options": ["1/6", "1/3", "1/2", "2/3"], "answer": 2 },
+        { "questionEn": "What is the probability of drawing a King from a well-shuffled standard deck of 52 playing cards?", "questionHi": "अच्छी तरह से फेंटे गए 52 ताश के पत्तों के डेक से एक बादशाह (King) निकालने की प्रायिकता क्या है?", "options": ["1/52", "1/13", "4/13", "1/2"], "answer": 1 },
+        { "questionEn": "Convert $0.25$ to a fraction in its simplest form.", "questionHi": "$0.25$ को इसके सरलतम रूप में भिन्न में बदलें।", "options": ["1/2", "1/4", "1/5", "2/5"], "answer": 1 },
+        { "questionEn": "The Total Surface Area of a solid hemisphere of radius '$r$' is:", "questionHi": "त्रिज्या '$r$' वाले एक ठोस अर्धगोले (hemisphere) का कुल पृष्ठीय क्षेत्रफल होता है:", "options": ["$\\pi r^2$", "$2\\pi r^2$", "$3\\pi r^2$", "$4\\pi r^2$"], "answer": 2 },
+        { "questionEn": "Which of the following is an irrational number?", "questionHi": "निम्नलिखित में से कौन सी एक अपरिमेय संख्या (Irrational Number) है?", "options": ["$\\sqrt{4}$", "$\\sqrt{9}$", "$\\sqrt{5}$", "$22/7$"], "answer": 2 }
+      ]
+    },
+    {
+      "name": "Logical Reasoning",
+      "questions": [
+        { "questionEn": "What is the angle between the hour hand and the minute hand of a clock exactly at 3:30?", "questionHi": "घड़ी में ठीक 3:30 बजे घंटे और मिनट की सुइयों के बीच का कोण क्या होता है?", "options": ["$75^\\circ$", "$90^\\circ$", "$105^\\circ$", "$120^\\circ$"], "answer": 0 },
+        { "questionEn": "If January 1st of a non-leap year falls on a Monday, what day of the week will January 31st be?", "questionHi": "यदि किसी गैर-लीप वर्ष का 1 जनवरी सोमवार को पड़ता है, तो 31 जनवरी को सप्ताह का कौन सा दिन होगा?", "options": ["Monday / सोमवार", "Tuesday / मंगलवार", "Wednesday / बुधवार", "Thursday / गुरुवार"], "answer": 2 },
+        { "questionEn": "Find the next number in the series: 2, 6, 12, 20, 30, ?", "questionHi": "श्रृंखला में अगली संख्या ज्ञात करें: 2, 6, 12, 20, 30, ?", "options": ["40", "42", "44", "48"], "answer": 1 },
+        { "questionEn": "In a class of 40 students, Amit's rank is 12th from the top. What is his rank from the bottom?", "questionHi": "40 छात्रों की एक कक्षा में, अमित का स्थान ऊपर से 12वां है। नीचे से उसका स्थान क्या है?", "options": ["27th", "28th", "29th", "30th"], "answer": 2 },
+        { "questionEn": "A farmer has some hens and cows. If the total number of heads is 50 and the total number of legs is 140, how many cows are there?", "questionHi": "एक किसान के पास कुछ मुर्गियां और गायें हैं। यदि सिरों की कुल संख्या 50 है और पैरों की कुल संख्या 140 है, तो गायें कितनी हैं?", "options": ["20", "30", "40", "10"], "answer": 0 },
+        { "questionEn": "Find the next letter in the series: A, D, G, J, ?", "questionHi": "श्रृंखला में अगला अक्षर ज्ञात करें: A, D, G, J, ?", "options": ["K", "L", "M", "N"], "answer": 2 },
+        { "questionEn": "In a standard dice, what number is on the face opposite to 4?", "questionHi": "एक मानक पासे में, 4 वाले फलक के विपरीत कौन सी संख्या होती है?", "options": ["1", "2", "3", "5"], "answer": 2 },
+        { "questionEn": "Analogy - Thermometer : Temperature :: Barometer : ?", "questionHi": "समानता - थर्मामीटर : तापमान :: बैरोमीटर : ?", "options": ["Pressure / दबाव", "Humidity / नमी", "Wind speed / हवा की गति", "Current / विद्युत धारा"], "answer": 0 },
+        { "questionEn": "A is the brother of B, C is the sister of A, D is the brother of E, E is the daughter of B. Who is the uncle of D?", "questionHi": "A, B का भाई है, C, A की बहन है, D, E का भाई है, E, B की बेटी है। D का चाचा/मामा कौन है?", "options": ["A", "B", "C", "E"], "answer": 0 },
+        { "questionEn": "Find the odd one out:", "questionHi": "विषम चुनें:", "options": ["Square / वर्ग", "Rectangle / आयत", "Triangle / त्रिभुज", "Sphere / गोला"], "answer": 3 }
+      ]
+    }
+  ]
+}

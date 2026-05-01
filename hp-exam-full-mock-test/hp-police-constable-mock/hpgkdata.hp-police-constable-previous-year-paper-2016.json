@@ -1,0 +1,115 @@
+{
+  "testTitle": "HP Police Constable Official Paper (2016)",
+  "durationMinutes": 60,
+  "negativeMarking": "0",
+  "customInstructions": [
+    "This is the Official Previous Year Paper (PYP) of HP Police Constable conducted in 2016.",
+    "Total Questions: 80, Total Marks: 80, Total Time: 60 Minutes.",
+    "Every correct answer awards +1 Mark.",
+    "Historically, there was NO negative marking in this specific exam pattern.",
+    "Questions are exactly as they appeared in the actual exam."
+  ],
+  "sections": [
+    {
+      "name": "English Language",
+      "questions": [
+        { "questionEn": "Choose the correct meaning of the Idiom: \"To die in harness\"", "questionHi": "", "options": ["To die in a war", "To die while in service", "To die after retirement", "To die while riding a horse"], "answer": 1 },
+        { "questionEn": "Choose the correct meaning of the Idiom: \"A cock and bull story\"", "questionHi": "", "options": ["A true story", "A brave story", "A lie / Absurd tale", "An animal story"], "answer": 2 },
+        { "questionEn": "Choose the correct meaning of the Idiom: \"To miss the bus\"", "questionHi": "", "options": ["To miss a vehicle", "To miss an opportunity", "To be late for school", "To lose money"], "answer": 1 },
+        { "questionEn": "Fill in the blank with correct word: I have been living here ____ 2009.", "questionHi": "", "options": ["from", "for", "since", "in"], "answer": 2 },
+        { "questionEn": "Fill in the blank with correct word: She fell prey ____ malaria.", "questionHi": "", "options": ["of", "to", "from", "with"], "answer": 1 },
+        { "questionEn": "Fill in the blank with correct word: Rohan is good ____ mathematics.", "questionHi": "", "options": ["in", "with", "at", "on"], "answer": 2 },
+        { "questionEn": "Find the opposite word of: DISASTER", "questionHi": "", "options": ["Prosperity", "Catastrophe", "Problem", "Ruin"], "answer": 0 },
+        { "questionEn": "Find the opposite word of: CONCUR", "questionHi": "", "options": ["Agree", "Disagree", "Accept", "Help"], "answer": 1 },
+        { "questionEn": "Choose the correctly spelt word:", "questionHi": "", "options": ["Argument", "Arguement", "Argumant", "Arguemant"], "answer": 0 },
+        { "questionEn": "Find out the incorrect part of the sentence:\nMy father / deals / with garments.", "questionHi": "", "options": ["My father", "deals", "with garments", "No error"], "answer": 2 },
+        { "questionEn": "Find out the incorrect part of the sentence:\nKnowledge of / at least two languages / are required to pass the examination.", "questionHi": "", "options": ["Knowledge of", "at least two languages", "are required to pass the examination", "No error"], "answer": 2 },
+        { "questionEn": "A person who has no money to pay his debt is called:", "questionHi": "", "options": ["Pauper", "Insolvent", "Beggar", "Debtor"], "answer": 1 },
+        { "questionEn": "The passing on of physical or mental characteristics from one generation to another is known as:", "questionHi": "", "options": ["Heredity", "Genetics", "Evolution", "Mutation"], "answer": 0 },
+        { "questionEn": "A doctor who treats diseases of the eyes is known as:", "questionHi": "", "options": ["Cardiologist", "Dermatologist", "Ophthalmologist", "Neurologist"], "answer": 2 },
+        { "questionEn": "Choose the correctly spelt word:", "questionHi": "", "options": ["Aluminium", "Alminium", "Elminium", "Alumenium"], "answer": 0 },
+        { "questionEn": "What will be the past indefinite tense of \"I play Cricket\"?", "questionHi": "", "options": ["I was playing Cricket.", "I played Cricket.", "I had played Cricket.", "I have played Cricket."], "answer": 1 }
+      ]
+    },
+    {
+      "name": "Hindi Language",
+      "questions": [
+        { "questionEn": "", "questionHi": "मुहावरा 'अधजल गगरी छलकत जाय' का सही अर्थ क्या है?", "options": ["मटका फूटना", "पानी छलकना", "छोटे आदमी (कम ज्ञानी) अधिक दिखावा करते हैं", "अधिक ज्ञानी होना"], "answer": 2 },
+        { "questionEn": "", "questionHi": "'बिल्ली के भागों छींका टूटा' मुहावरे का क्या अर्थ है?", "options": ["बिल्ली का भागना", "अचानक लाभ होना", "नुकसान होना", "छींक आना"], "answer": 1 },
+        { "questionEn": "", "questionHi": "'उत्कर्ष' का विलोम शब्द है:", "options": ["अपकर्ष", "निष्कर्ष", "संघर्ष", "पतन"], "answer": 0 },
+        { "questionEn": "", "questionHi": "'आहार' का विलोम शब्द है:", "options": ["भोजन", "निराहार", "विहार", "संहार"], "answer": 1 },
+        { "questionEn": "", "questionHi": "इनमें से भाववाचक संज्ञा कौन सी है?", "options": ["मीठा", "मिठाई", "मिठास", "मिष्ठान"], "answer": 2 },
+        { "questionEn": "", "questionHi": "शुद्ध वर्तनी का चयन कीजिए:", "options": ["निरीक्षण", "निरिक्षण", "नीरिक्षण", "निरीषण"], "answer": 0 },
+        { "questionEn": "", "questionHi": "निम्न में से स्त्रीलिंग शब्द है:", "options": ["माली", "चौधरी", "खत्री", "धनवती"], "answer": 3 },
+        { "questionEn": "", "questionHi": "निम्न में से कौन सा 'बिजली' का पर्यायवाची नहीं है?", "options": ["चपला", "चंचला", "तड़ित", "ज्योत्सना"], "answer": 3 },
+        { "questionEn": "", "questionHi": "'वह' का बहुवचन रूप क्या होगा?", "options": ["ये", "तुम", "वे", "हम"], "answer": 2 },
+        { "questionEn": "", "questionHi": "'आकृष्ट' का सही सन्धि विच्छेद क्या है?", "options": ["आकृष् + त", "आकृ + ष्ट", "आकृष + त", "आ + कृष्ट"], "answer": 0 },
+        { "questionEn": "", "questionHi": "'परीक्षक' का सही सन्धि विच्छेद है:", "options": ["परि + इक्षक", "परी + इक्षक", "परि + ईक्षक", "परी + ईक्षक"], "answer": 2 },
+        { "questionEn": "", "questionHi": "'प्रलय' का विलोम शब्द है:", "options": ["विनाश", "सृष्टि", "रचना", "उत्पत्ति"], "answer": 1 },
+        { "questionEn": "", "questionHi": "'मिलन' का विलोम शब्द है:", "options": ["विरह", "संगम", "संयोग", "साथ"], "answer": 0 },
+        { "questionEn": "", "questionHi": "'कुंजर' किसका पर्यायवाची शब्द है?", "options": ["शेर", "गज (हाथी)", "घोड़ा", "मृग"], "answer": 1 },
+        { "questionEn": "", "questionHi": "'कैवल्य' का समानार्थी शब्द है:", "options": ["ज्ञान", "निर्वाण / मोक्ष", "संसार", "वैराग्य"], "answer": 1 },
+        { "questionEn": "", "questionHi": "\"सारी फसल\" वाक्यांश में कौन सा विशेषण प्रयुक्त हुआ है?", "options": ["गुणवाचक", "संख्यावाचक", "परिमाणवाचक", "सार्वनामिक"], "answer": 2 }
+      ]
+    },
+    {
+      "name": "General Awareness",
+      "questions": [
+        { "questionEn": "Ustad Amjad Ali Khan is famous for playing which musical instrument?", "questionHi": "अमजद अली खान क्या बजाते हैं?", "options": ["Tabla / तबला", "Sitar / सितार", "Sarod / सरोद", "Flute / बांसुरी"], "answer": 1 },
+        { "questionEn": "'Koldam Project' is associated with which organization?", "questionHi": "'कोल डैम परियोजना' किस संगठन से संबंधित है?", "options": ["NHPC", "NTPC", "SJVNL", "BBMB"], "answer": 1 },
+        { "questionEn": "Sportsman Jeev Milkha Singh is associated with which sport?", "questionHi": "खिलाड़ी जीव मिल्खा सिंह किस खेल से जुडे हैं?", "options": ["Athletics / एथलेटिक्स", "Golf / गोल्फ", "Hockey / हॉकी", "Tennis / टेनिस"], "answer": 1 },
+        { "questionEn": "Which country refused to sign the Kyoto Protocol?", "questionHi": "किस देश ने क्योटो प्रोटोकाल पर हस्ताक्षर करने से मना किया है?", "options": ["Russia / रूस", "China / चीन", "America (USA) / अमेरिका", "Japan / जापान"], "answer": 2 },
+        { "questionEn": "Who is the author of 'Panchatantra'?", "questionHi": "'पंचतंत्र' के लेखक कौन हैं?", "options": ["Vishnu Sharma / विष्णु शर्मा", "Chanakya / चाणक्य", "Kalidas / कालिदास", "Tulsidas / तुलसीदास"], "answer": 0 },
+        { "questionEn": "Who is the first Indian female gymnast to qualify for the Olympic Games?", "questionHi": "भारत की प्रथम महिला जिमनास्ट जिसने ओलंपिक खेलों के लिए क्वालीफाई किया है?", "options": ["Sunita Sharma / सुनीता शर्मा", "Dipa Karmakar / दीपा करमाकर", "Sakshi Malik / साक्षी मलिक", "P.T. Usha / पी.टी. उषा"], "answer": 1 },
+        { "questionEn": "What is CNG?", "questionHi": "CNG क्या हैं?", "options": ["Common Natural Gas", "Compressed Natural Gas", "Clean Natural Gas", "Carbon Natural Gas"], "answer": 1 },
+        { "questionEn": "Paralympic Games are related to:", "questionHi": "पैरा ओलंपिक खेलों का सम्बन्ध हैं?", "options": ["Women athletes / महिलाओं से", "Child athletes / बच्चों से", "Athletes with physical disabilities / शारीरिक विकलांगता वाले एथलीटों से", "Senior citizens / वरिष्ठ नागरिकों से"], "answer": 2 },
+        { "questionEn": "When is National Voters' Day celebrated?", "questionHi": "राष्ट्रीय मतदाता दिवस कब मनाते हैं?", "options": ["25 January / 25 जनवरी", "26 January / 26 जनवरी", "15 August / 15 अगस्त", "1 May / 1 मई"], "answer": 0 },
+        { "questionEn": "Whose painting is the \"Kangra Bride\"?", "questionHi": "\"कांगड़ा वधू\" किसकी चित्रकला कृति हैं?", "options": ["Nicholas Roerich / निकोलस रोरिक", "Amrita Sher-Gil / अमृता शेरगिल", "Sardar Shobha Singh / सरदार शोभा सिंह", "Norah Richards / नोरा रिचर्ड्स"], "answer": 2 },
+        { "questionEn": "Which award did the religious leader Dalai Lama receive?", "questionHi": "धर्मगुरू दलाई लामा को कौन सा पुरस्कार मिला हैं?", "options": ["Bharat Ratna / भारत रत्न", "Nobel Peace Prize / नोबेल शांति पुरस्कार", "Ramon Magsaysay / रेमन मैग्सेसे", "Arjuna Award / अर्जुन पुरस्कार"], "answer": 1 },
+        { "questionEn": "Who is the founder of the social network site \"FACEBOOK\"?", "questionHi": "Social Network site \"FACEBOOK\" का संस्थापक कौन हैं?", "options": ["Bill Gates / बिल गेट्स", "Steve Jobs / स्टीव जॉब्स", "Mark Zuckerberg / मार्क जुकरबर्ग", "Larry Page / लैरी पेज"], "answer": 2 },
+        { "questionEn": "What does NITI Aayog do?", "questionHi": "नीति आयोग क्या कार्य करता हैं?", "options": ["Conduct elections / चुनाव करवाना", "Provide finances to states and gather resources for economic progress / राज्यों के लिए वित्त का प्रावधान एवं आर्थिक उन्नति के संसाधन जुटाना", "Deliver justice / न्याय करना", "Manage police administration / पुलिस प्रशासन"], "answer": 1 },
+        { "questionEn": "Which of the following is NOT a permanent member of the United Nations Security Council (UNSC)?", "questionHi": "कौन संयुक्त राष्ट्र सुरक्षा परिषद का स्थायी सदस्य नहीं हैं?", "options": ["Russia / रूस", "France / फ्रांस", "China / चीन", "India / भारत"], "answer": 3 },
+        { "questionEn": "The Indian Institute of Advanced Study (IIAS) was formerly known as:", "questionHi": "भारतीय उच्च अध्ययन संस्थान पूर्व में किस नाम से जाना जाता था?", "options": ["Peterhoff / पीटरहॉफ", "Viceregal Lodge / वाइसरीगल लॉज", "Kennedy House / कैनेडी हाउस", "Barnes Court / बार्न्स कोर्ट"], "answer": 1 },
+        { "questionEn": "Chandratal Lake is in which district?", "questionHi": "चन्द्रताल झील किस जिले में हैं?", "options": ["Kinnaur / किन्नौर", "Lahaul-Spiti / लाहौल स्पीति", "Chamba / चंबा", "Kullu / कुल्लू"], "answer": 1 },
+        { "questionEn": "Where is the Roerich Art Gallery located?", "questionHi": "रोरिक आर्ट गैलरी कहां स्थित हैं?", "options": ["Manali / मनाली", "Naggar / नग्गर", "Andretta / अंद्रेटा", "Dalhousie / डलहौजी"], "answer": 1 }
+      ]
+    },
+    {
+      "name": "Maths, Science & Reasoning",
+      "questions": [
+        { "questionEn": "Ram is younger than Shyam, but older than Gautam. Govind is older than Mohan but younger than Gautam. If Mahesh is the oldest among all, who is the youngest?", "questionHi": "राम श्याम से छोटा है, लेकिन गौतम से बड़ा है। गोविन्द मोहन से बड़ा है लेकिन गौतम से छोटा है, यदि महेश इन सबसे बड़ा है तो सबसे छोटा कौन हैं?", "options": ["Ram / राम", "Shyam / श्याम", "Gautam / गौतम", "Mohan / मोहन"], "answer": 3 },
+        { "questionEn": "Ravi went 15 km towards East. Then he turned left and walked 5 km. Then he turned left again and walked 15 km. How far is he from the starting point?", "questionHi": "रवि पूर्व दिशा में 15 कि.मी. गया जब वह बायें मुडकर 5 कि.मी. चला। फिर वह बायें मुडकर 15 कि.मी. चला। तो बताइए वह प्रारंभिक स्थान से कितनी दूर है?", "options": ["5 km", "10 km", "15 km", "20 km"], "answer": 0 },
+        { "questionEn": "Atmosphere : Airplane :: Ocean : ?", "questionHi": "वायुमण्डल : वायुयान :: समुद्र : ?", "options": ["Ship / जहाज", "Boat / नाव", "Submarine / पनडुब्बी", "Fish / मछली"], "answer": 2 },
+        { "questionEn": "If RACE = 4793, FACT = 1795, FORCE = 16493, then REACT = ?", "questionHi": "यदि किसी भाषा में RACE = 4793, FACT = 1795, FORCE = 16493 लिखा जाता है तो उसी भाषा में REACT को क्या लिखोगे?", "options": ["43795", "47395", "43975", "49375"], "answer": 0 },
+        { "questionEn": "Rahul ranks 9th from the top and 38th from the bottom in his class. How many total students are there in the class?", "questionHi": "राहुल का स्थान अपनी कक्षा में ऊपर से 9वां है तथा नीचे से 38वां है, उसकी कक्षा में कुल कितने छात्र है?", "options": ["45", "46", "47", "48"], "answer": 1 },
+        { "questionEn": "If it was Monday on 24th January 1994, what day of the week was it on 24th January 1995?", "questionHi": "यदि आज 24 जनवरी, 1994 को दिन सोमवार है तो 24 जनवरी 1995 को कौन सा दिन है?", "options": ["Sunday / रविवार", "Monday / सोमवार", "Tuesday / मंगलवार", "Wednesday / बुधवार"], "answer": 2 },
+        { "questionEn": "Which word CANNOT be formed using the letters of the word 'LEGISLATURE'?", "questionHi": "दिए गए शब्दों में से उस शब्द को चुनिए, जो 'LEGISLATURE' के अक्षरों से नहीं बनेगा:", "options": ["Salute", "Gesture", "Serial", "Slaughter"], "answer": 3 },
+        { "questionEn": "Complete the series: 7, 10, 8, 11, 9, 12, ?", "questionHi": "श्रेणी को पूरा करों: 7, 10, 8, 11, 9, 12, ?", "options": ["10", "13", "14", "15"], "answer": 0 },
+        { "questionEn": "Find the odd one out:", "questionHi": "इनमें से विषम चूनें:", "options": ["Banana / केला", "Apple / सेब", "Carrot / गाजर", "Orange / संतरा"], "answer": 2 },
+        { "questionEn": "The mathematical symbol ':' means:", "questionHi": "गणितीय चिन्ह ':' का अर्थ है:", "options": ["Equal / बराबर", "Proportional (Ratio) / आनुपातिक", "Multiply / गुणा", "Percentage / प्रतिशत"], "answer": 1 },
+        { "questionEn": "Find the next in the series: EMS, DLR, CKQ, ?, AIO", "questionHi": "श्रृंखला में अगला ज्ञात करें: EMS, DLR, CKQ, ?, AIO", "options": ["BJP", "BKP", "CJQ", "AIP"], "answer": 0 },
+        { "questionEn": "Find the next in the series: AQ, DR, GS, ?, MU, PV", "questionHi": "श्रृंखला में अगला ज्ञात करें: AQ, DR, GS, ?, MU, PV", "options": ["HS", "IR", "JT", "KT"], "answer": 2 },
+        { "questionEn": "Which system of the body is primarily affected by the AIDS disease?", "questionHi": "एड्स रोग के द्वारा कौन सा तंत्र प्रभावित होता है?", "options": ["Digestive System / पाचन तंत्र", "Respiratory System / श्वसन तंत्र", "Immune System / प्रतिरक्षा तंत्र", "Nervous System / तंत्रिका तंत्र"], "answer": 2 },
+        { "questionEn": "Arrange in logical order: 1. Curd, 2. Grass, 3. Butter, 4. Milk, 5. Cow", "questionHi": "दिए शब्दों को तर्कसंगत एवं अर्थयुक्त क्रम में लिखें: 1. दही, 2. घास, 3. मक्खन, 4. दूध, 5. गाय", "options": ["2, 5, 4, 3, 1", "2, 5, 4, 1, 3", "5, 2, 4, 1, 3", "5, 2, 1, 4, 3"], "answer": 1 },
+        { "questionEn": "Arrange the words according to the Dictionary: 1. Wound, 2. Writer, 3. White, 4. Worst, 5. Worked", "questionHi": "शब्दों को शब्दकोश (Dictionary) के क्रम अनुसार लिखें: 1. Wound, 2. Writer, 3. White, 4. Worst, 5. Worked", "options": ["3, 5, 4, 1, 2", "3, 4, 5, 1, 2", "3, 5, 1, 4, 2", "5, 3, 4, 1, 2"], "answer": 0 },
+        { "questionEn": "In a picture hall, there are 4 empty seats. In how many ways can 4 women be seated on these 4 seats?", "questionHi": "एक पिक्चर हाल में चार सीटें खाली है। इन चारों सीटों पर चार महिलाओं को कितनी तरह से बैठाया जा सकता है?", "options": ["16", "20", "24", "12"], "answer": 2 },
+        { "questionEn": "If A:B = 2:3 and B:C = 4:5, then what is C:A?", "questionHi": "यदि A:B = 2:3 तथा B:C = 4:5 हो तब C:A क्या होगा?", "options": ["8:15", "15:8", "12:15", "8:12"], "answer": 1 },
+        { "questionEn": "If 18:X = X:8, then what is X?", "questionHi": "यदि 18:X = X:8 हो तो X = ?", "options": ["12", "144", "16", "18"], "answer": 0 },
+        { "questionEn": "If the price of 2/7th part of a house is Rs 28,000, what will be the price of the entire house?", "questionHi": "यदि किसी घर के मूल्य के 2/7 हिस्से की कीमत 28,000 रू. है तो पूरे घर की कीमत क्या होगी?", "options": ["9,60,000", "9,70,000", "9,80,000", "None of these / इनमें से कोई नहीं"], "answer": 3 },
+        { "questionEn": "The marked price of a bag is Rs 80 but it is sold for Rs 68. What is the discount percentage being given on the bag?", "questionHi": "एक बैग का अंकित मूल्य 80 रू. है परन्तु इसे 68 रू. में बेचा जाता है। इस बैग पर कितने प्रतिशत डिस्काउंट दिया जा रहा है?", "options": ["10%", "12%", "15%", "20%"], "answer": 2 },
+        { "questionEn": "Evaluate: $1\\frac{3}{4} + 5\\frac{1}{3} + 3\\frac{2}{5} = ?$", "questionHi": "हल करें: $1\\frac{3}{4} + 5\\frac{1}{3} + 3\\frac{2}{5} = ?$", "options": ["$10\\frac{19}{60}$", "$10\\frac{29}{60}$", "$11\\frac{29}{60}$", "$9\\frac{29}{60}$"], "answer": 1 },
+        { "questionEn": "Evaluate: $54 \\div 66 \\times 33 = ?$", "questionHi": "हल करें: $54 \\div 66 \\times 33 = ?$", "options": ["18", "27", "36", "54"], "answer": 1 },
+        { "questionEn": "Light year is the unit of:", "questionHi": "प्रकाश वर्ष किसका मात्रक हैं?", "options": ["Time / समय", "Distance / दूरी", "Light intensity / प्रकाश", "Speed / गति"], "answer": 1 },
+        { "questionEn": "What is the chemical formula of baking soda?", "questionHi": "खाने का सोडा (Baking Soda) का रासायनिक सूत्र हैं?", "options": ["Na2CO3", "NaHCO3", "NaCl", "NaOH"], "answer": 1 },
+        { "questionEn": "Which part of the eye is donated in eye donation?", "questionHi": "नेत्र दान में नेत्र का कौन सा हिस्सा दान किया जाता है?", "options": ["Retina / रेटिना", "Cornea / कार्निया", "Pupil / पुतली", "Lens / लेंस"], "answer": 1 },
+        { "questionEn": "Which gland is called the Master Gland?", "questionHi": "मास्टर ग्रंथि किसे कहते हैं?", "options": ["Thyroid / थायराइड", "Adrenal / एड्रिनल", "Pituitary / पीयूष ग्रंथि", "Pancreas / अग्न्याशय"], "answer": 2 },
+        { "questionEn": "What is the main function of the Kidneys?", "questionHi": "गुर्दो का मुख्य कार्य क्या है?", "options": ["Blood circulation / रक्त संचार", "Digestion / पाचन", "To remove waste products from the body / शरीर से बेकार चीजों को बाहर करना", "Respiration / श्वसन"], "answer": 2 },
+        { "questionEn": "Which of the following is a chemical change?", "questionHi": "निम्नलिखित में से रासायनिक परिवर्तन है?", "options": ["Melting ice / बर्फ का पिघलना", "Boiling water / पानी का उबलना", "Dissolving bleaching powder in water / ब्लीचिंग पाऊडर का पानी में घुलना", "Breaking glass / कांच का टूटना"], "answer": 2 },
+        { "questionEn": "What does URL stand for?", "questionHi": "URL से तात्पर्य है?", "options": ["Uniform Resource Locator", "Universal Resource Link", "Uniform Reference Line", "United Resource Locator"], "answer": 0 },
+        { "questionEn": "Hepatitis affects which organ?", "questionHi": "हेपाटाइटिस किसका प्रवाह (प्रभाव) है?", "options": ["Heart / हृदय", "Liver / लिवर", "Lungs / फेफड़े", "Kidneys / गुर्दे"], "answer": 1 },
+        { "questionEn": "Which part of the blood cell provides immunity against diseases?", "questionHi": "रक्त कोशिका का कौन सा भाग, रोग-प्रतिरक्षण प्रदान करता हैं?", "options": ["RBC", "Platelets", "WBC (White Blood Cells)", "Plasma"], "answer": 2 },
+        { "questionEn": "What is the main component of Earth's atmosphere?", "questionHi": "पृथ्वी के वायुमण्डल का मुख्य घटक क्या हैं?", "options": ["Oxygen / ऑक्सीजन", "Carbon dioxide / कार्बन डाइऑक्साइड", "Nitrogen / नाइट्रोजन", "Argon / आर्गन"], "answer": 2 }
+      ]
+    }
+  ]
+}

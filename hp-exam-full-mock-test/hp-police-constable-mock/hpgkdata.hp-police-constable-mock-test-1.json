@@ -1,0 +1,129 @@
+{
+  "testTitle": "HP Police Constable Full Mock Test 1",
+  "durationMinutes": 120,
+  "negativeMarking": "0.25",
+  "customInstructions": [
+    "This mock test strictly follows the latest HP Police Constable Exam Pattern.",
+    "Total Questions: 90, Total Marks: 90, Total Time: 120 Minutes.",
+    "Every correct answer awards +1 Mark.",
+    "Every incorrect answer will deduct 0.25 Marks (Negative Marking).",
+    "Questions are available in both English and Hindi."
+  ],
+  "sections": [
+    {
+      "name": "English Grammar",
+      "questions": [
+        { "questionEn": "Identify the part of speech of the underlined word: She works <u>very</u> hard.", "questionHi": "", "options": ["Adjective", "Adverb", "Verb", "Conjunction"], "answer": 1 },
+        { "questionEn": "Choose the correct article: He is ____ honorable man.", "questionHi": "", "options": ["a", "an", "the", "no article"], "answer": 1 },
+        { "questionEn": "Fill in the blank with correct tense: The sun _____ in the east.", "questionHi": "", "options": ["rise", "rising", "rises", "is rising"], "answer": 2 },
+        { "questionEn": "Change the voice: \"She has written a letter.\"", "questionHi": "", "options": ["A letter was written by her.", "A letter is written by her.", "A letter has been written by her.", "A letter had been written by her."], "answer": 2 },
+        { "questionEn": "Change into Indirect Speech: He said, \"I am reading a book.\"", "questionHi": "", "options": ["He said that he was reading a book.", "He said that I am reading a book.", "He said he is reading a book.", "He told that he read a book."], "answer": 0 },
+        { "questionEn": "Choose the correct preposition: He jumped ____ the river.", "questionHi": "", "options": ["in", "into", "on", "at"], "answer": 1 },
+        { "questionEn": "Identify the error in the sentence: \"Neither the principal nor the teachers is present.\"", "questionHi": "", "options": ["Neither the principal", "nor the teachers", "is present", "No error"], "answer": 2 },
+        { "questionEn": "Find the correctly spelt word:", "questionHi": "", "options": ["Reccomend", "Recommend", "Recomend", "Reccommend"], "answer": 1 },
+        { "questionEn": "Fill in the blank: Either Ram ____ his friends have broken the glass.", "questionHi": "", "options": ["or", "nor", "and", "with"], "answer": 0 },
+        { "questionEn": "Synonym of 'Diligent' is:", "questionHi": "", "options": ["Lazy", "Hardworking", "Foolish", "Careless"], "answer": 1 },
+        { "questionEn": "Antonym of 'Barren' is:", "questionHi": "", "options": ["Fertile", "Empty", "Dry", "Hard"], "answer": 0 },
+        { "questionEn": "What does the idiom \"A piece of cake\" mean?", "questionHi": "", "options": ["Something very easy", "Something very hard", "A sweet dessert", "A hidden secret"], "answer": 0 },
+        { "questionEn": "Which of the following is a conjunction?", "questionHi": "", "options": ["Quickly", "Because", "Beautiful", "Under"], "answer": 1 },
+        { "questionEn": "Change the voice: \"Open the door.\"", "questionHi": "", "options": ["The door was opened.", "Let the door be opened.", "The door is open.", "You open the door."], "answer": 1 },
+        { "questionEn": "Spot the error: \"He is senior than me in service.\"", "questionHi": "", "options": ["He is senior", "than me", "in service", "No error"], "answer": 1 },
+        { "questionEn": "Choose the correct plural form of 'Syllabus':", "questionHi": "", "options": ["Syllabi", "Syllabuses", "Syllabus", "Syllables"], "answer": 0 },
+        { "questionEn": "Choose the correct tense: By next month, we ____ this project.", "questionHi": "", "options": ["finish", "will finish", "will have finished", "finishing"], "answer": 2 },
+        { "questionEn": "Identify the pronoun in the sentence: \"They are playing football.\"", "questionHi": "", "options": ["playing", "football", "They", "are"], "answer": 2 },
+        { "questionEn": "One word substitution: A person who studies stars and planets.", "questionHi": "", "options": ["Astrologer", "Astronomer", "Astronaut", "Pilot"], "answer": 1 },
+        { "questionEn": "Choose the correct article: He is ____ European citizen.", "questionHi": "", "options": ["a", "an", "the", "none"], "answer": 0 }
+      ]
+    },
+    {
+      "name": "Hindi Grammar",
+      "questions": [
+        { "questionEn": "", "questionHi": "हिंदी वर्णमाला में कुल कितने मूल स्वर होते हैं?", "options": ["11", "13", "33", "10"], "answer": 0 },
+        { "questionEn": "", "questionHi": "निम्नलिखित में से कौन सा 'अन्तःस्थ' व्यंजन है?", "options": ["श", "म", "य", "भ"], "answer": 2 },
+        { "questionEn": "", "questionHi": "'अमृत' का पर्यायवाची शब्द है:", "options": ["पीयूष", "गरल", "पावक", "व्योम"], "answer": 0 },
+        { "questionEn": "", "questionHi": "'आकाश' का विलोमार्थी शब्द क्या है?", "options": ["धरती", "पाताल", "समुद्र", "गगन"], "answer": 1 },
+        { "questionEn": "", "questionHi": "'जो सब कुछ जानता हो' (एकार्थी शब्द):", "options": ["अज्ञ", "विशेषज्ञ", "सर्वज्ञ", "विद्वान"], "answer": 2 },
+        { "questionEn": "", "questionHi": "'कलम' शब्द कौन सी संज्ञा है?", "options": ["व्यक्तिवाचक", "जातिवाचक", "भाववाचक", "समूहवाचक"], "answer": 1 },
+        { "questionEn": "", "questionHi": "'वह बहुत तेज दौड़ता है।' वाक्य में 'वह' क्या है?", "options": ["संज्ञा", "सर्वनाम", "विशेषण", "क्रिया"], "answer": 1 },
+        { "questionEn": "", "questionHi": "'सुंदर' शब्द का भाववाचक संज्ञा रूप क्या होगा?", "options": ["सुंदरता", "सुंदर", "सौंदर्य", "A और B दोनों"], "answer": 0 },
+        { "questionEn": "", "questionHi": "निम्नलिखित में से कौन सा शब्द अव्यय है?", "options": ["राम", "धीरे-धीरे", "काला", "खाना"], "answer": 1 },
+        { "questionEn": "", "questionHi": "'आँख का तारा होना' मुहावरे का अर्थ है:", "options": ["आँख में दर्द होना", "बहुत प्यारा होना", "दुश्मन होना", "अंधा होना"], "answer": 1 },
+        { "questionEn": "", "questionHi": "'नाच न जाने आँगन टेढ़ा' लोकोक्ति का सही अर्थ है:", "options": ["नाचना नहीं आना", "आँगन खराब होना", "अपनी अयोग्यता छिपाने के लिए दूसरों में दोष निकालना", "झूठ बोलना"], "answer": 2 },
+        { "questionEn": "", "questionHi": "निम्नलिखित में से अशुद्ध वाक्य चुनें:", "options": ["राम ने खाना खाया।", "मेरे को घर जाना है।", "वह बाजार जाता है।", "सीता गाना गाती है।"], "answer": 1 },
+        { "questionEn": "", "questionHi": "'क' वर्ग का उच्चारण स्थान क्या है?", "options": ["तालु", "मूर्धा", "कंठ", "ओष्ठ"], "answer": 2 },
+        { "questionEn": "", "questionHi": "'सज्जन' का संधि-विच्छेद क्या होगा?", "options": ["सज + जन", "सत् + जन", "सत + जन", "स + जन"], "answer": 1 },
+        { "questionEn": "", "questionHi": "'हार' शब्द के अनेकार्थी शब्द क्या हैं?", "options": ["पराजय और माला", "जीत और माला", "गहना और सोना", "केवल पराजय"], "answer": 0 },
+        { "questionEn": "", "questionHi": "'राम ने रावण को बाण से मारा' - इस वाक्य में 'बाण से' में कौन सा कारक है?", "options": ["कर्म कारक", "करण कारक", "संप्रदान कारक", "अपादान कारक"], "answer": 1 },
+        { "questionEn": "", "questionHi": "'नीलकंठ' में कौन सा समास है?", "options": ["अव्ययीभाव समास", "द्वंद्व समास", "बहुव्रीहि समास", "द्विगु समास"], "answer": 2 },
+        { "questionEn": "", "questionHi": "'घोड़ा' का तत्सम शब्द क्या है?", "options": ["अश्व", "घोटक", "तुरंग", "वाजि"], "answer": 1 },
+        { "questionEn": "", "questionHi": "'आदर' का विलोम शब्द है:", "options": ["निरादर", "सम्मान", "प्रेम", "सत्कार"], "answer": 0 },
+        { "questionEn": "", "questionHi": "'विद्यार्थी पढ़ रहा है।' वाक्य में कौन सी क्रिया है?", "options": ["सकर्मक क्रिया", "अकर्मक क्रिया", "प्रेरणार्थक क्रिया", "द्विकर्मक क्रिया"], "answer": 1 }
+      ]
+    },
+    {
+      "name": "General Knowledge",
+      "questions": [
+        { "questionEn": "Who invented the Telephone?", "questionHi": "टेलीफोन का आविष्कार किसने किया?", "options": ["Thomas Edison / थॉमस एडिसन", "Alexander Graham Bell / अलेक्जेंडर ग्राहम बेल", "Guglielmo Marconi / गुग्लिल्मो मार्कोनी", "Nikola Tesla / निकोला टेस्ला"], "answer": 1 },
+        { "questionEn": "The headquarters of WHO (World Health Organization) is located in:", "questionHi": "WHO का मुख्यालय कहाँ स्थित है?", "options": ["New York / न्यूयॉर्क", "Geneva / जिनेवा", "Paris / पेरिस", "London / लंदन"], "answer": 1 },
+        { "questionEn": "Who is the author of the book \"Wings of Fire\"?", "questionHi": "\"विंग्स ऑफ फायर\" पुस्तक के लेखक कौन हैं?", "options": ["A.P.J. Abdul Kalam / A.P.J. अब्दुल कलाम", "Mahatma Gandhi / महात्मा गांधी", "Jawaharlal Nehru / जवाहरलाल नेहरू", "Rabindranath Tagore / रवींद्रनाथ टैगोर"], "answer": 0 },
+        { "questionEn": "What is the capital of Australia?", "questionHi": "ऑस्ट्रेलिया की राजधानी क्या है?", "options": ["Sydney / सिडनी", "Melbourne / मेलबर्न", "Canberra / कैनबरा", "Perth / पर्थ"], "answer": 2 },
+        { "questionEn": "World Environment Day is celebrated on:", "questionHi": "विश्व पर्यावरण दिवस कब मनाया जाता है?", "options": ["5 June / 5 जून", "22 April / 22 अप्रैल", "1 May / 1 मई", "10 December / 10 दिसंबर"], "answer": 0 },
+        { "questionEn": "Which state has the longest coastline in India?", "questionHi": "भारत में किस राज्य की तटरेखा सबसे लंबी है?", "options": ["Maharashtra / महाराष्ट्र", "Tamil Nadu / तमिलनाडु", "Gujarat / गुजरात", "Andhra Pradesh / आंध्र प्रदेश"], "answer": 2 },
+        { "questionEn": "The 'Bhakra Dam' is built across which river?", "questionHi": "'भाखड़ा बांध' किस नदी पर बना है?", "options": ["Beas / ब्यास", "Ravi / रावी", "Satluj / सतलुज", "Chenab / चिनाब"], "answer": 2 },
+        { "questionEn": "What is the full form of ISRO?", "questionHi": "ISRO का पूर्ण रूप क्या है?", "options": ["Indian Space Research Organisation", "International Space Research Organisation", "Indian Scientific Research Organisation", "Institute of Space Research Organisation"], "answer": 0 },
+        { "questionEn": "Who is the current Chancellor of Germany?", "questionHi": "जर्मनी के वर्तमान चांसलर कौन हैं?", "options": ["Angela Merkel / एंजेला मर्केल", "Olaf Scholz / ओलाफ शोल्ज़", "Friedrich Merz / फ्रीड्रिच मर्ज़", "Emmanuel Macron / इमैनुएल मैक्रों"], "answer": 2 },
+        { "questionEn": "Which is the highest peak in Himachal Pradesh?", "questionHi": "हिमाचल प्रदेश की सबसे ऊँची चोटी कौन सी है?", "options": ["Shilla / शिल्ला", "Reo Purgyil / रियो पुर्ग्यिल", "Manirang / मणीरंग", "Indrasan / इंद्रासन"], "answer": 1 },
+        { "questionEn": "The famous 'Minjar Fair' is celebrated in which district of HP?", "questionHi": "प्रसिद्ध 'मिंजर मेला' HP के किस जिले में मनाया जाता है?", "options": ["Mandi / मंडी", "Kullu / कुल्लू", "Chamba / चंबा", "Kangra / कांगड़ा"], "answer": 2 },
+        { "questionEn": "'Ayushman Bharat' is a government scheme related to:", "questionHi": "'आयुष्मान भारत' सरकारी योजना किससे संबंधित है?", "options": ["Education / शिक्षा", "Health / स्वास्थ्य", "Agriculture / कृषि", "Infrastructure / बुनियादी ढांचा"], "answer": 1 },
+        { "questionEn": "The Dronacharya Award is given to:", "questionHi": "द्रोणाचार्य पुरस्कार किसे दिया जाता है?", "options": ["Outstanding Sportsmen / उत्कृष्ट खिलाड़ियों को", "Best Coaches in Sports / खेलों में सर्वश्रेष्ठ कोच को", "Scientists / वैज्ञानिकों को", "Authors / लेखकों को"], "answer": 1 },
+        { "questionEn": "Which planet is known as the \"Red Planet\"?", "questionHi": "किस ग्रह को \"लाल ग्रह\" कहा जाता है?", "options": ["Venus / शुक्र", "Jupiter / बृहस्पति", "Mars / मंगल", "Saturn / शनि"], "answer": 2 },
+        { "questionEn": "Who discovered Penicillin?", "questionHi": "पेनिसिलिन की खोज किसने की?", "options": ["Louis Pasteur / लुई पाश्चर", "Alexander Fleming / अलेक्जेंडर फ्लेमिंग", "Edward Jenner / एडवर्ड जेनर", "Marie Curie / मैरी क्यूरी"], "answer": 1 },
+        { "questionEn": "The headquarters of the UN is in:", "questionHi": "संयुक्त राष्ट्र (UN) का मुख्यालय कहाँ है?", "options": ["Geneva / जिनेवा", "Paris / पेरिस", "New York / न्यूयॉर्क", "Rome / रोम"], "answer": 2 },
+        { "questionEn": "'Rohtang Pass' connects which two valleys?", "questionHi": "'रोहतांग दर्रा' किन दो घाटियों को जोड़ता है?", "options": ["Kangra and Chamba / कांगड़ा और चंबा", "Kullu and Lahaul / कुल्लू और लाहौल", "Kinnaur and Spiti / किन्नौर और स्पीति", "Mandi and Kullu / मंडी और कुल्लू"], "answer": 1 },
+        { "questionEn": "Which Indian city is known as the 'Pink City'?", "questionHi": "किस भारतीय शहर को 'गुलाबी शहर' कहा जाता है?", "options": ["Udaipur / उदयपुर", "Jaipur / जयपुर", "Jodhpur / जोधपुर", "Bikaner / बीकानेर"], "answer": 1 },
+        { "questionEn": "Who won the 2024 Men's T20 Cricket World Cup?", "questionHi": "2024 का पुरुष T20 क्रिकेट विश्व कप किसने जीता?", "options": ["Australia / ऑस्ट्रेलिया", "England / इंग्लैंड", "India / भारत", "South Africa / दक्षिण अफ्रीका"], "answer": 2 },
+        { "questionEn": "The term 'LBW' is related to which sport?", "questionHi": "'LBW' शब्द किस खेल से संबंधित है?", "options": ["Football / फुटबॉल", "Cricket / क्रिकेट", "Hockey / हॉकी", "Tennis / टेनिस"], "answer": 1 }
+      ]
+    },
+    {
+      "name": "Mathematics",
+      "questions": [
+        { "questionEn": "Convert $0.75$ into a fraction in its simplest form.", "questionHi": "$0.75$ को इसके सरलतम रूप में भिन्न (Fraction) में बदलें।", "options": ["1/2", "3/4", "4/5", "2/3"], "answer": 1 },
+        { "questionEn": "Find the LCM of 12, 15, and 20.", "questionHi": "12, 15 और 20 का LCM ज्ञात कीजिए।", "options": ["30", "60", "120", "180"], "answer": 1 },
+        { "questionEn": "What is 25% of 500?", "questionHi": "500 का 25% क्या है?", "options": ["100", "125", "150", "200"], "answer": 1 },
+        { "questionEn": "A man buys a book for Rs 200 and sells it for Rs 250. Find the profit percentage.", "questionHi": "एक आदमी 200 रुपये में एक किताब खरीदता है और उसे 250 रुपये में बेचता है। लाभ प्रतिशत ज्ञात करें।", "options": ["15%", "20%", "25%", "30%"], "answer": 2 },
+        { "questionEn": "Simple interest on Rs 1000 at 5% per annum for 2 years is:", "questionHi": "1000 रुपये पर 5% प्रति वर्ष की दर से 2 वर्ष का साधारण ब्याज है:", "options": ["Rs 50", "Rs 100", "Rs 150", "Rs 200"], "answer": 1 },
+        { "questionEn": "If a car travels 180 km in 3 hours, what is its speed in km/hr?", "questionHi": "यदि एक कार 3 घंटे में 180 किमी की यात्रा करती है, तो उसकी गति किमी/घंटा में क्या है?", "options": ["40", "50", "60", "70"], "answer": 2 },
+        { "questionEn": "The sum of angles of a triangle is:", "questionHi": "एक त्रिभुज के कोणों का योग होता है:", "options": ["90 degrees", "180 degrees", "270 degrees", "360 degrees"], "answer": 1 },
+        { "questionEn": "Find the mean (average) of the first 5 natural numbers (1, 2, 3, 4, 5).", "questionHi": "प्रथम 5 प्राकृतिक संख्याओं (1, 2, 3, 4, 5) का माध्य (औसत) ज्ञात कीजिए।", "options": ["2", "3", "4", "5"], "answer": 1 },
+        { "questionEn": "If a coin is tossed, what is the probability of getting a 'Tail'?", "questionHi": "यदि एक सिक्का उछाला जाता है, तो 'पट (Tail)' आने की प्रायिकता क्या है?", "options": ["0", "1/4", "1/2", "1"], "answer": 2 },
+        { "questionEn": "The area of a square is 144 sq cm. Find the length of its side.", "questionHi": "एक वर्ग का क्षेत्रफल 144 वर्ग सेमी है। इसकी भुजा की लंबाई ज्ञात कीजिए।", "options": ["10 cm", "12 cm", "14 cm", "16 cm"], "answer": 1 },
+        { "questionEn": "The volume of a cylinder is given by the formula:", "questionHi": "एक बेलन (सिलेंडर) का आयतन किस सूत्र द्वारा दिया जाता है?", "options": ["$2\\pi r$", "$\\pi r^2 h$", "$2\\pi r (r+h)$", "$\\frac{4}{3}\\pi r^3$"], "answer": 1 },
+        { "questionEn": "If $x:y = 2:3$ and $y:z = 3:5$, what is $x:z$?", "questionHi": "यदि $x:y = 2:3$ और $y:z = 3:5$, तो $x:z$ क्या है?", "options": ["2:3", "2:5", "3:5", "6:15"], "answer": 1 },
+        { "questionEn": "Solve the equation: $3x + 10 = 25$. Find $x$.", "questionHi": "समीकरण हल करें: $3x + 10 = 25$. $x$ ज्ञात करें।", "options": ["3", "5", "7", "15"], "answer": 1 },
+        { "questionEn": "A father is 30 years older than his son. In 5 years, he will be 3 times as old as his son. What is the son's present age?", "questionHi": "एक पिता अपने बेटे से 30 साल बड़ा है। 5 साल में, वह अपने बेटे की तुलना में 3 गुना बड़ा होगा। बेटे की वर्तमान आयु क्या है?", "options": ["5 years", "10 years", "12 years", "15 years"], "answer": 1 },
+        { "questionEn": "In a 40 litre mixture of milk and water, the ratio is 3:1. The amount of water is:", "questionHi": "दूध और पानी के 40 लीटर मिश्रण में अनुपात 3:1 है। पानी की मात्रा है:", "options": ["10 L", "20 L", "30 L", "40 L"], "answer": 0 },
+        { "questionEn": "A can do a work in 10 days and B in 15 days. Working together, they will finish it in:", "questionHi": "A किसी काम को 10 दिन में और B 15 दिन में कर सकता है। एक साथ काम करते हुए, वे इसे कितने दिनों में पूरा करेंगे?", "options": ["5 days", "6 days", "8 days", "25 days"], "answer": 1 },
+        { "questionEn": "An item marked at Rs 1000 is sold at a 20% discount. What is the selling price?", "questionHi": "1000 रुपये अंकित मूल्य वाली वस्तु 20% छूट पर बेची जाती है। विक्रय मूल्य क्या है?", "options": ["Rs 800", "Rs 850", "Rs 900", "Rs 980"], "answer": 0 },
+        { "questionEn": "Simplify: $15 \\times 4 \\div 2 + 10$", "questionHi": "सरल करें: $15 \\times 4 \\div 2 + 10$", "options": ["20", "30", "40", "50"], "answer": 2 },
+        { "questionEn": "The perimeter of a rectangle is 40 m. If its length is 12 m, what is its breadth?", "questionHi": "एक आयत का परिमाप 40 मीटर है। यदि इसकी लंबाई 12 मीटर है, तो इसकी चौड़ाई क्या है?", "options": ["6 m", "8 m", "10 m", "16 m"], "answer": 1 },
+        { "questionEn": "A bag contains 3 red, 5 blue, and 2 green balls. What is the probability of drawing a blue ball?", "questionHi": "एक थैले में 3 लाल, 5 नीली और 2 हरी गेंदें हैं। नीली गेंद निकालने की प्रायिकता क्या है?", "options": ["3/10", "1/2", "1/5", "5/8"], "answer": 1 }
+      ]
+    },
+    {
+      "name": "Logical Reasoning",
+      "questions": [
+        { "questionEn": "Find the next number in the series: 2, 6, 12, 20, 30, ?", "questionHi": "श्रृंखला में अगली संख्या ज्ञात करें: 2, 6, 12, 20, 30, ?", "options": ["40", "42", "44", "48"], "answer": 1 },
+        { "questionEn": "What is the angle between the hour and minute hands of a clock at 3:00?", "questionHi": "घड़ी में 3:00 बजे घंटे और मिनट की सुइयों के बीच का कोण क्या होता है?", "options": ["45 degrees", "60 degrees", "90 degrees", "180 degrees"], "answer": 2 },
+        { "questionEn": "If today is Monday, what day will it be after 15 days?", "questionHi": "यदि आज सोमवार है, तो 15 दिनों के बाद कौन सा दिन होगा?", "options": ["Monday / सोमवार", "Tuesday / मंगलवार", "Wednesday / बुधवार", "Sunday / रविवार"], "answer": 1 },
+        { "questionEn": "Pointing to a lady, a man said, \"She is the only daughter of my father's wife.\" How is the lady related to the man?", "questionHi": "एक महिला की ओर इशारा करते हुए एक आदमी ने कहा, \"वह मेरे पिता की पत्नी की इकलौती बेटी है।\" वह महिला उस आदमी से कैसे संबंधित है?", "options": ["Mother / माँ", "Aunt / बुआ", "Sister / बहन", "Wife / पत्नी"], "answer": 2 },
+        { "questionEn": "In a row, Rohan is 10th from the left and 15th from the right. How many people are in the row?", "questionHi": "एक पंक्ति में रोहन बाएँ से 10वें और दाएँ से 15वें स्थान पर है। पंक्ति में कुल कितने लोग हैं?", "options": ["23", "24", "25", "26"], "answer": 1 },
+        { "questionEn": "Analogy - Hand : Glove :: Foot : ?", "questionHi": "समानता - हाथ : दस्ताने :: पैर : ?", "options": ["Shoe / जूता", "Sock / मोज़ा", "Toe / पैर की अंगुली", "Ankle / टखना"], "answer": 1 },
+        { "questionEn": "If a standard dice is thrown, what is the number opposite to 6?", "questionHi": "यदि एक मानक पासा (डाइस) फेंका जाता है, तो 6 के विपरीत कौन सी संख्या होगी?", "options": ["1", "2", "3", "4"], "answer": 0 },
+        { "questionEn": "If 'APPLE' is coded as 'BQQMF', what is the code for 'TREE'?", "questionHi": "यदि 'APPLE' को 'BQQMF' के रूप में कोडित किया गया है, तो 'TREE' के लिए कोड क्या है?", "options": ["USFF", "USDF", "VTEE", "UQD"], "answer": 0 },
+        { "questionEn": "A man is facing North. He turns 90 degrees clockwise, then 180 degrees counter-clockwise. Which direction is he facing now?", "questionHi": "एक आदमी का मुंह उत्तर की ओर है। वह 90 डिग्री दक्षिणावर्त (clockwise), फिर 180 डिग्री वामावर्त (counter-clockwise) मुड़ता है। अब उसका मुख किस दिशा में है?", "options": ["East / पूर्व", "West / पश्चिम", "North / उत्तर", "South / दक्षिण"], "answer": 1 },
+        { "questionEn": "Find the odd one out from the visual/non-verbal context:", "questionHi": "दृश्यात्मक संदर्भ से विषम चुनें:", "options": ["Triangle / त्रिभुज", "Square / वर्ग", "Circle / वृत्त", "Rectangle / आयत"], "answer": 2 }
+      ]
+    }
+  ]
+}

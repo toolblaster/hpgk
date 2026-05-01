@@ -1,0 +1,129 @@
+{
+  "testTitle": "HP Police Constable Full Mock Test 3",
+  "durationMinutes": 120,
+  "negativeMarking": "0.25",
+  "customInstructions": [
+    "This mock test strictly follows the latest HP Police Constable Exam Pattern.",
+    "Total Questions: 90, Total Marks: 90, Total Time: 120 Minutes.",
+    "Every correct answer awards +1 Mark.",
+    "Every incorrect answer will deduct 0.25 Marks (Negative Marking).",
+    "Questions are available in both English and Hindi."
+  ],
+  "sections": [
+    {
+      "name": "English Grammar",
+      "questions": [
+        { "questionEn": "Choose the correct synonym of 'Amiable':", "questionHi": "", "options": ["Hostile", "Friendly", "Cruel", "Ignorant"], "answer": 1 },
+        { "questionEn": "Choose the correct antonym of 'Obscure':", "questionHi": "", "options": ["Clear", "Hidden", "Vague", "Dark"], "answer": 0 },
+        { "questionEn": "One word substitution: A person who does not believe in the existence of God.", "questionHi": "", "options": ["Theist", "Heretic", "Atheist", "Fanatic"], "answer": 2 },
+        { "questionEn": "Spot the error in the sentence: \"Neither of the two brothers are coming to the party.\"", "questionHi": "", "options": ["Neither of", "the two brothers", "are coming", "to the party"], "answer": 2 },
+        { "questionEn": "Fill in the blank with the correct preposition: She is proficient ____ English.", "questionHi": "", "options": ["with", "in", "at", "for"], "answer": 1 },
+        { "questionEn": "Change the voice: \"Who wrote this beautiful poem?\"", "questionHi": "", "options": ["By whom is this beautiful poem written?", "By whom was this beautiful poem written?", "By who this beautiful poem was written?", "Who was written this beautiful poem?"], "answer": 1 },
+        { "questionEn": "Change into Indirect Speech: He said to her, \"I will help you tomorrow.\"", "questionHi": "", "options": ["He told her that he will help her tomorrow.", "He told her that he would help her the next day.", "He told her that I would help her tomorrow.", "He said her that he would help her the next day."], "answer": 1 },
+        { "questionEn": "Fill in the blank with the correct tense: It _____ since morning.", "questionHi": "", "options": ["rained", "is raining", "has been raining", "was raining"], "answer": 2 },
+        { "questionEn": "What does the idiom \"Once in a blue moon\" mean?", "questionHi": "", "options": ["Very rarely", "Frequently", "Looking at the moon", "A sad event"], "answer": 0 },
+        { "questionEn": "Rearrange the following jumbled parts to make a meaningful sentence:\nP: to the library\nQ: everyday\nR: goes\nS: she", "questionHi": "", "options": ["S R P Q", "P Q R S", "S P R Q", "R S P Q"], "answer": 0 },
+        { "questionEn": "Choose the correct clause: \"I will call you _______.\"", "questionHi": "", "options": ["when I arrive", "where I arrive", "who I arrive", "what I arrive"], "answer": 0 },
+        { "questionEn": "Identify the part of speech of the underlined word: Wow! That is a <u>beautiful</u> dress.", "questionHi": "", "options": ["Verb", "Noun", "Adjective", "Interjection"], "answer": 2 },
+        { "questionEn": "Choose the correct article: ____ Earth revolves around the Sun.", "questionHi": "", "options": ["A", "An", "The", "No article"], "answer": 2 },
+        { "questionEn": "Find the correctly spelt word:", "questionHi": "", "options": ["Guarantee", "Gaurantee", "Garuntee", "Gurantee"], "answer": 0 },
+        { "questionEn": "Fill in the blank: He is the boy ____ won the first prize.", "questionHi": "", "options": ["which", "whom", "who", "whose"], "answer": 2 },
+        { "questionEn": "Direction (Q16-Q20): Read the passage and answer the questions.\nWater is one of the most essential natural resources on Earth. Without it, life cannot exist. Although about 71% of the Earth's surface is covered with water, only a small fraction (about 2.5%) is fresh water, and even less is available for human consumption. Pollution and overuse are rapidly depleting our clean water reserves. Conservation of water through rainwater harvesting and minimizing wastage is the need of the hour.\n\nAccording to the passage, what percentage of Earth's surface is covered with water?", "questionHi": "", "options": ["2.5%", "50%", "71%", "100%"], "answer": 2 },
+        { "questionEn": "What is rapidly depleting our clean water reserves?", "questionHi": "", "options": ["Evaporation", "Rainwater harvesting", "Conservation", "Pollution and overuse"], "answer": 3 },
+        { "questionEn": "What fraction of Earth's water is fresh water?", "questionHi": "", "options": ["About 71%", "About 2.5%", "Almost all of it", "None of it"], "answer": 1 },
+        { "questionEn": "Which of the following is suggested as a method for water conservation?", "questionHi": "", "options": ["Overuse", "Rainwater harvesting", "Creating pollution", "Melting glaciers"], "answer": 1 },
+        { "questionEn": "The word \"essential\" in the passage means:", "questionHi": "", "options": ["Unnecessary", "Optional", "Vital/Crucial", "Harmful"], "answer": 2 }
+      ]
+    },
+    {
+      "name": "Hindi Grammar",
+      "questions": [
+        { "questionEn": "", "questionHi": "हिंदी वर्णमाला में कितने व्यंजन होते हैं?", "options": ["11", "33", "41", "52"], "answer": 1 },
+        { "questionEn": "", "questionHi": "'ओ' और 'औ' किस प्रकार के स्वर हैं?", "options": ["ह्रस्व स्वर", "दीर्घ स्वर (संयुक्त)", "प्लुत स्वर", "व्यंजन"], "answer": 1 },
+        { "questionEn": "", "questionHi": "'अहंकार' का पर्यायवाची शब्द है:", "options": ["घमंड", "आदर", "विनम्रता", "प्रशंसा"], "answer": 0 },
+        { "questionEn": "", "questionHi": "'सजीव' का विलोमार्थी शब्द क्या है?", "options": ["निर्जीव", "अमर", "मृत", "जीवन"], "answer": 0 },
+        { "questionEn": "", "questionHi": "'जिसके समान कोई दूसरा न हो' (एकार्थी शब्द):", "options": ["अदृश्य", "अद्वितीय", "अमूल्य", "अनाथ"], "answer": 1 },
+        { "questionEn": "", "questionHi": "'ईमानदारी' शब्द कौन सी संज्ञा है?", "options": ["व्यक्तिवाचक", "जातिवाचक", "भाववाचक", "समूहवाचक"], "answer": 2 },
+        { "questionEn": "", "questionHi": "'कोई आ रहा है।' वाक्य में 'कोई' क्या है?", "options": ["निश्चयवाचक सर्वनाम", "अनिश्चयवाचक सर्वनाम", "प्रश्नवाचक सर्वनाम", "निजवाचक सर्वनाम"], "answer": 1 },
+        { "questionEn": "", "questionHi": "'काली गाय घास चर रही है।' वाक्य में विशेषण क्या है?", "options": ["गाय", "घास", "काली", "चर रही"], "answer": 2 },
+        { "questionEn": "", "questionHi": "'वह धीरे-धीरे चलता है।' वाक्य में 'धीरे-धीरे' क्या है?", "options": ["संज्ञा", "क्रिया", "अव्यय (क्रियाविशेषण)", "विशेषण"], "answer": 2 },
+        { "questionEn": "", "questionHi": "'आसमान सिर पर उठाना' मुहावरे का अर्थ है:", "options": ["आसमान में उड़ना", "बहुत शोर करना", "कड़ी मेहनत करना", "शांत रहना"], "answer": 1 },
+        { "questionEn": "", "questionHi": "'हाथ कंगन को आरसी क्या' लोकोक्ति का सही अर्थ है:", "options": ["हाथ में कंगन पहनना", "प्रत्यक्ष को प्रमाण की आवश्यकता नहीं", "सुंदर दिखना", "आईना देखना"], "answer": 1 },
+        { "questionEn": "", "questionHi": "निम्नलिखित में से अशुद्ध वाक्य चुनें:", "options": ["कृपया यहाँ बैठिए।", "मेरे को घर जाना है।", "वह एक फूलों की माला लाया।", "मैं आज नहीं जाऊंगा।"], "answer": 1 },
+        { "questionEn": "", "questionHi": "'ट' वर्ग का उच्चारण स्थान क्या है?", "options": ["तालु", "मूर्धा", "कंठ", "दन्त"], "answer": 1 },
+        { "questionEn": "", "questionHi": "'यद्यपि' में कौन सा समास है?", "options": ["द्विगु समास", "अव्ययीभाव समास", "कर्मधारय समास", "तत्पुरुष समास"], "answer": 1 },
+        { "questionEn": "", "questionHi": "'पत्र' शब्द का अनेकार्थी शब्द क्या है?", "options": ["पत्ता और चिट्ठी", "पानी और दूध", "सोना और चाँदी", "पेड़ और फूल"], "answer": 0 },
+        { "questionEn": "", "questionHi": "निर्देश (Q36-Q40): गद्यांश को पढ़कर प्रश्नों के उत्तर दें।\nयोग प्राचीन भारतीय संस्कृति की एक अमूल्य देन है। यह शरीर और मन दोनों को स्वस्थ रखने का एक वैज्ञानिक तरीका है। योग करने से तनाव कम होता है, एकाग्रता बढ़ती है और शरीर लचीला बनता है। आज के भागदौड़ भरे जीवन में, जब लोग विभिन्न बीमारियों का शिकार हो रहे हैं, योग का महत्व और भी बढ़ गया है। अंतर्राष्ट्रीय योग दिवस हर साल 21 जून को मनाया जाता है।\n\nगद्यांश के अनुसार योग किसकी देन है?", "options": ["आधुनिक विज्ञान की", "पश्चिमी देशों की", "प्राचीन भारतीय संस्कृति की", "डॉक्टरों की"], "answer": 2 },
+        { "questionEn": "", "questionHi": "योग करने से क्या लाभ होता है?", "options": ["तनाव बढ़ता है", "तनाव कम होता है और एकाग्रता बढ़ती है", "शरीर कठोर होता है", "बीमारियां होती हैं"], "answer": 1 },
+        { "questionEn": "", "questionHi": "आज के जीवन में योग का महत्व क्यों बढ़ गया है?", "options": ["क्योंकि लोग स्वस्थ हैं", "क्योंकि लोग विभिन्न बीमारियों का शिकार हो रहे हैं", "क्योंकि यह एक खेल है", "क्योंकि यह समय बिताने का साधन है"], "answer": 1 },
+        { "questionEn": "", "questionHi": "अंतर्राष्ट्रीय योग दिवस कब मनाया जाता है?", "options": ["21 मार्च", "5 जून", "21 जून", "15 अगस्त"], "answer": 2 },
+        { "questionEn": "", "questionHi": "'अमूल्य' शब्द का अर्थ है:", "options": ["जिसका कोई मूल्य न हो (बेकार)", "सस्ता", "जिसका मूल्य आँका न जा सके (बहुत कीमती)", "मुफ्त"], "answer": 2 }
+      ]
+    },
+    {
+      "name": "General Knowledge",
+      "questions": [
+        { "questionEn": "Who is the current Chancellor of Germany (as of 2026)?", "questionHi": "जर्मनी के वर्तमान चांसलर कौन हैं (2026 तक)?", "options": ["Olaf Scholz / ओलाफ शोल्ज़", "Angela Merkel / एंजेला मर्केल", "Friedrich Merz / फ्रीड्रिच मर्ज़", "Emmanuel Macron / इमैनुएल मैक्रों"], "answer": 2 },
+        { "questionEn": "What is the capital of Australia?", "questionHi": "ऑस्ट्रेलिया की राजधानी क्या है?", "options": ["Sydney / सिडनी", "Canberra / कैनबरा", "Melbourne / मेलबर्न", "Perth / पर्थ"], "answer": 1 },
+        { "questionEn": "The headquarters of the United Nations (UN) is located in:", "questionHi": "संयुक्त राष्ट्र (UN) का मुख्यालय कहाँ स्थित है?", "options": ["Geneva / जिनेवा", "Paris / पेरिस", "New York / न्यूयॉर्क", "London / लंदन"], "answer": 2 },
+        { "questionEn": "Who discovered the X-Rays?", "questionHi": "X-रे की खोज किसने की?", "options": ["Marie Curie / मैरी क्यूरी", "Wilhelm Röntgen / विल्हेम रोंटजेन", "Albert Einstein / अल्बर्ट आइंस्टीन", "Thomas Edison / थॉमस एडिसन"], "answer": 1 },
+        { "questionEn": "Who wrote the book 'Gitanjali'?", "questionHi": "'गीतांजलि' पुस्तक किसने लिखी?", "options": ["Munshi Premchand / मुंशी प्रेमचंद", "Rabindranath Tagore / रवींद्रनाथ टैगोर", "Bankim Chandra Chatterjee / बंकिम चंद्र चटर्जी", "Sarojini Naidu / सरोजिनी नायडू"], "answer": 1 },
+        { "questionEn": "International Women's Day is celebrated on:", "questionHi": "अंतर्राष्ट्रीय महिला दिवस कब मनाया जाता है?", "options": ["8th March / 8 मार्च", "5th June / 5 जून", "1st May / 1 मई", "21st June / 21 जून"], "answer": 0 },
+        { "questionEn": "What does the abbreviation HTTP stand for in computing?", "questionHi": "कंप्यूटिंग में HTTP का क्या अर्थ है?", "options": ["HyperText Transfer Protocol", "HyperText Transmission Process", "Hyper Terminal Transfer Protocol", "High-level Text Transfer Protocol"], "answer": 0 },
+        { "questionEn": "The 'Arjuna Award' is given for excellence in:", "questionHi": "'अर्जुन पुरस्कार' किस क्षेत्र में उत्कृष्टता के लिए दिया जाता है?", "options": ["Literature / साहित्य", "Science / विज्ञान", "Sports / खेल", "Cinema / सिनेमा"], "answer": 2 },
+        { "questionEn": "Which river is known as the 'Sorrow of Bihar'?", "questionHi": "किस नदी को 'बिहार का शोक' कहा जाता है?", "options": ["Kosi / कोसी", "Damodar / दामोदर", "Ganga / गंगा", "Yamuna / यमुना"], "answer": 0 },
+        { "questionEn": "The Indian National Congress was founded in the year:", "questionHi": "भारतीय राष्ट्रीय कांग्रेस की स्थापना किस वर्ष हुई थी?", "options": ["1857", "1885", "1905", "1947"], "answer": 1 },
+        { "questionEn": "The Dandi March by Mahatma Gandhi was related to which movement?", "questionHi": "महात्मा गांधी का दांडी मार्च किस आंदोलन से संबंधित था?", "options": ["Non-Cooperation Movement / असहयोग आंदोलन", "Civil Disobedience Movement / सविनय अवज्ञा आंदोलन", "Quit India Movement / भारत छोड़ो आंदोलन", "Khilafat Movement / खिलाफत आंदोलन"], "answer": 1 },
+        { "questionEn": "Who is known as the 'Iron Man of India'?", "questionHi": "'भारत का लौह पुरुष' किसे कहा जाता है?", "options": ["Subhash Chandra Bose / सुभाष चंद्र बोस", "Sardar Vallabhbhai Patel / सरदार वल्लभभाई पटेल", "Bhagat Singh / भगत सिंह", "Lal Bahadur Shastri / लाल बहादुर शास्त्री"], "answer": 1 },
+        { "questionEn": "Which is the longest river in Himachal Pradesh?", "questionHi": "हिमाचल प्रदेश की सबसे लंबी नदी कौन सी है?", "options": ["Ravi / रावी", "Beas / ब्यास", "Chenab / चिनाब", "Satluj / सतलुज"], "answer": 3 },
+        { "questionEn": "The 'Minjar Fair' is a prominent cultural event of which district in HP?", "questionHi": "'मिंजर मेला' HP के किस जिले का एक प्रमुख सांस्कृतिक कार्यक्रम है?", "options": ["Mandi / मंडी", "Kullu / कुल्लू", "Chamba / चंबा", "Kangra / कांगड़ा"], "answer": 2 },
+        { "questionEn": "Pradhan Mantri Jan Dhan Yojana (PMJAY) is related to:", "questionHi": "प्रधानमंत्री जन आरोग्य योजना (PMJAY) किससे संबंधित है?", "options": ["Education / शिक्षा", "Health Insurance / स्वास्थ्य बीमा", "Agriculture / कृषि", "Housing / आवास"], "answer": 1 },
+        { "questionEn": "The lowest layer of the Earth's atmosphere is called:", "questionHi": "पृथ्वी के वायुमंडल की सबसे निचली परत क्या कहलाती है?", "options": ["Stratosphere / समताप मंडल", "Troposphere / क्षोभ मंडल", "Mesosphere / मध्य मंडल", "Exosphere / बहिर्मंडल"], "answer": 1 },
+        { "questionEn": "Who appoints the Governor of an Indian State?", "questionHi": "भारतीय राज्य के राज्यपाल की नियुक्ति कौन करता है?", "options": ["Chief Minister / मुख्यमंत्री", "Prime Minister / प्रधानमंत्री", "President of India / भारत के राष्ट्रपति", "Chief Justice of India / भारत के मुख्य न्यायाधीश"], "answer": 2 },
+        { "questionEn": "The currency of Japan is:", "questionHi": "जापान की मुद्रा क्या है?", "options": ["Yuan / युआन", "Yen / येन", "Won / वॉन", "Ringgit / रिंगित"], "answer": 1 },
+        { "questionEn": "'Durand Cup' is associated with which sport?", "questionHi": "'डूरंड कप' किस खेल से संबंधित है?", "options": ["Cricket / क्रिकेट", "Football / फुटबॉल", "Tennis / टेनिस", "Hockey / हॉकी"], "answer": 1 },
+        { "questionEn": "The headquarters of ISRO is located at:", "questionHi": "ISRO का मुख्यालय कहाँ स्थित है?", "options": ["Mumbai / मुंबई", "New Delhi / नई दिल्ली", "Bengaluru / बेंगलुरु", "Sriharikota / श्रीहरिकोटा"], "answer": 2 }
+      ]
+    },
+    {
+      "name": "Mathematics & Science",
+      "questions": [
+        { "questionEn": "Find the value of $0.05 \\times 0.05$.", "questionHi": "$0.05 \\times 0.05$ का मान ज्ञात कीजिए।", "options": ["0.25", "0.025", "0.0025", "0.00025"], "answer": 2 },
+        { "questionEn": "The sum of the interior angles of a triangle is always:", "questionHi": "एक त्रिभुज के आंतरिक कोणों का योग हमेशा होता है:", "options": ["$90^\\circ$", "$180^\\circ$", "$270^\\circ$", "$360^\\circ$"], "answer": 1 },
+        { "questionEn": "Find the HCF of 36 and 48.", "questionHi": "36 और 48 का HCF (महत्तम समापवर्तक) ज्ञात करें।", "options": ["6", "12", "24", "36"], "answer": 1 },
+        { "questionEn": "A person buys a watch for Rs 400 and sells it for Rs 500. Find the profit percentage.", "questionHi": "एक व्यक्ति 400 रुपये में एक घड़ी खरीदता है और उसे 500 रुपये में बेचता है। लाभ प्रतिशत ज्ञात कीजिए।", "options": ["10%", "20%", "25%", "30%"], "answer": 2 },
+        { "questionEn": "If a car travels 240 km in 4 hours, what is its speed?", "questionHi": "यदि एक कार 4 घंटे में 240 किमी की यात्रा करती है, तो उसकी गति क्या है?", "options": ["50 km/h", "60 km/h", "70 km/h", "80 km/h"], "answer": 1 },
+        { "questionEn": "The perimeter of a square is 40 cm. Find the area of the square.", "questionHi": "एक वर्ग का परिमाप 40 सेमी है। वर्ग का क्षेत्रफल ज्ञात कीजिए।", "options": ["40 sq cm", "80 sq cm", "100 sq cm", "160 sq cm"], "answer": 2 },
+        { "questionEn": "Find the average of the first 5 prime numbers.", "questionHi": "पहली 5 अभाज्य संख्याओं का औसत ज्ञात कीजिए।", "options": ["3.6", "4.6", "5.6", "6.6"], "answer": 2 },
+        { "questionEn": "If a fair die is rolled, what is the probability of rolling a number greater than 4?", "questionHi": "यदि एक निष्पक्ष पासा (डाइस) फेंका जाता है, तो 4 से बड़ी संख्या आने की प्रायिकता क्या है?", "options": ["1/6", "1/3", "1/2", "2/3"], "answer": 1 },
+        { "questionEn": "A and B together can complete a piece of work in 15 days. A alone can do it in 20 days. In how many days can B alone complete the work?", "questionHi": "A और B मिलकर एक काम को 15 दिनों में पूरा कर सकते हैं। A अकेला इसे 20 दिनों में कर सकता है। B अकेला उस काम को कितने दिनों में पूरा कर सकता है?", "options": ["30 days", "45 days", "60 days", "75 days"], "answer": 2 },
+        { "questionEn": "What is 15% of 600?", "questionHi": "600 का 15% क्या है?", "options": ["60", "75", "90", "105"], "answer": 2 },
+        { "questionEn": "A shopkeeper allows a discount of 10% on the marked price of Rs 1000. What is the selling price?", "questionHi": "एक दुकानदार 1000 रुपये के अंकित मूल्य पर 10% की छूट देता है। विक्रय मूल्य क्या है?", "options": ["Rs 800", "Rs 850", "Rs 900", "Rs 950"], "answer": 2 },
+        { "questionEn": "The ratio of two numbers is 3:4 and their sum is 140. Find the smaller number.", "questionHi": "दो संख्याओं का अनुपात 3:4 है और उनका योग 140 है। छोटी संख्या ज्ञात कीजिए।", "options": ["40", "60", "80", "100"], "answer": 1 },
+        { "questionEn": "Simple interest on Rs 2000 at 10% per annum for 3 years is:", "questionHi": "2000 रुपये पर 10% प्रति वर्ष की दर से 3 वर्ष का साधारण ब्याज है:", "options": ["Rs 300", "Rs 400", "Rs 500", "Rs 600"], "answer": 3 },
+        { "questionEn": "Father is aged three times as old as his son. After 8 years, he would be two and a half times of his son's age. What is the present age of the son?", "questionHi": "पिता की आयु पुत्र से तीन गुना है। 8 वर्ष बाद वह अपने पुत्र की आयु का ढाई गुना (2.5) होगा। पुत्र की वर्तमान आयु क्या है?", "options": ["16 years", "24 years", "32 years", "40 years"], "answer": 1 },
+        { "questionEn": "In a 60 litre mixture of milk and water, the ratio is 2:1. How much water is there?", "questionHi": "दूध और पानी के 60 लीटर मिश्रण में अनुपात 2:1 है। उसमें पानी कितना है?", "options": ["10 L", "15 L", "20 L", "40 L"], "answer": 2 },
+        { "questionEn": "What is the SI unit of Electric Current?", "questionHi": "विद्युत धारा की SI इकाई क्या है?", "options": ["Volt / वोल्ट", "Watt / वाट", "Ohm / ओम", "Ampere / एम्पीयर"], "answer": 3 },
+        { "questionEn": "Which gas is responsible for the depletion of the ozone layer?", "questionHi": "ओजोन परत के क्षरण के लिए कौन सी गैस जिम्मेदार है?", "options": ["CO2", "CFC (Chlorofluorocarbons)", "O2", "N2"], "answer": 1 },
+        { "questionEn": "Which part of the human eye controls the amount of light entering it?", "questionHi": "मानव आँख का कौन सा भाग उसमें प्रवेश करने वाले प्रकाश की मात्रा को नियंत्रित करता है?", "options": ["Cornea / कॉर्निया", "Retina / रेटिना", "Iris / आइरिस", "Optic nerve / ऑप्टिक नर्व"], "answer": 2 },
+        { "questionEn": "The chemical formula of baking soda is:", "questionHi": "बेकिंग सोडा का रासायनिक सूत्र है:", "options": ["NaHCO3", "Na2CO3", "NaCl", "NaOH"], "answer": 0 },
+        { "questionEn": "Sound travels fastest in:", "questionHi": "ध्वनि सबसे तेज किसमें यात्रा करती है?", "options": ["Vacuum / निर्वात", "Air / हवा", "Water / पानी", "Solid (Steel) / ठोस (स्टील)"], "answer": 3 }
+      ]
+    },
+    {
+      "name": "Logical Reasoning",
+      "questions": [
+        { "questionEn": "Find the next number in the series: 3, 6, 11, 18, ?", "questionHi": "श्रृंखला में अगली संख्या ज्ञात करें: 3, 6, 11, 18, ?", "options": ["25", "27", "29", "31"], "answer": 1 },
+        { "questionEn": "What is the angle between the hour hand and the minute hand of a clock at 9:00?", "questionHi": "घड़ी में 9:00 बजे घंटे और मिनट की सुइयों के बीच का कोण क्या होता है?", "options": ["45 degrees", "60 degrees", "90 degrees", "180 degrees"], "answer": 2 },
+        { "questionEn": "If today is Thursday, what day will it be after 22 days?", "questionHi": "यदि आज गुरुवार है, तो 22 दिनों के बाद कौन सा दिन होगा?", "options": ["Thursday / गुरुवार", "Friday / शुक्रवार", "Saturday / शनिवार", "Sunday / रविवार"], "answer": 1 },
+        { "questionEn": "Pointing to a man, a woman says, \"He is the brother of my mother's daughter.\" How is the man related to the woman?", "questionHi": "एक आदमी की ओर इशारा करते हुए एक महिला कहती है, \"वह मेरी माँ की बेटी का भाई है।\" आदमी महिला से कैसे संबंधित है?", "options": ["Father / पिता", "Son / बेटा", "Brother / भाई", "Uncle / चाचा"], "answer": 2 },
+        { "questionEn": "In a row of 30 students, Amit is 12th from the left end. What is his position from the right end?", "questionHi": "30 छात्रों की एक पंक्ति में, अमित बाएँ छोर से 12वें स्थान पर है। दाएँ छोर से उसका स्थान क्या है?", "options": ["18th", "19th", "20th", "21st"], "answer": 1 },
+        { "questionEn": "Analogy - Doctor : Patient :: Teacher : ?", "questionHi": "समानता - डॉक्टर : मरीज :: शिक्षक : ?", "options": ["School / स्कूल", "Student / छात्र", "Chalk / चाक", "Principal / प्रिंसिपल"], "answer": 1 },
+        { "questionEn": "Four positions of a dice are shown. Which number lies opposite to the face containing 1? (Assume standard logical rules if unseen, 1 is opposite 6 in standard dice)", "questionHi": "एक पासे (डाइस) की चार स्थितियाँ दिखाई गई हैं। 1 वाले फलक के विपरीत कौन सी संख्या है? (मानक पासे में 1 के विपरीत 6 होता है)", "options": ["3", "4", "5", "6"], "answer": 3 },
+        { "questionEn": "If 'WATER' is coded as 'YCVGT', how is 'FIRE' coded?", "questionHi": "यदि 'WATER' को 'YCVGT' के रूप में कोडित किया गया है, तो 'FIRE' को कैसे कोडित किया जाएगा?", "options": ["HKTG", "HKUG", "HKSG", "GLQF"], "answer": 0 },
+        { "questionEn": "A man walks 10m East, then turns right and walks 10m, then turns right again and walks 10m. In which direction is he now facing?", "questionHi": "एक आदमी 10m पूर्व की ओर चलता है, फिर दाएँ मुड़ता है और 10m चलता है, फिर से दाएँ मुड़ता है और 10m चलता है। अब उसका मुख किस दिशा में है?", "options": ["North / उत्तर", "South / दक्षिण", "East / पूर्व", "West / पश्चिम"], "answer": 3 },
+        { "questionEn": "Syllogism: All pens are pencils. No pencil is an eraser. Conclusion: No pen is an eraser.", "questionHi": "कथन: सभी पेन पेंसिल हैं। कोई पेंसिल इरेज़र नहीं है। निष्कर्ष: कोई पेन इरेज़र नहीं है।", "options": ["True / सत्य", "False / असत्य", "Cannot be determined / तय नहीं किया जा सकता", "None / कोई नहीं"], "answer": 0 }
+      ]
+    }
+  ]
+}
