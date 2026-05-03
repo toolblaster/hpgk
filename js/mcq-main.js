@@ -6,6 +6,7 @@
  * ADDED: Smart Quota Tracker & 100-Question Pool Limit for Random Modes.
  * FIXED: VIP Shuffle Bug (Now Pro users get unlimited pool in Random mode).
  * FIXED: Instant UI Refresh Sync after successful login/payment.
+ * FIXED: Auto-Healing logic for "Quick 10" button core.js collision bug.
  * 🔥 NEW: Firebase Cost Saver - Batched Database Writes (Syncs every 15 Qs)
  * --------------------------------------------------------------------------
  */
@@ -48,6 +49,7 @@
         // Force the filter engine to recalculate the pool size instantly for VIPs
         applyFilters(false); 
         updateStats();
+        protectQuick10Button(); // Auto-heal on refresh
     };
 
     // 🔥 SMART CLOUD SYNC (Batched Updates)
@@ -84,12 +86,33 @@
         triggerCloudSync(true);
     });
 
+    // 🚨 BUG FIX: Auto-Heal the "Quick 10" button from core.js Lock Logic
+    function protectQuick10Button() {
+        document.querySelectorAll('.quick-start-ribbon').forEach(btn => {
+            // Change onclick string to avoid matching core.js '*="true)"' regex
+            if (btn.getAttribute('onclick') === 'toggleQuickMode(true)') {
+                btn.setAttribute('onclick', "toggleQuickMode('start')");
+            }
+            // Revert UI if core.js accidentally locked it
+            if (btn.innerHTML.includes('fa-lock') || btn.classList.contains('btn-pro')) {
+                btn.innerHTML = '<i class="fa-solid fa-bolt"></i> Start Quick 10 Quiz';
+                btn.classList.remove('btn-pro');
+            }
+        });
+    }
+
     window.addEventListener('DOMContentLoaded', () => {
         if (jumpTrigger) jumpTrigger.style.display = 'none'; 
         bookmarkFilterBtn = document.getElementById('bookmarkFilterBtn');
         mistakeFilterBtn = document.getElementById('mistakeFilterBtn');
         shuffleBtn = document.getElementById('shuffleBtn');
         quickModeBtn = document.getElementById('quickModeBtn');
+        
+        protectQuick10Button();
+        // Check again after Firebase Auth resolves (core.js runs asynchronously)
+        setTimeout(protectQuick10Button, 1500);
+        setTimeout(protectQuick10Button, 3500);
+
         setTimeout(() => { initQuizNow(); }, 100);
     });
 
@@ -187,7 +210,7 @@
                     <div class="summary-score">${quickSessionScore} / ${currentList.length}</div>
                     <button class="summary-btn" onclick="continueQuickMode()">Next 10 <i class="fa-solid fa-arrow-right"></i></button>
                     <br><br>
-                    <button style="background:transparent; color:var(--text-sec); font-size:0.75rem; border:none; cursor:pointer;" onclick="toggleQuickMode(false)">Exit Quick Mode</button>
+                    <button style="background:transparent; color:var(--text-sec); font-size:0.75rem; border:none; cursor:pointer;" onclick="toggleQuickMode('stop')">Exit Quick Mode</button>
                 </div>
             `;
             updateControls(); return;
@@ -347,11 +370,16 @@
         applyFilters(true); 
     };
 
+    // 🔥 BUG FIX: Now accepts strings so it doesn't break HTML string matches
     window.toggleQuickMode = function(forceOn = null) { 
-        isQuickModeActive = forceOn !== null ? forceOn : !isQuickModeActive; 
+        if (forceOn === 'start' || forceOn === true) isQuickModeActive = true;
+        else if (forceOn === 'stop' || forceOn === false) isQuickModeActive = false;
+        else isQuickModeActive = !isQuickModeActive;
+        
         if(quickModeBtn) quickModeBtn.classList.toggle('active', isQuickModeActive); 
         quickSessionScore = 0; disableOtherFilters('quick');
         if (isQuickModeActive && quizWidgetWrapper) { quizWidgetWrapper.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+        
         applyFilters(true); 
     };
 
