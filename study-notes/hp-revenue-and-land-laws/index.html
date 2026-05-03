@@ -197,6 +197,7 @@
         [data-theme="dark"] .tools-strip-icon { color: #5eead4; background: rgba(20, 184, 166, 0.3); }
         .tools-strip-title { font-weight: 700; color: var(--text-main); font-size: 0.9rem; text-align: left;}
         .tools-strip-desc { font-size: 0.75rem; color: var(--text-sec); margin-top: 2px; text-align: left; }
+        .tools-strip-btn-group { display: flex; gap: 10px; align-items: center; }
         .tools-strip-btn {
             background: #0f766e; color: white; padding: 8px 16px; border-radius: var(--radius-md);
             font-size: 0.8rem; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 6px;
@@ -205,6 +206,13 @@
         .tools-strip-btn:hover { background: #115e59; }
         [data-theme="dark"] .tools-strip-btn { background: #0d9488; }
         [data-theme="dark"] .tools-strip-btn:hover { background: #0f766e; }
+        
+        .tools-strip-btn.outline {
+            background: transparent; color: #0f766e; border: 1px solid #0f766e;
+        }
+        .tools-strip-btn.outline:hover { background: rgba(15, 118, 110, 0.1); color: #0d9488; }
+        [data-theme="dark"] .tools-strip-btn.outline { color: #5eead4; border-color: #5eead4; }
+        [data-theme="dark"] .tools-strip-btn.outline:hover { background: rgba(94, 234, 212, 0.1); }
 
         /* =======================================================
            MODULE CONTAINERS & CUSTOM LAYOUT CSS
@@ -324,7 +332,9 @@
             
             .module-header { flex-direction: column; align-items: flex-start; gap: 15px; }
             .module-controls { width: 100%; justify-content: space-between; }
-            .tools-strip { flex-direction: column; align-items: flex-start; }
+            .tools-strip { flex-direction: column; align-items: stretch; gap: 15px; }
+            .tools-strip-btn-group { justify-content: stretch; width: 100%; }
+            .tools-strip-btn { justify-content: center; flex: 1; }
         }
     </style>
 
@@ -385,16 +395,21 @@
             <div class="tools-strip">
                 <div class="tools-strip-left">
                     <div class="tools-strip-icon">
-                        <i class="fa-solid fa-calculator"></i>
+                        <i class="fa-solid fa-compass-drafting"></i>
                     </div>
                     <div>
-                        <div class="tools-strip-title font-heading">Interactive Land Calculator & Tools</div>
-                        <div class="tools-strip-desc font-sans">Convert Bigha/Acre & explore HP Revenue Hierarchy</div>
+                        <div class="tools-strip-title font-heading">Explore Tools & Masterclass</div>
+                        <div class="tools-strip-desc font-sans">Access Section 118 guide and Bigha calculator</div>
                     </div>
                 </div>
-                <a href="land-calculator/" class="tools-strip-btn">
-                    Open Tools <i class="fa-solid fa-arrow-right"></i>
-                </a>
+                <div class="tools-strip-btn-group">
+                    <a href="hp-land-section-118/" class="tools-strip-btn outline">
+                        <i class="fa-solid fa-scale-balanced"></i> Sec 118
+                    </a>
+                    <a href="land-calculator/" class="tools-strip-btn">
+                        <i class="fa-solid fa-calculator"></i> Calculator
+                    </a>
+                </div>
             </div>
         </section>
 
