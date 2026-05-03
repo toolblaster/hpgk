@@ -2,7 +2,7 @@
  * --------------------------------------------------------------------------
  * HPGK MOCK TEST ENGINE (TCS/NTA Style Master Logic - PHASE 3 FINAL)
  * Includes Score Calculation, Detailed Analytics & Firebase DB Sync
- * Compact UI Updates, Production Paywall Fixes & Custom Watermark
+ * Compact UI Updates, Production Paywall Fixes, Custom Watermark & Summary Mode
  * --------------------------------------------------------------------------
  */
 
@@ -273,8 +273,24 @@ const engine = (function() {
                 state.responses[i] = { selected: null, status: 'not-visited' };
             });
 
-            DOM.blocker.style.display = 'none';
-            DOM.instPanel.style.display = 'flex'; 
+            // 🔥 DYNAMIC SUMMARY MODE LOGIC ADDED HERE
+            const modeParam = new URLSearchParams(window.location.search).get('mode');
+            
+            if (modeParam === 'summary') {
+                const savedResponses = localStorage.getItem(`mock_history_${state.testId}`);
+                if (savedResponses) {
+                    state.responses = JSON.parse(savedResponses);
+                } else {
+                    state.questions.forEach((q, i) => {
+                        state.responses[i] = { selected: null, status: 'not-answered' };
+                    });
+                }
+                DOM.blocker.style.display = 'none';
+                showResultPanelDirectly(); 
+            } else {
+                DOM.blocker.style.display = 'none';
+                DOM.instPanel.style.display = 'flex'; 
+            }
 
             DOM.instAgree.addEventListener('change', (e) => {
                 DOM.btnStart.disabled = !e.target.checked;
@@ -621,7 +637,7 @@ const engine = (function() {
         
         let correct = 0, wrong = 0, unattempted = 0;
         let penaltyTextStr = DOM.penaltyText ? DOM.penaltyText.innerText : "0.25";
-        let penaltyAmount = parseFloat(penaltyTextStr) || 0.25;
+        let penaltyAmount = parseFloat(penaltyTextStr) || 0;
 
         state.questions.forEach((q, i) => {
             let ans = state.responses[i].selected;
@@ -644,6 +660,9 @@ const engine = (function() {
         let timeMin = Math.floor(timeTakenSecs / 60);
         let timeSec = timeTakenSecs % 60;
         let timeTakenStr = `${timeMin}m ${timeSec}s`;
+
+        // 🔥 NEW: Save exact answers to local storage for Summary Mode
+        localStorage.setItem(`mock_history_${state.testId}`, JSON.stringify(state.responses));
 
         try {
             const { getApp, getApps } = await import("https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js");
@@ -677,6 +696,91 @@ const engine = (function() {
         DOM.resScoreVal.innerText = finalScore + ' / ' + totalQs;
         DOM.resAccVal.innerText = accuracy + '%';
         DOM.resTimeVal.innerText = timeTakenStr;
+        DOM.resCorrVal.innerText = correct;
+        DOM.resWrongVal.innerText = wrong;
+        DOM.resSkipVal.innerText = unattempted;
+
+        let detailsHtml = '';
+        state.questions.forEach((q, i) => {
+            let ans = state.responses[i].selected;
+            let statusClass = '';
+            let statusBadge = '';
+            
+            if (ans === null) {
+                statusClass = 'skipped';
+                statusBadge = '<span class="res-q-badge badge-skipped">Skipped</span>';
+            } else if (ans === q.answer) {
+                statusClass = 'correct';
+                statusBadge = '<span class="res-q-badge badge-correct"><i class="fa-solid fa-check"></i> Correct</span>';
+            } else {
+                statusClass = 'wrong';
+                statusBadge = '<span class="res-q-badge badge-wrong"><i class="fa-solid fa-xmark"></i> Incorrect</span>';
+            }
+
+            let optsHtml = q.options.map((opt, optIdx) => {
+                let optClass = '';
+                let icon = '<div style="width:16px;"></div>'; 
+                
+                if (optIdx === q.answer) {
+                    optClass = 'is-correct';
+                    icon = '<div style="width:16px;"><i class="fa-solid fa-check-circle" style="color:#16a34a;"></i></div>';
+                } else if (optIdx === ans && ans !== q.answer) {
+                    optClass = 'is-wrong';
+                    icon = '<div style="width:16px;"><i class="fa-solid fa-times-circle" style="color:#dc2626;"></i></div>';
+                }
+                
+                return `
+                    <div class="res-opt ${optClass}">
+                        ${icon}
+                        <div style="flex:1; z-index:2; position:relative;">${opt}</div>
+                    </div>
+                `;
+            }).join('');
+
+            detailsHtml += `
+                <div class="res-q-card ${statusClass}" style="position:relative; z-index:2;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                        <div style="font-weight:800; color:var(--text-sec); font-size:0.75rem; text-transform:uppercase;">Question ${i+1}</div>
+                        ${statusBadge}
+                    </div>
+                    <div style="font-weight:600; font-size:0.9rem; color:var(--text-main); line-height:1.4;">${q.questionEn}</div>
+                    <div style="font-weight:500; font-size:0.8rem; color:var(--text-sec); margin-bottom:6px; font-family:'Noto Sans Devanagari', sans-serif;">${q.questionHi || ''}</div>
+                    <div style="display:flex; flex-direction:column; gap:6px;">
+                        ${optsHtml}
+                    </div>
+                </div>
+            `;
+        });
+
+        DOM.resDetailedList.innerHTML = detailsHtml;
+        DOM.resultPanel.style.display = 'flex';
+    }
+
+    // 🔥 NEW: Show Result Panel Directly for Summary Mode (Bypasses Firebase Sync)
+    function showResultPanelDirectly() {
+        let correct = 0, wrong = 0, unattempted = 0;
+        let penaltyTextStr = DOM.penaltyText ? DOM.penaltyText.innerText : "0.25";
+        let penaltyAmount = parseFloat(penaltyTextStr) || 0;
+
+        state.questions.forEach((q, i) => {
+            let ans = state.responses[i].selected;
+            if (ans === null) {
+                unattempted++;
+            } else if (ans === q.answer) {
+                correct++;
+            } else {
+                wrong++;
+            }
+        });
+
+        let rawScore = correct - (wrong * penaltyAmount);
+        let finalScore = Math.max(0, rawScore).toFixed(2); 
+        let totalQs = state.questions.length;
+        let accuracy = (correct + wrong) > 0 ? Math.round((correct / (correct + wrong)) * 100) : 0;
+        
+        DOM.resScoreVal.innerText = finalScore + ' / ' + totalQs;
+        DOM.resAccVal.innerText = accuracy + '%';
+        DOM.resTimeVal.innerText = "Previous Attempt";
         DOM.resCorrVal.innerText = correct;
         DOM.resWrongVal.innerText = wrong;
         DOM.resSkipVal.innerText = unattempted;
