@@ -35,7 +35,7 @@
           },
           "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https://hpgk.toolblaster.com/study-notes/hp-revenue-and-land-laws/land-calculator-and-tool/"
+            "@id": "https://hpgk.toolblaster.com/study-notes/hp-revenue-and-land-laws/land-calculator/"
           }
         }
       ]
@@ -64,7 +64,7 @@
         "@type": "ListItem",
         "position": 4,
         "name": "Land Calculator & Digital Tools",
-        "item": "https://hpgk.toolblaster.com/study-notes/hp-revenue-and-land-laws/land-calculator-and-tool/"
+        "item": "https://hpgk.toolblaster.com/study-notes/hp-revenue-and-land-laws/land-calculator/"
       }]
     }
     </script>
@@ -251,7 +251,7 @@
         /* Modern Inputs Container */
         .input-wrapper { position: relative; width: 100%; }
         
-        /* Premium Modern Native Elements Styling (Fixed Hindi Clipping) */
+        /* Premium Modern Native Elements Styling */
         .calc-input, .calc-select { 
             width: 100%; 
             padding: 12px 16px; 
@@ -271,10 +271,8 @@
             box-shadow: 0 1px 3px rgba(0,0,0,0.04);
         }
         
-        /* Extra right padding for select to avoid icon overlap */
         .calc-select { padding-right: 40px; cursor: pointer; }
         
-        /* Custom Down Arrow Icon with better alignment */
         .select-icon {
             position: absolute; top: 50%; right: 14px; transform: translateY(-50%);
             pointer-events: none; color: var(--text-sec); font-size: 13px; transition: transform 0.3s ease;
@@ -283,7 +281,6 @@
         .calc-input:hover, .calc-select:hover { border-color: var(--primary); box-shadow: 0 2px 6px rgba(29, 78, 216, 0.08); }
         [data-theme="dark"] .calc-input:hover, [data-theme="dark"] .calc-select:hover { border-color: var(--primary); box-shadow: 0 2px 6px rgba(96, 165, 250, 0.15); }
         
-        /* Modern Focus Ring */
         .calc-input:focus, .calc-select:focus { 
             outline: none; 
             border-color: var(--primary); 
@@ -338,32 +335,34 @@
         @media(min-width: 1024px) { .hier-grid { grid-template-columns: repeat(3, 1fr); } }
         @media(min-width: 1280px) { .hier-grid { grid-template-columns: repeat(4, 1fr); } }
         
+        /* FIXED: Removed extra gap/margins from hier-card to make it compact */
         .hier-card { 
             background: var(--card-bg); 
             border-style: solid; 
             border-width: 1px;
             border-radius: var(--radius-lg); 
-            padding: 16px; 
+            padding: 15px; 
             display: flex; 
             flex-direction: column; 
+            position: relative; 
             box-shadow: 0 1px 3px rgba(0,0,0,0.03); 
         }
         
         .hier-badge { 
-            font-size: 8.5px; padding: 3px 8px; 
-            border-radius: 6px; font-weight: 800; text-transform: uppercase; color: #fff; 
+            font-size: 8.5px; padding: 2px 6px; 
+            border-radius: 4px; font-weight: 800; text-transform: uppercase; color: #fff; 
             letter-spacing: 0.5px; display: inline-block;
         }
         
         .hier-num { 
-            display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; 
-            border-radius: 6px; color: #fff; font-size: 11px; font-weight: 800; flex-shrink: 0;
+            display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; 
+            border-radius: 4px; color: #fff; font-size: 11px; font-weight: 800; flex-shrink: 0;
         }
         
-        .hier-role { font-size: 13px; font-weight: 800; color: var(--text-main); line-height: 1.3; margin: 0 0 6px 0; }
-        .hier-role-hi { font-size: 12px; font-weight: 700; color: var(--text-main); line-height: 1.3; margin: 0 0 6px 0; }
-        .hier-desc { font-size: 11px; font-weight: 500; color: var(--text-sec); line-height: 1.5; font-family: 'Inter', sans-serif; margin: 0; }
-        .hier-desc-hi { font-size: 11px; font-weight: 500; color: var(--text-sec); line-height: 1.5; font-family: 'Noto Sans Devanagari', sans-serif; margin: 0; }
+        .hier-role { font-size: 13px; font-weight: 800; color: var(--text-main); line-height: 1.2; margin: 0 0 4px 0; }
+        .hier-role-hi { font-size: 12px; font-weight: 700; color: var(--text-main); line-height: 1.2; margin: 0 0 4px 0; }
+        .hier-desc { font-size: 11px; font-weight: 500; color: var(--text-sec); line-height: 1.4; font-family: 'Inter', sans-serif; margin: 0; }
+        .hier-desc-hi { font-size: 11px; font-weight: 500; color: var(--text-sec); line-height: 1.4; font-family: 'Noto Sans Devanagari', sans-serif; margin: 0; }
         
         /* ==================== TOOLS CSS ==================== */
         .tools-grid { display: grid; grid-template-columns: 1fr; gap: 15px; align-items: start; }
@@ -372,20 +371,20 @@
         
         .tool-card { 
             background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-lg); 
-            padding: 16px; display: flex; flex-direction: column; box-shadow: 0 1px 3px rgba(0,0,0,0.03); 
+            padding: 15px; display: flex; flex-direction: column; box-shadow: 0 1px 3px rgba(0,0,0,0.03); 
         }
         
-        .tool-header { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; }
+        .tool-header { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
         .tool-icon { 
-            width: 34px; height: 34px; background: var(--primary-light); color: var(--primary-hover); 
-            border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 14px; 
+            width: 30px; height: 30px; background: var(--primary-light); color: var(--primary-hover); 
+            border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 13px; 
         }
         [data-theme="dark"] .tool-icon { color: var(--primary); }
         
         .tool-title { font-size: 13px; font-weight: 800; color: var(--text-main); line-height: 1.2; margin: 0; }
-        .tool-title-hi { font-size: 12px; font-weight: 700; color: var(--text-sec); line-height: 1.2; font-family: 'Noto Sans Devanagari', sans-serif; display: block; margin-top: 2px;}
-        .tool-desc { font-size: 11px; font-weight: 500; color: var(--text-sec); line-height: 1.5; margin: 0; }
-        .tool-desc-hi { font-size: 11px; font-weight: 500; color: var(--text-sec); line-height: 1.5; font-family: 'Noto Sans Devanagari', sans-serif; margin: 0; }
+        .tool-title-hi { font-size: 11px; font-weight: 700; color: var(--text-sec); line-height: 1.2; font-family: 'Noto Sans Devanagari', sans-serif; display: block; margin-top: 1px;}
+        .tool-desc { font-size: 11px; font-weight: 500; color: var(--text-sec); line-height: 1.4; margin: 0; }
+        .tool-desc-hi { font-size: 11px; font-weight: 500; color: var(--text-sec); line-height: 1.4; font-family: 'Noto Sans Devanagari', sans-serif; margin: 0; }
 
         /* Skeleton Animation */
         .skeleton { background-color: var(--card-border); animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
