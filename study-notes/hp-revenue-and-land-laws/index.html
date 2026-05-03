@@ -87,18 +87,19 @@
         :root {
             --site-width: 1100px;
             
-            --primary: #2563eb;        
-            --primary-hover: #1d4ed8; 
-            --primary-light: rgba(37, 99, 235, 0.1); 
-            --primary-dark: #1e3a8a;  
+            /* High Contrast WCAG AA Colors */
+            --primary: #1d4ed8;        
+            --primary-hover: #1e3a8a; 
+            --primary-light: rgba(29, 78, 216, 0.1); 
+            --primary-dark: #172554;  
             
             --bg-gradient: linear-gradient(135deg, #eff6ff 0%, #dbeafe 50%, #f3e8ff 100%);
-            --card-bg: rgba(255, 255, 255, 0.65); 
-            --card-border: rgba(255, 255, 255, 0.5); 
+            --card-bg: rgba(255, 255, 255, 0.85); /* More opaque for contrast */
+            --card-border: rgba(148, 163, 184, 0.4); /* Darker border */
             
             --text-main: #0f172a;     
-            --text-body: #334155;     
-            --text-sec: #475569;      
+            --text-body: #1e293b;     
+            --text-sec: #334155;      
             
             --radius-md: 8px;
             --radius-lg: 12px;
@@ -111,10 +112,10 @@
             --primary-dark: #bfdbfe;  
             
             --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #020617 100%);
-            --card-bg: rgba(30, 41, 59, 0.5); 
-            --card-border: rgba(255, 255, 255, 0.08); 
+            --card-bg: rgba(30, 41, 59, 0.6); 
+            --card-border: rgba(255, 255, 255, 0.12); 
             
-            --text-main: #ffffff;     
+            --text-main: #f8fafc;     
             --text-body: #e2e8f0;     
             --text-sec: #cbd5e1;      
         }
@@ -129,37 +130,13 @@
         .font-heading { font-family: 'Poppins', sans-serif; }
         .font-hindi { font-family: 'Noto Sans Devanagari', sans-serif; }
 
-        /* Hub Wrapper Overrides to maintain site layout */
-        .hub-main-wrapper { 
-            flex: 1; 
-            width: 100%; 
-            padding: 15px 0 !important; 
-            box-sizing: border-box; 
-        }
-
-        .page-layout, .top-meta-bar { 
-            width: 100%; 
-            max-width: var(--site-width); 
-            margin: 0 auto; 
-            padding: 0 15px; 
-            box-sizing: border-box;
-            display: block !important; 
-        }
-
-        @media (max-width: 480px) {
-            .page-layout, .top-meta-bar { padding: 0 12px !important; }
-        }
+        /* Hub Wrapper Overrides */
+        .hub-main-wrapper { flex: 1; width: 100%; padding: 15px 0 !important; box-sizing: border-box; }
+        .page-layout, .top-meta-bar { width: 100%; max-width: var(--site-width); margin: 0 auto; padding: 0 15px; box-sizing: border-box; display: block !important; }
+        @media (max-width: 480px) { .page-layout, .top-meta-bar { padding: 0 12px !important; } }
 
         /* Top Bar & Breadcrumbs */
-        .top-meta-bar { 
-            display: flex !important; 
-            justify-content: space-between; 
-            align-items: center; 
-            margin-bottom: 15px; 
-            flex-wrap: nowrap; 
-            gap: 10px; 
-        }
-
+        .top-meta-bar { display: flex !important; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: nowrap; gap: 10px; }
         .breadcrumb-nav { margin: 0; flex-shrink: 1; display: flex; align-items: center; height: 24px; }
         .breadcrumb-list { 
             list-style: none; padding: 0 10px; margin: 0; display: flex; flex-wrap: nowrap; 
@@ -176,165 +153,96 @@
 
         .hero-badge { 
             display: inline-flex; align-items: center; justify-content: center; height: 24px; 
-            background: var(--primary); color: white; padding: 0 10px; 
+            background: var(--primary-hover); color: white; padding: 0 10px; 
             border-radius: 12px; font-size: 0.6rem; font-weight: 700; text-transform: uppercase; 
-            margin: 0; border: 1px solid var(--primary); letter-spacing: 0.5px; white-space: nowrap; 
+            margin: 0; border: 1px solid var(--primary-dark); letter-spacing: 0.5px; white-space: nowrap; 
             flex-shrink: 0; box-sizing: border-box;
         }
 
         /* Hero Section */
-        .hub-hero { 
-            text-align: center; 
-            max-width: 800px; 
-            margin: 0 auto 25px auto;
-            padding: 10px 0;
-            display: block;
-        }
-
+        .hub-hero { text-align: center; max-width: 800px; margin: 0 auto 25px auto; padding: 10px 0; display: block; }
         .hero-title {
-            margin: 0 0 8px 0; 
-            letter-spacing: -0.8px;
-            background: linear-gradient(135deg, var(--text-main) 0%, var(--primary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            color: var(--primary); 
-            font-size: 28px;
-            font-weight: 800;
+            margin: 0 0 8px 0; letter-spacing: -0.8px; background: linear-gradient(135deg, var(--text-main) 0%, var(--primary) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: var(--primary); font-size: 28px; font-weight: 800;
         }
-
-        .hero-desc {
-            font-size: 14px !important;
-            color: var(--text-sec);
-            line-height: 1.6;
-            margin: 0 auto; 
-            max-width: 650px;
-        }
-        .hero-desc span.hi-desc {
-            font-family: 'Noto Sans Devanagari', sans-serif;
-            font-size: 0.85rem; 
-            color: var(--text-sec);
-            display: block;
-            margin-top: 4px;
-        }
+        .hero-desc { font-size: 14px !important; color: var(--text-sec); line-height: 1.6; margin: 0 auto; max-width: 650px; }
+        .hero-desc span.hi-desc { font-family: 'Noto Sans Devanagari', sans-serif; font-size: 0.85rem; color: var(--text-sec); display: block; margin-top: 4px; }
 
         /* HIGH-CONTRAST INTERLINKING PILL */
         .hero-interlinks {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 15px;
-            padding: 10px 20px;
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 30px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: inline-flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px; margin-top: 15px; padding: 10px 20px;
+            background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
-        [data-theme="dark"] .hero-interlinks {
-            background: #1e293b;
-            border-color: #334155;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
+        [data-theme="dark"] .hero-interlinks { background: #1e293b; border-color: #334155; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
         .hero-interlinks .interlink-label { font-size: 0.8rem; font-weight: 800; color: var(--text-sec); text-transform: uppercase; letter-spacing: 0.5px; }
         .hero-interlinks .interlink-label i { color: var(--primary); margin-right: 4px; }
-        .hero-interlinks a { font-size: 0.9rem; font-weight: 700; color: var(--primary-dark); text-decoration: none; transition: all 0.2s ease; }
+        .hero-interlinks a { font-size: 0.9rem; font-weight: 700; color: var(--primary-hover); text-decoration: none; transition: all 0.2s ease; }
         .hero-interlinks a:hover { color: var(--primary); text-decoration: underline; }
         [data-theme="dark"] .hero-interlinks a { color: #93c5fd; }
         [data-theme="dark"] .hero-interlinks a:hover { color: #60a5fa; }
         .hero-interlinks .dot { color: var(--text-sec); font-size: 0.8rem; opacity: 0.6; }
 
-        /* Tools Strip (Custom CSS) */
+        /* Tools Strip (Accessible Teal Colors) */
         .tools-strip {
-            margin-top: 20px;
-            background: rgba(20, 184, 166, 0.1);
-            border: 1px solid rgba(20, 184, 166, 0.3);
-            border-radius: var(--radius-lg);
-            padding: 12px 16px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            transition: all 0.3s ease;
+            margin-top: 20px; background: rgba(20, 184, 166, 0.1); border: 1px solid rgba(13, 148, 136, 0.4);
+            border-radius: var(--radius-lg); padding: 12px 16px; display: flex; align-items: center; justify-content: space-between;
+            max-width: 700px; margin-left: auto; margin-right: auto; transition: all 0.3s ease;
         }
-        .tools-strip:hover { border-color: rgba(20, 184, 166, 0.6); box-shadow: 0 4px 12px rgba(20, 184, 166, 0.1); }
+        .tools-strip:hover { border-color: #0f766e; box-shadow: 0 4px 12px rgba(13, 148, 136, 0.15); }
         .tools-strip-left { display: flex; align-items: center; gap: 12px; }
         .tools-strip-icon {
-            width: 40px; height: 40px; background: rgba(20, 184, 166, 0.2); color: #0d9488;
+            width: 40px; height: 40px; background: rgba(20, 184, 166, 0.2); color: #0f766e;
             border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
         }
-        [data-theme="dark"] .tools-strip-icon { color: #5eead4; }
+        [data-theme="dark"] .tools-strip-icon { color: #5eead4; background: rgba(20, 184, 166, 0.3); }
         .tools-strip-title { font-weight: 700; color: var(--text-main); font-size: 0.9rem; text-align: left;}
         .tools-strip-desc { font-size: 0.75rem; color: var(--text-sec); margin-top: 2px; text-align: left; }
         .tools-strip-btn {
-            background: #0d9488; color: white; padding: 8px 16px; border-radius: var(--radius-md);
+            background: #0f766e; color: white; padding: 8px 16px; border-radius: var(--radius-md);
             font-size: 0.8rem; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 6px;
             transition: background 0.2s; white-space: nowrap;
         }
-        .tools-strip-btn:hover { background: #0f766e; }
+        .tools-strip-btn:hover { background: #115e59; }
+        [data-theme="dark"] .tools-strip-btn { background: #0d9488; }
+        [data-theme="dark"] .tools-strip-btn:hover { background: #0f766e; }
 
         /* =======================================================
-           SECTIONS CSS (PURE CUSTOM)
+           MODULE CONTAINERS & CUSTOM LAYOUT CSS
            ======================================================= */
         
         .module-container {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: var(--radius-lg);
-            padding: 20px;
-            margin-bottom: 30px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-lg);
+            padding: 20px; margin-bottom: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
         }
 
-        .module-header {
-            display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;
-        }
-        
-        .module-title {
-            font-size: 1.25rem; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 10px;
-        }
+        .module-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .module-title { font-size: 1.25rem; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 10px; }
         .module-title-dot { width: 4px; height: 24px; background: var(--primary); border-radius: 4px; }
-
-        .module-controls { display: flex; align-items: center; gap: 15px; flex-wrap: wrap; }
-
-        /* Filter Controls */
-        .filter-group {
-            display: flex; align-items: center; gap: 5px; background: rgba(0,0,0,0.03); 
-            padding: 4px; border-radius: var(--radius-md); border: 1px solid var(--card-border);
-        }
+        
+        .module-controls { display: flex; align-items: center; gap: 10px; flex-wrap: wrap;}
+        .filter-group { display: flex; align-items: center; gap: 5px; background: rgba(0,0,0,0.03); padding: 4px; border-radius: var(--radius-md); border: 1px solid var(--card-border); }
         [data-theme="dark"] .filter-group { background: rgba(255,255,255,0.03); }
-        .filter-label { font-size: 0.65rem; font-weight: 700; color: var(--text-sec); text-transform: uppercase; padding: 0 6px; }
-        .filter-btn {
-            background: transparent; color: var(--text-sec); border: none; padding: 6px 12px;
-            border-radius: 6px; font-size: 0.75rem; font-weight: 600; cursor: pointer; transition: all 0.2s;
-        }
-        .filter-btn:hover { color: var(--primary); }
-        .filter-btn.active { background: var(--primary); color: white; }
+        .filter-label { font-size: 0.65rem; font-weight: 800; color: var(--text-sec); text-transform: uppercase; padding: 0 6px; letter-spacing: 0.5px;}
+        .filter-btn { background: transparent; color: var(--text-sec); border: none; padding: 5px 12px; border-radius: 6px; font-size: 11px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+        .filter-btn:hover { color: var(--primary-hover); }
+        .filter-btn.active { background: var(--primary-hover); color: white; }
 
-        /* Grids (Changed from 6 columns to 5 columns on large screens) */
-        .term-grid {
-            display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;
-        }
+        /* Grids (5 columns on large screens) */
+        .term-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
         @media(min-width: 600px) { .term-grid { grid-template-columns: repeat(3, 1fr); gap: 15px;} }
         @media(min-width: 900px) { .term-grid { grid-template-columns: repeat(4, 1fr); } }
-        @media(min-width: 1100px) { .term-grid { grid-template-columns: repeat(5, 1fr); } } /* Update: 5 items per row */
+        @media(min-width: 1100px) { .term-grid { grid-template-columns: repeat(5, 1fr); } }
 
-        .laws-grid {
-            display: grid; grid-template-columns: 1fr; gap: 15px;
-        }
+        /* ALIGN-ITEMS: START - Fixes the empty stretching issue */
+        .laws-grid { display: grid; grid-template-columns: 1fr; gap: 15px; align-items: start; }
         @media(min-width: 768px) { .laws-grid { grid-template-columns: repeat(2, 1fr); } }
         @media(min-width: 1024px) { .laws-grid { grid-template-columns: repeat(3, 1fr); } }
 
         /* Term Card CSS */
         .term-card {
             background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-lg);
-            position: relative; overflow: hidden; height: 160px; cursor: pointer;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+            position: relative; overflow: hidden; height: 160px; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.03);
         }
         [data-theme="dark"] .term-card { box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
         
@@ -347,9 +255,9 @@
         .term-front { background-color: var(--card-bg); opacity: 1; transform: translateY(0); z-index: 2; }
         .term-icon { font-size: 1.8rem; color: var(--primary); margin-bottom: 8px; }
         
-        /* Updated: Exact Pixel Font Sizes */
-        .term-title { font-size: 12px; font-weight: 700; color: var(--text-main); margin-bottom: 4px; line-height: 1.2;}
-        .term-title-hi { font-size: 11px; font-weight: 600; color: var(--text-sec); margin-bottom: 8px; }
+        /* Exact Pixel Font Sizes */
+        .term-title { font-size: 12px; font-weight: 600; color: var(--text-main); margin-bottom: 4px; line-height: 1.2;}
+        .term-title-hi { font-size: 11px; font-weight: 500; color: var(--text-sec); margin-bottom: 8px; font-family: 'Noto Sans Devanagari', sans-serif;}
         
         .term-view-btn { font-size: 10px; font-weight: 800; color: var(--primary); background: var(--primary-light); padding: 3px 8px; border-radius: 4px; text-transform: uppercase; }
         
@@ -358,8 +266,8 @@
             z-index: 1; pointer-events: none;
         }
         [data-theme="dark"] .term-reveal { background-color: #0f172a; border: 1px solid var(--primary); }
-        .term-def { font-size: 11px; line-height: 1.5; font-weight: 500; }
-        .term-def-hi { font-size: 11px; line-height: 1.5; font-weight: 500; }
+        .term-def { font-size: 11px; line-height: 1.5; font-weight: 600; }
+        .term-def-hi { font-size: 11px; line-height: 1.5; font-weight: 600; font-family: 'Noto Sans Devanagari', sans-serif;}
         
         @media (hover: hover) {
             .term-card:hover .term-front { opacity: 0; transform: translateY(-10px); pointer-events: none; }
@@ -371,29 +279,32 @@
         /* Laws Card Styling */
         .law-card {
             background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-md);
-            overflow: hidden; transition: all 0.2s ease;
+            overflow: hidden; transition: all 0.2s ease; box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+            display: flex; flex-direction: column;
         }
-        .law-card:hover { border-color: var(--primary); box-shadow: 0 4px 15px rgba(37, 99, 235, 0.05); }
+        .law-card:hover { border-color: var(--primary); box-shadow: 0 4px 12px rgba(29, 78, 216, 0.08); }
+        [data-theme="dark"] .law-card:hover { box-shadow: 0 4px 12px rgba(96, 165, 250, 0.15); }
         
         .law-header {
             width: 100%; text-align: left; padding: 15px; display: flex; justify-content: space-between; 
             align-items: center; background: transparent; border: none; cursor: pointer; color: var(--text-main);
         }
         .law-header-left { display: flex; align-items: center; gap: 12px; }
-        .law-badge { background: var(--primary-light); color: var(--primary); font-size: 10px; font-weight: 800; padding: 3px 8px; border-radius: 4px; }
+        .law-badge { background: var(--primary-light); color: var(--primary-hover); font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 4px; }
+        [data-theme="dark"] .law-badge { color: var(--primary); }
         
-        /* Updated: Exact Pixel Font Size for Law Title */
-        .law-title { font-weight: 700; font-size: 12px; color: var(--text-main); transition: color 0.2s; }
+        /* Exact Pixel Font Size for Law Title */
+        .law-title { font-weight: 600; font-size: 12px; color: var(--text-main); transition: color 0.2s; }
         
         .law-card:hover .law-title { color: var(--primary); }
         .law-icon { color: var(--text-sec); font-size: 11px; transition: transform 0.3s; }
         
         .law-content {
             display: none; padding: 15px; border-top: 1px solid var(--card-border);
-            background: rgba(0,0,0,0.02); color: var(--text-body); font-size: 11.5px; line-height: 1.6;
+            background: rgba(0,0,0,0.015); color: var(--text-body); font-size: 11.5px; line-height: 1.6; font-weight: 500;
         }
         [data-theme="dark"] .law-content { background: rgba(0,0,0,0.2); }
-        [data-theme="dark"] .law-content strong { color: #f8fafc; font-weight: 700; }
+        .law-content strong { color: var(--text-main); font-weight: 700; }
         .law-content.show { display: block; }
         
         /* Skeleton Animation */
@@ -596,7 +507,7 @@
         { "year": "2013", "title": "HP Lease Rules", "title_hi": "हि.प्र. पट्टा नियम", "details": "<strong>Govt Land:</strong> Rules for leasing to Hydro Projects/Industries. <br><strong>Period:</strong> Typically 40 years (Hydro), 99 years (others). <br><strong>Patwari Duty:</strong> Annual verification of lease conditions (Encroachment/Misuse).", "details_hi": "<strong>सरकारी भूमि:</strong> हाइड्रो प्रोजेक्ट्स/उद्योगों को पट्टे पर देने के नियम। <br><strong>अवधि:</strong> आमतौर पर 40 साल (हाइड्रो), 99 साल (अन्य)। <br><strong>पटवारी कर्तव्य:</strong> पट्टे की शर्तों (अतिक्रमण/दुरुपयोग) का वार्षिक सत्यापन।" },
         { "year": "Policy", "title": "Landless Allotment Scheme", "title_hi": "भूमिहीन आवंटन योजना", "details": "<strong>Target:</strong> Families with no house/land. <br><strong>Grant:</strong> 3 Biswa (Rural) / 2 Biswa (Urban) for housing. <br><strong>Condition:</strong> Land cannot be transferred. Patwari identifies available 'Gair Mumkin' or 'Shamlat' land for this.", "details_hi": "<strong>लक्ष्य:</strong> बिना घर/जमीन वाले परिवार। <br><strong>अनुदान:</strong> आवास के लिए 3 बिस्वा (ग्रामीण) / 2 बिस्वा (शहरी)। <br><strong>शर्त:</strong> जमीन हस्तांतरित नहीं की जा सकती। पटवारी इसके लिए उपलब्ध 'गैर मुमकिन' या 'शामलात' भूमि की पहचान करता है।" },
         { "year": "1969", "title": "HP Instruments (Control of Nuisance) Act", "title_hi": "हि.प्र. उपकरण (उपद्रव नियंत्रण) अधिनियम", "details": "<strong>Relevance:</strong> Often cited in land disputes regarding noise/nuisance affecting agriculture/habitation. <br><strong>Authority:</strong> District Magistrate/SDM. <br><strong>Intersection:</strong> Revenue officers often execute orders.", "details_hi": "<strong>प्रासंगिकता:</strong> अक्सर कृषि/आवास को प्रभावित करने वाले शोर/उपद्रव के संबंध में भूमि विवादों में उद्धृत किया जाता है। <br><strong>प्राधिकरण:</strong> जिला मजिस्ट्रेट/एसडीएम। <br><strong>चौराहा:</strong> राजस्व अधिकारी अक्सर आदेशों का निष्पादन करते हैं।" },
-        { "year": "2016", "title": "RERA (Real Estate Regulation Act)", "title_hi": "रेरा (रियल एस्टेट विनियमन अधिनियम)", "details": "Regulates real estate sector. <br><strong>Transparency:</strong> Mandatory registration of projects >500 sq.m or 8 apartments. <br><strong>Escrow:</strong> 70% funds in separate account. <br><strong>Builders:</strong> Cannot sell based on 'Super Area' anymore, must use 'Carpet Area'.", "details_hi": "रियल एस्टेट क्षेत्र को नियंत्रित करता है। <br><strong>पारदर्शिता:</strong> >500 वर्ग मीटर या 8 अपार्टमेंट वाली परियोजनाओं का अनिवार्य पंजीकरण। <br><strong>एस्क्रो:</strong> अलग खाते में 70% फंड। <br><strong>बिल्डर्स:</strong> अब 'सुपर एरिया' के आधार पर नहीं बेच सकते, 'कार्पेट एरिया' का उपयोग करना होगा।" },
+        { "year": "2016", "title": "RERA (Real Estate Regulation Act)", "title_hi": "रेरा (रियल एस्टेट विनियमन अधिनियम)", "details": "Regulates real estate sector. <br><strong>Transparency:</strong> Mandatory registration of projects >500 sq.m or 8 apartments. <br><strong>Escrow:</strong> 70% funds in separate account. <br><strong>Builders:</strong> Cannot sell based on 'Super Area' anymore, must use 'Carpet Area'.", "details_hi": "रियल एस्टेट क्षेत्र को नियंत्रित करता है। <br><strong>पारदर्शिता:</strong> >500 वर्ग मीटर या 8 अपार्टमेंट वाली परियोजनाओं का अनिवार्य पंजीकरण। <br><strong>एस्क्रो:</strong> अलग खाते में 70% फंड। <br><strong>बिल्enders:</strong> अब 'सुपर एरिया' के आधार पर नहीं बेच सकते, 'कार्पेट एरिया' का उपयोग करना होगा।" },
         { "year": "2017", "title": "HP Real Estate (Regulation & Development) Rules", "title_hi": "हि.प्र. रियल एस्टेट (विनियमन और विकास) नियम", "details": "Operationalizes RERA in HP. <br><strong>Registration Fee:</strong> Sets fee structure for registering real estate projects. <br><strong>Authority:</strong> Establishes the HP Real Estate Regulatory Authority. <br><strong>Complaints:</strong> Procedure for filing complaints against developers.", "details_hi": "हि.प्र. में रेरा को संचालित करता है। <br><strong>पंजीकरण शुल्क:</strong> रियल एस्टेट परियोजनाओं के पंजीकरण के लिए शुल्क संरचना निर्धारित करता है। <br><strong>प्राधिकरण:</strong> हि.प्र. रियल एस्टेट नियामक प्राधिकरण की स्थापना करता है। <br><strong>शिकायतें:</strong> डेवलपर्स के खिलाफ शिकायत दर्ज करने की प्रक्रिया।" },
         { "year": "2016", "title": "HP Town & Country Planning (Amendment) Act", "title_hi": "हि.प्र. नगर एवं ग्राम नियोजन (संशोधन) अधिनियम", "details": "Retention Policy. <br><strong>Regularization:</strong> Provisions for regularizing unauthorized structures on a 'as is where is' basis upon penalty payment. <br><strong>Revenue Role:</strong> Demarcation of land to ensure no encroachment on government land.", "details_hi": "प्रतिधारण नीति। <br><strong>नियमितीकरण:</strong> जुर्माना भुगतान पर 'ज्यों का त्यों' आधार पर अनधिकृत संरचनाओं को नियमित करने के प्रावधान। <br><strong>राजस्व भूमिका:</strong> यह सुनिश्चित करने के लिए भूमि का सीमांकन कि सरकारी भूमि पर कोई अतिक्रमण न हो।" },
         { "year": "2015", "title": "RFCTLARR (HP Rules)", "title_hi": "RFCTLARR (हि.प्र. नियम)", "details": "State Rules for Land Acquisition. <br><strong>Multipliers:</strong> Defines multipliers for market value in rural (1.0 - 2.0) vs urban areas. <br><strong>Process:</strong> Detailed procedure for Social Impact Assessment (SIA) notification and public hearing.", "details_hi": "भूमि अधिग्रहण के लिए राज्य नियम। <br><strong>गुणक:</strong> ग्रामीण (1.0 - 2.0) बनाम शहरी क्षेत्रों में बाजार मूल्य के लिए गुणक परिभाषित करता है। <br><strong>प्रक्रिया:</strong> सामाजिक प्रभाव मूल्यांकन (SIA) अधिसूचना और सार्वजनिक सुनवाई के लिए विस्तृत प्रक्रिया।" },
@@ -765,15 +676,15 @@
                 const iconHtml = getIconForTerm(item);
                 let defContent = '';
                 if (currentDefLanguage === 'hi' && item.def_hi) {
-                    defContent = `<p class="term-def-hi font-hindi">${item.def_hi}</p>`;
+                    defContent = `<p class="term-def-hi">${item.def_hi}</p>`;
                 } else {
-                    defContent = `<p class="term-def font-sans">${item.def}</p>`;
+                    defContent = `<p class="term-def">${item.def}</p>`;
                 }
                 card.innerHTML = `
                     <div class="term-front">
                         ${iconHtml}
                         <h3 class="term-title font-heading">${item.term}</h3>
-                        ${item.term_hi ? `<h4 class="term-title-hi font-hindi">${item.term_hi}</h4>` : ''}
+                        ${item.term_hi ? `<h4 class="term-title-hi">${item.term_hi}</h4>` : ''}
                         <span class="term-view-btn font-sans">View Def</span>
                     </div>
                     <div class="term-reveal">
