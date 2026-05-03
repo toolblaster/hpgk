@@ -129,7 +129,7 @@
         .compact-btn-buy { background: linear-gradient(135deg, #f59e0b, #ea580c); color: #fff; font-size: 0.65rem; font-weight: 800; padding: 6px 12px; border-radius: 6px; cursor: pointer; border: none; text-transform: uppercase; transition: 0.2s; box-shadow: 0 2px 8px rgba(234, 88, 12, 0.3); }
         .compact-btn-buy:hover { opacity: 0.9; transform: translateY(-1px); }
 
-        /* 🔥 ORIGINAL DESKTOP STATS GRID - DO NOT BREAK 🔥 */
+        /* ORIGINAL DESKTOP STATS GRID - DO NOT BREAK */
         .stats-density-grid { display: grid; grid-template-columns: 1.3fr repeat(5, 1fr); gap: 8px; margin-bottom: 10px; }
         
         .stat-group-card { 
@@ -154,7 +154,7 @@
         .cw-text { font-size: 0.9rem; display: flex; align-items: center; }
         .cw-slash { font-size: 0.75rem; color: var(--card-border); margin: 0 3px; font-weight: 400; }
 
-        /* 🔥 LEADERBOARD BANNER */
+        /* LEADERBOARD BANNER */
         .lb-banner {
             padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; 
             background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(245, 158, 11, 0.05)); 
@@ -171,8 +171,8 @@
         }
         .lb-btn:hover { transform: translateY(-1px); }
 
-        /* BOTTOM LAYOUT */
-        .dashboard-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        /* BOTTOM LAYOUT (Updated for 60-40 Split) */
+        .dashboard-cols { display: grid; grid-template-columns: 6fr 4fr; gap: 15px; }
         .section-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--card-border); padding-bottom: 6px; margin-bottom: 10px; flex-wrap: wrap; gap: 8px;}
         .section-title { font-size: 0.85rem; font-weight: 800; margin: 0; display: flex; align-items: center; gap: 6px; color: var(--text-main); }
         .section-title span { font-size: 0.6rem; background: var(--input-bg); padding: 2px 6px; border-radius: 4px; color: var(--text-sec); border: 1px solid var(--card-border); }
@@ -199,7 +199,7 @@
         .modal-close-btn { position: absolute; top: 12px; right: 15px; background: transparent; border: none; font-size: 1.2rem; cursor: pointer; color: var(--text-sec); transition: color 0.2s;}
         .modal-close-btn:hover { color: var(--text-main); }
 
-        /* 🚨 PAYMENT SPINNER */
+        /* PAYMENT SPINNER */
         #payment-processing-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(8px);
             z-index: 99999; display: none; flex-direction: column; align-items: center; justify-content: center; color: white; text-align: center;
@@ -214,7 +214,7 @@
         }
         @media (max-width: 850px) { .top-dashboard-grid { grid-template-columns: 1fr; } .dashboard-cols { grid-template-columns: 1fr; } }
         @media (max-width: 600px) {
-            /* 🔥 MOBILE CENTERED FLEXBOX FIX 🔥 */
+            /* MOBILE CENTERED FLEXBOX FIX */
             .stats-density-grid { 
                 display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 15px;
             }
@@ -234,7 +234,7 @@
             .purchases-left { border-right: none; border-bottom: 1px dashed var(--card-border); padding-right: 0; padding-bottom: 10px; }
             .h-score-val { font-size: 0.85rem; }
 
-            /* 🔥 Mobile Leaderboard Refinements */
+            /* Mobile Leaderboard Refinements */
             .lb-banner { padding: 10px 15px; flex-direction: row; flex-wrap: nowrap; align-items: center; gap: 8px; }
             .lb-left { gap: 10px; }
             .lb-icon { font-size: 1.4rem; } 
@@ -305,7 +305,6 @@
 
         <!-- High Density Stats: MOCKS -->
         <div class="stats-density-grid">
-            <!-- 🔥 ORIGINAL GRID KE ANDAR CLICKABLE <a> TAG -->
             <a href="https://hpgk.toolblaster.com/hp-exam-full-mock-test/" class="stat-group-card mock-bg">
                 <i class="fa-solid fa-file-signature stat-group-bg-icon"></i>
                 <div class="stat-group-icon"><i class="fa-solid fa-file-signature"></i></div>
@@ -339,7 +338,6 @@
 
         <!-- High Density Stats: TOPICS -->
         <div class="stats-density-grid" style="margin-bottom: 18px;">
-            <!-- 🔥 ORIGINAL GRID KE ANDAR CLICKABLE <a> TAG -->
             <a href="https://hpgk.toolblaster.com/himachal-pradesh-gk/" class="stat-group-card topic-bg">
                 <i class="fa-solid fa-layer-group stat-group-bg-icon"></i>
                 <div class="stat-group-icon"><i class="fa-solid fa-layer-group"></i></div>
@@ -383,9 +381,9 @@
             <a href="leaderboard.html" class="lb-btn">View Ranks <i class="fa-solid fa-arrow-right"></i></a>
         </div>
 
-        <!-- MAIN GRID: Mastery (2 Columns) -->
+        <!-- MAIN GRID: Mastery (Updated 60/40 Split) -->
         <div class="dashboard-cols">
-            <!-- Mock Mastery Analytics -->
+            <!-- Mock Mastery Analytics (60% width) -->
             <div class="glass-panel" style="padding: 15px; margin-bottom: 0;">
                 <div class="section-header">
                     <h2 class="section-title"><i class="fa-solid fa-medal"></i> Mock Mastery <span>Latest 10</span></h2>
@@ -395,7 +393,7 @@
                 </div>
             </div>
 
-            <!-- Subject Mastery Analytics -->
+            <!-- Subject Mastery Analytics (40% width) -->
             <div class="glass-panel" style="padding: 15px; margin-bottom: 0;">
                 <div class="section-header">
                     <h2 class="section-title"><i class="fa-solid fa-chart-column"></i> Topic Mastery <span>Top 10</span></h2>
@@ -427,14 +425,14 @@
 
 <div id="site-footer"></div>
 
-<!-- 🚨 Add Razorpay Official SDK -->
+<!-- Razorpay Official SDK -->
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
 <!-- Load Scripts -->
 <script src="../js/core.js"></script>
 <script src="../js/layout.js"></script>
 
-<!-- 99% Production Payment Logic -->
+<!-- Payment Logic -->
 <script type="module">
     import { getApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
     import { getFirestore, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
@@ -481,7 +479,7 @@
                         isReloaded = true;
                         clearTimeout(fallbackTimer);
                         unsubscribe();
-                        window.location.reload(); // Instantly reload to show the pass
+                        window.location.reload(); 
                     }
                 }
             });
@@ -496,7 +494,7 @@
 
         const planNames = { 'mcq_pro_pass': 'MCQ Pro Pass (VIP)', 'mock_master_pass': 'Mock Master Pass' };
         var options = {
-            // 🚨 IMPORTANT: Change this to YOUR Razorpay Live/Test Key
+            // IMPORTANT: Change this to YOUR Razorpay Live/Test Key
             "key": "rzp_test_SiCgoJg1G0fb0m", 
             "amount": window.currentPayPrice * 100, 
             "currency": "INR",
@@ -507,7 +505,6 @@
                 document.getElementById('quickPayModal').style.display = 'none';
                 document.getElementById('payment-processing-overlay').style.display = 'flex';
                 
-                // Call the Real-Time Verification
                 window.HPGK_verifyQuickPayAndReload(window.currentPayPlan);
             },
             "prefill": {
@@ -581,7 +578,7 @@
             
             const smartContainer = document.getElementById('smart-purchases-container');
 
-            // 🔥 THE FIX: Live Real-Time Listener for User Passes
+            // Live Real-Time Listener for User Passes
             const userDocRef = doc(db, 'artifacts', 'hpgk-quiz', 'users', user.uid);
             
             onSnapshot(userDocRef, (uDoc) => {
@@ -713,6 +710,16 @@
             
             const records = [];
             querySnapshot.forEach((doc) => { records.push({ id: doc.id, ...doc.data() }); });
+            
+            // Mock test results fetch
+            let mockRecords = [];
+            try {
+                const mockRef = collection(db, 'artifacts', appId, 'users', user.uid, 'mock_results');
+                const mockSnap = await fetchWithTimeout(getDocs(mockRef), 8000);
+                mockSnap.forEach(doc => { mockRecords.push({ id: doc.id, ...doc.data(), isMock: true }); });
+            } catch(e) { console.log("No mocks or error fetching mocks", e); }
+            
+            records.push(...mockRecords);
             records.sort((a, b) => b.timestamp - a.timestamp); 
 
             const categoryMap = {
@@ -726,25 +733,24 @@
             const latestTopics = {};
 
             records.forEach(data => {
-                const rawCat = data.category || 'Unknown Quiz';
+                const rawCat = data.category || (data.testTitle ? data.testTitle : 'Unknown Quiz');
                 let cleanString = rawCat.toLowerCase().replace(/hpgk_/g, '').replace(/[-_]/g, ' ').replace(/\s+/g, ' ').trim();
                 data.cleanCatName = categoryMap[cleanString] || cleanString.replace(/\b\w/g, l => l.toUpperCase());
                 
-                // 🔥 SMART IDENTIFIER LOGIC
                 let uniqueQuizId;
 
-                if (data.testId && typeof data.testId === 'string') {
-                    let cleanTest = data.testId.replace('hpgkdata.', '').replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-                    data.displayTitle = `${data.cleanCatName} (${cleanTest})`;
+                if (data.isMock || (data.testId && typeof data.testId === 'string')) {
+                    let cleanTest = data.testTitle || (data.testId ? data.testId.replace('hpgkdata.', '').replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()) : 'Mock Test');
+                    data.displayTitle = cleanTest;
                     data.isMock = true;
-                    uniqueQuizId = data.testId; // Mock ka unique identifier
+                    uniqueQuizId = data.testId || data.id; 
                 } else {
                     data.displayTitle = data.cleanCatName;
                     data.isMock = false;
-                    uniqueQuizId = data.category || data.cleanCatName; // Topic ka unique identifier
+                    uniqueQuizId = data.category || data.cleanCatName; 
                 }
 
-                let parsedTotal = Number(data.total) || 0;
+                let parsedTotal = Number(data.totalMarks || data.total) || 0;
                 let parsedScore = Number(data.score) || 0;
                 let parsedCorrect = data.correct !== undefined ? Number(data.correct) : Math.max(0, Math.round(parsedScore));
                 let parsedWrong = data.wrong !== undefined ? Number(data.wrong) : Math.max(0, parsedTotal - parsedCorrect);
@@ -754,7 +760,6 @@
                 data._safeWrong = parsedWrong;
                 data._safeTime = Number(data.timeTaken) || 0;
 
-                // 🔥 SMART DEDUPLICATION: Agar same quiz dobara diya hai, toh purana ignore hoga, sirf LATEST bachega!
                 if (data.isMock) {
                     if (!latestMocks[uniqueQuizId] || latestMocks[uniqueQuizId].timestamp < data.timestamp) {
                         latestMocks[uniqueQuizId] = data; 
@@ -766,11 +771,9 @@
                 }
             });
 
-            // Yahan finalMocks aur finalTopics mein ab sirf UNIQUE quizzes ke LATEST attempts hain
             const finalMocks = Object.values(latestMocks).sort((a,b) => b.timestamp - a.timestamp);
             const finalTopics = Object.values(latestTopics).sort((a,b) => b.timestamp - a.timestamp);
 
-            // Ab topics ke calculation mein bhi koi double counting nahi hogi
             finalTopics.forEach(data => {
                 if (!catStats[data.cleanCatName]) catStats[data.cleanCatName] = { correct: 0, total: 0 };
                 catStats[data.cleanCatName].correct += data._safeCorrect;
@@ -787,7 +790,6 @@
                 week: { mockScore: 0, mockQs: 0, mockAtt: 0, mockCorr: 0, mockTime: 0, topicAtt: 0, topicCorr: 0, topicTime: 0 }
             };
 
-            // Calculate Mock Stats
             finalMocks.forEach(d => {
                 const score = Number(d.score) || 0;
                 const qs = d._safeTotal;
@@ -799,7 +801,6 @@
                 if (now - d.timestamp <= oneWeek) { stats.week.mockScore += score; stats.week.mockQs += qs; stats.week.mockAtt += att; stats.week.mockCorr += corr; stats.week.mockTime += time; }
             });
 
-            // Calculate Topic Stats
             finalTopics.forEach(d => {
                 const att = d._safeCorrect + d._safeWrong; 
                 const corr = d._safeCorrect;
@@ -840,7 +841,6 @@
                 weeklyMockXP: calcMockXP(stats.week.mockScore, stats.week.mockCorr, stats.week.mockAtt, stats.week.mockTime),
             };
 
-            // 🔥 COMPACT STATS FOR LEADERBOARD DISPLAY
             const mAcc = stats.all.mockQs > 0 ? Math.round((stats.all.mockCorr / stats.all.mockQs) * 100) : 0;
             const mTime = stats.all.mockQs > 0 ? Math.round(stats.all.mockTime / stats.all.mockQs) : 0;
             const tAcc = stats.all.topicAtt > 0 ? Math.round((stats.all.topicCorr / stats.all.topicAtt) * 100) : 0;
@@ -867,7 +867,6 @@
                 }, { merge: true }).catch(e => console.log("Silent sync failed", e));
             }
 
-            // SAFE UI UPDATE BLOCKS
             try {
                 if (finalMocks.length > 0) {
                     document.getElementById('stat-mock-count').innerText = finalMocks.length;
@@ -902,14 +901,11 @@
                     document.getElementById('stat-topic-qs').innerText = topicLatestTotalQs; 
                     document.getElementById('stat-topic-cw').innerHTML = `<span style="color:var(--success);">${topicLatestCorrectQs}</span> <span class="cw-slash">/</span> <span style="color:var(--danger);">${topicLatestWrongQs}</span>`;
                     document.getElementById('stat-topic-acc').innerText = topicAvgAcc + '%';
-                    
-                    // Fixed logic since icon is now in the label
                     document.getElementById('stat-topic-time').innerText = topicAvgTime;
                 }
             } catch(e) { }
 
             try {
-                // 🔥 TOP 10 MOCKS
                 const sortedMocks = finalMocks.slice(0, 10); 
                 if (sortedMocks.length > 0) {
                     let mockHtml = '';
@@ -925,7 +921,7 @@
                         mockHtml += `
                         <div class="subject-perf-item">
                             <div class="perf-labels">
-                                <span>${data.displayTitle} <span style="font-size:0.6rem; color:var(--text-sec); font-weight:500;">(Score: ${data.score}/${data.total})</span></span>
+                                <span>${data.displayTitle} <span style="font-size:0.6rem; color:var(--text-sec); font-weight:500;">(Score: ${data.score}/${data.totalMarks || data.total})</span></span>
                                 <span style="color:${barColor};">${acc}%</span>
                             </div>
                             <div class="perf-track">
@@ -938,7 +934,6 @@
             } catch(e) { }
 
             try {
-                // 🔥 TOP 10 TOPICS
                 const sortedCats = Object.keys(catStats).map(cat => ({
                     name: cat,
                     acc: catStats[cat].total > 0 ? Math.round((catStats[cat].correct / catStats[cat].total) * 100) : 0,
