@@ -1,0 +1,149 @@
+{
+  "testTitle": "HP HRTC Conductor Mock Test 1",
+  "durationMinutes": 120,
+  "negativeMarking": "0",
+  "customInstructions": [
+    "This is the Full Mock Test 1 for HP HRTC Conductor.",
+    "Total Questions: 100, Total Marks: 100, Total Time: 120 Minutes.",
+    "Every correct answer awards +1 Mark.",
+    "There is NO negative marking in this exam.",
+    "The test comprehensively covers General Knowledge, Transport Regulations, MV Act, First Aid, IT Tools, Mathematics, Logical Reasoning, English, and Hindi."
+  ],
+  "sections": [
+    {
+      "name": "General Awareness & GK",
+      "questions": [
+        { "questionEn": "When was the Himachal Road Transport Corporation (HRTC) established?", "questionHi": "हिमाचल पथ परिवहन निगम (HRTC) की स्थापना कब हुई थी?", "options": ["1971", "1974", "1980", "1988"], "answer": 1 },
+        { "questionEn": "Which district of HP shares its border with Tibet?", "questionHi": "हि.प्र. का कौन सा जिला तिब्बत के साथ अपनी सीमा साझा करता है?", "options": ["Lahaul & Spiti / लाहौल और स्पीति", "Kinnaur / किन्नौर", "Both A and B / A और B दोनों", "Kullu / कुल्लू"], "answer": 2 },
+        { "questionEn": "The largest glacier in Himachal Pradesh is:", "questionHi": "हिमाचल प्रदेश का सबसे बड़ा ग्लेशियर है:", "options": ["Bara Shigri / बड़ा शिगरी", "Bhadal / भादल", "Chandra / चंद्रा", "Gara / गारा"], "answer": 0 },
+        { "questionEn": "Who was the first Chief Commissioner of Himachal Pradesh?", "questionHi": "हिमाचल प्रदेश के प्रथम मुख्य आयुक्त कौन थे?", "options": ["Dr. Y.S. Parmar / डॉ. वाई.एस. परमार", "N.C. Mehta / एन.सी. मेहता", "S. Chakravarti / एस. चक्रवर्ती", "Bhag Mal Sautha / भाग मल सौथा"], "answer": 1 },
+        { "questionEn": "Which pass connects Lahaul to Spiti?", "questionHi": "कौन सा दर्रा लाहौल को स्पीति से जोड़ता है?", "options": ["Rohtang Pass / रोहतांग दर्रा", "Kunzum Pass / कुंजुम दर्रा", "Baralacha Pass / बारालाचा दर्रा", "Pin Parbati Pass / पिन पार्वती दर्रा"], "answer": 0 },
+        { "questionEn": "Bhakra Dam is constructed on which river?", "questionHi": "भाखड़ा बांध किस नदी पर बनाया गया है?", "options": ["Beas / ब्यास", "Ravi / रावी", "Satluj / सतलुज", "Chenab / चिनाब"], "answer": 2 },
+        { "questionEn": "Who wrote the book 'Himachal Pradesh: Its Shape and State'?", "questionHi": "'हिमाचल प्रदेश: इट्स शेप एंड स्टेट' पुस्तक किसने लिखी?", "options": ["Shanta Kumar / शांता कुमार", "Dr. Y.S. Parmar / डॉ. वाई.एस. परमार", "J.C. French / जे.सी. फ्रेंच", "Mian Goverdhan Singh / मियां गोवर्धन सिंह"], "answer": 1 },
+        { "questionEn": "Which district of HP is the largest by area?", "questionHi": "हि.प्र. का क्षेत्रफल की दृष्टि से सबसे बड़ा जिला कौन सा है?", "options": ["Kangra / कांगड़ा", "Lahaul & Spiti / लाहौल और स्पीति", "Chamba / चंबा", "Kinnaur / किन्नौर"], "answer": 1 },
+        { "questionEn": "Who is the current Governor of HP (As of recent records)?", "questionHi": "हि.प्र. के वर्तमान राज्यपाल कौन हैं?", "options": ["Shiv Pratap Shukla / शिव प्रताप शुक्ल", "Rajendra Arlekar / राजेंद्र आर्लेकर", "Bandaru Dattatreya / बंडारू दत्तात्रेय", "Acharya Devvrat / आचार्य देवव्रत"], "answer": 0 },
+        { "questionEn": "Pin Valley National Park is located in:", "questionHi": "पिन वैली नेशनल पार्क कहाँ स्थित है?", "options": ["Kullu / कुल्लू", "Lahaul & Spiti / लाहौल और स्पीति", "Sirmaur / सिरमौर", "Kinnaur / किन्नौर"], "answer": 1 },
+        { "questionEn": "Who built the historical Kangra Fort?", "questionHi": "ऐतिहासिक कांगड़ा किला किसने बनवाया था?", "options": ["Sansar Chand / संसार चंद", "Susharma Chand / सुशर्मा चंद", "Bhuma Chand / भूमा चंद", "Umed Singh / उमेद सिंह"], "answer": 1 },
+        { "questionEn": "The total number of Assembly seats in Himachal Pradesh is:", "questionHi": "हिमाचल प्रदेश में विधानसभा सीटों की कुल संख्या है:", "options": ["60", "65", "68", "72"], "answer": 2 },
+        { "questionEn": "'Sui Fair' is celebrated in which district?", "questionHi": "'सूई मेला' किस जिले में मनाया जाता है?", "options": ["Chamba / चंबा", "Mandi / मंडी", "Solan / सोलन", "Shimla / शिमला"], "answer": 0 },
+        { "questionEn": "The first hydro-electric project of HP is:", "questionHi": "हि.प्र. की पहली जलविद्युत परियोजना है:", "options": ["Bhakra / भाखड़ा", "Nathpa Jhakri / नाथपा झाकड़ी", "Shanan / शानन", "Chamera / चमेरा"], "answer": 2 },
+        { "questionEn": "The total number of Municipal Corporations in HP currently is:", "questionHi": "हि.प्र. में वर्तमान में नगर निगमों की कुल संख्या है:", "options": ["2", "3", "5", "7"], "answer": 2 },
+        { "questionEn": "Who is the ex-officio Chairman of NITI Aayog?", "questionHi": "नीति (NITI) आयोग का पदेन अध्यक्ष कौन होता है?", "options": ["President / राष्ट्रपति", "Prime Minister / प्रधानमंत्री", "Finance Minister / वित्त मंत्री", "RBI Governor / RBI गवर्नर"], "answer": 1 },
+        { "questionEn": "Article 21 of the Indian Constitution ensures:", "questionHi": "भारतीय संविधान का अनुच्छेद 21 सुनिश्चित करता है:", "options": ["Right to Equality / समानता का अधिकार", "Right to Freedom of Religion / धार्मिक स्वतंत्रता का अधिकार", "Right to Life and Liberty / जीवन और स्वतंत्रता का अधिकार", "Right to Education / शिक्षा का अधिकार"], "answer": 2 },
+        { "questionEn": "Who was the first woman speaker of Lok Sabha?", "questionHi": "लोकसभा की प्रथम महिला अध्यक्ष कौन थीं?", "options": ["Sumitra Mahajan / सुमित्रा महाजन", "Meira Kumar / मीरा कुमार", "Sushma Swaraj / सुषमा स्वराज", "Sarojini Naidu / सरोजिनी नायडू"], "answer": 1 },
+        { "questionEn": "Capital of Australia is:", "questionHi": "ऑस्ट्रेलिया की राजधानी है:", "options": ["Sydney / सिडनी", "Melbourne / मेलबर्न", "Canberra / कैनबरा", "Perth / पर्थ"], "answer": 2 },
+        { "questionEn": "World Environment Day is celebrated on:", "questionHi": "विश्व पर्यावरण दिवस कब मनाया जाता है:", "options": ["22 April / 22 अप्रैल", "5 June / 5 जून", "11 July / 11 जुलाई", "1 December / 1 दिसंबर"], "answer": 1 },
+        { "questionEn": "The chemical name of baking soda is:", "questionHi": "बेकिंग सोडा का रासायनिक नाम है:", "options": ["Sodium Carbonate / सोडियम कार्बोनेट", "Sodium Bicarbonate / सोडियम बाइकार्बोनेट", "Calcium Carbonate / कैल्शियम कार्बोनेट", "Sodium Chloride / सोडियम क्लोराइड"], "answer": 1 },
+        { "questionEn": "Which blood group is the universal donor?", "questionHi": "कौन सा रक्त समूह सर्वदाता है?", "options": ["A", "B", "AB", "O"], "answer": 3 },
+        { "questionEn": "Light Year is a unit of:", "questionHi": "प्रकाश वर्ष किसकी इकाई है:", "options": ["Time / समय", "Light Intensity / प्रकाश की तीव्रता", "Distance / दूरी", "Mass / द्रव्यमान"], "answer": 2 },
+        { "questionEn": "Who wrote the book 'Discovery of India'?", "questionHi": "'डिस्कवरी ऑफ इंडिया' पुस्तक किसने लिखी?", "options": ["Mahatma Gandhi / महात्मा गांधी", "Jawaharlal Nehru / जवाहरलाल नेहरू", "Sardar Patel / सरदार पटेल", "Bhagat Singh / भगत सिंह"], "answer": 1 },
+        { "questionEn": "Reserve Bank of India was established in:", "questionHi": "भारतीय रिज़र्व बैंक की स्थापना कब हुई थी:", "options": ["1935", "1947", "1949", "1950"], "answer": 0 },
+        { "questionEn": "The SI unit of Electrical Resistance is:", "questionHi": "विद्युत प्रतिरोध की SI इकाई है:", "options": ["Volt / वोल्ट", "Ampere / एम्पीयर", "Ohm / ओम", "Watt / वाट"], "answer": 2 },
+        { "questionEn": "Durand Cup is associated with which sport?", "questionHi": "डूरंड कप किस खेल से संबंधित है?", "options": ["Cricket / क्रिकेट", "Football / फुटबॉल", "Hockey / हॉकी", "Badminton / बैडमिंटन"], "answer": 1 },
+        { "questionEn": "Who was the first Governor-General of independent India?", "questionHi": "स्वतंत्र भारत के प्रथम गवर्नर-जनरल कौन थे?", "options": ["Lord Mountbatten / लॉर्ड माउंटबेटन", "C. Rajagopalachari / सी. राजगोपालाचारी", "Dr. Rajendra Prasad / डॉ. राजेंद्र प्रसाद", "Lord Dalhousie / लॉर्ड डलहौजी"], "answer": 0 },
+        { "questionEn": "The chemical name of Vitamin C is:", "questionHi": "विटामिन C का रासायनिक नाम है:", "options": ["Retinol / रेटिनॉल", "Ascorbic Acid / एस्कॉर्बिक एसिड", "Calciferol / कैल्सीफेरॉल", "Thiamine / थायमिन"], "answer": 1 },
+        { "questionEn": "Which planet is known as the 'Red Planet'?", "questionHi": "किस ग्रह को 'लाल ग्रह' कहा जाता है?", "options": ["Venus / शुक्र", "Jupiter / बृहस्पति", "Mars / मंगल", "Saturn / शनि"], "answer": 2 }
+      ]
+    },
+    {
+      "name": "Transport Regulations & MV Act",
+      "questions": [
+        { "questionEn": "The Motor Vehicles Act was enacted by the Parliament of India in which year?", "questionHi": "भारत की संसद द्वारा मोटर वाहन अधिनियम किस वर्ष अधिनियमित किया गया था?", "options": ["1980", "1988", "1992", "2001"], "answer": 1 },
+        { "questionEn": "What is the minimum age required to apply for a Conductor's License?", "questionHi": "कंडक्टर (परिचालक) लाइसेंस के लिए आवेदन करने की न्यूनतम आयु क्या है?", "options": ["16 years / 16 वर्ष", "18 years / 18 वर्ष", "20 years / 20 वर्ष", "21 years / 21 वर्ष"], "answer": 1 },
+        { "questionEn": "Driving a motor vehicle without a valid driving license is an offense under which section of the MV Act?", "questionHi": "वैध ड्राइविंग लाइसेंस के बिना मोटर वाहन चलाना मोटर वाहन अधिनियम की किस धारा के तहत अपराध है?", "options": ["Section 112", "Section 177", "Section 181", "Section 184"], "answer": 2 },
+        { "questionEn": "What is the validity of a learner's driving license?", "questionHi": "लर्नर ड्राइविंग लाइसेंस की वैधता कितनी होती है?", "options": ["3 Months / 3 महीने", "6 Months / 6 महीने", "1 Year / 1 वर्ष", "5 Years / 5 वर्ष"], "answer": 1 },
+        { "questionEn": "Which section of the Motor Vehicles Act deals with drunken driving?", "questionHi": "मोटर वाहन अधिनियम की कौन सी धारा शराब पीकर गाड़ी चलाने से संबंधित है?", "options": ["Section 184", "Section 185", "Section 186", "Section 190"], "answer": 1 },
+        { "questionEn": "Over-speeding is a punishable offense under which section?", "questionHi": "तेज गति (Over-speeding) किस धारा के तहत दंडनीय अपराध है?", "options": ["Section 181", "Section 182", "Section 183", "Section 184"], "answer": 2 },
+        { "questionEn": "Minimum age to drive a transport (commercial) vehicle in India is:", "questionHi": "भारत में परिवहन (वाणिज्यिक) वाहन चलाने की न्यूनतम आयु है:", "options": ["18 years / 18 वर्ष", "20 years / 20 वर्ष", "21 years / 21 वर्ष", "25 years / 25 वर्ष"], "answer": 1 },
+        { "questionEn": "What does a solid white line on the road indicate?", "questionHi": "सड़क पर एक ठोस सफेद रेखा क्या दर्शाती है?", "options": ["Overtaking allowed / ओवरटेकिंग की अनुमति है", "Do not change lanes / लेन न बदलें", "Stop immediately / तुरंत रुकें", "Parking area / पार्किंग क्षेत्र"], "answer": 1 },
+        { "questionEn": "What does a blinking red traffic light mean?", "questionHi": "टिमटिमाती लाल ट्रैफिक लाइट का क्या मतलब है?", "options": ["Drive fast / तेज चलाएं", "Stop and proceed when safe / रुकें और सुरक्षित होने पर आगे बढ़ें", "Slow down and proceed / धीमा करें और आगे बढ़ें", "Take a U-turn / U-टर्न लें"], "answer": 1 },
+        { "questionEn": "Zebra crossing on the road is meant for:", "questionHi": "सड़क पर ज़ेबरा क्रॉसिंग किसके लिए होती है:", "options": ["Bicycles / साइकिल के लिए", "Heavy vehicles / भारी वाहनों के लिए", "Pedestrians / पैदल चलने वालों के लिए", "Stopping vehicles / वाहनों को रोकने के लिए"], "answer": 2 },
+        { "questionEn": "What is the grace period for renewal of a driving license after its expiry?", "questionHi": "ड्राइविंग लाइसेंस की समाप्ति के बाद उसके नवीनीकरण के लिए अनुग्रह अवधि (grace period) क्या है?", "options": ["10 days / 10 दिन", "15 days / 15 दिन", "30 days / 30 दिन", "60 days / 60 दिन"], "answer": 2 },
+        { "questionEn": "Using a mobile phone while driving is a punishable offense under MV Act.", "questionHi": "गाड़ी चलाते समय मोबाइल फोन का उपयोग करना मोटर वाहन अधिनियम के तहत एक दंडनीय अपराध है।", "options": ["True / सत्य", "False / असत्य", "Allowed with earphones / इयरफ़ोन के साथ अनुमति है", "Allowed for conductors / कंडक्टरों के लिए अनुमति है"], "answer": 0 },
+        { "questionEn": "The general maximum speed limit for a heavy passenger vehicle (bus) on national highways is:", "questionHi": "राष्ट्रीय राजमार्गों पर भारी यात्री वाहन (बस) के लिए सामान्य अधिकतम गति सीमा है:", "options": ["60 kmph", "80 kmph", "100 kmph", "120 kmph"], "answer": 1 },
+        { "questionEn": "Who issues the route permit for a commercial vehicle?", "questionHi": "वाणिज्यिक वाहन के लिए रूट परमिट कौन जारी करता है?", "options": ["Traffic Police / यातायात पुलिस", "Regional Transport Authority (RTA) / क्षेत्रीय परिवहन प्राधिकरण (RTA)", "HRTC Management / HRTC प्रबंधन", "District Magistrate / जिलाधिकारी"], "answer": 1 },
+        { "questionEn": "A circular traffic sign with a blue background indicates:", "questionHi": "नीले रंग की पृष्ठभूमि वाला एक गोलाकार यातायात संकेत क्या दर्शाता है?", "options": ["Warning / चेतावनी", "Information / सूचना", "Mandatory instruction / अनिवार्य निर्देश", "Stop sign / रुकने का संकेत"], "answer": 2 },
+        { "questionEn": "Overtaking is strictly prohibited when:", "questionHi": "ओवरटेकिंग सख्त वर्जित है जब:", "options": ["Road is wide / सड़क चौड़ी हो", "The road ahead is not clearly visible / आगे की सड़क स्पष्ट रूप से दिखाई न दे", "Driving in daylight / दिन के उजाले में ड्राइविंग कर रहे हों", "It is raining lightly / हल्की बारिश हो रही हो"], "answer": 1 },
+        { "questionEn": "What should a driver do upon hearing an ambulance siren?", "questionHi": "एम्बुलेंस का सायरन बजने पर ड्राइवर को क्या करना चाहिए?", "options": ["Increase speed / गति बढ़ाएं", "Pull over to the left and make way / बाईं ओर रुकें और रास्ता दें", "Stop immediately in the middle / बीच में तुरंत रुक जाएं", "Blow the horn / हॉर्न बजाएं"], "answer": 1 },
+        { "questionEn": "The rear-view mirror of a motor vehicle is usually a:", "questionHi": "मोटर वाहन का रियर-व्यू मिरर आमतौर पर होता है:", "options": ["Plane mirror / समतल दर्पण", "Concave mirror / अवतल दर्पण", "Convex mirror / उत्तल दर्पण", "Cylindrical mirror / बेलनाकार दर्पण"], "answer": 2 },
+        { "questionEn": "The number plate of a private vehicle has:", "questionHi": "एक निजी वाहन की नंबर प्लेट में होता है:", "options": ["White letters on black background / काली पृष्ठभूमि पर सफेद अक्षर", "Black letters on yellow background / पीली पृष्ठभूमि पर काले अक्षर", "Black letters on white background / सफेद पृष्ठभूमि पर काले अक्षर", "Yellow letters on black background / काली पृष्ठभूमि पर पीले अक्षर"], "answer": 2 },
+        { "questionEn": "The number plate of a commercial vehicle has:", "questionHi": "एक वाणिज्यिक वाहन की नंबर प्लेट में होता है:", "options": ["White letters on black background / काली पृष्ठभूमि पर सफेद अक्षर", "Black letters on yellow background / पीली पृष्ठभूमि पर काले अक्षर", "Black letters on white background / सफेद पृष्ठभूमि पर काले अक्षर", "Yellow letters on black background / काली पृष्ठभूमि पर पीले अक्षर"], "answer": 1 },
+        { "questionEn": "What is the fine for driving without a seat belt as per the amended MV Act?", "questionHi": "संशोधित मोटर वाहन अधिनियम के अनुसार बिना सीट बेल्ट के गाड़ी चलाने पर जुर्माना कितना है?", "options": ["Rs. 100", "Rs. 500", "Rs. 1000", "Rs. 2000"], "answer": 2 },
+        { "questionEn": "What is the primary purpose of a catalytic converter in a vehicle?", "questionHi": "वाहन में उत्प्रेरक कनवर्टर (catalytic converter) का प्राथमिक उद्देश्य क्या है?", "options": ["Increase speed / गति बढ़ाना", "Reduce exhaust emissions / निकास उत्सर्जन को कम करना", "Improve cooling / कूलिंग में सुधार करना", "Reduce noise / शोर कम करना"], "answer": 1 },
+        { "questionEn": "Is Third-party insurance mandatory for all motor vehicles plying on public roads?", "questionHi": "क्या सार्वजनिक सड़कों पर चलने वाले सभी मोटर वाहनों के लिए थर्ड-पार्टी बीमा अनिवार्य है?", "options": ["Yes / हाँ", "No / नहीं", "Only for commercial vehicles / केवल वाणिज्यिक वाहनों के लिए", "Only for new vehicles / केवल नए वाहनों के लिए"], "answer": 0 },
+        { "questionEn": "Carrying more passengers than permitted in a bus is a violation of:", "questionHi": "बस में अनुमति से अधिक यात्रियों को ले जाना किसका उल्लंघन है?", "options": ["Engine capacity / इंजन क्षमता का", "Route condition / मार्ग की स्थिति का", "Permit conditions / परमिट शर्तों का", "Driving license / ड्राइविंग लाइसेंस का"], "answer": 2 },
+        { "questionEn": "'Aquaplaning' refers to:", "questionHi": "'एक्वाप्लानिंग' का अर्थ है:", "options": ["Washing the vehicle / वाहन को धोना", "Tires losing contact with road due to water / पानी के कारण टायरों का सड़क से संपर्क टूटना", "Filling water in radiator / रेडिएटर में पानी भरना", "Driving in rain / बारिश में गाड़ी चलाना"], "answer": 1 }
+      ]
+    },
+    {
+      "name": "First Aid & Disaster Management",
+      "questions": [
+        { "questionEn": "In First Aid, what does 'CPR' stand for?", "questionHi": "प्राथमिक चिकित्सा में, 'CPR' का क्या अर्थ है?", "options": ["Cardiopulmonary Resuscitation", "Critical Patient Recovery", "Cardiac Pulse Ratio", "Central Physical Response"], "answer": 0 },
+        { "questionEn": "In case of a severe bleeding wound, the immediate first aid step is:", "questionHi": "गंभीर रक्तस्राव वाले घाव के मामले में, तत्काल प्राथमिक चिकित्सा कदम है:", "options": ["Give water to drink / पीने के लिए पानी देना", "Apply direct pressure on the wound / घाव पर सीधा दबाव डालना", "Wash with hot water / गर्म पानी से धोना", "Wait for the doctor / डॉक्टर की प्रतीक्षा करना"], "answer": 1 },
+        { "questionEn": "The 'Golden Hour' in accident management refers to:", "questionHi": "दुर्घटना प्रबंधन में 'गोल्डन आवर' (सुनहरा घंटा) का तात्पर्य है:", "options": ["First 60 minutes after the accident / दुर्घटना के बाद के पहले 60 मिनट", "First 12 hours after the accident / दुर्घटना के बाद के पहले 12 घंटे", "Time taken by police to arrive / पुलिस के आने में लगने वाला समय", "The time of discharge from hospital / अस्पताल से छुट्टी का समय"], "answer": 0 },
+        { "questionEn": "What is the first step in treating a minor burn?", "questionHi": "मामूली जलन के इलाज में पहला कदम क्या है?", "options": ["Apply butter or oil / मक्खन या तेल लगाएं", "Pop the blisters / फफोले फोड़ें", "Cool the area with running water / बहते पानी से क्षेत्र को ठंडा करें", "Wrap tightly with bandage / पट्टी से कसकर लपेटें"], "answer": 2 },
+        { "questionEn": "In case of a bus fire, the first action of the conductor should be:", "questionHi": "बस में आग लगने की स्थिति में, कंडक्टर की पहली कार्रवाई क्या होनी चाहिए?", "options": ["Search for luggage / सामान की तलाश करें", "Evacuate the passengers safely / यात्रियों को सुरक्षित रूप से बाहर निकालें", "Call the mechanic / मैकेनिक को बुलाएं", "Try to drive faster / तेज चलाने की कोशिश करें"], "answer": 1 }
+      ]
+    },
+    {
+      "name": "IT Tools, GPS & HRTC Schemes",
+      "questions": [
+        { "questionEn": "What does GPS stand for?", "questionHi": "GPS का पूर्ण रूप क्या है?", "options": ["Global Pointing System", "General Positioning System", "Global Positioning System", "Geo Pointing Standard"], "answer": 2 },
+        { "questionEn": "What is the official website of HRTC?", "questionHi": "HRTC की आधिकारिक वेबसाइट क्या है?", "options": ["www.hrtchp.com", "www.hrtc.gov.in", "www.himachalrtc.in", "www.hrtc.nic.in"], "answer": 0 },
+        { "questionEn": "HRTC 'Samman Card' is specially designed for:", "questionHi": "HRTC 'सम्मान कार्ड' विशेष रूप से किसके लिए बनाया गया है?", "options": ["Students / छात्रों", "Senior Citizens / वरिष्ठ नागरिकों", "Police Personnel / पुलिस कर्मियों", "Teachers / शिक्षकों"], "answer": 1 },
+        { "questionEn": "What does 'E-ticketing' primarily save?", "questionHi": "'ई-टिकटिंग' मुख्य रूप से क्या बचाता है?", "options": ["Paper and Time / कागज और समय", "Fuel / ईंधन", "Vehicle Wear & Tear / वाहन की टूट-फूट", "Toll Tax / टोल टैक्स"], "answer": 0 },
+        { "questionEn": "Which technology is used for real-time tracking of HRTC buses?", "questionHi": "HRTC बसों की रीयल-टाइम ट्रैकिंग के लिए किस तकनीक का उपयोग किया जाता है?", "options": ["Bluetooth / ब्लूटूथ", "GPS / GPS (जीपीएस)", "Wi-Fi / वाई-फाई", "NFC / NFC"], "answer": 1 }
+      ]
+    },
+    {
+      "name": "Mathematics & Logical Reasoning",
+      "questions": [
+        { "questionEn": "The average of first 10 even numbers is:", "questionHi": "प्रथम 10 सम संख्याओं का औसत है:", "options": ["10", "11", "12", "15"], "answer": 1 },
+        { "questionEn": "Simplify: $25 \\div 5 \\times 4 + 10 - 2$", "questionHi": "सरल करें: $25 \\div 5 \\times 4 + 10 - 2$", "options": ["18", "28", "20", "30"], "answer": 1 },
+        { "questionEn": "Find the LCM of 15, 20, and 30:", "questionHi": "15, 20 और 30 का LCM (लघुत्तम समापवर्त्य) ज्ञात कीजिए:", "options": ["30", "60", "90", "120"], "answer": 1 },
+        { "questionEn": "A person bought an item for Rs. 400 and sold it for Rs. 500. Find the profit percentage.", "questionHi": "एक व्यक्ति ने 400 रुपये में एक वस्तु खरीदी और उसे 500 रुपये में बेच दिया। लाभ प्रतिशत ज्ञात कीजिए।", "options": ["20%", "25%", "30%", "40%"], "answer": 1 },
+        { "questionEn": "If the ratio of two numbers is 3:4 and their sum is 70, find the larger number.", "questionHi": "यदि दो संख्याओं का अनुपात 3:4 है और उनका योग 70 है, तो बड़ी संख्या ज्ञात कीजिए।", "options": ["30", "40", "50", "60"], "answer": 1 },
+        { "questionEn": "Convert $0.75$ into a fraction:", "questionHi": "$0.75$ को भिन्न में बदलें:", "options": ["1/4", "1/2", "3/4", "4/5"], "answer": 2 },
+        { "questionEn": "A bus travels at a speed of 60 km/hr. How much distance will it cover in 3.5 hours?", "questionHi": "एक बस 60 किमी/घंटा की गति से यात्रा करती है। 3.5 घंटे में यह कितनी दूरी तय करेगी?", "options": ["180 km", "200 km", "210 km", "240 km"], "answer": 2 },
+        { "questionEn": "Calculate the Simple Interest on Rs. 2000 at the rate of 5% per annum for 3 years.", "questionHi": "2000 रुपये पर 5% प्रति वर्ष की दर से 3 वर्षों के लिए साधारण ब्याज की गणना करें।", "options": ["Rs. 200", "Rs. 300", "Rs. 400", "Rs. 500"], "answer": 1 },
+        { "questionEn": "If A can do a piece of work in 10 days and B can do it in 15 days, how long will they take working together?", "questionHi": "यदि A किसी काम को 10 दिनों में कर सकता है और B उसे 15 दिनों में कर सकता है, तो दोनों मिलकर उसे कितने समय में करेंगे?", "options": ["5 days", "6 days", "8 days", "12 days"], "answer": 1 },
+        { "questionEn": "The area of a rectangle is 120 sq m and its length is 12 m. Find its perimeter.", "questionHi": "एक आयत का क्षेत्रफल 120 वर्ग मीटर है और इसकी लंबाई 12 मीटर है। इसका परिमाप ज्ञात कीजिए।", "options": ["22 m", "44 m", "60 m", "120 m"], "answer": 1 },
+        { "questionEn": "Find the next number in the series: 3, 6, 11, 18, 27, ?", "questionHi": "श्रृंखला में अगली संख्या ज्ञात कीजिए: 3, 6, 11, 18, 27, ?", "options": ["34", "36", "38", "40"], "answer": 2 },
+        { "questionEn": "If 'ROSE' is coded as '6821' and 'CHAIR' is coded as '73456', what will be the code for 'SEARCH'?", "questionHi": "यदि 'ROSE' को '6821' और 'CHAIR' को '73456' के रूप में कोडित किया जाता है, तो 'SEARCH' के लिए कोड क्या होगा?", "options": ["214673", "214763", "214637", "241673"], "answer": 0 },
+        { "questionEn": "Pointing to a photograph, a man said, \"I have no brother or sister but that man's father is my father's son.\" Whose photograph was it?", "questionHi": "एक तस्वीर की ओर इशारा करते हुए, एक व्यक्ति ने कहा, \"मेरा कोई भाई या बहन नहीं है, लेकिन उस आदमी का पिता मेरे पिता का बेटा है।\" वह तस्वीर किसकी थी?", "options": ["His son's / उसके बेटे की", "His own / उसकी अपनी", "His father's / उसके पिता की", "His nephew's / उसके भतीजे की"], "answer": 0 },
+        { "questionEn": "Choose the odd one out:", "questionHi": "विषम चुनें:", "options": ["Tomato / टमाटर", "Potato / आलू", "Carrot / गाजर", "Onion / प्याज"], "answer": 0 },
+        { "questionEn": "A man walks 5 km toward South, then turns right and walks 3 km. He then turns right again and walks 5 km. In which direction is he from the starting point?", "questionHi": "एक आदमी 5 किमी दक्षिण की ओर चलता है, फिर दाएँ मुड़ता है और 3 किमी चलता है। वह फिर दाएँ मुड़ता है और 5 किमी चलता है। वह प्रारंभिक बिंदु से किस दिशा में है?", "options": ["East / पूर्व", "West / पश्चिम", "North / उत्तर", "South / दक्षिण"], "answer": 1 }
+      ]
+    },
+    {
+      "name": "General English",
+      "questions": [
+        { "questionEn": "Fill in the blank with the correct preposition: \"The conductor is responsible ____ the safety of the passengers.\"", "questionHi": "", "options": ["to", "of", "for", "with"], "answer": 2 },
+        { "questionEn": "Choose the correct synonym for 'Diligent':", "questionHi": "", "options": ["Lazy", "Hardworking", "Foolish", "Angry"], "answer": 1 },
+        { "questionEn": "Choose the correct antonym for 'Transparent':", "questionHi": "", "options": ["Clear", "Opaque", "Translucent", "Visible"], "answer": 1 },
+        { "questionEn": "Select the correctly spelt word:", "questionHi": "", "options": ["Accomodation", "Accommodation", "Acommodation", "Acomodation"], "answer": 1 },
+        { "questionEn": "Change the Voice: \"The mechanic repaired the bus.\"", "questionHi": "", "options": ["The bus is repaired by the mechanic.", "The bus has been repaired by the mechanic.", "The bus was repaired by the mechanic.", "The bus will be repaired by the mechanic."], "answer": 2 },
+        { "questionEn": "Fill in the blank with the correct article: \"He is ____ honest man.\"", "questionHi": "", "options": ["a", "an", "the", "no article"], "answer": 1 },
+        { "questionEn": "Identify the meaning of the idiom: \"To hit the nail on the head.\"", "questionHi": "", "options": ["To do something exactly right", "To hit someone with a hammer", "To make a mistake", "To build a house"], "answer": 0 },
+        { "questionEn": "One word substitution: \"A place where buses are kept or repaired.\"", "questionHi": "", "options": ["Hangar", "Depot", "Dockyard", "Mint"], "answer": 1 },
+        { "questionEn": "Spot the error in the sentence: \"Neither the driver nor the conductor were present.\"", "questionHi": "", "options": ["Neither the driver", "nor the conductor", "were present.", "No error"], "answer": 2 },
+        { "questionEn": "Complete the sentence with correct tense: \"By this time tomorrow, I ________ my journey.\"", "questionHi": "", "options": ["will finish", "will have finished", "finish", "have finished"], "answer": 1 }
+      ]
+    },
+    {
+      "name": "General Hindi",
+      "questions": [
+        { "questionEn": "", "questionHi": "'स्वागत' शब्द का सही संधि विच्छेद क्या है?", "options": ["स्व + आगत", "सु + आगत", "स्वा + गत", "स + वागत"], "answer": 1 },
+        { "questionEn": "", "questionHi": "इनमें से 'आकाश' का पर्यायवाची शब्द कौन सा नहीं है?", "options": ["गगन", "नभ", "अम्बर", "पावक"], "answer": 3 },
+        { "questionEn": "", "questionHi": "'उन्नति' का विलोम शब्द है:", "options": ["पतन", "अवनति", "विनाश", "दुर्गति"], "answer": 1 },
+        { "questionEn": "", "questionHi": "'प्रतिदिन' शब्द में कौन सा समास है?", "options": ["अव्ययीभाव", "तत्पुरुष", "द्वंद्व", "बहुव्रीहि"], "answer": 0 },
+        { "questionEn": "", "questionHi": "'आँखों में धूल झोंकना' मुहावरे का अर्थ है:", "options": ["आँखें खराब करना", "धोखा देना", "गुस्सा करना", "मदद करना"], "answer": 1 },
+        { "questionEn": "", "questionHi": "निम्नलिखित में से शुद्ध वर्तनी वाला शब्द चुनें:", "options": ["उज्वल", "उज्जवल", "उज्ज्वल", "उजवल"], "answer": 2 },
+        { "questionEn": "", "questionHi": "'जो सब कुछ जानता हो' वाक्यांश के लिए एक शब्द है:", "options": ["अज्ञ", "कृतज्ञ", "सर्वज्ञ", "विशेषज्ञ"], "answer": 2 },
+        { "questionEn": "", "questionHi": "'सजावट' शब्द में कौन सा प्रत्यय है?", "options": ["वट", "आवट", "ट", "सजा"], "answer": 1 },
+        { "questionEn": "", "questionHi": "'अधिकार' शब्द में प्रयुक्त उपसर्ग है:", "options": ["अ", "अधि", "कार", "अध"], "answer": 1 },
+        { "questionEn": "", "questionHi": "'अग्नि' का तद्भव रूप है:", "options": ["आग", "अनला", "दहन", "ज्वाला"], "answer": 0 }
+      ]
+    }
+  ]
+}

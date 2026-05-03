@@ -1,0 +1,113 @@
+{
+  "testTitle": "HRTC Conductor Official Paper (2014)",
+  "durationMinutes": 90,
+  "negativeMarking": "0",
+  "customInstructions": [
+    "This is the Official Previous Year Paper for HP HRTC Conductor Exam held on October 19, 2014.",
+    "Total Questions: 80, Total Marks: 80, Total Time: 90 Minutes (1:30 Hrs).",
+    "Every correct answer awards +1 Mark.",
+    "There is NO negative marking in this exam.",
+    "Note: Several mathematical and factual errors present in the original 2014 answer key (e.g., Rovers Cup sport, Mathematics ratios) have been auto-corrected in this mock test for accurate practice."
+  ],
+  "sections": [
+    {
+      "name": "Transport & Driving Rules",
+      "questions": [
+        { "questionEn": "What is the meaning of 'SCP' in transport terms?", "questionHi": "एस.सी.पी. (SCP) का अर्थ है:", "options": ["Senior Citizen Person / वरिष्ठ नागरिक व्यक्ति", "Special Category Person / विशेष श्रेणी व्यक्ति", "School Child Passenger / स्कूल का बच्चा यात्री", "State Carriage Permit / स्टेट कैरिज परमिट"], "answer": 1 },
+        { "questionEn": "What does 'LMV' mean under the Motor Vehicles Act 1988?", "questionHi": "एल.एम.वी. (LMV) का मोटर व्हीकल एक्ट 1988 में अर्थ है:", "options": ["Large Motor Vehicle / लार्ज मोटर व्हीकल", "Long Motor Vehicle / लॉन्ग मोटर व्हीकल", "Light Motor Vehicle / लाइट मोटर व्हीकल", "Load Motor Vehicle / लोड मोटर व्हीकल"], "answer": 2 },
+        { "questionEn": "What is the minimum age limit to obtain a regular driving license?", "questionHi": "नियमित ड्राइविंग लाइसेंस प्राप्त करने हेतु निम्नतम आयु सीमा क्या है?", "options": ["16 years / 16 साल", "18 years / 18 साल", "20 years / 20 साल", "21 years / 21 साल"], "answer": 1 },
+        { "questionEn": "What is the educational qualification required to obtain a transport vehicle driving license? (As per 2014 rules)", "questionHi": "ट्रांसपोर्ट व्हीकल ड्राइविंग लाइसेंस प्राप्त करने हेतु शैक्षणिक योग्यता क्या है? (2014 के नियमों के अनुसार)", "options": ["8th Pass / 8वीं पास", "10th Pass / 10वीं पास", "12th Pass / 12वीं पास", "None / कोई नहीं"], "answer": 3 },
+        { "questionEn": "How many colors are there in a standard traffic light?", "questionHi": "ट्रैफिक लाइट्स कितनी होती हैं?", "options": ["2", "3", "4", "5"], "answer": 1 },
+        { "questionEn": "What does 'RC' mean under the Motor Vehicles Act?", "questionHi": "आर.सी. (RC) का मोटर व्हीकल एक्ट में अर्थ है:", "options": ["Road Certificate / रोड सर्टिफिकेट", "Registration Certificate / रजिस्ट्रेशन सर्टीफिकेट", "Route Clearance / रूट क्लीयरेंस", "Renewal Certificate / रिन्यूअल सर्टिफिकेट"], "answer": 1 },
+        { "questionEn": "Who issues the driving license at the sub-divisional level?", "questionHi": "ड्राइविंग लाइसेंस कौन जारी करता है?", "options": ["RTO / आर.टी.ओ.", "SDM / एस.डी.एम.", "DSP / डी.एस.पी.", "DC / डी.सी."], "answer": 1 },
+        { "questionEn": "Which sign/word is used to prohibit parking of any vehicle in a designated area?", "questionHi": "निर्धारित क्षेत्र में किसी भी वाहन को खड़ा करने को निषिद्ध करने के लिए किस चिन्ह/शब्द का प्रयोग किया जाता है?", "options": ["No Stopping / नो स्टॉपिंग", "No Parking / नो पार्किंग", "Speed Limit / गति सीमा", "Give Way / रास्ता दें"], "answer": 1 },
+        { "questionEn": "Which sign/word is used to ensure a continuous flow of traffic?", "questionHi": "यातायात के लगातार प्रवाह के लिए किस चिन्ह/शब्द का प्रयोग किया जाता है?", "options": ["No Parking / नो पार्किंग", "Non-Stopping / नॉन स्टॉपिंग", "One Way / एकतरफा", "Overtaking Prohibited / ओवरटेकिंग वर्जित"], "answer": 1 },
+        { "questionEn": "Which sign indicates that there is a hospital nearby?", "questionHi": "कौन-सा चिन्ह इंगित करता है कि आसपास अस्पताल है?", "options": ["Only a Plus sign / केवल प्लस का चिन्ह", "A Bed and a Plus sign / बिस्तर और प्लस का चिन्ह", "A Red Cross / एक लाल क्रॉस", "An Ambulance sign / एम्बुलेंस का चिन्ह"], "answer": 1 },
+        { "questionEn": "Which sign indicates a First Aid facility nearby?", "questionHi": "कौन-सा चिन्ह इंगित करता है कि आसपास एक प्राथमिक उपचार सुविधा (First Aid) है?", "options": ["Only a Plus sign / केवल प्लस का चिन्ह", "A Bed and a Plus sign / बिस्तर और प्लस का चिन्ह", "A Stretcher / एक स्ट्रेचर", "A Nurse / एक नर्स"], "answer": 0 },
+        { "questionEn": "What does the red light signal indicate?", "questionHi": "लाल बत्ती का संकेत इंगित करता है:", "options": ["Go / जाओ", "Wait / प्रतीक्षा करो", "Stop / रुको", "Slow Down / धीमे चलो"], "answer": 2 },
+        { "questionEn": "Is it mandatory to follow the traffic signs provided in a specific area of the road?", "questionHi": "क्या सड़क के निश्चित क्षेत्र में यातायात के लिए दिए गए चिन्हों का पालन करना अनिवार्य है?", "options": ["Yes / हां", "No / नहीं", "Only during the day / केवल दिन में", "Only for heavy vehicles / केवल भारी वाहनों के लिए"], "answer": 0 },
+        { "questionEn": "What is the designated color for a school bus?", "questionHi": "स्कूल बस के लिए निश्चित रंग है:", "options": ["Red / लाल", "White / सफेद", "Yellow / पीला", "Green / हरा"], "answer": 2 },
+        { "questionEn": "For how many years is a new commercial motor vehicle passed by the MVI?", "questionHi": "एम.वी.आई. द्वारा नया मोटर व्हीकल कितने सालों के लिए पास किया जाता है?", "options": ["1 year / 1 साल", "2 years / 2 साल", "5 years / 5 साल", "15 years / 15 साल"], "answer": 1 },
+        { "questionEn": "What is the validity period of the registration certificate (RC) for a private vehicle?", "questionHi": "निजी वाहन के पंजीकरण प्रपत्र की वैधता अवधि कितनी होती है?", "options": ["5 years / 5 साल", "10 years / 10 साल", "15 years / 15 साल", "20 years / 20 साल"], "answer": 2 },
+        { "questionEn": "What does 'SRT' mean in Himachal Pradesh?", "questionHi": "हिमाचल प्रदेश में एस.आर.टी. (SRT) का अर्थ है:", "options": ["State Road Transport / स्टेट रोड ट्रांसपोर्ट", "Special Road Tax / स्पेशल रोड टैक्स", "Standard Route Ticket / स्टैण्डर्ड रूट टिकट", "State Revenue Tax / स्टेट रेवेन्यू टैक्स"], "answer": 1 },
+        { "questionEn": "Which authority issues the stage carriage permit in Himachal Pradesh?", "questionHi": "हिमाचल प्रदेश में कौन-सा प्राधिकरण स्टेज कैरिज परमिट जारी करता है?", "options": ["State Transport Authority / स्टेट ट्रांसपोर्ट अथॉरिटी", "Regional Transport Authority (RTA) / रीजनल ट्रांसपोर्ट अथोरिटी", "District Magistrate / जिला मजिस्ट्रेट", "Traffic Police / ट्रैफिक पुलिस"], "answer": 1 },
+        { "questionEn": "What is a Zebra Crossing meant for?", "questionHi": "जेब्रा क्रॉसिंग होती है:", "options": ["For parking / पार्किंग के लिए", "For VIP vehicles / वीआईपी वाहनों के लिए", "For pedestrians / पदयात्रियों के लिए", "For emergency vehicles / आपातकालीन वाहनों के लिए"], "answer": 2 },
+        { "questionEn": "Which colored light is used during fog?", "questionHi": "धुंध (Fog) में किस लाइट का प्रयोग किया जाता है?", "options": ["Red / लाल", "White / सफेद", "Yellow / पीली", "Blue / नीली"], "answer": 2 }
+      ]
+    },
+    {
+      "name": "General Knowledge & Science",
+      "questions": [
+        { "questionEn": "Where is the Sindhu Darshan Festival celebrated?", "questionHi": "सिन्धु दर्शन उत्सव कहाँ मनाया जाता है?", "options": ["Kashmir / कश्मीर में", "Leh / लेह में", "Shimla / शिमला में", "Manali / मनाली में"], "answer": 1 },
+        { "questionEn": "What does a 'White Flag' symbolize?", "questionHi": "'सफेद झण्डा' किसका सूचक है?", "options": ["Danger / खतरे का", "Peace/Ceasefire / युद्धविराम/शांति का", "Victory / जीत का", "Protest / विरोध का"], "answer": 1 },
+        { "questionEn": "Where is the Pashupatinath Temple located?", "questionHi": "पशुपतिनाथ मन्दिर कहां पर है?", "options": ["India / भारत में", "Sri Lanka / श्रीलंका में", "Nepal / नेपाल में", "Bhutan / भूटान में"], "answer": 2 },
+        { "questionEn": "Who is the author of 'Anandamath'?", "questionHi": "आनन्दमठ के लेखक कौन हैं?", "options": ["Rabindranath Tagore / रवींद्रनाथ टैगोर", "Bankim Chandra Chatterjee / बंकिम चन्द्र चटर्जी", "Sarat Chandra Chattopadhyay / शरत चंद्र चट्टोपाध्याय", "Munshi Premchand / मुंशी प्रेमचंद"], "answer": 1 },
+        { "questionEn": "What is the retirement age for the judges of the Supreme Court of India?", "questionHi": "भारत के सर्वोच्च न्यायालय के न्यायाधीशों का कार्यकाल कितने वर्ष की आयु तक रहता है?", "options": ["60", "62", "65", "70"], "answer": 2 },
+        { "questionEn": "Who popularized the song 'Raghupati Raghav Raja Ram'?", "questionHi": "रघुपति राघव राजा राम गीत की रचना/प्रचलन किसने की?", "options": ["Swami Vivekananda / स्वामी विवेकानंद ने", "Mahatma Gandhi / महात्मा गांधी ने", "Rabindranath Tagore / रवींद्रनाथ टैगोर ने", "Jawaharlal Nehru / जवाहरलाल नेहरू ने"], "answer": 1 },
+        { "questionEn": "Where is the headquarters of the International Labour Organization (ILO) located?", "questionHi": "अन्तर्राष्ट्रीय श्रम संगठन (ILO) का मुख्यालय कहाँ स्थित है?", "options": ["New York / न्यूयॉर्क में", "Paris / पेरिस में", "Geneva / जेनेवा में", "London / लंदन में"], "answer": 2 },
+        { "questionEn": "What is the name of the Unique Identification Project of India?", "questionHi": "भारत की विशिष्ट पहचान परियोजना का नाम क्या है?", "options": ["Pehchan / पहचान", "Aadhar / आधार", "Voter ID / वोटर आईडी", "PAN / पैन"], "answer": 1 },
+        { "questionEn": "What is 'Deep Blue'?", "questionHi": "डीप ब्लू किसे कहते हैं?", "options": ["A submarine / एक पनडुब्बी", "A supercomputer / एक सुपर कम्प्यूटर", "An ocean / एक महासागर", "A satellite / एक उपग्रह"], "answer": 1 },
+        { "questionEn": "An ECG is used to detect disorders of which organ?", "questionHi": "ई.सी.जी. (ECG) के द्वारा किस अंग के विकार के बारे में पता चलता है?", "options": ["Brain / मस्तिष्क", "Liver / यकृत", "Heart / हृदय", "Lungs / फेफड़े"], "answer": 2 },
+        { "questionEn": "The 'Widal Test' is used to detect:", "questionHi": "'विडाल परीक्षण' किसका पता लगाता है?", "options": ["Malaria / मलेरिया का", "Typhoid / टायफॉयड का", "Dengue / डेंगू का", "Tuberculosis / टीबी का"], "answer": 1 },
+        { "questionEn": "The 'Davis Cup' is associated with which sport?", "questionHi": "डेविस कप किस खेल से सम्बन्धित है?", "options": ["Cricket / क्रिकेट से", "Lawn Tennis / लॉन टेनिस से", "Football / फुटबॉल से", "Golf / गोल्फ से"], "answer": 1 },
+        { "questionEn": "What is known as 'White Coal'?", "questionHi": "किसे 'सफेद कोयला' नाम से जाना जाता है?", "options": ["Hydroelectricity / जलविद्युत", "Uranium / यूरेनियम", "Ice / बर्फ", "Diamond / हीरा"], "answer": 0 },
+        { "questionEn": "When is the Kharif crop sown?", "questionHi": "खरीफ की फसल कब बोई जाती है?", "options": ["October-November / अक्टूबर-नवंबर में", "January-February / जनवरी-फरवरी में", "June-July / जून-जुलाई में", "March-April / मार्च-अप्रैल में"], "answer": 2 },
+        { "questionEn": "In which year did the Second World War start?", "questionHi": "द्वितीय विश्व युद्ध किस वर्ष प्रारम्भ हुआ?", "options": ["1914", "1918", "1939", "1945"], "answer": 2 },
+        { "questionEn": "In which year was the Battle of Buxar fought?", "questionHi": "बक्सर का युद्ध किस वर्ष हुआ?", "options": ["1757", "1761", "1764", "1857"], "answer": 2 },
+        { "questionEn": "What is the full form of BSNL?", "questionHi": "बी.एस.एन.एल. (BSNL) का पूर्णरुप क्या है?", "options": ["Bharat Sanchar Nigam Limited / भारत संचार निगम लिमिटेड", "Bharat State Network Limited / भारत स्टेट नेटवर्क लिमिटेड", "Broadband Sanchar Nigam Limited / ब्रॉडबैंड संचार निगम लिमिटेड", "Bharat Satellite Network Limited / भारत सैटेलाइट नेटवर्क लिमिटेड"], "answer": 0 },
+        { "questionEn": "What is Insulin?", "questionHi": "इंसुलिन क्या है?", "options": ["An enzyme / एक एंजाइम", "A pancreatic hormone / एक अग्नाशयी हॉर्मोन", "A vitamin / एक विटामिन", "A protein / एक प्रोटीन"], "answer": 1 },
+        { "questionEn": "Who did the people of the Indus Valley Civilization worship?", "questionHi": "सिंधु घाटी सभ्यता के लोग किसकी पूजा करते थे?", "options": ["Indra / इंद्र की", "Pashupati / पशुपति की", "Vishnu / विष्णु की", "Brahma / ब्रह्मा की"], "answer": 1 },
+        { "questionEn": "What is 'Table Sugar' scientifically known as?", "questionHi": "टेबल शर्करा (Table Sugar) को वैज्ञानिक रूप से क्या कहा जाता है?", "options": ["Glucose / ग्लूकोज", "Fructose / फ्रुक्टोज", "Sucrose / सुक्रोज", "Maltose / माल्टोज"], "answer": 2 },
+        { "questionEn": "Why is it not advised to sleep under a tree at night?", "questionHi": "रात्रि के समय किसी वृक्ष के नीचे सोने की सलाह नहीं दी जाती, क्योंकि वृक्ष क्या छोड़ते हैं?", "options": ["Oxygen / ऑक्सीजन", "Carbon Dioxide / कार्बन डाइऑक्साइड", "Carbon Monoxide / कार्बन मोनोऑक्साइड", "Nitrogen / नाइट्रोजन"], "answer": 1 },
+        { "questionEn": "What is the main component of Gobar gas (Biogas)?", "questionHi": "गोबर गैस में प्रमुखतः क्या होती है?", "options": ["Ethane / ईथेन", "Methane / मीथेन", "Propane / प्रोपेन", "Butane / ब्यूटेन"], "answer": 1 },
+        { "questionEn": "How is food energy measured?", "questionHi": "खाद्य ऊर्जा किसमें मापी जाती है?", "options": ["Joules / जूल में", "Watts / वाट में", "Calories / कैलोरी में", "Ergs / एर्ग में"], "answer": 2 },
+        { "questionEn": "The Moon is a satellite of which planet?", "questionHi": "चन्द्रमा किस ग्रह का उपग्रह है?", "options": ["Mars / मंगल का", "Earth / पृथ्वी का", "Jupiter / बृहस्पति का", "Venus / शुक्र का"], "answer": 1 },
+        { "questionEn": "The term 'Yorker' is used in which sport?", "questionHi": "यॉर्कर पद का प्रयोग किस खेल में होता है?", "options": ["Hockey / हॉकी में", "Tennis / टेनिस में", "Cricket / क्रिकेट में", "Golf / गोल्फ में"], "answer": 2 },
+        { "questionEn": "Rovers Cup is associated with which sport?", "questionHi": "रोवर्स कप किस खेल से सम्बन्धित है?", "options": ["Tennis / टेनिस", "Football / फुटबॉल", "Cricket / क्रिकेट", "Hockey / हॉकी"], "answer": 1 },
+        { "questionEn": "When did the Right to Information (RTI) Act come into force in India?", "questionHi": "भारत में सूचना का अधिकार (RTI) अधिनियम कब लागू हुआ?", "options": ["2001", "2005", "2008", "2010"], "answer": 1 },
+        { "questionEn": "Who is known as the father of the Indian Constitution?", "questionHi": "किसे भारतीय संविधान का जनक कहा जाता है?", "options": ["Mahatma Gandhi / महात्मा गांधी", "Jawaharlal Nehru / जवाहरलाल नेहरू", "B. R. Ambedkar / बी.आर. अम्बेडकर", "Sardar Patel / सरदार पटेल"], "answer": 2 },
+        { "questionEn": "What does the term 'Fourth Estate' refer to?", "questionHi": "चौथा स्तंभ पद का अर्थ क्या है?", "options": ["Judiciary / न्यायपालिका", "Executive / कार्यपालिका", "Legislature / विधायिका", "Press/Media / प्रेस"], "answer": 3 },
+        { "questionEn": "The President constitutes a Finance Commission every:", "questionHi": "राष्ट्रपति द्वारा एक वित्त आयोग का गठन कितने समय में किया जाता है?", "options": ["2 years / 2 साल में", "4 years / 4 साल में", "5 years / 5 साल में", "10 years / 10 साल में"], "answer": 2 },
+        { "questionEn": "Who administers the oath of office to the Governor of a state?", "questionHi": "किसी राज्य का राज्यपाल अपने पद की शपथ किसके द्वारा लेता है?", "options": ["President / राष्ट्रपति द्वारा", "Chief Justice of India / भारत के मुख्य न्यायाधीश द्वारा", "Chief Justice of the State High Court / राज्य उच्च न्यायालय के मुख्य न्यायाधीश द्वारा", "Chief Minister / मुख्यमंत्री द्वारा"], "answer": 2 },
+        { "questionEn": "What is the maximum age limit for the election of the President of India?", "questionHi": "राष्ट्रपति पद के चुनाव के लिए अधिकतम आयु क्या है?", "options": ["65 years / 65 वर्ष", "70 years / 70 वर्ष", "75 years / 75 वर्ष", "No limit / कोई सीमा नहीं"], "answer": 3 },
+        { "questionEn": "In which district is the Baba Vadbhag Singh fair organized?", "questionHi": "बाबा बड़भाग सिंह का मेला किस जिले में आयोजित होता है?", "options": ["Kangra / कांगड़ा", "Una / ऊना", "Hamirpur / हमीरपुर", "Mandi / मंडी"], "answer": 1 },
+        { "questionEn": "Which is the highest mountain peak located in Himachal Pradesh?", "questionHi": "हिमाचल प्रदेश में स्थित सबसे ऊँची चोटी कौन सी है?", "options": ["Reo Purgyil / रियो पुर्जिल", "Shilla / शिला", "Manimahesh / मणिमहेश", "Kinnaur Kailash / किन्नौर कैलाश"], "answer": 1 },
+        { "questionEn": "Where are the salt mines located in Himachal Pradesh?", "questionHi": "हिमाचल प्रदेश में नमक की खदानें कहाँ स्थित हैं?", "options": ["Gumma and Darang / गुम्मा व दरंग में", "Jogindernagar / जोगिंदरनगर में", "Karsog / करसोग में", "Sundernagar / सुंदरनगर में"], "answer": 0 },
+        { "questionEn": "Which pass separates Lahaul from Spiti?", "questionHi": "कौन-सा दर्रा लाहौल को स्पीति से पृथक करता है?", "options": ["Rohtang Pass / रोहतांग दर्रा", "Kunzum Pass / कुंजुम दर्रा", "Baralacha La / बारालाचा ला", "Pin Parbati Pass / पिन पार्वती दर्रा"], "answer": 1 },
+        { "questionEn": "What is the chemical formula of Ozone gas?", "questionHi": "ओजोन गैस का सूत्र क्या है?", "options": ["O2", "O3", "O4", "CO2"], "answer": 1 },
+        { "questionEn": "What is the maximum duration of Zero Hour in the Lok Sabha?", "questionHi": "लोकसभा में शून्य काल की अधिकतम अवधि क्या हो सकती है?", "options": ["30 minutes / 30 मिनट", "1 hour / 1 घंटा", "2 hours / 2 घंटे", "Unlimited / असीमित"], "answer": 0 },
+        { "questionEn": "Where is the National Defence Academy (NDA) located?", "questionHi": "राष्ट्रीय सुरक्षा अकादमी कहाँ स्थित है?", "options": ["Dehradun / देहरादून", "Khadakwasla / खड़गवासला", "Pune / पुणे", "New Delhi / नई दिल्ली"], "answer": 1 },
+        { "questionEn": "When was the Shimla Municipal Corporation established?", "questionHi": "नगर निगम शिमला की स्थापना कब हुई थी?", "options": ["1851", "1882", "1905", "1952"], "answer": 0 },
+        { "questionEn": "With which field is the name 'Fattu' associated?", "questionHi": "'फट्टू' नाम किससे सम्बन्धित है?", "options": ["Music / संगीत", "Painting / चित्रकला", "Sculpture / मूर्तिकला", "Literature / साहित्य"], "answer": 1 },
+        { "questionEn": "Who is known as the 'Pahari Gandhi'?", "questionHi": "पहाड़ी गांधी के नाम से कौन जाना जाता है?", "options": ["Shiva Nand Ramaul / शिव नंद रमौल", "Baba Kanshi Ram / बाबा कांशी राम", "Dr. Y.S. Parmar / डॉ. वाई.एस. परमार", "Padam Dev / पदम देव"], "answer": 1 },
+        { "questionEn": "Where is the Himachal Pradesh Police Training Center located?", "questionHi": "हिमाचल प्रदेश पुलिस ट्रेनिंग सेन्टर कहां पर है?", "options": ["Shimla / शिमला", "Daroh / डरोह", "Junga / जुन्गा", "Dharamshala / धर्मशाला"], "answer": 1 },
+        { "questionEn": "When did the Dhami Firing Tragedy take place?", "questionHi": "धामी गोली कांड ट्रेजडी कब हुई?", "options": ["1939", "1942", "1945", "1947"], "answer": 0 },
+        { "questionEn": "Where is the Sheep Breeding Farm located in Hamirpur?", "questionHi": "भेंड़ प्रजनन फार्म कहाँ स्थित है?", "options": ["Taal / ताल", "Sarol / सरोल", "Jeori / ज्यूरी", "Karcham / करछम"], "answer": 0 },
+        { "questionEn": "When was VAT implemented in India?", "questionHi": "भारत में वैट (VAT) कब लागू हुआ?", "options": ["1 April 2004", "1 April 2005", "1 April 2006", "1 April 2007"], "answer": 1 },
+        { "questionEn": "Where is the Bhimakali Temple located?", "questionHi": "भीमाकाली मन्दिर कहां स्थित है?", "options": ["Mandi / मंडी", "Sarahan / सराहन", "Kullu / कुल्लू", "Chamba / चंबा"], "answer": 1 },
+        { "questionEn": "Shipki Pass is located in which district?", "questionHi": "शिप्की दर्रा किस जिले में है?", "options": ["Kinnaur / किन्नौर", "Lahaul & Spiti / लाहौल-स्पीति", "Chamba / चंबा", "Kullu / कुल्लू"], "answer": 0 },
+        { "questionEn": "Where is Pashmina wool obtained from?", "questionHi": "पश्मीना ऊन किससे मिलती है?", "options": ["Sheep / भेड़ से", "Kashmiri Goat / कश्मीरी बकरी से", "Rabbit / खरगोश से", "Yak / याक से"], "answer": 1 }
+      ]
+    },
+    {
+      "name": "General Hindi",
+      "questions": [
+        { "questionEn": "Among Vaibhav, Jalaj, Pankaj, and Malayaj, which one is a 'Roodh' (root) word?", "questionHi": "वैभव, जलज, पंकज, मलयज में से 'रूढ़' शब्द कौन-सा है?", "options": ["Vaibhav / वैभव", "Jalaj / जलज", "Pankaj / पंकज", "Malayaj / मलयज"], "answer": 0 },
+        { "questionEn": "What type of noun is 'Paani' (Water)?", "questionHi": "'पानी' कौन-सी संज्ञा है?", "options": ["Proper Noun / व्यक्तिवाचक", "Material Noun / द्रव्यवाचक", "Abstract Noun / भाववाचक", "Collective Noun / समूहवाचक"], "answer": 1 },
+        { "questionEn": "What is the antonym of the word 'Dev'?", "questionHi": "'देव' का विलोम शब्द है:", "options": ["Manav / मानव", "Danav / दानव", "Asur / असुर", "Rakshas / राक्षस"], "answer": 1 },
+        { "questionEn": "What is the meaning of the idiom: 'Aaya kutta kha gaya, tu baithi dhol baja'?", "questionHi": "मुहावरे का अर्थ है: 'आया कुत्ता खा गया तू बैठी ढोल बजा'?", "options": ["To play the drum / ढोल बजाना", "Losing everything right before your eyes / देखते ही देखते सब कुछ लुट जाने की स्थिति", "A dog eating food / कुत्ते का खाना खाना", "Being careless / लापरवाह होना"], "answer": 1 },
+        { "questionEn": "What is the synonym of the word 'Undur'?", "questionHi": "'उंदुर' शब्द का पर्यायवाची है:", "options": ["Mouse/Rat / चूहा", "Cat / बिल्ली", "Dog / कुत्ता", "Snake / सांप"], "answer": 0 }
+      ]
+    },
+    {
+      "name": "Mathematics",
+      "questions": [
+        { "questionEn": "Find the LCM of 25, 30, 35, and 40.", "questionHi": "25, 30, 35 व 40 का ल.स.व. (LCM) ज्ञात कीजिए।", "options": ["3600", "4200", "4800", "5400"], "answer": 1 },
+        { "questionEn": "Evaluate: -95 ÷ 19 = ?", "questionHi": "हल करें: $-95 \\div 19 = ?$", "options": ["-5", "5", "-4", "4"], "answer": 0 },
+        { "questionEn": "If 20% of x = 40% of y, then find x : y.", "questionHi": "यदि $20\\% x = 40\\% y$, तो $x : y$ ज्ञात कीजिए।", "options": ["1:2", "2:1", "1:4", "4:1"], "answer": 1 },
+        { "questionEn": "If 2A = 3B = 4C, then A : B : C is equal to:", "questionHi": "यदि $2A = 3B = 4C$ तो $A : B : C$ किसके बराबर है?", "options": ["2:3:4", "4:3:2", "6:4:3", "3:4:6"], "answer": 2 },
+        { "questionEn": "Solve: 10 + 8 ÷ 2 - 4 = ?", "questionHi": "हल कीजिए: $10 + 8 \\div 2 - 4 = ?$", "options": ["6", "8", "10", "12"], "answer": 2 }
+      ]
+    }
+  ]
+}
