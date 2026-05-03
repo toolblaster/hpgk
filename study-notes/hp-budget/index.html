@@ -98,7 +98,7 @@
         :root {
             --site-width: 1100px;
             
-            --primary: #2563eb;       
+            --primary: #2563eb;        
             --primary-hover: #1d4ed8; 
             --primary-light: rgba(37, 99, 235, 0.1); 
             --primary-dark: #1e3a8a;  
@@ -119,7 +119,7 @@
         }
 
         [data-theme="dark"] {
-            --primary: #60a5fa;       
+            --primary: #60a5fa;        
             --primary-hover: #93c5fd; 
             --primary-light: rgba(96, 165, 250, 0.15); 
             --primary-dark: #bfdbfe;  
@@ -147,33 +147,41 @@
         
         main { 
             flex: 1; 
+            width: 100%; 
+            padding: 15px 0 !important; 
+            box-sizing: border-box; 
+        }
+
+        .main-layout, .top-meta-bar { 
+            width: 100%; 
             max-width: var(--site-width); 
             margin: 0 auto; 
-            padding: 20px 0; /* 0px horizontal padding to ensure exact 1100px content width */
-            width: 100%; 
+            padding: 0 15px; 
             box-sizing: border-box;
+            display: block !important; 
         }
-        
-        @media (max-width: 1130px) {
-            main { padding: 20px 15px !important; }
-        }
-        
-        .main-layout { 
-            display: block; 
-            width: 100%; max-width: var(--site-width); margin: 0 auto; 
-            padding: 0 15px; box-sizing: border-box;
-        } 
 
-        .top-meta-bar { 
-            display: flex; justify-content: space-between; align-items: center; 
-            width: 100%; max-width: var(--site-width); margin: 0 auto 15px auto; 
-            padding: 0 15px; flex-wrap: nowrap; gap: 10px; box-sizing: border-box;
+        .section-separator { 
+            height: 1px; 
+            background: linear-gradient(90deg, transparent, var(--card-border), transparent); 
+            margin: 25px auto; 
+            width: 100%; 
+            max-width: var(--site-width); 
         }
 
         @media (max-width: 480px) {
-            .top-meta-bar, .main-layout {
+            .main-layout, .top-meta-bar {
                 padding: 0 12px !important;
             }
+        }
+
+        .top-meta-bar { 
+            display: flex !important; /* Let this one be a flex container for the breadcrumb */
+            justify-content: space-between; 
+            align-items: center; 
+            margin-bottom: 15px; 
+            flex-wrap: nowrap; 
+            gap: 10px; 
         }
 
         /* ==========================================================================
@@ -437,7 +445,6 @@
             /* FIXED: Ensure mobile font size is strictly 25px */
             .hero-title { font-size: 25px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
             
-            main { padding: 15px 12px !important; }
             .top-meta-bar { flex-wrap: nowrap; justify-content: space-between; }
             .breadcrumb-nav, .hero-badge { height: 26px; }
             .breadcrumb-list { padding: 0 10px; border-radius: 13px; }
@@ -481,7 +488,7 @@
                 <li class="breadcrumb-item active" aria-current="page">Budget 2026-27</li>
             </ol>
         </nav>
-        <span class="hero-badge">Latest Update</span>
+        <span class="hero-badge">HP Budget</span>
     </div>
 
     <div class="main-layout">
@@ -637,7 +644,7 @@
                         </li>
                         <li>
                             <span class="detail-en">Sukh Ashray Yojana: State bears full education, housing, and marriage costs for orphans (Children of the State).</span>
-                            <span class="detail-hi">सुख आश्रय योजना: राज्य अनाथों (राज्य के बच्चों) के लिए शिक्षा, आवास और विवाह का पूरा खर्च वहन करेगा।</span>
+                            <span class="detail-hi">सुख Ashray योजना: राज्य अनाथों (राज्य के बच्चों) के लिए शिक्षा, आवास और विवाह का पूरा खर्च वहन करेगा।</span>
                         </li>
                         <li>
                             <span class="detail-en">Old Age Pension: Age limit remains reduced to 60 years irrespective of income for specific groups.</span>
@@ -828,6 +835,94 @@
                         <li>
                             <span class="detail-en">IT Park: Development of a new IT Park near Shimla/Solan to attract software companies and generate jobs.</span>
                             <span class="detail-hi">आईटी पार्क: सॉफ्टवेयर कंपनियों को आकर्षित करने और रोजगार पैदा करने के लिए शिमला/सोलन के पास एक नया आईटी पार्क।</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Card 13: Disaster Relief -->
+                <div class="scheme-card">
+                    <div class="scheme-header">
+                        <div class="scheme-title"><i class="fa-solid fa-house-crack"></i> Disaster Relief</div>
+                        <div class="scheme-subtitle">Relief & Rehabilitation<br><span style="font-family: 'Noto Sans Devanagari', sans-serif; font-weight: 400;">आपदा प्रबंधन</span></div>
+                    </div>
+                    <ul class="scheme-details">
+                        <li>
+                            <span class="detail-en">Special Package: Historic increase in the state disaster relief manual package for monsoon damages.</span>
+                            <span class="detail-hi">विशेष पैकेज: मानसून के नुकसान के लिए राज्य आपदा राहत मैनुअल में ऐतिहासिक वृद्धि।</span>
+                        </li>
+                        <li>
+                            <span class="detail-en">House Compensation: Increased financial aid for completely or partially damaged houses.</span>
+                            <span class="detail-hi">आवास मुआवजा: पूरी तरह या आंशिक रूप से क्षतिग्रस्त घरों के लिए वित्तीय सहायता में वृद्धि।</span>
+                        </li>
+                        <li>
+                            <span class="detail-en">Agricultural Land Relief: Enhanced compensation per bigha for agricultural land washed away (Diluvion).</span>
+                            <span class="detail-hi">कृषि भूमि राहत: बह गई कृषि भूमि (डिलुवियन) के लिए प्रति बीघा बढ़ा हुआ मुआवजा।</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Card 14: Dairy Infrastructure -->
+                <div class="scheme-card">
+                    <div class="scheme-header">
+                        <div class="scheme-title"><i class="fa-solid fa-cow"></i> Dairy Infrastructure</div>
+                        <div class="scheme-subtitle">Animal Husbandry<br><span style="font-family: 'Noto Sans Devanagari', sans-serif; font-weight: 400;">डेयरी इंफ्रास्ट्रक्चर</span></div>
+                    </div>
+                    <ul class="scheme-details">
+                        <li>
+                            <span class="detail-en">Dhagwar Milk Plant: Establishment of a fully automated, state-of-the-art milk processing plant in Kangra.</span>
+                            <span class="detail-hi">ढगवार मिल्क प्लांट: कांगड़ा में पूरी तरह से स्वचालित दूध प्रसंस्करण संयंत्र की स्थापना।</span>
+                        </li>
+                        <li>
+                            <span class="detail-en">Bulk Milk Coolers (BMCs): Setting up chilling centers at the village/block level to prevent milk spoilage.</span>
+                            <span class="detail-hi">थोक दूध कूलर (BMCs): दूध खराब होने से रोकने के लिए ग्राम/ब्लॉक स्तर पर चिलिंग सेंटर की स्थापना।</span>
+                        </li>
+                        <li>
+                            <span class="detail-en">Breed Improvement: Special focus on improving the genetic quality of indigenous cattle for higher yield.</span>
+                            <span class="detail-hi">नस्ल सुधार: अधिक उपज के लिए स्वदेशी मवेशियों की आनुवंशिक गुणवत्ता में सुधार पर विशेष ध्यान।</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Card 15: Apple & Horticulture -->
+                <div class="scheme-card">
+                    <div class="scheme-header">
+                        <div class="scheme-title"><i class="fa-solid fa-apple-whole"></i> Apple & Horticulture</div>
+                        <div class="scheme-subtitle">Universal Cartons & Storage<br><span style="font-family: 'Noto Sans Devanagari', sans-serif; font-weight: 400;">बागवानी</span></div>
+                    </div>
+                    <ul class="scheme-details">
+                        <li>
+                            <span class="detail-en">Universal Cartons: Strict implementation of universal carton packaging to ensure fair prices for apple growers.</span>
+                            <span class="detail-hi">यूनिवर्सल कार्टन: सेब उत्पादकों को उचित मूल्य सुनिश्चित करने के लिए यूनिवर्सल कार्टन पैकेजिंग का सख्त कार्यान्वयन।</span>
+                        </li>
+                        <li>
+                            <span class="detail-en">CA Stores: Increased subsidies for setting up Controlled Atmosphere (CA) stores by local orchardists.</span>
+                            <span class="detail-hi">सीए स्टोर (CA Stores): स्थानीय बागवानों द्वारा नियंत्रित वायुमंडल (CA) स्टोर स्थापित करने के लिए बढ़ी हुई सब्सिडी।</span>
+                        </li>
+                        <li>
+                            <span class="detail-en">Market Intervention Scheme (MIS): Enhancement in the procurement prices of cull apples and citrus fruits.</span>
+                            <span class="detail-hi">बाजार हस्तक्षेप योजना (MIS): कल (cull) सेब और खट्टे फलों के खरीद मूल्यों में वृद्धि।</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Card 16: Local Governance -->
+                <div class="scheme-card">
+                    <div class="scheme-header">
+                        <div class="scheme-title"><i class="fa-solid fa-building-user"></i> PRI Honorarium</div>
+                        <div class="scheme-subtitle">Panchayati Raj Support<br><span style="font-family: 'Noto Sans Devanagari', sans-serif; font-weight: 400;">स्थानीय स्वशासन</span></div>
+                    </div>
+                    <ul class="scheme-details">
+                        <li>
+                            <span class="detail-en">Honorarium Hike: Significant increase in the monthly honorarium of Zila Parishad, BDC, and Panchayat members.</span>
+                            <span class="detail-hi">मानदेय वृद्धि: जिला परिषद, बीडीसी और पंचायत सदस्यों के मासिक मानदेय में उल्लेखनीय वृद्धि।</span>
+                        </li>
+                        <li>
+                            <span class="detail-en">Urban Local Bodies: Enhanced remuneration for Mayors, Deputy Mayors, and Councilors of Municipal Corporations.</span>
+                            <span class="detail-hi">शहरी स्थानीय निकाय: नगर निगमों के मेयर, डिप्टी मेयर और पार्षदों के लिए बढ़ा हुआ पारिश्रमिक।</span>
+                        </li>
+                        <li>
+                            <span class="detail-en">Empowerment: Greater financial autonomy to PRIs for executing local developmental and infrastructure projects.</span>
+                            <span class="detail-hi">सशक्तिकरण: स्थानीय विकास परियोजनाओं को क्रियान्वित करने के लिए PRI को अधिक वित्तीय स्वायत्तता।</span>
                         </li>
                     </ul>
                 </div>
