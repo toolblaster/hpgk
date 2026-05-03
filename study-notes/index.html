@@ -89,7 +89,7 @@
         :root {
             --site-width: 1100px;
             
-            --primary: #2563eb;       
+            --primary: #2563eb;        
             --primary-hover: #1d4ed8; 
             --primary-light: rgba(37, 99, 235, 0.1); 
             --primary-dark: #1e3a8a;  
@@ -110,7 +110,7 @@
         }
 
         [data-theme="dark"] {
-            --primary: #60a5fa;       
+            --primary: #60a5fa;        
             --primary-hover: #93c5fd; 
             --primary-light: rgba(96, 165, 250, 0.15); 
             --primary-dark: #bfdbfe;  
@@ -232,12 +232,32 @@
             margin-top: 4px;
         }
 
-        /* 4 Columns Note Grid */
+        /* Section Titles for Hubs */
+        .hub-section-title {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin: 25px 0 15px 0;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .hub-section-title::before {
+            content: '';
+            display: block;
+            width: 5px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 4px;
+        }
+
+        /* Grid System */
         .notes-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr); /* UPDATED: Base is now 2 columns for mobile */
+            grid-template-columns: repeat(2, 1fr); 
             gap: 12px;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             width: 100%;
         }
 
@@ -286,6 +306,63 @@
             border-color: var(--primary);
             box-shadow: 0 8px 20px rgba(37, 99, 235, 0.12);
         }
+
+        /* =========================================================
+           CORE TEAL THEME (For Top 4 Cards - Replaces Gradient)
+           ========================================================= */
+        .core-teal-theme.active {
+            background: #f0fdfa !important; /* Soft, clean teal color instead of gradient */
+            border-color: #99f6e4 !important;
+        }
+        .core-teal-theme.active:hover {
+            border-color: #0d9488 !important;
+            box-shadow: 0 8px 20px rgba(13, 148, 136, 0.12) !important;
+        }
+        .core-teal-theme .note-icon {
+            color: #0f766e !important;
+            background: #ccfbf1 !important;
+        }
+        .core-teal-theme.active .note-status {
+            background: #0d9488 !important;
+            color: #ffffff !important;
+        }
+        /* Dark Mode Variant for Top 4 */
+        [data-theme="dark"] .core-teal-theme.active {
+            background: #0f3d39 !important;
+            border-color: #115e59 !important;
+        }
+        [data-theme="dark"] .core-teal-theme.active:hover {
+            border-color: #14b8a6 !important;
+        }
+
+
+        /* =========================================================
+           VIBRANT TEAL CARD (For One Liners - Restored to Light)
+           ========================================================= */
+        .vibrant-teal-card {
+            background: #e6fffa !important; /* Light vibrant solid teal */
+            border: 1px solid #14b8a6 !important; 
+        }
+        .vibrant-teal-card:hover {
+            box-shadow: 0 8px 20px rgba(20, 184, 166, 0.25) !important;
+            border-color: #0d9488 !important;
+        }
+        .vibrant-teal-card .note-title { color: #0f766e !important; }
+        .vibrant-teal-card .hi-title { color: #115e59 !important; }
+        .vibrant-teal-card .note-desc { color: #134e4a !important; }
+        .vibrant-teal-card .note-icon { background: #14b8a6 !important; color: #ffffff !important; box-shadow: 0 2px 5px rgba(20,184,166,0.3); }
+        .vibrant-teal-card .note-status { background: #0f766e !important; color: #ffffff !important; }
+
+        /* Dark Mode for One Liner Teal Cards */
+        [data-theme="dark"] .vibrant-teal-card {
+            background: #0f3d39 !important; /* Deep solid teal */
+            border-color: #14b8a6 !important; 
+        }
+        [data-theme="dark"] .vibrant-teal-card .note-title { color: #ccfbf1 !important; }
+        [data-theme="dark"] .vibrant-teal-card .hi-title { color: #99f6e4 !important; }
+        [data-theme="dark"] .vibrant-teal-card .note-desc { color: #a6fff8 !important; }
+        [data-theme="dark"] .vibrant-teal-card .note-status { background: #ccfbf1 !important; color: #0f766e !important; }
+
 
         .note-card.disabled {
             opacity: 0.75;
@@ -378,8 +455,8 @@
             color: #ffffff !important;
         }
 
-        /* SEO Content Blocks */
-        .seo-header { text-align: center; margin-bottom: 20px; display: block; }
+        /* Minimal SEO Content Blocks */
+        .seo-header { text-align: center; margin-bottom: 25px; display: block; }
         
         .seo-header h2 { 
             font-size: 25px !important; 
@@ -392,12 +469,22 @@
         .seo-header p { color: var(--text-sec); max-width: 600px; margin: 0 auto; font-size: 0.85rem; }
         
         .seo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
-        .seo-card { background: var(--card-bg); border: 1px solid var(--card-border); padding: 20px; border-radius: var(--radius-lg); box-shadow: var(--glass-shadow); border-left: 4px solid var(--primary); transition: border-color 0.2s; }
-        .seo-card:hover { border-color: var(--primary-light); }
+        
+        .seo-card { 
+            background: transparent; 
+            border: 1px solid var(--card-border); 
+            padding: 20px; 
+            border-radius: var(--radius-md); 
+            transition: background-color 0.2s ease, border-color 0.2s ease; 
+        }
+        .seo-card:hover { 
+            background: var(--card-bg);
+            border-color: var(--primary); 
+        }
         
         .seo-card h3 { 
-            font-size: 16px !important; 
-            margin-bottom: 10px; 
+            font-size: 15px !important; 
+            margin-bottom: 8px; 
             display: flex; 
             align-items: center; 
             gap: 8px; 
@@ -405,8 +492,8 @@
             font-weight: 700; 
         }
         
-        .seo-card h3 i { color: var(--primary); }
-        .seo-card p { color: var(--text-body); font-size: 0.85rem; margin-bottom: 0; line-height: 1.5; }
+        .seo-card h3 i { color: var(--text-sec); }
+        .seo-card p { color: var(--text-sec); font-size: 0.8rem; margin-bottom: 0; line-height: 1.5; }
         
         /* FIXED: Mobile specific overrides */
         @media (max-width: 600px) {
@@ -467,11 +554,12 @@
             </p>
         </section>
 
-        <!-- Compact Navigation Grid for Notes (Perfect 8 Cards) -->
+        <!-- Section 1: Core Content -->
+        <div class="hub-section-title">Core Study Material</div>
         <div class="notes-grid">
             
             <!-- 1. Govt Schemes -->
-            <a href="govt-schemes/" class="note-card active">
+            <a href="govt-schemes/" class="note-card active core-teal-theme">
                 <div class="note-header">
                     <div class="note-icon"><i class="fa-solid fa-hands-holding-circle"></i></div>
                     <div class="note-title-wrapper">
@@ -484,7 +572,7 @@
             </a>
             
             <!-- 2. Latest Budget -->
-            <a href="hp-budget/" class="note-card active">
+            <a href="hp-budget/" class="note-card active core-teal-theme">
                 <div class="note-header">
                     <div class="note-icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
                     <div class="note-title-wrapper">
@@ -495,48 +583,9 @@
                 <div class="note-desc">Highlights & sector-wise allocations of the latest HP State Budget.</div>
                 <div class="note-status"><i class="fa-solid fa-book-open"></i> Read</div>
             </a>
-
-            <!-- 3. HP GK One Liners Part 1 -->
-            <a href="hp-gk-one-liners-500-part-1/" class="note-card active">
-                <div class="note-header">
-                    <div class="note-icon"><i class="fa-solid fa-bolt"></i></div>
-                    <div class="note-title-wrapper">
-                        <div class="note-title">One Liners (Part 1)</div>
-                        <span class="hi-title">तथ्य (1-500)</span>
-                    </div>
-                </div>
-                <div class="note-desc">First 500 rapid revision points & high-yield HP GK facts for HPPSC.</div>
-                <div class="note-status"><i class="fa-solid fa-book-open"></i> Read Part 1</div>
-            </a>
-
-            <!-- 4. HP GK One Liners Part 2 -->
-            <a href="hp-gk-one-liners-250-part-2/" class="note-card active">
-                <div class="note-header">
-                    <div class="note-icon" style="background: rgba(16, 185, 129, 0.1); color: #10b981;"><i class="fa-solid fa-bolt"></i></div>
-                    <div class="note-title-wrapper">
-                        <div class="note-title">One Liners (Part 2)</div>
-                        <span class="hi-title">तथ्य (501-750)</span>
-                    </div>
-                </div>
-                <div class="note-desc">Next 250 premium revision facts covering history, geography & culture.</div>
-                <div class="note-status" style="background: #10b981; color: #fff;"><i class="fa-solid fa-book-open"></i> Read Part 2</div>
-            </a>
-
-            <!-- 5. HP GK One Liners Part 3 -->
-            <a href="hp-gk-one-liners-250-part-3/" class="note-card active">
-                <div class="note-header">
-                    <div class="note-icon" style="background: rgba(139, 92, 246, 0.1); color: #8b5cf6;"><i class="fa-solid fa-bolt"></i></div>
-                    <div class="note-title-wrapper">
-                        <div class="note-title">One Liners (Part 3)</div>
-                        <span class="hi-title">तथ्य (751-1000)</span>
-                    </div>
-                </div>
-                <div class="note-desc">Final 250 facts covering districts, economy, and miscellaneous HP GK.</div>
-                <div class="note-status" style="background: #8b5cf6; color: #fff;"><i class="fa-solid fa-book-open"></i> Read Part 3</div>
-            </a>
             
-            <!-- 6. Eco Survey -->
-            <div class="note-card disabled" title="Coming Soon">
+            <!-- 3. Eco Survey -->
+            <a href="economic-survey/" class="note-card active core-teal-theme">
                 <div class="note-header">
                     <div class="note-icon"><i class="fa-solid fa-chart-line"></i></div>
                     <div class="note-title-wrapper">
@@ -545,24 +594,11 @@
                     </div>
                 </div>
                 <div class="note-desc">Analysis of HP's GDP, agriculture & industrial growth.</div>
-                <div class="note-status"><i class="fa-solid fa-hourglass-half"></i> Soon</div>
-            </div>
+                <div class="note-status"><i class="fa-solid fa-book-open"></i> Read</div>
+            </a>
 
-            <!-- 7. HP Census 2011 -->
-            <div class="note-card disabled" title="Coming Soon">
-                <div class="note-header">
-                    <div class="note-icon"><i class="fa-solid fa-users"></i></div>
-                    <div class="note-title-wrapper">
-                        <div class="note-title">Census 2011 Data</div>
-                        <span class="hi-title">जनगणना 2011</span>
-                    </div>
-                </div>
-                <div class="note-desc">Population density, literacy rate, sex ratio & demographic growth.</div>
-                <div class="note-status"><i class="fa-solid fa-hourglass-half"></i> Soon</div>
-            </div>
-
-            <!-- 8. HP Land Laws -->
-            <div class="note-card disabled" title="Coming Soon">
+            <!-- 4. HP Land Laws -->
+            <div class="note-card disabled core-teal-theme" title="Coming Soon">
                 <div class="note-header">
                     <div class="note-icon"><i class="fa-solid fa-gavel"></i></div>
                     <div class="note-title-wrapper">
@@ -576,6 +612,64 @@
 
         </div>
 
+        <!-- Section 2: Rapid Revision Series (VIBRANT 1-ROW GRID) -->
+        <div class="hub-section-title">Rapid Revision Series (1250+ Facts)</div>
+        <div class="notes-grid">
+            
+            <!-- Part 1 -->
+            <a href="hp-gk-one-liners-500-part-1/" class="note-card vibrant-teal-card">
+                <div class="note-header">
+                    <div class="note-icon"><i class="fa-solid fa-bolt"></i></div>
+                    <div class="note-title-wrapper">
+                        <div class="note-title">One Liners (Part 1)</div>
+                        <span class="hi-title">तथ्य (1-500)</span>
+                    </div>
+                </div>
+                <div class="note-desc">First 500 rapid revision points & high-yield HP GK facts for HPPSC.</div>
+                <div class="note-status"><i class="fa-solid fa-bolt-lightning"></i> Read Part 1</div>
+            </a>
+
+            <!-- Part 2 -->
+            <a href="hp-gk-one-liners-250-part-2/" class="note-card vibrant-teal-card">
+                <div class="note-header">
+                    <div class="note-icon"><i class="fa-solid fa-bolt"></i></div>
+                    <div class="note-title-wrapper">
+                        <div class="note-title">One Liners (Part 2)</div>
+                        <span class="hi-title">तथ्य (501-750)</span>
+                    </div>
+                </div>
+                <div class="note-desc">Next 250 premium revision facts covering history & geography.</div>
+                <div class="note-status"><i class="fa-solid fa-bolt-lightning"></i> Read Part 2</div>
+            </a>
+
+            <!-- Part 3 -->
+            <a href="hp-gk-one-liners-250-part-3/" class="note-card vibrant-teal-card">
+                <div class="note-header">
+                    <div class="note-icon"><i class="fa-solid fa-bolt"></i></div>
+                    <div class="note-title-wrapper">
+                        <div class="note-title">One Liners (Part 3)</div>
+                        <span class="hi-title">तथ्य (751-1000)</span>
+                    </div>
+                </div>
+                <div class="note-desc">Deep dive into districts, economy, and miscellaneous HP GK.</div>
+                <div class="note-status"><i class="fa-solid fa-bolt-lightning"></i> Read Part 3</div>
+            </a>
+
+            <!-- NEW Part 4 -->
+            <a href="hp-gk-one-liners-250-part-4/" class="note-card vibrant-teal-card">
+                <div class="note-header">
+                    <div class="note-icon"><i class="fa-solid fa-bolt"></i></div>
+                    <div class="note-title-wrapper">
+                        <div class="note-title">One Liners (Part 4)</div>
+                        <span class="hi-title">तथ्य (1001-1250)</span>
+                    </div>
+                </div>
+                <div class="note-desc">Advanced facts covering culture, modern history & top projects.</div>
+                <div class="note-status"><i class="fa-solid fa-bolt-lightning"></i> Read Part 4</div>
+            </a>
+
+        </div>
+
     </div>
 
     <div class="section-separator"></div>
@@ -583,27 +677,27 @@
     <!-- Natural SEO Content Section for Search Engines -->
     <section class="seo-content-wrapper">
         <div class="seo-header">
-            <h2>Your Ultimate Guide to HPGK Study Notes</h2>
+            <h2>HPPSC Study Material: Schemes, Budget & GK Facts</h2>
             <p>Comprehensive study material, latest government schemes, and topic-wise revision insights for all Himachal Pradesh competitive exams.</p>
         </div>
 
         <div class="seo-grid">
             <!-- Card 1: Govt Schemes -->
-            <div class="seo-card glass-panel">
+            <div class="seo-card">
                 <h3><i class="fa-solid fa-hands-holding-circle"></i> HP Govt Welfare Schemes</h3>
                 <p>Mastering the latest <strong>Himachal Pradesh Government Schemes</strong> is crucial for HPAS, Allied Services, and HP Police exams. We provide in-depth, bilingual notes on flagship initiatives like <strong>HIMCARE, Mukhya Mantri Swavalamban Yojana, Sahara Yojana, and Pyari Behna Samman Nidhi</strong> to help you secure maximum marks in the GK section.</p>
             </div>
 
             <!-- Card 2: Budget & Eco Survey -->
-            <div class="seo-card glass-panel">
+            <div class="seo-card">
                 <h3><i class="fa-solid fa-chart-line"></i> HP Budget 2026-27 & Economic Survey</h3>
                 <p>Stay updated with the latest fiscal data. Our concise notes cover the <strong>HP State Budget 2026-27</strong> and the <strong>Economic Survey</strong>, breaking down complex data on GSDP, agricultural growth, industrial performance, and sector-wise fund allocations into easy-to-understand, exam-oriented points.</p>
             </div>
 
             <!-- Card 3: District Profiles & More -->
-            <div class="seo-card glass-panel">
+            <div class="seo-card">
                 <h3><i class="fa-solid fa-bolt"></i> Rapid Revision Series</h3>
-                <p>Beyond standard notes, access our <strong>1000+ One Liners</strong> covering HP Geography, History, Art & Culture, and District Profiles. Our structured approach ensures you focus exactly on what search engines and exam patterns prioritize, making your revision fast, accurate, and completely syllabus-aligned.</p>
+                <p>Beyond standard notes, access our <strong>1250+ One Liners</strong> covering HP Geography, History, Art & Culture, and District Profiles. Our structured approach ensures you focus exactly on what search engines and exam patterns prioritize, making your revision fast, accurate, and completely syllabus-aligned.</p>
             </div>
         </div>
     </section>
