@@ -1,6 +1,7 @@
 /**
  * Layout Manager for HPGK
  * Handles global Header, Footer, Theme logic, Back to Top, Google Auth, and Mobile Menu.
+ * 🔥 UPDATED: Zero CLS (Cumulative Layout Shift) with Premium Skeleton Loading UI
  */
 
 const SiteConfig = {
@@ -11,7 +12,7 @@ const SiteConfig = {
 let currentRootPath = '.';
 
 // =========================================================================
-// ðŸ”¥ PREMIUM MOBILE HAMBURGER MENU (Slide-out Navigation)
+// 🔥 PREMIUM MOBILE HAMBURGER MENU (Slide-out Navigation)
 // =========================================================================
 function initMobileMenu() {
     if (document.getElementById('mobileSideMenu')) return;
@@ -124,7 +125,7 @@ function initMobileMenu() {
                 padding-left: 5px; opacity: 0.8;
             }
             
-            /* ðŸ”¥ FIXED: More compact padding and smaller gap for the menu link */
+            /* 🔥 FIXED: More compact padding and smaller gap for the menu link */
             .menu-link {
                 display: flex; align-items: center; gap: 8px;
                 padding: 6px 10px; border-radius: 8px; 
@@ -144,7 +145,7 @@ function initMobileMenu() {
             .icon-green { color: #10b981; }
             .icon-purple { color: #8b5cf6; }
 
-            /* ðŸ”¥ FIXED: Slightly smaller icon to match the compact padding */
+            /* 🔥 FIXED: Slightly smaller icon to match the compact padding */
             .menu-icon {
                 width: 26px; height: 26px; border-radius: 6px; 
                 background: var(--input-bg); 
@@ -194,7 +195,7 @@ window.toggleMobileMenu = function() {
 };
 
 // =========================================================================
-// ðŸ”¥ PREMIUM SAAS LOGIN MODAL (Injects the popup into any page)
+// 🔥 PREMIUM SAAS LOGIN MODAL (Injects the popup into any page)
 // =========================================================================
 function initLoginModal() {
     if (document.getElementById('saasLoginModal')) return;
@@ -374,6 +375,7 @@ function renderHeader(options = {}) {
 
     const homeUrl = rootPath === '.' ? './' : '../';
 
+    // 🔥 ZERO CLS (Cumulative Layout Shift) SKELETON INJECTED HERE
     headerEl.innerHTML = `
         <div class="header-content" style="position: relative; display: flex; align-items: center; justify-content: space-between;">
             
@@ -387,8 +389,12 @@ function renderHeader(options = {}) {
             
             <!-- Right Group: Auth / Dashboard Container + Hamburger -->
             <div class="header-actions" style="display: flex; align-items: center; gap: 8px;">
-                <div id="auth-ui-container" style="display: flex; align-items: center;">
-                    <!-- Loading initial state is empty to prevent flicker. updateAuthUI populates this instantly -->
+                <div id="auth-ui-container">
+                    <!-- Skeleton Loader: Prevents CLS before Firebase resolves -->
+                    <div class="auth-group-wrapper" style="pointer-events: none;">
+                        <div class="skeleton-shimmer skeleton-dash-btn" style="width: 110px; height: 28px; border-radius: 14px;"></div>
+                        <div class="skeleton-shimmer skeleton-login-btn" style="width: 75px; height: 28px; border-radius: 14px;"></div>
+                    </div>
                 </div>
                 
                 <!-- Premium Hamburger Menu Button -->
@@ -399,6 +405,28 @@ function renderHeader(options = {}) {
             
         </div>
         <style>
+            /* 🔥 ZERO CLS FIX: Fixed container size to prevent Hamburger shift */
+            #auth-ui-container {
+                min-width: 215px; 
+                min-height: 40px;
+                display: flex; 
+                justify-content: flex-end; 
+                align-items: center;
+            }
+
+            .skeleton-shimmer {
+                background: linear-gradient(90deg, rgba(203, 213, 225, 0.4) 25%, rgba(241, 245, 249, 0.7) 50%, rgba(203, 213, 225, 0.4) 75%);
+                background-size: 200% 100%;
+                animation: authShimmer 1.5s infinite linear;
+            }
+            [data-theme="dark"] .skeleton-shimmer {
+                background: linear-gradient(90deg, rgba(51, 65, 85, 0.5) 25%, rgba(71, 85, 105, 0.8) 50%, rgba(51, 65, 85, 0.5) 75%);
+            }
+            @keyframes authShimmer {
+                0% { background-position: 200% 0; }
+                100% { background-position: -200% 0; }
+            }
+
             /* Grouped Auth UI Styles (Premium EdTech Look) */
             .auth-group-wrapper {
                 display: flex; align-items: center; gap: 8px;
@@ -452,6 +480,10 @@ function renderHeader(options = {}) {
             .text-mobile { display: none; }
 
             @media (max-width: 600px) {
+                #auth-ui-container { min-width: 125px; min-height: 34px; }
+                .skeleton-dash-btn { width: 34px !important; }
+                .skeleton-login-btn { width: 65px !important; }
+
                 .brand-name { font-size: 0.9rem !important; line-height: 1.1; }
                 .brand-sub { font-size: 0.65rem !important; display: block; }
                 .brand-icon { font-size: 1.1rem !important; margin-right: 6px !important; }
@@ -468,8 +500,6 @@ function renderHeader(options = {}) {
             }
         </style>
     `;
-
-    // Only inject initThemeState inside DOM load if not present to avoid double firing
 }
 
 /**
@@ -589,14 +619,14 @@ function initBackToTop() {
 }
 
 // =========================================================================
-// ðŸ”¥ FIREBASE GOOGLE AUTHENTICATION INTEGRATION
+// 🔥 FIREBASE GOOGLE AUTHENTICATION INTEGRATION
 // =========================================================================
 
 let auth, provider;
 
 async function initFirebase() {
     try {
-        updateAuthUI(null);
+        // 🔥 REMOVED updateAuthUI(null) here to let the Skeleton persist until Firebase decides
 
         const { initializeApp, getApps, getApp } = await import("https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js");
         const { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } = await import("https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js");
@@ -680,7 +710,7 @@ async function initFirebase() {
 
     } catch (error) {
         console.error("Firebase Initialization Failed in Layout:", error);
-        updateAuthUI(null);
+        updateAuthUI(null); // Fallback to Login button if network fails
     }
 }
 
@@ -725,7 +755,7 @@ function updateAuthUI(user) {
 document.addEventListener('DOMContentLoaded', () => {
     initBackToTop();
     initLoginModal(); 
-    initMobileMenu(); // ðŸ”¥ INJECTS THE SLIDE-OUT MOBILE MENU
-    initThemeState(); // Ensures theme icons are synced perfectly right after DOM injection
+    initMobileMenu(); 
+    initThemeState(); 
     initFirebase(); 
 });
