@@ -149,7 +149,9 @@
         /* Top Bar & Breadcrumbs */
         .top-meta-bar { 
             display: flex; justify-content: space-between; align-items: center; 
-            width: 100%; max-width: 1100px; margin: 0 auto 15px auto; padding: 0 15px; flex-wrap: nowrap; gap: 10px; 
+            width: 100%; max-width: 1100px; 
+            margin: 0 auto 5px auto; /* Compact gap */
+            padding: 0 15px; flex-wrap: nowrap; gap: 10px; 
         }
 
         .breadcrumb-nav { margin: 0; flex-shrink: 1; display: flex; align-items: center; height: 24px; }
@@ -175,7 +177,12 @@
         }
 
         /* Hero Section */
-        .hub-hero { text-align: center; max-width: 800px; margin: 0 auto 25px auto; padding: 10px 15px; }
+        .hub-hero { 
+            text-align: center; 
+            max-width: 800px; 
+            margin: 0 auto 20px auto; 
+            padding: 5px 15px; /* Compact padding */
+        }
         
         .hero-title { 
             margin: 0 0 8px 0; 
@@ -309,8 +316,8 @@
         [data-theme="dark"] .a-hi { color: #fbbf24; }
 
         @media (max-width: 600px) {
-            .hub-hero { margin-top: 25px; padding-top: 0; }
-            .hero-title { white-space: normal; padding: 0 10px; line-height: 1.2; }
+            .hub-hero { margin-top: 12px; padding-top: 0; }
+            .hero-title { font-size: 25px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
             .fact-row { padding: 10px 12px; }
             .content-en { padding-right: 45px; }
             .q-en { font-size: 0.85rem; }
@@ -355,7 +362,9 @@
                 <li class="breadcrumb-separator"><i class="fa-solid fa-chevron-right"></i></li>
                 <li class="breadcrumb-item"><a href="../../">Study Notes</a></li>
                 <li class="breadcrumb-separator"><i class="fa-solid fa-chevron-right"></i></li>
-                <li class="breadcrumb-item active" aria-current="page">One Liners P-1</li>
+                <li class="breadcrumb-item"><a href="../">One Liners</a></li>
+                <li class="breadcrumb-separator"><i class="fa-solid fa-chevron-right"></i></li>
+                <li class="breadcrumb-item active" aria-current="page">Part 1</li>
             </ol>
         </nav>
         <span class="hero-badge">Revision Series</span>
@@ -367,7 +376,7 @@
             Continuous, rapid-reading bilingual facts extracted from historical texts, geography, and polity. Questions 1 to 500.
             <span class="hi-desc">हिमाचल प्रदेश के इतिहास, भूगोल, राजनीति और संस्कृति को कवर करने वाले द्विभाषी वन-लाइनर्स। प्रश्न 1 से 500 तक।</span>
         </p>
-        
+
         <!-- High-Contrast Interlinking Hook -->
         <div class="hero-interlinks">
             <span class="interlink-label"><i class="fa-solid fa-link"></i> Quick Links:</span>
@@ -546,7 +555,7 @@
         { id: 122, qHi: "औरंगजेब ने बुशहर के किस राजा को 'छत्रपति' की उपाधि दी थी?", aHi: "केहरी सिंह।", qEn: "Which ruler of Bushahr was titled 'Chhatrapati' by Aurangzeb?", aEn: "Kehri Singh." },
         { id: 123, qHi: "चम्बा के राजा ने औरंगजेब के हिंदू मंदिर तोड़ने के आदेश को मानने से इनकार कर दिया था?", aHi: "चतर सिंह।", qEn: "Which ruler of Chamba refused Aurangzeb's order to demolish Hindu temples?", aEn: "Chattar Singh." },
         { id: 124, qHi: "हिमाचल प्रदेश केंद्र शासित प्रदेश कब बना?", aHi: "1 नवंबर 1956।", qEn: "When did Himachal Pradesh become a Union Territory?", aEn: "1st November 1956." },
-        { id: 125, qHi: "हि.प्र. को पूर्ण राज्य दर्जा कब मिला?", aHi: "25 जनवरी 1971।", qEn: "On which date did HP get full statehood?", aEn: "25 January 1971." },
+        { id: 125, qHi: "हि.प्र. को पूर्ण राज्य का दर्जा कब मिला?", aHi: "25 जनवरी 1971।", qEn: "On which date did HP get full statehood?", aEn: "25 January 1971." },
         { id: 126, qHi: "हि.प्र. के प्रथम उपराज्यपाल कौन थे?", aHi: "मेजर जनरल हिम्मत सिंह।", qEn: "First Lieutenant Governor of HP?", aEn: "Major General Himmat Singh." },
         { id: 127, qHi: "हि.प्र. विधानसभा में कुल कितनी सीटें हैं?", aHi: "68।", qEn: "Total number of assembly seats in HP?", aEn: "68." },
         { id: 128, qHi: "किस जिले में विधानसभा सीटों की संख्या सबसे अधिक है?", aHi: "काँगड़ा (15)।", qEn: "Which district has the maximum number of assembly seats?", aEn: "Kangra (15)." },
@@ -669,7 +678,7 @@
         { id: 245, qHi: "हिमाचल प्रदेश का प्रथम 'हेरिटेज गांव' कौन सा है?", aHi: "परागपुर (कांगड़ा)।", qEn: "Which is the first 'Heritage Village' of HP?", aEn: "Pragpur (Kangra)." },
         { id: 246, qHi: "डल झील हिमाचल प्रदेश के किस जिले में स्थित है?", aHi: "कांगड़ा (धर्मशाला के पास)।", qEn: "Dal Lake is located in which district of HP?", aEn: "Kangra (near Dharamshala)." },
         { id: 247, qHi: "'करेरी झील' किस जिले में स्थित है?", aHi: "कांगड़ा।", qEn: "Kareri Lake is located in which district?", aEn: "Kangra." },
-        { id: 248, qHi: "隐भृगु झील' किस जिले में स्थित है?", aHi: "कुल्लू।", qEn: "Bhrigu Lake is located in which district?", aEn: "Kullu." },
+        { id: 248, qHi: "'भृगु झील' किस जिले में स्थित है?", aHi: "कुल्लू।", qEn: "Bhrigu Lake is located in which district?", aEn: "Kullu." },
         { id: 249, qHi: "कांगड़ा पेंटिंग का मुख्य विषय क्या था?", aHi: "राधा और कृष्ण का प्रेम।", qEn: "What was the main theme of Kangra Painting?", aEn: "Love of Radha and Krishna." },
         { id: 250, qHi: "महाराजा संसार चंद का संबंध किस चित्रकला शैली से है?", aHi: "कांगड़ा शैली।", qEn: "Maharaja Sansar Chand is associated with which painting style?", aEn: "Kangra School of Painting." },
         { id: 251, qHi: "नाहन शहर की स्थापना किसने की थी?", aHi: "करम प्रकाश ने (1621 में)।", qEn: "Who founded the town of Nahan?", aEn: "Karam Prakash (in 1621)." },
@@ -849,7 +858,7 @@
         { id: 425, qHi: "सुकेत रियासत के संस्थापक कौन थे?", aHi: "बीर सेन।", qEn: "Who was the founder of Suket State?", aEn: "Bir Sen." },
         { id: 426, qHi: "चंबा रियासत के संस्थापक कौन थे?", aHi: "मारू वर्मन।", qEn: "Who was the founder of Chamba State?", aEn: "Maru Varman." },
         { id: 427, qHi: "किसने चंबा की राजधानी को भरमौर से चंबा स्थानांतरित किया था?", aHi: "साहिल वर्मन।", qEn: "Who shifted the capital of Chamba from Bharmour to Chamba?", aEn: "Sahil Varman." },
-        { id: 428, qHi: "सिरमौर रियासत के संस्थापक कौन थे?", aHi: "राजा रसालू।", qEn: "Who was the founder of Sirmaur State?", aEn: "Raja Rasaloo." },
+        { id: 428, qHi: "सिरमौर रियासत के संस्थापक कौन थे?", aHi: "राजा रसालू।", qEn: "Who was the founder of Sirmaur State?", aEn: "Raja Rasalu." },
         { id: 429, qHi: "सिरमौर की मूल राजधानी क्या थी?", aHi: "सिरमौर ताल।", qEn: "What was the original capital of Sirmaur?", aEn: "Sirmaur Tal." },
         { id: 430, qHi: "कहलूर (बिलासपुर) के संस्थापक कौन थे?", aHi: "बीर चंद।", qEn: "Who was the founder of Kahlur (Bilaspur)?", aEn: "Bir Chand." },
         { id: 431, qHi: "किसने बिलासपुर की राजधानी को सुनहानी से बिलासपुर स्थानांतरित किया था?", aHi: "दीप चंद।", qEn: "Who shifted Bilaspur's capital from Sunhani to Bilaspur?", aEn: "Dip Chand." },
@@ -957,11 +966,11 @@
                 iconClass: 'fa-solid fa-bolt',
                 link: '../', 
                 isQuizPage: false,
-                rootPath: '../..' 
+                rootPath: '../../..' 
             });
         }
         if (typeof renderFooter === 'function') {
-            renderFooter('../..');
+            renderFooter('../../..');
         }
         
         renderOneLiners();
