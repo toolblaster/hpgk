@@ -220,6 +220,38 @@
         [data-theme="dark"] .hero-interlinks a:hover { color: #60a5fa; }
         .hero-interlinks .dot { color: var(--text-sec); font-size: 0.8rem; opacity: 0.6; }
         
+        /* Tools Strip (Accessible Teal Colors) */
+        .tools-strip {
+            margin-top: 20px; background: rgba(20, 184, 166, 0.1); border: 1px solid rgba(13, 148, 136, 0.4);
+            border-radius: var(--radius-lg); padding: 12px 16px; display: flex; align-items: center; justify-content: space-between;
+            max-width: 800px; margin-left: auto; margin-right: auto; transition: all 0.3s ease;
+        }
+        .tools-strip:hover { border-color: #0f766e; box-shadow: 0 4px 12px rgba(13, 148, 136, 0.15); }
+        .tools-strip-left { display: flex; align-items: center; gap: 12px; }
+        .tools-strip-icon {
+            width: 40px; height: 40px; background: rgba(20, 184, 166, 0.2); color: #0f766e;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;
+        }
+        [data-theme="dark"] .tools-strip-icon { color: #5eead4; background: rgba(20, 184, 166, 0.3); }
+        .tools-strip-title { font-weight: 700; color: var(--text-main); font-size: 0.9rem; text-align: left;}
+        .tools-strip-desc { font-size: 0.75rem; color: var(--text-sec); margin-top: 2px; text-align: left; }
+        .tools-strip-btn-group { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; justify-content: flex-end;}
+        .tools-strip-btn {
+            background: #0f766e; color: white; padding: 8px 14px; border-radius: var(--radius-md);
+            font-size: 0.8rem; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 6px;
+            transition: background 0.2s; white-space: nowrap;
+        }
+        .tools-strip-btn:hover { background: #115e59; }
+        [data-theme="dark"] .tools-strip-btn { background: #0d9488; }
+        [data-theme="dark"] .tools-strip-btn:hover { background: #0f766e; }
+        
+        .tools-strip-btn.outline {
+            background: transparent; color: #0f766e; border: 1px solid #0f766e;
+        }
+        .tools-strip-btn.outline:hover { background: rgba(15, 118, 110, 0.1); color: #0d9488; }
+        [data-theme="dark"] .tools-strip-btn.outline { color: #5eead4; border-color: #5eead4; }
+        [data-theme="dark"] .tools-strip-btn.outline:hover { background: rgba(94, 234, 212, 0.1); }
+
         .main-layout { display: flex; flex-direction: column; gap: 20px; }
         @media (min-width: 900px) { 
             .main-layout { flex-direction: row; align-items: flex-start; } 
@@ -422,6 +454,11 @@
             .hero-interlinks .dot { display: inline; font-size: 0.7rem; }
             .hero-interlinks a { font-size: 0.8rem; }
             .hero-interlinks .interlink-label { font-size: 0.75rem; }
+
+            .tools-strip { flex-direction: column; align-items: stretch; gap: 15px; }
+            .tools-strip-btn-group { justify-content: stretch; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+            .tools-strip-btn-group .tools-strip-btn:last-child { grid-column: span 2; }
+            .tools-strip-btn { justify-content: center; }
         }
     </style>
 
@@ -472,9 +509,34 @@
             
             <div class="hero-interlinks">
                 <span class="interlink-label"><i class="fa-solid fa-link"></i> Quick Links:</span>
-                <a href="../hp-land-section-118/">Section 118</a><span class="dot">•</span>
-                <a href="../land-calculator/">Calculator</a><span class="dot">•</span>
-                <a href="../../economic-survey/">Eco Survey</a>
+                <a href="../../hp-gk-one-liners-500-part-1/">One Liners</a><span class="dot">•</span>
+                <a href="../../../hp-exam-full-mock-test/">Mock Tests</a><span class="dot">•</span>
+                <a href="../../../himachal-pradesh-gk/">HP GK Hub</a><span class="dot">•</span>
+                <a href="../../../himachal-pradesh-gk/district/">District GK</a>
+            </div>
+
+            <!-- DEDICATED COMPACT TEAL STRIP FOR TOOLS & CALCULATOR -->
+            <div class="tools-strip">
+                <div class="tools-strip-left">
+                    <div class="tools-strip-icon">
+                        <i class="fa-solid fa-compass-drafting"></i>
+                    </div>
+                    <div>
+                        <div class="tools-strip-title font-heading">Explore Masterclass & Tools</div>
+                        <div class="tools-strip-desc font-sans">Read Section 118 Guide & Bigha calculator</div>
+                    </div>
+                </div>
+                <div class="tools-strip-btn-group">
+                    <a href="../section-118/" class="tools-strip-btn outline">
+                        <i class="fa-solid fa-scale-balanced"></i> Sec 118
+                    </a>
+                    <a href="../land-calculator/" class="tools-strip-btn outline">
+                        <i class="fa-solid fa-calculator"></i> Calculator
+                    </a>
+                    <a href="../" class="tools-strip-btn">
+                        <i class="fa-solid fa-book-open"></i> Revenue Laws
+                    </a>
+                </div>
             </div>
         </div>
 
@@ -598,6 +660,8 @@
                         <li><strong>Barani (बारानी):</strong> Refers strictly to rain-fed agricultural land with no artificial irrigation source. (पूरी तरह से वर्षा आधारित कृषि भूमि).</li>
                         <li><strong>Nahri (नहरी):</strong> Highly fertile land irrigated continuously by a canal (Kuhl). Assessed at higher tax rates. (नहर (कूहल) द्वारा सिंचित उपजाऊ भूमि).</li>
                         <li><strong>Gair-Mumkin (गैर-मुमकिन):</strong> Legally uncultivable land occupied by roads, riverbeds, or built-up properties. (सड़कों, नदी या इमारतों वाली खेती के अयोग्य भूमि).</li>
+                        <li><strong>Banjar Kadim (बंजर कदीम):</strong> Old fallow land that has remained uncultivated for 4 years or 8 successive harvests. (पुरानी परती भूमि जो 4 साल या 8 फसल से बिना खेती के रही है).</li>
+                        <li><strong>Banjar Jadid (बंजर जदीद):</strong> New fallow land left uncultivated temporarily for 2 years or 4 harvests. (2 साल या 4 फसल से बिना खेती वाली नई परती भूमि).</li>
                     </ul>
                 </div>
 
@@ -605,9 +669,11 @@
                 <div class="seo-card glass-panel">
                     <h3><i class="fa-solid fa-file-contract"></i> 2. Patwari's Duties (पटवारी के कर्तव्य)</h3>
                     <ul class="seo-list">
-                        <li><strong>Girdawari:</strong> The Patwari conducts the crucial harvest inspection twice a year (Oct 1 for Kharif, Mar 1 for Rabi). (पटवारी साल में दो बार (रबी और खरीफ) फसल निरीक्षण करता है).</li>
-                        <li><strong>Roznamcha (फॉर्म 2):</strong> The daily diary where the Patwari must report all VIP visits, deaths, and calamities. (दैनिक डायरी जहाँ मौतों, आपदाओं और वीआईपी दौरों की रिपोर्ट की जाती है).</li>
-                        <li><strong>Nuksan Report:</strong> Patwari is the primary officer who verifies and reports crop/house damage for disaster compensation. (आपदा के दौरान फसल/घर के नुकसान का सत्यापन).</li>
+                        <li><strong>Girdawari (Form 4):</strong> The Patwari conducts the crucial harvest inspection twice a year (Oct 1 for Kharif, Mar 1 for Rabi). (पटवारी साल में दो बार फसल निरीक्षण करता है).</li>
+                        <li><strong>Roznamcha (Form 2):</strong> The daily diary where the Patwari must report all VIP visits, deaths, hailstorms, and calamities. (दैनिक डायरी जहाँ मौतों, आपदाओं और दौरों की रिपोर्ट की जाती है).</li>
+                        <li><strong>Nuksan Report:</strong> Patwari is the primary officer who physically verifies and reports crop/house damage for disaster compensation. (आपदा के दौरान फसल/घर के नुकसान का सटीक सत्यापन).</li>
+                        <li><strong>Jinswar & Milan Raqba:</strong> Preparing crop returns (Jinswar) and the yearly area statement showing land types (Milan Raqba). (फसल विवरण और वार्षिक भूमि क्षेत्र विवरण तैयार करना).</li>
+                        <li><strong>Shajra Nasb:</strong> Updating the genealogical tree during settlement to track the exact lineage of landowners. (भूस्वामियों के वंश को ट्रैक करने के लिए वंशावली वृक्ष को अपडेट करना).</li>
                     </ul>
                 </div>
 
@@ -615,9 +681,11 @@
                 <div class="seo-card glass-panel">
                     <h3><i class="fa-solid fa-scale-balanced"></i> 3. Act Trivia (अधिनियम तथ्य)</h3>
                     <ul class="seo-list">
-                        <li><strong>Presumption of Truth:</strong> Under Section 45 of HP Land Revenue Act, entries in the Jamabandi are presumed to be true legally. (भू-राजस्व अधिनियम की धारा 45 के तहत, जमाबंदी की प्रविष्टियों को सत्य माना जाता है).</li>
-                        <li><strong>Appeals Limits:</strong> Appeals against a Collector's order must be filed within 30 days to Div Comm, and 90 days to FC. (अपील की समय सीमा कलेक्टर के लिए 30 दिन है).</li>
+                        <li><strong>Presumption of Truth:</strong> Under Section 45 of HP Land Revenue Act, entries in the Jamabandi are presumed to be true legally. (धारा 45 के तहत, जमाबंदी की प्रविष्टियों को कानूनी रूप से सत्य माना जाता है).</li>
+                        <li><strong>Appeals Limits:</strong> Appeals against a Collector's order must be filed within 30 days to Div Comm, and 90 days to FC. (अपील की समय सीमा कलेक्टर के लिए 30 दिन और FC के लिए 90 दिन है).</li>
                         <li><strong>Shamlat Vesting:</strong> Under the 1974 Act, village common lands (Shamlat) were vested in the State Govt to distribute to the landless. (शामलात भूमि सरकार को दे दी गई).</li>
+                        <li><strong>Eviction (Section 163):</strong> Provides the strict mechanism to forcefully eject illegal encroachers from state-owned land. (सरकारी भूमि से अतिक्रमणकारियों को जबरन बेदखल करने का तंत्र).</li>
+                        <li><strong>Strict Partition (Sec 138-A):</strong> Mandates that disputed Partition (Taqseem) cases must be decided within 6 months. (विभाजन के मामलों को 6 महीने के भीतर तय करना अनिवार्य करता है).</li>
                     </ul>
                 </div>
 
@@ -626,8 +694,10 @@
                     <h3><i class="fa-solid fa-sitemap"></i> 4. Revenue Hierarchy (राजस्व पदानुक्रम)</h3>
                     <ul class="seo-list">
                         <li><strong>Financial Commissioner:</strong> The absolute highest appellate authority and court for revenue cases in HP. (हि.प्र. में राजस्व मामलों का सर्वोच्च अपीलीय न्यायालय).</li>
-                        <li><strong>Divisional Commissioner:</strong> Hears direct appeals against the orders passed by the District Collector. (कलेक्टर के आदेशों के खिलाफ सीधी अपील सुनता है).</li>
-                        <li><strong>Tehsildar (AC 1st Grade):</strong> Holds the power to decide disputed partitions (Taqseem) and land encroachment cases. (विवादित विभाजन और अतिक्रमण तय करने की शक्ति).</li>
+                        <li><strong>District Collector (DC):</strong> The appointing, administrative, and disciplinary authority for all Patwaris in the district. (जिले में सभी पटवारियों के लिए नियुक्ति और प्रशासनिक प्राधिकारी).</li>
+                        <li><strong>Tehsildar (AC 1st Grade):</strong> Holds the exclusive power to hear evidence and decide contested/disputed partitions (Taqseem). (विवादित विभाजन तय करने की विशेष न्यायिक शक्ति).</li>
+                        <li><strong>Naib Tehsildar (AC 2nd Grade):</strong> Has the authority to visit the village and attest 'Gair Mutnaza' (undisputed) mutations in a Jalsa Aam. (गांव में निर्विवाद इंतकाल को सत्यापित करने का अधिकार).</li>
+                        <li><strong>Kanungo's Partal:</strong> Kanungo acts as a supervisor and must conduct 'Partal' (on-spot check) of the Patwari's Girdawari. (पटवारी की गिरदावरी का मौके पर 'पड़ताल' या निरीक्षण करना).</li>
                     </ul>
                 </div>
 
@@ -635,9 +705,11 @@
                 <div class="seo-card glass-panel">
                     <h3><i class="fa-solid fa-laptop-code"></i> 5. Digital Land Records (डिजिटल रिकॉर्ड)</h3>
                     <ul class="seo-list">
-                        <li><strong>HIMBHOOMI:</strong> The core NIC software used for the digitization and Unicode (Hindi) entry of Jamabandis. (जमाबंदी के डिजिटलीकरण के लिए उपयोग किया जाने वाला मुख्य NIC सॉफ्टवेयर).</li>
-                        <li><strong>RCMS:</strong> Revenue Court Management System that tracks delays in partition cases against the 6-month deadline. (विभाजन के मामलों में 6 महीने की समय सीमा को ट्रैक करता है).</li>
-                        <li><strong>SVAMITVA:</strong> A central scheme using drone surveys specifically to map 'Abadi Deh' (Lal Dora) and issue property cards. ('आबादी देह' का नक्शा बनाने के लिए ड्रोन सर्वेक्षण).</li>
+                        <li><strong>HIMBHOOMI:</strong> The core NIC software used for the digitization and Unicode (Hindi) entry of Jamabandis. (जमाबंदी के डिजिटलीकरण के लिए उपयोग किया जाने वाला मुख्य सॉफ्टवेयर).</li>
+                        <li><strong>RCMS:</strong> Revenue Court Management System that tracks delays in partition cases against the strict 6-month deadline. (अदालती मामलों में 6 महीने की समय सीमा को ट्रैक करता है).</li>
+                        <li><strong>SVAMITVA:</strong> A central scheme using drone surveys specifically to map 'Abadi Deh' (Lal Dora) and issue property cards. ('आबादी देह' का नक्शा बनाने के लिए 5cm सटीकता वाला ड्रोन सर्वेक्षण).</li>
+                        <li><strong>NGDRS / HIMRIS:</strong> Calculates exact stamp duty on Circle Rates and auto-triggers mutation requests to the Patwari. (सर्कल दरों पर स्टाम्प ड्यूटी की गणना करता है और म्यूटेशन को ऑटो-ट्रिगर करता है).</li>
+                        <li><strong>Bhu-Naksha:</strong> Provides vectorized Cadastral Maps allowing real-time area calculation on digital screens. (डिजिटल स्क्रीन पर रीयल-टाइम क्षेत्र गणना की अनुमति देने वाले वेक्टर-आधारित मानचित्र).</li>
                     </ul>
                 </div>
 
@@ -645,9 +717,11 @@
                 <div class="seo-card glass-panel">
                     <h3><i class="fa-solid fa-gavel"></i> 6. Section 118 Essentials (धारा 118)</h3>
                     <ul class="seo-list">
-                        <li><strong>Rule 38-A Limits:</strong> A non-agriculturist can only buy up to 500 Sq.M for a house or 300 Sq.M for a shop with Govt permission. (मकान के लिए 500 वर्ग मीटर और दुकान के लिए 300 वर्ग मीटर की सीमा).</li>
+                        <li><strong>Rule 38-A Limits:</strong> A non-agriculturist can only buy up to 500 Sq.M for a house or 300 Sq.M for a shop with Govt permission. (मकान के लिए 500 वर्ग मीटर और दुकान के लिए 300 वर्ग मीटर की अधिकतम सीमा).</li>
                         <li><strong>Key Exemptions:</strong> Buying built-up flats in Municipal areas or inheriting land (Warasat) does not require permission. (नगरपालिका क्षेत्रों में निर्मित फ्लैट खरीदने या विरासत पर छूट).</li>
-                        <li><strong>Benami Penalty:</strong> If caught, the property is declared void and automatically vests in the State Govt with zero compensation. (संपत्ति बिना मुआवजे के राज्य सरकार में निहित हो जाती है).</li>
+                        <li><strong>Clause (dd):</strong> A non-agriculturist who works for gain in HP can buy up to 500 sqm in a municipal area without special permission. (हि.प्र. में काम करने वाले गैर-कृषक नगर पालिका में 500 वर्ग मीटर तक जमीन खरीद सकते हैं).</li>
+                        <li><strong>Utilization Period:</strong> Once permission is granted, the land must be put to the permitted use within exactly 2 years. (अनुमति मिलने के बाद 2 साल के भीतर भूमि का उपयोग करना अनिवार्य).</li>
+                        <li><strong>Benami Penalty:</strong> If caught, the property is declared void ab initio and automatically vests in the State Govt with zero compensation. (संपत्ति 'शुरू से अमान्य' घोषित होकर बिना मुआवजे के राज्य सरकार में निहित हो जाती है).</li>
                     </ul>
                 </div>
 
