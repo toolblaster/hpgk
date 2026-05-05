@@ -93,7 +93,7 @@
     <!-- Load Global Style First (2 levels up ../../) -->
     <link rel="stylesheet" href="../../js/style.css">
 
-    <!-- PAGE SPECIFIC STYLESHEET (Matched with Original Budget Page) -->
+    <!-- PAGE SPECIFIC STYLESHEET -->
     <style>
         :root {
             --site-width: 1100px;
@@ -147,33 +147,41 @@
         
         main { 
             flex: 1; 
+            width: 100%; 
+            padding: 15px 0 !important; 
+            box-sizing: border-box; 
+        }
+
+        .main-layout, .top-meta-bar { 
+            width: 100%; 
             max-width: var(--site-width); 
             margin: 0 auto; 
-            padding: 20px 0; /* 0px horizontal padding to ensure exact 1100px content width */
-            width: 100%; 
+            padding: 0 15px; 
             box-sizing: border-box;
+            display: block !important; 
         }
-        
-        @media (max-width: 1130px) {
-            main { padding: 20px 15px !important; }
-        }
-        
-        .main-layout { 
-            display: block; 
-            width: 100%; max-width: var(--site-width); margin: 0 auto; 
-            padding: 0 15px; box-sizing: border-box;
-        } 
 
-        .top-meta-bar { 
-            display: flex; justify-content: space-between; align-items: center; 
-            width: 100%; max-width: var(--site-width); margin: 0 auto 15px auto; 
-            padding: 0 15px; flex-wrap: nowrap; gap: 10px; box-sizing: border-box;
+        .section-separator { 
+            height: 1px; 
+            background: linear-gradient(90deg, transparent, var(--card-border), transparent); 
+            margin: 25px auto; 
+            width: 100%; 
+            max-width: var(--site-width); 
         }
 
         @media (max-width: 480px) {
-            .top-meta-bar, .main-layout {
+            .main-layout, .top-meta-bar {
                 padding: 0 12px !important;
             }
+        }
+
+        .top-meta-bar { 
+            display: flex !important;
+            justify-content: space-between; 
+            align-items: center; 
+            margin-bottom: 15px; 
+            flex-wrap: nowrap; 
+            gap: 10px; 
         }
 
         /* ==========================================================================
@@ -208,7 +216,7 @@
             padding: 10px 0;
         }
 
-        /* Clean H1 styling linked to global style.css */
+        /* Clean H1 styling */
         .hero-title {
             margin: 0 0 8px 0; 
             line-height: 1.2;
@@ -220,7 +228,6 @@
             color: var(--primary);
         }
 
-        /* FIXED: Hero Description forced to 14px with good line height */
         .hero-desc {
             font-size: 14px !important;
             color: var(--text-sec);
@@ -295,8 +302,43 @@
             opacity: 0.6;
         }
 
+        /* ==========================================
+           GREEN TOOLS STRIP (Accessible Teal Colors)
+           ========================================== */
+        .tools-strip {
+            margin-top: 25px; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(5, 150, 105, 0.4);
+            border-radius: var(--radius-lg); padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;
+            max-width: 850px; margin-left: auto; margin-right: auto; transition: all 0.3s ease;
+        }
+        .tools-strip:hover { border-color: #047857; box-shadow: 0 4px 12px rgba(5, 150, 105, 0.15); }
+        .tools-strip-left { display: flex; align-items: center; gap: 12px; flex: 1 1 auto; min-width: 260px; }
+        .tools-strip-icon {
+            width: 40px; height: 40px; background: rgba(16, 185, 129, 0.2); color: #047857;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;
+        }
+        [data-theme="dark"] .tools-strip-icon { color: #34d399; background: rgba(16, 185, 129, 0.3); }
+        .tools-strip-title { font-weight: 800; color: var(--text-main); font-size: 0.95rem; text-align: left; font-family: 'Inter', sans-serif;}
+        .tools-strip-desc { font-size: 0.75rem; color: var(--text-sec); margin-top: 2px; text-align: left; font-weight: 500; font-family: 'Inter', sans-serif;}
+        .tools-strip-btn-group { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; justify-content: flex-end;}
+        
+        .tools-strip-btn {
+            background: #059669; color: white !important; padding: 6px 12px; border-radius: 6px;
+            font-size: 12px; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 5px;
+            transition: background 0.2s; white-space: nowrap; letter-spacing: 0.2px;
+        }
+        .tools-strip-btn:hover { background: #047857; color: white !important; }
+        [data-theme="dark"] .tools-strip-btn { background: #10b981; color: #022c22 !important; }
+        [data-theme="dark"] .tools-strip-btn:hover { background: #059669; color: white !important; }
+        
+        .tools-strip-btn.outline {
+            background: transparent; color: #059669 !important; border: 1px solid #059669;
+        }
+        .tools-strip-btn.outline:hover { background: rgba(16, 185, 129, 0.1); color: #047857 !important; }
+        [data-theme="dark"] .tools-strip-btn.outline { color: #34d399 !important; border-color: #34d399; }
+        [data-theme="dark"] .tools-strip-btn.outline:hover { background: rgba(52, 211, 153, 0.1); color: #34d399 !important; }
+
         /* ==========================================================================
-           SCHEMES GRID & NATURAL CARDS (Exact match to Budget Page)
+           SCHEMES GRID & NATURAL CARDS
            ========================================================================== */
         .schemes-grid {
             display: grid;
@@ -411,30 +453,8 @@
             line-height: 1.4;
         }
 
-        /* Notice Banner */
-        .notice-banner {
-            background: var(--primary-light);
-            border: 1px solid var(--primary);
-            border-left: 4px solid var(--primary);
-            border-radius: var(--radius-md);
-            padding: 12px 15px;
-            margin-bottom: 25px;
-            font-size: 0.85rem;
-            color: var(--text-main);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .notice-banner i {
-            color: var(--primary);
-            font-size: 1.2rem;
-        }
-
         @media (max-width: 600px) {
-            /* FIXED: Pushes H1 down to avoid cluttering with the Breadcrumb */
             .hub-hero { margin-top: 25px; padding-top: 0; }
-
-            /* FIXED: Ensure mobile font size is strictly 25px */
             .hero-title { font-size: 25px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
             
             main { padding: 15px 12px !important; }
@@ -449,6 +469,11 @@
             .hero-interlinks .dot { display: inline; font-size: 0.7rem; }
             .hero-interlinks a { font-size: 0.8rem; }
             .hero-interlinks .interlink-label { font-size: 0.75rem; }
+
+            .tools-strip { flex-direction: column; align-items: stretch; gap: 15px;}
+            .tools-strip-btn-group { width: 100%; justify-content: stretch; display: grid; grid-template-columns: 1fr 1fr; gap: 8px;}
+            .tools-strip-btn-group .tools-strip-btn:last-child { grid-column: span 2; }
+            .tools-strip-btn { justify-content: center; padding: 7px 10px; font-size: 12px; }
         }
     </style>
 
@@ -496,23 +521,42 @@
             <!-- High-Contrast Interlinking Hook -->
             <div class="hero-interlinks">
                 <span class="interlink-label"><i class="fa-solid fa-layer-group"></i> Deep Dive:</span>
-                <a href="../hp-budget/">HP Budget</a>
+                <a href="../../himachal-pradesh-gk/geography/">Geography</a>
                 <span class="dot">•</span>
-                <a href="../govt-schemes/">Govt Schemes</a>
+                <a href="../../himachal-pradesh-gk/famous-people/">Famous People</a>
                 <span class="dot">•</span>
-                <a href="../hp-gk-one-liners-500-part-1/">One Liners P-1</a>
+                <a href="../../himachal-pradesh-gk/district/">Districts</a>
+                <span class="dot">•</span>
+                <a href="../../himachal-pradesh-gk/rivers/">Rivers</a>
+            </div>
+
+            <!-- DEDICATED GREEN TOOLS STRIP FOR ECO SURVEY -->
+            <div class="tools-strip">
+                <div class="tools-strip-left">
+                    <div class="tools-strip-icon">
+                        <i class="fa-solid fa-book-open-reader"></i>
+                    </div>
+                    <div>
+                        <div class="tools-strip-title font-heading" style="font-family: 'Inter', sans-serif;">Explore High-Yield Notes</div>
+                        <div class="tools-strip-desc font-sans" style="font-family: 'Inter', sans-serif;">Read One Liners & Revenue Quiz</div>
+                    </div>
+                </div>
+                <div class="tools-strip-btn-group">
+                    <a href="../hpgk-one-liners/" class="tools-strip-btn outline">
+                        <i class="fa-solid fa-bolt"></i> One Liners
+                    </a>
+                    <a href="../hp-revenue-and-land-laws/quiz/" class="tools-strip-btn outline">
+                        <i class="fa-solid fa-gavel"></i> Revenue Quiz
+                    </a>
+                    <a href="../hp-budget/" class="tools-strip-btn">
+                        HP Budget <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
             </div>
         </section>
 
         <!-- Content Area: Eco Survey Highlights -->
         <section id="content-budget">
-            
-            <div class="notice-banner">
-                <i class="fa-solid fa-circle-info"></i>
-                <div>
-                    <strong>Exam Tip:</strong> For HPPSC, focus heavily on <strong>GSDP growth rates, Sectoral contribution percentages (Primary/Secondary/Tertiary), and Per Capita Income</strong>. 
-                </div>
-            </div>
 
             <div class="schemes-grid">
                 
