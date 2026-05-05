@@ -235,7 +235,7 @@
            ========================================== */
         main { flex: 1; width: 100%; padding: 15px 0 !important; box-sizing: border-box; }
 
-        .top-meta-bar { display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: var(--site-width); margin: 0 auto 12px auto; padding: 0 15px; flex-wrap: nowrap; gap: 10px; box-sizing: border-box; }
+        .top-meta-bar { display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: var(--site-width); margin: 0 auto 15px auto; padding: 0 15px; flex-wrap: nowrap; gap: 10px; box-sizing: border-box; }
         .page-header-top, .main-layout, .seo-content-wrapper { width: 100%; max-width: var(--site-width); margin: 0 auto; padding: 0 15px; box-sizing: border-box; }
 
         .page-header-top { text-align: center; margin-bottom: 25px; }
@@ -294,6 +294,40 @@
         [data-theme="dark"] .hero-interlinks a { color: #a7f3d0; } 
         [data-theme="dark"] .hero-interlinks a:hover { color: #6ee7b7; }
         .hero-interlinks .dot { color: var(--text-sec); font-size: 0.8rem; opacity: 0.6; }
+
+        /* GREEN TOOLS STRIP (Emerald Theme matching Agri) */
+        .tools-strip {
+            margin-top: 20px; background: rgba(4, 120, 87, 0.1); border: 1px solid rgba(4, 120, 87, 0.4);
+            border-radius: var(--radius-lg); padding: 12px 16px; display: flex; align-items: center; justify-content: space-between;
+            max-width: 800px; margin-left: auto; margin-right: auto; transition: all 0.3s ease;
+        }
+        .tools-strip:hover { border-color: #065f46; box-shadow: 0 4px 12px rgba(4, 120, 87, 0.15); }
+        .tools-strip-left { display: flex; align-items: center; gap: 12px; }
+        .tools-strip-icon {
+            width: 40px; height: 40px; background: rgba(4, 120, 87, 0.2); color: #065f46;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;
+        }
+        [data-theme="dark"] .tools-strip-icon { color: #6ee7b7; background: rgba(52, 211, 153, 0.3); }
+        .tools-strip-title { font-weight: 800; color: var(--text-main); font-size: 0.95rem; text-align: left; font-family: 'Inter', sans-serif;}
+        .tools-strip-desc { font-size: 0.75rem; color: var(--text-sec); margin-top: 2px; text-align: left; font-weight: 500; font-family: 'Inter', sans-serif;}
+        .tools-strip-btn-group { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; justify-content: flex-end;}
+        
+        /* Adjusted Button Sizes for Sleeker Look */
+        .tools-strip-btn {
+            background: #059669; color: white !important; padding: 6px 12px; border-radius: 6px;
+            font-size: 12px; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 5px;
+            transition: background 0.2s; white-space: nowrap; letter-spacing: 0.2px;
+        }
+        .tools-strip-btn:hover { background: #047857; color: white !important; }
+        [data-theme="dark"] .tools-strip-btn { background: #10b981; color: #022c22 !important; }
+        [data-theme="dark"] .tools-strip-btn:hover { background: #059669; color: white !important; }
+        
+        .tools-strip-btn.outline {
+            background: transparent; color: #059669 !important; border: 1px solid #059669;
+        }
+        .tools-strip-btn.outline:hover { background: rgba(16, 185, 129, 0.1); color: #047857 !important; }
+        [data-theme="dark"] .tools-strip-btn.outline { color: #34d399 !important; border-color: #34d399; }
+        [data-theme="dark"] .tools-strip-btn.outline:hover { background: rgba(52, 211, 153, 0.1); color: #34d399 !important; }
 
         /* Layout */
         .main-layout { display: flex; flex-direction: column; gap: 20px; }
@@ -437,7 +471,7 @@
         @media (max-width: 600px) {
             .page-header-top { margin-top: 25px; }
 
-            .hero-title { white-space: normal; padding: 0 10px !important; }
+            .hero-title { white-space: normal; padding: 0 10px !important; line-height: 1.2; font-size: 25px !important;}
             .top-meta-bar { flex-wrap: nowrap; justify-content: space-between; }
             .widget-header { padding: 10px; align-items: center; }
             .text-controls { justify-content: center; gap: 3px; padding: 2px 0; }
@@ -457,6 +491,11 @@
             .hero-interlinks .dot { display: inline; font-size: 0.7rem; }
             .hero-interlinks a { font-size: 0.8rem; }
             .hero-interlinks .interlink-label { font-size: 0.75rem; }
+
+            .tools-strip { flex-direction: column; align-items: stretch; gap: 12px;}
+            .tools-strip-btn-group { width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 6px;}
+            .tools-strip-btn-group .tools-strip-btn:last-child { grid-column: span 2; }
+            .tools-strip-btn { justify-content: center; padding: 7px 10px; font-size: 12px; }
         }
     </style>
 
@@ -470,7 +509,7 @@
 
 <noscript>
     <div style="padding: 20px; text-align: center; color: #7f1d1d; background: #fef2f2;">
-        <strong>JavaScript is required.</strong> Please enable JavaScript to use the Study Notes.
+        <strong>JavaScript is required.</strong> Please enable JavaScript to use the HPGK Quiz application.
     </div>
 </noscript>
 
@@ -497,7 +536,7 @@
         <h1 class="hero-title">Free General Agriculture Mock Test & Exam Prep</h1>
         <!-- Descriptive content acting as hero sub-heading -->
         <p class="hero-desc">
-            Unlock access to <strong>507+ curated questions</strong> tailored specifically for <strong>ICAR JRF, IBPS AFO, and NABARD</strong>. Test your knowledge with our highly engaging bilingual (English & Hindi) interactive system. <br>ICAR JRF, IBPS AFO और NABARD के लिए विशेष रूप से तैयार किए गए 507+ द्विभाषी प्रश्नों तक पहुँच प्राप्त करें।
+            Unlock access to <strong>507+ curated questions</strong> tailored specifically for <strong>ICAR JRF, IBPS AFO, and NABARD</strong>. Test your knowledge with our highly engaging bilingual (English & Hindi) system. <br>ICAR JRF, IBPS AFO और NABARD के लिए विशेष रूप से तैयार किए गए 507+ द्विभाषी प्रश्नों तक पहुँच प्राप्त करें।
         </p>
         
         <!-- High-Contrast Interlinking Hook -->
@@ -507,6 +546,30 @@
             <a href="../himachal-pradesh-gk/geography/">Geography</a><span class="dot">•</span>
             <a href="../himachal-pradesh-gk/economy/">Economy</a><span class="dot">•</span>
             <a href="../himachal-pradesh-gk/polity/">Polity</a>
+        </div>
+
+        <!-- DEDICATED GREEN TOOLS STRIP FOR AGRI QUIZ -->
+        <div class="tools-strip">
+            <div class="tools-strip-left">
+                <div class="tools-strip-icon">
+                    <i class="fa-solid fa-book-open-reader"></i>
+                </div>
+                <div>
+                    <div class="tools-strip-title font-heading" style="font-family: 'Inter', sans-serif;">Explore Premium Notes</div>
+                    <div class="tools-strip-desc font-sans" style="font-family: 'Inter', sans-serif;">Read 2000+ One Liners & Revenue Mock Quiz</div>
+                </div>
+            </div>
+            <div class="tools-strip-btn-group">
+                <a href="../study-notes/hpgk-one-liners/" class="tools-strip-btn outline">
+                    <i class="fa-solid fa-bolt"></i> HPGK One Liners
+                </a>
+                <a href="../study-notes/hp-revenue-and-land-laws/quiz/" class="tools-strip-btn outline">
+                    <i class="fa-solid fa-gavel"></i> HP Revenue Quiz
+                </a>
+                <a href="../study-notes/" class="tools-strip-btn">
+                    Notes Hub <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
         </div>
     </div>
 
@@ -593,7 +656,7 @@
 
                     <div id="quizContent" class="quiz-content">
                         <div id="cardArea">
-                            <div style="text-align:center; padding: 20px; color: #4B5563; font-size: 0.85rem;">
+                            <div style="text-align:center; padding: 20px; color: var(--text-sec); font-size: 0.85rem;">
                                 Loading Quiz Data...
                             </div>
                         </div>
@@ -715,7 +778,7 @@
                     <li><strong>Consumptive Use:</strong> The precise total amount of water heavily utilized directly by the crop for transpiration and essential building of plant tissues. (उपभोग्य उपयोग (Consumptive Use): वाष्पोत्सर्जन और पौधों के ऊतकों के निर्माण के लिए फसल द्वारा उपयोग किया गया कुल पानी).</li>
                     <li><strong>Waterlogging Impact:</strong> Severe poor drainage completely limits essential soil oxygen, fatally destroying root respiration and deeply harming crop yields. (जलभराव का प्रभाव: खराब जल निकासी मिट्टी के ऑक्सीजन को सीमित करती है, जिससे जड़ों के श्वसन को नुकसान पहुंचता है).</li>
                     <li><strong>Dryland Farming:</strong> The highly specialized agricultural practice of commercially growing crops in arid areas receiving strictly less than 750mm of annual rainfall. (शुष्क भूमि खेती (Dryland Farming): 750 मिमी से कम वार्षिक वर्षा वाले शुष्क क्षेत्रों में फसल उगाने की विशेष कृषि पद्धति).</li>
-                    <li><strong>Tensiometer:</strong> A highly sensitive, specialized scientific instrument explicitly used to actively measure soil moisture tension effectively in the field. (टेंशियोमीटर: एक वैज्ञानिक उपकरण जिसका उपयोग खेत में मिट्टी की नमी के तनाव को मापने के लिए किया जाता है).</li>
+                    <li><strong>Tensiometer:</strong> A highly sensitive, specialized scientific instrument explicitly used to actively measure soil moisture tension effectively in the field. (टेंशियोमीटर: एक वैज्ञानिक उपकरण जिसका उपयोग खेत में मिट्टी खेत में मिट्टी की नमी के तनाव को मापने के लिए किया जाता है).</li>
                 </ul>
             </div>
 
