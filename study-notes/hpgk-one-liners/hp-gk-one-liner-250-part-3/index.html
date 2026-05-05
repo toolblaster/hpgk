@@ -150,7 +150,7 @@
         .top-meta-bar { 
             display: flex; justify-content: space-between; align-items: center; 
             width: 100%; max-width: 1100px; 
-            margin: 0 auto 5px auto; /* FIXED: Reduced from 15px to 5px to match quiz page */
+            margin: 0 auto 5px auto; /* Compact spacing */
             padding: 0 15px; flex-wrap: nowrap; gap: 10px; 
         }
 
@@ -181,7 +181,7 @@
             text-align: center; 
             max-width: 800px; 
             margin: 0 auto 20px auto; 
-            padding: 5px 15px; /* FIXED: Reduced padding to match quiz page */
+            padding: 5px 15px; 
         }
         
         .hero-title { 
@@ -192,6 +192,7 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             color: var(--primary); 
+            line-height: 1.2;
         }
 
         .hero-desc { 
@@ -219,7 +220,7 @@
         [data-theme="dark"] .hero-interlinks a:hover { color: #60a5fa; }
         .hero-interlinks .dot { color: var(--text-sec); font-size: 0.8rem; opacity: 0.6; }
 
-        /* GREEN TOOLS STRIP (Accessible Teal Colors) */
+        /* GREEN TOOLS STRIP */
         .tools-strip {
             margin-top: 25px; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(5, 150, 105, 0.4);
             border-radius: var(--radius-lg); padding: 12px 16px; display: flex; align-items: center; justify-content: space-between;
@@ -235,21 +236,22 @@
         .tools-strip-title { font-weight: 800; color: var(--text-main); font-size: 0.95rem; text-align: left; font-family: 'Inter', sans-serif;}
         .tools-strip-desc { font-size: 0.75rem; color: var(--text-sec); margin-top: 2px; text-align: left; font-weight: 500; font-family: 'Inter', sans-serif;}
         .tools-strip-btn-group { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; justify-content: flex-end;}
+        
         .tools-strip-btn {
-            background: #059669; color: white; padding: 8px 14px; border-radius: var(--radius-md);
-            font-size: 0.8rem; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 6px;
-            transition: background 0.2s; white-space: nowrap;
+            background: #059669; color: white !important; padding: 6px 12px; border-radius: 6px;
+            font-size: 12px; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 5px;
+            transition: background 0.2s; white-space: nowrap; letter-spacing: 0.2px;
         }
-        .tools-strip-btn:hover { background: #047857; }
-        [data-theme="dark"] .tools-strip-btn { background: #10b981; }
-        [data-theme="dark"] .tools-strip-btn:hover { background: #059669; }
+        .tools-strip-btn:hover { background: #047857; color: white !important; }
+        [data-theme="dark"] .tools-strip-btn { background: #10b981; color: #022c22 !important; }
+        [data-theme="dark"] .tools-strip-btn:hover { background: #059669; color: white !important; }
         
         .tools-strip-btn.outline {
-            background: transparent; color: #059669; border: 1px solid #059669;
+            background: transparent; color: #059669 !important; border: 1px solid #059669;
         }
-        .tools-strip-btn.outline:hover { background: rgba(16, 185, 129, 0.1); color: #047857; }
-        [data-theme="dark"] .tools-strip-btn.outline { color: #34d399; border-color: #34d399; }
-        [data-theme="dark"] .tools-strip-btn.outline:hover { background: rgba(52, 211, 153, 0.1); }
+        .tools-strip-btn.outline:hover { background: rgba(16, 185, 129, 0.1); color: #047857 !important; }
+        [data-theme="dark"] .tools-strip-btn.outline { color: #34d399 !important; border-color: #34d399; }
+        [data-theme="dark"] .tools-strip-btn.outline:hover { background: rgba(52, 211, 153, 0.1); color: #34d399 !important; }
 
         /* ==========================================
            1100px 2-COLUMN LIST LAYOUT
@@ -316,9 +318,7 @@
         [data-theme="dark"] .a-hi { color: #fbbf24; }
 
         @media (max-width: 600px) {
-            /* FIXED: Replaced 25px with 12px to close the mobile gap, matching Quiz page */
             .hub-hero { margin-top: 12px; padding-top: 0; }
-            
             .hero-title { font-size: 25px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
             .fact-row { padding: 10px 12px; }
             .content-en { padding-right: 45px; }
@@ -405,7 +405,7 @@
                     Part 1
                 </a>
                 <a href="../hp-gk-one-liner-250-part-2/" class="tools-strip-btn outline">
-                    Part 2
+                    <i class="fa-solid fa-arrow-left"></i> Part 2
                 </a>
                 <a href="../hp-gk-one-liner-250-part-4/" class="tools-strip-btn">
                     Part 4 <i class="fa-solid fa-arrow-right"></i>
@@ -537,12 +537,12 @@
         { id: 852, qHi: "धामी प्रजामंडल आंदोलन का नेतृत्व किसने किया?", aHi: "भागमल सौठा।", qEn: "Who led the Dhami Prajamandal movement?", aEn: "Bhagmal Sautha." },
         { id: 853, qHi: "पझौता आंदोलन (1942) किस रियासत में हुआ था?", aHi: "सिरमौर।", qEn: "Pajhota Agitation (1942) took place in which princely state?", aEn: "Sirmaur." },
         { id: 854, qHi: "1948 में सुकेत सत्याग्रह के नेता कौन थे?", aHi: "पंडित पदम देव।", qEn: "Who was the leader of the Suket Satyagraha in 1948?", aEn: "Pandit Padam Dev." },
-        { id: 855, qHi: "हिमाचल प्रदेश को मुख्य आयुक्त प्रांत के रूप划 गया था?", aHi: "15 अप्रैल 1948।", qEn: "When was Himachal Pradesh formed as a Chief Commissioner's Province?", aEn: "15 April 1948." },
+        { id: 855, qHi: "हिमाचल प्रदेश को मुख्य आयुक्त प्रांत के रूप劃 गया था?", aHi: "15 अप्रैल 1948।", qEn: "When was Himachal Pradesh formed as a Chief Commissioner's Province?", aEn: "15 April 1948." },
         { id: 856, qHi: "1948 में हिमाचल प्रदेश बनाने के लिए कितनी रियासतों का विलय किया गया था?", aHi: "30।", qEn: "How many princely states were merged to form Himachal Pradesh in 1948?", aEn: "30." },
         { id: 857, qHi: "हिमाचल प्रदेश पार्ट 'सी' राज्य कब बना?", aHi: "1951।", qEn: "When did Himachal Pradesh become a Part 'C' state?", aEn: "1951." },
         { id: 858, qHi: "बिलासपुर का हिमाचल प्रदेश में विलय कब हुआ?", aHi: "1 जुलाई 1954।", qEn: "When did Bilaspur merge into Himachal Pradesh?", aEn: "1 July 1954." },
         { id: 859, qHi: "हिमाचल प्रदेश केंद्र शासित प्रदेश कब बना?", aHi: "1 नवंबर 1956।", qEn: "When did Himachal Pradesh become a Union Territory?", aEn: "1 November 1956." },
-        { id: 860, qHi: "हिमाचल प्रदेश को पूर्ण राज्य का दर्जा कब मिला?", aHi: "25 जनवरी 1971।", qEn: "When did Himachal Pradesh get full statehood?", aEn: "25 January 1971." },
+        { id: 860, qHi: "हिमाचल प्रदेश को पूर्ण राज्य दर्जा कब मिला?", aHi: "25 जनवरी 1971।", qEn: "When did Himachal Pradesh get full statehood?", aEn: "25 January 1971." },
         { id: 861, qHi: "किसे \"हिमाचल प्रदेश का निर्माता\" कहा जाता है?", aHi: "डॉ. वाई.एस. परमार।", qEn: "Who is known as the \"Founder of Himachal Pradesh\"?", aEn: "Dr. Y.S. Parmar." },
         { id: 862, qHi: "'पहाड़ी गांधी' की उपाधि किसे दी गई थी?", aHi: "बाबा कांशी राम।", qEn: "Who was given the title of 'Pahari Gandhi'?", aEn: "Baba Kanshi Ram." },
         { id: 863, qHi: "बाबा कांशी राम को 'पहाड़ी गांधी' की उपाधि किसने दी थी?", aHi: "पंडित जवाहरलाल नेहरू।", qEn: "Who gave the title 'Pahari Gandhi' to Baba Kanshi Ram?", aEn: "Pandit Jawaharlal Nehru." },
@@ -714,7 +714,7 @@
         if (typeof renderHeader === 'function') {
             renderHeader({
                 title: 'HP GK One Liners',
-                subtitle: 'Part 4 (1001-1250)',
+                subtitle: 'Part 3 (751-1000)',
                 iconClass: 'fa-solid fa-bolt',
                 link: '../', 
                 isQuizPage: false,
@@ -729,6 +729,5 @@
     });
 
 </script>
-
 </body>
 </html>
