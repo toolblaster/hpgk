@@ -147,33 +147,41 @@
         
         main { 
             flex: 1; 
+            width: 100%; 
+            padding: 15px 0 !important; 
+            box-sizing: border-box; 
+        }
+
+        .main-layout, .top-meta-bar { 
+            width: 100%; 
             max-width: var(--site-width); 
             margin: 0 auto; 
-            padding: 20px 0;
-            width: 100%; 
+            padding: 0 15px; 
             box-sizing: border-box;
+            display: block !important; 
         }
-        
-        @media (max-width: 1130px) {
-            main { padding: 20px 15px !important; }
-        }
-        
-        .main-layout { 
-            display: block; 
-            width: 100%; max-width: var(--site-width); margin: 0 auto; 
-            padding: 0 15px; box-sizing: border-box;
-        } 
 
-        .top-meta-bar { 
-            display: flex; justify-content: space-between; align-items: center; 
-            width: 100%; max-width: var(--site-width); margin: 0 auto 15px auto; 
-            padding: 0 15px; flex-wrap: nowrap; gap: 10px; box-sizing: border-box;
+        .section-separator { 
+            height: 1px; 
+            background: linear-gradient(90deg, transparent, var(--card-border), transparent); 
+            margin: 25px auto; 
+            width: 100%; 
+            max-width: var(--site-width); 
         }
 
         @media (max-width: 480px) {
-            .top-meta-bar, .main-layout {
+            .main-layout, .top-meta-bar {
                 padding: 0 12px !important;
             }
+        }
+
+        .top-meta-bar { 
+            display: flex !important;
+            justify-content: space-between; 
+            align-items: center; 
+            margin-bottom: 15px; 
+            flex-wrap: nowrap; 
+            gap: 10px; 
         }
 
         /* ==========================================================================
@@ -312,6 +320,7 @@
         .tools-strip-title { font-weight: 800; color: var(--text-main); font-size: 0.95rem; text-align: left; font-family: 'Inter', sans-serif;}
         .tools-strip-desc { font-size: 0.75rem; color: var(--text-sec); margin-top: 2px; text-align: left; font-weight: 500; font-family: 'Inter', sans-serif;}
         .tools-strip-btn-group { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; justify-content: flex-end;}
+        
         .tools-strip-btn {
             background: #059669; color: white !important; padding: 6px 12px; border-radius: 6px;
             font-size: 12px; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 5px;
@@ -445,15 +454,20 @@
         }
 
         @media (max-width: 600px) {
+            /* FIXED: Pushes H1 down to avoid cluttering with the Breadcrumb */
             .hub-hero { margin-top: 25px; padding-top: 0; }
+
+            /* FIXED: Ensure mobile font size is strictly 25px */
             .hero-title { font-size: 25px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
             
+            main { padding: 15px 12px !important; }
             .top-meta-bar { flex-wrap: nowrap; justify-content: space-between; }
             .breadcrumb-nav, .hero-badge { height: 26px; }
             .breadcrumb-list { padding: 0 10px; border-radius: 13px; }
             .hero-badge { padding: 0 10px; border-radius: 13px; font-size: 0.6rem; }
             .breadcrumb-item { font-size: 0.6rem; }
             
+            /* Responsive interlinks for mobile */
             .hero-interlinks { flex-direction: row; flex-wrap: wrap; gap: 6px; padding: 8px 12px; border-radius: 30px; }
             .hero-interlinks .dot { display: inline; font-size: 0.7rem; }
             .hero-interlinks a { font-size: 0.8rem; }
@@ -462,7 +476,7 @@
             .tools-strip { flex-direction: column; align-items: stretch; gap: 15px;}
             .tools-strip-btn-group { width: 100%; justify-content: stretch; display: grid; grid-template-columns: 1fr 1fr; gap: 8px;}
             .tools-strip-btn-group .tools-strip-btn:last-child { grid-column: span 2; }
-            .tools-strip-btn { justify-content: center; }
+            .tools-strip-btn { justify-content: center; padding: 7px 10px; font-size: 12px; }
         }
     </style>
 
