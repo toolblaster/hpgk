@@ -140,7 +140,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Noto+Sans+Devanagari:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Noto+Sans+Devanagari:wght@400;500;600;700;800;900&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -312,7 +312,6 @@
         .tools-strip-desc { font-size: 0.75rem; color: var(--text-sec); margin-top: 2px; text-align: left; font-weight: 500; font-family: 'Inter', sans-serif;}
         .tools-strip-btn-group { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; justify-content: flex-end;}
         
-        /* Adjusted Button Sizes for Sleeker Look */
         .tools-strip-btn {
             background: #059669; color: white !important; padding: 6px 12px; border-radius: 6px;
             font-size: 12px; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 5px;
@@ -423,26 +422,92 @@
         .progress-display { display: flex; align-items: center; justify-content: center; padding: 4px 10px; }
         .progress-text { font-weight: 800; color: var(--text-main); font-size: 0.85rem; }
 
-        /* SEO Card Styles - Adjusted for clean, non-bloated look */
-        .seo-content-wrapper { margin-bottom: 30px; }
-        .seo-header { text-align: center; margin-bottom: 20px; }
-        .seo-header h2 { font-size: clamp(1.2rem, 3vw, 1.6rem); margin-bottom: 8px; }
-        .seo-header p { color: var(--text-sec); max-width: 600px; margin: 0 auto; font-size: 0.85rem; }
+        /* ==========================================================================
+           MODERN PREMIUM SEO CARDS (Bilingual Structure Restored)
+           ========================================================================== */
+        .seo-content-wrapper { margin-bottom: 40px; }
+        .seo-header { text-align: center; margin-bottom: 25px; }
+        .seo-header h2 { font-size: clamp(1.4rem, 3vw, 1.8rem); margin-bottom: 8px; font-family: 'Poppins', sans-serif !important; font-weight: 800; color: var(--text-main); display: flex; align-items: center; justify-content: center; gap: 10px;}
+        .seo-header p { color: var(--text-sec); max-width: 700px; margin: 0 auto; font-size: 0.9rem; line-height: 1.6;}
         
-        /* Grid Alignment */
-        .seo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 15px; align-items: stretch; width: 100%; }
+        .seo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; align-items: stretch; width: 100%; }
         
-        .seo-card { background: var(--card-bg); border: 1px solid var(--card-border); padding: 20px; border-radius: var(--radius-lg); box-shadow: var(--glass-shadow); border-left: 4px solid var(--primary); transition: border-color 0.2s; display: flex; flex-direction: column; box-sizing: border-box; width: 100%; }
-        .seo-card:hover { border-color: var(--primary-light); }
-        .seo-card h3 { font-size: 1rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; color: var(--text-main) !important; }
-        .seo-card h3 i { color: var(--primary); }
-        .seo-card p { color: var(--text-body) !important; font-size: 0.85rem; margin-bottom: 15px; }
+        /* Modern Card Base */
+        .agri-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        [data-theme="dark"] .agri-card { box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+
+        .agri-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+            border-color: var(--primary-light);
+        }
+        [data-theme="dark"] .agri-card:hover {
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+            border-color: rgba(255,255,255,0.15);
+        }
+
+        /* Card Header */
+        .agri-card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+
+        .agri-icon-box {
+            width: 48px; height: 48px; border-radius: 14px; 
+            display: flex; align-items: center; justify-content: center; font-size: 20px;
+            box-shadow: inset 0 2px 4px rgba(255,255,255,0.5); flex-shrink: 0;
+        }
+        [data-theme="dark"] .agri-icon-box { box-shadow: inset 0 2px 4px rgba(255,255,255,0.1); }
+
+        .agri-card h3 {
+            font-size: 17px !important; font-weight: 800; color: var(--text-main) !important; 
+            margin: 0; font-family: 'Inter', sans-serif !important; line-height: 1.2;
+        }
+
+        /* Bilingual Paragraph Support */
+        .agri-card > p { margin: 0 0 16px 0; flex-shrink: 0; }
+        .agri-card .p-en { font-size: 13.5px !important; color: var(--text-main) !important; line-height: 1.5; font-weight: 600; margin-bottom: 4px; display: block;}
+        .agri-card .p-hi { font-size: 12.5px !important; color: var(--text-sec) !important; line-height: 1.4; font-weight: 500; font-family: 'Noto Sans Devanagari', sans-serif; display: block;}
+
+        /* Dense, concise list items with Bilingual Support */
+        .seo-list { list-style: none; padding-left: 0; margin: 0; flex-grow: 1; }
+        .seo-list li { position: relative; padding-left: 18px; margin-bottom: 12px; }
+        .seo-list li::before { content: "\f111"; font-family: "Font Awesome 6 Free"; font-weight: 900; color: var(--primary); position: absolute; left: 0; top: 5px; font-size: 5px; }
         
-        .seo-list { list-style: none; padding-left: 0; margin-top: 0; }
+        .detail-en { font-size: 12.5px; color: var(--text-main) !important; line-height: 1.4; font-weight: 600; display: block; margin-bottom: 2px;}
+        .detail-hi { font-size: 11.5px; color: var(--text-sec) !important; line-height: 1.4; font-weight: 500; display: block; font-family: 'Noto Sans Devanagari', sans-serif;}
         
-        /* Dense, concise list items */
-        .seo-list li { position: relative; padding-left: 18px; margin-bottom: 6px; font-size: 0.8rem; color: var(--text-body) !important; line-height: 1.35; }
-        .seo-list li::before { content: "\f111"; font-family: "Font Awesome 6 Free"; font-weight: 900; color: var(--primary); position: absolute; left: 0; top: 5px; font-size: 0.4rem; }
+        .detail-en strong { color: var(--primary-dark); font-weight: 800; }
+        .detail-hi strong { color: var(--primary-dark); font-weight: 700; }
+        [data-theme="dark"] .detail-en strong, [data-theme="dark"] .detail-hi strong { color: #93c5fd; }
+
+        /* Thematic Colors */
+        .th-green .agri-icon-box { background: rgba(16, 185, 129, 0.1); color: #059669; }
+        .th-blue .agri-icon-box { background: rgba(59, 130, 246, 0.1); color: #2563eb; }
+        .th-amber .agri-icon-box { background: rgba(245, 158, 11, 0.1); color: #d97706; }
+        .th-rose .agri-icon-box { background: rgba(225, 29, 72, 0.1); color: #e11d48; }
+        .th-purple .agri-icon-box { background: rgba(139, 92, 246, 0.1); color: #7c3aed; }
+        .th-teal .agri-icon-box { background: rgba(20, 184, 166, 0.1); color: #0d9488; }
+        .th-orange .agri-icon-box { background: rgba(249, 115, 22, 0.1); color: #ea580c; }
+        
+        [data-theme="dark"] .th-green .agri-icon-box { color: #34d399; background: rgba(52, 211, 153, 0.15); }
+        [data-theme="dark"] .th-blue .agri-icon-box { color: #60a5fa; background: rgba(96, 165, 250, 0.15); }
+        [data-theme="dark"] .th-amber .agri-icon-box { color: #fbbf24; background: rgba(251, 191, 36, 0.15); }
+        [data-theme="dark"] .th-rose .agri-icon-box { color: #fb7185; background: rgba(251, 113, 133, 0.15); }
+        [data-theme="dark"] .th-purple .agri-icon-box { color: #a78bfa; background: rgba(167, 139, 250, 0.15); }
+        [data-theme="dark"] .th-teal .agri-icon-box { color: #2dd4bf; background: rgba(45, 212, 191, 0.15); }
+        [data-theme="dark"] .th-orange .agri-icon-box { color: #fb923c; background: rgba(251, 146, 60, 0.15); }
 
         /* Modal specific styles */
         .quiz-modal-overlay {
@@ -453,7 +518,6 @@
         }
         .quiz-modal-overlay.show { display: flex !important; opacity: 1; }
         
-        /* Solid background for the modal content */
         .quiz-modal-content {
             background: var(--tooltip-bg) !important; 
             width: 100%; max-width: 320px; margin: auto !important;
@@ -465,7 +529,6 @@
         }
         .quiz-modal-overlay.show .quiz-modal-content { transform: translateY(0); }
         .quiz-modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--card-border); padding-bottom: 10px; margin-bottom: 10px; }
-
 
         /* EXACT MOBILE CSS COMPACTNESS */
         @media (max-width: 600px) {
@@ -481,10 +544,6 @@
             .stat-label { font-size: 10.4px !important; letter-spacing: -0.2px; margin: 0; }
             .stat-value { font-size: 10.4px !important; }
             .quiz-mcq-container { margin: 8px 10px 10px 10px; border-width: 1.5px; }
-            .seo-card { padding: 15px; }
-            .nav-btn { padding: 4px 8px; font-size: 0.7rem; min-width: 55px; }
-            .progress-display { padding: 2px 6px; }
-            .progress-text { font-size: 0.7rem; }
             
             /* Responsive interlinks for mobile */
             .hero-interlinks { flex-direction: row; flex-wrap: wrap; gap: 6px; padding: 8px 12px; border-radius: 30px; }
@@ -496,6 +555,16 @@
             .tools-strip-btn-group { width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 6px;}
             .tools-strip-btn-group .tools-strip-btn:last-child { grid-column: span 2; }
             .tools-strip-btn { justify-content: center; padding: 7px 10px; font-size: 12px; }
+
+            /* Mobile adjustments for modern cards */
+            .agri-card { padding: 20px; }
+            .agri-card-header { margin-bottom: 15px; }
+            .agri-card h3 { font-size: 16px !important; }
+            .agri-card .p-en { font-size: 13px !important; }
+            .agri-card .p-hi { font-size: 12px !important; }
+            .nav-btn { padding: 4px 8px; font-size: 0.7rem; min-width: 55px; }
+            .progress-display { padding: 2px 6px; }
+            .progress-text { font-size: 0.7rem; }
         }
     </style>
 
@@ -536,7 +605,7 @@
         <h1 class="hero-title">Free General Agriculture Mock Test & Exam Prep</h1>
         <!-- Descriptive content acting as hero sub-heading -->
         <p class="hero-desc">
-            Unlock access to <strong>507+ curated questions</strong> tailored specifically for <strong>ICAR JRF, IBPS AFO, and NABARD</strong>. Test your knowledge with our highly engaging bilingual (English & Hindi) system. <br>ICAR JRF, IBPS AFO और NABARD के लिए विशेष रूप से तैयार किए गए 507+ द्विभाषी प्रश्नों तक पहुँच प्राप्त करें।
+            Unlock access to <strong>507+ curated questions</strong> tailored specifically for <strong>ICAR JRF, IBPS AFO, and NABARD</strong>. Test your knowledge with our highly engaging bilingual (English & Hindi) system. <br><span class="hi-desc">ICAR JRF, IBPS AFO और NABARD के लिए विशेष रूप से तैयार किए गए 507+ द्विभाषी प्रश्नों तक पहुँच प्राप्त करें।</span>
         </p>
         
         <!-- High-Contrast Interlinking Hook -->
@@ -677,7 +746,7 @@
 
     <div class="section-separator"></div>
 
-    <!-- 9 SEO Cards (Fully Restored) -->
+    <!-- 9 SEO Cards (MODERN BILINGUAL DESIGN) -->
     <section class="seo-content-wrapper">
         <div class="seo-header">
             <h2>Comprehensive Agriculture Guide (व्यापक कृषि गाइड)</h2>
@@ -687,146 +756,272 @@
         <div class="seo-grid">
             
             <!-- 1. General Agriculture -->
-            <div class="seo-card glass-panel">
-                <h3><i class="fa-solid fa-seedling"></i> 1. General Agriculture (सामान्य कृषि)</h3>
-                <p>Foundational concepts, vital historical developments, and the core economics of the Indian agricultural sector. <br>(भारतीय कृषि क्षेत्र की मूलभूत अवधारणाएं, महत्वपूर्ण ऐतिहासिक विकास और मुख्य अर्थशास्त्र।)</p>
+            <div class="agri-card th-green">
+                <div class="agri-card-header">
+                    <div class="agri-icon-box"><i class="fa-solid fa-seedling"></i></div>
+                    <h3>1. General Agriculture (सामान्य कृषि)</h3>
+                </div>
+                <p>
+                    <span class="p-en">Foundational concepts, vital historical developments, and the core economics of the Indian agricultural sector.</span>
+                    <span class="p-hi">भारतीय कृषि क्षेत्र की मूलभूत अवधारणाएं, ऐतिहासिक विकास और मुख्य अर्थशास्त्र।</span>
+                </p>
                 <ul class="seo-list">
-                    <li><strong>Green Revolution:</strong> Initiated globally by Dr. Norman Borlaug and in India by Dr. M.S. Swaminathan (focused on high-yielding Wheat/Rice). (हरित क्रांति: विश्व में नॉर्मन बोरलॉग और भारत में एमएस स्वामीनाथन द्वारा शुरू).</li>
-                    <li><strong>Other Revolutions:</strong> White Revolution (Milk - Dr. Verghese Kurien), Blue (Fish), Yellow (Oilseeds), and Silver (Eggs/Poultry). (अन्य क्रांतियां: श्वेत (दूध), नीली (मछली), पीली (तिलहन) और रजत (अंडे)).</li>
-                    <li><strong>ICAR Establishment:</strong> The Indian Council of Agricultural Research (ICAR) was officially established in New Delhi on 16 July 1929. (ICAR की स्थापना: भारतीय कृषि अनुसंधान परिषद 16 जुलाई 1929 को स्थापित हुई).</li>
-                    <li><strong>IARI Relocation:</strong> The Indian Agricultural Research Institute (IARI) was originally in Pusa, Bihar (1905) but shifted to Delhi after the 1934 earthquake. (IARI: मूल रूप से पूसा, बिहार (1905) में, भूकंप के बाद दिल्ली स्थानांतरित).</li>
-                    <li><strong>NABARD:</strong> The National Bank for Agriculture and Rural Development was established in 1982 to strictly handle apex rural credit. (नाबार्ड (NABARD): ग्रामीण ऋण को संभालने के लिए 1982 में स्थापित शीर्ष बैंक).</li>
-                    <li><strong>Kisan Credit Card (KCC):</strong> An immensely successful financial scheme officially launched in 1998 to provide timely, adequate credit to farmers. (KCC योजना: किसानों को समय पर ऋण प्रदान करने के लिए 1998 में शुरू की गई योजना).</li>
-                    <li><strong>GDP Contribution:</strong> The agriculture sector reliably contributes approximately 17-18% directly to the total Gross Domestic Product of India. (GDP योगदान: कृषि क्षेत्र भारत के सकल घरेलू उत्पाद में लगभग 17-18% का योगदान देता है).</li>
-                    <li><strong>CACP Role:</strong> The Commission for Agricultural Costs and Prices officially recommends the Minimum Support Prices (MSP) for 23 major commodities. (CACP: कृषि लागत और मूल्य आयोग 23 प्रमुख वस्तुओं के लिए MSP की सिफारिश करता है).</li>
+                    <li>
+                        <span class="detail-en"><strong>Green Revolution:</strong> Initiated globally by Dr. Norman Borlaug and in India by Dr. M.S. Swaminathan.</span>
+                        <span class="detail-hi"><strong>हरित क्रांति:</strong> वैश्विक स्तर पर डॉ. नॉर्मन बोरलॉग और भारत में डॉ. एम.एस. स्वामीनाथन द्वारा शुरू की गई।</span>
+                    </li>
+                    <li>
+                        <span class="detail-en"><strong>Other Revolutions:</strong> White Revolution (Milk), Blue (Fish), Yellow (Oilseeds).</span>
+                        <span class="detail-hi"><strong>अन्य क्रांतियां:</strong> श्वेत क्रांति (दूध), नीली क्रांति (मछली), पीली क्रांति (तिलहन)।</span>
+                    </li>
+                    <li>
+                        <span class="detail-en"><strong>ICAR Establishment:</strong> The Indian Council of Agricultural Research was officially established on 16 July 1929.</span>
+                        <span class="detail-hi"><strong>ICAR की स्थापना:</strong> भारतीय कृषि अनुसंधान परिषद की स्थापना 16 जुलाई 1929 को हुई थी।</span>
+                    </li>
+                    <li>
+                        <span class="detail-en"><strong>CACP Role:</strong> Recommends the Minimum Support Prices (MSP) for 23 major commodities.</span>
+                        <span class="detail-hi"><strong>CACP की भूमिका:</strong> 23 प्रमुख वस्तुओं के लिए न्यूनतम समर्थन मूल्य (MSP) की सिफारिश करता है।</span>
+                    </li>
                 </ul>
             </div>
 
             <!-- 2. Agronomy -->
-            <div class="seo-card glass-panel">
-                <h3><i class="fa-solid fa-wheat-awn"></i> 2. Agronomy & Crops (शस्य विज्ञान और फसलें)</h3>
-                <p>The highly scientific study and rigorous management of field crops, weeds, and agricultural meteorology. <br>(खेत की फसलों, खरपतवारों और कृषि मौसम विज्ञान का अत्यधिक वैज्ञानिक अध्ययन और प्रबंधन।)</p>
+            <div class="agri-card th-amber">
+                <div class="agri-card-header">
+                    <div class="agri-icon-box"><i class="fa-solid fa-wheat-awn"></i></div>
+                    <h3>2. Agronomy & Crops (शस्य विज्ञान)</h3>
+                </div>
+                <p>
+                    <span class="p-en">The highly scientific study and rigorous management of field crops, weeds, and agricultural meteorology.</span>
+                    <span class="p-hi">खेत की फसलों, खरपतवारों और कृषि मौसम विज्ञान का अत्यधिक वैज्ञानिक अध्ययन और प्रबंधन।</span>
+                </p>
                 <ul class="seo-list">
-                    <li><strong>C3 vs C4 Plants:</strong> C4 plants (Maize, Sugarcane) are highly efficient in hot climates, while C3 plants (Wheat, Rice) prefer cooler conditions. (C3 बनाम C4 पौधे: C4 पौधे गर्म जलवायु में अत्यधिक कुशल होते हैं (मक्का, गन्ना)).</li>
-                    <li><strong>Tillage Concepts:</strong> The "Zero Tillage" concept (growing crops without disturbing the soil) was originally introduced by Jethro Tull. (जुताई (Tillage): बिना मिट्टी को छेड़े फसल उगाने की 'शून्य जुताई' अवधारणा जेथ्रो टुल ने दी थी).</li>
-                    <li><strong>Weed Management:</strong> 2,4-D is a highly famous, selective herbicide used extensively worldwide to kill broad-leaved weeds in wheat fields. (खरपतवार प्रबंधन: 2,4-D चौड़ी पत्ती वाले खरपतवारों को मारने के लिए व्यापक रूप से इस्तेमाल किया जाने वाला शाकनाशी है).</li>
-                    <li><strong>Seed Viability:</strong> The Tetrazolium (TZ) test is a rapid, biochemical method specifically used to quickly determine seed viability. (बीज जीवनक्षमता: टेट्राजोलियम परीक्षण बीज की जीवनक्षमता निर्धारित करने के लिए एक त्वरित विधि है).</li>
-                    <li><strong>Crop Water Use:</strong> The ratio of crop yield to the amount of water depleted is scientifically termed as 'Water Use Efficiency'. (जल उपयोग दक्षता: फसल की उपज और उपयोग किए गए पानी की मात्रा का वैज्ञानिक अनुपात).</li>
-                    <li><strong>Dwarf Wheat:</strong> Norin-10 is the legendary dwarfing gene in wheat that successfully sparked the historic Green Revolution in India. (बौना गेहूं: नोरिन-10 गेहूं का वह बौना जीन है जिसने भारत में हरित क्रांति को जन्म दिया).</li>
-                    <li><strong>Photoperiodism:</strong> The distinct physiological reaction of organisms exactly to the length of day or night (e.g., Short-day vs Long-day plants). (दीप्तिकालिता (Photoperiodism): दिन या रात की लंबाई के प्रति जीवों की शारीरिक प्रतिक्रिया).</li>
-                    <li><strong>Meteorology:</strong> Anemometers strictly measure wind speed, while Lysimeters precisely measure the actual evapotranspiration of crops. (मौसम विज्ञान: एनीमोमीटर हवा की गति मापता है, जबकि लाइसीमीटर वाष्पोत्सर्जन मापता है).</li>
+                    <li>
+                        <span class="detail-en"><strong>C3 vs C4 Plants:</strong> C4 plants (Maize) are highly efficient in hot climates, while C3 plants (Wheat) prefer cooler conditions.</span>
+                        <span class="detail-hi"><strong>C3 बनाम C4 पौधे:</strong> C4 पौधे गर्म जलवायु में अत्यधिक कुशल होते हैं, जबकि C3 पौधे ठंडी परिस्थितियों को पसंद करते हैं।</span>
+                    </li>
+                    <li>
+                        <span class="detail-en"><strong>Tillage Concepts:</strong> The "Zero Tillage" concept was originally introduced by Jethro Tull.</span>
+                        <span class="detail-hi"><strong>जुताई की अवधारणा:</strong> "जीरो टिलेज" (शून्य जुताई) की अवधारणा मूल रूप से जेथ्रो टुल द्वारा पेश की गई थी।</span>
+                    </li>
+                    <li>
+                        <span class="detail-en"><strong>Weed Management:</strong> 2,4-D is a selective herbicide used to kill broad-leaved weeds in wheat fields.</span>
+                        <span class="detail-hi"><strong>खरपतवार प्रबंधन:</strong> 2,4-D गेहूं के खेतों में चौड़ी पत्ती वाले खरपतवारों को मारने के लिए इस्तेमाल किया जाने वाला एक चयनात्मक शाकनाशी है।</span>
+                    </li>
+                    <li>
+                        <span class="detail-en"><strong>Seed Viability:</strong> The Tetrazolium (TZ) test is a biochemical method used to quickly determine seed viability.</span>
+                        <span class="detail-hi"><strong>बीज व्यवहार्यता:</strong> टेट्राजोलियम (TZ) परीक्षण का उपयोग बीज व्यवहार्यता निर्धारित करने के लिए किया जाता है।</span>
+                    </li>
                 </ul>
             </div>
 
             <!-- 3. Soil Science -->
-            <div class="seo-card glass-panel">
-                <h3><i class="fa-solid fa-flask"></i> 3. Soil Science (मृदा विज्ञान)</h3>
-                <p>The fundamental understanding of soil health, physical properties, chemical composition, and fertilizer application. <br>(मिट्टी के स्वास्थ्य, भौतिक गुणों, रासायनिक संरचना और उर्वरक अनुप्रयोग की मूलभूत समझ।)</p>
+            <div class="agri-card th-orange">
+                <div class="agri-card-header">
+                    <div class="agri-icon-box"><i class="fa-solid fa-flask"></i></div>
+                    <h3>3. Soil Science (मृदा विज्ञान)</h3>
+                </div>
+                <p>
+                    <span class="p-en">The fundamental understanding of soil health, physical properties, chemical composition, and fertilizer application.</span>
+                    <span class="p-hi">मृदा स्वास्थ्य, भौतिक गुणों, रासायनिक संरचना और उर्वरक अनुप्रयोग की मौलिक समझ।</span>
+                </p>
                 <ul class="seo-list">
-                    <li><strong>Pedology & Edaphology:</strong> Pedology studies soil formation and profile, while Edaphology studies soil precisely in relation to plant growth. (पेडोलॉजी: मिट्टी के निर्माण का अध्ययन। एडाफोलॉजी: पौधों के विकास के संबंध में मिट्टी का अध्ययन).</li>
-                    <li><strong>Alluvial Soils:</strong> The absolute most abundant and highly fertile soil type found in India, specifically covering the massive Indo-Gangetic plains. (जलोढ़ मिट्टी: भारत में पाई जाने वाली सबसे प्रचुर और उपजाऊ मिट्टी (सिंधु-गंगा के मैदान)).</li>
-                    <li><strong>Black Soils (Regur):</strong> Highly rich in montmorillonite clay; it swells when wet and cracks when dry, making it absolutely best for cotton. (काली मिट्टी (रेगुर): यह गीली होने पर फूल जाती है और सूखने पर दरारें पड़ जाती हैं, कपास के लिए सर्वोत्तम).</li>
-                    <li><strong>Soil pH Management:</strong> Acidic soils are actively reclaimed by adding Lime, while highly Alkaline soils are reclaimed by adding Gypsum or Pyrites. (मिट्टी का pH: अम्लीय मिट्टी को चूना (Lime) डालकर और क्षारीय मिट्टी को जिप्सम डालकर सुधारा जाता है).</li>
-                    <li><strong>Macronutrients (NPK):</strong> Nitrogen promotes heavy vegetative/leaf growth, Phosphorus promotes robust roots, and Potassium improves overall crop quality. (मैक्रोन्यूट्रिएंट्स: नाइट्रोजन पत्तियों के विकास, फास्फोरस जड़ों और पोटेशियम फसल की गुणवत्ता को बढ़ाता है).</li>
-                    <li><strong>Humus Content:</strong> The dark, highly stable, organic matter in soil that significantly improves water retention and nutrient availability. (ह्यूमस: मिट्टी में गहरे रंग का जैविक पदार्थ जो जल प्रतिधारण और पोषक तत्वों को बढ़ाता है).</li>
-                    <li><strong>C:N Ratio:</strong> The highly critical Carbon-to-Nitrogen ratio of normal, healthy agricultural soil usually hovers perfectly around 10:1 or 12:1. (C:N अनुपात: सामान्य, स्वस्थ कृषि मिट्टी का कार्बन-से-नाइट्रोजन अनुपात 10:1 या 12:1 होता है).</li>
-                    <li><strong>Essential Elements:</strong> Plants strictly require 17 essential nutrient elements for their complete and healthy life cycle (discovered by Arnon & Stout). (आवश्यक तत्व: पौधों को अपने जीवन चक्र के लिए 17 आवश्यक पोषक तत्वों की आवश्यकता होती है).</li>
+                    <li>
+                        <span class="detail-en"><strong>Pedology & Edaphology:</strong> Pedology studies soil formation; Edaphology studies soil in relation to plant growth.</span>
+                        <span class="detail-hi"><strong>पेडोलॉजी और एडाफोलॉजी:</strong> पेडोलॉजी मृदा निर्माण का अध्ययन है; एडाफोलॉजी पौधों के विकास के संबंध में मृदा का अध्ययन है।</span>
+                    </li>
+                    <li>
+                        <span class="detail-en"><strong>Alluvial Soils:</strong> The absolute most abundant and highly fertile soil type found in India.</span>
+                        <span class="detail-hi"><strong>जलोढ़ मिट्टी:</strong> भारत में पाई जाने वाली सबसे प्रचुर और अत्यधिक उपजाऊ मिट्टी।</span>
+                    </li>
+                    <li>
+                        <span class="detail-en"><strong>Soil pH Management:</strong> Acidic soils are reclaimed by adding Lime, while Alkaline soils are reclaimed with Gypsum.</span>
+                        <span class="detail-hi"><strong>मृदा पीएच प्रबंधन:</strong> अम्लीय मिट्टी को चूना (Lime) मिलाकर और क्षारीय मिट्टी को जिप्सम मिलाकर सुधारा जाता है।</span>
+                    </li>
+                    <li>
+                        <span class="detail-en"><strong>Macronutrients (NPK):</strong> Nitrogen promotes leaf growth, Phosphorus promotes roots, and Potassium improves crop quality.</span>
+                        <span class="detail-hi"><strong>मैक्रोन्यूट्रिएंट्स (NPK):</strong> नाइट्रोजन पत्ती के विकास को, फास्फोरस जड़ों को, और पोटेशियम फसल की गुणवत्ता को बढ़ाता है।</span>
+                    </li>
                 </ul>
             </div>
 
             <!-- 4. Horticulture -->
-            <div class="seo-card glass-panel">
-                <h3><i class="fa-solid fa-apple-whole"></i> 4. Horticulture (बागवानी)</h3>
-                <p>The highly profitable, specialized cultivation of exquisite fruits, vegetables, flowers, and ornamental landscaping plants. <br>(उत्कृष्ट फलों, सब्जियों, फूलों और सजावटी भूनिर्माण पौधों की अत्यधिक लाभदायक, विशेष खेती।)</p>
+            <div class="agri-card th-rose">
+                <div class="agri-card-header">
+                    <div class="agri-icon-box"><i class="fa-solid fa-apple-whole"></i></div>
+                    <h3>4. Horticulture (बागवानी)</h3>
+                </div>
+                <p>
+                    <span class="p-en">The highly profitable cultivation of exquisite fruits, vegetables, flowers, and ornamental landscaping plants.</span>
+                    <span class="p-hi">फलों, सब्जियों, फूलों और सजावटी भूनिर्माण पौधों की अत्यधिक लाभदायक खेती।</span>
+                </p>
                 <ul class="seo-list">
-                    <li><strong>Branches of Horti:</strong> Pomology uniquely studies fruits, Olericulture studies vegetables, and Floriculture deeply studies flowers. (बागवानी की शाखाएं: पोमोलॉजी (फल), ओलेरीकल्चर (सब्जियां) और फ्लोरीकल्चर (फूल)).</li>
-                    <li><strong>Global Position:</strong> India proudly stands as the absolute 2nd largest global producer of both fruits and vegetables right after China. (वैश्विक स्थिति: भारत चीन के बाद फल और सब्जियों का दूसरा सबसे बड़ा उत्पादक है).</li>
-                    <li><strong>Mango Varieties:</strong> The 'Alphonso' is the most famous export variety, while 'Amrapali' is a highly successful dwarf hybrid ideal for high-density planting. (आम की किस्में: 'अल्फांसो' प्रमुख निर्यात किस्म है, 'आम्रपाली' सघन खेती के लिए एक बौनी हाइब्रिड है).</li>
-                    <li><strong>Parthenocarpy:</strong> The totally natural or artificially induced production of fruits without fertilization, resulting directly in seedless fruits (e.g., Banana). (अनिषेकफलन (Parthenocarpy): निषेचन के बिना फलों का उत्पादन, जिससे बीज रहित फल (जैसे केला) बनते हैं).</li>
-                    <li><strong>Training vs Pruning:</strong> Training systematically shapes the physical structure of a young tree, while Pruning removes old/diseased parts to strongly boost yield. (ट्रेनिंग बनाम प्रूनिंग: ट्रेनिंग युवा पेड़ को आकार देती है, प्रूनिंग पुरानी शाखाओं को हटाकर उपज बढ़ाती है).</li>
-                    <li><strong>Vegetable Forcing:</strong> The highly advanced practice of commercially growing vegetables totally out of their normal season using strictly controlled greenhouses. (सब्जी की सघन खेती: ग्रीनहाउस का उपयोग करके सब्जियों को उनके सामान्य मौसम के बाहर व्यावसायिक रूप से उगाना).</li>
-                    <li><strong>Bonsai Art:</strong> The ancient, highly meticulous Japanese horticultural art of explicitly growing miniature, perfectly shaped dwarf trees in small containers. (बोनसाई कला: छोटे कंटेनरों में पूर्ण आकार के बौने पेड़ उगाने की प्राचीन जापानी कला).</li>
-                    <li><strong>Post-Harvest Tech:</strong> Highly crucial processes like precooling, waxing, and specialized cold storage to massively extend the shelf life of highly perishable produce. (कटाई के बाद की तकनीक: फलों और सब्जियों की शेल्फ लाइफ बढ़ाने के लिए प्रीकूलिंग और कोल्ड स्टोरेज).</li>
+                    <li>
+                        <span class="detail-en"><strong>Branches of Horti:</strong> Pomology studies fruits, Olericulture studies vegetables, and Floriculture studies flowers.</span>
+                        <span class="detail-hi"><strong>बागवानी की शाखाएं:</strong> पोमोलॉजी फलों का, ओलेरीकल्चर सब्जियों का, और फ्लोरीकल्चर फूलों का अध्ययन है।</span>
+                    </li>
+                    <li>
+                        <span class="detail-en"><strong>Global Position:</strong> India proudly stands as the 2nd largest global producer of both fruits and vegetables.</span>
+                        <span class="detail-hi"><strong>वैश्विक स्थिति:</strong> भारत फलों और सब्जियों दोनों का दूसरा सबसे बड़ा वैश्विक उत्पादक है।</span>
+                    </li>
+                    <li>
+                        <span class="detail-en"><strong>Parthenocarpy:</strong> The natural or artificially induced production of seedless fruits without fertilization (e.g., Banana).</span>
+                        <span class="detail-hi"><strong>अनिषेकफलन:</strong> निषेचन के बिना बीज रहित फलों (जैसे केला) का उत्पादन।</span>
+                    </li>
+                    <li>
+                        <span class="detail-en"><strong>Training vs Pruning:</strong> Training systematically shapes the tree, while Pruning removes old parts to boost yield.</span>
+                        <span class="detail-hi"><strong>सधाई बनाम कटाई-छंटाई:</strong> सधाई पेड़ को आकार देती है, जबकि कटाई-छंटाई उपज बढ़ाने के लिए पुराने हिस्सों को हटा देती है।</span>
+                    </li>
                 </ul>
             </div>
 
             <!-- 5. Forestry -->
-            <div class="seo-card glass-panel">
-                <h3><i class="fa-solid fa-tree"></i> 5. Forestry & Agroforestry (वानिकी)</h3>
-                <p>The extensive scientific study, preservation, and economic management of deeply complex forest ecosystems and timber. <br>(गहरे जटिल वन पारिस्थितिक तंत्र और इमारती लकड़ी का व्यापक वैज्ञानिक अध्ययन, संरक्षण और आर्थिक प्रबंधन।)</p>
+            <div class="agri-card th-teal">
+                <div class="agri-card-header">
+                    <div class="agri-icon-box"><i class="fa-solid fa-tree"></i></div>
+                    <h3>5. Forestry (वानिकी)</h3>
+                </div>
+                <p>
+                    <span class="p-en">The extensive scientific study, preservation, and economic management of complex forest ecosystems.</span>
+                    <span class="p-hi">जटिल वन पारिस्थितिक तंत्र का व्यापक वैज्ञानिक अध्ययन, संरक्षण और आर्थिक प्रबंधन।</span>
+                </p>
                 <ul class="seo-list">
-                    <li><strong>Silviculture:</strong> The rigorous, scientific art and explicit practice of continuously establishing, growing, and managing highly productive forest tree crops. (सिल्विकल्चर (वन संवर्धन): अत्यधिक उत्पादक वन वृक्ष फसलों को स्थापित करने और उगाने की वैज्ञानिक कला).</li>
-                    <li><strong>Agroforestry:</strong> The highly sustainable land-use system explicitly combining commercial trees, agricultural crops, and livestock simultaneously on the same land. (एग्रोफोरेस्ट्री: एक ही भूमि पर पेड़ों, कृषि फसलों और पशुधन को एक साथ मिलाने वाली प्रणाली).</li>
-                    <li><strong>National Forest Policy:</strong> The 1988 policy clearly states that a massive 33% of India’s total geographical area must strictly be under forest cover. (राष्ट्रीय वन नीति (1988): इसके अनुसार भारत के कुल भौगोलिक क्षेत्र का 33% वनावरण के अंतर्गत होना चाहिए).</li>
-                    <li><strong>ISFR Data:</strong> Madhya Pradesh possesses the absolute largest forest cover by area, while Mizoram leads dramatically in forest cover by percentage. (ISFR डेटा: मध्य प्रदेश में क्षेत्रफल के हिसाब से सबसे बड़ा वनावरण है, जबकि मिजोरम प्रतिशत में सबसे आगे है).</li>
-                    <li><strong>Taungya System:</strong> A historically famous hill-agriculture system originating in Burma where agricultural crops are grown temporarily alongside young forest plantations. (तौंग्या प्रणाली: बर्मा में उत्पन्न एक प्रणाली जहां युवा वन वृक्षारोपण के साथ कृषि फसलें उगाई जाती हैं).</li>
-                    <li><strong>Social Forestry:</strong> Massively promoting local afforestation explicitly on barren, unused, and completely deforested lands for direct community benefit. (सामाजिक वानिकी: स्थानीय समुदाय के लाभ के लिए बंजर और अप्रयुक्त भूमि पर वनरोपण को भारी रूप से बढ़ावा देना).</li>
-                    <li><strong>Deodar Timber:</strong> Cedrus deodara provides arguably the most highly durable, commercially valuable, and culturally sacred timber specifically in the Himalayas. (देवदार की लकड़ी: हिमालय में सबसे टिकाऊ, व्यावसायिक रूप से मूल्यवान और सांस्कृतिक रूप से पवित्र लकड़ी).</li>
-                    <li><strong>Resin Tapping:</strong> Commercial 'Leesa' (Resin) is heavily and systematically extracted specifically from the bark of the highly abundant Chir Pine trees. (लीसा (Resin) निष्कर्षण: व्यावसायिक लीसा (रेजिन) मुख्य रूप से चीड़ के पेड़ों की छाल से निकाला जाता है).</li>
+                    <li>
+                        <span class="detail-en"><strong>Silviculture:</strong> The rigorous, scientific practice of growing and managing highly productive forest trees.</span>
+                        <span class="detail-hi"><strong>सिल्विकल्चर:</strong> अत्यधिक उत्पादक वन वृक्षों को उगाने और प्रबंधित करने का वैज्ञानिक अभ्यास।</span>
+                    </li>
+                    <li>
+                        <span class="detail-en"><strong>Agroforestry:</strong> The highly sustainable system combining commercial trees, agricultural crops, and livestock simultaneously.</span>
+                        <span class="detail-hi"><strong>कृषि वानिकी:</strong> एक ही भूमि पर पेड़ों, कृषि फसलों और पशुधन को एक साथ जोड़ने की टिकाऊ प्रणाली।</span>
+                    </li>
+                    <li>
+                        <span class="detail-en"><strong>National Forest Policy:</strong> The 1988 policy clearly states that 33% of India’s geographical area must be under forest cover.</span>
+                        <span class="detail-hi"><strong>राष्ट्रीय वन नीति:</strong> 1988 की नीति में कहा गया है कि भारत का 33% भौगोलिक क्षेत्र वनाच्छादित होना चाहिए।</span>
+                    </li>
+                    <li>
+                        <span class="detail-en"><strong>Taungya System:</strong> A hill-agriculture system where crops are grown temporarily alongside young forest plantations.</span>
+                        <span class="detail-hi"><strong>तौंग्या प्रणाली:</strong> एक पहाड़ी-कृषि प्रणाली जहां युवा वन वृक्षारोपण के साथ अस्थायी रूप से फसलें उगाई जाती हैं।</span>
+                    </li>
                 </ul>
             </div>
 
             <!-- 6. Irrigation -->
-            <div class="seo-card glass-panel">
-                <h3><i class="fa-solid fa-cloud-showers-heavy"></i> 6. Irrigation Methods (सिंचाई तकनीकें)</h3>
-                <p>The highly precise, modern engineering techniques ensuring optimal, strictly controlled artificial water application to thirsty crops. <br>(इष्टतम, कड़ाई से नियंत्रित कृत्रिम जल अनुप्रयोग सुनिश्चित करने वाली अत्यधिक सटीक, आधुनिक इंजीनियरिंग तकनीकें।)</p>
+            <div class="agri-card th-blue">
+                <div class="agri-card-header">
+                    <div class="agri-icon-box"><i class="fa-solid fa-cloud-showers-heavy"></i></div>
+                    <h3>6. Irrigation (सिंचाई तकनीकें)</h3>
+                </div>
+                <p>
+                    <span class="p-en">The highly precise, modern engineering techniques ensuring optimal water application to thirsty crops.</span>
+                    <span class="p-hi">प्यासी फसलों को पानी का इष्टतम अनुप्रयोग सुनिश्चित करने वाली अत्यधिक सटीक, आधुनिक इंजीनियरिंग तकनीकें।</span>
+                </p>
                 <ul class="seo-list">
-                    <li><strong>Drip Irrigation:</strong> Originally introduced directly from Israel, it actively provides the absolute highest Water Use Efficiency (90-95%) directly to the root zone. (ड्रिप सिंचाई: इज़राइल से पेश की गई, यह सीधे जड़ क्षेत्र में पानी देकर उच्चतम दक्षता (90-95%) प्रदान करती है).</li>
-                    <li><strong>Sprinkler Irrigation:</strong> Extremely suitable and heavily recommended for highly undulating, uneven hilly topography where surface irrigation completely fails. (स्प्रिंकलर सिंचाई: अत्यधिक ऊबड़-खाबड़, असमान पहाड़ी स्थलाकृति के लिए जहां सतह सिंचाई पूरी तरह से विफल हो जाती है).</li>
-                    <li><strong>Water Requirements:</strong> Sugarcane requires the absolute highest total water annually, while Rice requires the highest daily water consumption. (पानी की आवश्यकता: गन्ने को सालाना सबसे अधिक कुल पानी की आवश्यकता होती है, जबकि चावल को प्रतिदिन सबसे अधिक).</li>
-                    <li><strong>Critical Stage (CRI):</strong> The Crown Root Initiation (CRI) stage in wheat (occurring exactly 21 days after sowing) is highly critical for timely irrigation. (CRI चरण: गेहूं में 'क्राउन रूट इनिशिएशन' (बुवाई के 21 दिन बाद) सिंचाई के लिए सबसे महत्वपूर्ण चरण है).</li>
-                    <li><strong>Consumptive Use:</strong> The precise total amount of water heavily utilized directly by the crop for transpiration and essential building of plant tissues. (उपभोग्य उपयोग (Consumptive Use): वाष्पोत्सर्जन और पौधों के ऊतकों के निर्माण के लिए फसल द्वारा उपयोग किया गया कुल पानी).</li>
-                    <li><strong>Waterlogging Impact:</strong> Severe poor drainage completely limits essential soil oxygen, fatally destroying root respiration and deeply harming crop yields. (जलभराव का प्रभाव: खराब जल निकासी मिट्टी के ऑक्सीजन को सीमित करती है, जिससे जड़ों के श्वसन को नुकसान पहुंचता है).</li>
-                    <li><strong>Dryland Farming:</strong> The highly specialized agricultural practice of commercially growing crops in arid areas receiving strictly less than 750mm of annual rainfall. (शुष्क भूमि खेती (Dryland Farming): 750 मिमी से कम वार्षिक वर्षा वाले शुष्क क्षेत्रों में फसल उगाने की विशेष कृषि पद्धति).</li>
-                    <li><strong>Tensiometer:</strong> A highly sensitive, specialized scientific instrument explicitly used to actively measure soil moisture tension effectively in the field. (टेंशियोमीटर: एक वैज्ञानिक उपकरण जिसका उपयोग खेत में मिट्टी खेत में मिट्टी की नमी के तनाव को मापने के लिए किया जाता है).</li>
+                    <li>
+                        <span class="detail-en"><strong>Drip Irrigation:</strong> Actively provides the highest Water Use Efficiency (90-95%) directly to the root zone.</span>
+                        <span class="detail-hi"><strong>ड्रिप सिंचाई:</strong> पौधों के रूट ज़ोन (जड़ों) में सीधे उच्चतम जल उपयोग दक्षता (90-95%) प्रदान करती है।</span>
+                    </li>
+                    <li>
+                        <span class="detail-en"><strong>Sprinkler Irrigation:</strong> Extremely suitable and heavily recommended for undulating, uneven hilly topography.</span>
+                        <span class="detail-hi"><strong>स्प्रिंकलर सिंचाई:</strong> असमान पहाड़ी स्थलाकृति के लिए अत्यधिक उपयुक्त और अनुशंसित।</span>
+                    </li>
+                    <li>
+                        <span class="detail-en"><strong>Critical Stage (CRI):</strong> The Crown Root Initiation (CRI) stage in wheat (21 days after sowing) is highly critical for irrigation.</span>
+                        <span class="detail-hi"><strong>CRI चरण:</strong> गेहूं में क्राउन रूट इनिशिएशन (CRI) चरण (बुवाई के 21 दिन बाद) सिंचाई के लिए अत्यधिक महत्वपूर्ण है।</span>
+                    </li>
+                    <li>
+                        <span class="detail-en"><strong>Waterlogging Impact:</strong> Severe poor drainage limits soil oxygen, destroying root respiration and harming crop yields.</span>
+                        <span class="detail-hi"><strong>जलभराव का प्रभाव:</strong> खराब जल निकासी मिट्टी में ऑक्सीजन को सीमित करती है, जिससे फसल की पैदावार को नुकसान पहुँचता है।</span>
+                    </li>
                 </ul>
             </div>
 
             <!-- 7. Pathology & Entomology -->
-            <div class="seo-card glass-panel">
-                <h3><i class="fa-solid fa-bug"></i> 7. Plant Pathology & Entomology (पादप रोग और कीट विज्ञान)</h3>
-                <p>The strict scientific combat against highly destructive plant diseases, vicious pests, and devastating historical crop epidemics. <br>(अत्यधिक विनाशकारी पौधों की बीमारियों, खतरनाक कीटों और विनाशकारी ऐतिहासिक फसल महामारियों के खिलाफ सख्त वैज्ञानिक मुकाबला।)</p>
+            <div class="agri-card th-purple">
+                <div class="agri-card-header">
+                    <div class="agri-icon-box"><i class="fa-solid fa-bug"></i></div>
+                    <h3>7. Pathology & Entomology</h3>
+                </div>
+                <p>
+                    <span class="p-en">The strict scientific combat against highly destructive plant diseases and vicious pests.</span>
+                    <span class="p-hi">अत्यधिक विनाशकारी पौधों की बीमारियों और कीटों के खिलाफ सख्त वैज्ञानिक मुकाबला।</span>
+                </p>
                 <ul class="seo-list">
-                    <li><strong>Irish Potato Famine (1845):</strong> A historically devastating famine completely caused by the highly virulent 'Late Blight of Potato' (Phytophthora infestans) fungus. (आयरिश अकाल (1845): यह ऐतिहासिक अकाल आलू के 'लेट ब्लाइट' (Phytophthora infestans) कवक के कारण हुआ था).</li>
-                    <li><strong>Bengal Famine (1943):</strong> Tragically caused massively by the catastrophic 'Brown Spot of Rice' disease (Helminthosporium oryzae). (बंगाल का अकाल (1943): यह दुखद रूप से चावल के 'ब्राउन स्पॉट' रोग (Helminthosporium oryzae) के कारण हुआ था).</li>
-                    <li><strong>Wheat Rusts:</strong> Wheat crops are heavily attacked directly by highly destructive Black, Brown, and Yellow rusts (all caused specifically by Puccinia fungi). (गेहूं के रस्ट रोग: गेहूं की फसलों पर मुख्य रूप से काले, भूरे और पीले रस्ट (Puccinia कवक) का हमला होता है).</li>
-                    <li><strong>First Fungicide:</strong> The highly famous 'Bordeaux mixture' (Copper sulphate + Lime) was historically the very first chemical fungicide officially discovered by Millardet. (पहला फफूंदनाशक: 'बोर्डो मिश्रण' (कॉपर सल्फेट + चूना) मिलार्डेट द्वारा खोजा गया पहला रासायनिक फफूंदनाशक था).</li>
-                    <li><strong>IPM Strategy:</strong> Integrated Pest Management (IPM) is the highly modern approach combining biological, cultural, and targeted chemical control of pests. (IPM रणनीति: जैविक, सांस्कृतिक और लक्षित रासायनिक नियंत्रण को संयोजित करने वाला आधुनिक कीट प्रबंधन दृष्टिकोण).</li>
-                    <li><strong>Pheromone Traps:</strong> Highly innovative, safe agricultural traps specifically emitting synthetic chemical scents explicitly to attract and heavily monitor male insects. (फेरोमोन ट्रैप: नर कीड़ों को आकर्षित करने और उनकी निगरानी करने के लिए सिंथेटिक रासायनिक गंध उत्सर्जित करने वाले सुरक्षित कृषि जाल).</li>
-                    <li><strong>Systemic Insecticides:</strong> Highly advanced chemicals that are completely absorbed internally by the plant, rendering its sap toxic specifically to vicious sucking pests. (प्रणालीगत कीटनाशक (Systemic Insecticides): ऐसे रसायन जो पौधे द्वारा अवशोषित कर लिए जाते हैं, जिससे रस चूसने वाले कीट मर जाते हैं).</li>
-                    <li><strong>Commercial Insects:</strong> Apiculture actively studies Honey bees, Sericulture strictly involves Silkworms, and Lac culture completely revolves around Lac insects. (व्यावसायिक कीट: एपिकल्चर (मधुमक्खी पालन), सेरीकल्चर (रेशमकीट) और लाख संस्कृति (लाख के कीड़े) का अध्ययन).</li>
+                    <li>
+                        <span class="detail-en"><strong>Irish Potato Famine:</strong> A devastating famine caused by the 'Late Blight of Potato' (Phytophthora infestans) fungus in 1845.</span>
+                        <span class="detail-hi"><strong>आयरिश आलू अकाल:</strong> 1845 में 'लेट ब्लाइट ऑफ पोटैटो' कवक के कारण हुआ एक विनाशकारी अकाल।</span>
+                    </li>
+                    <li>
+                        <span class="detail-en"><strong>Bengal Famine (1943):</strong> Tragically caused massively by the catastrophic 'Brown Spot of Rice' disease.</span>
+                        <span class="detail-hi"><strong>बंगाल अकाल (1943):</strong> मुख्य रूप से चावल की विनाशकारी 'ब्राउन स्पॉट' बीमारी के कारण हुआ।</span>
+                    </li>
+                    <li>
+                        <span class="detail-en"><strong>First Fungicide:</strong> The famous 'Bordeaux mixture' (Copper sulphate + Lime) was the first chemical fungicide discovered by Millardet.</span>
+                        <span class="detail-hi"><strong>पहला कवकनाशी:</strong> मिलार्डेट द्वारा खोजा गया 'बोर्डो मिश्रण' (कॉपर सल्फेट + चूना) पहला रासायनिक कवकनाशी था।</span>
+                    </li>
+                    <li>
+                        <span class="detail-en"><strong>Pheromone Traps:</strong> Traps specifically emitting synthetic chemical scents explicitly to attract and monitor male insects.</span>
+                        <span class="detail-hi"><strong>फेरोमोन ट्रैप:</strong> नर कीड़ों को आकर्षित करने और उनकी निगरानी करने के लिए सिंथेटिक रासायनिक गंध छोड़ने वाले ट्रैप।</span>
+                    </li>
                 </ul>
             </div>
 
             <!-- 8. Genetics -->
-            <div class="seo-card glass-panel">
-                <h3><i class="fa-solid fa-dna"></i> 8. Genetics & Plant Breeding (आनुवंशिकी और प्रजनन)</h3>
-                <p>The highly advanced science of profoundly manipulating plant DNA explicitly to create significantly superior, incredibly high-yielding crops. <br>(उल्लेखनीय रूप से बेहतर, अविश्वसनीय रूप से उच्च उपज वाली फसलें बनाने के लिए पौधों के डीएनए में हेरफेर करने का अत्यधिक उन्नत विज्ञान।)</p>
+            <div class="agri-card th-blue">
+                <div class="agri-card-header">
+                    <div class="agri-icon-box"><i class="fa-solid fa-dna"></i></div>
+                    <h3>8. Genetics & Breeding</h3>
+                </div>
+                <p>
+                    <span class="p-en">The highly advanced science of manipulating plant DNA explicitly to create significantly superior crops.</span>
+                    <span class="p-hi">उन्नत फसलें बनाने के लिए पादप डीएनए (DNA) में हेरफेर करने का अत्यधिक उन्नत विज्ञान।</span>
+                </p>
                 <ul class="seo-list">
-                    <li><strong>Father of Genetics:</strong> Gregor Mendel famously and meticulously established the core fundamental laws of modern inheritance explicitly using ordinary garden pea plants. (आनुवंशिकी के जनक: ग्रेगर मेंडल ने साधारण बगीचे के मटर के पौधों का उपयोग करके आनुवंशिकता के मूल नियम स्थापित किए).</li>
-                    <li><strong>Genetic Mutation:</strong> A totally sudden, inherently unpredictable, and strictly heritable change in an organism's DNA (term originally coined by Hugo de Vries). (उत्परिवर्तन (Mutation): जीव के DNA में अचानक होने वाला और वंशानुगत परिवर्तन (यह शब्द ह्यूगो डी व्रीस ने दिया था)).</li>
-                    <li><strong>Heterosis (Hybrid Vigor):</strong> A highly critical genetic phenomenon where the F1 hybrid offspring is physically and biologically vastly superior to both its parents. (हेटेरोसिस (हाइब्रिड विगोर): एक आनुवंशिक घटना जहां F1 हाइब्रिड संतान अपने दोनों माता-पिता से काफी बेहतर होती है).</li>
-                    <li><strong>Emasculation:</strong> The careful, highly precise physical removal of male anthers explicitly from a bisexual flower strictly to prevent unwanted self-pollination. (इमस्कुलेशन: अवांछित स्व-परागण को रोकने के लिए उभयलिंगी फूल से पुरुष परागकोशों (anthers) को सावधानीपूर्वक हटाना).</li>
-                    <li><strong>Golden Rice:</strong> An incredible, highly advanced genetically modified crop explicitly bio-fortified strongly to produce large amounts of Vitamin A (Beta-carotene). (गोल्डन राइस: विटामिन ए (बीटा-कैरोटीन) का उत्पादन करने के लिए विशेष रूप से बायो-फोर्टिफाइड एक आनुवंशिक रूप से संशोधित फसल).</li>
-                    <li><strong>Bt Cotton:</strong> A highly resistant, genetically modified crop engineered to explicitly kill bollworms; the only GM crop commercially cultivated currently in India. (Bt कपास: बॉलवर्म को मारने के लिए इंजीनियर की गई GM फसल; भारत में व्यावसायिक रूप से उगाई जाने वाली एकमात्र GM फसल).</li>
-                    <li><strong>Seed Classification:</strong> Commercial seeds follow a strict, highly controlled hierarchy: Nucleus -> Breeder -> Foundation -> Certified Seed (Blue tag). (बीज वर्गीकरण: व्यावसायिक बीज एक सख्त पदानुक्रम का पालन करते हैं: न्यूक्लियस -> ब्रीडर -> फाउंडेशन -> प्रमाणित बीज (नीला टैग)).</li>
-                    <li><strong>Green Revolution Dwarfism:</strong> Semi-dwarf, extremely high-yielding Mexican wheat varieties (like Lerma Rojo and Sonora 64) famously triggered the Indian Green Revolution. (हरित क्रांति बौनापन: 'लेर्मा रोजो' और 'सोनोरा 64' जैसी बौनी, उच्च उपज वाली मैक्सिकन गेहूं की किस्मों ने भारतीय हरित क्रांति शुरू की).</li>
+                    <li>
+                        <span class="detail-en"><strong>Father of Genetics:</strong> Gregor Mendel established the core fundamental laws of inheritance explicitly using garden pea plants.</span>
+                        <span class="detail-hi"><strong>आनुवंशिकी के जनक:</strong> ग्रेगर मेंडल ने मटर के पौधों का उपयोग करके विरासत के नियम स्थापित किए।</span>
+                    </li>
+                    <li>
+                        <span class="detail-en"><strong>Heterosis (Hybrid Vigor):</strong> A genetic phenomenon where the F1 hybrid offspring is biologically vastly superior to both its parents.</span>
+                        <span class="detail-hi"><strong>संकर ओज (Heterosis):</strong> एक आनुवंशिक घटना जहां F1 संकर संतान जैविक रूप से अपने माता-पिता दोनों से काफी बेहतर होती है।</span>
+                    </li>
+                    <li>
+                        <span class="detail-en"><strong>Emasculation:</strong> The careful physical removal of male anthers from a bisexual flower strictly to prevent unwanted self-pollination.</span>
+                        <span class="detail-hi"><strong>विपुंसन (Emasculation):</strong> अवांछित स्व-परागण को रोकने के लिए द्विलिंगी फूल से नर परागकोषों को सावधानीपूर्वक हटाना।</span>
+                    </li>
+                    <li>
+                        <span class="detail-en"><strong>Golden Rice:</strong> An advanced genetically modified crop explicitly bio-fortified strongly to produce large amounts of Vitamin A.</span>
+                        <span class="detail-hi"><strong>गोल्डन राइस:</strong> विटामिन A की बड़ी मात्रा का उत्पादन करने के लिए आनुवंशिक रूप से संशोधित और बायो-फोर्टिफाइड फसल।</span>
+                    </li>
                 </ul>
             </div>
 
             <!-- 9. Animal Husbandry -->
-            <div class="seo-card glass-panel">
-                <h3><i class="fa-solid fa-cow"></i> 9. Animal Husbandry & Dairying (पशुपालन और डेयरी)</h3>
-                <p>The deeply scientific, highly commercial rearing and precise management of vital livestock for premium milk, meat, and fine wool. <br>(प्रीमियम दूध, मांस और महीन ऊन के लिए महत्वपूर्ण पशुधन का गहन वैज्ञानिक, अत्यधिक व्यावसायिक पालन और सटीक प्रबंधन।)</p>
+            <div class="agri-card th-orange">
+                <div class="agri-card-header">
+                    <div class="agri-icon-box"><i class="fa-solid fa-cow"></i></div>
+                    <h3>9. Animal Husbandry (पशुपालन)</h3>
+                </div>
+                <p>
+                    <span class="p-en">The scientific, highly commercial rearing and precise management of vital livestock.</span>
+                    <span class="p-hi">महत्वपूर्ण पशुधन का वैज्ञानिक, अत्यधिक व्यावसायिक पालन और सटीक प्रबंधन।</span>
+                </p>
                 <ul class="seo-list">
-                    <li><strong>Operation Flood:</strong> Launched powerfully in 1970 by the NDDB. It stands historically as the absolute largest and most successful dairy development program globally. (ऑपरेशन फ्लड: NDDB द्वारा 1970 में शुरू किया गया, यह विश्व स्तर पर सबसे बड़ा और सबसे सफल डेयरी विकास कार्यक्रम है).</li>
-                    <li><strong>Murrah Buffalo:</strong> Originating in Haryana/Punjab, this highly prized, jet-black breed is undeniably the absolute best buffalo breed for extremely high milk yield globally. (मुर्रा भैंस: हरियाणा/पंजाब की यह काले रंग की नस्ल अत्यधिक उच्च दूध उपज के लिए दुनिया भर में सबसे अच्छी भैंस की नस्ल है).</li>
-                    <li><strong>Holstein Friesian (HF):</strong> A highly famous, massive exotic cow breed directly imported from Holland, officially recording the highest milk production worldwide. (होल्स्टीन फ्रेशियन (HF): हॉलैंड से आयातित एक विदेशी गाय की नस्ल, जो दुनिया भर में सबसे अधिक दूध उत्पादन का रिकॉर्ड रखती है).</li>
-                    <li><strong>Pashmina Wool:</strong> An incredibly fine, highly expensive, and globally sought-after premium wool extracted specifically from the high-altitude Changthangi goats of Ladakh. (पश्मीना ऊन: लद्दाख की उच्च ऊंचाई वाली चांगथांगी बकरियों से विशेष रूप से निकाला गया एक अविश्वसनीय रूप से महीन और महंगा प्रीमियम ऊन).</li>
-                    <li><strong>Colostrum Benefits:</strong> The very first thick milk produced exactly after birth; it is incredibly rich in vital antibodies strictly required to heavily build calf immunity. (कोलोस्ट्रम के लाभ: जन्म के ठीक बाद उत्पादित पहला गाढ़ा दूध; यह बछड़े की प्रतिरक्षा बनाने के लिए आवश्यक एंटीबॉडी में अविश्वसनीय रूप से समृद्ध है).</li>
-                    <li><strong>Pasteurization:</strong> The rigorous, scientific thermal process of intensely heating milk (typically 63°C for exactly 30 minutes) strictly to kill all harmful pathogenic bacteria. (पाश्चुरीकरण: हानिकारक जीवाणुओं को मारने के लिए दूध को तीव्रता से गर्म करने (आमतौर पर 63°C 30 मिनट के लिए) की वैज्ञानिक थर्मल प्रक्रिया).</li>
-                    <li><strong>Best Poultry Breeds:</strong> The 'White Leghorn' is commercially the absolute best layer (for eggs), while the 'Rhode Island Red' is a highly excellent dual-purpose breed. (सर्वश्रेष्ठ पोल्ट्री नस्लें: 'व्हाइट लेगहॉर्न' व्यावसायिक रूप से अंडे देने वाली सबसे अच्छी नस्ल है, जबकि 'रोड आइलैंड रेड' दोहरे उद्देश्य वाली उत्कृष्ट नस्ल है).</li>
-                    <li><strong>Foot & Mouth Disease:</strong> A highly contagious, deeply devastating and economically crippling viral disease specifically affecting heavily cloven-hoofed livestock animals globally. (खुरपका और मुंहपका रोग (FMD): विश्व स्तर पर खुर वाले पशुओं को प्रभावित करने वाली एक अत्यधिक संक्रामक, विनाशकारी और आर्थिक रूप से पंगु बनाने वाली वायरल बीमारी).</li>
+                    <li>
+                        <span class="detail-en"><strong>Operation Flood:</strong> Launched powerfully in 1970 by the NDDB; the absolute largest dairy development program globally.</span>
+                        <span class="detail-hi"><strong>ऑपरेशन फ्लड:</strong> 1970 में NDDB द्वारा शुरू किया गया विश्व स्तर पर सबसे बड़ा डेयरी विकास कार्यक्रम।</span>
+                    </li>
+                    <li>
+                        <span class="detail-en"><strong>Murrah Buffalo:</strong> Originating in Haryana, this is undeniably the absolute best buffalo breed for extremely high milk yield globally.</span>
+                        <span class="detail-hi"><strong>मुर्रा भैंस:</strong> हरियाणा में उत्पन्न, यह विश्व स्तर पर उच्च दूध उपज के लिए सबसे अच्छी भैंस की नस्ल है।</span>
+                    </li>
+                    <li>
+                        <span class="detail-en"><strong>Colostrum Benefits:</strong> The first thick milk produced exactly after birth; it is incredibly rich in vital antibodies strictly required to build calf immunity.</span>
+                        <span class="detail-hi"><strong>खीस (Colostrum) के लाभ:</strong> जन्म के ठीक बाद उत्पादित पहला गाढ़ा दूध; यह बछड़े की प्रतिरक्षा बनाने के लिए महत्वपूर्ण एंटीबॉडी में अविश्वसनीय रूप से समृद्ध है।</span>
+                    </li>
+                    <li>
+                        <span class="detail-en"><strong>Pasteurization:</strong> The rigorous thermal process of intensely heating milk (typically 63°C for exactly 30 minutes) strictly to kill pathogenic bacteria.</span>
+                        <span class="detail-hi"><strong>पाश्चुरीकरण:</strong> रोगजनक बैक्टीरिया को मारने के लिए दूध को तीव्रता से गर्म करने (आमतौर पर 30 मिनट के लिए 63°C) की थर्मल प्रक्रिया।</span>
+                    </li>
                 </ul>
             </div>
 
@@ -835,31 +1030,41 @@
 
     <div class="section-separator"></div>
 
+    <!-- WHY TRUST SECTION -->
     <section class="seo-content-wrapper">
         <div class="seo-header">
             <h2><i class="fa-solid fa-shield-halved" style="color: var(--primary); margin-right: 10px;"></i>Why Trust AgriQuiz? (AgriQuiz पर भरोसा क्यों करें?)</h2>
-            <p>Our complete, unshakeable commitment to high accuracy, exceptional pedagogical effectiveness, and total user privacy. <br>(उच्च सटीकता, असाधारण शैक्षणिक प्रभावशीलता और पूर्ण उपयोगकर्ता गोपनीयता के प्रति हमारी अटूट प्रतिबद्धता।)</p>
+            <p>Our complete, unshakeable commitment to high accuracy, exceptional pedagogical effectiveness, and total user privacy.</p>
         </div>
         
-        <div class="seo-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
-            <div class="seo-card glass-panel" style="display: flex; flex-direction: column; justify-content: flex-start; height: 100%;">
-                <h3><i class="fa-solid fa-check-double"></i> Verified Accuracy (सत्यापित सटीकता)</h3>
-                <p>
-                    Every single question in our massive 507+ database is heavily cross-referenced with standard agricultural textbooks and official answer keys from <strong>ICAR, IBPS, and NABARD</strong> to ensure 100% precision. <br>(हमारे डेटाबेस का हर एक प्रश्न ICAR, IBPS और NABARD की आधिकारिक उत्तर कुंजी और मानक कृषि पाठ्यपुस्तकों से सत्यापित है।)
+        <div class="seo-grid">
+            <div class="agri-card th-teal">
+                <div class="agri-card-header" style="margin-bottom: 8px;">
+                    <div class="agri-icon-box" style="width: 40px; height: 40px; font-size: 16px;"><i class="fa-solid fa-check-double"></i></div>
+                    <h3 style="font-size: 16px !important;">Verified Accuracy</h3>
+                </div>
+                <p style="font-size: 12.5px !important; margin-bottom: 0;">
+                    Every single question in our massive 507+ database is heavily cross-referenced with standard agricultural textbooks and official answer keys from <strong>ICAR, IBPS, and NABARD</strong> to ensure 100% precision.
                 </p>
             </div>
 
-            <div class="seo-card glass-panel" style="display: flex; flex-direction: column; justify-content: flex-start; height: 100%;">
-                <h3><i class="fa-solid fa-brain"></i> Active Learning (सक्रिय शिक्षा)</h3>
-                <p>
-                    We actively utilize powerful <strong>Active Recall</strong> technology. Instant feedback firmly ensures you correct mistakes immediately, a scientifically proven key factor in high-retention learning. <br>(हम 'सक्रिय रिकॉल' तकनीक का उपयोग करते हैं। तत्काल प्रतिक्रिया यह सुनिश्चित करती है कि आप तुरंत अपनी गलतियों को सुधारें।)
+            <div class="agri-card th-purple">
+                <div class="agri-card-header" style="margin-bottom: 8px;">
+                    <div class="agri-icon-box" style="width: 40px; height: 40px; font-size: 16px;"><i class="fa-solid fa-brain"></i></div>
+                    <h3 style="font-size: 16px !important;">Active Learning</h3>
+                </div>
+                <p style="font-size: 12.5px !important; margin-bottom: 0;">
+                    We actively utilize powerful <strong>Active Recall</strong> technology. Instant feedback firmly ensures you correct mistakes immediately, a scientifically proven key factor in high-retention learning.
                 </p>
             </div>
 
-            <div class="seo-card glass-panel" style="display: flex; flex-direction: column; justify-content: flex-start; height: 100%;">
-                <h3><i class="fa-solid fa-user-shield"></i> Privacy & Integrity (गोपनीयता)</h3>
-                <p>
-                    Absolutely no hidden paywalls, and absolutely no mandatory sign-ups. Your test progress is saved securely and locally on your own device, guaranteeing your study habits remain totally private. <br>(कोई छिपे हुए पेवॉल या अनिवार्य साइन-अप नहीं। आपकी प्रगति आपके स्वयं के डिवाइस पर सुरक्षित और स्थानीय रूप से सहेजी जाती है।)
+            <div class="agri-card th-blue">
+                <div class="agri-card-header" style="margin-bottom: 8px;">
+                    <div class="agri-icon-box" style="width: 40px; height: 40px; font-size: 16px;"><i class="fa-solid fa-user-shield"></i></div>
+                    <h3 style="font-size: 16px !important;">Privacy & Integrity</h3>
+                </div>
+                <p style="font-size: 12.5px !important; margin-bottom: 0;">
+                    Absolutely no hidden paywalls, and absolutely no mandatory sign-ups. Your test progress is saved securely and locally on your own device, guaranteeing your study habits remain totally private.
                 </p>
             </div>
         </div>
@@ -867,47 +1072,55 @@
 
     <div class="section-separator"></div>
 
+    <!-- HELP & FAQ SECTION -->
     <section class="seo-content-wrapper">
         <div class="seo-header">
             <h2><i class="fa-solid fa-circle-info" style="color: var(--primary); margin-right: 10px;"></i>Help & FAQs (सहायता और सामान्य प्रश्न)</h2>
-            <p>A highly quick, definitive guide to using the platform and direct answers to frequent student queries. <br>(प्लेटफ़ॉर्म का उपयोग करने के लिए त्वरित गाइड और छात्रों के सामान्य प्रश्नों के सीधे उत्तर।)</p>
+            <p>A highly quick, definitive guide to using the platform and direct answers to frequent student queries.</p>
         </div>
         
         <div class="seo-grid">
-            <div class="seo-card glass-panel" style="display: flex; flex-direction: column; justify-content: flex-start; height: 100%;">
-                <h3><i class="fa-solid fa-list-check"></i> How to Use AgriQuiz</h3>
+            <div class="agri-card th-amber">
+                <div class="agri-card-header">
+                    <div class="agri-icon-box" style="width: 40px; height: 40px; font-size: 16px;"><i class="fa-solid fa-list-check"></i></div>
+                    <h3 style="font-size: 16px !important;">How to Use AgriQuiz</h3>
+                </div>
                 <ul class="seo-list">
-                    <li><strong>Start:</strong> Read the provided bilingual question thoroughly (English/Hindi).</li>
-                    <li><strong>Answer:</strong> Tap an option. <span style="color:var(--correct-border); font-weight: bold;">Green</span> is correct, <span style="color:var(--wrong-border); font-weight: bold;">Red</span> is wrong.</li>
-                    <li><strong>Navigate:</strong> Use the "Next" or "Prev" buttons to move around easily.</li>
-                    <li><strong>Backup/Restore:</strong> Use the <i class="fa-solid fa-download"></i> icon in the header to save your progress to a file, and <i class="fa-solid fa-upload"></i> to restore it safely.</li>
+                    <li><span class="detail-en"><strong>Start:</strong> Read the provided bilingual question thoroughly (English/Hindi).</span></li>
+                    <li><span class="detail-en"><strong>Answer:</strong> Tap an option. <span style="color:var(--correct-border); font-weight: bold;">Green</span> is correct, <span style="color:var(--wrong-border); font-weight: bold;">Red</span> is wrong.</span></li>
+                    <li><span class="detail-en"><strong>Navigate:</strong> Use the "Next" or "Prev" buttons to move around easily.</span></li>
+                    <li><span class="detail-en"><strong>Backup/Restore:</strong> Use the <i class="fa-solid fa-download"></i> icon in the header to save your progress to a file, and <i class="fa-solid fa-upload"></i> to restore it safely.</span></li>
                 </ul>
             </div>
 
-            <div class="seo-card glass-panel" style="display: flex; flex-direction: column; justify-content: flex-start; height: 100%;">
-                <h3><i class="fa-solid fa-circle-question"></i> Frequent FAQs</h3>
+            <div class="agri-card th-rose">
+                <div class="agri-card-header">
+                    <div class="agri-icon-box" style="width: 40px; height: 40px; font-size: 16px;"><i class="fa-solid fa-circle-question"></i></div>
+                    <h3 style="font-size: 16px !important;">Frequent FAQs</h3>
+                </div>
                 <ul class="seo-list">
-                    <li><strong>Is it completely free?</strong> Yes, it is a 100% free, open study resource. (हाँ, यह 100% मुफ्त है)।</li>
-                    <li><strong>Do I need to login?</strong> No, absolutely no sign-up is required. (कोई साइन-अप आवश्यक नहीं)।</li>
-                    <li><strong>Which exact exams?</strong> Covers ICAR, IBPS AFO, NABARD & more.</li>
-                    <li><strong>Is it strictly bilingual?</strong> Yes, all questions appear in English & Hindi simultaneously. (प्रश्नोत्तरी अंग्रेजी और हिंदी दोनों में है)।</li>
+                    <li><span class="detail-en"><strong>Is it completely free?</strong> Yes, it is a 100% free, open study resource.</span></li>
+                    <li><span class="detail-en"><strong>Do I need to login?</strong> No, absolutely no sign-up is required.</span></li>
+                    <li><span class="detail-en"><strong>Which exact exams?</strong> Covers ICAR, IBPS AFO, NABARD & more.</span></li>
+                    <li><span class="detail-en"><strong>Is it strictly bilingual?</strong> Yes, all questions appear in English & Hindi simultaneously.</span></li>
                 </ul>
             </div>
 
-            <div class="seo-card glass-panel" style="display: flex; flex-direction: column; justify-content: flex-start; height: 100%;">
-                <h3><i class="fa-solid fa-thumbs-up"></i> Top Study Picks</h3>
+            <div class="agri-card th-green">
+                <div class="agri-card-header">
+                    <div class="agri-icon-box" style="width: 40px; height: 40px; font-size: 16px;"><i class="fa-solid fa-thumbs-up"></i></div>
+                    <h3 style="font-size: 16px !important;">Top Study Picks</h3>
+                </div>
                 <ul class="seo-list">
-                    <li style="margin-bottom: 12px; line-height: 1.5;">
-                        <strong><i class="fa-solid fa-book-open" style="color: var(--primary); margin-right: 5px;"></i> Recommended Text Book:</strong> 
+                    <li style="margin-bottom: 12px; line-height: 1.5; padding-left: 0;">
+                        <span class="detail-en"><strong><i class="fa-solid fa-book-open" style="color: var(--primary); margin-right: 5px;"></i> Recommended Text Book:</strong> 
                         <br>
-                        <a href="https://amzn.to/41urBP2" target="_blank" rel="nofollow" style="color: var(--primary); text-decoration: none; font-weight: 600;">Fundamentals of Agriculture - Arun Katyayan (Vol 1 & 2)</a>
-                        <div style="font-size: 0.85em; margin-top: 4px; color: var(--text-sec);">The definitive combo guide for ICAR, AFO, NABARD, and State Exams.</div>
+                        <a href="https://amzn.to/41urBP2" target="_blank" rel="nofollow" style="color: var(--primary); text-decoration: none; font-weight: 600;">Fundamentals of Agriculture - Arun Katyayan</a></span>
                     </li>
-                    <li style="line-height: 1.5;">
-                        <strong><i class="fa-solid fa-book-open" style="color: var(--primary); margin-right: 5px;"></i> Objective Practice Book:</strong> 
+                    <li style="line-height: 1.5; padding-left: 0;">
+                        <span class="detail-en"><strong><i class="fa-solid fa-book-open" style="color: var(--primary); margin-right: 5px;"></i> Objective Practice Book:</strong> 
                         <br>
-                        <a href="https://amzn.to/4dIz8RQ" target="_blank" rel="nofollow" style="color: var(--primary); text-decoration: none; font-weight: 600;">Objective Agriculture (Includes JRF Previous Papers)</a>
-                        <div style="font-size: 0.85em; margin-top: 4px; color: var(--text-sec);">Memory-based previous year questions for rigorous exam practice.</div>
+                        <a href="https://amzn.to/4dIz8RQ" target="_blank" rel="nofollow" style="color: var(--primary); text-decoration: none; font-weight: 600;">Objective Agriculture (Includes JRF Previous Papers)</a></span>
                     </li>
                 </ul>
             </div>
