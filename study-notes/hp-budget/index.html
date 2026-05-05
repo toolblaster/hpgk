@@ -176,7 +176,7 @@
         }
 
         .top-meta-bar { 
-            display: flex !important; /* Let this one be a flex container for the breadcrumb */
+            display: flex !important;
             justify-content: space-between; 
             align-items: center; 
             margin-bottom: 15px; 
@@ -212,8 +212,7 @@
         .hub-hero { 
             text-align: center; 
             max-width: 800px; 
-            margin: 0 auto 20px auto;
-            padding: 10px 0;
+            margin: 0 auto 25px auto;
         }
 
         /* Clean H1 styling linked to global style.css */
@@ -228,7 +227,6 @@
             color: var(--primary);
         }
 
-        /* FIXED: Hero Description forced to 14px with good line height */
         .hero-desc {
             font-size: 14px !important;
             color: var(--text-sec);
@@ -302,6 +300,41 @@
             font-size: 0.8rem;
             opacity: 0.6;
         }
+
+        /* ==========================================
+           GREEN TOOLS STRIP (Accessible Teal Colors)
+           ========================================== */
+        .tools-strip {
+            margin-top: 20px; background: rgba(20, 184, 166, 0.1); border: 1px solid rgba(13, 148, 136, 0.4);
+            border-radius: var(--radius-lg); padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;
+            max-width: 850px; margin-left: auto; margin-right: auto; transition: all 0.3s ease;
+        }
+        .tools-strip:hover { border-color: #0f766e; box-shadow: 0 4px 12px rgba(13, 148, 136, 0.15); }
+        .tools-strip-left { display: flex; align-items: center; gap: 12px; flex: 1 1 auto; min-width: 260px; }
+        .tools-strip-icon {
+            width: 40px; height: 40px; background: rgba(20, 184, 166, 0.2); color: #0f766e;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;
+        }
+        [data-theme="dark"] .tools-strip-icon { color: #5eead4; background: rgba(20, 184, 166, 0.3); }
+        .tools-strip-title { font-weight: 800; color: var(--text-main); font-size: 0.95rem; text-align: left; font-family: 'Inter', sans-serif;}
+        .tools-strip-desc { font-size: 0.75rem; color: var(--text-sec); margin-top: 2px; text-align: left; font-weight: 500; font-family: 'Inter', sans-serif;}
+        .tools-strip-btn-group { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; justify-content: flex-end;}
+        
+        .tools-strip-btn {
+            background: #0f766e; color: white !important; padding: 6px 12px; border-radius: 6px;
+            font-size: 12px; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 5px;
+            transition: background 0.2s; white-space: nowrap; letter-spacing: 0.2px;
+        }
+        .tools-strip-btn:hover { background: #115e59; color: white !important; }
+        [data-theme="dark"] .tools-strip-btn { background: #0d9488; color: #022c22 !important; }
+        [data-theme="dark"] .tools-strip-btn:hover { background: #0f766e; color: white !important; }
+        
+        .tools-strip-btn.outline {
+            background: transparent; color: #0f766e !important; border: 1px solid #0f766e;
+        }
+        .tools-strip-btn.outline:hover { background: rgba(15, 118, 110, 0.1); color: #0d9488 !important; }
+        [data-theme="dark"] .tools-strip-btn.outline { color: #5eead4 !important; border-color: #5eead4; }
+        [data-theme="dark"] .tools-strip-btn.outline:hover { background: rgba(94, 234, 212, 0.1); color: #5eead4 !important; }
 
         /* ==========================================================================
            SCHEMES GRID & NATURAL CARDS
@@ -419,30 +452,8 @@
             line-height: 1.4;
         }
 
-        /* Notice Banner */
-        .notice-banner {
-            background: var(--primary-light);
-            border: 1px solid var(--primary);
-            border-left: 4px solid var(--primary);
-            border-radius: var(--radius-md);
-            padding: 12px 15px;
-            margin-bottom: 25px;
-            font-size: 0.85rem;
-            color: var(--text-main);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .notice-banner i {
-            color: var(--primary);
-            font-size: 1.2rem;
-        }
-
         @media (max-width: 600px) {
-            /* FIXED: Pushes H1 down to avoid cluttering with the Breadcrumb */
-            .hub-hero { margin-top: 25px; padding-top: 0; }
-
-            /* FIXED: Ensure mobile font size is strictly 25px */
+            .hub-hero { margin-top: 25px; }
             .hero-title { font-size: 25px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
             
             .top-meta-bar { flex-wrap: nowrap; justify-content: space-between; }
@@ -456,6 +467,11 @@
             .hero-interlinks .dot { display: inline; font-size: 0.7rem; }
             .hero-interlinks a { font-size: 0.8rem; }
             .hero-interlinks .interlink-label { font-size: 0.75rem; }
+
+            .tools-strip { flex-direction: column; align-items: stretch; gap: 15px;}
+            .tools-strip-btn-group { width: 100%; justify-content: stretch; display: grid; grid-template-columns: 1fr 1fr; gap: 8px;}
+            .tools-strip-btn-group .tools-strip-btn:last-child { grid-column: span 2; }
+            .tools-strip-btn { justify-content: center; padding: 7px 10px; font-size: 12px; }
         }
     </style>
 
@@ -503,23 +519,42 @@
             <!-- High-Contrast Interlinking Hook -->
             <div class="hero-interlinks">
                 <span class="interlink-label"><i class="fa-solid fa-layer-group"></i> Deep Dive:</span>
-                <a href="../govt-schemes/">Govt Schemes</a>
-                <span class="dot">•</span>
                 <a href="../../himachal-pradesh-gk/economy/">Economy</a>
                 <span class="dot">•</span>
-                <a href="../hp-gk-one-liners-500-part-1/">One Liners</a>
+                <a href="../../himachal-pradesh-gk/district/">Districts</a>
+                <span class="dot">•</span>
+                <a href="../../himachal-pradesh-gk/rivers/">Rivers</a>
+                <span class="dot">•</span>
+                <a href="../../himachal-pradesh-gk/tourism/">Tourism</a>
+            </div>
+
+            <!-- DEDICATED GREEN TOOLS STRIP FOR BUDGET -->
+            <div class="tools-strip">
+                <div class="tools-strip-left">
+                    <div class="tools-strip-icon">
+                        <i class="fa-solid fa-book-open-reader"></i>
+                    </div>
+                    <div>
+                        <div class="tools-strip-title font-heading">Explore High-Yield Notes</div>
+                        <div class="tools-strip-desc font-sans">Read Govt Schemes & Economic Survey</div>
+                    </div>
+                </div>
+                <div class="tools-strip-btn-group">
+                    <a href="../govt-schemes/" class="tools-strip-btn outline">
+                        <i class="fa-solid fa-hands-holding-circle"></i> Govt Schemes
+                    </a>
+                    <a href="../hp-revenue-and-land-laws/quiz/" class="tools-strip-btn outline">
+                        <i class="fa-solid fa-gavel"></i> Revenue Quiz
+                    </a>
+                    <a href="../economic-survey/" class="tools-strip-btn">
+                        Eco Survey <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
             </div>
         </section>
 
         <!-- Content Area: Budget Highlights -->
         <section id="content-budget">
-            
-            <div class="notice-banner">
-                <i class="fa-solid fa-circle-info"></i>
-                <div>
-                    <strong>Exam Tip:</strong> For HPPSC and HPRCA exams, focus primarily on the <strong>total outlay figures, percentage allocations (Education/Health), and names of newly launched schemes</strong>. 
-                </div>
-            </div>
 
             <div class="schemes-grid">
                 
@@ -830,7 +865,7 @@
                         </li>
                         <li>
                             <span class="detail-en">CM Helpline (1100): Integration of AI to track public grievance redressal effectively.</span>
-                            <span class="detail-hi">सीएम हेल्पलाइन (1100): जन शिकायतों के निवारण को प्रभावी ढंग से ट्रैक करने के लिए AI का एकीकरण।</span>
+                            <span class="detail-hi">सीएम हेल्पलाइन 1100: समयबद्ध समाधान सुनिश्चित करने वाली AI-समर्थित शिकायत निवारण प्रणाली।</span>
                         </li>
                         <li>
                             <span class="detail-en">IT Park: Development of a new IT Park near Shimla/Solan to attract software companies and generate jobs.</span>
