@@ -11,7 +11,7 @@
   ],
   "sections": [
     {
-      "name": "HP GK / हि.प्र. सामान्य ज्ञान",
+      "name": "General Knowledge (सामान्य ज्ञान)",
       "questions": [
         { "questionEn": "Which district of HP is known as 'Chhota Kashi'?", "questionHi": "हि.प्र. का कौन सा जिला छोटा काशी के नाम से जाना जाता है?", "options": ["Hamirpur / हमीरपुर", "Shimla / शिमला", "Mandi / मंडी", "Kullu / कुल्लू"], "answer": 2 },
         { "questionEn": "Who was the first Speaker of HP Vidhan Sabha?", "questionHi": "हि.प्र. विधानसभा के प्रथम अध्यक्ष कौन थे?", "options": ["Tapindra Singh / तपिंद्र सिंह", "Jaywant Ram / जयवंत राम", "Desh Raj Mahajan / देश राज महाजन", "Krishan Chand / कृष्ण चंद"], "answer": 1 },
@@ -42,12 +42,7 @@
         { "questionEn": "Famous for 'Chamba Chappal':", "questionHi": "चंबा चप्पल के लिए प्रसिद्ध:", "options": ["Chamba / चंबा", "Kangra / कांगड़ा", "Kullu / कुल्लू", "Mandi / मंडी"], "answer": 0 },
         { "questionEn": "'Kinner Kailash' peak is in:", "questionHi": "किन्नर कैलाश चोटी कहाँ है?", "options": ["Kinnaur / किन्नौर", "Kullu / कुल्लू", "Lahaul / लाहौल", "Chamba / चंबा"], "answer": 0 },
         { "questionEn": "'HP University' established in:", "questionHi": "हि.प्र. विश्वविद्यालय की स्थापना:", "options": ["1975", "1972", "1970", "1971"], "answer": 2 },
-        { "questionEn": "Smallest district of HP area-wise:", "questionHi": "क्षेत्रफल में सबसे छोटा जिला:", "options": ["Solan / सोलन", "Hamirpur / हमीरपुर", "Bilaspur / बिलासपुर", "Una / ऊना"], "answer": 1 }
-      ]
-    },
-    {
-      "name": "General Science / सामान्य विज्ञान",
-      "questions": [
+        { "questionEn": "Smallest district of HP area-wise:", "questionHi": "क्षेत्रफल में सबसे छोटा जिला:", "options": ["Solan / सोलन", "Hamirpur / हमीरपुर", "Bilaspur / बिलासपुर", "Una / ऊना"], "answer": 1 },
         { "questionEn": "Unit of power:", "questionHi": "शक्ति की इकाई:", "options": ["Pascal / पास्कल", "Joule / जूल", "Watt / वाट", "Newton / न्यूटन"], "answer": 2 },
         { "questionEn": "Gas used in chips packets:", "questionHi": "चिप्स पैकेट में प्रयुक्त गैस:", "options": ["Oxygen / ऑक्सीजन", "Helium / हीलियम", "Nitrogen / नाइट्रोजन", "Hydrogen / हाइड्रोजन"], "answer": 2 },
         { "questionEn": "Human heart chambers:", "questionHi": "मानव हृदय में कितने कक्ष होते हैं?", "options": ["2 / दो", "5 / पांच", "3 / तीन", "4 / चार"], "answer": 3 },
@@ -62,12 +57,7 @@
         { "questionEn": "Hardest natural substance:", "questionHi": "सबसे कठोर प्राकृतिक पदार्थ:", "options": ["Platinum / प्लैटिनम", "Diamond / हीरा", "Iron / लोहा", "Gold / सोना"], "answer": 1 },
         { "questionEn": "Normal body temperature:", "questionHi": "सामान्य शरीर का तापमान:", "options": ["98.6 F", "102 F", "100 F", "96.4 F"], "answer": 0 },
         { "questionEn": "Acid in lemon:", "questionHi": "नींबू में अम्ल:", "options": ["Tartaric / टार्टरिक", "Lactic / लैक्टिक", "Acetic / एसिटिक", "Citric / साइट्रिक"], "answer": 3 },
-        { "questionEn": "Newton's Third Law:", "questionHi": "न्यूटन का तीसरा नियम:", "options": ["Energy conservation / ऊर्जा संरक्षण", "Action-Reaction / क्रिया-प्रतिक्रिया", "Gravity / गुरुत्वाकर्षण", "F=ma"], "answer": 1 }
-      ]
-    },
-    {
-      "name": "History, Polity, Geo / इतिहास, राजनीति, भूगोल",
-      "questions": [
+        { "questionEn": "Newton's Third Law:", "questionHi": "न्यूटन का तीसरा नियम:", "options": ["Energy conservation / ऊर्जा संरक्षण", "Action-Reaction / क्रिया-प्रतिक्रिया", "Gravity / गुरुत्वाकर्षण", "F=ma"], "answer": 1 },
         { "questionEn": "'Father of Indian Constitution':", "questionHi": "भारतीय संविधान के जनक:", "options": ["Nehru / नेहरू", "Patel / पटेल", "Ambedkar / अंबेडकर", "Gandhi / गांधी"], "answer": 2 },
         { "questionEn": "'Right to Education' act year:", "questionHi": "शिक्षा का अधिकार अधिनियम वर्ष:", "options": ["2010", "2009 / 2009", "2012", "2005"], "answer": 1 },
         { "questionEn": "First Gov-Gen of Independent India:", "questionHi": "स्वतंत्र भारत के प्रथम गवर्नर जनरल:", "options": ["Hastings / हेस्टिंग्स", "Rajagopalachari / राजगोपालाचारी", "Prasad / प्रसाद", "Mountbatten / माउंटबेटन"], "answer": 3 },
@@ -92,12 +82,7 @@
         { "questionEn": "President's Term:", "questionHi": "राष्ट्रपति का कार्यकाल:", "options": ["4 Years / 4 वर्ष", "3 Years / 3 वर्ष", "6 Years / 6 वर्ष", "5 Years / 5 वर्ष"], "answer": 3 },
         { "questionEn": "'Hirakud Dam' river:", "questionHi": "हीराकुंड बांध नदी:", "options": ["Mahanadi / महानदी", "Kaveri / कावेरी", "Krishna / कृष्णा", "Godavari / गोदावरी"], "answer": 0 },
         { "questionEn": "Known as 'Netaji':", "questionHi": "नेताजी के नाम से जाना जाता है:", "options": ["Nehru / नेहरू", "Gandhi / गांधी", "Bose / बोस", "Bhagat Singh / भगत सिंह"], "answer": 2 },
-        { "questionEn": "Tax by State Govt:", "questionHi": "राज्य सरकार द्वारा कर:", "options": ["Corp Tax / निगम कर", "Land Revenue / भू-राजस्व", "Customs / सीमा शुल्क", "Income / आयकर"], "answer": 1 }
-      ]
-    },
-    {
-      "name": "Misc / विविध",
-      "questions": [
+        { "questionEn": "Tax by State Govt:", "questionHi": "राज्य सरकार द्वारा कर:", "options": ["Corp Tax / निगम कर", "Land Revenue / भू-राजस्व", "Customs / सीमा शुल्क", "Income / आयकर"], "answer": 1 },
         { "questionEn": "Cricket World Cup 2023 Winner:", "questionHi": "क्रिकेट विश्व कप 2023 विजेता:", "options": ["England / इंग्लैंड", "Australia / ऑस्ट्रेलिया", "India / भारत", "South Africa / दक्षिण अफ्रीका"], "answer": 1 },
         { "questionEn": "'Statue of Unity' location:", "questionHi": "स्टैच्यू ऑफ यूनिटी कहाँ है?", "options": ["Gujarat / गुजरात", "Maharashtra / महाराष्ट्र", "Madhya Pradesh / मध्य प्रदेश", "Uttar Pradesh / उत्तर प्रदेश"], "answer": 0 },
         { "questionEn": "'International Yoga Day':", "questionHi": "अंतर्राष्ट्रीय योग दिवस:", "options": ["1st July / 1 जुलाई", "15th Aug / 15 अगस्त", "21st June / 21 जून", "5th June / 5 जून"], "answer": 2 },
@@ -116,7 +101,7 @@
       ]
     },
     {
-      "name": "Maths & Reasoning / गणित और तर्कशक्ति",
+      "name": "Mathematics & Logical Reasoning",
       "questions": [
         { "questionEn": "A:B = 2:3, B:C = 4:5. A:C?", "questionHi": "A:B = 2:3, B:C = 4:5. A:C?", "options": ["6:5", "8:15", "10:12", "2:5"], "answer": 1 },
         { "questionEn": "120 km in 2 hours. Speed?", "questionHi": "2 घंटे में 120 किमी. गति?", "options": ["80 किमी/घंटा", "40 किमी/घंटा", "60 / 60 किमी/घंटा", "50 किमी/घंटा"], "answer": 2 },
