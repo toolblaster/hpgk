@@ -1,8 +1,10 @@
 /**
  * --------------------------------------------------------------------------
- * HPGK MOCK TEST ENGINE (TCS/NTA Style Master Logic - PHASE 3 FINAL)
+ * HPGK MOCK TEST ENGINE (TCS/NTA Style Master Logic - PHASE 7 FINAL)
  * Includes Score Calculation, Detailed Analytics & Firebase DB Sync
  * Compact UI Updates, Production Paywall Fixes, Custom Watermark & Summary Mode
+ * 🔥 Subject-wise Advanced Analytics Table & Desktop Layout
+ * 🚀 FIXED: Auto-Attaches functionality to "Re-Attempt" button in Results Panel
  * --------------------------------------------------------------------------
  */
 
@@ -25,12 +27,59 @@ const engine = (function() {
 
     let DOM = {};
 
-    // Injects a light, unclickable diagonal watermark spanning the screen
     function injectUIWatermark() {
         const wm = document.createElement('div');
         wm.innerHTML = 'HPGK.TOOLBLASTER.COM';
         wm.style.cssText = 'position:fixed; top:50%; left:50%; transform:translate(-50%, -50%) rotate(-35deg); font-size:clamp(3rem, 6vw, 6rem); color:rgba(100, 116, 139, 0.04); z-index:0; pointer-events:none; white-space:nowrap; font-weight:900; letter-spacing:4px; font-family:Inter, sans-serif; user-select:none;';
         document.body.appendChild(wm);
+    }
+
+    function injectAdvancedResultStyles() {
+        if (document.getElementById('advanced-result-styles')) return;
+        const style = document.createElement('style');
+        style.id = 'advanced-result-styles';
+        style.innerHTML = `
+            .advanced-results-container {
+                display: flex;
+                gap: 25px;
+                align-items: flex-start;
+                margin-top: 25px;
+                width: 100%;
+            }
+            .advanced-results-left {
+                flex: 1.6;
+                display: flex;
+                flex-direction: column;
+                min-width: 0; 
+            }
+            .advanced-results-right {
+                flex: 1;
+                position: sticky;
+                top: 85px; 
+                min-width: 0;
+            }
+            .solutions-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            @media (max-width: 1024px) {
+                .advanced-results-container {
+                    flex-direction: column;
+                }
+                .advanced-results-right {
+                    position: relative;
+                    top: 0;
+                    order: -1; 
+                    width: 100%;
+                    margin-bottom: 20px;
+                }
+                .solutions-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+        `;
+        document.head.appendChild(style);
     }
 
     function init() {
@@ -136,7 +185,6 @@ const engine = (function() {
                 user.passes['mega_combo_pass']
             );
             
-            // 🔥 FIXED PAYWALL LOGIC: Direct Custom Injection (Independent of Guard)
             if (!isFree && !hasPass) {
                 DOM.blocker.style.backgroundColor = "rgba(15, 23, 42, 0.9)"; 
                 DOM.blocker.style.backdropFilter = "blur(8px)";
@@ -273,7 +321,6 @@ const engine = (function() {
                 state.responses[i] = { selected: null, status: 'not-visited' };
             });
 
-            // 🔥 DYNAMIC SUMMARY MODE LOGIC ADDED HERE
             const modeParam = new URLSearchParams(window.location.search).get('mode');
             
             if (modeParam === 'summary') {
@@ -436,10 +483,10 @@ const engine = (function() {
         state.isPanelHidden = !state.isPanelHidden;
         if (state.isPanelHidden) {
             DOM.rightPanel.classList.add('collapsed');
-            DOM.panelArrow.classList.replace('fa-chevron-right', 'fa-chevron-left');
+            DOM.panelArrow.classList.replace('fa-chevron-left', 'fa-chevron-right');
         } else {
             DOM.rightPanel.classList.remove('collapsed');
-            DOM.panelArrow.classList.replace('fa-chevron-left', 'fa-chevron-right');
+            DOM.panelArrow.classList.replace('fa-chevron-right', 'fa-chevron-left');
         }
     }
 
@@ -627,6 +674,197 @@ const engine = (function() {
         DOM.summaryPanel.style.display = 'none';
     }
 
+    function generateSubjectSummaryHtml() {
+        if (!state.sections || state.sections.length <= 1) return ''; 
+
+        let html = `
+        <div style="background: var(--card-bg); border-radius: var(--radius-lg); border: 1px solid var(--card-border); box-shadow: var(--glass-shadow); overflow: hidden;">
+            <div style="padding: 15px 20px; background: var(--primary-light, rgba(37, 99, 235, 0.05)); border-bottom: 1px solid var(--card-border);">
+                <h3 style="margin: 0; font-size: 1.1rem; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 8px;">
+                    <i class="fa-solid fa-chart-pie" style="color: var(--primary);"></i> Subject-wise Analytics
+                </h3>
+            </div>
+            <div style="overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse; min-width: 350px;">
+                    <thead>
+                        <tr style="border-bottom: 2px solid var(--card-border);">
+                            <th style="padding: 12px 15px; text-align: left; font-size: 0.75rem; font-weight: 800; color: var(--text-sec); text-transform: uppercase;">Subject</th>
+                            <th style="padding: 12px 10px; text-align: center; font-size: 0.75rem; font-weight: 800; color: var(--text-sec); text-transform: uppercase;">Qs</th>
+                            <th style="padding: 12px 10px; text-align: center; font-size: 0.75rem; font-weight: 800; color: var(--text-sec); text-transform: uppercase;">Att.</th>
+                            <th style="padding: 12px 10px; text-align: center; font-size: 0.75rem; font-weight: 800; color: var(--success, #10b981); text-transform: uppercase;">Right</th>
+                            <th style="padding: 12px 10px; text-align: center; font-size: 0.75rem; font-weight: 800; color: #ef4444; text-transform: uppercase;">Wrong</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+        `;
+
+        let gTotal = 0, gAtt = 0, gCorr = 0, gWro = 0;
+
+        state.sections.forEach(sec => {
+            let sTot = sec.qCount;
+            let sAtt = 0, sCorr = 0, sWro = 0;
+            
+            for(let i = sec.startIdx; i <= sec.endIdx; i++) {
+                let ans = state.responses[i].selected;
+                if(ans !== null && ans !== undefined) {
+                    sAtt++;
+                    if(ans === state.questions[i].answer) sCorr++;
+                    else sWro++;
+                }
+            }
+            
+            gTotal += sTot; gAtt += sAtt; gCorr += sCorr; gWro += sWro;
+
+            html += `
+                <tr style="border-bottom: 1px dashed var(--card-border);">
+                    <td style="padding: 12px 15px; font-weight: 700; color: var(--text-main); font-size: 0.85rem;">${sec.name}</td>
+                    <td style="padding: 12px 10px; text-align: center; font-weight: 600; color: var(--text-sec);">${sTot}</td>
+                    <td style="padding: 12px 10px; text-align: center; font-weight: 700; color: var(--primary);">${sAtt}</td>
+                    <td style="padding: 12px 10px; text-align: center; font-weight: 800; color: var(--success, #10b981);">${sCorr}</td>
+                    <td style="padding: 12px 10px; text-align: center; font-weight: 800; color: #ef4444;">${sWro}</td>
+                </tr>
+            `;
+        });
+
+        html += `
+                <tr style="background: var(--input-bg, rgba(0,0,0,0.02)); border-top: 2px solid var(--card-border);">
+                    <td style="padding: 14px 15px; font-weight: 900; color: var(--text-main); font-size: 0.9rem;">Total</td>
+                    <td style="padding: 14px 10px; text-align: center; font-weight: 800; color: var(--text-main);">${gTotal}</td>
+                    <td style="padding: 14px 10px; text-align: center; font-weight: 800; color: var(--primary);">${gAtt}</td>
+                    <td style="padding: 14px 10px; text-align: center; font-weight: 800; color: var(--success, #10b981);">${gCorr}</td>
+                    <td style="padding: 14px 10px; text-align: center; font-weight: 800; color: #ef4444;">${gWro}</td>
+                </tr>
+            </tbody></table></div></div>
+        `;
+
+        return html;
+    }
+
+    function getDetailsHtml() {
+        let html = '';
+        state.questions.forEach((q, i) => {
+            let ans = state.responses[i].selected;
+            let statusClass = '';
+            let statusBadge = '';
+            
+            if (ans === null || ans === undefined) {
+                statusClass = 'skipped';
+                statusBadge = '<span class="res-q-badge badge-skipped">Skipped</span>';
+            } else if (ans === q.answer) {
+                statusClass = 'correct';
+                statusBadge = '<span class="res-q-badge badge-correct"><i class="fa-solid fa-check"></i> Correct</span>';
+            } else {
+                statusClass = 'wrong';
+                statusBadge = '<span class="res-q-badge badge-wrong"><i class="fa-solid fa-xmark"></i> Incorrect</span>';
+            }
+
+            let optsHtml = q.options.map((opt, optIdx) => {
+                let optClass = '';
+                let icon = '<div style="width:16px;"></div>'; 
+                
+                if (optIdx === q.answer) {
+                    optClass = 'is-correct';
+                    icon = '<div style="width:16px;"><i class="fa-solid fa-check-circle" style="color:#16a34a;"></i></div>';
+                } else if (optIdx === ans && ans !== q.answer) {
+                    optClass = 'is-wrong';
+                    icon = '<div style="width:16px;"><i class="fa-solid fa-times-circle" style="color:#dc2626;"></i></div>';
+                }
+                
+                return `
+                    <div class="res-opt ${optClass}">
+                        ${icon}
+                        <div style="flex:1; z-index:2; position:relative;">${opt}</div>
+                    </div>
+                `;
+            }).join('');
+
+            html += `
+                <div class="res-q-card ${statusClass}" style="position:relative; z-index:2; height:100%;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                        <div style="font-weight:800; color:var(--text-sec); font-size:0.75rem; text-transform:uppercase;">Question ${i+1}</div>
+                        ${statusBadge}
+                    </div>
+                    <div style="font-weight:600; font-size:0.9rem; color:var(--text-main); line-height:1.4;">${q.questionEn}</div>
+                    <div style="font-weight:500; font-size:0.8rem; color:var(--text-sec); margin-bottom:6px; font-family:'Noto Sans Devanagari', sans-serif;">${q.questionHi || ''}</div>
+                    <div style="display:flex; flex-direction:column; gap:6px;">
+                        ${optsHtml}
+                    </div>
+                </div>
+            `;
+        });
+        return html;
+    }
+
+    // 🔥 NEW: Auto-Attaches the Re-Attempt functionality to buttons found in the UI
+    function attachReattemptListeners() {
+        const buttons = document.querySelectorAll('button');
+        buttons.forEach(btn => {
+            const btnText = btn.innerText.toLowerCase();
+            // Looks for buttons that contain "re-attempt" or "reattempt"
+            if (btnText.includes('re-attempt') || btnText.includes('reattempt')) {
+                // Ensure we don't attach multiple times
+                btn.onclick = null; 
+                btn.onclick = function() {
+                    const confirmation = confirm("Are you sure you want to re-attempt this test?\\n\\nThis will clear your current progress and start a fresh test.");
+                    if (confirmation) {
+                        // 1. Clear Local Browser Cache
+                        localStorage.removeItem(`mock_history_${state.testId}`);
+                        
+                        // 2. Remove 'mode=summary' from the URL so it loads a fresh exam
+                        const currentUrl = new URL(window.location.href);
+                        currentUrl.searchParams.delete('mode');
+                        
+                        // 3. Reload Page
+                        window.location.href = currentUrl.toString();
+                    }
+                };
+            }
+        });
+    }
+
+    function renderFinalResultUI(finalScore, totalQs, accuracy, timeTakenStr, correct, wrong, unattempted) {
+        DOM.resScoreVal.innerText = finalScore + ' / ' + totalQs;
+        DOM.resAccVal.innerText = accuracy + '%';
+        DOM.resTimeVal.innerText = timeTakenStr;
+        DOM.resCorrVal.innerText = correct;
+        DOM.resWrongVal.innerText = wrong;
+        DOM.resSkipVal.innerText = unattempted;
+
+        injectAdvancedResultStyles();
+
+        // Hide duplicate "Detailed Solutions" headings if they exist in the HTML template
+        const headings = DOM.resultPanel.querySelectorAll('h2, h3, h4');
+        headings.forEach(h => {
+            if (h.innerText.toLowerCase().includes('detailed')) {
+                h.style.display = 'none';
+            }
+        });
+
+        const detailsHtml = getDetailsHtml();
+        const summaryHtml = generateSubjectSummaryHtml();
+
+        DOM.resDetailedList.innerHTML = `
+            <div class="advanced-results-container">
+                <div class="advanced-results-left">
+                    <h3 style="font-size: 1.4rem; color: var(--text-main); margin: 0 0 15px 0; font-weight: 900; letter-spacing: -0.5px;">Detailed Solutions</h3>
+                    <div class="solutions-grid">
+                        ${detailsHtml}
+                    </div>
+                </div>
+                ${summaryHtml ? `
+                <div class="advanced-results-right">
+                    ${summaryHtml}
+                </div>
+                ` : ''}
+            </div>
+        `;
+        
+        DOM.resultPanel.style.display = 'flex';
+        
+        // 🔥 Trigger the Auto-Attach logic for Re-Attempt buttons
+        attachReattemptListeners();
+    }
+
     async function finalSubmit() {
         clearInterval(state.timerInterval);
 
@@ -641,7 +879,7 @@ const engine = (function() {
 
         state.questions.forEach((q, i) => {
             let ans = state.responses[i].selected;
-            if (ans === null) {
+            if (ans === null || ans === undefined) {
                 unattempted++;
             } else if (ans === q.answer) {
                 correct++;
@@ -661,7 +899,6 @@ const engine = (function() {
         let timeSec = timeTakenSecs % 60;
         let timeTakenStr = `${timeMin}m ${timeSec}s`;
 
-        // 🔥 NEW: Save exact answers to local storage for Summary Mode
         localStorage.setItem(`mock_history_${state.testId}`, JSON.stringify(state.responses));
 
         try {
@@ -692,71 +929,9 @@ const engine = (function() {
         }
 
         DOM.blocker.style.display = 'none';
-        
-        DOM.resScoreVal.innerText = finalScore + ' / ' + totalQs;
-        DOM.resAccVal.innerText = accuracy + '%';
-        DOM.resTimeVal.innerText = timeTakenStr;
-        DOM.resCorrVal.innerText = correct;
-        DOM.resWrongVal.innerText = wrong;
-        DOM.resSkipVal.innerText = unattempted;
-
-        let detailsHtml = '';
-        state.questions.forEach((q, i) => {
-            let ans = state.responses[i].selected;
-            let statusClass = '';
-            let statusBadge = '';
-            
-            if (ans === null) {
-                statusClass = 'skipped';
-                statusBadge = '<span class="res-q-badge badge-skipped">Skipped</span>';
-            } else if (ans === q.answer) {
-                statusClass = 'correct';
-                statusBadge = '<span class="res-q-badge badge-correct"><i class="fa-solid fa-check"></i> Correct</span>';
-            } else {
-                statusClass = 'wrong';
-                statusBadge = '<span class="res-q-badge badge-wrong"><i class="fa-solid fa-xmark"></i> Incorrect</span>';
-            }
-
-            let optsHtml = q.options.map((opt, optIdx) => {
-                let optClass = '';
-                let icon = '<div style="width:16px;"></div>'; 
-                
-                if (optIdx === q.answer) {
-                    optClass = 'is-correct';
-                    icon = '<div style="width:16px;"><i class="fa-solid fa-check-circle" style="color:#16a34a;"></i></div>';
-                } else if (optIdx === ans && ans !== q.answer) {
-                    optClass = 'is-wrong';
-                    icon = '<div style="width:16px;"><i class="fa-solid fa-times-circle" style="color:#dc2626;"></i></div>';
-                }
-                
-                return `
-                    <div class="res-opt ${optClass}">
-                        ${icon}
-                        <div style="flex:1; z-index:2; position:relative;">${opt}</div>
-                    </div>
-                `;
-            }).join('');
-
-            detailsHtml += `
-                <div class="res-q-card ${statusClass}" style="position:relative; z-index:2;">
-                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-                        <div style="font-weight:800; color:var(--text-sec); font-size:0.75rem; text-transform:uppercase;">Question ${i+1}</div>
-                        ${statusBadge}
-                    </div>
-                    <div style="font-weight:600; font-size:0.9rem; color:var(--text-main); line-height:1.4;">${q.questionEn}</div>
-                    <div style="font-weight:500; font-size:0.8rem; color:var(--text-sec); margin-bottom:6px; font-family:'Noto Sans Devanagari', sans-serif;">${q.questionHi || ''}</div>
-                    <div style="display:flex; flex-direction:column; gap:6px;">
-                        ${optsHtml}
-                    </div>
-                </div>
-            `;
-        });
-
-        DOM.resDetailedList.innerHTML = detailsHtml;
-        DOM.resultPanel.style.display = 'flex';
+        renderFinalResultUI(finalScore, totalQs, accuracy, timeTakenStr, correct, wrong, unattempted);
     }
 
-    // 🔥 NEW: Show Result Panel Directly for Summary Mode (Bypasses Firebase Sync)
     function showResultPanelDirectly() {
         let correct = 0, wrong = 0, unattempted = 0;
         let penaltyTextStr = DOM.penaltyText ? DOM.penaltyText.innerText : "0.25";
@@ -764,7 +939,7 @@ const engine = (function() {
 
         state.questions.forEach((q, i) => {
             let ans = state.responses[i].selected;
-            if (ans === null) {
+            if (ans === null || ans === undefined) {
                 unattempted++;
             } else if (ans === q.answer) {
                 correct++;
@@ -778,67 +953,7 @@ const engine = (function() {
         let totalQs = state.questions.length;
         let accuracy = (correct + wrong) > 0 ? Math.round((correct / (correct + wrong)) * 100) : 0;
         
-        DOM.resScoreVal.innerText = finalScore + ' / ' + totalQs;
-        DOM.resAccVal.innerText = accuracy + '%';
-        DOM.resTimeVal.innerText = "Previous Attempt";
-        DOM.resCorrVal.innerText = correct;
-        DOM.resWrongVal.innerText = wrong;
-        DOM.resSkipVal.innerText = unattempted;
-
-        let detailsHtml = '';
-        state.questions.forEach((q, i) => {
-            let ans = state.responses[i].selected;
-            let statusClass = '';
-            let statusBadge = '';
-            
-            if (ans === null) {
-                statusClass = 'skipped';
-                statusBadge = '<span class="res-q-badge badge-skipped">Skipped</span>';
-            } else if (ans === q.answer) {
-                statusClass = 'correct';
-                statusBadge = '<span class="res-q-badge badge-correct"><i class="fa-solid fa-check"></i> Correct</span>';
-            } else {
-                statusClass = 'wrong';
-                statusBadge = '<span class="res-q-badge badge-wrong"><i class="fa-solid fa-xmark"></i> Incorrect</span>';
-            }
-
-            let optsHtml = q.options.map((opt, optIdx) => {
-                let optClass = '';
-                let icon = '<div style="width:16px;"></div>'; 
-                
-                if (optIdx === q.answer) {
-                    optClass = 'is-correct';
-                    icon = '<div style="width:16px;"><i class="fa-solid fa-check-circle" style="color:#16a34a;"></i></div>';
-                } else if (optIdx === ans && ans !== q.answer) {
-                    optClass = 'is-wrong';
-                    icon = '<div style="width:16px;"><i class="fa-solid fa-times-circle" style="color:#dc2626;"></i></div>';
-                }
-                
-                return `
-                    <div class="res-opt ${optClass}">
-                        ${icon}
-                        <div style="flex:1; z-index:2; position:relative;">${opt}</div>
-                    </div>
-                `;
-            }).join('');
-
-            detailsHtml += `
-                <div class="res-q-card ${statusClass}" style="position:relative; z-index:2;">
-                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-                        <div style="font-weight:800; color:var(--text-sec); font-size:0.75rem; text-transform:uppercase;">Question ${i+1}</div>
-                        ${statusBadge}
-                    </div>
-                    <div style="font-weight:600; font-size:0.9rem; color:var(--text-main); line-height:1.4;">${q.questionEn}</div>
-                    <div style="font-weight:500; font-size:0.8rem; color:var(--text-sec); margin-bottom:6px; font-family:'Noto Sans Devanagari', sans-serif;">${q.questionHi || ''}</div>
-                    <div style="display:flex; flex-direction:column; gap:6px;">
-                        ${optsHtml}
-                    </div>
-                </div>
-            `;
-        });
-
-        DOM.resDetailedList.innerHTML = detailsHtml;
-        DOM.resultPanel.style.display = 'flex';
+        renderFinalResultUI(finalScore, totalQs, accuracy, "Previous Attempt", correct, wrong, unattempted);
     }
 
     window.addEventListener('DOMContentLoaded', () => { init(); });
