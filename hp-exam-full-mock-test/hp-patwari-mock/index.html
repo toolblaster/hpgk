@@ -575,7 +575,7 @@
 
 <div id="site-footer"></div>
 
-<!-- Core Scripts -->
+<!-- 🚨 0% Firebase Code Here! Everything is handled centrally by core.js -->
 <script src="../../js/core.js"></script>
 <script src="../../js/layout.js"></script>
 
@@ -662,7 +662,7 @@
 <!-- 🔥 Dynamic Attempt State Logic (Summary & Re-attempt) -->
 <script type="module">
     import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
-    import { getFirestore, collection, query, where, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
+    import { getFirestore, collection, query, where, onSnapshot, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
     import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
 
     const firebaseConfig = {
@@ -692,70 +692,93 @@
         }
     });
 
-    async function fetchAndApplyTestStates(uid) {
+    function fetchAndApplyTestStates(uid) {
         try {
             const scoresRef = collection(db, 'artifacts', 'hpgk-quiz', 'users', uid, 'scores');
             const q = query(scoresRef, where("category", "==", "hp-patwari-mock"));
-            const snap = await getDocs(q);
             
-            const scoresData = {};
-            snap.forEach(docSnap => {
-                // Keep only the latest score if there are duplicates
-                if(!scoresData[docSnap.data().testId] || scoresData[docSnap.data().testId].timestamp < docSnap.data().timestamp) {
-                    scoresData[docSnap.data().testId] = docSnap.data();
-                    window.userMockDocs[docSnap.data().testId] = docSnap.id;
-                }
-            });
-
-            document.querySelectorAll('.test-card').forEach(card => {
-                const testId = card.getAttribute('data-testid');
-                if (testId && scoresData[testId]) {
-                    const data = scoresData[testId];
-                    
-                    // 1. Inject Score Badge
-                    const badgeContainer = card.querySelector('.tc-badges');
-                    if (badgeContainer && !card.querySelector('.score-badge-added')) {
-                        badgeContainer.innerHTML += `<span class="tc-badge-common score-badge-added" style="background:var(--success); color:white; border:none; box-shadow:0 2px 5px rgba(16,185,129,0.3);">Score: ${data.score}/${data.total}</span>`;
+            // 🔥 USING onSnapshot for Real-Time Syncing without Refresh
+            onSnapshot(q, (snap) => {
+                const scoresData = {};
+                window.userMockDocs = {}; // Reset doc mapping
+                
+                snap.forEach(docSnap => {
+                    const data = docSnap.data();
+                    // Keep only the latest score if there are duplicates
+                    if(!scoresData[data.testId] || scoresData[data.testId].timestamp < data.timestamp) {
+                        scoresData[data.testId] = data;
+                        window.userMockDocs[data.testId] = docSnap.id;
                     }
+                });
 
-                    // 2. Swap Action Buttons
-                    const actionBtn = card.querySelector('.btn-action');
-                    if(actionBtn) {
-                        const isPremium = actionBtn.classList.contains('btn-pro');
-                        const testUrl = `../../mock-engine/index.html?exam=hp-patwari-mock&testId=${testId}`;
+                document.querySelectorAll('.test-card').forEach(card => {
+                    const testId = card.getAttribute('data-testid');
+                    if (testId && scoresData[testId]) {
+                        const data = scoresData[testId];
+                        
+                        // 1. Inject or Update Score Badge
+                        const badgeContainer = card.querySelector('.tc-badges');
+                        if (badgeContainer) {
+                            let existingBadge = badgeContainer.querySelector('.score-badge-added');
+                            if (existingBadge) {
+                                existingBadge.innerHTML = `Score: ${data.score}/${data.total}`;
+                            } else {
+                                badgeContainer.innerHTML += `<span class="tc-badge-common score-badge-added" style="background:var(--success); color:white; border:none; box-shadow:0 2px 5px rgba(16,185,129,0.3);">Score: ${data.score}/${data.total}</span>`;
+                            }
+                        }
 
-                        actionBtn.outerHTML = `
-                            <div style="display:flex; gap:6px; align-items:center;">
-                                <button onclick="checkAccessAndRedirect('${testUrl}&mode=summary', ${isPremium})" class="btn-action" style="background: var(--input-bg); color: var(--primary); border: 1px solid var(--primary);">
-                                    Summary <i class="fa-solid fa-chart-pie"></i>
-                                </button>
-                                <button onclick="reAttemptTest('${testId}', '${testUrl}', ${isPremium})" class="btn-action" style="background: #fee2e2; color: #dc2626; border: 1px solid #fca5a5; padding: 6px 10px;" title="Re-attempt Test">
-                                    <i class="fa-solid fa-rotate-right"></i>
-                                </button>
-                            </div>
-                        `;
+                        // 2. Swap Action Buttons (Only if not already swapped)
+                        const actionBtn = card.querySelector('.btn-action');
+                        if(actionBtn && !actionBtn.classList.contains('summary-btn-injected')) {
+                            const isPremium = actionBtn.classList.contains('btn-pro');
+                            const testUrl = `../../mock-engine/index.html?exam=hp-patwari-mock&testId=${testId}`;
+
+                            actionBtn.outerHTML = `
+                                <div style="display:flex; gap:6px; align-items:center;">
+                                    <button onclick="checkAccessAndRedirect('${testUrl}&mode=summary', ${isPremium})" class="btn-action summary-btn-injected" style="background: var(--input-bg); color: var(--primary); border: 1px solid var(--primary);">
+                                        Summary <i class="fa-solid fa-chart-pie"></i>
+                                    </button>
+                                    <button onclick="reAttemptTest('${testId}', '${testUrl}', ${isPremium})" class="btn-action" style="background: #fee2e2; color: #dc2626; border: 1px solid #fca5a5; padding: 6px 10px;" title="Re-attempt Test">
+                                        <i class="fa-solid fa-rotate-right"></i>
+                                    </button>
+                                </div>
+                            `;
+                        }
                     }
-                }
+                });
+            }, (error) => {
+                console.error("Snapshot error fetching attempt states:", error);
             });
+            
         } catch (error) {
-            console.error("Error fetching attempt states:", error);
+            console.error("Error setting up attempt states:", error);
         }
     }
 
-    // Secure Re-attempt logic exposed globally
+    // Secure & Aggressive Re-attempt logic exposed globally
     window.reAttemptTest = async function(testId, url, isPremium) {
         const confirmation = confirm("Are you sure you want to re-attempt?\n\nYour previous score will be permanently deleted and the test will start fresh.");
         if (confirmation) {
             try {
-                const docId = window.userMockDocs[testId];
-                if (docId) {
-                    await deleteDoc(doc(db, 'artifacts', 'hpgk-quiz', 'users', window.HPGK_User.uid, 'scores', docId));
-                }
+                // Aggressive Ghost Document Deletion: Fetch and delete ALL past attempts for this specific test
+                const scoresRef = collection(db, 'artifacts', 'hpgk-quiz', 'users', window.HPGK_User.uid, 'scores');
+                const q = query(scoresRef, where("testId", "==", testId));
+                const snap = await getDocs(q);
+                
+                const deletePromises = [];
+                snap.forEach(d => {
+                    deletePromises.push(deleteDoc(doc(db, 'artifacts', 'hpgk-quiz', 'users', window.HPGK_User.uid, 'scores', d.id)));
+                });
+                await Promise.all(deletePromises);
+                
+                // Clear local browser cache for this specific test
                 localStorage.removeItem(`mock_history_${testId}`);
                 
+                // Redirect user back into the fresh mock engine
                 checkAccessAndRedirect(url, isPremium);
             } catch (error) {
                 alert("Error resetting test. Please try again.");
+                console.error(error);
             }
         }
     };
