@@ -167,6 +167,7 @@
         .tc-badge-common { display: inline-flex; align-items: center; justify-content: center; gap: 4px; font-size: 0.55rem; font-weight: 700; padding: 2px 6px; border-radius: 4px; border: 1px solid var(--card-border); letter-spacing: 0.2px; text-transform: uppercase; background: var(--input-bg); color: var(--text-sec); }
         .pro-badge { background: var(--accent-light); color: var(--accent); border-color: transparent; }
         .free-badge { background: rgba(16,185,129,0.1); color: var(--success); border-color: transparent; }
+        .free-badge.unlocked { background: var(--primary-light); color: var(--primary); }
         
         .mark-positive { color: #15803d; font-weight: 700; }
         .mark-negative { color: #b91c1c; font-weight: 700; }
@@ -184,6 +185,12 @@
 
         .btn-upgrade { background: var(--primary) !important; color: #ffffff !important; border: none; box-shadow: 0 4px 15px rgba(37,99,235,0.3); }
         .btn-upgrade:hover { opacity: 0.9; }
+
+        /* Cross-Link Card Hover Effects */
+        .cross-link-card:hover { transform: translateY(-3px); border-color: rgba(37, 99, 235, 0.4); box-shadow: 0 10px 25px rgba(37, 99, 235, 0.1); }
+        .cross-link-card .fa-arrow-right { transition: transform 0.2s ease; }
+        .cross-link-card:hover .fa-arrow-right { transform: translateX(4px); }
+        [data-theme="dark"] .cross-link-card:hover { border-color: rgba(96, 165, 250, 0.4); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4); }
 
         .faq-section { max-width: 900px; margin: 0 auto 30px auto; padding: 0 15px; }
         .faq-header { text-align: left; margin-bottom: 20px; }
@@ -230,7 +237,6 @@
     </div>
 </noscript>
 
-<!-- Header component injected here -->
 <div id="site-header"></div>
 
 <main>
@@ -587,6 +593,46 @@
 
     <div class="clean-divider"></div>
 
+    <!-- Explore Other Series Interlinks -->
+    <div style="max-width: 900px; margin: 0 auto 30px auto; padding: 0 15px;">
+        <div class="faq-header" style="text-align: left; margin-bottom: 20px;">
+            <h2>Explore Other Exam Series</h2>
+            <p>Boost your preparation by attempting mock tests for other Himachal Pradesh exams.</p>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px;">
+            <!-- Patwari Mock Link -->
+            <a href="../hp-patwari-mock/" class="cross-link-card soft-glass" style="text-decoration: none; display: flex; align-items: center; gap: 15px; padding: 15px; border-radius: var(--radius-md); transition: all 0.2s ease;">
+                <div style="width: 45px; height: 45px; background: rgba(37, 99, 235, 0.1); color: var(--primary); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">
+                    <i class="fa-solid fa-file-signature"></i>
+                </div>
+                <div style="flex: 1;">
+                    <h3 style="margin: 0; font-size: 0.95rem; color: var(--text-main); font-weight: 800;">HP Patwari</h3>
+                    <p style="margin: 2px 0 0 0; font-size: 0.75rem; color: var(--text-sec); font-weight: 500;">12 Mocks • 5 PYPs</p>
+                </div>
+                <div style="color: var(--primary); font-size: 1.1rem;">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+            </a>
+
+            <!-- HRTC Mock Link -->
+            <a href="../hp-hrtc-conductor-mock/" class="cross-link-card soft-glass" style="text-decoration: none; display: flex; align-items: center; gap: 15px; padding: 15px; border-radius: var(--radius-md); transition: all 0.2s ease;">
+                <div style="width: 45px; height: 45px; background: rgba(139, 92, 246, 0.1); color: var(--accent); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">
+                    <i class="fa-solid fa-bus"></i>
+                </div>
+                <div style="flex: 1;">
+                    <h3 style="margin: 0; font-size: 0.95rem; color: var(--text-main); font-weight: 800;">HP HRTC Conductor</h3>
+                    <p style="margin: 2px 0 0 0; font-size: 0.75rem; color: var(--text-sec); font-weight: 500;">10 Mocks • 4 PYPs</p>
+                </div>
+                <div style="color: var(--primary); font-size: 1.1rem;">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="clean-divider"></div>
+
     <div class="faq-section">
         <div class="faq-header">
             <h2>Frequently Asked Questions</h2>
@@ -751,7 +797,7 @@
 <!-- 🔥 Dynamic Attempt State Logic (Summary & Re-attempt) -->
 <script type="module">
     import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
-    import { getFirestore, collection, query, where, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
+    import { getFirestore, collection, query, where, onSnapshot, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
     import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
 
     const firebaseConfig = {
@@ -781,70 +827,93 @@
         }
     });
 
-    async function fetchAndApplyTestStates(uid) {
+    function fetchAndApplyTestStates(uid) {
         try {
             const scoresRef = collection(db, 'artifacts', 'hpgk-quiz', 'users', uid, 'scores');
             const q = query(scoresRef, where("category", "==", "hp-police-constable-mock"));
-            const snap = await getDocs(q);
             
-            const scoresData = {};
-            snap.forEach(docSnap => {
-                // Keep only the latest score if there are duplicates
-                if(!scoresData[docSnap.data().testId] || scoresData[docSnap.data().testId].timestamp < docSnap.data().timestamp) {
-                    scoresData[docSnap.data().testId] = docSnap.data();
-                    window.userMockDocs[docSnap.data().testId] = docSnap.id;
-                }
-            });
-
-            document.querySelectorAll('.test-card').forEach(card => {
-                const testId = card.getAttribute('data-testid');
-                if (testId && scoresData[testId]) {
-                    const data = scoresData[testId];
-                    
-                    // 1. Inject Score Badge
-                    const badgeContainer = card.querySelector('.tc-badges');
-                    if (badgeContainer && !card.querySelector('.score-badge-added')) {
-                        badgeContainer.innerHTML += `<span class="tc-badge-common score-badge-added" style="background:var(--success); color:white; border:none; box-shadow:0 2px 5px rgba(16,185,129,0.3);">Score: ${data.score}/${data.total}</span>`;
+            // 🔥 USING onSnapshot for Real-Time Syncing without Refresh
+            onSnapshot(q, (snap) => {
+                const scoresData = {};
+                window.userMockDocs = {}; // Reset doc mapping
+                
+                snap.forEach(docSnap => {
+                    const data = docSnap.data();
+                    // Keep only the latest score if there are duplicates
+                    if(!scoresData[data.testId] || scoresData[data.testId].timestamp < data.timestamp) {
+                        scoresData[data.testId] = data;
+                        window.userMockDocs[data.testId] = docSnap.id;
                     }
+                });
 
-                    // 2. Swap Action Buttons
-                    const actionBtn = card.querySelector('.btn-action');
-                    if(actionBtn) {
-                        const isPremium = actionBtn.classList.contains('btn-pro');
-                        const testUrl = `../../mock-engine/index.html?exam=hp-police-constable-mock&testId=${testId}`;
+                document.querySelectorAll('.test-card').forEach(card => {
+                    const testId = card.getAttribute('data-testid');
+                    if (testId && scoresData[testId]) {
+                        const data = scoresData[testId];
+                        
+                        // 1. Inject or Update Score Badge
+                        const badgeContainer = card.querySelector('.tc-badges');
+                        if (badgeContainer) {
+                            let existingBadge = badgeContainer.querySelector('.score-badge-added');
+                            if (existingBadge) {
+                                existingBadge.innerHTML = `Score: ${data.score}/${data.total}`;
+                            } else {
+                                badgeContainer.innerHTML += `<span class="tc-badge-common score-badge-added" style="background:var(--success); color:white; border:none; box-shadow:0 2px 5px rgba(16,185,129,0.3);">Score: ${data.score}/${data.total}</span>`;
+                            }
+                        }
 
-                        actionBtn.outerHTML = `
-                            <div style="display:flex; gap:6px; align-items:center;">
-                                <button onclick="checkAccessAndRedirect('${testUrl}&mode=summary', ${isPremium})" class="btn-action" style="background: var(--input-bg); color: var(--primary); border: 1px solid var(--primary);">
-                                    Summary <i class="fa-solid fa-chart-pie"></i>
-                                </button>
-                                <button onclick="reAttemptTest('${testId}', '${testUrl}', ${isPremium})" class="btn-action" style="background: #fee2e2; color: #dc2626; border: 1px solid #fca5a5; padding: 6px 10px;" title="Re-attempt Test">
-                                    <i class="fa-solid fa-rotate-right"></i>
-                                </button>
-                            </div>
-                        `;
+                        // 2. Swap Action Buttons (Only if not already swapped)
+                        const actionBtn = card.querySelector('.btn-action');
+                        if(actionBtn && !actionBtn.classList.contains('summary-btn-injected')) {
+                            const isPremium = actionBtn.classList.contains('btn-pro');
+                            const testUrl = `../../mock-engine/index.html?exam=hp-police-constable-mock&testId=${testId}`;
+
+                            actionBtn.outerHTML = `
+                                <div style="display:flex; gap:6px; align-items:center;">
+                                    <button onclick="checkAccessAndRedirect('${testUrl}&mode=summary', ${isPremium})" class="btn-action summary-btn-injected" style="background: var(--input-bg); color: var(--primary); border: 1px solid var(--primary);">
+                                        Summary <i class="fa-solid fa-chart-pie"></i>
+                                    </button>
+                                    <button onclick="reAttemptTest('${testId}', '${testUrl}', ${isPremium})" class="btn-action" style="background: #fee2e2; color: #dc2626; border: 1px solid #fca5a5; padding: 6px 10px;" title="Re-attempt Test">
+                                        <i class="fa-solid fa-rotate-right"></i>
+                                    </button>
+                                </div>
+                            `;
+                        }
                     }
-                }
+                });
+            }, (error) => {
+                console.error("Snapshot error fetching attempt states:", error);
             });
+            
         } catch (error) {
-            console.error("Error fetching attempt states:", error);
+            console.error("Error setting up attempt states:", error);
         }
     }
 
-    // Secure Re-attempt logic exposed globally
+    // Secure & Aggressive Re-attempt logic exposed globally
     window.reAttemptTest = async function(testId, url, isPremium) {
         const confirmation = confirm("Are you sure you want to re-attempt?\n\nYour previous score will be permanently deleted and the test will start fresh.");
         if (confirmation) {
             try {
-                const docId = window.userMockDocs[testId];
-                if (docId) {
-                    await deleteDoc(doc(db, 'artifacts', 'hpgk-quiz', 'users', window.HPGK_User.uid, 'scores', docId));
-                }
+                // Aggressive Ghost Document Deletion: Fetch and delete ALL past attempts for this specific test
+                const scoresRef = collection(db, 'artifacts', 'hpgk-quiz', 'users', window.HPGK_User.uid, 'scores');
+                const q = query(scoresRef, where("testId", "==", testId));
+                const snap = await getDocs(q);
+                
+                const deletePromises = [];
+                snap.forEach(d => {
+                    deletePromises.push(deleteDoc(doc(db, 'artifacts', 'hpgk-quiz', 'users', window.HPGK_User.uid, 'scores', d.id)));
+                });
+                await Promise.all(deletePromises);
+                
+                // Clear local browser cache for this specific test
                 localStorage.removeItem(`mock_history_${testId}`);
                 
+                // Redirect user back into the fresh mock engine
                 checkAccessAndRedirect(url, isPremium);
             } catch (error) {
                 alert("Error resetting test. Please try again.");
+                console.error(error);
             }
         }
     };
