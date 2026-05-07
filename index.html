@@ -116,7 +116,7 @@
     <meta name="msapplication-TileColor" content="#2563eb">
     <meta name="theme-color" content="#ffffff">
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Noto+Sans+Devanagari:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Poppins:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Load Global Style First -->
@@ -191,7 +191,7 @@
             box-sizing: border-box; 
         }
 
-        .page-layout, .seo-content-wrapper, .news-ticker-container { 
+        .page-layout, .news-ticker-container { 
             width: 100%; 
             max-width: var(--site-width); 
             margin: 0 auto; 
@@ -209,23 +209,23 @@
         }
 
         @media (max-width: 480px) {
-            .page-layout, .seo-content-wrapper, .news-ticker-container {
+            .page-layout, .news-ticker-container {
                 padding: 0 12px !important;
             }
         }
 
-        /* Compact Hero Section */
-        .hub-hero { 
+        /* ==========================================================================
+           COMPACT HERO SECTION (Matched exactly with other pages)
+           ========================================================================== */
+        .page-header-top { 
             text-align: center; 
-            max-width: 800px; 
-            margin: 0 auto 12px auto;
-            padding: 5px 0;
-            display: block;
+            margin-bottom: 25px; 
+            margin-top: 0; 
+            padding-top: 0; 
+            width: 100%; 
         }
 
-        /* ==========================================================================
-           ISOLATED H1 STYLING (Protected from global style.css)
-           ========================================================================== */
+        /* ISOLATED H1 STYLING (Protected from global style.css) */
         .hp-main-title {
             font-family: 'Inter', sans-serif !important;
             font-size: 32px !important; 
@@ -373,7 +373,7 @@
             }
         }
 
-        /* Resource Grid for cards (4 columns on desktop) - Used for Section 3 */
+        /* Resource Grid for cards (3 columns on desktop for perfect 3x2 block) - Used for Section 3 */
         .resource-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -385,12 +385,6 @@
             .resource-grid {
                 grid-template-columns: repeat(3, 1fr);
                 gap: 15px;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .resource-grid { 
-                grid-template-columns: repeat(5, 1fr); /* Updated to 5 columns to fit the new card perfectly in one row */
             }
         }
 
@@ -491,53 +485,91 @@
         .install-float { position: fixed; bottom: 20px; right: 20px; z-index: 1000; display: none; background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 50px; font-weight: 600; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4); cursor: pointer; align-items: center; gap: 8px; animation: slideUp 0.3s ease-out; }
         @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
-        /* --- Minimal SEO Content Blocks (With Smooth Hover) --- */
-        .seo-header { text-align: center; margin-bottom: 25px; }
-        .seo-header p { color: var(--text-sec); max-width: 700px; margin: 0 auto; font-size: 0.9rem; }
-        
-        .seo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
-        
-        .seo-card { 
-            background: transparent; 
-            border: 1px solid var(--card-border); 
-            padding: 20px; 
-            border-radius: var(--radius-md); 
-            transition: all 0.3s ease; 
-            backface-visibility: hidden;
-            transform: translateY(0) translateZ(0);
-            -webkit-font-smoothing: antialiased;
-        }
-        .seo-card:hover { 
-            background: var(--card-bg);
-            border-color: var(--primary); 
-            box-shadow: 0 6px 15px rgba(37, 99, 235, 0.06);
-            transform: translateY(-3px) translateZ(0);
+        /* --- Minimal Modern SEO Content (Text Only, No Distracting Cards) --- */
+        .seo-content-wrapper { 
+            margin: 30px auto; 
+            max-width: 1000px;
+            border-top: 1px solid var(--card-border);
+            padding-top: 30px;
+            padding-left: 15px;
+            padding-right: 15px;
+            box-sizing: border-box;
         }
         
-        .seo-card h3 { 
-            font-size: 15px !important; 
+        .seo-header { text-align: center; margin-bottom: 30px; }
+        .seo-header h2 { 
+            font-size: 1.25rem !important; 
             margin-bottom: 8px; 
-            display: flex; 
-            align-items: center; 
-            gap: 8px; 
             color: var(--text-main); 
-            font-weight: 700; 
+            font-weight: 800; 
+            font-family: 'Poppins', sans-serif !important;
+            letter-spacing: -0.5px;
+        }
+        .seo-header p { 
+            color: var(--text-sec); 
+            font-size: 0.9rem; 
+            margin: 0 auto;
+            max-width: 600px;
+            line-height: 1.5;
+        }
+
+        .seo-prose {
+            text-align: left;
+            margin-top: 20px;
         }
         
-        .seo-card h3 i { color: var(--primary); transition: transform 0.3s ease; }
-        .seo-card:hover h3 i { transform: scale(1.15); }
+        .seo-block {
+            break-inside: avoid;
+            margin-bottom: 25px;
+            background: rgba(0, 0, 0, 0.015);
+            padding: 15px;
+            border-radius: var(--radius-md);
+            border-left: 3px solid var(--card-border);
+        }
+        [data-theme="dark"] .seo-block { background: rgba(0, 0, 0, 0.2); }
+
+        .seo-block h3 {
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin: 0 0 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Inter', sans-serif;
+        }
         
-        .seo-card p { color: var(--text-body); font-size: 13px; margin-bottom: 0; line-height: 1.6; }
+        .seo-block h3 i { font-size: 0.9rem; }
+        
+        .seo-block p {
+            margin: 0;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: var(--text-body);
+        }
+        
+        .seo-block p strong {
+            color: var(--text-main);
+            font-weight: 700;
+        }
+
+        @media (min-width: 768px) {
+            .seo-prose {
+                column-count: 2;
+                column-gap: 25px;
+            }
+        }
         
         @media (max-width: 600px) {
-            /* Mobile H1 and H2 Overrides strictly preserved in local style */
+            .page-header-top { margin-top: 0; padding-top: 0; margin-bottom: 15px; }
             .hp-main-title { font-size: 26px !important; font-weight: 800 !important; }
             .section-sub-heading { font-size: 22px !important; font-weight: 800 !important; }
             .section-desc { font-size: 0.8rem; margin-bottom: 12px; }
-            .seo-card { padding: 15px; }
             .news-ticker-container { padding: 3px 6px; margin-bottom: 15px; }
             .ticker-badge { font-size: 0.6rem; padding: 2px 4px; }
             .ticker-text { font-size: 0.7rem; }
+            .seo-prose { column-count: 1; }
+            .seo-block { padding: 12px; margin-bottom: 15px; }
         }
     </style>
 
@@ -565,14 +597,14 @@
 
 <main>
     <div class="page-layout">
-        <!-- Hero Section -->
-        <section class="hub-hero">
+        <!-- Compact Uniform Hero Section -->
+        <div class="page-header-top">
             <span class="hero-badge glass-panel" style="border-color: var(--primary); color: var(--primary);">Devbhoomi Edition</span>
             <h1 class="hp-main-title">Master Himachal Pradesh General Knowledge</h1>
             <p class="hp-hero-desc">
                 The ultimate study companion for HPAS (HAS), HPPSC, Allied Services, Naib Tehsildar, and HP Police. Select a topic below to start practicing.
             </p>
-        </section>
+        </div>
     </div>
 
     <!-- Compact Fast Scrolling Ticker -->
@@ -670,7 +702,6 @@
             Evaluate your preparation with specialized mock tests, district-wise deep dives, and previous year question papers.
         </p>
         
-        <!-- Re-using .topic-grid to make it 5 columns on desktop, perfectly matching Section 1 -->
         <div class="topic-grid">
             
             <!-- 1. Agriculture -->
@@ -777,7 +808,7 @@
             </a>
 
             <!-- 2. HP GK One Liners Hub -->
-            <a href="study-notes/hp-gk-one-liners-500-part-1/" class="topic-card">
+            <a href="study-notes/hpgk-one-liners/" class="topic-card">
                 <div class="topic-icon" style="color: #f59e0b; background: rgba(245, 158, 11, 0.1);"><i class="fa-solid fa-bolt"></i></div>
                 <div class="topic-title">One-Liners Series</div>
                 <div class="topic-desc">1000+ rapid-fire bilingual revision facts.</div>
@@ -785,7 +816,7 @@
             </a>
 
             <!-- 3. HP Revenue Laws MCQs -->
-            <a href="https://hpgk.toolblaster.com/study-notes/hp-revenue-and-land-laws/quiz/" class="topic-card">
+            <a href="study-notes/hp-revenue-and-land-laws/quiz/" class="topic-card">
                 <div class="topic-icon" style="color: #0d9488; background: rgba(13, 148, 136, 0.1);"><i class="fa-solid fa-gavel"></i></div>
                 <div class="topic-title">Revenue Laws Quiz</div>
                 <div class="topic-desc">450+ MCQs on Sec 118 & Patwari Acts.</div>
@@ -807,35 +838,61 @@
                 <div class="topic-desc">Latest HP Govt initiatives & subsidies notes.</div>
                 <div class="topic-badge active" style="background: #e11d48; color: white;">High Yield</div>
             </a>
+
+            <!-- 6. Agriculture & Horticulture Notes -->
+            <a href="study-notes/hp-agriculture-and-horticulture/" class="topic-card">
+                <div class="topic-icon" style="color: #059669; background: rgba(5, 150, 105, 0.1);"><i class="fa-solid fa-seedling"></i></div>
+                <div class="topic-title">Agri & Horticulture</div>
+                <div class="topic-desc">Apple economy, crop zones & livestock.</div>
+                <div class="topic-badge active" style="background: #059669; color: white;">Premium</div>
+            </a>
         </div>
     </div>
     
     <div class="section-separator"></div>
 
-    <!-- Natural SEO Content Section for Search Engines -->
+    <!-- Minimal Modern SEO Content Section for Search Engines -->
     <div class="seo-content-wrapper">
         <div class="seo-header">
             <h2 class="section-sub-heading" style="font-size: 22px !important;">Ultimate HP GK Guide</h2>
             <p>Comprehensive study material and free mock tests for all Himachal Pradesh competitive exams.</p>
         </div>
 
-        <div class="seo-grid">
-            <!-- Card 1 -->
-            <div class="seo-card">
-                <h3><i class="fa-solid fa-language"></i> Bilingual Learning</h3>
-                <p>Welcome to the most trusted platform to master <strong>himachal pradesh gk in english</strong> as well as <strong>himachal pradesh gk in hindi</strong>. Our dual-language approach ensures that language is never a barrier to your success in state-level exams.</p>
+        <div class="seo-prose">
+            <!-- Block 1 -->
+            <div class="seo-block" style="border-left-color: #3b82f6;">
+                <h3><i class="fa-solid fa-language" style="color: #3b82f6;"></i> Bilingual Learning</h3>
+                <p>Welcome to our trusted platform to master <strong>himachal pradesh gk in english</strong> and <strong>hindi</strong>. Our dual-language approach ensures language is never a barrier.</p>
             </div>
 
-            <!-- Card 2 -->
-            <div class="seo-card">
-                <h3><i class="fa-solid fa-clipboard-question"></i> Latest Question Bank</h3>
-                <p>Stay ahead of the competition with our regularly updated database. We provide the <strong>latest hp gk questions with answers in hindi</strong> and English, covering high-weightage topics like History, Geography, Polity, and the state Economy.</p>
+            <!-- Block 2 -->
+            <div class="seo-block" style="border-left-color: #a855f7;">
+                <h3><i class="fa-solid fa-clipboard-question" style="color: #a855f7;"></i> Latest Question Bank</h3>
+                <p>Stay ahead with our updated database. We provide the <strong>latest hp gk questions with answers in hindi</strong> and English, covering History, Geography, and Polity.</p>
             </div>
 
-            <!-- Card 3 -->
-            <div class="seo-card">
-                <h3><i class="fa-solid fa-bullseye"></i> Targeted Practice</h3>
-                <p>Looking for reliable practice material? Attempting our <strong>hp gk questions in hindi</strong> and English through our interactive mock tests helps you evaluate your preparation for HPAS, HPPSC, Naib Tehsildar, and Allied Services—all for free and without any login.</p>
+            <!-- Block 3 -->
+            <div class="seo-block" style="border-left-color: #10b981;">
+                <h3><i class="fa-solid fa-bullseye" style="color: #10b981;"></i> Targeted Practice</h3>
+                <p>Looking for reliable practice? Attempt our <strong>hp gk questions in hindi</strong> and English through interactive mock tests to evaluate your preparation for HPAS and Allied Services.</p>
+            </div>
+
+            <!-- Block 4 -->
+            <div class="seo-block" style="border-left-color: #ea580c;">
+                <h3><i class="fa-solid fa-fire" style="color: #ea580c;"></i> High-Yield Material</h3>
+                <p>Maximize your score with our premium notes. We focus on complex topics like <strong>HP Revenue Laws</strong>, the latest <strong>Economic Survey</strong>, and rapid one-liners.</p>
+            </div>
+            
+            <!-- Block 5 -->
+            <div class="seo-block" style="border-left-color: #06b6d4;">
+                <h3><i class="fa-solid fa-stopwatch" style="color: #06b6d4;"></i> Mock Tests</h3>
+                <p>Test your accuracy with our <strong>HP Full Mock tests</strong> and daily <strong>Mini Mocks</strong>. These timed quizzes simulate real exam pressure, helping you identify weak areas.</p>
+            </div>
+            
+            <!-- Block 6 -->
+            <div class="seo-block" style="border-left-color: #8b5cf6;">
+                <h3><i class="fa-solid fa-book-journal-whills" style="color: #8b5cf6;"></i> Complete Syllabus</h3>
+                <p>Beyond HP GK, dive into our <strong>District Mastery</strong> series. Also practice high-yield subjects like <strong>General Hindi, General English</strong>, and Reasoning for state exams.</p>
             </div>
         </div>
     </div>
