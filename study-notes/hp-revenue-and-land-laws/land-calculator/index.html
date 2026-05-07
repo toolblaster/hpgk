@@ -87,7 +87,7 @@
     <!-- Load Global Style First (3 levels up) -->
     <link rel="stylesheet" href="../../../js/style.css">
 
-    <!-- PAGE SPECIFIC STYLESHEET (No Tailwind, Only Standard Custom CSS) -->
+    <!-- PAGE SPECIFIC STYLESHEET (Clean High Contrast Custom CSS) -->
     <style>
         :root {
             --site-width: 1100px;
@@ -98,8 +98,8 @@
             --primary-dark: #172554;  
             
             --bg-gradient: linear-gradient(135deg, #eff6ff 0%, #dbeafe 50%, #f3e8ff 100%);
-            --card-bg: rgba(255, 255, 255, 0.85); 
-            --card-border: rgba(148, 163, 184, 0.3); 
+            --card-bg: rgba(255, 255, 255, 0.65); 
+            --card-border: rgba(255, 255, 255, 0.5); 
             
             --text-main: #0f172a;     
             --text-body: #1e293b;     
@@ -116,8 +116,8 @@
             --primary-dark: #bfdbfe;  
             
             --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #020617 100%);
-            --card-bg: rgba(30, 41, 59, 0.6); 
-            --card-border: rgba(255, 255, 255, 0.12); 
+            --card-bg: rgba(30, 41, 59, 0.5); 
+            --card-border: rgba(255, 255, 255, 0.08); 
             
             --text-main: #f8fafc;     
             --text-body: #e2e8f0;     
@@ -141,7 +141,7 @@
         @media (max-width: 480px) { .page-layout, .top-meta-bar { padding: 0 12px !important; } }
 
         /* Top Bar & Breadcrumbs */
-        .top-meta-bar { display: flex !important; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: nowrap; gap: 10px; }
+        .top-meta-bar { display: flex !important; justify-content: space-between; align-items: center; margin: 0 auto 5px auto; flex-wrap: nowrap; gap: 10px; }
         .breadcrumb-nav { margin: 0; flex-shrink: 1; display: flex; align-items: center; height: 24px; overflow-x: auto; }
         .breadcrumb-nav::-webkit-scrollbar { display: none; }
         .breadcrumb-list { 
@@ -164,11 +164,11 @@
             border: 1px solid var(--primary-dark); letter-spacing: 0.5px; white-space: nowrap; flex-shrink: 0; box-sizing: border-box;
         }
 
-        /* Hero Section */
-        .hub-hero { text-align: center; max-width: 800px; margin: 0 auto 25px auto; padding: 10px 0; display: block; }
+        /* Compact Hero Section */
+        .page-header-top { text-align: center; margin-bottom: 25px; margin-top: 0; padding-top: 0; width: 100%; }
         .hero-title {
             margin: 0 0 8px 0; letter-spacing: -0.8px; background: linear-gradient(135deg, var(--text-main) 0%, var(--primary) 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: var(--primary); font-size: 28px; font-weight: 800;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: var(--primary); font-size: 32px; font-weight: 800; line-height: 1.2;
         }
         .hero-desc { font-size: 14px !important; color: var(--text-sec); line-height: 1.6; margin: 0 auto; max-width: 650px; }
         .hero-desc span.hi-desc { font-family: 'Noto Sans Devanagari', sans-serif; font-size: 0.85rem; color: var(--text-sec); display: block; margin-top: 4px; }
@@ -187,21 +187,21 @@
         [data-theme="dark"] .hero-interlinks a:hover { color: #60a5fa; }
         .hero-interlinks .dot { color: var(--text-sec); font-size: 0.8rem; opacity: 0.6; }
 
-        /* Tools Strip (Accessible Teal Colors) */
+        /* TEAL TOOLS STRIP - Fixed Alignment & Uniformity */
         .tools-strip {
-            margin-top: 20px; background: rgba(20, 184, 166, 0.1); border: 1px solid rgba(13, 148, 136, 0.4);
-            border-radius: var(--radius-lg); padding: 12px 16px; display: flex; align-items: center; justify-content: space-between;
-            max-width: 700px; margin-left: auto; margin-right: auto; transition: all 0.3s ease;
+            margin-top: 25px; background: rgba(20, 184, 166, 0.1); border: 1px solid rgba(13, 148, 136, 0.4);
+            border-radius: var(--radius-lg); padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;
+            max-width: 750px; margin-left: auto; margin-right: auto; transition: all 0.3s ease;
         }
         .tools-strip:hover { border-color: #0f766e; box-shadow: 0 4px 12px rgba(13, 148, 136, 0.15); }
-        .tools-strip-left { display: flex; align-items: center; gap: 12px; }
+        .tools-strip-left { display: flex; align-items: center; gap: 12px; flex: 1 1 auto; min-width: 260px; }
         .tools-strip-icon {
             width: 40px; height: 40px; background: rgba(20, 184, 166, 0.2); color: #0f766e;
-            border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;
         }
         [data-theme="dark"] .tools-strip-icon { color: #5eead4; background: rgba(20, 184, 166, 0.3); }
-        .tools-strip-title { font-weight: 800; color: var(--text-main); font-size: 0.95rem; text-align: left;}
-        .tools-strip-desc { font-size: 0.75rem; color: var(--text-sec); margin-top: 2px; text-align: left; font-weight: 500;}
+        .tools-strip-title { font-weight: 800; color: var(--text-main); font-size: 0.95rem; text-align: left; font-family: 'Inter', sans-serif;}
+        .tools-strip-desc { font-size: 0.75rem; color: var(--text-sec); margin-top: 2px; text-align: left; font-weight: 500; font-family: 'Inter', sans-serif;}
         .tools-strip-btn-group { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; justify-content: flex-end;}
         
         .tools-strip-btn {
@@ -229,9 +229,11 @@
             backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
         }
 
-        .module-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-        .module-title { font-size: 1.25rem; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 10px; }
-        .module-title-dot { width: 4px; height: 24px; border-radius: 4px; }
+        /* Fixed module header alignment */
+        .module-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; margin-bottom: 20px; }
+        .module-title-wrapper { display: flex; align-items: center; gap: 10px; }
+        .module-title { font-size: 1.25rem; font-weight: 800; color: var(--text-main); margin: 0; display: flex; align-items: center; gap: 10px; }
+        .module-title-dot { width: 4px; height: 24px; background: var(--primary); border-radius: 4px; }
         
         .module-controls { display: flex; align-items: center; gap: 10px; }
         .filter-group { display: flex; align-items: center; gap: 5px; background: rgba(0,0,0,0.03); padding: 4px; border-radius: var(--radius-md); border: 1px solid var(--card-border); }
@@ -336,7 +338,6 @@
         @media(min-width: 1024px) { .hier-grid { grid-template-columns: repeat(3, 1fr); } }
         @media(min-width: 1280px) { .hier-grid { grid-template-columns: repeat(4, 1fr); } }
         
-        /* FIXED: Removed extra gap/margins from hier-card to make it compact */
         .hier-card { 
             background: var(--card-bg); 
             border-style: solid; 
@@ -392,7 +393,7 @@
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
 
         @media (max-width: 600px) {
-            .hub-hero { margin-top: 25px; padding-top: 0; }
+            .page-header-top { margin-top: 0px; margin-bottom: 15px; padding-top: 0; }
             .hero-title { font-size: 25px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
             .hero-interlinks { flex-direction: row; flex-wrap: wrap; gap: 6px; padding: 8px 12px; border-radius: 30px; }
             .hero-interlinks .dot { display: inline; font-size: 0.7rem; }
@@ -400,8 +401,9 @@
             .hero-interlinks .interlink-label { font-size: 0.75rem; }
             
             .module-header { flex-direction: column; align-items: flex-start; gap: 15px; }
-            .tools-strip { flex-direction: column; align-items: flex-start; gap: 12px;}
-            .tools-strip-btn-group { width: 100%; display: flex; gap: 6px;}
+            .module-controls { width: 100%; justify-content: space-between; }
+            .tools-strip { flex-direction: column; align-items: flex-start; gap: 12px; }
+            .tools-strip-btn-group { width: 100%; display: flex; gap: 8px; }
             .tools-strip-btn { justify-content: center; flex: 1; padding: 7px 10px; font-size: 12px; }
         }
     </style>
@@ -423,7 +425,6 @@
 <!-- Dynamic Header Container -->
 <div id="site-header"></div>
 
-<!-- Main Content Wrapper -->
 <main class="hub-main-wrapper">
     
     <!-- Top Meta Bar: Breadcrumb (Left) & Hero Badge (Right) -->
@@ -436,7 +437,7 @@
                 <li class="breadcrumb-separator"><i class="fa-solid fa-chevron-right"></i></li>
                 <li class="breadcrumb-item"><a href="../">Revenue Laws</a></li>
                 <li class="breadcrumb-separator"><i class="fa-solid fa-chevron-right"></i></li>
-                <li class="breadcrumb-item active" aria-current="page">Tools</li>
+                <li class="breadcrumb-item active" aria-current="page">Land Calculator</li>
             </ol>
         </nav>
         <span class="hero-badge">Land Calculator</span>
@@ -444,7 +445,7 @@
 
     <div class="page-layout">
         <!-- Hero Section -->
-        <section class="hub-hero">
+        <div class="page-header-top">
             <h1 class="hero-title">HP Land Calculator & Digital Tools</h1>
             <p class="hero-desc">
                 Interactive Bigha calculator, administrative hierarchy of HP Revenue officers, and a guide to essential digital land record tools.
@@ -481,15 +482,15 @@
                     </a>
                 </div>
             </div>
-        </section>
+        </div>
 
         <!-- THE USER'S PROVIDED CONTENT EMBEDDED SAFELY WITHOUT TAILWIND -->
         <div id="app-content">
 
             <!-- MODULE 1: MEASUREMENTS -->
             <section id="measurements" class="module-container">
-                <div class="module-header" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;">
-                    <div style="display: flex; align-items: center; gap: 10px;">
+                <div class="module-header">
+                    <div class="module-title-wrapper">
                         <h2 class="module-title font-heading">
                             <span class="module-title-dot" style="background: #047857;"></span> <span id="calc-title-text">Land Calculator</span>
                         </h2>
@@ -831,7 +832,7 @@
                 title: 'Revenue Laws',
                 subtitle: 'Study Material',
                 iconClass: 'fa-solid fa-gavel',
-                link: '../../', 
+                link: '../', 
                 isQuizPage: false,
                 rootPath: '../../..' 
             });
