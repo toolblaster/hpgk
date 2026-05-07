@@ -294,78 +294,84 @@
         }
 
         .note-card:hover:not(.disabled) {
-            /* Hover effect removed, only border-color will change via transition */
+            /* Minimal hover effect for core notes */
+            border-color: var(--primary-light);
         }
 
         /* =========================================================
-           5 DISTINCT VIBRANT THEMES FOR CORE STUDY MATERIAL
+           5 DISTINCT VIBRANT THEMES FOR CORE STUDY MATERIAL (SOFTENED)
            ========================================================= */
         
         /* 1. BLUE THEME (Govt Schemes) */
-        .theme-blue.active { background: #eff6ff !important; border-color: #bfdbfe !important; }
-        .theme-blue.active:hover { border-color: #3b82f6 !important; }
-        .theme-blue .note-icon { color: #2563eb !important; background: #dbeafe !important; }
-        .theme-blue.active .note-status { background: #2563eb !important; color: #ffffff !important; }
+        .theme-blue.active { background: #ffffff !important; border-color: #e2e8f0 !important; }
+        .theme-blue.active:hover { border-color: #93c5fd !important; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.05) !important; }
+        .theme-blue .note-icon { color: #3b82f6 !important; background: rgba(59, 130, 246, 0.1) !important; }
+        .theme-blue.active .note-status { background: rgba(59, 130, 246, 0.1) !important; color: #1d4ed8 !important; font-weight: 700; }
 
         /* 2. ROSE RED THEME (Budget) */
-        .theme-rose.active { background: #fff1f2 !important; border-color: #fecdd3 !important; }
-        .theme-rose.active:hover { border-color: #f43f5e !important; }
-        .theme-rose .note-icon { color: #e11d48 !important; background: #ffe4e6 !important; }
-        .theme-rose.active .note-status { background: #e11d48 !important; color: #ffffff !important; }
+        .theme-rose.active { background: #ffffff !important; border-color: #e2e8f0 !important; }
+        .theme-rose.active:hover { border-color: #fda4af !important; box-shadow: 0 4px 15px rgba(244, 63, 94, 0.05) !important; }
+        .theme-rose .note-icon { color: #f43f5e !important; background: rgba(244, 63, 94, 0.1) !important; }
+        .theme-rose.active .note-status { background: rgba(244, 63, 94, 0.1) !important; color: #be123c !important; font-weight: 700; }
 
         /* 3. PURPLE THEME (Economic Survey) */
-        .theme-purple.active { background: #faf5ff !important; border-color: #e9d5ff !important; }
-        .theme-purple.active:hover { border-color: #a855f7 !important; }
-        .theme-purple .note-icon { color: #9333ea !important; background: #f3e8ff !important; }
-        .theme-purple.active .note-status { background: #9333ea !important; color: #ffffff !important; }
+        .theme-purple.active { background: #ffffff !important; border-color: #e2e8f0 !important; }
+        .theme-purple.active:hover { border-color: #d8b4fe !important; box-shadow: 0 4px 15px rgba(168, 85, 247, 0.05) !important; }
+        .theme-purple .note-icon { color: #a855f7 !important; background: rgba(168, 85, 247, 0.1) !important; }
+        .theme-purple.active .note-status { background: rgba(168, 85, 247, 0.1) !important; color: #7e22ce !important; font-weight: 700; }
 
         /* 4. ORANGE THEME (Revenue & Land Laws) */
-        .theme-orange.active { background: #fff7ed !important; border-color: #fed7aa !important; }
-        .theme-orange.active:hover { border-color: #f97316 !important; }
-        .theme-orange .note-icon { color: #ea580c !important; background: #ffedd5 !important; }
-        .theme-orange.active .note-status { background: #ea580c !important; color: #ffffff !important; }
+        .theme-orange.active { background: #ffffff !important; border-color: #e2e8f0 !important; }
+        .theme-orange.active:hover { border-color: #fdba74 !important; box-shadow: 0 4px 15px rgba(249, 115, 22, 0.05) !important; }
+        .theme-orange .note-icon { color: #f97316 !important; background: rgba(249, 115, 22, 0.1) !important; }
+        .theme-orange.active .note-status { background: rgba(249, 115, 22, 0.1) !important; color: #c2410c !important; font-weight: 700; }
 
         /* 5. EMERALD GREEN THEME (Agriculture & Horticulture) */
-        .theme-green.active { background: #ecfdf5 !important; border-color: #a7f3d0 !important; }
-        .theme-green.active:hover { border-color: #10b981 !important; }
-        .theme-green .note-icon { color: #059669 !important; background: #d1fae5 !important; }
-        .theme-green.active .note-status { background: #059669 !important; color: #ffffff !important; }
+        .theme-green.active { background: #ffffff !important; border-color: #e2e8f0 !important; }
+        .theme-green.active:hover { border-color: #6ee7b7 !important; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.05) !important; }
+        .theme-green .note-icon { color: #10b981 !important; background: rgba(16, 185, 129, 0.1) !important; }
+        .theme-green.active .note-status { background: rgba(16, 185, 129, 0.1) !important; color: #047857 !important; font-weight: 700; }
 
         /* DARK MODE VARIANTS FOR DISTINCT THEMES */
-        [data-theme="dark"] .theme-blue.active { background: #1e3a8a !important; border-color: #1e40af !important; }
-        [data-theme="dark"] .theme-blue.active:hover { border-color: #3b82f6 !important; }
-        [data-theme="dark"] .theme-blue .note-title { color: #dbeafe !important; }
-        [data-theme="dark"] .theme-blue .note-icon { background: rgba(59, 130, 246, 0.2) !important; color: #60a5fa !important; }
+        [data-theme="dark"] .theme-blue.active, 
+        [data-theme="dark"] .theme-rose.active, 
+        [data-theme="dark"] .theme-purple.active, 
+        [data-theme="dark"] .theme-orange.active, 
+        [data-theme="dark"] .theme-green.active { 
+            background: #1e293b !important; border-color: #334155 !important; 
+        }
+        
+        [data-theme="dark"] .theme-blue.active:hover { border-color: rgba(59, 130, 246, 0.4) !important; }
+        [data-theme="dark"] .theme-blue .note-icon { background: rgba(59, 130, 246, 0.15) !important; color: #60a5fa !important; }
+        [data-theme="dark"] .theme-blue.active .note-status { background: rgba(59, 130, 246, 0.15) !important; color: #93c5fd !important; }
 
-        [data-theme="dark"] .theme-rose.active { background: #881337 !important; border-color: #9f1239 !important; }
-        [data-theme="dark"] .theme-rose.active:hover { border-color: #f43f5e !important; }
-        [data-theme="dark"] .theme-rose .note-title { color: #ffe4e6 !important; }
-        [data-theme="dark"] .theme-rose .note-icon { background: rgba(244, 63, 94, 0.2) !important; color: #fb7185 !important; }
+        [data-theme="dark"] .theme-rose.active:hover { border-color: rgba(244, 63, 94, 0.4) !important; }
+        [data-theme="dark"] .theme-rose .note-icon { background: rgba(244, 63, 94, 0.15) !important; color: #fb7185 !important; }
+        [data-theme="dark"] .theme-rose.active .note-status { background: rgba(244, 63, 94, 0.15) !important; color: #fda4af !important; }
 
-        [data-theme="dark"] .theme-purple.active { background: #4c1d95 !important; border-color: #581c87 !important; }
-        [data-theme="dark"] .theme-purple.active:hover { border-color: #a855f7 !important; }
-        [data-theme="dark"] .theme-purple .note-title { color: #f3e8ff !important; }
-        [data-theme="dark"] .theme-purple .note-icon { background: rgba(168, 85, 247, 0.2) !important; color: #c084fc !important; }
+        [data-theme="dark"] .theme-purple.active:hover { border-color: rgba(168, 85, 247, 0.4) !important; }
+        [data-theme="dark"] .theme-purple .note-icon { background: rgba(168, 85, 247, 0.15) !important; color: #c084fc !important; }
+        [data-theme="dark"] .theme-purple.active .note-status { background: rgba(168, 85, 247, 0.15) !important; color: #d8b4fe !important; }
 
-        [data-theme="dark"] .theme-orange.active { background: #7c2d12 !important; border-color: #9a3412 !important; }
-        [data-theme="dark"] .theme-orange.active:hover { border-color: #f97316 !important; }
-        [data-theme="dark"] .theme-orange .note-title { color: #ffedd5 !important; }
-        [data-theme="dark"] .theme-orange .note-icon { background: rgba(249, 115, 22, 0.2) !important; color: #fb923c !important; }
+        [data-theme="dark"] .theme-orange.active:hover { border-color: rgba(249, 115, 22, 0.4) !important; }
+        [data-theme="dark"] .theme-orange .note-icon { background: rgba(249, 115, 22, 0.15) !important; color: #fb923c !important; }
+        [data-theme="dark"] .theme-orange.active .note-status { background: rgba(249, 115, 22, 0.15) !important; color: #fdba74 !important; }
 
-        [data-theme="dark"] .theme-green.active { background: #064e3b !important; border-color: #047857 !important; }
-        [data-theme="dark"] .theme-green.active:hover { border-color: #10b981 !important; }
-        [data-theme="dark"] .theme-green .note-title { color: #d1fae5 !important; }
-        [data-theme="dark"] .theme-green .note-icon { background: rgba(16, 185, 129, 0.2) !important; color: #34d399 !important; }
+        [data-theme="dark"] .theme-green.active:hover { border-color: rgba(16, 185, 129, 0.4) !important; }
+        [data-theme="dark"] .theme-green .note-icon { background: rgba(16, 185, 129, 0.15) !important; color: #34d399 !important; }
+        [data-theme="dark"] .theme-green.active .note-status { background: rgba(16, 185, 129, 0.15) !important; color: #6ee7b7 !important; }
 
         /* =========================================================
-           VIBRANT TEAL CARD (For Rapid Revision One Liners)
+           VIBRANT TEAL CARD (For Rapid Revision One Liners) - RESTORED
            ========================================================= */
         .vibrant-teal-card {
             background: #f0fdfa !important; 
             border: 1px solid #5eead4 !important; 
         }
         .vibrant-teal-card:hover {
+            box-shadow: 0 8px 20px rgba(20, 184, 166, 0.2) !important;
             border-color: #0d9488 !important;
+            transform: translateY(-4px);
         }
         .vibrant-teal-card .note-title { color: #0f766e !important; }
         .vibrant-teal-card .hi-title { color: #115e59 !important; }
@@ -380,6 +386,7 @@
         }
         [data-theme="dark"] .vibrant-teal-card:hover {
             border-color: #14b8a6 !important;
+            transform: translateY(-4px);
         }
         [data-theme="dark"] .vibrant-teal-card .note-title { color: #ccfbf1 !important; }
         [data-theme="dark"] .vibrant-teal-card .hi-title { color: #99f6e4 !important; }
