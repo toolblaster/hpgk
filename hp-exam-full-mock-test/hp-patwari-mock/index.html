@@ -186,6 +186,12 @@
         .btn-upgrade { background: var(--primary) !important; color: #ffffff !important; border: none; box-shadow: 0 4px 15px rgba(37,99,235,0.3); }
         .btn-upgrade:hover { opacity: 0.9; }
 
+        /* Cross-Link Card Hover Effects */
+        .cross-link-card:hover { transform: translateY(-3px); border-color: rgba(37, 99, 235, 0.4); box-shadow: 0 10px 25px rgba(37, 99, 235, 0.1); }
+        .cross-link-card .fa-arrow-right { transition: transform 0.2s ease; }
+        .cross-link-card:hover .fa-arrow-right { transform: translateX(4px); }
+        [data-theme="dark"] .cross-link-card:hover { border-color: rgba(96, 165, 250, 0.4); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4); }
+
         .faq-section { max-width: 900px; margin: 0 auto 30px auto; padding: 0 15px; }
         .faq-header { text-align: left; margin-bottom: 20px; }
         .faq-header h2 { font-size: 1.2rem; font-weight: 800; color: var(--text-main); margin-bottom: 6px; }
@@ -282,7 +288,7 @@
 
     <div class="toggle-wrapper">
         <div class="toggle-container">
-            <button id="btn-mocks" class="toggle-btn active" onclick="switchTab('mocks')">Mock Tests <span class="t-count">8</span></button>
+            <button id="btn-mocks" class="toggle-btn active" onclick="switchTab('mocks')">Mock Tests <span class="t-count">12</span></button>
             <button id="btn-pyps" class="toggle-btn" onclick="switchTab('pyps')">Previous Papers <span class="t-count">5</span></button>
         </div>
     </div>
@@ -427,75 +433,121 @@
                 </button>
             </div>
 
+            <!-- New Test 9 -->
+            <div class="test-card soft-glass" data-testid="hpgkdata.patwari-mock-test-9">
+                <div class="tc-left">
+                    <div class="tc-icon"><i class="fa-solid fa-lock"></i></div>
+                    <div class="tc-info">
+                        <h3>HP Patwari Full Mock Test 9</h3>
+                        <div class="tc-meta">120 Qs • 120 Mins • Marks: <span class="mark-positive">+1</span> <span class="mark-negative">-0.25</span></div>
+                        <div class="tc-badges">
+                            <span class="tc-badge-common">EN / HI</span>
+                            <span class="tc-badge-common pro-badge"><i class="fa-solid fa-crown" style="font-size:0.5rem; margin-right:2px;"></i> PRO</span>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="handleTestClick('../../mock-engine/index.html?exam=hp-patwari-mock&testId=hpgkdata.patwari-mock-test-9', true)" class="btn-action btn-pro">
+                    Unlock <i class="fa-solid fa-lock"></i>
+                </button>
+            </div>
+
+            <!-- New Test 10 -->
+            <div class="test-card soft-glass" data-testid="hpgkdata.patwari-mock-test-10">
+                <div class="tc-left">
+                    <div class="tc-icon"><i class="fa-solid fa-lock"></i></div>
+                    <div class="tc-info">
+                        <h3>HP Patwari Full Mock Test 10</h3>
+                        <div class="tc-meta">120 Qs • 120 Mins • Marks: <span class="mark-positive">+1</span> <span class="mark-negative">-0.25</span></div>
+                        <div class="tc-badges">
+                            <span class="tc-badge-common">EN / HI</span>
+                            <span class="tc-badge-common pro-badge"><i class="fa-solid fa-crown" style="font-size:0.5rem; margin-right:2px;"></i> PRO</span>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="handleTestClick('../../mock-engine/index.html?exam=hp-patwari-mock&testId=hpgkdata.patwari-mock-test-10', true)" class="btn-action btn-pro">
+                    Unlock <i class="fa-solid fa-lock"></i>
+                </button>
+            </div>
+
+            <!-- New Test 11 -->
+            <div class="test-card soft-glass" data-testid="hpgkdata.patwari-mock-test-11">
+                <div class="tc-left">
+                    <div class="tc-icon"><i class="fa-solid fa-lock"></i></div>
+                    <div class="tc-info">
+                        <h3>HP Patwari Full Mock Test 11</h3>
+                        <div class="tc-meta">120 Qs • 120 Mins • Marks: <span class="mark-positive">+1</span> <span class="mark-negative">-0.25</span></div>
+                        <div class="tc-badges">
+                            <span class="tc-badge-common">EN / HI</span>
+                            <span class="tc-badge-common pro-badge"><i class="fa-solid fa-crown" style="font-size:0.5rem; margin-right:2px;"></i> PRO</span>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="handleTestClick('../../mock-engine/index.html?exam=hp-patwari-mock&testId=hpgkdata.patwari-mock-test-11', true)" class="btn-action btn-pro">
+                    Unlock <i class="fa-solid fa-lock"></i>
+                </button>
+            </div>
+
+            <!-- New Test 12 -->
+            <div class="test-card soft-glass" data-testid="hpgkdata.patwari-mock-test-12">
+                <div class="tc-left">
+                    <div class="tc-icon"><i class="fa-solid fa-lock"></i></div>
+                    <div class="tc-info">
+                        <h3>HP Patwari Full Mock Test 12</h3>
+                        <div class="tc-meta">120 Qs • 120 Mins • Marks: <span class="mark-positive">+1</span> <span class="mark-negative">-0.25</span></div>
+                        <div class="tc-badges">
+                            <span class="tc-badge-common">EN / HI</span>
+                            <span class="tc-badge-common pro-badge"><i class="fa-solid fa-crown" style="font-size:0.5rem; margin-right:2px;"></i> PRO</span>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="handleTestClick('../../mock-engine/index.html?exam=hp-patwari-mock&testId=hpgkdata.patwari-mock-test-12', true)" class="btn-action btn-pro">
+                    Unlock <i class="fa-solid fa-lock"></i>
+                </button>
+            </div>
+
         </div>
     </div>
 
-    <div id="tab-pyps" class="tab-content">
-        <div class="test-list">
-            
-            <div class="test-card soft-glass" data-testid="hpgkdata.patwari-previous-year-paper-2019">
-                <div class="tc-left">
-                    <div class="tc-icon" style="color:var(--accent);"><i class="fa-solid fa-clock-rotate-left"></i></div>
-                    <div class="tc-info">
-                        <h3>HP Patwari Official Paper (2019)</h3>
-                        <div class="tc-meta">100 Qs • 90 Mins • <span style="color:#15803d; font-weight:700;">+1</span></div>
-                        <div class="tc-badges"><span class="tc-badge-common">EN / HI</span><span class="tc-badge-common pro-badge"><i class="fa-solid fa-crown"></i> PRO</span></div>
-                    </div>
-                </div>
-                <button onclick="handleTestClick('../../mock-engine/index.html?exam=hp-patwari-mock&testId=hpgkdata.patwari-previous-year-paper-2019', true)" class="btn-action btn-pro">Unlock <i class="fa-solid fa-lock"></i></button>
-            </div>
+    <div class="clean-divider"></div>
 
-            <div class="test-card soft-glass" data-testid="hpgkdata.patwari-previous-year-paper-2016">
-                <div class="tc-left">
-                    <div class="tc-icon" style="color:var(--accent);"><i class="fa-solid fa-clock-rotate-left"></i></div>
-                    <div class="tc-info">
-                        <h3>HP Patwari Official Paper (2016)</h3>
-                        <div class="tc-meta">100 Qs • 100 Mins • <span style="color:#15803d; font-weight:700;">+1</span></div>
-                        <div class="tc-badges"><span class="tc-badge-common">EN / HI</span><span class="tc-badge-common pro-badge"><i class="fa-solid fa-crown"></i> PRO</span></div>
-                    </div>
+    <!-- Explore Other Series Interlinks -->
+    <div style="max-width: 900px; margin: 0 auto 30px auto; padding: 0 15px;">
+        <div class="faq-header" style="text-align: left; margin-bottom: 20px;">
+            <h2>Explore Other Exam Series</h2>
+            <p>Boost your preparation by attempting mock tests for other Himachal Pradesh exams.</p>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px;">
+            <!-- Police Mock Link -->
+            <a href="../hp-police-constable-mock/" class="cross-link-card soft-glass" style="text-decoration: none; display: flex; align-items: center; gap: 15px; padding: 15px; border-radius: var(--radius-md); transition: all 0.2s ease;">
+                <div style="width: 45px; height: 45px; background: rgba(37, 99, 235, 0.1); color: var(--primary); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">
+                    <i class="fa-solid fa-shield-halved"></i>
                 </div>
-                <button onclick="handleTestClick('../../mock-engine/index.html?exam=hp-patwari-mock&testId=hpgkdata.patwari-previous-year-paper-2016', true)" class="btn-action btn-pro">Unlock <i class="fa-solid fa-lock"></i></button>
-            </div>
+                <div style="flex: 1;">
+                    <h3 style="margin: 0; font-size: 0.95rem; color: var(--text-main); font-weight: 800;">HP Police Constable</h3>
+                    <p style="margin: 2px 0 0 0; font-size: 0.75rem; color: var(--text-sec); font-weight: 500;">10 Mocks • 9 PYPs</p>
+                </div>
+                <div style="color: var(--primary); font-size: 1.1rem;">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+            </a>
 
-            <div class="test-card soft-glass" data-testid="hpgkdata.patwari-previous-year-paper-2015">
-                <div class="tc-left">
-                    <div class="tc-icon" style="color:var(--accent);"><i class="fa-solid fa-clock-rotate-left"></i></div>
-                    <div class="tc-info">
-                        <h3>HP Patwari Official Paper (2015)</h3>
-                        <div class="tc-meta">100 Qs • 100 Mins • <span style="color:#15803d; font-weight:700;">+1</span></div>
-                        <div class="tc-badges"><span class="tc-badge-common">EN / HI</span><span class="tc-badge-common pro-badge"><i class="fa-solid fa-crown"></i> PRO</span></div>
-                    </div>
+            <!-- HRTC Mock Link -->
+            <a href="../hp-hrtc-conductor-mock/" class="cross-link-card soft-glass" style="text-decoration: none; display: flex; align-items: center; gap: 15px; padding: 15px; border-radius: var(--radius-md); transition: all 0.2s ease;">
+                <div style="width: 45px; height: 45px; background: rgba(139, 92, 246, 0.1); color: var(--accent); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">
+                    <i class="fa-solid fa-bus"></i>
                 </div>
-                <button onclick="handleTestClick('../../mock-engine/index.html?exam=hp-patwari-mock&testId=hpgkdata.patwari-previous-year-paper-2015', true)" class="btn-action btn-pro">Unlock <i class="fa-solid fa-lock"></i></button>
-            </div>
-
-            <div class="test-card soft-glass" data-testid="hpgkdata.patwari-previous-year-paper-2013">
-                <div class="tc-left">
-                    <div class="tc-icon" style="color:var(--accent);"><i class="fa-solid fa-clock-rotate-left"></i></div>
-                    <div class="tc-info">
-                        <h3>HP Patwari Official Paper (2013)</h3>
-                        <div class="tc-meta">100 Qs • 100 Mins • <span style="color:#15803d; font-weight:700;">+1</span></div>
-                        <div class="tc-badges"><span class="tc-badge-common">EN / HI</span><span class="tc-badge-common pro-badge"><i class="fa-solid fa-crown"></i> PRO</span></div>
-                    </div>
+                <div style="flex: 1;">
+                    <h3 style="margin: 0; font-size: 0.95rem; color: var(--text-main); font-weight: 800;">HP HRTC Conductor</h3>
+                    <p style="margin: 2px 0 0 0; font-size: 0.75rem; color: var(--text-sec); font-weight: 500;">10 Mocks • 4 PYPs</p>
                 </div>
-                <button onclick="handleTestClick('../../mock-engine/index.html?exam=hp-patwari-mock&testId=hpgkdata.patwari-previous-year-paper-2013', true)" class="btn-action btn-pro">Unlock <i class="fa-solid fa-lock"></i></button>
-            </div>
-            
-            <div class="test-card soft-glass" data-testid="hpgkdata.patwari-previous-year-paper-2012">
-                <div class="tc-left">
-                    <div class="tc-icon" style="color:var(--accent);"><i class="fa-solid fa-clock-rotate-left"></i></div>
-                    <div class="tc-info">
-                        <h3>HP Patwari Official Paper (2012)</h3>
-                        <div class="tc-meta">100 Qs • 100 Mins • <span style="color:#15803d; font-weight:700;">+1</span></div>
-                        <div class="tc-badges"><span class="tc-badge-common">EN / HI</span><span class="tc-badge-common pro-badge"><i class="fa-solid fa-crown"></i> PRO</span></div>
-                    </div>
+                <div style="color: var(--primary); font-size: 1.1rem;">
+                    <i class="fa-solid fa-arrow-right"></i>
                 </div>
-                <button onclick="handleTestClick('../../mock-engine/index.html?exam=hp-patwari-mock&testId=hpgkdata.patwari-previous-year-paper-2012', true)" class="btn-action btn-pro">Unlock <i class="fa-solid fa-lock"></i></button>
-            </div>
-
+            </a>
         </div>
     </div>
-
+    
     <div class="clean-divider"></div>
 
     <div class="faq-section">
@@ -575,7 +627,7 @@
 
 <div id="site-footer"></div>
 
-<!-- 🚨 0% Firebase Code Here! Everything is handled centrally by core.js -->
+<!-- Core Scripts -->
 <script src="../../js/core.js"></script>
 <script src="../../js/layout.js"></script>
 
