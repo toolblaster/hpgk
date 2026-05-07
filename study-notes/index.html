@@ -169,7 +169,7 @@
             display: flex !important;
             justify-content: space-between; 
             align-items: center; 
-            margin-bottom: 15px; 
+            margin: 0 auto 5px auto; 
             flex-wrap: nowrap; 
             gap: 10px; 
         }
@@ -196,13 +196,13 @@
             flex-shrink: 0; box-sizing: border-box;
         }
 
-        /* COMPACT HERO SECTION (Uniform with Quiz pages) */
-        .hub-hero { 
+        /* COMPACT HERO SECTION (Uniform with other pages) */
+        .page-header-top { 
             text-align: center; 
-            max-width: 800px; 
-            margin: 0 auto 15px auto; /* Reduced margin to match quiz */
-            padding: 0 10px; /* Reduced padding */
-            display: block;
+            margin-bottom: 25px; 
+            margin-top: 0; 
+            padding-top: 0; 
+            width: 100%; 
         }
 
         .hero-title {
@@ -213,7 +213,7 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             color: var(--primary); 
-            font-size: 32px; /* Fixed robust size matching quiz */
+            font-size: 32px; 
             font-weight: 800;
             line-height: 1.2;
         }
@@ -221,7 +221,7 @@
         .hero-desc {
             font-size: 14px !important;
             color: var(--text-sec);
-            line-height: 1.5; /* Tighter line height */
+            line-height: 1.5; 
             margin: 0 auto; 
             max-width: 650px;
         }
@@ -294,7 +294,7 @@
         }
 
         .note-card:hover:not(.disabled) {
-            transform: translateY(-4px);
+            /* Hover effect removed, only border-color will change via transition */
         }
 
         /* =========================================================
@@ -303,33 +303,33 @@
         
         /* 1. BLUE THEME (Govt Schemes) */
         .theme-blue.active { background: #eff6ff !important; border-color: #bfdbfe !important; }
-        .theme-blue.active:hover { border-color: #3b82f6 !important; box-shadow: 0 8px 20px rgba(59, 130, 246, 0.15) !important; }
+        .theme-blue.active:hover { border-color: #3b82f6 !important; }
         .theme-blue .note-icon { color: #2563eb !important; background: #dbeafe !important; }
         .theme-blue.active .note-status { background: #2563eb !important; color: #ffffff !important; }
 
-        /* 2. EMERALD GREEN THEME (Budget) */
-        .theme-green.active { background: #ecfdf5 !important; border-color: #a7f3d0 !important; }
-        .theme-green.active:hover { border-color: #10b981 !important; box-shadow: 0 8px 20px rgba(16, 185, 129, 0.15) !important; }
-        .theme-green .note-icon { color: #059669 !important; background: #d1fae5 !important; }
-        .theme-green.active .note-status { background: #059669 !important; color: #ffffff !important; }
+        /* 2. ROSE RED THEME (Budget) */
+        .theme-rose.active { background: #fff1f2 !important; border-color: #fecdd3 !important; }
+        .theme-rose.active:hover { border-color: #f43f5e !important; }
+        .theme-rose .note-icon { color: #e11d48 !important; background: #ffe4e6 !important; }
+        .theme-rose.active .note-status { background: #e11d48 !important; color: #ffffff !important; }
 
         /* 3. PURPLE THEME (Economic Survey) */
         .theme-purple.active { background: #faf5ff !important; border-color: #e9d5ff !important; }
-        .theme-purple.active:hover { border-color: #a855f7 !important; box-shadow: 0 8px 20px rgba(168, 85, 247, 0.15) !important; }
+        .theme-purple.active:hover { border-color: #a855f7 !important; }
         .theme-purple .note-icon { color: #9333ea !important; background: #f3e8ff !important; }
         .theme-purple.active .note-status { background: #9333ea !important; color: #ffffff !important; }
 
         /* 4. ORANGE THEME (Revenue & Land Laws) */
         .theme-orange.active { background: #fff7ed !important; border-color: #fed7aa !important; }
-        .theme-orange.active:hover { border-color: #f97316 !important; box-shadow: 0 8px 20px rgba(249, 115, 22, 0.15) !important; }
+        .theme-orange.active:hover { border-color: #f97316 !important; }
         .theme-orange .note-icon { color: #ea580c !important; background: #ffedd5 !important; }
         .theme-orange.active .note-status { background: #ea580c !important; color: #ffffff !important; }
 
-        /* 5. ROSE RED THEME (Agriculture & Horticulture) */
-        .theme-rose.active { background: #fff1f2 !important; border-color: #fecdd3 !important; }
-        .theme-rose.active:hover { border-color: #f43f5e !important; box-shadow: 0 8px 20px rgba(244, 63, 94, 0.15) !important; }
-        .theme-rose .note-icon { color: #e11d48 !important; background: #ffe4e6 !important; }
-        .theme-rose.active .note-status { background: #e11d48 !important; color: #ffffff !important; }
+        /* 5. EMERALD GREEN THEME (Agriculture & Horticulture) */
+        .theme-green.active { background: #ecfdf5 !important; border-color: #a7f3d0 !important; }
+        .theme-green.active:hover { border-color: #10b981 !important; }
+        .theme-green .note-icon { color: #059669 !important; background: #d1fae5 !important; }
+        .theme-green.active .note-status { background: #059669 !important; color: #ffffff !important; }
 
         /* DARK MODE VARIANTS FOR DISTINCT THEMES */
         [data-theme="dark"] .theme-blue.active { background: #1e3a8a !important; border-color: #1e40af !important; }
@@ -337,10 +337,10 @@
         [data-theme="dark"] .theme-blue .note-title { color: #dbeafe !important; }
         [data-theme="dark"] .theme-blue .note-icon { background: rgba(59, 130, 246, 0.2) !important; color: #60a5fa !important; }
 
-        [data-theme="dark"] .theme-green.active { background: #064e3b !important; border-color: #047857 !important; }
-        [data-theme="dark"] .theme-green.active:hover { border-color: #10b981 !important; }
-        [data-theme="dark"] .theme-green .note-title { color: #d1fae5 !important; }
-        [data-theme="dark"] .theme-green .note-icon { background: rgba(16, 185, 129, 0.2) !important; color: #34d399 !important; }
+        [data-theme="dark"] .theme-rose.active { background: #881337 !important; border-color: #9f1239 !important; }
+        [data-theme="dark"] .theme-rose.active:hover { border-color: #f43f5e !important; }
+        [data-theme="dark"] .theme-rose .note-title { color: #ffe4e6 !important; }
+        [data-theme="dark"] .theme-rose .note-icon { background: rgba(244, 63, 94, 0.2) !important; color: #fb7185 !important; }
 
         [data-theme="dark"] .theme-purple.active { background: #4c1d95 !important; border-color: #581c87 !important; }
         [data-theme="dark"] .theme-purple.active:hover { border-color: #a855f7 !important; }
@@ -352,11 +352,10 @@
         [data-theme="dark"] .theme-orange .note-title { color: #ffedd5 !important; }
         [data-theme="dark"] .theme-orange .note-icon { background: rgba(249, 115, 22, 0.2) !important; color: #fb923c !important; }
 
-        [data-theme="dark"] .theme-rose.active { background: #881337 !important; border-color: #9f1239 !important; }
-        [data-theme="dark"] .theme-rose.active:hover { border-color: #f43f5e !important; }
-        [data-theme="dark"] .theme-rose .note-title { color: #ffe4e6 !important; }
-        [data-theme="dark"] .theme-rose .note-icon { background: rgba(244, 63, 94, 0.2) !important; color: #fb7185 !important; }
-
+        [data-theme="dark"] .theme-green.active { background: #064e3b !important; border-color: #047857 !important; }
+        [data-theme="dark"] .theme-green.active:hover { border-color: #10b981 !important; }
+        [data-theme="dark"] .theme-green .note-title { color: #d1fae5 !important; }
+        [data-theme="dark"] .theme-green .note-icon { background: rgba(16, 185, 129, 0.2) !important; color: #34d399 !important; }
 
         /* =========================================================
            VIBRANT TEAL CARD (For Rapid Revision One Liners)
@@ -366,7 +365,6 @@
             border: 1px solid #5eead4 !important; 
         }
         .vibrant-teal-card:hover {
-            box-shadow: 0 8px 20px rgba(20, 184, 166, 0.2) !important;
             border-color: #0d9488 !important;
         }
         .vibrant-teal-card .note-title { color: #0f766e !important; }
@@ -459,49 +457,102 @@
             transition: background 0.2s ease, color 0.2s ease;
         }
 
-        /* Minimal SEO Content Blocks */
-        .seo-header { text-align: center; margin-bottom: 25px; display: block; }
+        /* Minimal Modern SEO Content (Text Only, No Distracting Cards) */
+        .seo-content-wrapper { 
+            margin: 30px auto; 
+            max-width: 1000px;
+            border-top: 1px solid var(--card-border);
+            padding-top: 30px;
+        }
         
+        .seo-header { text-align: center; margin-bottom: 30px; }
         .seo-header h2 { 
-            font-size: 25px !important; 
+            font-size: 1.25rem !important; 
             margin-bottom: 8px; 
             color: var(--text-main); 
             font-weight: 800; 
-            font-family: 'Inter', sans-serif !important;
+            font-family: 'Poppins', sans-serif !important;
+            letter-spacing: -0.5px;
+        }
+        .seo-header p { 
+            color: var(--text-sec); 
+            font-size: 0.9rem; 
+            margin: 0 auto;
+            max-width: 600px;
+            line-height: 1.5;
+        }
+
+        .seo-prose {
+            text-align: left;
+            margin-top: 20px;
         }
         
-        .seo-header p { color: var(--text-sec); max-width: 600px; margin: 0 auto; font-size: 0.85rem; }
-        
-        .seo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
-        
-        .seo-card { 
-            background: transparent; 
-            border: 1px solid var(--card-border); 
-            padding: 20px; 
-            border-radius: var(--radius-md); 
-            transition: background-color 0.2s ease, border-color 0.2s ease; 
+        /* New Styled Blocks for Prose */
+        .seo-block {
+            break-inside: avoid;
+            margin-bottom: 25px;
+            background: rgba(0, 0, 0, 0.015);
+            padding: 15px;
+            border-radius: var(--radius-md);
+            border-left: 3px solid var(--card-border);
         }
-        .seo-card:hover { 
-            background: var(--card-bg);
-            border-color: var(--primary); 
-        }
-        
-        .seo-card h3 { 
-            font-size: 15px !important; 
-            margin-bottom: 8px; 
-            display: flex; 
-            align-items: center; 
-            gap: 8px; 
-            color: var(--text-main); 
-            font-weight: 700; 
+        [data-theme="dark"] .seo-block { background: rgba(0, 0, 0, 0.2); }
+
+        .seo-block h3 {
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin: 0 0 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Inter', sans-serif;
         }
         
-        .seo-card h3 i { color: var(--text-sec); }
-        .seo-card p { color: var(--text-sec); font-size: 0.8rem; margin-bottom: 0; line-height: 1.5; }
+        .seo-block h3 i { color: var(--primary); font-size: 0.9rem; }
+        
+        .seo-block p {
+            margin: 0 0 10px 0;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: var(--text-body);
+        }
+        
+        .seo-block p span.hi-text {
+            font-family: 'Noto Sans Devanagari', sans-serif;
+            display: block;
+            margin-top: 4px;
+            font-size: 0.8rem;
+            color: var(--text-sec);
+        }
+        
+        .seo-block ul {
+            padding-left: 20px;
+            margin: 0;
+            color: var(--text-body);
+            font-size: 0.85rem;
+        }
+        
+        .seo-block ul li {
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+        
+        .seo-block ul li strong {
+            color: var(--text-main);
+            font-weight: 700;
+        }
+        
+        @media (min-width: 768px) {
+            .seo-prose {
+                column-count: 2;
+                column-gap: 25px;
+            }
+        }
         
         /* FIXED: Mobile specific overrides */
         @media (max-width: 600px) {
-            .hub-hero { margin-top: 0; padding-top: 0; margin-bottom: 15px; }
+            .page-header-top { margin-top: 0; padding-top: 0; margin-bottom: 15px; }
             .hero-title { font-size: 24px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
             
             /* Responsive tweaks for the 2-column mobile grid */
@@ -513,7 +564,8 @@
             .note-status { font-size: 0.55rem; padding: 3px 8px; }
             .note-header { gap: 8px; margin-bottom: 8px; }
 
-            .seo-card { padding: 15px; }
+            .seo-prose { column-count: 1; }
+            .seo-block { padding: 12px; margin-bottom: 15px; }
         }
     </style>
 
@@ -547,14 +599,14 @@
     </div>
 
     <div class="page-layout">
-        <!-- Hero Section -->
-        <section class="hub-hero">
+        <!-- Compact Hero Section matching Quiz structure -->
+        <div class="page-header-top">
             <h1 class="hero-title">HPGK Premium Notes Hub</h1>
             <p class="hero-desc">
                 Exclusive, highly-curated study material for HPAS & Allied exams. Focus on high-yield topics without distractions.
                 <span class="hi-desc">HPAS और Allied परीक्षाओं के लिए विशेष नोट्स। बिना भटकाव के महत्वपूर्ण विषयों पर ध्यान दें।</span>
             </p>
-        </section>
+        </div>
 
         <!-- Section 1: Core Content -->
         <div class="hub-section-title">Core Study Material</div>
@@ -692,28 +744,54 @@
     <!-- Natural SEO Content Section for Search Engines -->
     <section class="seo-content-wrapper">
         <div class="seo-header">
-            <h2>HPPSC Study Material: Schemes, Budget & GK Facts</h2>
-            <p>Comprehensive study material, latest government schemes, and topic-wise revision insights for all Himachal Pradesh competitive exams.</p>
+            <h2>HPPSC Study Material: Syllabus Breakdown & Insights</h2>
+            <p>Comprehensive bilingual study material designed to boost your preparation for HPAS, Allied Services, Naib Tehsildar, and Patwari examinations.</p>
         </div>
 
-        <div class="seo-grid">
-            <!-- Card 1: Govt Schemes -->
-            <div class="seo-card">
-                <h3><i class="fa-solid fa-hands-holding-circle"></i> HP Govt Welfare Schemes</h3>
-                <p>Mastering the latest <strong>Himachal Pradesh Government Schemes</strong> is crucial for HPAS, Allied Services, and HP Police exams. We provide in-depth, bilingual notes on flagship initiatives like <strong>HIMCARE, Mukhya Mantri Swavalamban Yojana, Sahara Yojana, and Pyari Behna Samman Nidhi</strong> to help you secure maximum marks in the GK section.</p>
+        <div class="seo-prose">
+            
+            <!-- Block 1 -->
+            <div class="seo-block" style="border-left-color: #3b82f6;">
+                <h3><i class="fa-solid fa-hands-holding-circle" style="color: #3b82f6;"></i> HP Govt Welfare Schemes</h3>
+                <p>Mastering the latest initiatives is crucial for scoring well in the HP GK section. <span class="hi-text">सरकारी योजनाओं को समझना एचपीएएस और अलाइड परीक्षाओं के लिए अत्यंत महत्वपूर्ण है।</span></p>
+                <ul>
+                    <li><strong>Health & Welfare:</strong> Complete details on HIMCARE, Sahara Yojana, and Pyari Behna Samman Nidhi.</li>
+                    <li><strong>Employment Focus:</strong> Deep dive into Mukhya Mantri Swavalamban Yojana and Rajiv Gandhi Startup schemes.</li>
+                </ul>
             </div>
 
-            <!-- Card 2: Budget & Eco Survey -->
-            <div class="seo-card">
-                <h3><i class="fa-solid fa-chart-line"></i> HP Budget 2026-27 & Economic Survey</h3>
-                <p>Stay updated with the latest fiscal data. Our concise notes cover the <strong>HP State Budget 2026-27</strong> and the <strong>Economic Survey</strong>, breaking down complex data on GSDP, agricultural growth, industrial performance, and sector-wise fund allocations into easy-to-understand, exam-oriented points.</p>
+            <!-- Block 2 -->
+            <div class="seo-block" style="border-left-color: #a855f7;">
+                <h3><i class="fa-solid fa-chart-line" style="color: #a855f7;"></i> Economic Survey & Budget</h3>
+                <p>Stay updated with the latest fiscal data and macroeconomic aggregates of Himachal Pradesh. <span class="hi-text">नवीनतम राजकोषीय डेटा, GSDP और क्षेत्र-वार बजट आवंटन के साथ अपडेट रहें।</span></p>
+                <ul>
+                    <li><strong>Statistical Data:</strong> Easy to memorize numbers on Per Capita Income and GSDP growth.</li>
+                    <li><strong>Sector Allocations:</strong> Breakdown of funds given to Education, Health, and Rural Development.</li>
+                </ul>
             </div>
 
-            <!-- Card 3: District Profiles & More -->
-            <div class="seo-card">
-                <h3><i class="fa-solid fa-bolt"></i> Rapid Revision Series</h3>
-                <p>Beyond standard notes, access our <strong>1250+ One Liners</strong> covering HP Geography, History, Art & Culture, and District Profiles. Our structured approach ensures you focus exactly on what search engines and exam patterns prioritize, making your revision fast, accurate, and completely syllabus-aligned.</p>
+            <!-- Block 3 -->
+            <div class="seo-block" style="border-left-color: #f97316;">
+                <h3><i class="fa-solid fa-gavel" style="color: #f97316;"></i> Revenue & Land Laws</h3>
+                <p>The ultimate technical guide specifically tailored for the HP Patwari and Naib Tehsildar exams. <span class="hi-text">पटवारी और नायब तहसीलदार परीक्षाओं के लिए तैयार की गई विशेष तकनीकी मार्गदर्शिका।</span></p>
+                <ul>
+                    <li><strong>Terminology:</strong> Understand complex Persian/Urdu terms like Jamabandi, Khasra, and Musavi.</li>
+                    <li><strong>Section 118:</strong> Clear rules regarding the transfer of land to non-agriculturists in HP.</li>
+                    <li><strong>Calculations:</strong> Standard conversions from Bigha and Biswa to Square Yards.</li>
+                </ul>
             </div>
+
+            <!-- Block 4 -->
+            <div class="seo-block" style="border-left-color: #10b981;">
+                <h3><i class="fa-solid fa-seedling" style="color: #10b981;"></i> Agriculture & Horticulture</h3>
+                <p>Detailed notes on the primary backbone of the state's economy, covering crop zones and livestock. <span class="hi-text">राज्य की अर्थव्यवस्था की रीढ़ की हड्डी पर विस्तृत नोट्स, जिसमें कृषि क्षेत्र और पशुधन शामिल हैं।</span></p>
+                <ul>
+                    <li><strong>Apple Economy:</strong> From high-density rootstocks (M-9) to disease management like Apple Scab.</li>
+                    <li><strong>Natural Farming:</strong> Learn about the Prakritik Kheti Khushhal Kisan Yojana (PK3Y).</li>
+                    <li><strong>Livestock:</strong> Key facts about indigenous breeds and veterinary diseases.</li>
+                </ul>
+            </div>
+
         </div>
     </section>
 
