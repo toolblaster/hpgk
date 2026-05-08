@@ -76,9 +76,11 @@
     <!-- Global CSS (3 levels up) -->
     <link rel="stylesheet" href="../../../js/style.css">
 
-    <!-- PAGE SPECIFIC STYLESHEET (Agriculture Theme) -->
+    <!-- PAGE SPECIFIC STYLESHEET (Uniform Smooth Glassmorphism - Agriculture Theme) -->
     <style>
         :root {
+            --site-width: 1100px;
+            
             --primary: #16a34a;        
             --primary-hover: #15803d; 
             --primary-light: rgba(22, 163, 74, 0.1); 
@@ -86,8 +88,11 @@
             --accent: #ea580c;        
             
             --bg-gradient: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 50%, #eff6ff 100%);
-            --card-bg: #ffffff; 
-            --card-border: #e2e8f0; 
+            
+            /* Uniform Card Backgrounds matching standard pages */
+            --card-bg: rgba(255, 255, 255, 0.65); 
+            --card-border: rgba(255, 255, 255, 0.5); 
+            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
             
             --text-main: #0f172a;     
             --text-body: #334155;     
@@ -105,8 +110,11 @@
             --accent: #fbbf24;        
             
             --bg-gradient: linear-gradient(135deg, #022c22 0%, #064e3b 50%, #0f172a 100%);
-            --card-bg: #1e293b; 
-            --card-border: #334155; 
+            
+            /* Uniform Dark Card Backgrounds */
+            --card-bg: rgba(30, 41, 59, 0.5); 
+            --card-border: rgba(255, 255, 255, 0.08); 
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
             
             --text-main: #f8fafc;     
             --text-body: #cbd5e1;     
@@ -122,22 +130,24 @@
             flex-direction: column;
         }
 
-        main { flex: 1; width: 100%; padding: 15px 0 !important; }
+        .font-sans { font-family: 'Inter', sans-serif; }
+        .font-heading { font-family: 'Poppins', sans-serif; }
+        .font-hindi { font-family: 'Noto Sans Devanagari', sans-serif; }
 
-        /* Top Bar & Breadcrumbs */
-        .top-meta-bar { 
-            display: flex; justify-content: space-between; align-items: center; 
-            width: 100%; max-width: 1100px; margin: 0 auto 15px auto; padding: 0 15px; flex-wrap: nowrap; gap: 10px; 
-            box-sizing: border-box;
-        }
+        /* Hub Wrapper Overrides */
+        .hub-main-wrapper { flex: 1; width: 100%; padding: 15px 0 40px 0 !important; box-sizing: border-box; }
+        .page-layout, .top-meta-bar { width: 100%; max-width: var(--site-width); margin: 0 auto; padding: 0 15px; box-sizing: border-box; display: block !important; }
+        @media (max-width: 480px) { .page-layout, .top-meta-bar { padding: 0 12px !important; } }
 
+        /* Top Bar & Breadcrumbs - Exact Uniform Spacing */
+        .top-meta-bar { display: flex !important; justify-content: space-between; align-items: center; margin: 0 auto 5px auto; flex-wrap: nowrap; gap: 10px; }
         .breadcrumb-nav { margin: 0; flex-shrink: 1; display: flex; align-items: center; height: 24px; overflow-x: auto; scrollbar-width: none;}
         .breadcrumb-nav::-webkit-scrollbar { display: none; }
         
         .breadcrumb-list { 
             list-style: none; padding: 0 10px; margin: 0; display: flex; flex-wrap: nowrap; 
             align-items: center; gap: 4px; background: var(--card-bg); border-radius: 12px; 
-            border: 1px solid var(--card-border); 
+            border: 1px solid var(--card-border); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); 
             box-shadow: 0 1px 2px rgba(0,0,0,0.05); height: 100%; box-sizing: border-box;
         }
         [data-theme="dark"] .breadcrumb-list { box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
@@ -155,8 +165,14 @@
             flex-shrink: 0; box-sizing: border-box;
         }
 
-        /* Hero Section */
-        .hub-hero { text-align: center; max-width: 800px; margin: 0 auto 25px auto; padding: 10px 15px; }
+        /* Compact Hero Section (Uniform with other pages) */
+        .page-header-top { 
+            text-align: center; 
+            margin-bottom: 25px; 
+            margin-top: 0; 
+            padding-top: 0; 
+            width: 100%; 
+        }
         
         .hero-title { 
             margin: 0 0 8px 0; 
@@ -171,16 +187,24 @@
             line-height: 1.2;
         }
 
+        /* EXACTLY 14px as requested */
         .hero-desc { 
             font-size: 14px !important; 
             color: var(--text-sec); 
             line-height: 1.6; 
             margin: 0 auto; 
-            max-width: 650px; 
+            max-width: 700px; 
             font-weight: 500;
         }
         
-        .hero-desc span.hi-desc { font-family: 'Noto Sans Devanagari', sans-serif; font-size: 0.85rem; color: var(--text-sec); display: block; margin-top: 4px; }
+        .hero-desc span.hi-desc { 
+            font-family: 'Noto Sans Devanagari', sans-serif; 
+            font-size: 0.85rem; 
+            color: var(--text-sec); 
+            display: block; 
+            margin-top: 4px; 
+            font-weight: 500;
+        }
         [data-theme="dark"] .hero-desc span.hi-desc { color: #e2e8f0; }
 
         /* HIGH-CONTRAST INTERLINKING PILL */
@@ -237,7 +261,7 @@
         .one-liner-container {
             max-width: 1100px; 
             margin: 0 auto;
-            padding: 0 15px 40px 15px;
+            padding: 0 15px;
             width: 100%;
             box-sizing: border-box;
         }
@@ -265,7 +289,10 @@
             flex-direction: column;
             box-shadow: 0 1px 3px rgba(0,0,0,0.03);
             position: relative;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
+        [data-theme="dark"] .fact-row { box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
 
         .fact-id {
             font-size: 0.65rem;
@@ -293,9 +320,12 @@
         .a-hi { font-size: 0.85rem; font-weight: 600; color: var(--accent); font-family: 'Noto Sans Devanagari', sans-serif; }
         [data-theme="dark"] .a-hi { color: #fbbf24; }
 
+        /* ==========================================================================
+           MOBILE FIXES: Matching standard exact alignment
+           ========================================================================== */
         @media (max-width: 600px) {
-            .hub-hero { margin-top: 5px; padding-top: 0; }
-            .hero-title { font-size: 24px !important; white-space: normal; padding: 0 10px; }
+            .page-header-top { margin-top: 25px; margin-bottom: 20px; padding-top: 0; }
+            .hero-title { font-size: 24px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
             .top-meta-bar { padding: 0 12px !important; }
             
             .fact-row { padding: 10px 12px; }
@@ -334,7 +364,8 @@
 
 <div id="site-header"></div>
 
-<main>
+<main class="hub-main-wrapper">
+    <!-- Top Meta Bar: Breadcrumb (Left) & Hero Badge (Right) -->
     <div class="top-meta-bar">
         <nav aria-label="breadcrumb" class="breadcrumb-nav">
             <ol class="breadcrumb-list">
@@ -350,48 +381,51 @@
         <span class="hero-badge">Revision Series</span>
     </div>
 
-    <section class="hub-hero">
-        <h1 class="hero-title">HP Agri & Horti One Liners (Part 1)</h1>
-        <p class="hero-desc">
-            Continuous, rapid-reading bilingual facts extracted from HP's Apple Economy, Agro-Climatic Zones, and Cash Crops. Questions 1 to 150.
-            <span class="hi-desc">हिमाचल प्रदेश की कृषि, बागवानी, योजनाओं और नकदी फसलों से निकाले गए 150 उच्च-उपज (High-Yield) द्विभाषी वन-लाइनर्स।</span>
-        </p>
-        
-        <!-- High-Contrast Interlinking Hook -->
-        <div class="hero-interlinks">
-            <span class="interlink-label"><i class="fa-solid fa-layer-group"></i> Deep Dive:</span>
-            <a href="../">Agri Masterclass</a>
-            <span class="dot">•</span>
-            <a href="../../govt-schemes/">Govt Schemes</a>
-            <span class="dot">•</span>
-            <a href="../../../agriculture-quiz/">Agri Mock Test</a>
-        </div>
+    <div class="page-layout">
+        <!-- Compact Uniform Hero Section -->
+        <div class="page-header-top">
+            <h1 class="hero-title">HP Agri & Horti One Liners (Part 1)</h1>
+            <p class="hero-desc">
+                Continuous, rapid-reading bilingual facts extracted from HP's Apple Economy, Agro-Climatic Zones, and Cash Crops. Questions 1 to 150.
+                <span class="hi-desc">हिमाचल प्रदेश की कृषि, बागवानी, योजनाओं और नकदी फसलों से निकाले गए 150 उच्च-उपज (High-Yield) द्विभाषी वन-लाइनर्स।</span>
+            </p>
+            
+            <!-- High-Contrast Interlinking Hook -->
+            <div class="hero-interlinks">
+                <span class="interlink-label"><i class="fa-solid fa-layer-group"></i> Deep Dive:</span>
+                <a href="../">Agri Masterclass</a>
+                <span class="dot">•</span>
+                <a href="../../govt-schemes/">Govt Schemes</a>
+                <span class="dot">•</span>
+                <a href="../../../agriculture-quiz/">Agri Mock Test</a>
+            </div>
 
-        <!-- DEDICATED GREEN TOOLS STRIP FOR PARTS NAVIGATION -->
-        <div class="tools-strip">
-            <div class="tools-strip-left">
-                <div class="tools-strip-icon">
-                    <i class="fa-solid fa-book-open-reader"></i>
+            <!-- DEDICATED GREEN TOOLS STRIP FOR PARTS NAVIGATION -->
+            <div class="tools-strip">
+                <div class="tools-strip-left">
+                    <div class="tools-strip-icon">
+                        <i class="fa-solid fa-book-open-reader"></i>
+                    </div>
+                    <div>
+                        <div class="tools-strip-title font-heading">Continue Reading Series</div>
+                        <div class="tools-strip-desc font-sans">Jump to the next parts for more facts</div>
+                    </div>
                 </div>
-                <div>
-                    <div class="tools-strip-title font-heading">Continue Reading Series</div>
-                    <div class="tools-strip-desc font-sans">Jump to the next parts for more facts</div>
+                <div class="tools-strip-btn-group">
+                    <!-- Highlighted Current Part -->
+                    <a href="#" class="tools-strip-btn" style="background: var(--primary-dark);">
+                        Part 1 (Current)
+                    </a>
+                    <a href="../agri-one-liners-part-2/" class="tools-strip-btn outline">
+                        Part 2
+                    </a>
+                    <a href="../agri-one-liners-part-3/" class="tools-strip-btn outline">
+                        Part 3 <i class="fa-solid fa-arrow-right"></i>
+                    </a>
                 </div>
-            </div>
-            <div class="tools-strip-btn-group">
-                <!-- Highlighted Current Part -->
-                <a href="#" class="tools-strip-btn" style="background: var(--primary-dark);">
-                    Part 1 (Current)
-                </a>
-                <a href="../agri-one-liners-part-2/" class="tools-strip-btn outline">
-                    Part 2
-                </a>
-                <a href="../agri-one-liners-part-3/" class="tools-strip-btn outline">
-                    Part 3 <i class="fa-solid fa-arrow-right"></i>
-                </a>
             </div>
         </div>
-    </section>
+    </div>
 
     <!-- 1100px Container with 2-Column Grid -->
     <div class="one-liner-container">
@@ -421,7 +455,7 @@
         {id: 7, qHi: "हिमाचल प्रदेश का कौन सा जिला 'एशिया का आड़ू का कटोरा' (Peach Bowl of Asia) कहलाता है?", aHi: "सिरमौर (विशेषकर राजगढ़ क्षेत्र)।", qEn: "Which district of Himachal Pradesh is called the 'Peach Bowl of Asia'?", aEn: "Sirmaur (specifically Rajgarh area)."},
         {id: 8, qHi: "कांगड़ा और ऊना जैसे निचले जिलों (शिवालिक क्षेत्र) में मुख्य रूप से कौन से फल उगाए जाते हैं?", aHi: "खट्टे फल (जैसे आम, लीची, किन्नू)।", qEn: "Which fruits are primarily grown in the lower districts (Shivalik zone) like Kangra and Una?", aEn: "Citrus fruits (like Mango, Litchi, Kinnow)."},
         {id: 9, qHi: "HPMC (हि.प्र. बागवानी उपज विपणन एवं प्रसंस्करण निगम) की स्थापना कब हुई थी?", aHi: "1974 ई. में।", qEn: "When was HPMC (HP Horticultural Produce Marketing & Processing Corporation) established?", aEn: "In 1974 AD."},
-        {id: 10, qHi: "डॉ. वाई.एस. پرमार औद्यानिकी एवं वानिकी विश्वविद्यालय (UHF) कहाँ स्थित है और इसकी स्थापना कब हुई?", aHi: "नौणी (सोलन) में, 1985 ई. में।", qEn: "Where is Dr. Y.S. Parmar University of Horticulture and Forestry (UHF) located and when was it established?", aEn: "At Nauni (Solan), in 1985 AD."},
+        {id: 10, qHi: "डॉ. वाई.एस. परमार औद्यानिकी एवं वानिकी विश्वविद्यालय (UHF) कहाँ स्थित है और इसकी स्थापना कब हुई?", aHi: "नौणी (सोलन) में, 1985 ई. में।", qEn: "Where is Dr. Y.S. Parmar University of Horticulture and Forestry (UHF) located and when was it established?", aEn: "At Nauni (Solan), in 1985 AD."},
         {id: 11, qHi: "केंद्रीय आलू अनुसंधान संस्थान (CPRI) कहाँ स्थित है?", aHi: "कुफरी (शिमला)।", qEn: "Where is the Central Potato Research Institute (CPRI) located?", aEn: "Kufri (Shimla)."},
         {id: 12, qHi: "CPRI को पटना से कुफरी (शिमला) किस वर्ष स्थानांतरित किया गया था?", aHi: "1956 ई. में।", qEn: "In which year was CPRI shifted from Patna to Kufri (Shimla)?", aEn: "In 1956 AD."},
         {id: 13, qHi: "हिमाचल प्रदेश के किस जिले में प्रति हेक्टेयर बीज आलू (Seed Potato) की उपज विश्व में सबसे अधिक है?", aHi: "लाहौल-स्पीति।", qEn: "Which district of HP has the highest per-hectare yield of Seed Potato in the world?", aEn: "Lahaul-Spiti."},
@@ -534,7 +568,7 @@
         {id: 120, qHi: "'मुख्यमंत्री एक बीघा योजना' के लिए कौन आवेदन कर सकता है?", aHi: "स्वयं सहायता समूहों (SHG) की महिलाएं।", qEn: "Who can apply for 'Mukhya Mantri Ek Bigha Yojana'?", aEn: "Women from Self Help Groups (SHGs)."},
         {id: 121, qHi: "'डॉ. वाई.एस. परमार विद्यार्थी ऋण योजना' किस ब्याज दर पर ₹20 लाख तक का शिक्षा ऋण प्रदान करती है?", aHi: "केवल 1% ब्याज दर पर।", qEn: "'Dr. Y.S. Parmar Vidyarthi Rin Yojana' provides education loans up to ₹20 Lakhs at what interest rate?", aEn: "At 1% interest rate."},
         {id: 122, qHi: "2019 में भारत का पहला 'धुआं मुक्त' (Smoke-Free) राज्य कौन सा बना?", aHi: "हिमाचल प्रदेश।", qEn: "Which state became the first 'Smoke-Free' state in India in 2019?", aEn: "Himachal Pradesh."},
-        {id: 123, qHi: "हि.प्र. को धुआं मुक्त बनाने के लिए किस राज्य योजना ने पीएम उज्ज्वला योजना की सहायता की?", aHi: "हि.प्र. गृहिणी सुविधा योजना।", qEn: "Which state scheme supplemented PM Ujjwala Yojana to make HP smoke-free?", aEn: "HP Grihini Suvidha Yojana."},
+        {id: 123, qHi: "हि.प्र. को धुआं मुक्त बनाने के लिए किस राज्य योजना ने पीएम उज्ज्वला योजना की सहायता পেল?", aHi: "हि.प्र. गृहिणी सुविधा योजना।", qEn: "Which state scheme supplemented PM Ujjwala Yojana to make HP smoke-free?", aEn: "HP Grihini Suvidha Yojana."},
         {id: 124, qHi: "'शगुन योजना' के तहत, बीपीएल (BPL) लड़कियों को विवाह के लिए कितना अनुदान दिया जाता है?", aHi: "₹31,000।", qEn: "Under 'Shagun Yojana', what grant is given to BPL girls for marriage?", aEn: "₹31,000."},
         {id: 125, qHi: "'बेटी है अनमोल' योजना जन्म के बाद कितनी राशि की फिक्स्ड डिपॉजिट प्रदान करती है?", aHi: "₹21,000।", qEn: "'Beti Hai Anmol' scheme provides a post-birth fixed deposit of how much?", aEn: "₹21,000."},
         {id: 126, qHi: "'मुख्यमंत्री सुख आश्रय योजना' किसके कल्याण के लिए बनाई गई है?", aHi: "अनाथ और निराश्रित बच्चों के लिए।", qEn: "'Mukhya Mantri Sukh Ashray Yojana' is designed for the welfare of?", aEn: "Orphans and Destitute children."},
