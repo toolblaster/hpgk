@@ -2,6 +2,8 @@
  * Layout Manager for HPGK
  * Handles global Header, Footer, Theme logic, Back to Top, Google Auth, and Mobile Menu.
  * 🔥 UPDATED: Zero CLS (Cumulative Layout Shift) with Premium Skeleton Loading UI
+ * 🚀 UPDATED: Cleaned up Google Login button hover state & updated modal copy
+ * 📱 UPDATED: Compact Mobile Menu with Mock Tests link & repositioned Leaderboard
  */
 
 const SiteConfig = {
@@ -22,12 +24,12 @@ function initMobileMenu() {
         <nav id="mobileSideMenu" class="mobile-side-menu">
             <div class="side-menu-header">
                 <a href="${SiteConfig.root}/" class="brand" style="text-decoration:none; display:flex; align-items:center;">
-                    <i class="fa-solid fa-mountain-sun brand-icon" style="color:var(--primary); font-size:1.4rem; margin-right:10px;"></i>
-                    <div class="brand-name" style="color:var(--text-main); font-weight:800; font-size:1.15rem; line-height:1.1; letter-spacing:-0.5px;">
-                        HPGK Quiz<br><span style="font-size:0.65rem; color:var(--text-sec); font-weight:600; letter-spacing:0;">by toolblaster.com</span>
+                    <i class="fa-solid fa-mountain-sun brand-icon" style="color:var(--primary); font-size:1.2rem; margin-right:8px;"></i>
+                    <div class="brand-name" style="color:var(--text-main); font-weight:800; font-size:1rem; line-height:1.1; letter-spacing:-0.5px;">
+                        HPGK Quiz<br><span style="font-size:0.6rem; color:var(--text-sec); font-weight:600; letter-spacing:0;">by toolblaster.com</span>
                     </div>
                 </a>
-                <div style="display:flex; align-items:center; gap:16px;">
+                <div style="display:flex; align-items:center; gap:12px;">
                     <!-- Theme Toggle shifted left with increased gap -->
                     <button class="theme-icon-btn" id="mobileThemeBtn" onclick="toggleTheme()" title="Toggle Theme" aria-label="Toggle Theme">
                         <i class="fa-solid fa-moon"></i>
@@ -44,6 +46,10 @@ function initMobileMenu() {
                     <a href="${SiteConfig.root}/" class="menu-link">
                         <div class="menu-icon icon-primary"><i class="fa-solid fa-house"></i></div>
                         <span>Home</span>
+                    </a>
+                    <a href="${SiteConfig.root}/hp-exam-full-mock-test/" class="menu-link">
+                        <div class="menu-icon" style="color: #3b82f6;"><i class="fa-solid fa-file-signature"></i></div>
+                        <span>Mock Tests</span>
                     </a>
                     <a href="${SiteConfig.root}/himachal-pradesh-gk/" class="menu-link">
                         <div class="menu-icon"><i class="fa-solid fa-layer-group"></i></div>
@@ -64,6 +70,14 @@ function initMobileMenu() {
                     <a href="${SiteConfig.root}/user/dashboard.html" class="menu-link">
                         <div class="menu-icon icon-purple"><i class="fa-solid fa-circle-user"></i></div>
                         <span>My Dashboard</span>
+                    </a>
+                    <a href="${SiteConfig.root}/user/leaderboard.html" class="menu-link">
+                        <div class="menu-icon" style="color: #f59e0b;"><i class="fa-solid fa-trophy"></i></div>
+                        <span>Leaderboard</span>
+                    </a>
+                    <a href="${SiteConfig.root}/user/upgrade.html" class="menu-link">
+                        <div class="menu-icon" style="color: #ef4444;"><i class="fa-solid fa-crown"></i></div>
+                        <span>Pricing & Subscription</span>
                     </a>
                 </div>
             </div>
@@ -103,34 +117,34 @@ function initMobileMenu() {
 
             /* Header inside menu */
             .side-menu-header {
-                padding: 15px 20px; display: flex; justify-content: space-between; align-items: center;
+                padding: 12px 15px; display: flex; justify-content: space-between; align-items: center;
                 border-bottom: 1px solid var(--card-border); background: rgba(37, 99, 235, 0.02);
             }
             .close-menu-btn, .theme-icon-btn {
                 background: var(--input-bg); border: 1px solid var(--card-border);
-                width: 34px; height: 34px; border-radius: 50%;
+                width: 30px; height: 30px; border-radius: 50%;
                 display: flex; align-items: center; justify-content: center;
-                color: var(--text-sec); cursor: pointer; transition: all 0.2s; font-size: 1.1rem;
+                color: var(--text-sec); cursor: pointer; transition: all 0.2s; font-size: 1rem;
                 text-decoration: none; padding: 0; /* Clear padding */
             }
             .close-menu-btn:hover { background: #ef4444; color: white; border-color: #ef4444; transform: rotate(90deg); }
             .theme-icon-btn:hover { background: var(--primary); color: white; border-color: var(--primary); transform: translateY(-2px); box-shadow: 0 4px 10px rgba(37,99,235,0.2); }
 
             /* Content & Links */
-            .side-menu-content { padding: 15px 20px; overflow-y: auto; flex: 1; }
-            .menu-section { margin-bottom: 20px; }
+            .side-menu-content { padding: 12px 15px; overflow-y: auto; flex: 1; }
+            .menu-section { margin-bottom: 15px; }
             .menu-label {
                 font-size: 0.7rem; font-weight: 800; color: var(--text-sec);
-                text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;
+                text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px;
                 padding-left: 5px; opacity: 0.8;
             }
             
-            /* 🔥 FIXED: More compact padding and smaller gap for the menu link */
+            /* 🔥 FIXED: More compact padding and exact 13px font for menu links */
             .menu-link {
                 display: flex; align-items: center; gap: 8px;
-                padding: 6px 10px; border-radius: 8px; 
+                padding: 5px 8px; border-radius: 8px; 
                 color: var(--text-main); text-decoration: none;
-                font-size: 0.85rem; font-weight: 700; 
+                font-size: 13px; font-weight: 700; 
                 transition: all 0.2s ease; margin-bottom: 2px;
                 border: 1px solid transparent;
             }
@@ -147,10 +161,10 @@ function initMobileMenu() {
 
             /* 🔥 FIXED: Slightly smaller icon to match the compact padding */
             .menu-icon {
-                width: 26px; height: 26px; border-radius: 6px; 
+                width: 24px; height: 24px; border-radius: 6px; 
                 background: var(--input-bg); 
                 display: flex; align-items: center; justify-content: center;
-                font-size: 0.8rem; transition: all 0.2s; box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+                font-size: 0.75rem; transition: all 0.2s; box-shadow: 0 2px 4px rgba(0,0,0,0.05);
             }
             
             /* Forces background and pure white text unconditionally */
@@ -161,7 +175,7 @@ function initMobileMenu() {
             }
 
             .side-menu-footer {
-                padding: 15px 25px; border-top: 1px solid var(--card-border);
+                padding: 12px 15px; border-top: 1px solid var(--card-border);
                 font-size: 0.7rem; color: var(--text-sec); text-align: center; font-weight: 600;
             }
         </style>
@@ -214,9 +228,9 @@ function initLoginModal() {
                     <div class="modal-logo">
                         <i class="fa-solid fa-mountain-sun"></i>
                     </div>
-                    <h2>Unlock Premium Access</h2>
+                    <h2>Sign in to hpgk.toolblaster.com</h2>
                     <p class="login-modal-desc">
-                        Log in securely to save your progress across <strong>3000+ MCQs</strong>, unlock premium mock tests, and access your personalized smart dashboard.
+                        Log in securely to save your progress across <strong>6500+ MCQs</strong>, unlock premium mock tests, mini mocks and a personalised dashboard.
                     </p>
                 </div>
                 
@@ -281,7 +295,7 @@ function initLoginModal() {
             }
             
             .login-modal-desc { 
-                font-size: 0.85rem; color: #475569 !important; margin: 0; line-height: 1.5; 
+                font-size: 12.5px; color: #475569 !important; margin: 0; line-height: 1.5; 
             }
             .login-modal-desc strong { color: #0f172a !important; font-weight: 700; }
             
@@ -297,14 +311,20 @@ function initLoginModal() {
                 width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important; transition: all 0.2s ease;
             }
             .modal-google-btn img { width: 1.15em; height: 1.15em; display: inline-block; }
+            
+            /* 🔥 UPDATED: Removed background hover and translateY. Kept only subtle border color change */
             .modal-google-btn:hover { 
-                transform: translateY(-1px); box-shadow: 0 4px 10px rgba(37, 99, 235, 0.1) !important; border-color: #94a3b8 !important; 
+                border-color: #94a3b8 !important; 
             }
             
             [data-theme="dark"] .modal-google-btn { 
                 background: #1e293b !important; color: #f8fafc !important; border-color: #475569 !important; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3) !important; 
             }
-            [data-theme="dark"] .modal-google-btn:hover { border-color: #64748b !important; background: #334155 !important; }
+            
+            /* 🔥 UPDATED: Removed background change for dark theme hover as well */
+            [data-theme="dark"] .modal-google-btn:hover { 
+                border-color: #94a3b8 !important; 
+            }
             
             .login-terms { 
                 margin-top: 15px; font-size: 0.65rem; color: #64748b !important; 
@@ -451,13 +471,13 @@ function renderHeader(options = {}) {
 
             /* Punchy Red Google Login Button */
             .login-btn {
-                background: #dc2626; color: #ffffff; border: none; padding: 6px 14px;
+                background: #dc2626; color: #ffffff; border: 1px solid transparent; padding: 5px 13px;
                 border-radius: 20px; font-size: 0.8rem; font-weight: 700; cursor: pointer;
                 display: flex; align-items: center; gap: 6px; transition: all 0.2s ease; font-family: 'Inter', sans-serif;
             }
-            .login-btn:hover { background: #b91c1c; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(220, 38, 38, 0.3); }
-            [data-theme="dark"] .login-btn { background: #ef4444; color: #ffffff; }
-            [data-theme="dark"] .login-btn:hover { background: #dc2626; box-shadow: 0 4px 10px rgba(239, 68, 68, 0.4); }
+            .login-btn:hover { border-color: #fca5a5; box-shadow: 0 2px 8px rgba(220, 38, 38, 0.2); transform: none; background: #dc2626; }
+            [data-theme="dark"] .login-btn { background: #ef4444; color: #ffffff; border: 1px solid transparent; }
+            [data-theme="dark"] .login-btn:hover { border-color: #f87171; box-shadow: 0 2px 8px rgba(239, 68, 68, 0.2); transform: none; background: #ef4444; }
             
             .dashboard-btn {
                 background: var(--primary-light); color: var(--primary); border: none; padding: 6px 12px;
@@ -489,7 +509,7 @@ function renderHeader(options = {}) {
                 .brand-icon { font-size: 1.1rem !important; margin-right: 6px !important; }
                 .header-content { padding: 10px 12px !important; }
                 
-                .login-btn { padding: 6px 12px; font-size: 0.8rem; }
+                .login-btn { padding: 5px 12px; font-size: 0.8rem; }
                 .dashboard-btn { padding: 6px 12px; font-size: 1.1rem; } 
                 .text-desktop { display: none; } 
                 
