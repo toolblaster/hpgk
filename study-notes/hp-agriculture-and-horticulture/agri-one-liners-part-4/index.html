@@ -79,6 +79,8 @@
     <!-- PAGE SPECIFIC STYLESHEET (Agriculture Theme) -->
     <style>
         :root {
+            --site-width: 1100px;
+            
             --primary: #16a34a;        
             --primary-hover: #15803d; 
             --primary-light: rgba(22, 163, 74, 0.1); 
@@ -86,8 +88,11 @@
             --accent: #ea580c;        
             
             --bg-gradient: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 50%, #eff6ff 100%);
-            --card-bg: #ffffff; 
-            --card-border: #e2e8f0; 
+            
+            /* Uniform Card Backgrounds matching standard pages */
+            --card-bg: rgba(255, 255, 255, 0.65); 
+            --card-border: rgba(255, 255, 255, 0.5); 
+            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
             
             --text-main: #0f172a;     
             --text-body: #334155;     
@@ -105,8 +110,11 @@
             --accent: #fbbf24;        
             
             --bg-gradient: linear-gradient(135deg, #022c22 0%, #064e3b 50%, #0f172a 100%);
-            --card-bg: #1e293b; 
-            --card-border: #334155; 
+            
+            /* Uniform Dark Card Backgrounds */
+            --card-bg: rgba(30, 41, 59, 0.5); 
+            --card-border: rgba(255, 255, 255, 0.08); 
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
             
             --text-main: #f8fafc;     
             --text-body: #cbd5e1;     
@@ -122,22 +130,24 @@
             flex-direction: column;
         }
 
-        main { flex: 1; width: 100%; padding: 15px 0 !important; }
+        .font-sans { font-family: 'Inter', sans-serif; }
+        .font-heading { font-family: 'Poppins', sans-serif; }
+        .font-hindi { font-family: 'Noto Sans Devanagari', sans-serif; }
 
-        /* Top Bar & Breadcrumbs */
-        .top-meta-bar { 
-            display: flex; justify-content: space-between; align-items: center; 
-            width: 100%; max-width: 1100px; margin: 0 auto 15px auto; padding: 0 15px; flex-wrap: nowrap; gap: 10px; 
-            box-sizing: border-box;
-        }
+        /* Hub Wrapper Overrides */
+        .hub-main-wrapper { flex: 1; width: 100%; padding: 15px 0 40px 0 !important; box-sizing: border-box; }
+        .page-layout, .top-meta-bar { width: 100%; max-width: var(--site-width); margin: 0 auto; padding: 0 15px; box-sizing: border-box; display: block !important; }
+        @media (max-width: 480px) { .page-layout, .top-meta-bar { padding: 0 12px !important; } }
 
+        /* Top Bar & Breadcrumbs - Exact Uniform Spacing */
+        .top-meta-bar { display: flex !important; justify-content: space-between; align-items: center; margin: 0 auto 5px auto; flex-wrap: nowrap; gap: 10px; }
         .breadcrumb-nav { margin: 0; flex-shrink: 1; display: flex; align-items: center; height: 24px; overflow-x: auto; scrollbar-width: none;}
         .breadcrumb-nav::-webkit-scrollbar { display: none; }
         
         .breadcrumb-list { 
             list-style: none; padding: 0 10px; margin: 0; display: flex; flex-wrap: nowrap; 
             align-items: center; gap: 4px; background: var(--card-bg); border-radius: 12px; 
-            border: 1px solid var(--card-border); 
+            border: 1px solid var(--card-border); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); 
             box-shadow: 0 1px 2px rgba(0,0,0,0.05); height: 100%; box-sizing: border-box;
         }
         [data-theme="dark"] .breadcrumb-list { box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
@@ -155,8 +165,14 @@
             flex-shrink: 0; box-sizing: border-box;
         }
 
-        /* Hero Section */
-        .hub-hero { text-align: center; max-width: 800px; margin: 0 auto 25px auto; padding: 10px 15px; }
+        /* Compact Hero Section (Uniform with other pages) */
+        .page-header-top { 
+            text-align: center; 
+            margin-bottom: 25px; 
+            margin-top: 0; 
+            padding-top: 0; 
+            width: 100%; 
+        }
         
         .hero-title { 
             margin: 0 0 8px 0; 
@@ -171,16 +187,24 @@
             line-height: 1.2;
         }
 
+        /* EXACTLY 14px as requested */
         .hero-desc { 
             font-size: 14px !important; 
             color: var(--text-sec); 
             line-height: 1.6; 
             margin: 0 auto; 
-            max-width: 650px; 
+            max-width: 700px; 
             font-weight: 500;
         }
         
-        .hero-desc span.hi-desc { font-family: 'Noto Sans Devanagari', sans-serif; font-size: 0.85rem; color: var(--text-sec); display: block; margin-top: 4px; }
+        .hero-desc span.hi-desc { 
+            font-family: 'Noto Sans Devanagari', sans-serif; 
+            font-size: 0.85rem; 
+            color: var(--text-sec); 
+            display: block; 
+            margin-top: 4px; 
+            font-weight: 500;
+        }
         [data-theme="dark"] .hero-desc span.hi-desc { color: #e2e8f0; }
 
         /* HIGH-CONTRAST INTERLINKING PILL */
@@ -265,7 +289,10 @@
             flex-direction: column;
             box-shadow: 0 1px 3px rgba(0,0,0,0.03);
             position: relative;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
+        [data-theme="dark"] .fact-row { box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
 
         .fact-id {
             font-size: 0.65rem;
@@ -293,9 +320,12 @@
         .a-hi { font-size: 0.85rem; font-weight: 600; color: var(--accent); font-family: 'Noto Sans Devanagari', sans-serif; }
         [data-theme="dark"] .a-hi { color: #fbbf24; }
 
+        /* ==========================================================================
+           MOBILE FIXES: Matching standard exact alignment
+           ========================================================================== */
         @media (max-width: 600px) {
-            .hub-hero { margin-top: 5px; padding-top: 0; }
-            .hero-title { font-size: 24px !important; white-space: normal; padding: 0 10px; }
+            .page-header-top { margin-top: 25px; margin-bottom: 20px; padding-top: 0; }
+            .hero-title { font-size: 24px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
             .top-meta-bar { padding: 0 12px !important; }
             
             .fact-row { padding: 10px 12px; }
@@ -334,7 +364,8 @@
 
 <div id="site-header"></div>
 
-<main>
+<main class="hub-main-wrapper">
+    <!-- Top Meta Bar: Breadcrumb (Left) & Hero Badge (Right) -->
     <div class="top-meta-bar">
         <nav aria-label="breadcrumb" class="breadcrumb-nav">
             <ol class="breadcrumb-list">
@@ -350,47 +381,51 @@
         <span class="hero-badge">Final Part</span>
     </div>
 
-    <section class="hub-hero">
-        <h1 class="hero-title">HP Agri & Horti One Liners (Part 4)</h1>
-        <p class="hero-desc">
-            The final masterclass part. Continuous, rapid-reading bilingual facts extracted from HP's advanced agriculture, horticulture, livestock, and schemes. Questions 451 to 600.
-            <span class="hi-desc">अंतिम मास्टरक्लास भाग। हिमाचल प्रदेश की उन्नत कृषि, बागवानी, पशुधन और योजनाओं से निकाले गए 150 उच्च-उपज (High-Yield) द्विभाषी वन-लाइनर्स।</span>
-        </p>
-        
-        <!-- High-Contrast Interlinking Hook -->
-        <div class="hero-interlinks">
-            <span class="interlink-label"><i class="fa-solid fa-layer-group"></i> Deep Dive:</span>
-            <a href="../">Agri Masterclass</a>
-            <span class="dot">•</span>
-            <a href="../../economic-survey/">Eco Survey</a>
-            <span class="dot">•</span>
-            <a href="../../../agriculture-quiz/">Agri Mock Test</a>
-        </div>
+    <div class="page-layout">
+        <!-- Compact Uniform Hero Section -->
+        <div class="page-header-top">
+            <h1 class="hero-title">HP Agri & Horti One Liners (Part 4)</h1>
+            <p class="hero-desc">
+                The final masterclass part. Continuous, rapid-reading bilingual facts extracted from HP's advanced agriculture, horticulture, livestock, and schemes. Questions 451 to 600.
+                <span class="hi-desc">अंतिम मास्टरक्लास भाग। हिमाचल प्रदेश की उन्नत कृषि, बागवानी, पशुधन और योजनाओं से निकाले गए 150 उच्च-उपज (High-Yield) द्विभाषी वन-लाइनर्स।</span>
+            </p>
+            
+            <!-- High-Contrast Interlinking Hook -->
+            <div class="hero-interlinks">
+                <span class="interlink-label"><i class="fa-solid fa-layer-group"></i> Deep Dive:</span>
+                <a href="../">Agri Masterclass</a>
+                <span class="dot">•</span>
+                <a href="../../economic-survey/">Eco Survey</a>
+                <span class="dot">•</span>
+                <a href="../../../agriculture-quiz/">Agri Mock Test</a>
+            </div>
 
-        <!-- DEDICATED GREEN TOOLS STRIP FOR PARTS NAVIGATION -->
-        <div class="tools-strip">
-            <div class="tools-strip-left">
-                <div class="tools-strip-icon">
-                    <i class="fa-solid fa-flag-checkered"></i>
+            <!-- DEDICATED GREEN TOOLS STRIP FOR PARTS NAVIGATION -->
+            <div class="tools-strip">
+                <div class="tools-strip-left">
+                    <div class="tools-strip-icon">
+                        <i class="fa-solid fa-flag-checkered"></i>
+                    </div>
+                    <div>
+                        <div class="tools-strip-title font-heading">Series Completed</div>
+                        <div class="tools-strip-desc font-sans">You have reached the final part of the series.</div>
+                    </div>
                 </div>
-                <div>
-                    <div class="tools-strip-title font-heading">Series Completed</div>
-                    <div class="tools-strip-desc font-sans">You have reached the final part of the series.</div>
+                <div class="tools-strip-btn-group">
+                    <a href="../agri-one-liners-part-3/" class="tools-strip-btn outline">
+                        <i class="fa-solid fa-arrow-left"></i> Part 3
+                    </a>
+                    <!-- Highlighted Current Part -->
+                    <a href="#" class="tools-strip-btn" style="background: var(--primary-dark);">
+                        Part 4 (Current)
+                    </a>
+                    <a href="../" class="tools-strip-btn outline">
+                        Back to Hub <i class="fa-solid fa-house"></i>
+                    </a>
                 </div>
-            </div>
-            <div class="tools-strip-btn-group">
-                <a href="../agri-one-liners-part-3/" class="tools-strip-btn outline">
-                    <i class="fa-solid fa-arrow-left"></i> Part 3
-                </a>
-                <a href="#" class="tools-strip-btn" style="background: var(--primary-dark);">
-                    Part 4 (Current)
-                </a>
-                <a href="../" class="tools-strip-btn outline">
-                    Back to Hub <i class="fa-solid fa-house"></i>
-                </a>
             </div>
         </div>
-    </section>
+    </div>
 
     <!-- 1100px Container with 2-Column Grid -->
     <div class="one-liner-container">
@@ -446,7 +481,7 @@
         {id: 483, qHi: "सूखे के प्रति सहनशील सेब का रूटस्टॉक कौन सा है?", aHi: "MM-111।", qEn: "Which is a drought-tolerant apple rootstock?", aEn: "MM-111."},
         {id: 484, qHi: "सेब का 'स्कैब' (Apple Scab) रोग किस कवक (Fungus) के कारण होता है?", aHi: "वेंचुरिया इनेक्वालिस (Venturia inaequalis)।", qEn: "The 'Apple Scab' disease is caused by which fungus?", aEn: "Venturia inaequalis."},
         {id: 485, qHi: "हिमाचल प्रदेश में किस वर्ष 'ऐप्पल स्कैब' बीमारी ने भयंकर महामारी का रूप ले लिया था?", aHi: "वर्ष 1982-83 में।", qEn: "In which year did the 'Apple Scab' disease take the form of a severe epidemic in HP?", aEn: "In the year 1982-83."},
-        {id: 486, qलाइड: "सेब के बागों में कवक (Fungi) को मारने के लिए इस्तेमाल होने वाला प्रसिद्ध 'बोर्डो मिश्रण' (Bordeaux Mixture) क्या है?", aHi: "कॉपर सल्फेट और चूने का मिश्रण।", qEn: "What is the famous 'Bordeaux Mixture' used in apple orchards to kill fungi?", aEn: "A mixture of Copper sulphate and Lime."},
+        {id: 486, qHi: "सेब के बागों में कवक (Fungi) को मारने के लिए इस्तेमाल होने वाला प्रसिद्ध 'बोर्डो मिश्रण' (Bordeaux Mixture) क्या है?", aHi: "कॉपर सल्फेट और चूने का मिश्रण।", qEn: "What is the famous 'Bordeaux Mixture' used in apple orchards to kill fungi?", aEn: "A mixture of Copper sulphate and Lime."},
         {id: 487, qHi: "सेब के पेड़ों में 'वूली एफिड' (Woolly Aphid) क्या है?", aHi: "एक विनाशकारी कीट (Pest) जो पेड़ का रस चूसता है।", qEn: "What is the 'Woolly Aphid' in apple trees?", aEn: "A destructive pest that sucks the tree's sap."},
         {id: 488, qHi: "सेब के बागों में अच्छी पैदावार के लिए मधुमक्खियों (Honey bees) का क्या महत्व है?", aHi: "वे पर-परागण (Cross-pollination) में मदद करती हैं, जिससे फलों का निर्माण (Fruit set) बढ़ता है।", qEn: "What is the importance of Honey bees in apple orchards for good yield?", aEn: "They help in cross-pollination, which increases fruit set."},
         {id: 489, qHi: "सेब की व्यावसायिक खेती के लिए इष्टतम 'चिलिंग आवर्स' (ठंड के घंटे) कितने होने चाहिए?", aHi: "1000 से 1500 घंटे (7°C से नीचे)।", qEn: "What should be the optimal 'Chilling Hours' for commercial apple cultivation?", aEn: "1000 to 1500 hours (below 7°C)."},
