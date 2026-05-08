@@ -64,7 +64,7 @@
     <!-- Load Global Style First (2 levels up) -->
     <link rel="stylesheet" href="../../js/style.css">
 
-    <!-- PAGE SPECIFIC STYLESHEET -->
+    <!-- PAGE SPECIFIC STYLESHEET (Uniform Smooth Glassmorphism) -->
     <style>
         :root {
             --site-width: 1100px;
@@ -75,8 +75,11 @@
             --primary-dark: #14532d;  
             
             --bg-gradient: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 50%, #eff6ff 100%);
-            --card-bg: rgba(255, 255, 255, 0.95); 
-            --card-border: rgba(148, 163, 184, 0.3); 
+            
+            /* Uniform Card Backgrounds matching standard pages */
+            --card-bg: rgba(255, 255, 255, 0.65); 
+            --card-border: rgba(255, 255, 255, 0.5); 
+            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
             
             --text-main: #0f172a;     
             --text-body: #1e293b;     
@@ -96,8 +99,11 @@
             --primary-dark: #064e3b;  
             
             --bg-gradient: linear-gradient(135deg, #022c22 0%, #064e3b 50%, #0f172a 100%);
-            --card-bg: rgba(30, 41, 59, 0.8); 
-            --card-border: rgba(255, 255, 255, 0.12); 
+            
+            /* Uniform Dark Card Backgrounds */
+            --card-bg: rgba(30, 41, 59, 0.5); 
+            --card-border: rgba(255, 255, 255, 0.08); 
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
             
             --text-main: #f8fafc;     
             --text-body: #e2e8f0;     
@@ -113,8 +119,8 @@
         .page-layout, .top-meta-bar { width: 100%; max-width: var(--site-width); margin: 0 auto; padding: 0 15px; box-sizing: border-box; display: block !important; }
         @media (max-width: 480px) { .page-layout, .top-meta-bar { padding: 0 12px !important; } }
 
-        /* Top Bar & Breadcrumbs */
-        .top-meta-bar { display: flex !important; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: nowrap; gap: 10px; }
+        /* Top Bar & Breadcrumbs - Exact Uniform Spacing */
+        .top-meta-bar { display: flex !important; justify-content: space-between; align-items: center; margin: 0 auto 5px auto; flex-wrap: nowrap; gap: 10px; }
         .breadcrumb-nav { margin: 0; flex-shrink: 1; display: flex; align-items: center; height: 24px; overflow-x: auto; }
         .breadcrumb-nav::-webkit-scrollbar { display: none; }
         .breadcrumb-list { 
@@ -132,19 +138,28 @@
 
         .hero-badge { 
             display: inline-flex; align-items: center; justify-content: center; height: 24px; 
-            background: var(--primary-light); color: var(--primary); padding: 0 10px; border-radius: 12px; 
+            background: var(--primary-hover); color: white; padding: 0 10px; border-radius: 12px; 
             font-size: 0.6rem; font-weight: 800; text-transform: uppercase; margin: 0; 
-            border: 1px solid var(--primary); letter-spacing: 0.5px; white-space: nowrap; flex-shrink: 0; box-sizing: border-box;
+            border: 1px solid var(--primary-dark); letter-spacing: 0.5px; white-space: nowrap; flex-shrink: 0; box-sizing: border-box;
         }
 
-        /* Compact Hero Section */
-        .hub-hero { text-align: center; max-width: 800px; margin: 0 auto 15px auto; padding: 0; display: block; }
+        /* Compact Hero Section (Uniform with other pages) */
+        .page-header-top { 
+            text-align: center; 
+            margin-bottom: 25px; 
+            margin-top: 0; 
+            padding-top: 0; 
+            width: 100%; 
+        }
+        
         .hero-title {
-            margin: 0 0 10px 0; letter-spacing: -0.8px; background: linear-gradient(135deg, var(--text-main) 0%, var(--primary) 100%);
+            margin: 0 0 8px 0; letter-spacing: -0.8px; background: linear-gradient(135deg, var(--text-main) 0%, var(--primary) 100%);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: var(--primary); font-size: 32px; font-weight: 800; line-height: 1.2;
         }
-        .hero-desc { font-size: 15px !important; color: var(--text-sec); line-height: 1.6; margin: 0 auto; max-width: 700px; font-weight: 500;}
-        .hero-desc span.hi-desc { font-family: 'Noto Sans Devanagari', sans-serif; font-size: 0.9rem; color: var(--text-sec); display: block; margin-top: 6px; font-weight: 500;}
+        
+        /* Updated: Reduced font size to exactly 14px */
+        .hero-desc { font-size: 14px !important; color: var(--text-sec); line-height: 1.6; margin: 0 auto; max-width: 700px; font-weight: 500;}
+        .hero-desc span.hi-desc { font-family: 'Noto Sans Devanagari', sans-serif; font-size: 0.85rem; color: var(--text-sec); display: block; margin-top: 4px; font-weight: 500;}
 
         /* HIGH-CONTRAST INTERLINKING PILL */
         .hero-interlinks {
@@ -162,23 +177,24 @@
 
         /* GREEN TOOLS STRIP */
         .tools-strip {
-            margin-top: 20px; background: rgba(22, 163, 74, 0.1); border: 1px solid rgba(22, 163, 74, 0.3);
+            margin-top: 25px; background: rgba(22, 163, 74, 0.1); border: 1px solid rgba(22, 163, 74, 0.3);
             border-radius: var(--radius-lg); padding: 12px 16px; display: flex; align-items: center; justify-content: space-between;
             max-width: 800px; margin-left: auto; margin-right: auto; transition: all 0.3s ease;
         }
+        .tools-strip:hover { border-color: var(--primary); box-shadow: 0 4px 12px rgba(22, 163, 74, 0.15); }
         .tools-strip-left { display: flex; align-items: center; gap: 12px; }
         .tools-strip-icon {
             width: 40px; height: 40px; background: rgba(22, 163, 74, 0.2); color: #15803d;
             border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
         }
         [data-theme="dark"] .tools-strip-icon { color: #4ade80; background: rgba(74, 222, 128, 0.2); }
-        .tools-strip-title { font-weight: 800; color: var(--text-main); font-size: 0.9rem; text-align: left; font-family: 'Inter', sans-serif;}
+        .tools-strip-title { font-weight: 800; color: var(--text-main); font-size: 0.95rem; text-align: left; font-family: 'Inter', sans-serif;}
         .tools-strip-desc { font-size: 0.75rem; color: var(--text-sec); margin-top: 2px; text-align: left; font-weight: 500;}
         .tools-strip-btn-group { display: flex; gap: 8px; align-items: center; flex-wrap: wrap;}
         .tools-strip-btn {
             background: #16a34a; color: white !important; padding: 6px 12px; border-radius: 6px;
             font-size: 12px; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 5px;
-            transition: all 0.2s; white-space: nowrap;
+            transition: all 0.2s; white-space: nowrap; letter-spacing: 0.2px;
         }
         .tools-strip-btn:hover { background: #15803d; }
         [data-theme="dark"] .tools-strip-btn { background: #22c55e; }
@@ -263,7 +279,7 @@
         @media (min-width: 768px) { .zones-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (min-width: 1024px) { .zones-grid { grid-template-columns: repeat(4, 1fr); } }
 
-        /* SLEEK STATIC CARD */
+        /* SLEEK STATIC CARD (Uniform with other pages) */
         .info-card {
             background: var(--card-bg); border: 1px solid var(--card-border);
             border-radius: var(--radius-lg); padding: 20px; display: flex; flex-direction: column;
@@ -326,16 +342,23 @@
         [data-theme="dark"] .th-inst .info-icon-box { color: #fdba74; }
         [data-theme="dark"] .th-inst h3 { color: #fed7aa; }
 
+        /* ==========================================================================
+           MOBILE FIXES: Matching standard exact alignment
+           ========================================================================== */
         @media (max-width: 600px) {
-            .hub-hero { margin-top: 5px; padding-top: 0; }
-            .hero-title { font-size: 24px !important; white-space: normal; padding: 0 10px; }
+            .page-header-top { margin-top: 25px; margin-bottom: 20px; padding-top: 0; }
+            .hero-title { font-size: 25px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
             .section-header { font-size: 18px; margin: 30px 0 15px 0; }
             
-            .hero-interlinks { flex-direction: row; flex-wrap: wrap; gap: 6px; padding: 8px 12px; }
+            .hero-interlinks { flex-direction: row; flex-wrap: wrap; gap: 6px; padding: 8px 12px; border-radius: 30px; }
+            .hero-interlinks .dot { display: inline; font-size: 0.7rem; }
+            .hero-interlinks a { font-size: 0.8rem; }
+            .hero-interlinks .interlink-label { font-size: 0.75rem; }
+
             .tools-strip { flex-direction: column; align-items: stretch; gap: 12px;}
             .tools-strip-btn-group { width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 8px;}
             .tools-strip-btn-group .tools-strip-btn:last-child { grid-column: span 2; }
-            .tools-strip-btn { justify-content: center; }
+            .tools-strip-btn { justify-content: center; padding: 7px 10px; font-size: 12px; }
 
             .info-card { padding: 16px; }
             .info-card h3 { font-size: 15px; }
@@ -371,6 +394,7 @@
 
 <main class="hub-main-wrapper">
     
+    <!-- Top Meta Bar: Breadcrumb (Left) & Hero Badge (Right) -->
     <div class="top-meta-bar">
         <nav aria-label="breadcrumb" class="breadcrumb-nav">
             <ol class="breadcrumb-list">
@@ -385,8 +409,8 @@
     </div>
 
     <div class="page-layout">
-        <!-- Hero Section -->
-        <section class="hub-hero">
+        <!-- Compact Uniform Hero Section -->
+        <div class="page-header-top">
             <h1 class="hero-title">HP Agriculture & Horticulture</h1>
             <p class="hero-desc">
                 The ultimate HPPSC Masterclass. Deep dive into Himachal's Apple History, Agro-Climatic Zones, Animal Husbandry, Top Cash Crops, Irrigation statistics, and Key Agricultural Institutions.
@@ -424,7 +448,7 @@
                     </a>
                 </div>
             </div>
-        </section>
+        </div>
 
         <!-- QUIZ BANNER (Sleek, Compact & Engaging) -->
         <div class="quiz-banner">
@@ -699,120 +723,6 @@
                     <li>
                         <span class="detail-en"><strong>Forest Resources:</strong> Chir Pine trees are tapped heavily for resin (Leesa) extraction. Deodar timber is culturally and commercially the most prized. TD (Timber Distribution) rights allow villagers to get wood for house construction.</span>
                         <span class="detail-hi"><strong>वन संसाधन:</strong> राल (लीसा) निकालने के लिए चीड़ के पेड़ों का दोहन किया जाता है। देवदार की लकड़ी सबसे मूल्यवान है। टीडी (TD) अधिकार ग्रामीणों को घर के लिए लकड़ी प्राप्त करने की अनुमति देते हैं।</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- NEW SECTION 5: INSTITUTIONS & FLAGSHIP SCHEMES -->
-        <h2 class="section-header"><i class="fa-solid fa-landmark-dome"></i> 5. Key Institutions & Flagship Schemes</h2>
-        
-        <div class="cards-grid">
-            <!-- Premier Institutions -->
-            <div class="info-card th-inst">
-                <div class="info-card-header">
-                    <div class="info-icon-box"><i class="fa-solid fa-flask-vial"></i></div>
-                    <h3>Premier Research Institutions</h3>
-                </div>
-                <ul class="card-list">
-                    <li>
-                        <span class="detail-en"><strong>Potato & Mushroom Research:</strong> The Central Potato Research Institute (CPRI) was established in Patna in 1949 and shifted to Kufri (Shimla) in 1956. The Directorate of Mushroom Research (DMR) is located at Chambaghat (Solan).</span>
-                        <span class="detail-hi"><strong>आलू और मशरूम अनुसंधान:</strong> केंद्रीय आलू अनुसंधान संस्थान (CPRI) 1956 में पटना से कुफरी (शिमला) स्थानांतरित हुआ। मशरूम अनुसंधान निदेशालय (DMR) चंबाघाट (सोलन) में स्थित है।</span>
-                    </li>
-                    <li>
-                        <span class="detail-en"><strong>Veterinary Sciences:</strong> Dr. G.C. Negi College of Veterinary & Animal Sciences (Palampur) is the apex state institution conducting vital research in livestock health and breed improvement.</span>
-                        <span class="detail-hi"><strong>पशु चिकित्सा विज्ञान:</strong> डॉ. जी.सी. नेगी पशु चिकित्सा एवं पशु विज्ञान महाविद्यालय (पालमपुर) पशुधन स्वास्थ्य और नस्ल सुधार अनुसंधान के लिए सर्वोच्च राज्य संस्थान है।</span>
-                    </li>
-                    <li>
-                        <span class="detail-en"><strong>Bee Research & Poultry:</strong> The Regional Bee Research Centre is situated at Nagrota Bagwan (Kangra).</span>
-                        <span class="detail-hi"><strong>मधुमक्खी अनुसंधान:</strong> क्षेत्रीय मधुमक्खी अनुसंधान केंद्र नगरोटा बगवां (कांगड़ा) में है।</span>
-                    </li>
-                    <li>
-                        <span class="detail-en"><strong>Crop Research Stations:</strong> A specialized Wheat Breeding Station is located at Keylong (Lahaul-Spiti).</span>
-                        <span class="detail-hi"><strong>फसल अनुसंधान:</strong> एक विशेष गेहूं प्रजनन केंद्र केलांग (लाहौल-स्पीति) में स्थित है।</span>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Flagship Schemes -->
-            <div class="info-card th-inst">
-                <div class="info-card-header">
-                    <div class="info-icon-box"><i class="fa-solid fa-shield-cat"></i></div>
-                    <h3>Flagship Agri-Schemes</h3>
-                </div>
-                <ul class="card-list">
-                    <li>
-                        <span class="detail-en"><strong>MM Khet Sanrakshan Yojana:</strong> A highly successful scheme providing massive 80-85% subsidies to farmers for installing solar/electric fencing to protect crops from wild animals and monkeys.</span>
-                        <span class="detail-hi"><strong>मुख्यमंत्री खेत संरक्षण योजना:</strong> जंगली जानवरों और बंदरों से फसलों की रक्षा के लिए सौर/इलेक्ट्रिक बाड़ लगाने के लिए किसानों को 80-85% भारी सब्सिडी प्रदान करती है।</span>
-                    </li>
-                    <li>
-                        <span class="detail-en"><strong>Anti-Hail Net Scheme:</strong> Officially 'Krishi Utpadan Sanrakshan Yojana', it grants an 80% subsidy to orchardists for erecting anti-hail nets, saving apple crops from severe weather damage.</span>
-                        <span class="detail-hi"><strong>एंटी-हेल नेट योजना:</strong> यह बागवानों को एंटी-हेल नेट लगाने के लिए 80% सब्सिडी प्रदान करती है, जिससे सेब की फसलों को खराब मौसम से बचाया जा सके।</span>
-                    </li>
-                    <li>
-                        <span class="detail-en"><strong>Prakritik Kheti Khushhal Kisan (PK3Y):</strong> Actively promotes Subhash Palekar Natural Farming (SPNF) - a zero-budget, chemical-free farming method. Farmers get up to 50% subsidy to purchase indigenous cows (Desi Gaay).</span>
-                        <span class="detail-hi"><strong>प्राकृतिक खेती (PK3Y):</strong> सुभाष पालेकर प्राकृतिक खेती (शून्य-बजट, रसायन मुक्त) को बढ़ावा देती है। किसानों को देसी गाय खरीदने के लिए 50% तक सब्सिडी मिलती है।</span>
-                    </li>
-                    <li>
-                        <span class="detail-en"><strong>HP SHIVA Project:</strong> An ADB-funded mega project aimed at expanding subtropical horticulture (Guava, Litchi, Pomegranate, Citrus) specifically in 7 lower districts.</span>
-                        <span class="detail-hi"><strong>एचपी शिवा प्रोजेक्ट:</strong> एक ADB-वित्तपोषित मेगा प्रोजेक्ट जिसका उद्देश्य 7 निचले जिलों में उपोष्णकटिबंधीय बागवानी (अमरूद, लीची, अनार, खट्टे फल) का विस्तार करना है।</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- SECTION 6: IRRIGATION & SOIL TYPES -->
-        <h2 class="section-header"><i class="fa-solid fa-water"></i> 6. Irrigation Systems & Soil Profiles</h2>
-        
-        <div class="cards-grid">
-            <!-- Irrigation -->
-            <div class="info-card th-water">
-                <div class="info-card-header">
-                    <div class="info-icon-box"><i class="fa-solid fa-faucet-drip"></i></div>
-                    <h3>Irrigation Profile (सिंचाई)</h3>
-                </div>
-                <ul class="card-list">
-                    <li>
-                        <span class="detail-en"><strong>Low Irrigated Area:</strong> Only about 18-20% of the total cultivated area in HP is irrigated. The rest is completely rain-fed (Barani).</span>
-                        <span class="detail-hi"><strong>कम सिंचित क्षेत्र:</strong> हि.प्र. में कुल खेती योग्य क्षेत्र का केवल 18-20% ही सिंचित है। बाकी पूरी तरह से वर्षा आधारित (बारानी) है।</span>
-                    </li>
-                    <li>
-                        <span class="detail-en"><strong>Kuhls System:</strong> Traditional gravity-flow water channels ('Kuhls') account for over 70% of the state's irrigation. Kangra district has the absolute highest area under Kuhl irrigation in the state.</span>
-                        <span class="detail-hi"><strong>कूहल प्रणाली:</strong> पारंपरिक गुरुत्वाकर्षण-प्रवाह जल चैनल ('कूहल') राज्य की 70% से अधिक सिंचाई के लिए जिम्मेदार हैं। कांगड़ा जिले में सबसे अधिक क्षेत्र है।</span>
-                    </li>
-                    <li>
-                        <span class="detail-en"><strong>Major Projects:</strong> The <strong>Shahnehar Project</strong> is the largest major irrigation project, located in Kangra. The Phina Singh Canal project (Kangra), Nadaun area canal (Hamirpur), and Balh Valley Left Bank project (Mandi) are other highly critical lift irrigation schemes.</span>
-                        <span class="detail-hi"><strong>प्रमुख परियोजनाएं:</strong> शाहनहर परियोजना कांगड़ा में सबसे बड़ी प्रमुख सिंचाई परियोजना है। फिना सिंह नहर (कांगड़ा), नादौन नहर (हमीरपुर) और बल्ह वैली परियोजना (मंडी) अन्य महत्वपूर्ण योजनाएं हैं।</span>
-                    </li>
-                    <li>
-                        <span class="detail-en"><strong>Saur Sinchayee Yojana:</strong> Provides up to 90% subsidy to small/marginal farmers for installing solar-powered water pumping sets, solving irrigation issues in off-grid areas.</span>
-                        <span class="detail-hi"><strong>सौर सिंचाई योजना:</strong> छोटे/सीमांत किसानों को ऑफ-ग्रिड क्षेत्रों में सौर ऊर्जा चालित पंप सेट स्थापित करने के लिए 90% तक की सब्सिडी प्रदान करती है।</span>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Soils -->
-            <div class="info-card th-water">
-                <div class="info-card-header">
-                    <div class="info-icon-box"><i class="fa-solid fa-layer-group"></i></div>
-                    <h3>Soil Classification (मिट्टी)</h3>
-                </div>
-                <ul class="card-list">
-                    <li>
-                        <span class="detail-en"><strong>Low Hill Soil:</strong> Found in Shivaliks; Loamy to clay texture, slightly acidic. Good for wheat and maize. Generally deficient in Nitrogen but moderate in Phosphorus.</span>
-                        <span class="detail-hi"><strong>निचली पहाड़ी मिट्टी:</strong> शिवालिक में पाई जाती है; दोमट से मिट्टी की बनावट। आमतौर पर नाइट्रोजन की कमी लेकिन फास्फोरस मध्यम।</span>
-                    </li>
-                    <li>
-                        <span class="detail-en"><strong>Mid & High Hill Soil:</strong> Found in Shimla/Kullu; Highly rich in organic carbon and potassium. Loam to clay-loam texture makes it extremely ideal for Apple and Temperate fruits.</span>
-                        <span class="detail-hi"><strong>मध्य और उच्च पहाड़ी मिट्टी:</strong> शिमला/कुल्लू में; जैविक कार्बन और पोटेशियम में अत्यधिक समृद्ध। सेब और समशीतोष्ण फलों के लिए आदर्श।</span>
-                    </li>
-                    <li>
-                        <span class="detail-en"><strong>Cold Desert Soil:</strong> Found in Spiti/Kinnaur; Sandy loam texture, neutral to highly alkaline pH. Very low organic matter due to absolute lack of vegetation and severe cold arid conditions.</span>
-                        <span class="detail-hi"><strong>कोल्ड डेजर्ट मिट्टी:</strong> स्पीति/किन्नौर में; रेतीली दोमट बनावट, क्षारीय पीएच। वनस्पति की कमी और अत्यधिक ठंड के कारण बहुत कम कार्बनिक पदार्थ।</span>
-                    </li>
-                    <li>
-                        <span class="detail-en"><strong>Nutrient Deficiencies:</strong> Across most mountain zones, the soil is generally observed to be deficient in Nitrogen and Zinc, making soil-testing (Bhu-Pariksha) and scientific fertilizer application vital.</span>
-                        <span class="detail-hi"><strong>पोषक तत्वों की कमी:</strong> अधिकांश पर्वतीय क्षेत्रों में, मिट्टी में आमतौर पर नाइट्रोजन और जिंक की कमी देखी जाती है, जिससे मृदा परीक्षण (भू-परीक्षा) महत्वपूर्ण हो जाता है।</span>
                     </li>
                 </ul>
             </div>
