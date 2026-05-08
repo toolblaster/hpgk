@@ -94,8 +94,11 @@
             --primary-dark: #172554;  
             
             --bg-gradient: linear-gradient(135deg, #eff6ff 0%, #dbeafe 50%, #f3e8ff 100%);
-            --card-bg: rgba(255, 255, 255, 0.85); 
-            --card-border: rgba(148, 163, 184, 0.4); 
+            
+            /* Smooth Light Glassmorphism Variables for uniformity */
+            --card-bg: rgba(255, 255, 255, 0.65); 
+            --card-border: rgba(255, 255, 255, 0.5); 
+            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
             
             --text-main: #0f172a;     
             --text-body: #1e293b;     
@@ -112,8 +115,11 @@
             --primary-dark: #bfdbfe;  
             
             --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #020617 100%);
-            --card-bg: rgba(30, 41, 59, 0.6); 
-            --card-border: rgba(255, 255, 255, 0.12); 
+            
+            /* Dark mode Glassmorphism */
+            --card-bg: rgba(30, 41, 59, 0.5); 
+            --card-border: rgba(255, 255, 255, 0.08); 
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
             
             --text-main: #f8fafc;     
             --text-body: #e2e8f0;     
@@ -438,6 +444,9 @@
         .scrollbar-hide::-webkit-scrollbar { display: none; }
         .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 
+        /* ==========================================================================
+           MOBILE FIXES: Matching standard alignment
+           ========================================================================== */
         @media (max-width: 600px) {
             .page-header-top { margin-top: 25px; margin-bottom: 20px; }
             .hero-title { font-size: 25px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
