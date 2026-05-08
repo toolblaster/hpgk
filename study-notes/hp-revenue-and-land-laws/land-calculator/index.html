@@ -100,6 +100,7 @@
             --bg-gradient: linear-gradient(135deg, #eff6ff 0%, #dbeafe 50%, #f3e8ff 100%);
             --card-bg: rgba(255, 255, 255, 0.65); 
             --card-border: rgba(255, 255, 255, 0.5); 
+            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
             
             --text-main: #0f172a;     
             --text-body: #1e293b;     
@@ -118,6 +119,7 @@
             --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #020617 100%);
             --card-bg: rgba(30, 41, 59, 0.5); 
             --card-border: rgba(255, 255, 255, 0.08); 
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
             
             --text-main: #f8fafc;     
             --text-body: #e2e8f0;     
@@ -389,11 +391,11 @@
         .tool-desc-hi { font-size: 11px; font-weight: 500; color: var(--text-sec); line-height: 1.4; font-family: 'Noto Sans Devanagari', sans-serif; margin: 0; }
 
         /* Skeleton Animation */
-        .skeleton { background-color: var(--card-border); animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 
         @media (max-width: 600px) {
-            .page-header-top { margin-top: 0px; margin-bottom: 15px; padding-top: 0; }
+            .page-header-top { margin-top: 25px; margin-bottom: 20px; padding-top: 0; }
             .hero-title { font-size: 25px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
             .hero-interlinks { flex-direction: row; flex-wrap: wrap; gap: 6px; padding: 8px 12px; border-radius: 30px; }
             .hero-interlinks .dot { display: inline; font-size: 0.7rem; }
@@ -402,8 +404,8 @@
             
             .module-header { flex-direction: column; align-items: flex-start; gap: 15px; }
             .module-controls { width: 100%; justify-content: space-between; }
-            .tools-strip { flex-direction: column; align-items: flex-start; gap: 12px; }
-            .tools-strip-btn-group { width: 100%; display: flex; gap: 8px; }
+            .tools-strip { flex-direction: column; align-items: stretch; gap: 15px; }
+            .tools-strip-btn-group { justify-content: stretch; width: 100%; display: flex; gap: 8px; }
             .tools-strip-btn { justify-content: center; flex: 1; padding: 7px 10px; font-size: 12px; }
         }
     </style>
@@ -440,7 +442,7 @@
                 <li class="breadcrumb-item active" aria-current="page">Land Calculator</li>
             </ol>
         </nav>
-        <span class="hero-badge">Land Calculator</span>
+        <span class="hero-badge">Land Calc</span>
     </div>
 
     <div class="page-layout">
