@@ -169,7 +169,7 @@
             display: flex !important;
             justify-content: space-between; 
             align-items: center; 
-            margin: 0 auto 5px auto; 
+            margin: 0 auto 5px auto; /* 5px exact margin */
             flex-wrap: nowrap; 
             gap: 10px; 
         }
@@ -221,9 +221,10 @@
         .hero-desc {
             font-size: 14px !important;
             color: var(--text-sec);
-            line-height: 1.5; 
+            line-height: 1.6; 
             margin: 0 auto; 
             max-width: 650px;
+            font-weight: 500;
         }
 
         .hero-desc span.hi-desc {
@@ -559,8 +560,8 @@
         
         /* FIXED: Mobile specific overrides */
         @media (max-width: 600px) {
-            .page-header-top { margin-top: 0; padding-top: 0; margin-bottom: 15px; }
-            .hero-title { font-size: 24px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
+            .page-header-top { margin-top: 25px; margin-bottom: 20px; padding-top: 0; }
+            .hero-title { font-size: 25px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
             
             /* Responsive tweaks for the 2-column mobile grid */
             .note-card { padding: 10px; min-height: 110px; }
