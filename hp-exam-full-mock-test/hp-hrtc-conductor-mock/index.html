@@ -167,6 +167,7 @@
         .tc-badge-common { display: inline-flex; align-items: center; justify-content: center; gap: 4px; font-size: 0.55rem; font-weight: 700; padding: 2px 6px; border-radius: 4px; border: 1px solid var(--card-border); letter-spacing: 0.2px; text-transform: uppercase; background: var(--input-bg); color: var(--text-sec); }
         .pro-badge { background: var(--accent-light); color: var(--accent); border-color: transparent; }
         .free-badge { background: rgba(16,185,129,0.1); color: var(--success); border-color: transparent; }
+        .free-badge.unlocked { background: var(--primary-light); color: var(--primary); }
         
         .mark-positive { color: #15803d; font-weight: 700; }
         .mark-negative { color: #b91c1c; font-weight: 700; }
@@ -288,12 +289,12 @@
 
     <div class="toggle-wrapper">
         <div class="toggle-container">
-            <button id="btn-mocks" class="toggle-btn active" onclick="switchTab('mocks')">Mock Tests <span class="t-count">10</span></button>
+            <button id="btn-mocks" class="toggle-btn active" onclick="switchTab('mocks')">Mock Tests <span class="t-count">12</span></button>
             <button id="btn-pyps" class="toggle-btn" onclick="switchTab('pyps')">Previous Papers <span class="t-count">4</span></button>
         </div>
     </div>
 
-    <!-- Tab 1: Mock Tests (10 items) -->
+    <!-- Tab 1: Mock Tests (12 items) -->
     <div id="tab-mocks" class="tab-content active">
         <div class="test-list">
             
@@ -315,7 +316,7 @@
                 </button>
             </div>
 
-            <!-- PRO Cards (2 to 10) -->
+            <!-- PRO Cards -->
             <div class="test-card soft-glass" data-testid="hpgkdata.hp-hrtc-conductor-mock-test-2">
                 <div class="tc-left">
                     <div class="tc-icon"><i class="fa-solid fa-lock"></i></div>
@@ -465,6 +466,42 @@
                     </div>
                 </div>
                 <button onclick="handleTestClick('../../mock-engine/index.html?exam=hp-hrtc-conductor-mock&testId=hpgkdata.hp-hrtc-conductor-mock-test-10', true)" class="btn-action btn-pro">
+                    Unlock <i class="fa-solid fa-lock"></i>
+                </button>
+            </div>
+
+            <!-- New Test 11 -->
+            <div class="test-card soft-glass" data-testid="hpgkdata.hp-hrtc-conductor-mock-test-11">
+                <div class="tc-left">
+                    <div class="tc-icon"><i class="fa-solid fa-lock"></i></div>
+                    <div class="tc-info">
+                        <h3>HP HRTC Conductor Mock Test 11</h3>
+                        <div class="tc-meta">100 Qs • 120 Mins • <span class="mark-positive">+1</span></div>
+                        <div class="tc-badges">
+                            <span class="tc-badge-common">EN / HI</span>
+                            <span class="tc-badge-common pro-badge"><i class="fa-solid fa-crown"></i> PRO</span>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="handleTestClick('../../mock-engine/index.html?exam=hp-hrtc-conductor-mock&testId=hpgkdata.hp-hrtc-conductor-mock-test-11', true)" class="btn-action btn-pro">
+                    Unlock <i class="fa-solid fa-lock"></i>
+                </button>
+            </div>
+
+            <!-- New Test 12 -->
+            <div class="test-card soft-glass" data-testid="hpgkdata.hp-hrtc-conductor-mock-test-12">
+                <div class="tc-left">
+                    <div class="tc-icon"><i class="fa-solid fa-lock"></i></div>
+                    <div class="tc-info">
+                        <h3>HP HRTC Conductor Mock Test 12</h3>
+                        <div class="tc-meta">100 Qs • 120 Mins • <span class="mark-positive">+1</span></div>
+                        <div class="tc-badges">
+                            <span class="tc-badge-common">EN / HI</span>
+                            <span class="tc-badge-common pro-badge"><i class="fa-solid fa-crown"></i> PRO</span>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="handleTestClick('../../mock-engine/index.html?exam=hp-hrtc-conductor-mock&testId=hpgkdata.hp-hrtc-conductor-mock-test-12', true)" class="btn-action btn-pro">
                     Unlock <i class="fa-solid fa-lock"></i>
                 </button>
             </div>
