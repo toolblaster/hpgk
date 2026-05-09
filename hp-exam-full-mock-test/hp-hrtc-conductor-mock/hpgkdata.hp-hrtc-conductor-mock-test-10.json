@@ -118,31 +118,31 @@
     {
       "name": "General English",
       "questions": [
-        { "questionEn": "Fill in the blank with the appropriate preposition: The distribution of relief materials was carried \_\_\_\_ smoothly.", "questionHi": "", "options": ["on", "out", "away", "off"], "answer": 1 },
-        { "questionEn": "Choose the correct article: She is \_\_\_\_ heir to the royal estate.", "questionHi": "", "options": ["a", "an", "the", "No article needed"], "answer": 1 },
-        { "questionEn": "Change the voice: \"The management will announce the results tomorrow.\"", "questionHi": "", "options": ["The results will be announced by the management tomorrow.", "The results are announced by the management tomorrow.", "The results will announced by the management tomorrow.", "The results would be announced by the management tomorrow."], "answer": 0 },
-        { "questionEn": "Choose the correct Indirect Speech for: The teacher said to the boy, \"Do not make a noise.\"", "questionHi": "", "options": ["The teacher forbade the boy not to make a noise.", "The teacher ordered the boy to not make a noise.", "The teacher forbade the boy to make a noise.", "The teacher advised the boy to make a noise."], "answer": 2 },
-        { "questionEn": "Spot the error in the sentence: \"Each of the candidates were interviewed by the manager.\"", "questionHi": "", "options": ["Each of", "the candidates", "were interviewed", "by the manager"], "answer": 2 },
-        { "questionEn": "Identify the meaning of the idiom: \"To read between the lines.\"", "questionHi": "", "options": ["To read a book quickly", "To understand the hidden meaning", "To read aloud", "To find mistakes in a text"], "answer": 1 },
-        { "questionEn": "One word substitution: \"A person who compiles a dictionary.\"", "questionHi": "", "options": ["Cartographer", "Calligrapher", "Lexicographer", "Choreographer"], "answer": 2 },
-        { "questionEn": "Choose the correct synonym for 'Diligent':", "questionHi": "", "options": ["Lazy", "Industrious", "Careless", "Wealthy"], "answer": 1 },
-        { "questionEn": "Choose the correct antonym for 'Transparent':", "questionHi": "", "options": ["Clear", "Opaque", "Translucent", "Obvious"], "answer": 1 },
-        { "questionEn": "Select the correctly spelt word:", "questionHi": "", "options": ["Embarass", "Emmbarrass", "Embarrass", "Embarras"], "answer": 2 }
+        { "questionEn": "Fill in the blank with the appropriate preposition: The distribution of relief materials was carried \\_\\_\\_\\_ smoothly.", "questionHi": "रिक्त स्थान भरें (Fill in the blank): The distribution of relief materials was carried \\_\\_\\_\\_ smoothly.", "options": ["on", "out", "away", "off"], "answer": 1 },
+        { "questionEn": "Choose the correct article: She is \\_\\_\\_\\_ heir to the royal estate.", "questionHi": "सही Article चुनें: She is \\_\\_\\_\\_ heir to the royal estate.", "options": ["a", "an", "the", "No article needed"], "answer": 1 },
+        { "questionEn": "Change the voice: \"The management will announce the results tomorrow.\"", "questionHi": "वाच्य (Voice) बदलें: \"The management will announce the results tomorrow.\"", "options": ["The results will be announced by the management tomorrow.", "The results are announced by the management tomorrow.", "The results will announced by the management tomorrow.", "The results would be announced by the management tomorrow."], "answer": 0 },
+        { "questionEn": "Choose the correct Indirect Speech for: The teacher said to the boy, \"Do not make a noise.\"", "questionHi": "सही Indirect Speech चुनें: The teacher said to the boy, \"Do not make a noise.\"", "options": ["The teacher forbade the boy not to make a noise.", "The teacher ordered the boy to not make a noise.", "The teacher forbade the boy to make a noise.", "The teacher advised the boy to make a noise."], "answer": 2 },
+        { "questionEn": "Spot the error in the sentence: \"Each of the candidates were interviewed by the manager.\"", "questionHi": "वाक्य में त्रुटि (Error) ज्ञात करें: \"Each of the candidates were interviewed by the manager.\"", "options": ["Each of", "the candidates", "were interviewed", "by the manager"], "answer": 2 },
+        { "questionEn": "Identify the meaning of the idiom: \"To read between the lines.\"", "questionHi": "मुहावरे (Idiom) का अर्थ पहचानें: \"To read between the lines.\"", "options": ["To read a book quickly", "To understand the hidden meaning", "To read aloud", "To find mistakes in a text"], "answer": 1 },
+        { "questionEn": "One word substitution: \"A person who compiles a dictionary.\"", "questionHi": "अनेक शब्दों के लिए एक शब्द: \"A person who compiles a dictionary.\"", "options": ["Cartographer", "Calligrapher", "Lexicographer", "Choreographer"], "answer": 2 },
+        { "questionEn": "Choose the correct synonym for 'Diligent':", "questionHi": "समानार्थी शब्द (Synonym) चुनें: 'Diligent'", "options": ["Lazy", "Industrious", "Careless", "Wealthy"], "answer": 1 },
+        { "questionEn": "Choose the correct antonym for 'Transparent':", "questionHi": "विलोम शब्द (Antonym) चुनें: 'Transparent'", "options": ["Clear", "Opaque", "Translucent", "Obvious"], "answer": 1 },
+        { "questionEn": "Select the correctly spelt word:", "questionHi": "सही वर्तनी (Spelling) चुनें:", "options": ["Embarass", "Emmbarrass", "Embarrass", "Embarras"], "answer": 2 }
       ]
     },
     {
       "name": "General Hindi",
       "questions": [
-        { "questionEn": "", "questionHi": "'महोत्सव' शब्द का सही संधि विच्छेद क्या है?", "options": ["महो + उत्सव", "महा + उत्सव", "महि + उत्सव", "मह + उत्सव"], "answer": 1 },
-        { "questionEn": "", "questionHi": "'यथाशक्ति' में कौन सा समास है?", "options": ["तत्पुरुष समास", "अव्ययीभाव समास", "बहुव्रीहि समास", "द्वंद्व समास"], "answer": 1 },
-        { "questionEn": "", "questionHi": "'आसमान से बातें करना' मुहावरे का सही अर्थ है:", "options": ["पागल हो जाना", "हवा में उड़ना", "बहुत ऊँचा होना", "घमंड करना"], "answer": 2 },
-        { "questionEn": "", "questionHi": "'कृतज्ञ' का विलोम शब्द क्या है?", "options": ["कृतघ्न", "अकृतज्ञ", "निर्दयी", "कृपण"], "answer": 0 },
-        { "questionEn": "", "questionHi": "निम्नलिखित में से कौन सा शब्द 'आग' का पर्यायवाची नहीं है?", "options": ["पावक", "अनल", "कृशानु", "अनिल"], "answer": 3 },
-        { "questionEn": "", "questionHi": "निम्नलिखित में से शुद्ध वर्तनी वाला शब्द चुनें:", "options": ["आशीर्वाद", "आर्शीवाद", "अशिर्वाद", "आशीर्बाद"], "answer": 0 },
-        { "questionEn": "", "questionHi": "'जिसके आने की तिथि ज्ञात न हो' वाक्यांश के लिए एक शब्द है:", "options": ["आगंतुक", "अतिथि", "अनाहूत", "मेहमान"], "answer": 1 },
-        { "questionEn": "", "questionHi": "वाक्य शुद्धि: \"कृपया करके यहाँ बैठिए।\" इसका शुद्ध रूप क्या होगा?", "options": ["कृपया यहाँ बैठिए।", "करके यहाँ बैठिए कृपया।", "यहाँ बैठिए कृपया करके।", "उपरोक्त सभी सही हैं।"], "answer": 0 },
-        { "questionEn": "", "questionHi": "'पराजय' शब्द में प्रयुक्त उपसर्ग कौन सा है?", "options": ["पर", "प", "परा", "जय"], "answer": 2 },
-        { "questionEn": "", "questionHi": "'मयूर' का तद्भव रूप क्या है?", "options": ["मोर", "मेंढक", "मछली", "मैना"], "answer": 0 }
+        { "questionEn": "What is the sandhi vicched of 'महोत्सव'?", "questionHi": "'महोत्सव' शब्द का सही संधि विच्छेद क्या है?", "options": ["महो + उत्सव", "महा + उत्सव", "महि + उत्सव", "मह + उत्सव"], "answer": 1 },
+        { "questionEn": "Which samas is used in 'यथाशक्ति'?", "questionHi": "'यथाशक्ति' में कौन सा समास है?", "options": ["तत्पुरुष समास", "अव्ययीभाव समास", "बहुव्रीहि समास", "द्वंद्व समास"], "answer": 1 },
+        { "questionEn": "What is the meaning of the idiom 'आसमान से बातें करना'?", "questionHi": "'आसमान से बातें करना' मुहावरे का सही अर्थ है:", "options": ["पागल हो जाना", "हवा में उड़ना", "बहुत ऊँचा होना", "घमंड करना"], "answer": 2 },
+        { "questionEn": "What is the antonym of 'कृतज्ञ'?", "questionHi": "'कृतज्ञ' का विलोम शब्द क्या है?", "options": ["कृतघ्न", "अकृतज्ञ", "निर्दयी", "कृपण"], "answer": 0 },
+        { "questionEn": "Which of the following is NOT a synonym of 'आग'?", "questionHi": "निम्नलिखित में से कौन सा शब्द 'आग' का पर्यायवाची नहीं है?", "options": ["पावक", "अनल", "कृशानु", "अनिल"], "answer": 3 },
+        { "questionEn": "Select the word with correct spelling:", "questionHi": "निम्नलिखित में से शुद्ध वर्तनी वाला शब्द चुनें:", "options": ["आशीर्वाद", "आर्शीवाद", "अशिर्वाद", "आशीर्बाद"], "answer": 0 },
+        { "questionEn": "One word substitution for 'जिसके आने की तिथि ज्ञात न हो':", "questionHi": "'जिसके आने की तिथि ज्ञात न हो' वाक्यांश के लिए एक शब्द है:", "options": ["आगंतुक", "अतिथि", "अनाहूत", "मेहमान"], "answer": 1 },
+        { "questionEn": "Correct the sentence: 'कृपया करके यहाँ बैठिए।'", "questionHi": "वाक्य शुद्धि: \"कृपया करके यहाँ बैठिए।\" इसका शुद्ध रूप क्या होगा?", "options": ["कृपया यहाँ बैठिए।", "करके यहाँ बैठिए कृपया।", "यहाँ बैठिए कृपया करके।", "उपरोक्त सभी सही हैं।"], "answer": 0 },
+        { "questionEn": "Which prefix is used in the word 'पराजय'?", "questionHi": "'पराजय' शब्द में प्रयुक्त उपसर्ग कौन सा है?", "options": ["पर", "प", "परा", "जय"], "answer": 2 },
+        { "questionEn": "What is the tadbhav form of 'मयूर'?", "questionHi": "'मयूर' का तद्भव रूप क्या है?", "options": ["मोर", "मेंढक", "मछली", "मैना"], "answer": 0 }
       ]
     }
   ]
