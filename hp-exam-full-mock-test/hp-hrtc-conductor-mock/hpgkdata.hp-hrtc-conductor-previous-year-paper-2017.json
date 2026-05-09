@@ -11,28 +11,58 @@
   ],
   "sections": [
     {
-      "name": "General Knowledge & Hindi",
+      "name": "General Knowledge",
       "questions": [
-        { "questionEn": "Who is the author of 'Ramcharitmanas'?", "questionHi": "रामचरितमानस किस की रचना है?", "options": ["Kabir / कबीर", "Maithili Sharan Gupt / मैथिलीशरण गुप्त", "Tulsidas / तुलसीदास", "Surdas / सूरदास"], "answer": 2 },
         { "questionEn": "What is the official language of Himachal Pradesh?", "questionHi": "हिमाचल प्रदेश की सरकारी भाषा क्या है?", "options": ["English / अंग्रेजी", "Hindi / हिन्दी", "Sanskrit / संस्कृत", "Pahari / पहाड़ी"], "answer": 1 },
-        { "questionEn": "Who is known as the 'Rashtrakavi' (National Poet)?", "questionHi": "राष्ट्रकवि के रूप में किसे जाना जाता है?", "options": ["Suryakant Tripathi Nirala / सूर्यकांत त्रिपाठी निराला", "Harivansh Rai Bachchan / हरिवंश राय बच्चन", "Ramdhari Singh Dinkar / रामधारी सिंह दिनकर", "Maithili Sharan Gupt / मैथिलीशरण गुप्त"], "answer": 2 },
         { "questionEn": "Who was the Transport Minister of Himachal Pradesh in 2017?", "questionHi": "हिमाचल प्रदेश के परिवहन मंत्री 2017 में कौन थे?", "options": ["Shri G.S. Bali / श्री जी.एस.बाली", "Shri Govind Singh Thakur / श्री गोविंद सिंह ठाकुर", "Shri Virbhadra Singh / श्री वीरभद्र सिंह", "Shri Mukesh Agnihotri / श्री मुकेश अग्निहोत्री"], "answer": 0 },
         { "questionEn": "What is the full form of HRTC in Hindi?", "questionHi": "एच.आर.टी.सी. (HRTC) का हिन्दी में पूरा नाम बताएं।", "options": ["हिमाचल पथ परिवहन निगम", "हिमाचल राज्य परिवहन निगम", "हिमाचल पब्लिक ट्रांसपोर्ट कॉर्पोरेशन", "हिमाचल राष्ट्रीय परिवहन निगम"], "answer": 0 },
-        { "questionEn": "Who wrote the novel 'Dehati Duniya'?", "questionHi": "'देहाती दुनिया' उपन्यास किसने लिखा है?", "options": ["Yashpal / यशपाल", "Phanishwar Nath Renu / फणीश्वर नाथ रेणु", "Munshi Premchand / मुंशी प्रेमचंद", "Shivpujan Sahay / शिवपूजन सहाय"], "answer": 3 },
-        { "questionEn": "In which year did the Padma and Sahitya Akademi Award-winning author Kamleshwar pass away?", "questionHi": "साहित्य अकादेमी पुरस्कार एवम् पद्म से सम्मानित लेखक कमलेश्वर का निधन किस वर्ष में हुआ?", "options": ["2011", "2005", "2007", "2009"], "answer": 2 },
-        { "questionEn": "In which year is Surdas believed to have been born?", "questionHi": "सूरदास का जन्म किस वर्ष हुआ माना जाता है?", "options": ["1532", "1398", "1440", "1478"], "answer": 3 },
-        { "questionEn": "Which author wrote the story 'Netaji Ka Chashma'?", "questionHi": "'नेताजी का चश्मा' कहानी किस लेखक की रचना है?", "options": ["Kamleshwar / कमलेश्वर", "Harishankar Parsai / हरिशंकर परसाई", "Swayam Prakash / स्वयं प्रकाश", "Mannu Bhandari / मन्नू भंडारी"], "answer": 2 },
-        { "questionEn": "On which day is Hindi Diwas celebrated every year?", "questionHi": "हिन्दी दिवस प्रत्येक वर्ष किस दिन को मनाया जाता है?", "options": ["14 September / 14 सितम्बर को", "15 August / 15 अगस्त को", "10 January / 10 जनवरी को", "5 September / 5 सितम्बर को"], "answer": 0 },
-        { "questionEn": "What is a group of characters/letters called in Hindi grammar?", "questionHi": "वर्णों के समूह को क्या कहते हैं?", "options": ["वर्णमाला (Varnamala)", "वाक्य (Vakya)", "संधि (Sandhi)", "शब्द (Shabd)"], "answer": 0 },
-        { "questionEn": "What is the meaning of the idiom 'Thikra Fodna'?", "questionHi": "'ठीकरा फोड़ना' मुहावरे का अर्थ है:", "options": ["पार्टी करना", "गुस्सा करना", "बर्तन तोड़ना", "दोषारोपण करना"], "answer": 3 },
-        { "questionEn": "Which of the following words is NOT a synonym for water (Jal)?", "questionHi": "पानी, नीर, तरुण, वारि में से कौन सा शब्द जल का पर्यायवाची नहीं है?", "options": ["वारि", "पानी", "नीर", "तरुण"], "answer": 3 },
-        { "questionEn": "Which of the following words has a completely different meaning?", "questionHi": "कथा, वृत्तांत, वार्ता, व्यवस्था में से कौन से शब्द का अर्थ सर्वथा भिन्न है?", "options": ["वृत्तांत", "वार्ता", "व्यवस्था", "कथा"], "answer": 2 },
-        { "questionEn": "What is the synonym of 'Alankar'?", "questionHi": "'अलंकार' का पर्यायवाची है:", "options": ["सुंदरता", "कपड़े", "आभूषण", "अहंकार"], "answer": 2 },
-        { "questionEn": "What is the antonym of 'Avnati'?", "questionHi": "'अवनति' का विलोम शब्द है:", "options": ["पतन", "प्रगति", "उन्नति", "विकास"], "answer": 2 },
-        { "questionEn": "One word substitution: That which cannot be counted.", "questionHi": "जिसकी गिनती न हो सके के लिए एक शब्द है:", "options": ["अनगिनत", "असंख्य", "अगणनीय", "उपरोक्त सभी"], "answer": 0 },
-        { "questionEn": "What is the meaning of the idiom 'Kolhu Ka Bail'?", "questionHi": "'कोल्हू का बैल' मुहावरे का अर्थ है:", "options": ["धीरे-धीरे चलना", "शक्तिशाली होना", "मूर्ख व्यक्ति", "रात दिन काम करना"], "answer": 3 },
-        { "questionEn": "Whose famous poetic composition is 'Jhansi Ki Rani'?", "questionHi": "'झांसी की रानी' किसकी प्रसिद्ध काव्य रचना है?", "options": ["Mira Bai / मीरा बाई", "Mahadevi Varma / महादेवी वर्मा", "Subhadra Kumari Chauhan / सुभद्रा कुमारी चौहान", "Sarojini Naidu / सरोजिनी नायडू"], "answer": 2 },
-        { "questionEn": "What is the feminine gender of 'Vidwan' (Scholar)?", "questionHi": "'विद्वान' का स्त्रीलिंग होगा:", "options": ["विदुषी", "ज्ञाता", "विद्वता", "विद्वानी"], "answer": 0 }
+        { "questionEn": "What is the full form of JNNURM?", "questionHi": "JNNURM का पूर्ण रूप क्या है?", "options": ["Jawaharlal Nehru National Urban Renewal Mission", "Joint National Network for Urban Road Mission", "Jawaharlal Nehru National United Rural Mission", "Justice Network for National Urban Renewal Mission"], "answer": 0 },
+        { "questionEn": "What is the full form of RTI?", "questionHi": "RTI का पूर्ण रूप क्या है?", "options": ["Right to Identity", "Right to Information", "Right to Independence", "Right to Invest"], "answer": 1 }
+      ]
+    },
+    {
+      "name": "General Hindi",
+      "questions": [
+        { "questionEn": "", "questionHi": "रामचरितमानस किस की रचना है?", "options": ["कबीर", "मैथिलीशरण गुप्त", "तुलसीदास", "सूरदास"], "answer": 2 },
+        { "questionEn": "", "questionHi": "राष्ट्रकवि के रूप में किसे जाना जाता है?", "options": ["सूर्यकांत त्रिपाठी निराला", "हरिवंश राय बच्चन", "रामधारी सिंह दिनकर", "मैथिलीशरण गुप्त"], "answer": 2 },
+        { "questionEn": "", "questionHi": "'देहाती दुनिया' उपन्यास किसने लिखा है?", "options": ["यशपाल", "फणीश्वर नाथ रेणु", "मुंशी प्रेमचंद", "शिवपूजन सहाय"], "answer": 3 },
+        { "questionEn": "", "questionHi": "साहित्य अकादेमी पुरस्कार एवम् पद्म से सम्मानित लेखक कमलेश्वर का निधन किस वर्ष में हुआ?", "options": ["2011", "2005", "2007", "2009"], "answer": 2 },
+        { "questionEn": "", "questionHi": "सूरदास का जन्म किस वर्ष हुआ माना जाता है?", "options": ["1532", "1398", "1440", "1478"], "answer": 3 },
+        { "questionEn": "", "questionHi": "'नेताजी का चश्मा' कहानी किस लेखक की रचना है?", "options": ["कमलेश्वर", "हरिशंकर परसाई", "स्वयं प्रकाश", "मन्नू भंडारी"], "answer": 2 },
+        { "questionEn": "", "questionHi": "हिन्दी दिवस प्रत्येक वर्ष किस दिन को मनाया जाता है?", "options": ["14 सितम्बर को", "15 अगस्त को", "10 जनवरी को", "5 सितम्बर को"], "answer": 0 },
+        { "questionEn": "", "questionHi": "वर्णों के समूह को क्या कहते हैं?", "options": ["वर्णमाला", "वाक्य", "संधि", "शब्द"], "answer": 0 },
+        { "questionEn": "", "questionHi": "'ठीकरा फोड़ना' मुहावरे का अर्थ है:", "options": ["पार्टी करना", "गुस्सा करना", "बर्तन तोड़ना", "दोषारोपण करना"], "answer": 3 },
+        { "questionEn": "", "questionHi": "पानी, नीर, तरुण, वारि में से कौन सा शब्द जल का पर्यायवाची नहीं है?", "options": ["वारि", "पानी", "नीर", "तरुण"], "answer": 3 },
+        { "questionEn": "", "questionHi": "कथा, वृत्तांत, वार्ता, व्यवस्था में से कौन से शब्द का अर्थ सर्वथा भिन्न है?", "options": ["वृत्तांत", "वार्ता", "व्यवस्था", "कथा"], "answer": 2 },
+        { "questionEn": "", "questionHi": "'अलंकार' का पर्यायवाची है:", "options": ["सुंदरता", "कपड़े", "आभूषण", "अहंकार"], "answer": 2 },
+        { "questionEn": "", "questionHi": "'अवनति' का विलोम शब्द है:", "options": ["पतन", "प्रगति", "उन्नति", "विकास"], "answer": 2 },
+        { "questionEn": "", "questionHi": "जिसकी गिनती न हो सके के लिए एक शब्द है:", "options": ["अनगिनत", "असंख्य", "अगणनीय", "उपरोक्त सभी"], "answer": 0 },
+        { "questionEn": "", "questionHi": "'कोल्हू का बैल' मुहावरे का अर्थ है:", "options": ["धीरे-धीरे चलना", "शक्तिशाली होना", "मूर्ख व्यक्ति", "रात दिन काम करना"], "answer": 3 },
+        { "questionEn": "", "questionHi": "'झांसी की रानी' किसकी प्रसिद्ध काव्य रचना है?", "options": ["मीरा बाई", "महादेवी वर्मा", "सुभद्रा कुमारी चौहान", "सरोजिनी नायडू"], "answer": 2 },
+        { "questionEn": "", "questionHi": "'विद्वान' का स्त्रीलिंग होगा:", "options": ["विदुषी", "ज्ञाता", "विद्वता", "विद्वानी"], "answer": 0 }
+      ]
+    },
+    {
+      "name": "General English",
+      "questions": [
+        { "questionEn": "Fill in the blank: The beggar was asking ________ bread.", "questionHi": "", "options": ["with", "for", "from", "to"], "answer": 1 },
+        { "questionEn": "Fill in the blank: As you sow, so ________ you reap.", "questionHi": "", "options": ["can", "shall", "will", "would"], "answer": 1 },
+        { "questionEn": "Fill in the blank: Honesty is ________ best policy.", "questionHi": "", "options": ["no article", "a", "an", "the"], "answer": 3 },
+        { "questionEn": "Fill in the blank: The Sun ________ at 6 in the morning.", "questionHi": "", "options": ["rise", "rises", "rising", "rose"], "answer": 1 },
+        { "questionEn": "Fill in the blank: Knowledge is ________.", "questionHi": "", "options": ["money", "everything", "weakness", "power"], "answer": 3 },
+        { "questionEn": "What is the opposite of Difficult?", "questionHi": "", "options": ["Hard", "Easy", "Complex", "Simple"], "answer": 1 },
+        { "questionEn": "What is the opposite of Safe?", "questionHi": "", "options": ["Secure", "Unsafe", "Guarded", "Protected"], "answer": 1 },
+        { "questionEn": "Choose the correct spelling of the word:", "questionHi": "", "options": ["Diesel", "Diecel", "Deisol", "Desel"], "answer": 0 },
+        { "questionEn": "Give the word which exhibits the same analogy: Country : President :: State : ?", "questionHi": "", "options": ["MLA", "Chief Minister", "Governor", "Mayor"], "answer": 2 },
+        { "questionEn": "Give the word which exhibits the same analogy: Cricket : Bat :: Hockey : ?", "questionHi": "", "options": ["Ball", "Racket", "Net", "Stick"], "answer": 3 },
+        { "questionEn": "What is the plural of Fox?", "questionHi": "", "options": ["Vixen", "Foxen", "Foxs", "Foxes"], "answer": 3 },
+        { "questionEn": "What is the plural of Ox?", "questionHi": "", "options": ["Oxes", "Oxs", "Oxen", "Ox"], "answer": 2 },
+        { "questionEn": "What is the opposite gender of Cock?", "questionHi": "", "options": ["Hen", "Chicken", "Chick", "Peacock"], "answer": 0 },
+        { "questionEn": "What is the opposite gender of Wizard?", "questionHi": "", "options": ["Magician", "Ghost", "Witch", "Fairy"], "answer": 2 },
+        { "questionEn": "Medical examination of a Dead Body is known as:", "questionHi": "", "options": ["Therapy", "Diagnosis", "Surgery", "Postmortem"], "answer": 3 },
+        { "questionEn": "What does the following idiom mean: 'To take to task'?", "questionHi": "", "options": ["To scold or reprimand", "To praise someone", "To help someone", "To assign a duty"], "answer": 0 },
+        { "questionEn": "What does the following idiom mean: 'To hit the Jackpot'?", "questionHi": "", "options": ["To play a game", "To break something", "To get an unexpected victory / success", "To lose money"], "answer": 2 },
+        { "questionEn": "Select the odd one out from the following:", "questionHi": "", "options": ["Mother", "Friend", "Daughter", "Brother"], "answer": 1 }
       ]
     },
     {
@@ -58,31 +88,6 @@
         { "questionEn": "A person bought 10 notebooks for Rs. 90 and 5 notebooks for Rs. 60. Based on the total notebooks purchased by the person, what is the average purchase price of 1 notebook?", "questionHi": "एक व्यक्ति ने 10 कापियां 90 रूपये में और 5 कापियां 60 रूपये में खरीदी। व्यक्ति द्वारा खरीदी गई कुल कापियों के आधार पर 1 कापी का औसत खरीद मूल्य क्या है?", "options": ["9 रूपये", "10 रूपये", "12 रूपये", "8 रूपये"], "answer": 1 },
         { "questionEn": "A cyclist covers a distance of 50 meters in 30 seconds. What will be his speed in km/hr?", "questionHi": "एक साईकिल सवार 30 सेकंड में 50 मीटर दूरी तय करता है। उसकी गति किलोमीटर प्रति घण्टा में क्या होगी?", "options": ["8 किलोमीटर प्रति घण्टा", "10 किलोमीटर प्रति घण्टा", "5 किलोमीटर प्रति घण्टा", "6 किलोमीटर प्रति घण्टा"], "answer": 3 },
         { "questionEn": "If a person's current salary is Rs. 4000 and there is a 5% increase in it, what will be the increased salary?", "questionHi": "यदि एक व्यक्ति का वर्तमान वेतन 4000 रूपये है और उसमें 5 प्रतिशत की वृद्धि होती है, तो बढ़ा हुआ वेतन क्या होगा?", "options": ["4100 रूपये", "4400 रूपये", "4200 रूपये", "4500 रूपये"], "answer": 2 }
-      ]
-    },
-    {
-      "name": "English Language & General Knowledge",
-      "questions": [
-        { "questionEn": "Fill in the blank: The beggar was asking ________ bread.", "questionHi": "", "options": ["with", "for", "from", "to"], "answer": 1 },
-        { "questionEn": "Fill in the blank: As you sow, so ________ you reap.", "questionHi": "", "options": ["can", "shall", "will", "would"], "answer": 1 },
-        { "questionEn": "Fill in the blank: Honesty is ________ best policy.", "questionHi": "", "options": ["no article", "a", "an", "the"], "answer": 3 },
-        { "questionEn": "Fill in the blank: The Sun ________ at 6 in the morning.", "questionHi": "", "options": ["rise", "rises", "rising", "rose"], "answer": 1 },
-        { "questionEn": "Fill in the blank: Knowledge is ________.", "questionHi": "", "options": ["money", "everything", "weakness", "power"], "answer": 3 },
-        { "questionEn": "What is the opposite of Difficult?", "questionHi": "", "options": ["Hard", "Easy", "Complex", "Simple"], "answer": 1 },
-        { "questionEn": "What is the opposite of Safe?", "questionHi": "", "options": ["Secure", "Unsafe", "Guarded", "Protected"], "answer": 1 },
-        { "questionEn": "Choose the correct spelling of the word:", "questionHi": "", "options": ["Diesel", "Diecel", "Deisol", "Desel"], "answer": 0 },
-        { "questionEn": "Give the word which exhibits the same analogy: Country : President :: State : ?", "questionHi": "", "options": ["MLA", "Chief Minister", "Governor", "Mayor"], "answer": 2 },
-        { "questionEn": "Give the word which exhibits the same analogy: Cricket : Bat :: Hockey : ?", "questionHi": "", "options": ["Ball", "Racket", "Net", "Stick"], "answer": 3 },
-        { "questionEn": "What is the plural of Fox?", "questionHi": "", "options": ["Vixen", "Foxen", "Foxs", "Foxes"], "answer": 3 },
-        { "questionEn": "What is the plural of Ox?", "questionHi": "", "options": ["Oxes", "Oxs", "Oxen", "Ox"], "answer": 2 },
-        { "questionEn": "What is the opposite gender of Cock?", "questionHi": "", "options": ["Hen", "Chicken", "Chick", "Peacock"], "answer": 0 },
-        { "questionEn": "What is the opposite gender of Wizard?", "questionHi": "", "options": ["Magician", "Ghost", "Witch", "Fairy"], "answer": 2 },
-        { "questionEn": "Medical examination of a Dead Body is known as:", "questionHi": "", "options": ["Therapy", "Diagnosis", "Surgery", "Postmortem"], "answer": 3 },
-        { "questionEn": "What does the following idiom mean: 'To take to task'?", "questionHi": "", "options": ["To scold or reprimand", "To praise someone", "To help someone", "To assign a duty"], "answer": 0 },
-        { "questionEn": "What does the following idiom mean: 'To hit the Jackpot'?", "questionHi": "", "options": ["To play a game", "To break something", "To get an unexpected victory / success", "To lose money"], "answer": 2 },
-        { "questionEn": "What is the full form of JNNURM?", "questionHi": "JNNURM का पूर्ण रूप क्या है?", "options": ["Jawaharlal Nehru National Urban Renewal Mission", "Joint National Network for Urban Road Mission", "Jawaharlal Nehru National United Rural Mission", "Justice Network for National Urban Renewal Mission"], "answer": 0 },
-        { "questionEn": "What is the full form of RTI?", "questionHi": "RTI का पूर्ण रूप क्या है?", "options": ["Right to Identity", "Right to Information", "Right to Independence", "Right to Invest"], "answer": 1 },
-        { "questionEn": "Select the odd one out from the following:", "questionHi": "विषम चुनें:", "options": ["Mother", "Friend", "Daughter", "Brother"], "answer": 1 }
       ]
     },
     {
