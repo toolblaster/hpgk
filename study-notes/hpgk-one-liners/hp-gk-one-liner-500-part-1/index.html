@@ -101,6 +101,8 @@
     <!-- PAGE SPECIFIC STYLESHEET -->
     <style>
         :root {
+            --site-width: 1100px;
+            
             --primary: #2563eb;        
             --primary-hover: #1d4ed8; 
             --primary-light: rgba(37, 99, 235, 0.1); 
@@ -144,24 +146,53 @@
             flex-direction: column;
         }
 
-        main { flex: 1; width: 100%; padding: 15px 0 !important; }
+        /* ==========================================================================
+           MAIN LAYOUT FIX: Bounding inner containers to match Global Header exactly
+           ========================================================================== */
+        main { 
+            flex: 1; 
+            width: 100%; 
+            padding: 15px 0 !important; 
+            box-sizing: border-box; 
+        }
 
-        /* Top Bar & Breadcrumbs */
+        .page-layout, .top-meta-bar { 
+            width: 100%; 
+            max-width: var(--site-width); 
+            margin: 0 auto; 
+            padding: 0 15px; 
+            box-sizing: border-box;
+            display: block !important; /* Forces vertical stacking */
+        }
+
+        @media (max-width: 480px) {
+            .page-layout, .top-meta-bar {
+                padding: 0 12px !important;
+            }
+        }
+
+        /* Top Bar & Breadcrumbs EXACT MATCH */
         .top-meta-bar { 
-            display: flex; justify-content: space-between; align-items: center; 
-            width: 100%; max-width: 1100px; 
-            margin: 0 auto 5px auto; /* Compact spacing */
-            padding: 0 15px; flex-wrap: nowrap; gap: 10px; 
+            display: flex !important;
+            justify-content: space-between; 
+            align-items: center; 
+            margin: 0 auto 5px auto; /* 5px exact margin */
+            flex-wrap: nowrap; 
+            gap: 10px; 
         }
 
         .breadcrumb-nav { margin: 0; flex-shrink: 1; display: flex; align-items: center; height: 24px; }
         .breadcrumb-list { 
             list-style: none; padding: 0 10px; margin: 0; display: flex; flex-wrap: nowrap; 
-            align-items: center; gap: 4px; background: var(--card-bg); border-radius: 12px; 
-            border: 1px solid var(--card-border); 
+            align-items: center; gap: 4px; background: rgba(255, 255, 255, 0.65); border-radius: 12px; 
+            border: 1px solid rgba(255, 255, 255, 0.5); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); 
             box-shadow: 0 1px 2px rgba(0,0,0,0.05); height: 100%; box-sizing: border-box;
         }
-        [data-theme="dark"] .breadcrumb-list { box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
+        [data-theme="dark"] .breadcrumb-list { 
+            background: rgba(30, 41, 59, 0.5); 
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2); 
+        }
         .breadcrumb-item { font-size: 0.6rem; font-weight: 600; color: var(--text-sec); display: flex; align-items: center; white-space: nowrap; height: 100%; }
         .breadcrumb-item a { color: var(--text-sec); text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 4px; }
         .breadcrumb-item a:hover { color: var(--primary); }
@@ -176,12 +207,13 @@
             flex-shrink: 0; box-sizing: border-box;
         }
 
-        /* Hero Section */
-        .hub-hero { 
+        /* COMPACT HERO SECTION EXACT MATCH */
+        .page-header-top { 
             text-align: center; 
-            max-width: 800px; 
-            margin: 0 auto 20px auto; 
-            padding: 5px 15px; 
+            margin-bottom: 25px; 
+            margin-top: 0; 
+            padding-top: 0; 
+            width: 100%; 
         }
         
         .hero-title { 
@@ -192,6 +224,8 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             color: var(--primary); 
+            font-size: 32px; 
+            font-weight: 800;
             line-height: 1.2;
         }
 
@@ -201,10 +235,16 @@
             line-height: 1.6; 
             margin: 0 auto; 
             max-width: 650px; 
+            font-weight: 500;
         }
         
-        .hero-desc span.hi-desc { font-family: 'Noto Sans Devanagari', sans-serif; font-size: 0.85rem; color: var(--text-sec); display: block; margin-top: 4px; }
-        [data-theme="dark"] .hero-desc span.hi-desc { color: #e2e8f0; }
+        .hero-desc span.hi-desc { 
+            font-family: 'Noto Sans Devanagari', sans-serif; 
+            font-size: 0.85rem; 
+            color: var(--text-sec); 
+            display: block; 
+            margin-top: 4px; 
+        }
 
         /* HIGH-CONTRAST INTERLINKING PILL */
         .hero-interlinks {
@@ -257,10 +297,11 @@
            1100px 2-COLUMN LIST LAYOUT
            ========================================== */
         .one-liner-container {
-            max-width: 1100px;
+            max-width: var(--site-width);
             margin: 0 auto;
             padding: 0 15px 40px 15px;
             width: 100%;
+            box-sizing: border-box;
         }
 
         .one-liner-grid {
@@ -317,9 +358,11 @@
         .a-hi { font-size: 0.85rem; font-weight: 600; color: var(--accent); font-family: 'Noto Sans Devanagari', sans-serif; }
         [data-theme="dark"] .a-hi { color: #fbbf24; }
 
+        /* Mobile Overrides EXACT MATCH */
         @media (max-width: 600px) {
-            .hub-hero { margin-top: 12px; padding-top: 0; }
+            .page-header-top { margin-top: 25px; margin-bottom: 20px; padding-top: 0; }
             .hero-title { font-size: 25px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
+            
             .fact-row { padding: 10px 12px; }
             .content-en { padding-right: 45px; }
             .q-en { font-size: 0.85rem; }
@@ -372,47 +415,50 @@
         <span class="hero-badge">Revision Series</span>
     </div>
 
-    <section class="hub-hero">
-        <h1 class="hero-title">HP GK 500+ One Liners (Part 1)</h1>
-        <p class="hero-desc">
-            Continuous, rapid-reading bilingual facts extracted from historical texts, geography, and polity. Questions 1 to 500.
-            <span class="hi-desc">हिमाचल प्रदेश के इतिहास, भूगोल, राजनीति और संस्कृति को कवर करने वाले द्विभाषी वन-लाइनर्स। प्रश्न 1 से 500 तक।</span>
-        </p>
+    <div class="page-layout">
+        <!-- Compact Hero Section MATCHING REFERENCE -->
+        <div class="page-header-top">
+            <h1 class="hero-title">HP GK 500+ One Liners (Part 1)</h1>
+            <p class="hero-desc">
+                Continuous, rapid-reading bilingual facts extracted from historical texts, geography, and polity. Questions 1 to 500.
+                <span class="hi-desc">हिमाचल प्रदेश के इतिहास, भूगोल, राजनीति और संस्कृति को कवर करने वाले द्विभाषी वन-लाइनर्स। प्रश्न 1 से 500 तक।</span>
+            </p>
 
-        <!-- High-Contrast Interlinking Hook -->
-        <div class="hero-interlinks">
-            <span class="interlink-label"><i class="fa-solid fa-link"></i> Quick Links:</span>
-            <a href="../../../hp-exam-full-mock-test/">Mock Tests</a>
-            <span class="dot">•</span>
-            <a href="../../../himachal-pradesh-gk/">HP GK Hub</a>
-            <span class="dot">•</span>
-            <a href="../../../himachal-pradesh-gk/district/">District GK</a>
-        </div>
+            <!-- High-Contrast Interlinking Hook -->
+            <div class="hero-interlinks">
+                <span class="interlink-label"><i class="fa-solid fa-link"></i> Quick Links:</span>
+                <a href="../../../hp-exam-full-mock-test/">Mock Tests</a>
+                <span class="dot">•</span>
+                <a href="../../../himachal-pradesh-gk/">HP GK Hub</a>
+                <span class="dot">•</span>
+                <a href="../../../himachal-pradesh-gk/district/">District GK</a>
+            </div>
 
-        <!-- DEDICATED GREEN TOOLS STRIP FOR PARTS NAVIGATION -->
-        <div class="tools-strip">
-            <div class="tools-strip-left">
-                <div class="tools-strip-icon">
-                    <i class="fa-solid fa-book-open-reader"></i>
+            <!-- DEDICATED GREEN TOOLS STRIP FOR PARTS NAVIGATION -->
+            <div class="tools-strip">
+                <div class="tools-strip-left">
+                    <div class="tools-strip-icon">
+                        <i class="fa-solid fa-book-open-reader"></i>
+                    </div>
+                    <div>
+                        <div class="tools-strip-title font-heading" style="font-family: 'Inter', sans-serif;">Continue Reading</div>
+                        <div class="tools-strip-desc font-sans" style="font-family: 'Inter', sans-serif;">Jump to the next sets of high-yield facts</div>
+                    </div>
                 </div>
-                <div>
-                    <div class="tools-strip-title font-heading" style="font-family: 'Inter', sans-serif;">Continue Reading</div>
-                    <div class="tools-strip-desc font-sans" style="font-family: 'Inter', sans-serif;">Jump to the next sets of high-yield facts</div>
+                <div class="tools-strip-btn-group">
+                    <a href="../hp-gk-one-liner-250-part-2/" class="tools-strip-btn outline">
+                        Part 2
+                    </a>
+                    <a href="../hp-gk-one-liner-250-part-3/" class="tools-strip-btn outline">
+                        Part 3
+                    </a>
+                    <a href="../hp-gk-one-liner-250-part-4/" class="tools-strip-btn">
+                        Part 4 <i class="fa-solid fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
-            <div class="tools-strip-btn-group">
-                <a href="../hp-gk-one-liner-250-part-2/" class="tools-strip-btn outline">
-                    Part 2
-                </a>
-                <a href="../hp-gk-one-liner-250-part-3/" class="tools-strip-btn outline">
-                    Part 3
-                </a>
-                <a href="../hp-gk-one-liner-250-part-4/" class="tools-strip-btn">
-                    Part 4 <i class="fa-solid fa-arrow-right"></i>
-                </a>
-            </div>
         </div>
-    </section>
+    </div>
 
     <!-- 1100px Container with 2-Column Grid -->
     <div class="one-liner-container">
@@ -557,7 +603,7 @@
         { id: 122, qHi: "औरंगजेब ने बुशहर के किस राजा को 'छत्रपति' की उपाधि दी थी?", aHi: "केहरी सिंह।", qEn: "Which ruler of Bushahr was titled 'Chhatrapati' by Aurangzeb?", aEn: "Kehri Singh." },
         { id: 123, qHi: "चम्बा के राजा ने औरंगजेब के हिंदू मंदिर तोड़ने के आदेश को मानने से इनकार कर दिया था?", aHi: "चतर सिंह।", qEn: "Which ruler of Chamba refused Aurangzeb's order to demolish Hindu temples?", aEn: "Chattar Singh." },
         { id: 124, qHi: "हिमाचल प्रदेश केंद्र शासित प्रदेश कब बना?", aHi: "1 नवंबर 1956।", qEn: "When did Himachal Pradesh become a Union Territory?", aEn: "1st November 1956." },
-        { id: 125, qHi: "हि.प्र. को पूर्ण राज्य का दर्जा कब मिला?", aHi: "25 जनवरी 1971।", qEn: "On which date did HP get full statehood?", aEn: "25 January 1971." },
+        { id: 125, qHi: "हि.प्र. को पूर्ण राज्य दर्जा कब मिला?", aHi: "25 जनवरी 1971।", qEn: "On which date did HP get full statehood?", aEn: "25 January 1971." },
         { id: 126, qHi: "हि.प्र. के प्रथम उपराज्यपाल कौन थे?", aHi: "मेजर जनरल हिम्मत सिंह।", qEn: "First Lieutenant Governor of HP?", aEn: "Major General Himmat Singh." },
         { id: 127, qHi: "हि.प्र. विधानसभा में कुल कितनी सीटें हैं?", aHi: "68।", qEn: "Total number of assembly seats in HP?", aEn: "68." },
         { id: 128, qHi: "किस जिले में विधानसभा सीटों की संख्या सबसे अधिक है?", aHi: "काँगड़ा (15)।", qEn: "Which district has the maximum number of assembly seats?", aEn: "Kangra (15)." },
@@ -709,7 +755,7 @@
         { id: 274, qHi: "'गग्गल हवाई अड्डा' किस जिले में स्थित है?", aHi: "कांगड़ा।", qEn: "The 'Gaggal Airport' is located in which district?", aEn: "Kangra." },
         { id: 275, qHi: "'जुब्बरहट्टी हवाई अड्डा' किस प्रमुख शहर की सेवा करता है?", aHi: "शिमला।", qEn: "The 'Jubbarhatti Airport' serves which major city?", aEn: "Shimla." },
         { id: 276, qHi: "'पोरी' उत्सव मुख्य रूप से कहाँ मनाया जाता है?", aHi: "लाहौल (त्रिलोकीनाथ मंदिर में)।", qEn: "'Pori' festival is mainly celebrated in?", aEn: "Lahaul (at Trilokinath temple)." },
-        { id: 277, qHi: "चंबा के किस राजा ने पहली बार 'वर्मन' प्रत्यय का इस्तेमाल किया था?", aHi: "आदित्य वर्मन।", qEn: "Which king of Chamba used the suffix 'Varman' for the first time?", aEn: "Aditya Varman." },
+        { id: 277, qHi: "चंबा के किस রাজা ने पहली बार 'वर्मन' प्रत्यय का इस्तेमाल किया था?", aHi: "आदित्य वर्मन।", qEn: "Which king of Chamba used the suffix 'Varman' for the first time?", aEn: "Aditya Varman." },
         { id: 278, qHi: "बैजनाथ के 'शिव मंदिर' का निर्माण किन दो व्यापारियों ने करवाया था?", aHi: "अहुका और मन्युका ने।", qEn: "The 'Shiva Temple' of Baijnath was built by which two merchants?", aEn: "Ahuka and Manyuka." },
         { id: 279, qHi: "'सुजानपुर टीरा' ऐतिहासिक किला किस जिले में स्थित है?", aHi: "हमीरपुर।", qEn: "In which district is the 'Sujanpur Tira' historical fort situated?", aEn: "Hamirpur." },
         { id: 280, qHi: "हिमाचल प्रदेश में किस नदी को \"सोने की नदी\" (River of Gold) भी कहा जाता है?", aHi: "चिनाब / चंद्रभागा।", qEn: "Which river is also known as the 'River of Gold' in Himachal Pradesh?", aEn: "Chenab (Chandra-Bhaga)." },
