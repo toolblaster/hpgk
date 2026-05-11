@@ -141,6 +141,9 @@
             box-shadow: var(--glass-shadow);
         }
 
+        /* ==========================================================================
+           MAIN LAYOUT FIX: Bounding inner containers to match Global Header exactly
+           ========================================================================== */
         main { 
             flex: 1; 
             width: 100%; 
@@ -148,66 +151,152 @@
             box-sizing: border-box; 
         }
 
-        .page-layout { 
+        .page-layout, .top-meta-bar, .seo-content-wrapper { 
             width: 100%; 
             max-width: var(--site-width); 
             margin: 0 auto; 
             padding: 0 15px; 
             box-sizing: border-box;
-            display: block !important;
+            display: block !important; /* Forces vertical stacking */
         }
 
-        .top-meta-bar { display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: var(--site-width); margin: 0 auto 5px auto; padding: 0 15px; flex-wrap: nowrap; gap: 10px; box-sizing: border-box; }
+        @media (max-width: 480px) {
+            .page-layout, .top-meta-bar, .seo-content-wrapper {
+                padding: 0 12px !important;
+            }
+        }
+
+        /* Top Bar & Breadcrumbs EXACT MATCH */
+        .top-meta-bar { 
+            display: flex !important;
+            justify-content: space-between; 
+            align-items: center; 
+            margin: 0 auto 5px auto; /* 5px exact margin */
+            flex-wrap: nowrap; 
+            gap: 10px; 
+        }
+
         .breadcrumb-nav { margin: 0; flex-shrink: 1; display: flex; align-items: center; height: 24px; }
-        .breadcrumb-list { list-style: none; padding: 0 10px; margin: 0; display: flex; flex-wrap: nowrap; align-items: center; gap: 4px; background: var(--card-bg); border-radius: 12px; border: 1px solid var(--card-border); backdrop-filter: blur(8px); box-shadow: var(--glass-shadow); height: 100%; box-sizing: border-box; }
+        .breadcrumb-list { 
+            list-style: none; padding: 0 10px; margin: 0; display: flex; flex-wrap: nowrap; 
+            align-items: center; gap: 4px; background: rgba(255, 255, 255, 0.65); border-radius: 12px; 
+            border: 1px solid rgba(255, 255, 255, 0.5); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); 
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05); height: 100%; box-sizing: border-box;
+        }
+        [data-theme="dark"] .breadcrumb-list { 
+            background: rgba(30, 41, 59, 0.5); 
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2); 
+        }
         .breadcrumb-item { font-size: 0.6rem; font-weight: 600; color: var(--text-sec); display: flex; align-items: center; white-space: nowrap; height: 100%; }
         .breadcrumb-item a { color: var(--text-sec); text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 4px; }
         .breadcrumb-item a:hover { color: var(--primary); }
         .breadcrumb-item.active { color: var(--primary); pointer-events: none; }
         .breadcrumb-separator { font-size: 0.55rem; color: var(--text-sec); opacity: 0.6; margin: 0 2px; }
 
-        /* ==========================================================================
-           COMPACT HERO SECTION
-           ========================================================================== */
+        .hero-badge { 
+            display: inline-flex; align-items: center; justify-content: center; height: 24px; 
+            background: var(--primary-light); color: var(--primary); padding: 0 10px; 
+            border-radius: 12px; font-size: 0.6rem; font-weight: 700; text-transform: uppercase; 
+            margin: 0; border: 1px solid var(--primary); letter-spacing: 0.5px; white-space: nowrap; 
+            flex-shrink: 0; box-sizing: border-box;
+        }
+
+        /* COMPACT HERO SECTION EXACT MATCH */
         .page-header-top { 
             text-align: center; 
             margin-bottom: 25px; 
-            margin-top: 10px; 
+            margin-top: 0; 
             padding-top: 0; 
             width: 100%; 
         }
-
-        .hp-main-title {
-            font-family: 'Inter', sans-serif !important;
-            font-size: 32px !important; 
-            font-weight: 900 !important;
-            margin: 0 0 8px 0 !important; 
-            line-height: 1.2 !important;
-            letter-spacing: -0.5px !important;
-            color: var(--text-main) !important;
-            text-align: center !important; 
+        
+        .hero-title { 
+            margin: 0 0 8px 0; 
+            letter-spacing: -0.8px; 
             background: linear-gradient(135deg, var(--text-main) 0%, var(--primary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            color: var(--primary); 
+            font-size: 32px; 
+            font-weight: 800;
+            line-height: 1.2;
         }
 
-        .hp-hero-desc {
-            font-size: 0.95rem;
-            color: var(--text-sec);
-            line-height: 1.5;
+        .hero-desc { 
+            font-size: 14px !important; 
+            color: var(--text-sec); 
+            line-height: 1.6; 
             margin: 0 auto; 
-            max-width: 650px;
-            text-align: center;
+            max-width: 650px; 
+            font-weight: 500;
+        }
+        
+        .hero-desc span.hi-desc { 
+            font-family: 'Noto Sans Devanagari', sans-serif; 
+            font-size: 0.85rem; 
+            color: var(--text-sec); 
+            display: block; 
+            margin-top: 4px; 
         }
 
-        /* --- TRUST PILLARS --- */
-        .trust-pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 10px; margin: 0 auto 25px auto; max-width: var(--site-width); padding: 0 15px;}
-        .trust-pillar-card { border-radius: var(--radius-md); padding: 10px 15px; display: flex; align-items: center; gap: 12px; }
-        .trust-pillar-icon { background: var(--input-bg); color: var(--primary); width: 38px; height: 38px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; border: 1px solid var(--card-border); }
-        .trust-pillar-text { display: flex; flex-direction: column; gap: 2px; }
-        .trust-pillar-text h3 { margin: 0; font-size: 0.85rem; font-weight: 800; color: var(--text-main); }
-        .trust-pillar-text p { margin: 0; font-size: 0.75rem; color: var(--text-sec); line-height: 1.3; font-weight: 500;}
+        /* --- TRUST PILLARS (COMPACT & EYE-CATCHING) --- */
+        .trust-pillars { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            gap: 10px; 
+            margin: 0 auto 20px auto; 
+            max-width: var(--site-width); 
+            padding: 0 15px;
+        }
+        .trust-pillar-card { 
+            border-radius: var(--radius-md); 
+            padding: 8px 12px; 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+            background: rgba(255, 255, 255, 0.3); /* Lighter background to blend */
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: none; /* Removed shadow to flatten */
+        }
+        [data-theme="dark"] .trust-pillar-card {
+            background: rgba(30, 41, 59, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .trust-pillar-icon { 
+            background: var(--input-bg); 
+            color: var(--primary); 
+            width: 32px; 
+            height: 32px; 
+            border-radius: 8px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 0.85rem; 
+            flex-shrink: 0; 
+            border: 1px solid var(--card-border); 
+        }
+        .trust-pillar-text { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 1px; 
+        }
+        .trust-pillar-text h3 { 
+            margin: 0; 
+            font-size: 0.75rem; 
+            font-weight: 800; 
+            color: var(--text-main); 
+            text-transform: uppercase; 
+            letter-spacing: 0.3px;
+        }
+        .trust-pillar-text p { 
+            margin: 0; 
+            font-size: 0.65rem; 
+            color: var(--text-sec); 
+            line-height: 1.2; 
+            font-weight: 500;
+        }
 
         /* --- SERIES GRID (COMPACT 3-COLUMN) --- */
         .series-grid {
@@ -239,7 +328,7 @@
             border: 1px solid var(--card-border);
             box-shadow: var(--glass-shadow);
             border-radius: var(--radius-lg); 
-            padding: 15px;
+            padding: 12px 14px; /* More vertically compact */
             text-decoration: none; 
             color: var(--text-main); 
             transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
@@ -254,47 +343,54 @@
         }
         [data-theme="dark"] .series-card:hover { border-color: rgba(96, 165, 250, 0.4); }
 
+        .sc-header { 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+            margin-bottom: 8px; 
+        }
+
         .sc-icon-wrapper {
-            width: 42px;
-            height: 42px;
-            border-radius: 10px;
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.25rem;
-            margin-bottom: 12px;
+            font-size: 0.9rem;
+            flex-shrink: 0;
         }
 
         .sc-title {
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 800;
-            margin: 0 0 6px 0;
+            margin: 0;
             color: var(--text-main);
             font-family: 'Inter', sans-serif;
             line-height: 1.2;
         }
 
         .sc-desc {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: var(--text-sec);
-            margin: 0 0 12px 0;
-            line-height: 1.4;
+            margin: 0 0 10px 0;
+            line-height: 1.35;
             flex-grow: 1;
         }
 
         .sc-stats {
             display: flex;
-            gap: 8px;
-            margin-bottom: 12px;
+            gap: 6px;
+            margin-bottom: 10px;
             flex-wrap: wrap;
         }
 
         .sc-stat-pill {
             background: var(--input-bg);
             border: 1px solid var(--card-border);
-            padding: 3px 8px;
-            border-radius: 6px;
-            font-size: 0.65rem;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.6rem;
             font-weight: 700;
             color: var(--text-body);
             display: flex;
@@ -306,10 +402,10 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border-top: 1px solid var(--card-border);
-            padding-top: 12px;
+            border-top: 1px dashed var(--card-border);
+            padding-top: 10px;
             font-weight: 700;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: var(--primary);
         }
         
@@ -317,23 +413,6 @@
             transform: translateX(4px);
             transition: transform 0.2s ease;
         }
-
-        .sc-live-badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: rgba(16, 185, 129, 0.1);
-            color: var(--success);
-            border: 1px solid rgba(16, 185, 129, 0.2);
-            padding: 3px 8px;
-            border-radius: 20px;
-            font-size: 0.65rem;
-            font-weight: 800;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-        .sc-live-badge i { font-size: 0.5rem; }
 
         /* --- Minimal Modern SEO Content --- */
         .seo-content-wrapper { 
@@ -390,16 +469,20 @@
         .seo-block p { margin: 0; font-size: 0.85rem; line-height: 1.5; color: var(--text-body); }
         .seo-block p strong { color: var(--text-main); font-weight: 700; }
 
-        @media (min-width: 768px) { .seo-prose { column-count: 2; column-gap: 25px; } }
+        /* Mobile Overrides EXACT MATCH */
         @media (max-width: 600px) {
-            .page-layout { padding: 0 12px !important; }
-            .page-header-top { margin-top: 0; margin-bottom: 15px; }
-            .hp-main-title { font-size: 26px !important; font-weight: 800 !important; }
-            .hp-hero-desc { font-size: 0.85rem; }
-            .trust-pillars { grid-template-columns: 1fr; gap: 8px; margin-bottom: 20px;}
+            .page-header-top { margin-top: 15px; margin-bottom: 15px; padding-top: 0; }
+            .hero-title { font-size: 24px !important; white-space: normal; padding: 0 10px; line-height: 1.2; margin-bottom: 6px !important; }
+            .hero-desc { font-size: 13px !important; line-height: 1.4; padding: 0 5px; }
+            
+            .trust-pillars { grid-template-columns: 1fr; gap: 8px; margin-bottom: 20px; padding: 0 12px;}
+            .trust-pillar-card { padding: 6px 10px; gap: 8px; }
+            .series-card { padding: 10px 12px; }
             .seo-prose { column-count: 1; }
             .seo-block { padding: 12px; margin-bottom: 15px; }
         }
+        
+        @media (min-width: 768px) { .seo-prose { column-count: 2; column-gap: 25px; } }
     </style>
 
     <!-- Theme Initialization Script -->
@@ -422,41 +505,42 @@
 <main>
     <div class="top-meta-bar">
         <nav aria-label="breadcrumb" class="breadcrumb-nav">
-            <ol class="breadcrumb-list glass-panel">
+            <ol class="breadcrumb-list">
                 <li class="breadcrumb-item"><a href="../"><i class="fa-solid fa-house"></i> Home</a></li>
                 <li class="breadcrumb-separator"><i class="fa-solid fa-chevron-right"></i></li>
                 <li class="breadcrumb-item active" aria-current="page">Mock Test Series</li>
             </ol>
         </nav>
+        <span class="hero-badge">Mock Tests</span>
     </div>
 
     <div class="page-layout">
         <!-- Compact Uniform Hero Section -->
         <div class="page-header-top">
-            <h1 class="hp-main-title">HP Full Mock Test Series Hub</h1>
-            <p class="hp-hero-desc">
+            <h1 class="hero-title">HP Full Mock Test Series Hub</h1>
+            <p class="hero-desc">
                 Experience real exam pressure with our premium, strictly syllabus-aligned full-length mock tests and official Previous Year Papers (PYPs).
             </p>
         </div>
     </div>
 
-    <!-- Trust Pillars -->
+    <!-- Trust Pillars (Compact & Eye-catching) -->
     <div class="trust-pillars">
-        <div class="trust-pillar-card glass-panel">
+        <div class="trust-pillar-card">
             <div class="trust-pillar-icon"><i class="fa-solid fa-language"></i></div>
             <div class="trust-pillar-text">
                 <h3>Bilingual Format</h3>
                 <p>Questions simultaneously in English & Hindi.</p>
             </div>
         </div>
-        <div class="trust-pillar-card glass-panel">
+        <div class="trust-pillar-card">
             <div class="trust-pillar-icon"><i class="fa-solid fa-stopwatch"></i></div>
             <div class="trust-pillar-text">
                 <h3>Real Interface</h3>
                 <p>Simulates exact timer and negative marking.</p>
             </div>
         </div>
-        <div class="trust-pillar-card glass-panel">
+        <div class="trust-pillar-card">
             <div class="trust-pillar-icon"><i class="fa-solid fa-chart-pie"></i></div>
             <div class="trust-pillar-text">
                 <h3>Detailed Analytics</h3>
@@ -471,11 +555,12 @@
             
             <!-- Patwari Series -->
             <a href="hp-patwari-mock/" class="series-card">
-                <div class="sc-live-badge"><i class="fa-solid fa-circle"></i> Live</div>
-                <div class="sc-icon-wrapper" style="background: rgba(37, 99, 235, 0.1); color: var(--primary);">
-                    <i class="fa-solid fa-file-signature"></i>
+                <div class="sc-header">
+                    <div class="sc-icon-wrapper" style="background: rgba(37, 99, 235, 0.1); color: var(--primary);">
+                        <i class="fa-solid fa-file-signature"></i>
+                    </div>
+                    <h3 class="sc-title">HP Patwari Mock Series</h3>
                 </div>
-                <h3 class="sc-title">HP Patwari Mock Series</h3>
                 <p class="sc-desc">120 Questions pattern. Covers Arithmetic, Hindi, English, and General Knowledge perfectly aligned with syllabus.</p>
                 <div class="sc-stats">
                     <span class="sc-stat-pill"><i class="fa-solid fa-clipboard-list" style="color:var(--primary);"></i> 12 Mocks</span>
@@ -488,11 +573,12 @@
 
             <!-- Police Constable Series -->
             <a href="hp-police-constable-mock/" class="series-card">
-                <div class="sc-live-badge"><i class="fa-solid fa-circle"></i> Live</div>
-                <div class="sc-icon-wrapper" style="background: rgba(16, 185, 129, 0.1); color: var(--success);">
-                    <i class="fa-solid fa-shield-halved"></i>
+                <div class="sc-header">
+                    <div class="sc-icon-wrapper" style="background: rgba(16, 185, 129, 0.1); color: var(--success);">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h3 class="sc-title">HP Police Constable Series</h3>
                 </div>
-                <h3 class="sc-title">HP Police Constable Series</h3>
                 <p class="sc-desc">90 Questions latest pattern. Test your accuracy in GK, Hindi, English, Math/Science, and Reasoning with negative marking.</p>
                 <div class="sc-stats">
                     <span class="sc-stat-pill"><i class="fa-solid fa-clipboard-list" style="color:var(--success);"></i> 10 Mocks</span>
@@ -505,11 +591,12 @@
 
             <!-- HRTC Conductor Series -->
             <a href="hp-hrtc-conductor-mock/" class="series-card">
-                <div class="sc-live-badge"><i class="fa-solid fa-circle"></i> Live</div>
-                <div class="sc-icon-wrapper" style="background: rgba(139, 92, 246, 0.1); color: var(--accent);">
-                    <i class="fa-solid fa-bus"></i>
+                <div class="sc-header">
+                    <div class="sc-icon-wrapper" style="background: rgba(139, 92, 246, 0.1); color: var(--accent);">
+                        <i class="fa-solid fa-bus"></i>
+                    </div>
+                    <h3 class="sc-title">HP HRTC Conductor Series</h3>
                 </div>
-                <h3 class="sc-title">HP HRTC Conductor Series</h3>
                 <p class="sc-desc">100 Questions pattern. Specialized mocks featuring First Aid, Motor Vehicle Act, IT Tools, and Core GK.</p>
                 <div class="sc-stats">
                     <span class="sc-stat-pill"><i class="fa-solid fa-clipboard-list" style="color:var(--accent);"></i> 12 Mocks</span>
