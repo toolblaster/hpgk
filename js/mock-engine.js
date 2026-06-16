@@ -195,7 +195,8 @@ const engine = (function() {
                         </div>
                         <h2 style="margin: 0 0 10px 0; font-size: 1.4rem; color: #0f172a; font-weight: 900;">Unlock Mock Master</h2>
                         <p style="font-size: 0.85rem; color: #475569; margin-bottom: 20px; line-height: 1.5;">Upgrade to the <strong>Mock Master Pass</strong> to unlock all premium full-length mock tests, Official PYQs, and detailed analytics.</p>
-                        <div style="font-size: 2.2rem; font-weight: 900; color: #0f172a; margin-bottom: 20px; letter-spacing: -1px;">₹149<span style="font-size: 1rem; color: #64748b; font-weight: 600;">/mo</span></div>
+                        <!-- 🔥 UPDATED PRICE TO ₹89 -->
+                        <div style="font-size: 2.2rem; font-weight: 900; color: #0f172a; margin-bottom: 20px; letter-spacing: -1px;">₹89<span style="font-size: 1rem; color: #64748b; font-weight: 600;">/mo</span></div>
                         <button onclick="window.location.href='../user/upgrade.html'" style="width: 100%; background: #10b981; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: 800; font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 15px; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3); transition: 0.2s;">
                             <i class="fa-solid fa-rocket"></i> Get Mock Master Pass
                         </button>
