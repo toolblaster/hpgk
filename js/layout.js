@@ -49,7 +49,7 @@ function initMobileMenu() {
                     </a>
                     <a href="${SiteConfig.root}/hp-exam-full-mock-test/" class="menu-link">
                         <div class="menu-icon" style="color: #3b82f6;"><i class="fa-solid fa-file-signature"></i></div>
-                        <span>Mock Tests</span>
+                        <span>HP Mock Tests</span>
                     </a>
                     <a href="${SiteConfig.root}/himachal-pradesh-gk/" class="menu-link">
                         <div class="menu-icon"><i class="fa-solid fa-layer-group"></i></div>
@@ -57,7 +57,7 @@ function initMobileMenu() {
                     </a>
                     <a href="${SiteConfig.root}/study-notes/" class="menu-link">
                         <div class="menu-icon"><i class="fa-solid fa-book-open"></i></div>
-                        <span>Study Notes</span>
+                        <span>HP Study Notes</span>
                     </a>
                     <a href="${SiteConfig.root}/agriculture-quiz/" class="menu-link">
                         <div class="menu-icon icon-green"><i class="fa-solid fa-seedling"></i></div>
