@@ -1,10 +1,8 @@
 /**
  * --------------------------------------------------------------------------
- * HPGK MOCK TEST ENGINE (TCS/NTA Style Master Logic - PHASE 7 FINAL)
+ * HPGK MOCK TEST ENGINE (TCS/NTA Style Master Logic - SECURE STORAGE EDITION)
  * Includes Score Calculation, Detailed Analytics & Firebase DB Sync
  * Compact UI Updates, Production Paywall Fixes, Custom Watermark & Summary Mode
- * 🔥 Subject-wise Advanced Analytics Table & Desktop Layout
- * 🚀 FIXED: Auto-Attaches functionality to "Re-Attempt" button in Results Panel
  * --------------------------------------------------------------------------
  */
 
@@ -168,7 +166,7 @@ const engine = (function() {
             document.getElementById('ui-user-name').innerText = userName;
 
             const avatarImg = document.getElementById('ui-user-avatar');
-            if(userPhoto) {
+            if (userPhoto) {
                 avatarImg.src = userPhoto;
                 avatarImg.onerror = function() {
                     this.src = 'https://ui-avatars.com/api/?name=' + encodeURIComponent(userName) + '&background=cbd5e1';
@@ -195,7 +193,6 @@ const engine = (function() {
                         </div>
                         <h2 style="margin: 0 0 10px 0; font-size: 1.4rem; color: #0f172a; font-weight: 900;">Unlock Mock Master</h2>
                         <p style="font-size: 0.85rem; color: #475569; margin-bottom: 20px; line-height: 1.5;">Upgrade to the <strong>Mock Master Pass</strong> to unlock all premium full-length mock tests, Official PYQs, and detailed analytics.</p>
-                        <!-- 🔥 UPDATED PRICE TO ₹89 -->
                         <div style="font-size: 2.2rem; font-weight: 900; color: #0f172a; margin-bottom: 20px; letter-spacing: -1px;">₹89<span style="font-size: 1rem; color: #64748b; font-weight: 600;">/mo</span></div>
                         <button onclick="window.location.href='../user/upgrade.html'" style="width: 100%; background: #10b981; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: 800; font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 15px; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3); transition: 0.2s;">
                             <i class="fa-solid fa-rocket"></i> Get Mock Master Pass
@@ -227,35 +224,39 @@ const engine = (function() {
         return new Promise(resolve => {
             let attempts = 0;
             const check = setInterval(async () => {
-                if (window.HPGK_User && (window.HPGK_User.isLoggedIn === true || window.HPGK_User.uid)) {
-                    clearInterval(check); resolve(true); return;
-                }
-                
                 try {
                     const { getApps, getApp } = await import("https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js");
                     if (getApps().length > 0) {
-                        clearInterval(check); 
                         const app = getApp();
                         const { getAuth, onAuthStateChanged } = await import("https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js");
                         const auth = getAuth(app);
                         
+                        if (auth.currentUser) {
+                            clearInterval(check);
+                            window.HPGK_User = window.HPGK_User || {};
+                            window.HPGK_User.isLoggedIn = true;
+                            window.HPGK_User.uid = auth.currentUser.uid;
+                            window.HPGK_User.displayName = auth.currentUser.displayName;
+                            window.HPGK_User.photoURL = auth.currentUser.photoURL;
+                            resolve(true);
+                            return;
+                        }
+                        
                         onAuthStateChanged(auth, (user) => {
                             if (user) {
+                                clearInterval(check);
                                 window.HPGK_User = window.HPGK_User || {};
                                 window.HPGK_User.isLoggedIn = true;
                                 window.HPGK_User.uid = user.uid;
                                 window.HPGK_User.displayName = user.displayName;
                                 window.HPGK_User.photoURL = user.photoURL;
                                 resolve(true);
-                            } else {
-                                resolve(false);
                             }
                         });
-                        return; 
                     }
                 } catch(e) {}
 
-                if (++attempts > 50) {
+                if (++attempts > 40) {
                     clearInterval(check);
                     resolve(window.HPGK_User ? window.HPGK_User.isLoggedIn : false);
                 }
@@ -263,13 +264,20 @@ const engine = (function() {
         });
     }
 
-    function triggerFatalError(title, desc) {
-        DOM.secTitle.innerText = title;
-        DOM.secDesc.innerText = desc;
+    function triggerFatalError(title, desc, rawError = null) {
+        if (DOM.secTitle) DOM.secTitle.innerText = title;
+        if (DOM.secDesc) DOM.secDesc.innerText = desc;
+        
+        let debugBox = '';
+        if (rawError) {
+            debugBox = `<div style="margin-top:15px; padding:10px; background:#fef2f2; border:1px solid #fca5a5; color:#991b1b; font-size:0.75rem; border-radius:6px; max-width:450px; word-break:break-all; text-align:left; font-family:monospace;"><strong>Debug Info:</strong> ${rawError}</div>`;
+        }
+
         DOM.blocker.innerHTML = `
             <i class="fa-solid fa-lock" style="font-size: 3rem; color: #ef4444; margin-bottom: 15px;"></i>
             <h2 style="margin:0; font-size: 1.4rem; color: var(--text-main);">${title}</h2>
             <p style="font-size:0.9rem; color:var(--text-sec); margin-top: 10px; max-width: 400px;">${desc}</p>
+            ${debugBox}
             <button onclick="window.location.href='../user/dashboard.html'" style="margin-top:20px; padding: 10px 20px; background:var(--primary); color:white; border:none; border-radius:4px; font-weight:700; cursor:pointer;">Go to Dashboard</button>
         `;
         DOM.blocker.style.display = 'flex';
@@ -277,9 +285,48 @@ const engine = (function() {
 
     async function fetchTestData() {
         try {
-            const url = `../hp-exam-full-mock-test/${state.exam}/${state.testId}.json`;
-            const response = await fetch(url);
-            if (!response.ok) throw new Error(`File not found: ${url}`);
+            const { getApp } = await import("https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js");
+            const { getAuth } = await import("https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js");
+            const { getStorage, ref, getDownloadURL } = await import("https://www.gstatic.com/firebasejs/10.10.0/firebase-storage.js");
+            
+            const app = getApp();
+            const auth = getAuth(app);
+            
+            // 1. Ensure Firebase Auth token is actively bound to session if user logged in
+            if (auth.currentUser === null) {
+                await new Promise(res => {
+                    const unsub = auth.onAuthStateChanged(u => {
+                        unsub();
+                        res(u);
+                    });
+                    setTimeout(() => res(null), 2000);
+                });
+            }
+
+            // 2. Target bucket reference explicitly
+            const storage = getStorage(app, "gs://hpgk-quiz.firebasestorage.app");
+            
+            const cleanTestId = state.testId.endsWith('.json') ? state.testId : `${state.testId}.json`;
+            const filePath = `premium_mocks/${state.exam}/${cleanTestId}`;
+            const fileRef = ref(storage, filePath);
+
+            // 3. Fetch Authorized Download URL
+            let downloadUrl;
+            try {
+                downloadUrl = await getDownloadURL(fileRef);
+            } catch (storageErr) {
+                throw new Error(`Firebase Storage Error [${storageErr.code || 'UNKNOWN'}]: ${storageErr.message || storageErr} (Path: ${filePath})`);
+            }
+            
+            // 4. Download and parse JSON payload
+            let response;
+            try {
+                response = await fetch(downloadUrl);
+            } catch (netErr) {
+                throw new Error(`CORS or Network Fetch Error: ${netErr.message || netErr}. Check if Firebase Storage domain is blocked.`);
+            }
+
+            if (!response.ok) throw new Error(`HTTP Error ${response.status}: Could not read storage file ${filePath}`);
             
             const data = await response.json();
             
@@ -307,7 +354,7 @@ const engine = (function() {
                 state.questions = data.questions;
                 state.sections.push({ name: "General Section", startIdx: 0, endIdx: state.questions.length - 1, qCount: state.questions.length });
             } else {
-                throw new Error("No questions found in JSON");
+                throw new Error("No questions found in JSON payload");
             }
 
             totalMarks = state.questions.length; 
@@ -347,12 +394,14 @@ const engine = (function() {
             });
 
         } catch (error) {
-            triggerFatalError("Test Data Missing", "Could not load test data. Ensure the exam category and test ID are correct.");
+            console.error("Secure Storage Fetch Error:", error);
+            const errDetail = error.message || error;
+            triggerFatalError("Access Denied or Missing File", "Could not load test data. Ensure you have an active Mock Master Pass and are logged in.", errDetail);
         }
     }
 
     function handleInstLanguageChange(val) {
-        if(val) {
+        if (val) {
             state.language = val;
             DOM.instAgree.disabled = false; 
         } else {
@@ -407,7 +456,7 @@ const engine = (function() {
     }
 
     function renderSectionsUI() {
-        if(state.sections.length <= 1) {
+        if (state.sections.length <= 1) {
             DOM.sectionsBar.style.display = 'none';
             return;
         }
@@ -425,7 +474,7 @@ const engine = (function() {
         DOM.sectionsBar.innerHTML = html;
         
         const currentSec = state.sections.find(s => state.currentIndex >= s.startIdx && state.currentIndex <= s.endIdx);
-        if(currentSec) DOM.paletteTitle.innerText = currentSec.name;
+        if (currentSec) DOM.paletteTitle.innerText = currentSec.name;
     }
 
     function showSectionStats(event, secIdx) {
@@ -433,7 +482,7 @@ const engine = (function() {
         const sec = state.sections[secIdx];
         
         let ans = 0, notAns = 0, rev = 0, revAns = 0, notVis = 0;
-        for(let i = sec.startIdx; i <= sec.endIdx; i++) {
+        for (let i = sec.startIdx; i <= sec.endIdx; i++) {
             const s = state.responses[i].status;
             if (s === 'answered') ans++;
             else if (s === 'not-answered') notAns++;
@@ -454,7 +503,7 @@ const engine = (function() {
         DOM.sectionTooltip.style.top = (rect.bottom + 10) + 'px';
         
         let leftPos = rect.left;
-        if(leftPos + 240 > window.innerWidth) {
+        if (leftPos + 240 > window.innerWidth) {
             leftPos = window.innerWidth - 250;
         }
         DOM.sectionTooltip.style.left = leftPos + 'px';
@@ -463,7 +512,7 @@ const engine = (function() {
     function startExam() {
         DOM.instPanel.style.display = 'none';
         
-        if(state.language === 'en') {
+        if (state.language === 'en') {
             DOM.btnLangEn.classList.add('active'); DOM.btnLangHi.classList.remove('active');
         } else {
             DOM.btnLangHi.classList.add('active'); DOM.btnLangEn.classList.remove('active');
@@ -509,7 +558,7 @@ const engine = (function() {
 
     function changeLanguage(lang) {
         state.language = lang;
-        if(lang === 'en') {
+        if (lang === 'en') {
             DOM.btnLangEn.classList.add('active'); DOM.btnLangHi.classList.remove('active');
         } else {
             DOM.btnLangHi.classList.add('active'); DOM.btnLangEn.classList.remove('active');
@@ -577,10 +626,10 @@ const engine = (function() {
             const status = state.responses[i].status;
             let cssClass = '';
             
-            if(status === 'answered') { cssClass = 'answered'; ans++; }
-            else if(status === 'not-answered') { cssClass = 'not-answered'; notAns++; }
-            else if(status === 'review') { cssClass = 'review'; rev++; }
-            else if(status === 'review_answered') { cssClass = 'review-answered'; revAns++; }
+            if (status === 'answered') { cssClass = 'answered'; ans++; }
+            else if (status === 'not-answered') { cssClass = 'not-answered'; notAns++; }
+            else if (status === 'review') { cssClass = 'review'; rev++; }
+            else if (status === 'review_answered') { cssClass = 'review-answered'; revAns++; }
             else { notVis++; }
 
             const isCurrent = i === state.currentIndex ? 'box-shadow: 0 0 0 2px var(--text-main);' : '';
@@ -590,11 +639,11 @@ const engine = (function() {
 
         DOM.palette.innerHTML = html;
 
-        if(DOM.legAns) DOM.legAns.innerText = ans;
-        if(DOM.legNotAns) DOM.legNotAns.innerText = notAns;
-        if(DOM.legRev) DOM.legRev.innerText = rev;
-        if(DOM.legRevAns) DOM.legRevAns.innerText = revAns;
-        if(DOM.legNotVis) DOM.legNotVis.innerText = notVis;
+        if (DOM.legAns) DOM.legAns.innerText = ans;
+        if (DOM.legNotAns) DOM.legNotAns.innerText = notAns;
+        if (DOM.legRev) DOM.legRev.innerText = rev;
+        if (DOM.legRevAns) DOM.legRevAns.innerText = revAns;
+        if (DOM.legNotVis) DOM.legNotVis.innerText = notVis;
     }
 
     function selectOption(idx) {
@@ -705,11 +754,11 @@ const engine = (function() {
             let sTot = sec.qCount;
             let sAtt = 0, sCorr = 0, sWro = 0;
             
-            for(let i = sec.startIdx; i <= sec.endIdx; i++) {
+            for (let i = sec.startIdx; i <= sec.endIdx; i++) {
                 let ans = state.responses[i].selected;
-                if(ans !== null && ans !== undefined) {
+                if (ans !== null && ans !== undefined) {
                     sAtt++;
-                    if(ans === state.questions[i].answer) sCorr++;
+                    if (ans === state.questions[i].answer) sCorr++;
                     else sWro++;
                 }
             }
@@ -796,26 +845,18 @@ const engine = (function() {
         return html;
     }
 
-    // 🔥 NEW: Auto-Attaches the Re-Attempt functionality to buttons found in the UI
     function attachReattemptListeners() {
         const buttons = document.querySelectorAll('button');
         buttons.forEach(btn => {
             const btnText = btn.innerText.toLowerCase();
-            // Looks for buttons that contain "re-attempt" or "reattempt"
             if (btnText.includes('re-attempt') || btnText.includes('reattempt')) {
-                // Ensure we don't attach multiple times
                 btn.onclick = null; 
                 btn.onclick = function() {
-                    const confirmation = confirm("Are you sure you want to re-attempt this test?\\n\\nThis will clear your current progress and start a fresh test.");
+                    const confirmation = confirm("Are you sure you want to re-attempt this test?\n\nThis will clear your current progress and start a fresh test.");
                     if (confirmation) {
-                        // 1. Clear Local Browser Cache
                         localStorage.removeItem(`mock_history_${state.testId}`);
-                        
-                        // 2. Remove 'mode=summary' from the URL so it loads a fresh exam
                         const currentUrl = new URL(window.location.href);
                         currentUrl.searchParams.delete('mode');
-                        
-                        // 3. Reload Page
                         window.location.href = currentUrl.toString();
                     }
                 };
@@ -833,7 +874,6 @@ const engine = (function() {
 
         injectAdvancedResultStyles();
 
-        // Hide duplicate "Detailed Solutions" headings if they exist in the HTML template
         const headings = DOM.resultPanel.querySelectorAll('h2, h3, h4');
         headings.forEach(h => {
             if (h.innerText.toLowerCase().includes('detailed')) {
@@ -861,8 +901,6 @@ const engine = (function() {
         `;
         
         DOM.resultPanel.style.display = 'flex';
-        
-        // 🔥 Trigger the Auto-Attach logic for Re-Attempt buttons
         attachReattemptListeners();
     }
 
