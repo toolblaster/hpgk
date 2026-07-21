@@ -1,9 +1,7 @@
 /**
  * Layout Manager for HPGK
  * Handles global Header, Footer, Theme logic, Back to Top, Google Auth, and Mobile Menu.
- * 🔥 UPDATED: Zero CLS (Cumulative Layout Shift) with Premium Skeleton Loading UI
- * 🚀 UPDATED: Cleaned up Google Login button hover state & updated modal copy
- * 📱 UPDATED: Compact Mobile Menu with Mock Tests link & Admin Control Room link
+ * 🔥 UPDATED: Legal links pointing to /user/legal/ folder structure
  */
 
 const SiteConfig = {
@@ -30,7 +28,6 @@ function initMobileMenu() {
                     </div>
                 </a>
                 <div style="display:flex; align-items:center; gap:12px;">
-                    <!-- Theme Toggle shifted left with increased gap -->
                     <button class="theme-icon-btn" id="mobileThemeBtn" onclick="toggleTheme()" title="Toggle Theme" aria-label="Toggle Theme">
                         <i class="fa-solid fa-moon"></i>
                     </button>
@@ -79,7 +76,6 @@ function initMobileMenu() {
                         <div class="menu-icon" style="color: #ef4444;"><i class="fa-solid fa-crown"></i></div>
                         <span>Pricing & Subscription</span>
                     </a>
-                    <!-- 🛡️ SUPER ADMIN CONTROL ROOM DIRECT LINK -->
                     <a href="${SiteConfig.root}/user/admin.html" class="menu-link">
                         <div class="menu-icon" style="color: #3b82f6;"><i class="fa-solid fa-server"></i></div>
                         <span>Admin Control Room</span>
@@ -95,7 +91,6 @@ function initMobileMenu() {
 
     const menuCSS = `
         <style>
-            /* Overlay Background */
             .mobile-menu-overlay {
                 position: fixed; top: 0; left: 0; right: 0; bottom: 0;
                 background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
@@ -103,7 +98,6 @@ function initMobileMenu() {
             }
             .mobile-menu-overlay.show { opacity: 1; pointer-events: auto; }
 
-            /* Side Menu Panel */
             .mobile-side-menu {
                 position: fixed; top: 0; right: 0; bottom: 0;
                 width: 320px; max-width: 85vw;
@@ -120,7 +114,6 @@ function initMobileMenu() {
             
             .mobile-side-menu.open { transform: translateX(0); }
 
-            /* Header inside menu */
             .side-menu-header {
                 padding: 12px 15px; display: flex; justify-content: space-between; align-items: center;
                 border-bottom: 1px solid var(--card-border); background: rgba(37, 99, 235, 0.02);
@@ -135,7 +128,6 @@ function initMobileMenu() {
             .close-menu-btn:hover { background: #ef4444; color: white; border-color: #ef4444; transform: rotate(90deg); }
             .theme-icon-btn:hover { background: var(--primary); color: white; border-color: var(--primary); transform: translateY(-2px); box-shadow: 0 4px 10px rgba(37,99,235,0.2); }
 
-            /* Content & Links */
             .side-menu-content { padding: 12px 15px; overflow-y: auto; flex: 1; }
             .menu-section { margin-bottom: 15px; }
             .menu-label {
@@ -158,7 +150,6 @@ function initMobileMenu() {
             }
             [data-theme="dark"] .menu-link:hover { border-color: rgba(96, 165, 250, 0.1); }
             
-            /* Custom Icon Colors */
             .icon-primary { color: var(--primary); }
             .icon-green { color: #10b981; }
             .icon-purple { color: #8b5cf6; }
@@ -185,7 +176,6 @@ function initMobileMenu() {
 
     document.body.insertAdjacentHTML('beforeend', menuHTML + menuCSS);
     
-    // Initial sync of the mobile theme icon
     const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
     const mobileBtn = document.getElementById('mobileThemeBtn');
     if (mobileBtn) {
@@ -193,7 +183,6 @@ function initMobileMenu() {
     }
 }
 
-// Mobile Menu Toggle Logic
 window.toggleMobileMenu = function() {
     const menu = document.getElementById('mobileSideMenu');
     const overlay = document.getElementById('mobileMenuOverlay');
@@ -215,8 +204,9 @@ window.toggleMobileMenu = function() {
 function initLoginModal() {
     if (document.getElementById('saasLoginModal')) return;
 
-    const termsUrl = `${SiteConfig.root}/legal/terms.html`;
-    const privacyUrl = `${SiteConfig.root}/legal/privacy.html`;
+    // Updated paths pointing to /user/legal/
+    const termsUrl = `${SiteConfig.root}/user/legal/terms.html`;
+    const privacyUrl = `${SiteConfig.root}/user/legal/privacy.html`;
 
     const modalHTML = `
         <div id="saasLoginModal" class="login-modal-overlay" onclick="if(event.target === this) closeLoginModal()">
@@ -558,9 +548,9 @@ function renderFooter(rootPath = '.') {
                 <div class="footer-bottom-row">
                     <span>&copy; ${currentYear} hpgk.toolblaster.com</span>
                     <div class="footer-legal-links">
-                        <a href="${SiteConfig.root}/legal/about.html" class="footer-legal-link">About</a>
-                        <a href="${SiteConfig.root}/legal/privacy.html" class="footer-legal-link">Privacy</a>
-                        <a href="${SiteConfig.root}/legal/terms.html" class="footer-legal-link">Terms</a>
+                        <a href="${SiteConfig.root}/user/legal/about.html" class="footer-legal-link">About</a>
+                        <a href="${SiteConfig.root}/user/legal/privacy.html" class="footer-legal-link">Privacy</a>
+                        <a href="${SiteConfig.root}/user/legal/terms.html" class="footer-legal-link">Terms</a>
                     </div>
                 </div>
             </div>
