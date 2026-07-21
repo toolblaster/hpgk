@@ -939,9 +939,18 @@
             let waMsg = encodeURIComponent(`Hi ${u.name}, regarding your HPGK Quiz platform account (UID: ${u.uid})...`);
             let waBtn = `<a href="https://wa.me/?text=${waMsg}" target="_blank" class="btn-action btn-wa" title="Open direct WhatsApp support chat with pre-filled message"><i class="fa-brands fa-whatsapp"></i> Chat</a>`;
 
+            // ⚡ SMART +7d BUTTON: Active only if user is Pro, disabled greyed out if Free user
+            let quickExtBtn = u.isPro 
+                ? `<button class="btn-action btn-quick-ext" title="Instantly grant +7 Days extension to Mock Master Pass" onclick="quickExtendUser('${u.uid}', 7)"><i class="fa-solid fa-bolt"></i> +7d</button>`
+                : `<button class="btn-action btn-quick-ext" style="opacity:0.35; cursor:not-allowed;" title="Cannot extend: User has no active pass. Use Grant button instead." disabled><i class="fa-solid fa-bolt"></i> +7d</button>`;
+
+            // 🪄 QUICK GRANT BUTTON: Auto-fills UID into Command Center & switches tab
+            let quickGrantBtn = `<button class="btn-action" style="background:rgba(245,158,11,0.15); color:var(--warning);" title="Auto-fill UID in Command Center for pass allocation" onclick="quickSelectUserForGrant('${u.uid}')"><i class="fa-solid fa-wand-magic-sparkles"></i> Grant</button>`;
+
             let actionBtns = `
                 <button class="btn-action btn-inspect" title="Inspect score history & save private support notes" onclick="inspectUser('${u.uid}')"><i class="fa-solid fa-magnifying-glass"></i> Inspect</button>
-                <button class="btn-action btn-quick-ext" title="Instantly grant +7 Days extension to Mock Master Pass" onclick="quickExtendUser('${u.uid}', 7)"><i class="fa-solid fa-bolt"></i> +7d</button>
+                ${quickExtBtn}
+                ${quickGrantBtn}
                 ${waBtn}
             `;
             
@@ -971,6 +980,24 @@
             </tr>`;
         });
         tbody.innerHTML = html;
+    };
+
+    // 🪄 1-CLICK AUTO-FILL UID FOR GRANTING PASS
+    window.quickSelectUserForGrant = function(uid) {
+        document.getElementById('grant-uid').value = uid;
+        const commandTab = document.querySelectorAll('.nav-item')[0];
+        if (window.switchTab) window.switchTab('overview', commandTab);
+        
+        const uidInput = document.getElementById('grant-uid');
+        if (uidInput) {
+            uidInput.focus();
+            uidInput.style.borderColor = 'var(--warning)';
+            uidInput.style.boxShadow = '0 0 10px rgba(245,158,11,0.5)';
+            setTimeout(() => {
+                uidInput.style.borderColor = '';
+                uidInput.style.boxShadow = '';
+            }, 2500);
+        }
     };
 
     // RENDER TRANSACTION TABLE
