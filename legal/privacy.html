@@ -7,32 +7,34 @@
     <meta name="description" content="Read the Privacy Policy for HPGK Quiz. Learn how we protect your data, use local storage, and prioritize privacy while you prepare for exams.">
     
     <!-- Canonical Link -->
-    <link rel="canonical" href="https://hpgk.toolblaster.com/legal/privacy.html">
+    <link rel="canonical" href="https://hpgk.toolblaster.com/user/legal/privacy.html">
 
-    <!-- Assets (Favicon paths pointing to js/favicon) -->
-    <link rel="apple-touch-icon" sizes="180x180" href="../js/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="../js/favicon/web-app-manifest-512x512.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="../js/favicon/web-app-manifest-192x192.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="../js/favicon/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="48x48" href="../js/favicon/favicon-48x48.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../js/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../js/favicon/favicon-16x16.png">
-    <link rel="manifest" href="../js/favicon/site.webmanifest">
-    <link rel="shortcut icon" href="../js/favicon/favicon.ico">
+    <!-- Assets (Favicon paths pointing to js/favicon relative to user/legal/) -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../../js/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="../../js/favicon/web-app-manifest-512x512.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../../js/favicon/web-app-manifest-192x192.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="../../js/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="../../js/favicon/favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../js/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../js/favicon/favicon-16x16.png">
+    <link rel="manifest" href="../../js/favicon/site.webmanifest">
+    <link rel="shortcut icon" href="../../js/favicon/favicon.ico">
     <meta name="msapplication-TileColor" content="#2563eb">
     <meta name="theme-color" content="#ffffff">
 
     <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Noto+Sans+Devanagari:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Load Global Style First -->
-    <link rel="stylesheet" href="../js/style.css">
+    <link rel="stylesheet" href="../../js/style.css">
 
     <!-- Premium Glassmorphism Stylesheet for Legal Pages (Compact Version) -->
     <style>
         :root {
-            --primary: #2563eb;       
+            --primary: #2563eb;        
             --primary-hover: #1d4ed8; 
             --primary-light: rgba(37, 99, 235, 0.1); 
             --primary-dark: #1e3a8a;  
@@ -54,7 +56,7 @@
         }
 
         [data-theme="dark"] {
-            --primary: #60a5fa;       
+            --primary: #60a5fa;        
             --primary-hover: #93c5fd; 
             --primary-light: rgba(96, 165, 250, 0.15); 
             --primary-dark: #bfdbfe;  
@@ -91,7 +93,7 @@
         }
 
         /* Compact Layout */
-        main { flex: 1; max-width: 900px; margin: 0 auto; padding: 15px; width: 100%; }
+        main { flex: 1; max-width: 900px; margin: 0 auto; padding: 15px; width: 100%; box-sizing: border-box; }
 
         .page-header { text-align: center; margin-bottom: 15px; }
         .page-title { font-size: 28px !important; font-weight: 800 !important; margin: 0 0 4px 0; letter-spacing: -0.5px; color: var(--text-main); }
@@ -176,7 +178,7 @@
 
 <div id="site-footer"></div>
 
-<script src="../js/layout.js"></script>
+<script src="../../js/layout.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         if (typeof renderHeader === 'function') {
@@ -184,13 +186,13 @@
                 title: 'Privacy Policy',
                 subtitle: 'Legal',
                 iconClass: 'fa-solid fa-shield-halved',
-                link: '../index.html',
+                link: '../../index.html',
                 isQuizPage: false,
-                rootPath: '..'
+                rootPath: '../..'
             });
         }
         if (typeof renderFooter === 'function') {
-            renderFooter('..');
+            renderFooter('../..');
         }
     });
 </script>
