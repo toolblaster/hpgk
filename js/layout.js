@@ -3,7 +3,7 @@
  * Handles global Header, Footer, Theme logic, Back to Top, Google Auth, and Mobile Menu.
  * 🔥 UPDATED: Zero CLS (Cumulative Layout Shift) with Premium Skeleton Loading UI
  * 🚀 UPDATED: Cleaned up Google Login button hover state & updated modal copy
- * 📱 UPDATED: Compact Mobile Menu with Mock Tests link & repositioned Leaderboard
+ * 📱 UPDATED: Compact Mobile Menu with Mock Tests link & Admin Control Room link
  */
 
 const SiteConfig = {
@@ -79,6 +79,11 @@ function initMobileMenu() {
                         <div class="menu-icon" style="color: #ef4444;"><i class="fa-solid fa-crown"></i></div>
                         <span>Pricing & Subscription</span>
                     </a>
+                    <!-- 🛡️ SUPER ADMIN CONTROL ROOM DIRECT LINK -->
+                    <a href="${SiteConfig.root}/user/admin.html" class="menu-link">
+                        <div class="menu-icon" style="color: #3b82f6;"><i class="fa-solid fa-server"></i></div>
+                        <span>Admin Control Room</span>
+                    </a>
                 </div>
             </div>
             
@@ -125,7 +130,7 @@ function initMobileMenu() {
                 width: 30px; height: 30px; border-radius: 50%;
                 display: flex; align-items: center; justify-content: center;
                 color: var(--text-sec); cursor: pointer; transition: all 0.2s; font-size: 1rem;
-                text-decoration: none; padding: 0; /* Clear padding */
+                text-decoration: none; padding: 0;
             }
             .close-menu-btn:hover { background: #ef4444; color: white; border-color: #ef4444; transform: rotate(90deg); }
             .theme-icon-btn:hover { background: var(--primary); color: white; border-color: var(--primary); transform: translateY(-2px); box-shadow: 0 4px 10px rgba(37,99,235,0.2); }
@@ -139,7 +144,6 @@ function initMobileMenu() {
                 padding-left: 5px; opacity: 0.8;
             }
             
-            /* 🔥 FIXED: More compact padding and exact 13px font for menu links */
             .menu-link {
                 display: flex; align-items: center; gap: 8px;
                 padding: 5px 8px; border-radius: 8px; 
@@ -159,7 +163,6 @@ function initMobileMenu() {
             .icon-green { color: #10b981; }
             .icon-purple { color: #8b5cf6; }
 
-            /* 🔥 FIXED: Slightly smaller icon to match the compact padding */
             .menu-icon {
                 width: 24px; height: 24px; border-radius: 6px; 
                 background: var(--input-bg); 
@@ -167,7 +170,6 @@ function initMobileMenu() {
                 font-size: 0.75rem; transition: all 0.2s; box-shadow: 0 2px 4px rgba(0,0,0,0.05);
             }
             
-            /* Forces background and pure white text unconditionally */
             .menu-link:hover .menu-icon {
                 background: var(--primary) !important; 
                 color: #ffffff !important;
@@ -199,7 +201,6 @@ window.toggleMobileMenu = function() {
         menu.classList.toggle('open');
         overlay.classList.toggle('show');
         
-        // Lock background scrolling when menu is open
         if (menu.classList.contains('open')) {
             document.body.style.overflow = 'hidden';
         } else {
@@ -312,7 +313,6 @@ function initLoginModal() {
             }
             .modal-google-btn img { width: 1.15em; height: 1.15em; display: inline-block; }
             
-            /* 🔥 UPDATED: Removed background hover and translateY. Kept only subtle border color change */
             .modal-google-btn:hover { 
                 border-color: #94a3b8 !important; 
             }
@@ -321,7 +321,6 @@ function initLoginModal() {
                 background: #1e293b !important; color: #f8fafc !important; border-color: #475569 !important; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3) !important; 
             }
             
-            /* 🔥 UPDATED: Removed background change for dark theme hover as well */
             [data-theme="dark"] .modal-google-btn:hover { 
                 border-color: #94a3b8 !important; 
             }
@@ -365,7 +364,6 @@ window.startGoogleLogin = function() {
     if(window.loginWithGoogle) window.loginWithGoogle();
 };
 
-
 /**
  * Renders the Global Header
  * @param {Object} options Configuration for the header
@@ -380,7 +378,7 @@ function renderHeader(options = {}) {
         rootPath = '.' 
     } = options;
 
-    currentRootPath = rootPath; // Store globally for auth UI
+    currentRootPath = rootPath;
 
     let cleanLink = link.replace(/\/index\.html$/, '/').replace(/^index\.html$/, './');
     if (cleanLink === '#') cleanLink = 'https://hpgk.toolblaster.com';
@@ -393,9 +391,6 @@ function renderHeader(options = {}) {
     headerEl.style.zIndex = '1000';
     document.body.style.paddingTop = '0px';
 
-    const homeUrl = rootPath === '.' ? './' : '../';
-
-    // 🔥 ZERO CLS (Cumulative Layout Shift) SKELETON INJECTED HERE
     headerEl.innerHTML = `
         <div class="header-content" style="position: relative; display: flex; align-items: center; justify-content: space-between;">
             
@@ -410,14 +405,12 @@ function renderHeader(options = {}) {
             <!-- Right Group: Auth / Dashboard Container + Hamburger -->
             <div class="header-actions" style="display: flex; align-items: center; gap: 8px;">
                 <div id="auth-ui-container">
-                    <!-- Skeleton Loader: Prevents CLS before Firebase resolves -->
                     <div class="auth-group-wrapper" style="pointer-events: none;">
                         <div class="skeleton-shimmer skeleton-dash-btn" style="width: 110px; height: 28px; border-radius: 14px;"></div>
                         <div class="skeleton-shimmer skeleton-login-btn" style="width: 75px; height: 28px; border-radius: 14px;"></div>
                     </div>
                 </div>
                 
-                <!-- Premium Hamburger Menu Button -->
                 <button class="hamburger-btn" onclick="toggleMobileMenu()" aria-label="Open Menu">
                     <i class="fa-solid fa-bars-staggered"></i>
                 </button>
@@ -425,7 +418,6 @@ function renderHeader(options = {}) {
             
         </div>
         <style>
-            /* 🔥 ZERO CLS FIX: Fixed container size to prevent Hamburger shift */
             #auth-ui-container {
                 min-width: 215px; 
                 min-height: 40px;
@@ -447,7 +439,6 @@ function renderHeader(options = {}) {
                 100% { background-position: -200% 0; }
             }
 
-            /* Grouped Auth UI Styles (Premium EdTech Look) */
             .auth-group-wrapper {
                 display: flex; align-items: center; gap: 8px;
                 padding: 4px 6px 4px 4px; border: 1px solid var(--card-border, #cbd5e1);
@@ -456,7 +447,6 @@ function renderHeader(options = {}) {
             }
             [data-theme="dark"] .auth-group-wrapper { border-color: #334155; background: rgba(0, 0, 0, 0.2); }
 
-            /* Hamburger Button Styling */
             .hamburger-btn {
                 background: var(--input-bg); 
                 border: 1px solid var(--card-border);
@@ -469,7 +459,6 @@ function renderHeader(options = {}) {
             [data-theme="dark"] .hamburger-btn { border-color: #334155; background: rgba(0, 0, 0, 0.2); }
             .hamburger-btn:hover { background: var(--primary); color: white; border-color: var(--primary); transform: translateY(-2px); box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2); }
 
-            /* Punchy Red Google Login Button */
             .login-btn {
                 background: #dc2626; color: #ffffff; border: 1px solid transparent; padding: 5px 13px;
                 border-radius: 20px; font-size: 0.8rem; font-weight: 700; cursor: pointer;
@@ -542,7 +531,7 @@ function renderFooter(rootPath = '.') {
         <footer class="site-footer-compact">
             <div class="footer-container">
                 <div class="footer-top-row">
-                    <a href="${rootPath}/index.html" class="footer-brand-box">
+                    <a href="${rootPath}/" class="footer-brand-box">
                         <i class="fa-solid fa-mountain-sun footer-brand-icon"></i>
                         <div style="display:flex; flex-direction:column;">
                             <span class="footer-brand-text">HPGK Quiz</span>
@@ -646,8 +635,6 @@ let auth, provider;
 
 async function initFirebase() {
     try {
-        // 🔥 REMOVED updateAuthUI(null) here to let the Skeleton persist until Firebase decides
-
         const { initializeApp, getApps, getApp } = await import("https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js");
         const { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } = await import("https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js");
 
@@ -730,7 +717,7 @@ async function initFirebase() {
 
     } catch (error) {
         console.error("Firebase Initialization Failed in Layout:", error);
-        updateAuthUI(null); // Fallback to Login button if network fails
+        updateAuthUI(null);
     }
 }
 
