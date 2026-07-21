@@ -12,7 +12,7 @@
     <link rel="shortcut icon" href="../js/favicon/favicon.ico">
     <meta name="theme-color" content="#0f172a">
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -30,7 +30,6 @@
             --radius-lg: 10px;
         }
 
-        /* Ultra Compact Scrollbar */
         ::-webkit-scrollbar { width: 5px; height: 5px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: #475569; border-radius: 10px; }
@@ -42,14 +41,18 @@
             height: 100vh; overflow: hidden; font-size: 12px;
         }
 
-        /* Lock Screen */
         #access-denied {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: var(--bg-dark); z-index: 9999;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
         }
 
-        /* Sidebar Navigation */
+        #inactivity-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(8px); z-index: 9998;
+            display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+        }
+
         .sidebar {
             width: 220px; background: var(--panel-bg); border-right: 1px solid var(--border-color);
             display: flex; flex-direction: column; flex-shrink: 0; z-index: 50;
@@ -63,51 +66,55 @@
         
         .nav-footer { padding: 10px; border-top: 1px solid var(--border-color); display: flex; flex-direction: column; gap: 4px;}
         
-        /* Main Workspace */
         .main-workspace { flex: 1; display: flex; flex-direction: column; overflow: hidden; background: var(--bg-dark); }
         
-        /* Header */
         .top-header { display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; border-bottom: 1px solid var(--border-color); background: var(--panel-bg); flex-shrink: 0;}
         .header-title { font-size: 1.1rem; font-weight: 800; margin: 0; display: flex; align-items: center;}
-        .live-sync-badge { font-size: 0.6rem; font-weight: 700; background: rgba(16,185,129,0.1); color: var(--success); padding: 3px 6px; border-radius: 20px; border: 1px solid rgba(16,185,129,0.3); display: inline-flex; align-items: center; gap: 4px; margin-left: 10px;}
+        .live-sync-badge { font-size: 0.6rem; font-weight: 700; background: rgba(16,185,129,0.1); color: var(--success); padding: 3px 6px; border-radius: 20px; border: 1px solid rgba(16,185,129,0.3); display: inline-flex; align-items: center; gap: 4px; margin-left: 10px; cursor: help;}
         .live-sync-badge i { font-size: 0.45rem; animation: blink 1.5s infinite; }
         @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
 
         .admin-actions { display: flex; align-items: center; gap: 12px; }
         .btn-sm { padding: 6px 10px; background: var(--border-color); color: white; border: none; border-radius: var(--radius-md); font-size: 0.7rem; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: 0.2s;}
         .btn-sm:hover { background: var(--primary); }
+        .btn-success { background: var(--success); }
+        .btn-success:hover { background: #059669; }
+        .btn-danger { background: var(--danger); }
+        .btn-danger:hover { background: #dc2626; }
+        .btn-warning { background: var(--warning); color: #000; }
+        .btn-warning:hover { background: #d97706; color: #fff; }
+
         .admin-profile { display: flex; align-items: center; gap: 8px; border-left: 1px solid var(--border-color); padding-left: 12px;}
         .admin-profile img { width: 28px; height: 28px; border-radius: 50%; }
 
-        /* Tab Content Area */
         .tab-content { display: none; padding: 15px 20px; overflow-y: auto; flex: 1; }
         .tab-content.active { display: block; }
 
-        /* Overview Tab Grid */
         .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 15px; }
-        .stat-card { background: var(--panel-bg); border: 1px solid var(--border-color); padding: 12px; border-radius: var(--radius-lg); }
-        .stat-card h3 { margin: 0 0 4px 0; font-size: 0.65rem; color: var(--text-sec); text-transform: uppercase; }
+        .stat-card { background: var(--panel-bg); border: 1px solid var(--border-color); padding: 12px; border-radius: var(--radius-lg); position: relative;}
+        .stat-card h3 { margin: 0 0 4px 0; font-size: 0.65rem; color: var(--text-sec); text-transform: uppercase; display: flex; align-items: center; justify-content: space-between; }
         .stat-card p { margin: 0; font-size: 1.3rem; font-weight: 800; color: var(--text-main); }
-        .stat-card i { font-size: 1.1rem; margin-bottom: 8px; display: block; }
+        .stat-card i.main-icon { font-size: 1.1rem; margin-bottom: 8px; display: block; }
 
-        /* User Matrix & Payment Tab Filters */
+        .info-help { color: var(--text-sec); font-size: 0.65rem; cursor: help; transition: color 0.2s; }
+        .info-help:hover { color: var(--primary); }
+
         .filter-bar { display: flex; justify-content: space-between; align-items: center; background: var(--panel-bg); padding: 10px 12px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); margin-bottom: 12px; gap: 10px; flex-wrap: wrap;}
         .filter-group { display: flex; gap: 6px; flex-wrap: wrap; }
-        .filter-btn { background: transparent; border: 1px solid var(--border-color); color: var(--text-sec); padding: 5px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: 600; cursor: pointer; transition: 0.2s; }
+        .filter-btn { background: transparent; border: 1px solid var(--border-color); color: var(--text-sec); padding: 5px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: 600; cursor: pointer; transition: 0.2s; display: flex; align-items: center; gap: 4px;}
         .filter-btn:hover { border-color: var(--primary); color: white; }
         .filter-btn.active { background: rgba(59,130,246,0.15); color: var(--primary); border-color: var(--primary); }
         .search-box { background: rgba(0,0,0,0.2); border: 1px solid var(--border-color); color: white; padding: 5px 10px; border-radius: 6px; font-size: 0.75rem; width: 220px; outline: none; max-width: 100%;}
         .search-box:focus { border-color: var(--primary); }
 
-        /* Data Tables */
         .table-wrapper { background: var(--panel-bg); border: 1px solid var(--border-color); border-radius: var(--radius-lg); overflow: hidden; display: flex; flex-direction: column; max-height: calc(100vh - 160px); }
         .table-scroll { overflow-y: auto; overflow-x: auto; flex: 1; }
-        table { width: 100%; border-collapse: collapse; text-align: left; min-width: 700px; }
+        table { width: 100%; border-collapse: collapse; text-align: left; min-width: 750px; }
         th { position: sticky; top: 0; background: #0f172a; padding: 8px 12px; font-size: 0.65rem; color: var(--text-sec); text-transform: uppercase; font-weight: 700; border-bottom: 1px solid var(--border-color); z-index: 10;}
         td { padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.03); font-size: 0.75rem; }
         tr:hover td { background: rgba(255,255,255,0.02); }
         
-        .u-profile { display: flex; align-items: center; gap: 8px; }
+        .u-profile { display: flex; align-items: center; gap: 8px; cursor: pointer; }
         .u-profile img { width: 22px; height: 22px; border-radius: 50%; }
         .u-email { font-size: 0.65rem; color: var(--text-main); display: block; margin-top: 2px; font-weight: 500;}
         .uid-pill { font-family: monospace; font-size: 0.65rem; background: rgba(255,255,255,0.05); padding: 2px 5px; border-radius: 4px; color: var(--text-sec);}
@@ -119,23 +126,33 @@
 
         .btn-action { background: rgba(59,130,246,0.1); color: var(--primary); border: 1px solid transparent; padding: 4px 8px; border-radius: var(--radius-md); font-size: 0.65rem; cursor: pointer; transition: 0.2s; white-space: nowrap;}
         .btn-action:hover { background: var(--primary); color: white; }
+        .btn-quick-ext { background: rgba(16,185,129,0.1); color: var(--success); border: 1px solid transparent; }
+        .btn-quick-ext:hover { background: var(--success); color: white; }
+        .btn-wa { background: rgba(37,211,102,0.15); color: #25D366; border: 1px solid rgba(37,211,102,0.3); }
+        .btn-wa:hover { background: #25D366; color: white; }
         .btn-revoke { background: rgba(239, 68, 68, 0.1); color: var(--danger); border: 1px solid transparent; }
         .btn-revoke:hover { background: var(--danger); color: white; }
+        .btn-inspect { background: rgba(245, 158, 11, 0.1); color: var(--warning); border: 1px solid transparent; }
+        .btn-inspect:hover { background: var(--warning); color: #000; }
 
-        /* Forms */
         .panel-box { background: var(--panel-bg); border: 1px solid var(--border-color); padding: 15px; border-radius: var(--radius-lg); margin-bottom: 15px;}
         .form-group { margin-bottom: 10px; }
         .form-group label { display: block; font-size: 0.65rem; color: var(--text-sec); font-weight: 700; margin-bottom: 4px;}
         .form-control { width: 100%; padding: 8px; background: rgba(0,0,0,0.2); border: 1px solid var(--border-color); border-radius: var(--radius-md); color: white; font-family: 'Inter'; font-size: 0.8rem; box-sizing: border-box; outline: none;}
         .form-control:focus { border-color: var(--primary); }
+        .form-control option { background-color: #1e293b; color: #f8fafc; padding: 8px; }
 
-        .manual-grant-actions { display: flex; gap: 8px; }
+        .manual-grant-actions { display: grid; grid-template-columns: 2fr 1.2fr 1fr; gap: 8px; }
 
-        /* Transaction Specific Colors */
         .tx-amount { font-family: monospace; font-weight: 800; font-size: 0.85rem; color: var(--text-main); }
         .tx-id { font-family: monospace; font-size: 0.65rem; color: var(--warning); display: block; margin-top: 2px;}
 
-        /* MOBILE FIXES */
+        /* Inspection Modal */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 9999; display: none; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
+        .modal-box { background: var(--panel-bg); border: 1px solid var(--border-color); width: 90%; max-width: 680px; padding: 20px; border-radius: var(--radius-lg); position: relative; max-height: 85vh; display: flex; flex-direction: column; }
+        .modal-close { position: absolute; top: 12px; right: 15px; background: transparent; border: none; color: var(--text-sec); font-size: 1.2rem; cursor: pointer; }
+        .modal-close:hover { color: #fff; }
+
         @media (max-width: 900px) {
             body { flex-direction: column; overflow: auto; height: auto;}
             .sidebar { width: 100%; height: auto; flex-direction: column; padding: 0; border-right: none; border-bottom: 1px solid var(--border-color); }
@@ -152,30 +169,39 @@
             .table-wrapper { max-height: 500px; }
             .top-header { flex-direction: column; align-items: flex-start; gap: 12px; }
             .admin-actions { width: 100%; justify-content: space-between; }
+            .manual-grant-actions { grid-template-columns: 1fr; }
         }
 
         @media (max-width: 600px) {
             .stats-grid { grid-template-columns: 1fr; }
-            .manual-grant-actions { flex-direction: column; }
-            .manual-grant-actions select, .manual-grant-actions button { width: 100%; flex: none; }
             .admin-actions { flex-direction: column-reverse; align-items: stretch; gap: 10px; }
             .admin-profile { border-left: none; padding-left: 0; justify-content: space-between; flex-direction: row-reverse; }
-            .admin-profile div { text-align: left; }
             .btn-sm { width: 100%; justify-content: center; }
             .filter-bar { flex-direction: column; align-items: stretch; }
             .filter-group { justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; scrollbar-width: none;}
-            .filter-group::-webkit-scrollbar { display: none; }
         }
     </style>
 </head>
 <body>
 
+
 <!-- SECURITY LOCK -->
 <div id="access-denied">
     <i class="fa-solid fa-shield-halved" style="font-size: 3.5rem; color: var(--border-color); margin-bottom: 20px;"></i>
     <h2 style="font-size: 1.2rem; margin:0 0 5px 0;">Admin Authentication Required</h2>
-    <button onclick="if(window.loginWithGoogle) window.loginWithGoogle()" style="margin-top: 20px; padding: 10px 20px; background: white; color: black; font-weight: 800; border-radius: 6px; cursor: pointer; border: none; font-size: 0.85rem;">
+    <p style="font-size: 0.75rem; color: var(--text-sec); max-width: 300px; text-align: center; margin: 0 0 15px 0;">Restricted explicitly to authorised admin account (amanrana7350@gmail.com).</p>
+    <button onclick="if(window.loginWithGoogle) window.loginWithGoogle()" style="padding: 10px 20px; background: white; color: black; font-weight: 800; border-radius: 6px; cursor: pointer; border: none; font-size: 0.85rem;">
         <i class="fa-brands fa-google"></i> Secure Login
+    </button>
+</div>
+
+<!-- 5-MINUTE INACTIVITY LOCK OVERLAY -->
+<div id="inactivity-overlay">
+    <i class="fa-solid fa-user-lock" style="font-size: 3.5rem; color: var(--warning); margin-bottom: 15px;"></i>
+    <h2 style="font-size: 1.3rem; margin:0 0 6px 0;">Session Locked Due to Inactivity</h2>
+    <p style="font-size:0.8rem; color:var(--text-sec); max-width: 320px; margin-bottom: 20px;">No user activity detected for 5 minutes. Click below to resume your admin session.</p>
+    <button onclick="resumeAdminSession()" class="btn-sm btn-success" style="padding: 10px 22px; font-size: 0.85rem;">
+        <i class="fa-solid fa-key"></i> Unlock Session
     </button>
 </div>
 
@@ -184,29 +210,56 @@
     <div class="brand"><i class="fa-solid fa-server" style="color: var(--primary);"></i> Control Room</div>
     
     <div class="nav-menu">
-        <div class="nav-item active" onclick="switchTab('overview', this)"><i class="fa-solid fa-bolt"></i> Command Center</div>
-        <div class="nav-item" onclick="switchTab('matrix', this)"><i class="fa-solid fa-users-viewfinder"></i> User Matrix</div>
-        <div class="nav-item" onclick="switchTab('payments', this)"><i class="fa-solid fa-money-bill-transfer"></i> Payment Desk</div>
-        <div class="nav-item" onclick="switchTab('marketing', this)"><i class="fa-solid fa-bullhorn"></i> Growth</div>
-        <div class="nav-item" onclick="switchTab('health', this)"><i class="fa-solid fa-heart-pulse"></i> System Health</div>
+        <div class="nav-item active" onclick="switchTab('overview', this)" title="Command Center: Financial overview, quick pass activation, and growth statistics.">
+            <i class="fa-solid fa-bolt"></i> Command Center
+        </div>
+        <div class="nav-item" onclick="switchTab('matrix', this)" title="User Matrix: Full directory of all registered students, engagement XP, pass statuses, and quick extensions.">
+            <i class="fa-solid fa-users-viewfinder"></i> User Matrix
+        </div>
+        <div class="nav-item" onclick="switchTab('payments', this)" title="Payment Desk: Real-time ledger of Razorpay webhooks, manual grants, and CSV exports.">
+            <i class="fa-solid fa-money-bill-transfer"></i> Payment Desk
+        </div>
+        <div class="nav-item" onclick="switchTab('marketing', this)" title="Growth & Export: Download full user CSV databases and extract email dumps for marketing campaigns.">
+            <i class="fa-solid fa-bullhorn"></i> Growth & Export
+        </div>
+        <div class="nav-item" onclick="switchTab('moderation', this)" title="Leaderboard Admin: Reset ranks, clear cheated score documents, and purge leaderboard spam.">
+            <i class="fa-solid fa-trophy"></i> Leaderboard Admin
+        </div>
+        <div class="nav-item" onclick="switchTab('logs', this)" title="Admin Audit Logs: Real-time security log of all manual grants, pass revokes, notes edits, and purges.">
+            <i class="fa-solid fa-receipt"></i> Admin Audit Logs
+        </div>
+        <div class="nav-item" onclick="switchTab('health', this)" title="System Health: Check status of Firestore Security Rules, Cloud Storage CORS, and Cloud Run Webhook server.">
+            <i class="fa-solid fa-heart-pulse"></i> System Health
+        </div>
     </div>
 
     <!-- Quick Links & Logout -->
     <div class="nav-footer">
-        <a href="../index.html" class="nav-item" style="color: var(--text-main); text-decoration: none;"><i class="fa-solid fa-house"></i> Public Home</a>
-        <a href="dashboard.html" class="nav-item" style="color: var(--text-main); text-decoration: none;"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
-        <div class="nav-item" style="color: #ef4444;" onclick="adminLogout()"><i class="fa-solid fa-power-off"></i> Secure Logout</div>
+        <a href="https://hpgk.toolblaster.com/" class="nav-item" style="color: var(--text-main); text-decoration: none;" title="Open Public Website Homepage"><i class="fa-solid fa-house"></i> Public Home</a>
+        <a href="dashboard.html" class="nav-item" style="color: var(--text-main); text-decoration: none;" title="View Student Analytics Dashboard"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
+        <div class="nav-item" style="color: #ef4444;" onclick="adminLogout()" title="Sign out of Admin Session"><i class="fa-solid fa-power-off"></i> Secure Logout</div>
     </div>
 </div>
+
 
 <!-- MAIN WORKSPACE -->
 <div class="main-workspace" id="admin-main" style="display: none;">
     
     <div class="top-header">
-        <h1 class="header-title" id="current-tab-title">Command Center <span class="live-sync-badge"><i class="fa-solid fa-circle"></i> Live Sync</span></h1>
+        <h1 class="header-title" id="current-tab-title">
+            Command Center 
+            <span class="live-sync-badge" title="Connected directly to Firebase Firestore live listener. Updates automatically without page refresh.">
+                <i class="fa-solid fa-circle"></i> Live Sync <i class="fa-solid fa-circle-info" style="font-size: 0.6rem; opacity: 0.8;"></i>
+            </span>
+        </h1>
         <div class="admin-actions">
-            <button class="btn-sm" onclick="forceFetchData()"><i class="fa-solid fa-rotate"></i> Sync Live Data</button>
-            <div class="admin-profile">
+            <span style="font-size:0.65rem; color:var(--text-sec); display:flex; align-items:center; gap:4px;" id="idle-timer-display" title="Security Timer: Locks interface after 5 minutes of total inactivity to prevent unauthorized access.">
+                <i class="fa-regular fa-clock"></i> Idle Lock: 5:00 <i class="fa-solid fa-circle-info info-help"></i>
+            </span>
+            <button class="btn-sm" onclick="forceFetchData()" title="Re-query Firestore to pull the absolute latest user records and transactions.">
+                <i class="fa-solid fa-rotate"></i> Sync Live Data
+            </button>
+            <div class="admin-profile" title="Currently authenticated admin account.">
                 <div style="text-align: right; line-height: 1.2;">
                     <strong id="admin-name" style="font-size: 0.75rem; display: block;">Admin</strong>
                     <span id="admin-email" style="font-size: 0.6rem; color: var(--text-sec);">admin@hpgk.com</span>
@@ -216,65 +269,128 @@
         </div>
     </div>
 
-    <!-- TAB 1: COMMAND CENTER -->
+    <!-- TAB 1: COMMAND CENTER & FINANCIAL ANALYTICS -->
     <div id="tab-overview" class="tab-content active">
         <div class="stats-grid">
             <div class="stat-card">
-                <i class="fa-solid fa-database" style="color: var(--primary);"></i>
-                <h3>Total Database</h3>
+                <i class="fa-solid fa-database main-icon" style="color: var(--primary);"></i>
+                <h3>Total Registered Users <i class="fa-solid fa-circle-info info-help" title="Total unique student profiles detected across Leaderboard & User collections."></i></h3>
                 <p id="stat-total">0</p>
             </div>
             <div class="stat-card">
-                <i class="fa-solid fa-crown" style="color: var(--success);"></i>
-                <h3>Active VIPs (Pro)</h3>
+                <i class="fa-solid fa-crown main-icon" style="color: var(--success);"></i>
+                <h3>Active VIPs (Pro) <i class="fa-solid fa-circle-info info-help" title="Number of active users holding a Mock Master, MCQ Pro, or VIP Lifetime pass."></i></h3>
                 <p id="stat-pro">0</p>
             </div>
             <div class="stat-card">
-                <i class="fa-solid fa-indian-rupee-sign" style="color: var(--warning);"></i>
-                <h3>Est. Gross Revenue</h3>
+                <i class="fa-solid fa-indian-rupee-sign main-icon" style="color: var(--warning);"></i>
+                <h3>Est. Gross Revenue <i class="fa-solid fa-circle-info info-help" title="Total revenue calculated strictly from paid purchases (excludes free/complimentary grants)."></i></h3>
                 <p id="stat-rev">₹0</p>
             </div>
             <div class="stat-card">
-                <i class="fa-solid fa-triangle-exclamation" style="color: var(--danger);"></i>
-                <h3>Failed Transactions</h3>
-                <p>0 <span style="font-size:0.55rem; color:var(--text-sec); font-weight:normal;">(Razorpay Queue)</span></p>
+                <i class="fa-solid fa-shield-halved main-icon" style="color: #a855f7;"></i>
+                <h3>Verified Webhooks <i class="fa-solid fa-circle-info info-help" title="Number of pass purchases verified digitally via Google Cloud Run Razorpay Webhook."></i></h3>
+                <p id="stat-webhooks">0</p>
             </div>
         </div>
 
-        <div class="panel-box" style="max-width: 600px;">
-            <h2 style="margin: 0 0 12px 0; font-size: 0.95rem;"><i class="fa-solid fa-wand-magic-sparkles" style="color:var(--primary);"></i> 1-Click Manual Grant</h2>
-            <p style="font-size:0.7rem; color:var(--text-sec); margin-bottom:12px;">Bypass Razorpay: Grant passes instantly to resolve user issues.</p>
+
+        <!-- 📊 FINANCIAL & GROWTH ANALYTICS CARDS -->
+        <div class="panel-box" style="margin-bottom: 15px;">
+            <h2 style="margin: 0 0 12px 0; font-size: 0.95rem; display: flex; align-items: center; justify-content: space-between;">
+                <span><i class="fa-solid fa-chart-line" style="color:var(--success);"></i> Financial Breakdown & Growth Metrics</span>
+                <i class="fa-solid fa-circle-info info-help" style="font-size: 0.75rem;" title="Detailed financial performance split by plan type, complimentary rewards, and retention targets."></i>
+            </h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;">
+                <div style="background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px; border: 1px solid var(--border-color);" title="Full-length mock exam package sales (₹89/month).">
+                    <span style="font-size: 0.65rem; color: var(--text-sec); font-weight: 700; text-transform: uppercase; display: flex; justify-content: space-between; align-items: center;">
+                        Mock Master Sales <i class="fa-solid fa-circle-info info-help"></i>
+                    </span>
+                    <div style="font-size: 1.1rem; font-weight: 900; color: var(--success); margin-top: 4px;" id="fin-mock-rev">₹0</div>
+                    <span style="font-size: 0.6rem; color: var(--text-sec);" id="fin-mock-count">0 Purchases</span>
+                </div>
+                <div style="background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px; border: 1px solid var(--border-color);" title="Topic-wise MCQ practice package sales (₹39/month).">
+                    <span style="font-size: 0.65rem; color: var(--text-sec); font-weight: 700; text-transform: uppercase; display: flex; justify-content: space-between; align-items: center;">
+                        MCQ Pro Sales <i class="fa-solid fa-circle-info info-help"></i>
+                    </span>
+                    <div style="font-size: 1.1rem; font-weight: 900; color: var(--primary); margin-top: 4px;" id="fin-mcq-rev">₹0</div>
+                    <span style="font-size: 0.6rem; color: var(--text-sec);" id="fin-mcq-count">0 Purchases</span>
+                </div>
+                <div style="background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px; border: 1px solid var(--border-color);" title="Passes granted as promotional gifts or rewards (₹0 revenue counted).">
+                    <span style="font-size: 0.65rem; color: var(--text-sec); font-weight: 700; text-transform: uppercase; display: flex; justify-content: space-between; align-items: center;">
+                        Complimentary Rewards <i class="fa-solid fa-circle-info info-help"></i>
+                    </span>
+                    <div style="font-size: 1.1rem; font-weight: 900; color: var(--warning); margin-top: 4px;" id="fin-comp-count">0 Passes</div>
+                    <span style="font-size: 0.6rem; color: var(--text-sec);">₹0 Revenue Counted</span>
+                </div>
+                <div style="background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px; border: 1px solid var(--border-color);" title="Students whose pass will expire in 3-7 days. Ideal targets for retention outreach.">
+                    <span style="font-size: 0.65rem; color: var(--text-sec); font-weight: 700; text-transform: uppercase; display: flex; justify-content: space-between; align-items: center;">
+                        Expiring Soon (3-7 Days) <i class="fa-solid fa-circle-info info-help"></i>
+                    </span>
+                    <div style="font-size: 1.1rem; font-weight: 900; color: var(--danger); margin-top: 4px;" id="fin-expiring-count">0 Users</div>
+                    <span style="font-size: 0.6rem; color: var(--text-sec);">Retention Targets</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ENHANCED 1-CLICK MANUAL GRANT WITH GRANULAR SHORT DURATIONS -->
+        <div class="panel-box" style="max-width: 650px;">
+            <h2 style="margin: 0 0 12px 0; font-size: 0.95rem; display: flex; align-items: center; justify-content: space-between;">
+                <span><i class="fa-solid fa-wand-magic-sparkles" style="color:var(--primary);"></i> Advanced Pass Control & Duration Grant</span>
+                <i class="fa-solid fa-circle-info info-help" style="font-size: 0.75rem;" title="Manually issue pass access to any student UID with custom duration periods. Updates Firestore instantly."></i>
+            </h2>
+            <p style="font-size:0.7rem; color:var(--text-sec); margin-bottom:12px;">Grant tailored pass access with custom validity periods (ideal for retention boosts & rewards).</p>
+            
             <div class="form-group">
+                <label>Student UID <i class="fa-solid fa-circle-info info-help" title="Copy-paste the target student's unique Firebase user ID here."></i></label>
                 <input type="text" id="grant-uid" class="form-control" placeholder="Paste Student UID here..." autocomplete="off">
             </div>
+            
             <div class="manual-grant-actions">
-                <select id="grant-plan" class="form-control" style="flex:2;">
-                    <option value="mock_master_pass">Mock Master Pass (VIP)</option>
-                    <option value="mcq_pro_pass">MCQ Pro Pass</option>
+                <select id="grant-plan" class="form-control" title="Select Pass Tier">
+                    <option value="mock_master_pass">Mock Master Pass (VIP - All Inclusive)</option>
+                    <option value="mcq_pro_pass">MCQ Pro Pass (Topic MCQs)</option>
                 </select>
-                <button class="btn-sm" style="flex:1; justify-content: center; background: var(--primary); font-size: 0.8rem;" onclick="grantManualPass()">Activate Now</button>
+                <select id="grant-duration" class="form-control" title="Select Pass Validity Duration">
+                    <option value="0.0416">⚡ 1 Hour Test Grant</option>
+                    <option value="1">🔥 24 Hours (1 Day Reward)</option>
+                    <option value="2">🎁 48 Hours (2 Days)</option>
+                    <option value="3">🚀 72 Hours (3 Days)</option>
+                    <option value="7">7 Days Access</option>
+                    <option value="30" selected>30 Days (1 Month)</option>
+                    <option value="90">90 Days (3 Months)</option>
+                    <option value="365">365 Days (1 Year)</option>
+                    <option value="9999">👑 Lifetime (Permanent)</option>
+                </select>
+                <button class="btn-sm btn-success" style="justify-content: center; font-size: 0.8rem;" onclick="grantManualPass()" title="Write pass configuration directly to Firestore user document.">
+                    <i class="fa-solid fa-bolt"></i> Activate Pass
+                </button>
             </div>
             
-            <!-- 🔥 NEW: Complimentary Pass Toggle -->
             <div style="margin-top: 12px; display: flex; align-items: center; gap: 8px;">
                 <input type="checkbox" id="grant-complimentary" style="transform: scale(1.1); cursor: pointer;">
-                <label for="grant-complimentary" style="font-size: 0.75rem; color: var(--text-sec); cursor: pointer; margin: 0; text-transform: none;">Mark as Complimentary (Free / ₹0 Revenue)</label>
+                <label for="grant-complimentary" style="font-size: 0.75rem; color: var(--text-sec); cursor: pointer; margin: 0; text-transform: none;" title="Prevents this grant from adding fake revenue figures to your gross revenue analytics.">
+                    Mark as Complimentary (Reward / ₹0 Revenue Entry) <i class="fa-solid fa-circle-info info-help"></i>
+                </label>
             </div>
 
             <div id="grant-msg" style="margin-top: 8px; font-size: 0.7rem; font-weight: 700; text-align: center;"></div>
         </div>
     </div>
 
-    <!-- TAB 2: USER MATRIX -->
+
+    <!-- TAB 2: USER MATRIX WITH EXPIRING SOON FILTER & QUICK ACTIONS -->
     <div id="tab-matrix" class="tab-content">
         <div class="filter-bar">
             <div class="filter-group">
-                <button class="filter-btn active" onclick="applyFilter('all', this)">All Users</button>
-                <button class="filter-btn" onclick="applyFilter('pro', this)">Pro Only (VIP)</button>
-                <button class="filter-btn" onclick="applyFilter('free', this)">Free Explorers</button>
-                <button class="filter-btn" onclick="applyFilter('inactive', this)">Inactive > 30 Days</button>
+                <button class="filter-btn active" onclick="applyFilter('all', this)" title="Show all registered students in the database.">All Users</button>
+                <button class="filter-btn" onclick="applyFilter('pro', this)" title="Show active subscribers holding a Mock Master or MCQ Pro pass."><i class="fa-solid fa-crown" style="color:var(--warning);"></i> Pro Only (VIP)</button>
+                <button class="filter-btn" onclick="applyFilter('expiring', this)" style="border-color: var(--warning); color: var(--warning);" title="Show subscribers whose pass will expire in 3 to 7 days."><i class="fa-solid fa-clock-rotate-left"></i> Expiring Soon (3-7d)</button>
+                <button class="filter-btn" onclick="applyFilter('free', this)" title="Show free users without any active premium pass.">Free Explorers</button>
+                <button class="filter-btn" onclick="applyFilter('inactive', this)" title="Show users who have not attempted a quiz in over 30 days.">Inactive > 30 Days</button>
             </div>
-            <input type="text" class="search-box" id="user-search" placeholder="Search Name, UID or Email..." onkeyup="handleSearch()">
+            <input type="text" class="search-box" id="user-search" placeholder="Search Name, UID or Email..." onkeyup="handleSearch()" title="Type student name, email, or UID to filter instantly.">
         </div>
 
         <div class="table-wrapper">
@@ -282,11 +398,11 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Student Profile</th>
-                            <th>Identifier (UID)</th>
-                            <th>Current Plan</th>
-                            <th>Engagement (XP)</th>
-                            <th>Actions</th>
+                            <th>Student Profile <i class="fa-solid fa-circle-info info-help" title="Student name, photo, and authenticated Google email address."></i></th>
+                            <th>Identifier (UID) <i class="fa-solid fa-circle-info info-help" title="Unique Firebase User Identifier string."></i></th>
+                            <th>Current Plan / Expiry <i class="fa-solid fa-circle-info info-help" title="Active subscription plan badge and calculated expiration date."></i></th>
+                            <th>Engagement (XP) <i class="fa-solid fa-circle-info info-help" title="Total Experience Points earned from MCQ and Mock Test accuracy."></i></th>
+                            <th>Quick Actions <i class="fa-solid fa-circle-info info-help" title="Tools: Inspect History, Quick Extend (+7d), WhatsApp Chat, Revoke Pass."></i></th>
                         </tr>
                     </thead>
                     <tbody id="user-table-body">
@@ -297,16 +413,21 @@
         </div>
     </div>
 
-    <!-- TAB 3: PAYMENT DESK (Live Transactions) -->
+
+    <!-- TAB 3: PAYMENT DESK -->
     <div id="tab-payments" class="tab-content">
         <div class="filter-bar">
             <div class="filter-group">
-                <button class="filter-btn active" onclick="applyTxFilter('all', this)">All Transactions</button>
-                <button class="filter-btn" onclick="applyTxFilter('mock', this)">Mock Master</button>
-                <button class="filter-btn" onclick="applyTxFilter('mcq', this)">MCQ Pro</button>
-                <button class="filter-btn" onclick="applyTxFilter('manual', this)">Manual Grants</button>
+                <button class="filter-btn active" onclick="applyTxFilter('all', this)" title="Show all payment and pass allocation records.">All Transactions</button>
+                <button class="filter-btn" onclick="applyTxFilter('mock', this)" title="Filter Mock Master Pass purchases (₹89).">Mock Master</button>
+                <button class="filter-btn" onclick="applyTxFilter('mcq', this)" title="Filter MCQ Pro Pass purchases (₹39).">MCQ Pro</button>
+                <button class="filter-btn" onclick="applyTxFilter('webhook', this)" title="Filter transactions verified via Razorpay GCP Webhook.">Razorpay Webhook</button>
+                <button class="filter-btn" onclick="applyTxFilter('manual', this)" title="Filter passes granted manually by Admin.">Manual Grants</button>
             </div>
-            <input type="text" class="search-box" id="tx-search" placeholder="Search Payment ID or UID..." onkeyup="handleTxSearch()">
+            <div style="display:flex; gap:8px;">
+                <button class="btn-sm btn-success" onclick="exportFinancialsCSV()" title="Download full financial transaction log as CSV spreadsheet."><i class="fa-solid fa-file-csv"></i> Export CSV</button>
+                <input type="text" class="search-box" id="tx-search" placeholder="Search Payment ID or UID..." onkeyup="handleTxSearch()" title="Search transaction records by payment ID or UID.">
+            </div>
         </div>
 
         <div class="table-wrapper">
@@ -314,12 +435,12 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Date & Time</th>
-                            <th>User Profile</th>
-                            <th>Payment ID / Mode</th>
-                            <th>Plan Unlocked</th>
-                            <th>Amount</th>
-                            <th>Status</th>
+                            <th>Date & Time <i class="fa-solid fa-circle-info info-help" title="Exact timestamp when payment was captured or granted."></i></th>
+                            <th>User Profile <i class="fa-solid fa-circle-info info-help" title="Student name and email associated with transaction."></i></th>
+                            <th>Payment ID / Mode <i class="fa-solid fa-circle-info info-help" title="Razorpay Payment ID or Admin Grant Mode."></i></th>
+                            <th>Plan Unlocked <i class="fa-solid fa-circle-info info-help" title="Pass package unlocked by this transaction."></i></th>
+                            <th>Amount <i class="fa-solid fa-circle-info info-help" title="Rupee amount received (₹0 for complimentary grants)."></i></th>
+                            <th>Status <i class="fa-solid fa-circle-info info-help" title="Digital signature verification status."></i></th>
                         </tr>
                     </thead>
                     <tbody id="tx-table-body">
@@ -330,41 +451,160 @@
         </div>
     </div>
 
-    <!-- TAB 4: MARKETING & GROWTH -->
+
+    <!-- TAB 4: MARKETING & GROWTH + CSV EXPORT -->
     <div id="tab-marketing" class="tab-content">
         <div class="panel-box">
-            <h2 style="margin: 0 0 12px 0; font-size: 1rem;"><i class="fa-solid fa-envelope-open-text" style="color:var(--primary);"></i> 1-Click Email Extraction</h2>
-            <p style="font-size:0.75rem; color:var(--text-sec); margin-bottom:15px;">Extract emails of targeted user segments for Mailchimp or SMS marketing campaigns.</p>
+            <h2 style="margin: 0 0 12px 0; font-size: 1rem; display: flex; align-items: center; justify-content: space-between;">
+                <span><i class="fa-solid fa-file-export" style="color:var(--primary);"></i> Data Export & Email Marketing Center</span>
+                <i class="fa-solid fa-circle-info info-help" style="font-size: 0.75rem;" title="Extract user emails or download raw CSV databases for email marketing and Excel reporting."></i>
+            </h2>
+            <p style="font-size:0.75rem; color:var(--text-sec); margin-bottom:15px;">Export student data to CSV for Excel analysis or copy email dumps for email marketing campaigns.</p>
             
             <div style="display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap;">
-                <button class="btn-sm" onclick="exportEmails('all')" style="background: var(--bg-dark); border: 1px solid var(--border-color); padding: 8px 12px;"><i class="fa-solid fa-users"></i> All Users</button>
-                <button class="btn-sm" onclick="exportEmails('pro')" style="background: var(--bg-dark); border: 1px solid var(--border-color); padding: 8px 12px;"><i class="fa-solid fa-crown" style="color: var(--warning);"></i> VIP (Pro)</button>
-                <button class="btn-sm" onclick="exportEmails('free')" style="background: var(--bg-dark); border: 1px solid var(--border-color); padding: 8px 12px;"><i class="fa-solid fa-copy"></i> Free Users</button>
-                <button class="btn-sm" onclick="exportEmails('inactive')" style="background: var(--bg-dark); border: 1px solid var(--border-color); padding: 8px 12px;"><i class="fa-solid fa-bed"></i> Inactive</button>
+                <button class="btn-sm btn-success" onclick="exportUsersCSV()" title="Download raw CSV file containing all user profiles, UIDs, plan statuses, and last seen timestamps."><i class="fa-solid fa-download"></i> Download Full Users CSV</button>
+                <button class="btn-sm" onclick="exportEmails('all')" style="background: var(--bg-dark); border: 1px solid var(--border-color); padding: 8px 12px;" title="Copy all student emails to clipboard."><i class="fa-solid fa-users"></i> Copy All Emails</button>
+                <button class="btn-sm" onclick="exportEmails('pro')" style="background: var(--bg-dark); border: 1px solid var(--border-color); padding: 8px 12px;" title="Copy VIP subscriber emails only."><i class="fa-solid fa-crown" style="color: var(--warning);"></i> Copy VIP Emails</button>
+                <button class="btn-sm" onclick="exportEmails('expiring')" style="background: var(--bg-dark); border: 1px solid var(--border-color); padding: 8px 12px;" title="Copy emails of students whose passes expire in 3-7 days."><i class="fa-solid fa-clock"></i> Copy Expiring Soon Emails</button>
+                <button class="btn-sm" onclick="exportEmails('free')" style="background: var(--bg-dark); border: 1px solid var(--border-color); padding: 8px 12px;" title="Copy free explorer student emails."><i class="fa-solid fa-copy"></i> Copy Free User Emails</button>
             </div>
             <textarea id="email-dump" class="form-control" style="height: 120px; font-family: monospace; font-size: 0.7rem;" readonly placeholder="Extracted emails will appear here..."></textarea>
         </div>
     </div>
 
-    <!-- TAB 5: SYSTEM HEALTH -->
+
+    <!-- TAB 5: LEADERBOARD MODERATION -->
+    <div id="tab-moderation" class="tab-content">
+        <div class="panel-box">
+            <h2 style="margin: 0 0 12px 0; font-size: 1rem; display: flex; align-items: center; justify-content: space-between;">
+                <span><i class="fa-solid fa-shield-cat" style="color:var(--warning);"></i> Leaderboard Moderation & Anti-Cheat</span>
+                <i class="fa-solid fa-circle-info info-help" style="font-size: 0.75rem;" title="Remove cheated, fake, or bugged score records from the public global leaderboard document store."></i>
+            </h2>
+            <p style="font-size:0.75rem; color:var(--text-sec); margin-bottom:15px;">Manage or reset suspicious user ranks or clear individual leaderboard entries.</p>
+            
+            <div style="display: flex; gap: 10px; max-width: 500px; margin-bottom: 15px;">
+                <input type="text" id="mod-uid" class="form-control" placeholder="Target Student UID to purge..." title="Enter the UID of the user whose rank document you want to delete.">
+                <button class="btn-sm btn-danger" style="white-space:nowrap;" onclick="purgeUserFromLeaderboard()" title="Permanently delete user rank document from public leaderboard."><i class="fa-solid fa-trash"></i> Purge Rank Data</button>
+            </div>
+            <div id="mod-msg" style="font-size:0.75rem; font-weight:700;"></div>
+        </div>
+    </div>
+
+    <!-- TAB 6: ADMIN AUDIT LOGS -->
+    <div id="tab-logs" class="tab-content">
+        <div class="panel-box">
+            <h2 style="margin: 0 0 12px 0; font-size: 1rem; display: flex; align-items: center; justify-content: space-between;">
+                <span><i class="fa-solid fa-receipt" style="color:var(--primary);"></i> Immutable Admin Action Trail</span>
+                <i class="fa-solid fa-circle-info info-help" style="font-size: 0.75rem;" title="Security audit trail recording every pass activation, revocation, note update, and moderation action."></i>
+            </h2>
+            <p style="font-size:0.75rem; color:var(--text-sec); margin-bottom:15px;">Real-time security logs of all manual pass grants, revokes, notes edits, and moderation purges.</p>
+            
+            <div class="table-wrapper">
+                <div class="table-scroll">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>Admin Email</th>
+                                <th>Action Type</th>
+                                <th>Target UID</th>
+                                <th>Details</th>
+                            </tr>
+                        </thead>
+                        <tbody id="logs-table-body">
+                            <tr><td colspan="5" style="text-align:center; padding:30px; color:var(--text-sec);"><i class="fa-solid fa-circle-notch fa-spin"></i> Fetching Audit Logs...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 7: SYSTEM HEALTH & LIVE PING -->
     <div id="tab-health" class="tab-content">
         <div class="panel-box" style="background: linear-gradient(135deg, rgba(30,41,59,1), rgba(16,185,129,0.05)); border-color: rgba(16,185,129,0.2); max-width: 600px;">
-            <h2 style="margin: 0 0 12px 0; font-size: 1rem; color: var(--success);"><i class="fa-solid fa-server"></i> System Health Status</h2>
-            <ul style="margin:0; padding:0; list-style:none; font-size:0.8rem; color:var(--text-sec); display:flex; flex-direction:column; gap:12px;">
-                <li><i class="fa-solid fa-check-circle" style="color:var(--success); width:20px;"></i> Firebase Read/Write Access: <strong style="color:var(--text-main);">Stable</strong></li>
-                <li><i class="fa-solid fa-check-circle" style="color:var(--success); width:20px;"></i> Decoy Routing Security: <strong style="color:var(--text-main);">Active</strong></li>
-                <li><i class="fa-solid fa-check-circle" style="color:var(--success); width:20px;"></i> Razorpay Webhook: <strong style="color:var(--text-main);">Active</strong></li>
+            <h2 style="margin: 0 0 12px 0; font-size: 1rem; color: var(--success); display: flex; align-items: center; justify-content: space-between;">
+                <span><i class="fa-solid fa-server"></i> Active Infrastructure Health</span>
+                <i class="fa-solid fa-circle-info info-help" style="font-size: 0.75rem;" title="Live status indicators for cloud database rules, storage CORS, and webhook microservices."></i>
+            </h2>
+            <ul style="margin:0 0 15px 0; padding:0; list-style:none; font-size:0.8rem; color:var(--text-sec); display:flex; flex-direction:column; gap:12px;">
+                <li><i class="fa-solid fa-check-circle" style="color:var(--success); width:20px;"></i> Firestore Security Rules: <strong style="color:var(--text-main);">Protected (Client Lock Active)</strong></li>
+                <li><i class="fa-solid fa-check-circle" style="color:var(--success); width:20px;"></i> Google Cloud Storage CORS: <strong style="color:var(--text-main);">Enabled</strong></li>
+                <li><i class="fa-solid fa-check-circle" style="color:var(--success); width:20px;"></i> GCP Cloud Run Webhook URL: <strong style="color:var(--text-main);" id="health-webhook-url">https://razorpay-webhook-273909571419.asia-south1.run.app</strong></li>
             </ul>
+            <button class="btn-sm" onclick="pingWebhookServer()" title="Send HTTP GET request to verify Cloud Run server availability and response time."><i class="fa-solid fa-plug"></i> Ping Webhook Server</button>
+            <div id="ping-result" style="margin-top:10px; font-size:0.75rem; font-family:monospace;"></div>
         </div>
     </div>
 
 </div>
 
+
+<!-- STUDENT HISTORY INSPECTION & NOTES MODAL -->
+<div id="userModal" class="modal-overlay">
+    <div class="modal-box">
+        <button class="modal-close" onclick="closeUserModal()" title="Close Inspection Window"><i class="fa-solid fa-xmark"></i></button>
+        <h3 id="modal-u-name" style="margin: 0 0 4px 0; font-size: 1.1rem; color: var(--text-main);">Student Inspection</h3>
+        <p id="modal-u-email" style="margin: 0 0 15px 0; color: var(--text-sec); font-size: 0.75rem;"></p>
+        
+        <div style="display:flex; gap:10px; margin-bottom:15px; flex-wrap:wrap;">
+            <div style="flex:1; min-width: 200px; background:rgba(0,0,0,0.2); padding:10px; border-radius:6px; border:1px solid var(--border-color);">
+                <div style="font-size:0.65rem; color:var(--text-sec); text-transform:uppercase; display: flex; justify-content: space-between;">
+                    Pass Vault <i class="fa-solid fa-circle-info info-help" title="Active pass subscriptions attached to user profile in Firestore."></i>
+                </div>
+                <div id="modal-u-passes" style="font-size:0.8rem; font-weight:800; margin-top:4px; color:var(--success);">No Active Passes</div>
+            </div>
+            <div style="flex:1; min-width: 200px; background:rgba(0,0,0,0.2); padding:10px; border-radius:6px; border:1px solid var(--border-color);">
+                <div style="font-size:0.65rem; color:var(--text-sec); text-transform:uppercase; display: flex; justify-content: space-between;">
+                    Identifier (UID) <i class="fa-solid fa-circle-info info-help" title="Unique database user token."></i>
+                </div>
+                <div id="modal-u-uid" style="font-size:0.75rem; font-family:monospace; margin-top:4px; color:var(--warning);">...</div>
+            </div>
+        </div>
+
+        <!-- 1-CLICK QUICK EXTEND PANEL INSIDE MODAL -->
+        <div style="background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.2); padding: 10px; border-radius: 6px; margin-bottom: 15px;">
+            <div style="font-size: 0.7rem; font-weight: 800; color: var(--primary); margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center;">
+                <span><i class="fa-solid fa-bolt"></i> Quick Pass Extension</span>
+                <i class="fa-solid fa-circle-info info-help" title="Instantly grants Mock Master VIP Pass extension to this user without typing inputs."></i>
+            </div>
+            <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                <button class="btn-sm btn-success" onclick="quickExtendActiveUser(0.0416)" title="Grant 1 Hour reward pass">+1 Hour Test</button>
+                <button class="btn-sm btn-success" onclick="quickExtendActiveUser(1)" title="Grant 24 hours (1 Day) pass">+24h Reward</button>
+                <button class="btn-sm btn-success" onclick="quickExtendActiveUser(3)" title="Grant 72 hours (3 Days) pass">+3 Days</button>
+                <button class="btn-sm btn-success" onclick="quickExtendActiveUser(7)" title="Grant 7 Days pass">+7 Days</button>
+                <button class="btn-sm btn-success" onclick="quickExtendActiveUser(30)" title="Grant 30 Days pass">+30 Days</button>
+            </div>
+            <div id="modal-quick-ext-msg" style="font-size: 0.65rem; font-weight: 700; margin-top: 4px;"></div>
+        </div>
+
+        <!-- INTERNAL ADMIN NOTES MEMO -->
+        <div style="margin-bottom: 15px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                <label style="font-size: 0.65rem; color: var(--text-sec); font-weight: 800; text-transform: uppercase;">
+                    <i class="fa-solid fa-note-sticky" style="color:var(--warning);"></i> Internal Customer Support Memo / Notes <i class="fa-solid fa-circle-info info-help" title="Private admin notes saved in user's document in Firestore. Only visible in Admin Panel."></i>
+                </label>
+                <span id="note-saved-status" style="font-size: 0.6rem; color: var(--success); font-weight: 700;"></span>
+            </div>
+            <textarea id="modal-admin-note" class="form-control" style="height: 60px; font-size: 0.75rem;" placeholder="Add private admin notes (e.g. Requested bonus pass on WhatsApp)..." title="Private support notes for this user."></textarea>
+            <button class="btn-sm" style="margin-top: 6px; background: var(--border-color);" onclick="saveAdminNote()" title="Save note to Firestore user document."><i class="fa-solid fa-floppy-disk"></i> Save Admin Note</button>
+        </div>
+
+        <h4 style="margin:0 0 8px 0; font-size:0.8rem; color:var(--text-sec); text-transform:uppercase; display: flex; justify-content: space-between; align-items: center;">
+            Recent Scores History <i class="fa-solid fa-circle-info info-help" title="Chronological record of mock test and MCQ practice attempts with scores and accuracy."></i>
+        </h4>
+        <div style="flex:1; min-height: 120px; overflow-y:auto; background:rgba(0,0,0,0.1); border:1px solid var(--border-color); border-radius:6px; padding:10px;" id="modal-u-scores">
+            <div style="text-align:center; padding:20px; color:var(--text-sec);">Loading user activity...</div>
+        </div>
+    </div>
+</div>
+
+
 <!-- Firebase SDK -->
 <script type="module">
     import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
     import { getAuth, onAuthStateChanged, signInWithPopup, GoogleAuthProvider, signOut } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
-    import { getFirestore, collection, getDocs, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
+    import { getFirestore, collection, getDocs, doc, setDoc, deleteDoc, addDoc, query, orderBy, limit } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
 
     // 🚨 STRICT SECURITY LOCK
     const ADMIN_EMAILS = ['amanrana7350@gmail.com'];
@@ -382,16 +622,61 @@
     const auth = getAuth(app);
     const db = getFirestore(app);
 
-    // Global Data Caches
     window.AdminGlobalData = [];
     window.AdminTxData = [];
+    window.activeInspectedUid = null;
+    window.currentAdminEmail = '';
+
+    // ==========================================
+    // ⏱️ 5-MINUTE SESSION INACTIVITY TIMEOUT LOCK
+    // ==========================================
+    let idleTimeSeconds = 0;
+    const MAX_IDLE_SECONDS = 300; // 5 Minutes
+    let idleInterval = null;
+
+    function resetIdleTimer() {
+        idleTimeSeconds = 0;
+        const display = document.getElementById('idle-timer-display');
+        if (display && document.getElementById('inactivity-overlay').style.display !== 'flex') {
+            display.innerHTML = `<i class="fa-regular fa-clock"></i> Idle Lock: 5:00 <i class="fa-solid fa-circle-info info-help"></i>`;
+        }
+    }
+
+    function startInactivityMonitor() {
+        ['mousemove', 'keydown', 'touchstart', 'click', 'scroll'].forEach(evt => {
+            window.addEventListener(evt, resetIdleTimer, true);
+        });
+
+        if (idleInterval) clearInterval(idleInterval);
+        idleInterval = setInterval(() => {
+            idleTimeSeconds++;
+            const remaining = Math.max(0, MAX_IDLE_SECONDS - idleTimeSeconds);
+            const m = Math.floor(remaining / 60);
+            const s = (remaining % 60).toString().padStart(2, '0');
+            
+            const display = document.getElementById('idle-timer-display');
+            if (display) display.innerHTML = `<i class="fa-regular fa-clock"></i> Idle Lock: ${m}:${s} <i class="fa-solid fa-circle-info info-help"></i>`;
+
+            if (idleTimeSeconds >= MAX_IDLE_SECONDS) {
+                lockAdminSession();
+            }
+        }, 1000);
+    }
+
+    function lockAdminSession() {
+        document.getElementById('inactivity-overlay').style.display = 'flex';
+    }
+
+    window.resumeAdminSession = function() {
+        idleTimeSeconds = 0;
+        document.getElementById('inactivity-overlay').style.display = 'none';
+    };
 
     window.loginWithGoogle = async function() {
         const provider = new GoogleAuthProvider();
         return signInWithPopup(auth, provider);
     };
 
-    // Firebase Secure Logout
     window.adminLogout = async function() {
         try {
             await signOut(auth);
@@ -407,19 +692,74 @@
                 alert("Unauthorized Access. Intrusion Attempt Logged.");
                 return;
             } 
+            window.currentAdminEmail = user.email;
             document.getElementById('access-denied').style.display = 'none';
             document.getElementById('admin-ui').style.display = 'flex';
             document.getElementById('admin-main').style.display = 'flex';
             document.getElementById('admin-name').innerText = user.displayName;
             document.getElementById('admin-email').innerText = user.email;
             document.getElementById('admin-photo').src = user.photoURL;
+            
+            startInactivityMonitor();
             forceFetchData();
+            fetchAdminAuditLogs();
         } else {
             document.getElementById('access-denied').style.display = 'flex';
             document.getElementById('admin-ui').style.display = 'none';
             document.getElementById('admin-main').style.display = 'none';
         }
     });
+
+
+    // ==========================================
+    // 🛡️ ADMIN AUDIT TRAIL LOGGING ENGINE
+    // ==========================================
+    async function logAdminAction(actionType, targetUid, details) {
+        try {
+            await addDoc(collection(db, 'artifacts', 'hpgk-quiz', 'admin_logs'), {
+                adminEmail: window.currentAdminEmail || 'admin',
+                actionType: actionType,
+                targetUid: targetUid || 'N/A',
+                details: details,
+                timestamp: Date.now()
+            });
+            fetchAdminAuditLogs(); // Refresh log tab
+        } catch(e) {
+            console.error("Audit log write failed:", e);
+        }
+    }
+
+    async function fetchAdminAuditLogs() {
+        const tbody = document.getElementById('logs-table-body');
+        try {
+            const logsSnap = await getDocs(collection(db, 'artifacts', 'hpgk-quiz', 'admin_logs'));
+            let logs = [];
+            logsSnap.forEach(d => logs.push(d.data()));
+            logs.sort((a,b) => b.timestamp - a.timestamp);
+
+            if (logs.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:20px; color:var(--text-sec);">No administrative actions logged yet.</td></tr>`;
+                return;
+            }
+
+            let html = '';
+            logs.forEach(l => {
+                let dStr = l.timestamp ? new Date(l.timestamp).toLocaleString('en-IN') : 'N/A';
+                html += `
+                    <tr>
+                        <td style="font-family:monospace; font-size:0.65rem;">${dStr}</td>
+                        <td><strong style="color:var(--text-main);">${l.adminEmail}</strong></td>
+                        <td><span class="badge bg-pro">${l.actionType}</span></td>
+                        <td><span class="uid-pill">${l.targetUid}</span></td>
+                        <td style="color:var(--text-sec); font-size:0.7rem;">${l.details}</td>
+                    </tr>
+                `;
+            });
+            tbody.innerHTML = html;
+        } catch(e) {
+            tbody.innerHTML = `<tr><td colspan="5" style="color:var(--danger); text-align:center;">Failed to load logs.</td></tr>`;
+        }
+    }
 
     // 🚀 MASTER FETCH FUNCTION
     window.forceFetchData = async function() {
@@ -429,13 +769,11 @@
         txBody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding: 30px;"><i class="fa-solid fa-circle-notch fa-spin"></i> Extracting Transactions...</td></tr>`;
         
         try {
-            // Parallel fetch to avoid N+1 queries.
             const [lbSnap, usersSnap] = await Promise.all([
                 getDocs(collection(db, 'artifacts', 'hpgk-quiz', 'public', 'data', 'leaderboard')),
                 getDocs(collection(db, 'artifacts', 'hpgk-quiz', 'users'))
             ]);
             
-            // Create fast in-memory maps
             const lbMap = {};
             lbSnap.forEach(d => { lbMap[d.id] = d.data(); });
             
@@ -445,49 +783,69 @@
             const allUids = new Set([...Object.keys(lbMap), ...Object.keys(usersMap)]);
             
             let rawData = [];
-            let txList = []; // For Payment Desk
+            let txList = [];
             let proCount = 0;
             let revCount = 0;
+            let webhookCount = 0;
+            
+            // Financial Breakdown Counters
+            let mockRev = 0, mockCount = 0;
+            let mcqRev = 0, mcqCount = 0;
+            let compCount = 0;
+            let expiringSoonCount = 0;
+
             const now = Date.now();
 
-            // Instant Loop - No network requests inside!
             allUids.forEach(uid => {
                 let lb = lbMap[uid] || {};
                 let uData = usersMap[uid] || {};
                 
                 let passType = 'free';
                 let isPro = false;
-                
+                let isExpiringSoon = false;
                 let userPasses = uData.passes || {};
+                let primaryExpiryStr = 'N/A';
                 
-                // Track Passes & Generate Transaction Logs
                 if(Object.keys(userPasses).length > 0) {
                     Object.keys(userPasses).forEach(planKey => {
                         let pData = userPasses[planKey];
                         let isComp = pData.isComplimentary === true;
                         
-                        // Calculate Revenue & Pass Type
                         let amt = 0;
                         if (planKey === 'mock_master_pass' || planKey === 'mega_combo_pass' || planKey === 'vip_lifetime_pass') {
-                            passType = 'mock'; isPro = true; amt = isComp ? 0 : 149;
+                            passType = 'mock'; isPro = true; amt = isComp ? 0 : 89;
+                            if (!isComp) { mockRev += amt; mockCount++; }
                         } else if (planKey === 'mcq_pro_pass') {
                             if(passType !== 'mock') passType = 'mcq'; 
                             isPro = true; amt = isComp ? 0 : 39;
+                            if (!isComp) { mcqRev += amt; mcqCount++; }
                         }
 
-                        // Determine the source/mode
+                        if (isComp) compCount++;
+
+                        // Check Expiry (Expiring in 3 to 7 days)
+                        if (pData.timestamp && pData.expiryDate && pData.expiryDate !== 'Lifetime') {
+                            const expTime = new Date(pData.expiryDate).getTime();
+                            if (!isNaN(expTime)) {
+                                const diffDays = (expTime - now) / (1000 * 60 * 60 * 24);
+                                if (diffDays > 0 && diffDays <= 7) {
+                                    isExpiringSoon = true;
+                                }
+                            }
+                        }
+                        primaryExpiryStr = pData.expiryDate || 'Active';
+
                         let txMode = pData.mode || 'Manual/Admin';
                         if (isComp) txMode = 'Complimentary (Free)';
+                        if (txMode.includes('Razorpay')) webhookCount++;
                         
-                        // Add to Revenue Counter only if it's a paid transaction
-                        if (!isComp && txMode !== 'Complimentary (Free)') {
+                        if (!isComp && !txMode.includes('Complimentary')) {
                             revCount += amt;
                         }
 
                         let paymentId = pData.paymentId || 'MANUAL_GRANT';
-                        let txStatusHtml = `<span class="badge bg-pro"><i class="fa-solid fa-check"></i> Success</span>`;
+                        let txStatusHtml = `<span class="badge bg-pro"><i class="fa-solid fa-check"></i> Verified</span>`;
 
-                        // Add to Transaction List
                         txList.push({
                             uid: uid,
                             name: lb.name || uData.name || 'Student',
@@ -506,6 +864,7 @@
                 }
                 
                 if(isPro) proCount++;
+                if(isExpiringSoon) expiringSoonCount++;
 
                 let daysInactive = lb.lastUpdated ? Math.floor((now - lb.lastUpdated) / (1000 * 60 * 60 * 24)) : 0;
                 let finalEmail = lb.email || uData.email || '';
@@ -518,21 +877,32 @@
                     xp: (lb.mockXP || 0) + (lb.mcqXP || 0),
                     passType: passType,
                     isPro: isPro,
+                    isExpiringSoon: isExpiringSoon,
+                    expiryStr: primaryExpiryStr,
+                    passes: userPasses,
+                    adminNote: uData.adminNote || '',
                     daysInactive: daysInactive,
                     lastSeen: lb.lastUpdated ? new Date(lb.lastUpdated).toLocaleDateString('en-IN', {day:'2-digit', month:'short'}) : 'N/A',
                     rawText: `${lb.name || ''} ${uid} ${finalEmail}`.toLowerCase()
                 });
             });
 
-            // Update User Matrix Data
             window.AdminGlobalData = rawData.sort((a,b) => b.xp - a.xp);
-            
-            // Update Transactions Data (Sort by newest first)
             window.AdminTxData = txList.sort((a,b) => b.timestamp - a.timestamp);
             
+            // Stats Counters
             document.getElementById('stat-total').innerText = rawData.length;
             document.getElementById('stat-pro').innerText = proCount;
             document.getElementById('stat-rev').innerText = '₹' + revCount.toLocaleString('en-IN');
+            document.getElementById('stat-webhooks').innerText = webhookCount;
+
+            // Financial Breakdown Update
+            document.getElementById('fin-mock-rev').innerText = '₹' + mockRev.toLocaleString('en-IN');
+            document.getElementById('fin-mock-count').innerText = `${mockCount} Paid Purchases`;
+            document.getElementById('fin-mcq-rev').innerText = '₹' + mcqRev.toLocaleString('en-IN');
+            document.getElementById('fin-mcq-count').innerText = `${mcqCount} Paid Purchases`;
+            document.getElementById('fin-comp-count').innerText = `${compCount} Free Grants`;
+            document.getElementById('fin-expiring-count').innerText = `${expiringSoonCount} Students`;
 
             renderTable(window.AdminGlobalData);
             renderTxTable(window.AdminTxData);
@@ -544,9 +914,8 @@
         }
     };
 
-    // ==========================================
-    // USER MATRIX RENDER ENGINE
-    // ==========================================
+
+    // RENDER USER MATRIX WITH QUICK EXTEND & WHATSAPP
     window.renderTable = function(dataArr) {
         const tbody = document.getElementById('user-table-body');
         if(dataArr.length === 0) {
@@ -560,35 +929,42 @@
             if(u.passType === 'mock') badge = `<span class="badge bg-pro"><i class="fa-solid fa-crown"></i> VIP Master</span>`;
             if(u.passType === 'mcq') badge = `<span class="badge bg-mcq"><i class="fa-solid fa-bolt"></i> MCQ Pro</span>`;
 
-            let inactiveTag = u.daysInactive > 30 ? `<span style="color:var(--danger); font-size:0.6rem; display:block;">Inactive (${u.daysInactive}d)</span>` : '';
-            
-            let emailDisplay = u.email;
-            if(!u.email) emailDisplay = `<span style="color:var(--warning); font-size:0.6rem;"><i class="fa-solid fa-shield-halved"></i> Auth Protected</span>`;
+            let expiringTag = u.isExpiringSoon ? `<span style="color:var(--warning); font-size:0.6rem; font-weight:800; display:block;" title="Subscription expires within 7 days"><i class="fa-solid fa-clock"></i> Expiring: ${u.expiryStr}</span>` : '';
+            let noteIndicator = u.adminNote ? `<i class="fa-solid fa-note-sticky" style="color:var(--warning); margin-left:4px;" title="Has Private Admin Support Memo: ${u.adminNote}"></i>` : '';
 
-            // 🔥 FIX: Added 'title' tooltips for hover accessibility
-            let actionBtns = `<button class="btn-action" title="Grant or Extend Premium Pass" aria-label="Upgrade User" onclick="document.getElementById('grant-uid').value='${u.uid}'; switchTab('overview', document.querySelector('.nav-item'));"><i class="fa-solid fa-bolt"></i></button>`;
+            let inactiveTag = u.daysInactive > 30 ? `<span style="color:var(--danger); font-size:0.6rem; display:block;" title="Student inactive for over 30 days">Inactive (${u.daysInactive}d)</span>` : '';
+            let emailDisplay = u.email ? u.email : `<span style="color:var(--warning); font-size:0.6rem;"><i class="fa-solid fa-shield-halved"></i> Auth Protected</span>`;
+
+            // WhatsApp Quick Link
+            let waMsg = encodeURIComponent(`Hi ${u.name}, regarding your HPGK Quiz platform account (UID: ${u.uid})...`);
+            let waBtn = `<a href="https://wa.me/?text=${waMsg}" target="_blank" class="btn-action btn-wa" title="Open direct WhatsApp support chat with pre-filled message"><i class="fa-brands fa-whatsapp"></i> Chat</a>`;
+
+            let actionBtns = `
+                <button class="btn-action btn-inspect" title="Inspect score history & save private support notes" onclick="inspectUser('${u.uid}')"><i class="fa-solid fa-magnifying-glass"></i> Inspect</button>
+                <button class="btn-action btn-quick-ext" title="Instantly grant +7 Days extension to Mock Master Pass" onclick="quickExtendUser('${u.uid}', 7)"><i class="fa-solid fa-bolt"></i> +7d</button>
+                ${waBtn}
+            `;
             
-            // 🔥 NEW: Revoke button if user has a pro pass
             if (u.isPro) {
-                actionBtns += `<button class="btn-action btn-revoke" title="Revoke Premium Pass Instantly" aria-label="Revoke Access" onclick="revokeAccess('${u.uid}')"><i class="fa-solid fa-ban"></i></button>`;
+                actionBtns += `<button class="btn-action btn-revoke" title="Revoke all active passes for this user" onclick="revokeAccess('${u.uid}')"><i class="fa-solid fa-ban"></i> Revoke</button>`;
             }
 
             html += `
             <tr>
                 <td>
-                    <div class="u-profile">
+                    <div class="u-profile" onclick="inspectUser('${u.uid}')" title="Click to inspect student profile & scores">
                         <img src="${u.photo}" onerror="this.src='https://ui-avatars.com/api/?name=S&background=334155&color=fff'">
                         <div>
-                            <strong>${u.name}</strong>
+                            <strong>${u.name}</strong> ${noteIndicator}
                             <span class="u-email">${emailDisplay}</span>
                         </div>
                     </div>
                 </td>
-                <td><span class="uid-pill">${u.uid}</span></td>
-                <td>${badge}</td>
+                <td><span class="uid-pill" title="Unique User ID">${u.uid}</span></td>
+                <td>${badge} ${expiringTag}</td>
                 <td><strong style="color:var(--warning);">${u.xp} XP</strong> ${inactiveTag}</td>
                 <td>
-                    <div style="display:flex; gap:5px;">
+                    <div style="display:flex; gap:4px; align-items:center;">
                         ${actionBtns}
                     </div>
                 </td>
@@ -597,9 +973,7 @@
         tbody.innerHTML = html;
     };
 
-    // ==========================================
-    // PAYMENT DESK RENDER ENGINE
-    // ==========================================
+    // RENDER TRANSACTION TABLE
     window.renderTxTable = function(dataArr) {
         const tbody = document.getElementById('tx-table-body');
         if(dataArr.length === 0) {
@@ -609,7 +983,6 @@
 
         let html = '';
         dataArr.forEach(tx => {
-            // Format Date
             let dateStr = "N/A";
             if (tx.timestamp) {
                 const d = new Date(tx.timestamp);
@@ -623,13 +996,12 @@
             if(tx.planId.includes('mcq')) badge = `<span class="badge bg-mcq"><i class="fa-solid fa-bolt"></i> ${tx.planName}</span>`;
 
             let modeHtml = tx.mode.includes('Razorpay') 
-                ? `<span style="color:#3b82f6; font-size:0.65rem; font-weight:700;"><i class="fa-solid fa-building-columns"></i> Razorpay</span>` 
-                : `<span style="color:var(--warning); font-size:0.65rem; font-weight:700;"><i class="fa-solid fa-hand-sparkles"></i> ${tx.mode}</span>`;
+                ? `<span style="color:#3b82f6; font-size:0.65rem; font-weight:700;" title="Verified by Razorpay Cloud Run Webhook"><i class="fa-solid fa-building-columns"></i> Razorpay</span>` 
+                : `<span style="color:var(--warning); font-size:0.65rem; font-weight:700;" title="Activated manually by Admin"><i class="fa-solid fa-hand-sparkles"></i> ${tx.mode}</span>`;
 
             let emailDisplay = tx.email;
             if(!tx.email || tx.email.includes('Hidden')) emailDisplay = `<span style="color:var(--warning); font-size:0.6rem;"><i class="fa-solid fa-shield-halved"></i> Auth Protected</span>`;
 
-            // Make ₹0 pop out less than paid amounts
             let amtStyle = tx.amount === 0 ? "color:var(--text-sec); opacity:0.7;" : "color:var(--text-main);";
 
             html += `
@@ -656,16 +1028,104 @@
         tbody.innerHTML = html;
     };
 
-    // ==========================================
-    // FILTERS & SEARCH
-    // ==========================================
+
+    // INSPECT USER HISTORY & ADMIN NOTES MODAL
+    window.inspectUser = async function(uid) {
+        window.activeInspectedUid = uid;
+        const u = window.AdminGlobalData.find(x => x.uid === uid);
+        if(!u) return;
+
+        document.getElementById('modal-u-name').innerText = u.name;
+        document.getElementById('modal-u-email').innerText = u.email || 'Auth Protected';
+        document.getElementById('modal-u-uid').innerText = u.uid;
+        document.getElementById('modal-admin-note').value = u.adminNote || '';
+        document.getElementById('note-saved-status').innerText = '';
+        document.getElementById('modal-quick-ext-msg').innerText = '';
+        
+        const passBox = document.getElementById('modal-u-passes');
+        if (u.passes && Object.keys(u.passes).length > 0) {
+            let passStr = Object.values(u.passes).map(p => `${p.name} (Valid till ${p.expiryDate || 'Lifetime'})`).join('<br>');
+            passBox.innerHTML = passStr;
+        } else {
+            passBox.innerHTML = `<span style="color:var(--text-sec);">No Active Passes</span>`;
+        }
+
+        const scoreContainer = document.getElementById('modal-u-scores');
+        scoreContainer.innerHTML = `<div style="text-align:center; padding:15px; color:var(--text-sec);"><i class="fa-solid fa-circle-notch fa-spin"></i> Fetching score records...</div>`;
+        document.getElementById('userModal').style.display = 'flex';
+
+        try {
+            const scoresSnap = await getDocs(collection(db, 'artifacts', 'hpgk-quiz', 'users', uid, 'scores'));
+            let history = [];
+            scoresSnap.forEach(d => history.push(d.data()));
+
+            if (history.length === 0) {
+                scoreContainer.innerHTML = `<div style="text-align:center; padding:15px; color:var(--text-sec);">No test attempts recorded yet.</div>`;
+            } else {
+                history.sort((a,b) => b.timestamp - a.timestamp);
+                let listHtml = '';
+                history.forEach(s => {
+                    let dStr = s.timestamp ? new Date(s.timestamp).toLocaleDateString('en-IN') : 'N/A';
+                    listHtml += `
+                        <div style="display:flex; justify-content:space-between; align-items:center; padding:6px 0; border-bottom:1px dashed var(--border-color); font-size:0.75rem;">
+                            <div>
+                                <strong>${s.testId || s.category}</strong>
+                                <div style="font-size:0.65rem; color:var(--text-sec);">${dStr} | Acc: ${s.accuracy}%</div>
+                            </div>
+                            <div style="font-weight:900; color:var(--primary);">Score: ${s.score}/${s.total}</div>
+                        </div>
+                    `;
+                });
+                scoreContainer.innerHTML = listHtml;
+            }
+        } catch(e) {
+            scoreContainer.innerHTML = `<div style="color:var(--danger);">Failed to load history.</div>`;
+        }
+    };
+
+    // SAVE PRIVATE ADMIN NOTE
+    window.saveAdminNote = async function() {
+        const uid = window.activeInspectedUid;
+        if (!uid) return;
+        const noteText = document.getElementById('modal-admin-note').value;
+        const statusSpan = document.getElementById('note-saved-status');
+        statusSpan.innerText = 'Saving...';
+
+        try {
+            await setDoc(doc(db, 'artifacts', 'hpgk-quiz', 'users', uid), { adminNote: noteText }, { merge: true });
+            statusSpan.innerText = '✓ Note Saved!';
+            await logAdminAction('SAVE_NOTE', uid, `Note updated: "${noteText.substring(0, 30)}..."`);
+            setTimeout(() => { forceFetchData(); }, 1000);
+        } catch(e) {
+            statusSpan.innerText = '❌ Failed';
+        }
+    };
+
+    window.closeUserModal = function() { document.getElementById('userModal').style.display = 'none'; };
+
+    // 1-CLICK QUICK EXTEND FROM MATRIX OR MODAL
+    window.quickExtendUser = async function(uid, days) {
+        if (!confirm(`Grant +${days} Days Pass Extension to UID: ${uid}?`)) return;
+        executePassGrant(uid, 'mock_master_pass', days, true);
+    };
+
+    window.quickExtendActiveUser = async function(days) {
+        if (!window.activeInspectedUid) return;
+        const msgBox = document.getElementById('modal-quick-ext-msg');
+        msgBox.innerHTML = '<span style="color:var(--warning);">Activating...</span>';
+        await executePassGrant(window.activeInspectedUid, 'mock_master_pass', days, true);
+        msgBox.innerHTML = '<span style="color:var(--success);">✓ Extension Applied! Refreshing...</span>';
+        setTimeout(() => { inspectUser(window.activeInspectedUid); forceFetchData(); }, 1500);
+    };
+
+    // FILTERS (INCLUDING EXPIRING SOON)
     window.applyFilter = function(type, btnElement) {
         document.querySelectorAll('#tab-matrix .filter-btn').forEach(b => b.classList.remove('active'));
         btnElement.classList.add('active');
         document.getElementById('user-search').value = ''; 
-        
         let filtered = window.AdminGlobalData;
         if(type === 'pro') filtered = filtered.filter(u => u.isPro);
+        if(type === 'expiring') filtered = filtered.filter(u => u.isExpiringSoon);
         if(type === 'free') filtered = filtered.filter(u => !u.isPro);
         if(type === 'inactive') filtered = filtered.filter(u => u.daysInactive > 30);
         renderTable(filtered);
@@ -678,15 +1138,14 @@
         renderTable(filtered);
     };
 
-    // Transaction Filters
     window.applyTxFilter = function(type, btnElement) {
         document.querySelectorAll('#tab-payments .filter-btn').forEach(b => b.classList.remove('active'));
         btnElement.classList.add('active');
         document.getElementById('tx-search').value = ''; 
-        
         let filtered = window.AdminTxData;
-        if(type === 'mock') filtered = filtered.filter(tx => tx.planId.includes('mock') || tx.planId.includes('mega') || tx.planId.includes('vip'));
+        if(type === 'mock') filtered = filtered.filter(tx => tx.planId.includes('mock') || tx.planId.includes('vip'));
         if(type === 'mcq') filtered = filtered.filter(tx => tx.planId === 'mcq_pro_pass');
+        if(type === 'webhook') filtered = filtered.filter(tx => tx.mode.includes('Razorpay'));
         if(type === 'manual') filtered = filtered.filter(tx => !tx.mode.includes('Razorpay'));
         renderTxTable(filtered);
     };
@@ -698,81 +1157,140 @@
         renderTxTable(filtered);
     };
 
-    // 1-CLICK EMAIL EXPORT
+    // CSV EXPORTS
+    window.exportUsersCSV = function() {
+        let csv = 'Name,Email,UID,PassType,IsPro,ExpiringSoon,InactiveDays,LastSeen\n';
+        window.AdminGlobalData.forEach(u => {
+            csv += `"${u.name}","${u.email}","${u.uid}","${u.passType}",${u.isPro},${u.isExpiringSoon},${u.daysInactive},"${u.lastSeen}"\n`;
+        });
+        downloadCSVFile(csv, 'hpgk_users_export.csv');
+    };
+
+    window.exportFinancialsCSV = function() {
+        let csv = 'Timestamp,Name,Email,PaymentID,Mode,Plan,Amount\n';
+        window.AdminTxData.forEach(tx => {
+            csv += `"${tx.timestamp}","${tx.name}","${tx.email}","${tx.paymentId}","${tx.mode}","${tx.planName}",${tx.amount}\n`;
+        });
+        downloadCSVFile(csv, 'hpgk_financials_export.csv');
+    };
+
+    function downloadCSVFile(content, filename) {
+        const blob = new Blob([content], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.setAttribute("href", url);
+        link.setAttribute("download", filename);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+
+    // EMAIL EXPORT
     window.exportEmails = function(type) {
         let targets = [];
         if(type === 'all') targets = window.AdminGlobalData.filter(u => u.email && !u.email.includes('Hidden'));
         if(type === 'pro') targets = window.AdminGlobalData.filter(u => u.isPro && u.email && !u.email.includes('Hidden'));
+        if(type === 'expiring') targets = window.AdminGlobalData.filter(u => u.isExpiringSoon && u.email && !u.email.includes('Hidden'));
         if(type === 'free') targets = window.AdminGlobalData.filter(u => !u.isPro && u.email && !u.email.includes('Hidden'));
-        if(type === 'inactive') targets = window.AdminGlobalData.filter(u => u.daysInactive > 30 && u.email && !u.email.includes('Hidden'));
         
         let dump = targets.map(u => `${u.name} <${u.email}>`).join(',\n');
-        
         const box = document.getElementById('email-dump');
-        box.value = dump || 'No valid emails found in this segment (Auth Protected users excluded).';
+        box.value = dump || 'No valid emails found.';
         box.select();
-        
-        try {
-            navigator.clipboard.writeText(box.value).then(() => {
-                alert(`${targets.length} Valid Emails copied to clipboard!`);
-            });
-        } catch (err) {
-            document.execCommand('copy');
-            alert(`${targets.length} Valid Emails copied to clipboard!`);
-        }
+        navigator.clipboard.writeText(box.value);
+        alert(`${targets.length} Emails copied to clipboard!`);
     };
 
-    // MANUAL PASS GRANTING
+    // CORE PASS GRANT FUNCTION WITH AUDIT LOGGING
+    async function executePassGrant(uid, planId, days, isComplimentary) {
+        const planNames = { 'mock_master_pass': 'Mock Master VIP Pass', 'mcq_pro_pass': 'MCQ Pro Pass' };
+        
+        const expiry = new Date(Date.now() + days * 24 * 60 * 60 * 1000);
+        let expiryStr = expiry.toLocaleDateString('en-IN') + ' ' + expiry.toLocaleTimeString('en-IN', {hour: '2-digit', minute:'2-digit'});
+        if (days === 9999) expiryStr = 'Lifetime';
+
+        const passData = {
+            name: planNames[planId],
+            purchaseDate: new Date().toLocaleDateString('en-IN'),
+            expiryDate: expiryStr,
+            timestamp: Date.now(),
+            paymentId: isComplimentary ? "REWARD_GRANT_" + Math.random().toString(36).substr(2, 6).toUpperCase() : "MANUAL_GRANT_" + Math.random().toString(36).substr(2, 6).toUpperCase(),
+            mode: isComplimentary ? "Complimentary Reward (Free)" : "Manual/Admin (Paid)",
+            isComplimentary: isComplimentary
+        };
+
+        await setDoc(doc(db, 'artifacts', 'hpgk-quiz', 'users', uid), { passes: { [planId]: passData } }, { merge: true });
+        await logAdminAction('GRANT_PASS', uid, `Granted ${planNames[planId]} for ${days} days (${expiryStr})`);
+    }
+
+    // MANUAL PASS GRANT FORM HANDLER
     window.grantManualPass = async function() {
         const uid = document.getElementById('grant-uid').value.trim();
         const planId = document.getElementById('grant-plan').value;
+        const days = parseFloat(document.getElementById('grant-duration').value);
         const msgBox = document.getElementById('grant-msg');
         const isComplimentary = document.getElementById('grant-complimentary').checked;
 
         if(!uid) { msgBox.innerHTML = '<span style="color:var(--danger);">Input required: User UID.</span>'; return; }
         msgBox.innerHTML = '<span style="color:var(--warning);"><i class="fa-solid fa-circle-notch fa-spin"></i> Writing to Firebase...</span>';
 
-        const planNames = { 'mock_master_pass': 'Mock Master VIP Pass', 'mcq_pro_pass': 'MCQ Pro Pass' };
-        const expiry = new Date(); expiry.setDate(expiry.getDate() + 30);
-        const passData = {
-            name: planNames[planId],
-            purchaseDate: new Date().toLocaleDateString('en-IN'),
-            expiryDate: expiry.toLocaleDateString('en-IN'),
-            timestamp: Date.now(),
-            paymentId: isComplimentary ? "COMP_GRANT_" + Math.random().toString(36).substr(2, 6).toUpperCase() : "MANUAL_GRANT_" + Math.random().toString(36).substr(2, 6).toUpperCase(),
-            mode: isComplimentary ? "Complimentary (Free)" : "Manual/Admin (Paid)",
-            isComplimentary: isComplimentary
-        };
-
         try {
-            await setDoc(doc(db, 'artifacts', 'hpgk-quiz', 'users', uid), { passes: { [planId]: passData } }, { merge: true });
-            msgBox.innerHTML = `<span style="color:var(--success);"><i class="fa-solid fa-check"></i> Granted successfully. Syncing matrix...</span>`;
+            await executePassGrant(uid, planId, days, isComplimentary);
+            msgBox.innerHTML = `<span style="color:var(--success);"><i class="fa-solid fa-check"></i> Pass Granted Successfully. Refreshing...</span>`;
             setTimeout(() => { forceFetchData(); document.getElementById('grant-uid').value = ''; }, 2000);
         } catch (e) {
-            msgBox.innerHTML = '<span style="color:var(--danger);"><i class="fa-solid fa-xmark"></i> Failed. Admin write permission denied. Check Firebase Rules.</span>';
+            msgBox.innerHTML = '<span style="color:var(--danger);"><i class="fa-solid fa-xmark"></i> Failed. Admin write permission denied.</span>';
         }
     };
 
-    // 🔥 NEW: REVOKE ACCESS (Delete Passes)
+    // REVOKE PASS WITH AUDIT LOG
     window.revokeAccess = async function(uid) {
-        if(confirm("🚨 WARNING: Are you sure you want to completely REVOKE all premium passes for UID:\n" + uid + "?\n\nThis will instantly lock their content.")) {
+        if(confirm("🚨 REVOKE PASS: Are you sure you want to completely REVOKE passes for UID:\n" + uid + "?")) {
             try {
-                // Overwrite the passes object with an empty one to safely remove all access 
-                // without deleting their quiz scores or other data.
-                await setDoc(doc(db, 'artifacts', 'hpgk-quiz', 'users', uid), {
-                    passes: {} 
-                }, { merge: true });
-                
-                alert("✅ Access Revoked Successfully.");
-                forceFetchData(); // Refresh UI
-            } catch (e) {
-                console.error(e);
-                alert("❌ Failed to revoke. Make sure you have Admin write permissions.");
+                await setDoc(doc(db, 'artifacts', 'hpgk-quiz', 'users', uid), { passes: {} }, { merge: true });
+                await logAdminAction('REVOKE_PASS', uid, "Revoked all active user passes.");
+                alert("✅ Pass Revoked Successfully.");
+                forceFetchData();
+            } catch (e) { alert("❌ Revoke Failed."); }
+        }
+    };
+
+    // MODERATION: PURGE LEADERBOARD SPAM
+    window.purgeUserFromLeaderboard = async function() {
+        const uid = document.getElementById('mod-uid').value.trim();
+        const msg = document.getElementById('mod-msg');
+        if(!uid) return alert("Enter UID");
+
+        if(confirm("Delete leaderboard rank document for user: " + uid + "?")) {
+            try {
+                await deleteDoc(doc(db, 'artifacts', 'hpgk-quiz', 'public', 'data', 'leaderboard', uid));
+                await logAdminAction('PURGE_LEADERBOARD', uid, "Purged leaderboard score document.");
+                msg.innerHTML = '<span style="color:var(--success);">✅ Rank Purged from Leaderboard.</span>';
+                document.getElementById('mod-uid').value = '';
+                forceFetchData();
+            } catch(e) {
+                msg.innerHTML = '<span style="color:var(--danger);">❌ Delete failed. Check rules.</span>';
             }
         }
     };
 
-    // TAB SWITCHER
+    // PING WEBHOOK SERVER
+    window.pingWebhookServer = async function() {
+        const resDiv = document.getElementById('ping-result');
+        resDiv.innerHTML = '<span style="color:var(--warning);">Pinging Cloud Run Webhook...</span>';
+        try {
+            const url = document.getElementById('health-webhook-url').innerText;
+            const res = await fetch(url, { method: 'GET' });
+            if (res.status === 405) {
+                resDiv.innerHTML = '<span style="color:var(--success);">🟢 Server Live! (Response: 405 Method Not Allowed as expected for GET requests).</span>';
+            } else {
+                resDiv.innerHTML = `<span style="color:var(--success);">🟢 Server Online! Status Code: ${res.status}</span>`;
+            }
+        } catch(e) {
+            resDiv.innerHTML = '<span style="color:var(--danger);">🔴 Connection Failed or CORS blocked GET ping.</span>';
+        }
+    };
+
     window.switchTab = function(tabId, elem) {
         document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
         document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
