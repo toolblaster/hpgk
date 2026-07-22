@@ -10,7 +10,6 @@
     <!-- Clean Canonical Link -->
     <link rel="canonical" href="https://hpgk.toolblaster.com/study-notes/economic-survey/">
 
-    <!-- Open Graph & Meta Tags -->
     <meta property="og:title" content="HP Economic Survey | Notes for HPPSC & HPRCA">
     <meta property="og:description" content="Comprehensive bilingual notes and highlights of the latest Himachal Pradesh Economic Survey. Crucial facts and figures for HPPSC and HPRCA exams.">
     <meta property="og:type" content="article">
@@ -22,7 +21,6 @@
     <meta property="twitter:description" content="Comprehensive bilingual notes and highlights of the latest Himachal Pradesh Economic Survey. Crucial facts and figures for HPPSC and HPRCA exams.">
     <meta property="twitter:image" content="https://hpgk.toolblaster.com/js/favicon/web-app-manifest-512x512.png">
 
-    <!-- JSON-LD Schema -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -49,7 +47,49 @@
     }
     </script>
 
-    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "What is the estimated Per Capita Income of Himachal Pradesh?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "As per the latest Himachal Pradesh Economic Survey, the estimated Per Capita Income of Himachal Pradesh at current prices is ₹2,35,199, which is significantly above the national average."
+        }
+      },{
+        "@type": "Question",
+        "name": "What is the real GSDP growth rate of Himachal Pradesh?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The real economic growth rate (GSDP) of Himachal Pradesh at constant (2011-12) prices is estimated at approximately 7.1%."
+        }
+      },{
+        "@type": "Question",
+        "name": "What is the total harnessable hydropower potential in Himachal Pradesh?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The total identified harnessable hydropower potential in Himachal Pradesh across five major river basins is 27,436 MW, of which over 11,150 MW has been harnessed so far."
+        }
+      },{
+        "@type": "Question",
+        "name": "Which sector contributes the highest share to Himachal Pradesh's GSVA?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The Tertiary (Services) sector contributes the highest share (nearly 43.4%) to HP's Gross State Value Added (GSVA), followed closely by the Secondary sector (~43.1%)."
+        }
+      },{
+        "@type": "Question",
+        "name": "What is the contribution of Apple to total fruit production in HP?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Apple constitutes approximately 85% of the total fruit production in Himachal Pradesh and forms the backbone of its horticultural economy."
+        }
+      }]
+    }
+    </script>
+
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -73,7 +113,6 @@
     }
     </script>
 
-    <!-- Assets (2 levels up ../../) -->
     <link rel="apple-touch-icon" sizes="180x180" href="../../js/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="512x512" href="../../js/favicon/web-app-manifest-512x512.png">
     <link rel="icon" type="image/png" sizes="192x192" href="../../js/favicon/web-app-manifest-192x192.png">
@@ -86,26 +125,21 @@
     <meta name="msapplication-TileColor" content="#4f46e5">
     <meta name="theme-color" content="#ffffff">
     
-    <!-- Shared Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Load Global Style First (2 levels up ../../) -->
     <link rel="stylesheet" href="../../js/style.css">
 
-    <!-- PAGE SPECIFIC STYLESHEET (Clean Professional Indigo Theme) -->
     <style>
         :root {
             --site-width: 1100px;
             
-            /* Professional Indigo Theme for Economic Data */
             --primary: #4f46e5;        
             --primary-hover: #4338ca; 
             --primary-light: rgba(79, 70, 229, 0.1); 
             --primary-dark: #312e81;  
             --accent: #ea580c;        
             
-            /* Very clean, natural slate/gray background */
             --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%);
             --card-bg: #ffffff; 
             --card-border: #e2e8f0; 
@@ -143,9 +177,6 @@
             font-family: 'Inter', 'Noto Sans Devanagari', sans-serif;
         }
 
-        /* ==========================================================================
-           MAIN LAYOUT FIX: Bounding inner containers to match Global Header exactly
-           ========================================================================== */
         main { 
             flex: 1; 
             width: 100%; 
@@ -168,27 +199,29 @@
             }
         }
 
-        /* EXACT MATCH FOR TOP META BAR SPACING */
         .top-meta-bar { 
             display: flex !important;
             justify-content: space-between; 
             align-items: center; 
-            margin: 0 auto 5px auto; /* 5px to match quiz and hub perfectly */
+            margin: 0 auto 5px auto; 
             flex-wrap: nowrap; 
             gap: 10px; 
         }
 
-        /* ==========================================================================
-           BREADCRUMB & HERO STYLES
-           ========================================================================== */
+        .top-meta-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
         .breadcrumb-nav { margin: 0; flex-shrink: 1; display: flex; align-items: center; height: 24px; }
         .breadcrumb-list { 
             list-style: none; padding: 0 10px; margin: 0; display: flex; flex-wrap: nowrap; 
-            align-items: center; gap: 4px; background: var(--card-bg); border-radius: 12px; 
+            align-items: center; gap: 4px; background: rgba(255, 255, 255, 0.35); border-radius: 12px; 
             border: 1px solid var(--card-border);
             box-shadow: 0 1px 2px rgba(0,0,0,0.05); height: 100%; box-sizing: border-box;
         }
-        [data-theme="dark"] .breadcrumb-list { box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
+        [data-theme="dark"] .breadcrumb-list { background: rgba(30, 41, 59, 0.4); box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
         .breadcrumb-item { font-size: 0.6rem; font-weight: 600; color: var(--text-sec); display: flex; align-items: center; white-space: nowrap; height: 100%; }
         .breadcrumb-item a { color: var(--text-sec); text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 4px; }
         .breadcrumb-item a:hover { color: var(--primary); }
@@ -196,21 +229,42 @@
         .breadcrumb-separator { font-size: 0.55rem; color: var(--text-sec); opacity: 0.6; margin: 0 2px; }
 
         .hero-badge { 
-            display: inline-flex; align-items: center; justify-content: center; height: 24px; 
-            background: var(--primary); color: white; padding: 0 10px; 
-            border-radius: 12px; font-size: 0.6rem; font-weight: 700; text-transform: uppercase; 
-            margin: 0; border: 1px solid var(--primary); letter-spacing: 0.5px; white-space: nowrap; 
-            flex-shrink: 0; box-sizing: border-box;
+            display: inline-flex; align-items: center; justify-content: center; height: 20px; 
+            background: var(--primary); color: white; padding: 0 8px; 
+            border-radius: 10px; font-size: 0.58rem; font-weight: 700; text-transform: uppercase; 
+            margin: 0; border: 1px solid var(--primary); letter-spacing: 0.4px; white-space: nowrap; 
+            flex-shrink: 0; box-sizing: border-box; line-height: 1;
         }
 
-        /* COMPACT HERO SECTION (Matched exactly with Quiz page & Hub) */
+        .print-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            height: 20px;
+            background: var(--card-bg);
+            color: var(--text-sec);
+            border: 1px solid var(--card-border);
+            padding: 0 8px;
+            border-radius: 10px;
+            font-size: 0.58rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-sizing: border-box;
+            white-space: nowrap;
+        }
+        .print-btn:hover {
+            color: var(--primary);
+            border-color: var(--primary);
+            background: var(--primary-light);
+        }
+
         .page-header-top { 
             text-align: center; 
             margin-bottom: 25px; 
             width: 100%;
         }
 
-        /* Clean H1 styling with original Gradient */
         .hero-title {
             margin: 0 0 8px 0; 
             letter-spacing: -0.8px;
@@ -240,9 +294,6 @@
             margin-top: 4px;
         }
 
-        /* ==========================================
-           HIGH-CONTRAST INTERLINKING PILL
-           ========================================== */
         .hero-interlinks {
             display: inline-flex;
             align-items: center;
@@ -298,27 +349,19 @@
             opacity: 0.6;
         }
 
-        /* ==========================================
-           CLEAN INDIGO TOOLS STRIP (Matching the natural theme)
-           ========================================== */
         .tools-strip {
-            margin-top: 25px; background: rgba(79, 70, 229, 0.05); border: 1px solid rgba(79, 70, 229, 0.2);
+            margin-top: 20px; background: rgba(79, 70, 229, 0.05); border: 1px solid rgba(79, 70, 229, 0.2);
             border-radius: var(--radius-lg); padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;
-            max-width: 850px; margin-left: auto; margin-right: auto; transition: all 0.3s ease;
+            width: 100%; max-width: 100%; margin-left: auto; margin-right: auto; transition: all 0.3s ease; box-sizing: border-box;
         }
         .tools-strip:hover { border-color: var(--primary); box-shadow: 0 4px 12px rgba(79, 70, 229, 0.1); }
         .tools-strip-left { display: flex; align-items: center; gap: 12px; flex: 1 1 auto; min-width: 260px; }
-        .tools-strip-icon {
-            width: 40px; height: 40px; background: rgba(79, 70, 229, 0.15); color: var(--primary);
-            border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;
-        }
-        [data-theme="dark"] .tools-strip-icon { color: #818cf8; background: rgba(129, 140, 248, 0.2); }
         .tools-strip-title { font-weight: 800; color: var(--text-main); font-size: 0.95rem; text-align: left; font-family: 'Inter', sans-serif;}
         .tools-strip-desc { font-size: 0.75rem; color: var(--text-sec); margin-top: 2px; text-align: left; font-weight: 500; font-family: 'Inter', sans-serif;}
         .tools-strip-btn-group { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; justify-content: flex-end;}
         
         .tools-strip-btn {
-            background: var(--primary); color: white !important; padding: 6px 12px; border-radius: 6px;
+            background: var(--primary); color: white !important; padding: 6px 14px; border-radius: 6px;
             font-size: 12px; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 5px;
             transition: background 0.2s; white-space: nowrap; letter-spacing: 0.2px;
         }
@@ -333,9 +376,146 @@
         [data-theme="dark"] .tools-strip-btn.outline { color: #a5b4fc !important; border-color: #a5b4fc; }
         [data-theme="dark"] .tools-strip-btn.outline:hover { background: rgba(165, 180, 252, 0.1); color: #818cf8 !important; }
 
-        /* ==========================================================================
-           SCHEMES GRID & NATURAL CARDS (Clean White/Slate Backgrounds)
-           ========================================================================== */
+        /* HIGH-CONTRAST QUIZ CTA BUTTON (WCAG AA COMPLIANT) */
+        .quiz-cta-btn {
+            background: #c2410c;
+            color: #ffffff !important;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: background 0.2s;
+            white-space: nowrap;
+            letter-spacing: 0.2px;
+        }
+        .quiz-cta-btn:hover {
+            background: #9a3412;
+            color: #ffffff !important;
+        }
+        [data-theme="dark"] .quiz-cta-btn {
+            background: #fbbf24;
+            color: #0f172a !important;
+        }
+        [data-theme="dark"] .quiz-cta-btn:hover {
+            background: #f59e0b;
+            color: #0f172a !important;
+        }
+
+        .key-indicators-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin-top: 16px;
+            width: 100%;
+        }
+        @media (min-width: 600px) {
+            .key-indicators-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        @media (min-width: 900px) {
+            .key-indicators-grid {
+                grid-template-columns: repeat(6, 1fr);
+            }
+        }
+        .indicator-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-lg);
+            padding: 8px 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+            transition: all 0.2s ease;
+        }
+        .indicator-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+        .indicator-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: var(--primary-light);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.95rem;
+            flex-shrink: 0;
+        }
+        [data-theme="dark"] .indicator-icon {
+            color: #818cf8;
+            background: rgba(129, 140, 248, 0.15);
+        }
+        .indicator-content {
+            text-align: left;
+            min-width: 0;
+        }
+        .indicator-value {
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            line-height: 1.1;
+            white-space: nowrap;
+        }
+        [data-theme="dark"] .indicator-value {
+            color: #a5b4fc;
+        }
+        .indicator-label {
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: var(--text-sec);
+            margin-top: 2px;
+            line-height: 1.15;
+        }
+
+        .related-modules-box {
+            margin-top: 14px;
+            width: 100%;
+            max-width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            background: rgba(15, 23, 42, 0.03);
+            border: 1px dashed rgba(148, 163, 184, 0.5);
+            border-radius: var(--radius-lg);
+            padding: 12px 16px;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+        [data-theme="dark"] .related-modules-box {
+            background: rgba(30, 41, 59, 0.3);
+            border-color: rgba(100, 116, 139, 0.4);
+        }
+        .related-modules-box:hover {
+            border-style: solid;
+            border-color: var(--primary);
+        }
+        .related-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.65rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            color: var(--primary-dark);
+            background: rgba(79, 70, 229, 0.12);
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+        [data-theme="dark"] .related-tag {
+            color: #a5b4fc;
+            background: rgba(129, 140, 248, 0.18);
+        }
+
         .schemes-grid {
             display: grid;
             grid-template-columns: repeat(1, 1fr);
@@ -354,7 +534,6 @@
             .schemes-grid { grid-template-columns: repeat(4, 1fr); }
         }
 
-        /* Solid, highly readable Scheme Cards */
         .scheme-card {
             background: #ffffff;
             border: 1px solid #e2e8f0;
@@ -458,29 +637,132 @@
         }
 
         @media (max-width: 600px) {
+            .hide-mobile { display: none; }
             .page-header-top { margin-top: 25px; margin-bottom: 20px; }
             .hero-title { font-size: 25px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
             
+            .indicator-card { padding: 6px 8px; gap: 6px; }
+            .indicator-icon { width: 28px; height: 28px; font-size: 0.85rem; border-radius: 6px; }
+            .indicator-value { font-size: 0.85rem; }
+            .indicator-label { font-size: 0.6rem; }
+
             .top-meta-bar { flex-wrap: nowrap; justify-content: space-between; }
-            .breadcrumb-nav, .hero-badge { height: 26px; }
-            .breadcrumb-list { padding: 0 10px; border-radius: 13px; }
-            .hero-badge { padding: 0 10px; border-radius: 13px; font-size: 0.6rem; }
+            .breadcrumb-nav { height: 22px; }
+            .hero-badge { height: 19px; padding: 0 8px; border-radius: 10px; font-size: 0.55rem; }
+            .print-btn { height: 19px; padding: 0 6px; font-size: 0.55rem; }
+            .breadcrumb-list { padding: 0 8px; border-radius: 11px; }
             .breadcrumb-item { font-size: 0.6rem; }
             
-            /* Responsive interlinks for mobile */
             .hero-interlinks { flex-direction: row; flex-wrap: wrap; gap: 6px; padding: 8px 12px; border-radius: 30px; }
             .hero-interlinks .dot { display: inline; font-size: 0.7rem; }
             .hero-interlinks a { font-size: 0.8rem; }
             .hero-interlinks .interlink-label { font-size: 0.75rem; }
 
-            .tools-strip { flex-direction: column; align-items: stretch; gap: 15px;}
-            .tools-strip-btn-group { width: 100%; justify-content: stretch; display: grid; grid-template-columns: 1fr 1fr; gap: 8px;}
-            .tools-strip-btn-group .tools-strip-btn:last-child { grid-column: span 2; }
-            .tools-strip-btn { justify-content: center; padding: 7px 10px; font-size: 12px; }
+            .tools-strip { flex-direction: column; align-items: stretch; gap: 12px;}
+            .tools-strip-left { flex-direction: column; text-align: center; justify-content: center; width: 100%; }
+            .tools-strip-title, .tools-strip-desc { text-align: center !important; }
+            .tools-strip-btn-group { width: 100%; justify-content: center; display: flex; gap: 8px; flex-wrap: wrap;}
+            .tools-strip-btn { justify-content: center; padding: 6px 12px; font-size: 11.5px; width: fit-content; max-width: 60%; margin: 0 auto; }
+        }
+
+        .section-heading-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 35px 0 25px 0;
+            position: relative;
+            text-align: center;
+            width: 100%;
+        }
+        .section-heading-divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            opacity: 0.3;
+            z-index: 1;
+        }
+        .divider-tag {
+            position: relative;
+            z-index: 2;
+            background: var(--card-bg);
+            border: 1px solid var(--primary);
+            color: var(--primary-dark);
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 0.4px;
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.08);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        [data-theme="dark"] .divider-tag {
+            color: #a5b4fc;
+            background: #1e293b;
+            border-color: #818cf8;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        @media print {
+            #site-header, #site-footer, .top-meta-bar, .hero-interlinks, .tools-strip, .related-modules-box, .print-btn, .section-heading-divider {
+                display: none !important;
+            }
+            body {
+                background: #ffffff !important;
+                color: #000000 !important;
+                font-size: 11pt !important;
+            }
+            main, .main-layout {
+                max-width: 100% !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            .hero-title {
+                color: #000000 !important;
+                -webkit-text-fill-color: #000000 !important;
+                font-size: 20pt !important;
+                text-align: left !important;
+            }
+            .hero-desc {
+                color: #333333 !important;
+                text-align: left !important;
+                margin-bottom: 20px !important;
+            }
+            .key-indicators-grid {
+                grid-template-columns: repeat(4, 1fr) !important;
+                gap: 10px !important;
+                margin-bottom: 20px !important;
+            }
+            .indicator-card {
+                border: 1px solid #ccc !important;
+                box-shadow: none !important;
+                padding: 8px !important;
+            }
+            .schemes-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 12px !important;
+            }
+            .scheme-card {
+                border: 1px solid #cccccc !important;
+                box-shadow: none !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                background: #ffffff !important;
+            }
+            .scheme-title {
+                color: #000000 !important;
+            }
+            .detail-en, .detail-hi {
+                color: #222222 !important;
+            }
         }
     </style>
 
-    <!-- Theme Initialization Script -->
     <script>
         const savedTheme = localStorage.getItem('theme') || 'light';
         document.documentElement.setAttribute('data-theme', savedTheme);
@@ -494,11 +776,9 @@
     </div>
 </noscript>
 
-<!-- Dynamic Header Container -->
 <div id="site-header"></div>
 
 <main>
-    <!-- Top Meta Bar: Breadcrumb (Left) & Hero Badge (Right) -->
     <div class="top-meta-bar">
         <nav aria-label="breadcrumb" class="breadcrumb-nav">
             <ol class="breadcrumb-list">
@@ -509,11 +789,15 @@
                 <li class="breadcrumb-item active" aria-current="page">Economic Survey</li>
             </ol>
         </nav>
-        <span class="hero-badge">Latest Survey</span>
+        <div class="top-meta-right">
+            <button onclick="window.print()" class="print-btn" title="Print or Save Page as PDF">
+                <i class="fa-solid fa-print"></i> Print / PDF
+            </button>
+            <span class="hero-badge"><span class="hide-mobile">Latest </span>Survey</span>
+        </div>
     </div>
 
     <div class="main-layout">
-        <!-- Compact Hero Section (Matched exactly with Quiz page) -->
         <div class="page-header-top">
             <h1 class="hero-title">HP Economic Survey Highlights</h1>
             <p class="hero-desc">
@@ -521,7 +805,6 @@
                 <span class="hi-desc">हिमाचल प्रदेश के प्रमुख आर्थिक संकेतकों, क्षेत्रीय विकास और सांख्यिकीय डेटा को कवर करने वाले परीक्षा-उन्मुख नोट्स।</span>
             </p>
             
-            <!-- High-Contrast Interlinking Hook -->
             <div class="hero-interlinks">
                 <span class="interlink-label"><i class="fa-solid fa-layer-group"></i> Deep Dive:</span>
                 <a href="../../himachal-pradesh-gk/geography/">Geography</a>
@@ -533,32 +816,72 @@
                 <a href="../../himachal-pradesh-gk/rivers/">Rivers</a>
             </div>
 
-            <!-- DEDICATED INDIGO TOOLS STRIP FOR ECO SURVEY -->
-            <div class="tools-strip">
+            <div class="tools-strip" style="background: rgba(234, 88, 12, 0.08); border-color: rgba(234, 88, 12, 0.3); margin-top: 16px; padding: 8px 14px;">
                 <div class="tools-strip-left">
-                    <div class="tools-strip-icon">
-                        <i class="fa-solid fa-book-open-reader"></i>
-                    </div>
                     <div>
-                        <div class="tools-strip-title font-heading" style="font-family: 'Inter', sans-serif;">Explore High-Yield Notes</div>
-                        <div class="tools-strip-desc font-sans" style="font-family: 'Inter', sans-serif;">Read One Liners & Revenue Quiz</div>
+                        <div class="tools-strip-title font-heading" style="font-family: 'Inter', sans-serif;">Economic Survey Interactive Mock Quiz</div>
+                        <div class="tools-strip-desc font-sans" style="font-family: 'Inter', sans-serif;">Attempt 450+ High-Yield MCQs covering GSDP, Hydropower, Banking, Tourism, Agriculture & State Budget</div>
                     </div>
                 </div>
                 <div class="tools-strip-btn-group">
-                    <a href="../hpgk-one-liners/" class="tools-strip-btn outline">
-                        <i class="fa-solid fa-bolt"></i> One Liners
+                    <a href="quiz/" class="quiz-cta-btn">
+                        <i class="fa-solid fa-bolt"></i> Start Mock Quiz
                     </a>
-                    <a href="../hp-revenue-and-land-laws/quiz/" class="tools-strip-btn outline">
-                        <i class="fa-solid fa-gavel"></i> Revenue Quiz
-                    </a>
-                    <a href="../hp-budget/" class="tools-strip-btn">
-                        HP Budget <i class="fa-solid fa-arrow-right"></i>
-                    </a>
+                </div>
+            </div>
+
+            <div class="key-indicators-grid">
+                <div class="indicator-card">
+                    <div class="indicator-icon"><i class="fa-solid fa-chart-line"></i></div>
+                    <div class="indicator-content">
+                        <div class="indicator-value">7.1%</div>
+                        <div class="indicator-label">Real GSDP Growth</div>
+                    </div>
+                </div>
+                <div class="indicator-card">
+                    <div class="indicator-icon"><i class="fa-solid fa-wallet"></i></div>
+                    <div class="indicator-content">
+                        <div class="indicator-value">₹2,35,199</div>
+                        <div class="indicator-label">Per Capita Income</div>
+                    </div>
+                </div>
+                <div class="indicator-card">
+                    <div class="indicator-icon"><i class="fa-solid fa-bolt"></i></div>
+                    <div class="indicator-content">
+                        <div class="indicator-value">27,436 MW</div>
+                        <div class="indicator-label">Harnessable Hydro</div>
+                    </div>
+                </div>
+                <div class="indicator-card">
+                    <div class="indicator-icon"><i class="fa-solid fa-apple-whole"></i></div>
+                    <div class="indicator-content">
+                        <div class="indicator-value">~85%</div>
+                        <div class="indicator-label">Apple Fruit Share</div>
+                    </div>
+                </div>
+                <div class="indicator-card">
+                    <div class="indicator-icon"><i class="fa-solid fa-tree"></i></div>
+                    <div class="indicator-content">
+                        <div class="indicator-value">68.16%</div>
+                        <div class="indicator-label">Forest Area</div>
+                    </div>
+                </div>
+                <div class="indicator-card">
+                    <div class="indicator-icon"><i class="fa-solid fa-people-roof"></i></div>
+                    <div class="indicator-content">
+                        <div class="indicator-value">57.03%</div>
+                        <div class="indicator-label">Agri Workforce</div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Content Area: Eco Survey Highlights -->
+        <div class="section-heading-divider">
+            <span class="divider-tag">
+                <i class="fa-solid fa-book-bookmark"></i> Sectoral Highlights & Notes • क्षेत्रवार मुख्य विवरण
+            </span>
+        </div>
+
         <section id="content-budget">
 
             <div class="schemes-grid">
@@ -582,6 +905,10 @@
                             <span class="detail-en">GSDP Value: The Gross State Domestic Product at current prices crossed the ₹2 Lakh Crore mark.</span>
                             <span class="detail-hi">GSDP मूल्य: वर्तमान कीमतों पर सकल राज्य घरेलू उत्पाद (GSDP) ₹2 लाख करोड़ के पार।</span>
                         </li>
+                        <li>
+                            <span class="detail-en">Fiscal Deficit: Target fiscal deficit maintained around 4.5% to 4.7% of GSDP under FRBM limits.</span>
+                            <span class="detail-hi">राजकोषीय घाटा: FRBM सीमा के तहत लक्षित राजकोषीय घाटा GSDP के 4.5% से 4.7% के बीच।</span>
+                        </li>
                     </ul>
                 </div>
 
@@ -604,6 +931,10 @@
                             <span class="detail-en">Tertiary Sector: The fastest-growing sector (Services), contributing nearly 43.4% to GVA.</span>
                             <span class="detail-hi">तृतीयक क्षेत्र: सबसे तेजी से बढ़ने वाला (सेवा) क्षेत्र, GVA में लगभग 43.4% का योगदान।</span>
                         </li>
+                        <li>
+                            <span class="detail-en">Base Year: State Domestic Product estimates use 2011-12 as the standard Base Year.</span>
+                            <span class="detail-hi">आधार वर्ष: राज्य घरेलू उत्पाद के अनुमान 2011-12 को मानक आधार वर्ष के रूप में उपयोग करते हैं।</span>
+                        </li>
                     </ul>
                 </div>
 
@@ -623,8 +954,12 @@
                             <span class="detail-hi">खाद्यान्न लक्ष्य: वार्षिक खाद्यान्न उत्पादन का लक्ष्य 16.5-17 लाख मीट्रिक टन के आसपास।</span>
                         </li>
                         <li>
-                            <span class="detail-en">Natural Farming: Over 1.7 lakh farmers enrolled under Prakritik Kheti Khushhal Kisan Yojana.</span>
+                            <span class="detail-en">Natural Farming: Over 1.7 lakh farmers enrolled under Prakritik Kheti Khushhal Kisan Yojana (PK3Y).</span>
                             <span class="detail-hi">प्राकृतिक खेती: 'प्राकृतिक खेती खुशहाल किसान योजना' के तहत 1.7 लाख से अधिक किसान नामांकित।</span>
+                        </li>
+                        <li>
+                            <span class="detail-en">Landholdings: Small and marginal farmers (holding &lt; 2 ha) constitute 88.86% of total operational holdings.</span>
+                            <span class="detail-hi">जोत का आकार: छोटे और सीमांत किसान (2 हेक्टेयर से कम) कुल जोतों का 88.86% हैं।</span>
                         </li>
                     </ul>
                 </div>
@@ -648,6 +983,10 @@
                             <span class="detail-en">HP SHIVA Project: ADB-funded initiative heavily expanding subtropical fruits (citrus, guava).</span>
                             <span class="detail-hi">एचपी शिवा प्रोजेक्ट: उपोष्णकटिबंधीय फलों का विस्तार करने वाली ADB-वित्तपोषित पहल।</span>
                         </li>
+                        <li>
+                            <span class="detail-en">Dwarf Rootstocks: M-9 and MM-111 imported rootstocks promoted for high-density orchards.</span>
+                            <span class="detail-hi">बौने रूटस्टॉक: सघन बागवानी के लिए M-9 और MM-111 आयातित रूटस्टॉक को बढ़ावा दिया गया।</span>
+                        </li>
                     </ul>
                 </div>
 
@@ -659,16 +998,20 @@
                     </div>
                     <ul class="scheme-details">
                         <li>
-                            <span class="detail-en">Harnessable Potential: Total identified potential is 27,436 MW, of which ~11,000+ MW is harnessed.</span>
-                            <span class="detail-hi">दोहन क्षमता: कुल पहचानी गई क्षमता 27,436 मेगावाट है, जिसमें से ~11,000+ का दोहन हो चुका है।</span>
+                            <span class="detail-en">Harnessable Potential: Total identified potential is 27,436 MW, of which ~11,150+ MW is harnessed.</span>
+                            <span class="detail-hi">दोहन क्षमता: कुल पहचानी गई क्षमता 27,436 मेगावाट है, जिसमें से ~11,150+ का दोहन हो चुका है।</span>
+                        </li>
+                        <li>
+                            <span class="detail-en">Basin Leader: Satluj River Basin holds the maximum hydro potential (~13,332 MW).</span>
+                            <span class="detail-hi">बेसिन प्रमुख: सतलुज नदी बेसिन में सबसे अधिक जलविद्युत क्षमता (~13,332 मेगावाट) है।</span>
                         </li>
                         <li>
                             <span class="detail-en">Revenue: Sale of power remains the largest non-tax revenue contributor to the exchequer.</span>
                             <span class="detail-hi">राजस्व: बिजली की बिक्री राज्य के खजाने में सबसे बड़ा गैर-कर राजस्व योगदानकर्ता है।</span>
                         </li>
                         <li>
-                            <span class="detail-en">Green Energy: State targets a massive 500 MW solar capacity addition to become a Green State.</span>
-                            <span class="detail-hi">हरित ऊर्जा: 'हरित राज्य' बनने के लिए 500 मेगावाट सौर क्षमता जोड़ने का लक्ष्य।</span>
+                            <span class="detail-en">Green State Goal: Aiming to become India's 1st Green Energy State by March 2026.</span>
+                            <span class="detail-hi">हरित राज्य लक्ष्य: मार्च 2026 तक भारत का पहला हरित ऊर्जा राज्य बनने का लक्ष्य।</span>
                         </li>
                     </ul>
                 </div>
@@ -681,8 +1024,8 @@
                     </div>
                     <ul class="scheme-details">
                         <li>
-                            <span class="detail-en">GSDP Contribution: Directly and indirectly contributes around 7% to the State's GDP.</span>
-                            <span class="detail-hi">GSDP योगदान: प्रत्यक्ष और अप्रत्यक्ष रूप से राज्य के सकल घरेलू उत्पाद में लगभग 7% का योगदान।</span>
+                            <span class="detail-en">GSDP Contribution: Directly and indirectly contributes around 7.3% to the State's GDP.</span>
+                            <span class="detail-hi">GSDP योगदान: प्रत्यक्ष और अप्रत्यक्ष रूप से राज्य के सकल घरेलू उत्पाद में लगभग 7.3% का योगदान।</span>
                         </li>
                         <li>
                             <span class="detail-en">Tourist Influx: Consistently crossing 1.5+ Crore domestic tourists annually post-pandemic.</span>
@@ -691,6 +1034,10 @@
                         <li>
                             <span class="detail-en">Tourism Capital: Kangra is being intensively developed as the 'Tourism Capital' of HP.</span>
                             <span class="detail-hi">पर्यटन राजधानी: कांगड़ा को हि.प्र. की 'पर्यटन राजधानी' के रूप में सघनता से विकसित किया जा रहा है।</span>
+                        </li>
+                        <li>
+                            <span class="detail-en">Unexplored Destinations: 'Nai Raahein Nai Manzilein' developing Janjehli (eco-tourism) and Bir Billing.</span>
+                            <span class="detail-hi">अनछुए स्थल: 'नई राहें नई मंजिलें' के तहत जंजैहली और बीड़ बिलिंग का विकास।</span>
                         </li>
                     </ul>
                 </div>
@@ -711,8 +1058,12 @@
                             <span class="detail-hi">बैंक पहुँच: हि.प्र. में बैंकिंग घनत्व बहुत अधिक है (प्रति ~3,000 आबादी पर एक शाखा)।</span>
                         </li>
                         <li>
-                            <span class="detail-en">Lead Banks: PNB and UCO Bank act as the primary Lead Banks across most districts.</span>
-                            <span class="detail-hi">लीड बैंक: पीएनबी (PNB) और यूको (UCO) बैंक अधिकांश जिलों में लीड बैंक के रूप में कार्य करते हैं।</span>
+                            <span class="detail-en">Lead Banks: PNB (6 dists), UCO Bank (4 dists), and SBI (2 dists) act as Lead Banks.</span>
+                            <span class="detail-hi">लीड बैंक: पीएनबी (6 जिले), यूको (4 जिले) और एसबीआई (2 जिले) लीड बैंक के रूप में कार्य करते हैं।</span>
+                        </li>
+                        <li>
+                            <span class="detail-en">Cooperative Network: HPSCB covers 6 districts, KCCB covers 5, and JCCB operates in Solan.</span>
+                            <span class="detail-hi">सहकारी नेटवर्क: HPSCB 6 जिलों, KCCB 5 जिलों और JCCB सोलन में कार्य करता है।</span>
                         </li>
                     </ul>
                 </div>
@@ -736,10 +1087,14 @@
                             <span class="detail-en">Sukh Ashray: State legally adopted orphans as 'Children of the State', bearing all their expenses.</span>
                             <span class="detail-hi">सुख आश्रय: राज्य ने अनाथों को 'राज्य के बच्चों' के रूप में अपनाया, सारा खर्च सरकार का।</span>
                         </li>
+                        <li>
+                            <span class="detail-en">Shagun & Kanyadaan: Marriage assistance of ₹31,000 (Shagun) and ₹51,000 (Kanyadaan) provided.</span>
+                            <span class="detail-hi">शगुन और कन्यादान: विवाह सहायता ₹31,000 (शगुन) और ₹51,000 (कन्यादान) प्रदान की जाती है।</span>
+                        </li>
                     </ul>
                 </div>
 
-                <!-- NEW Card 9: Education Profile -->
+                <!-- Card 9: Education Profile -->
                 <div class="scheme-card">
                     <div class="scheme-header">
                         <div class="scheme-title"><i class="fa-solid fa-book-reader"></i> Education Profile</div>
@@ -755,13 +1110,17 @@
                             <span class="detail-hi">खर्च: शिक्षा क्षेत्र लगातार राज्य के बजट का सबसे बड़ा हिस्सा (16-18%) खर्च करता है।</span>
                         </li>
                         <li>
-                            <span class="detail-en">Enrolment: Gross Enrolment Ratio (GER) at Primary and Upper Primary levels remains near 100%.</span>
-                            <span class="detail-hi">नामांकन: प्राथमिक और उच्च प्राथमिक स्तर पर सकल नामांकन अनुपात (GER) लगभग 100% है।</span>
+                            <span class="detail-en">Day Boarding Schools: 68 Rajiv Gandhi Day Boarding Schools being set up in all constituencies.</span>
+                            <span class="detail-hi">डे बोर्डिंग स्कूल: सभी 68 विधानसभा क्षेत्रों में 'राजीव गांधी डे बोर्डिंग स्कूल' स्थापित।</span>
+                        </li>
+                        <li>
+                            <span class="detail-en">Vidyarthi Rin: 'Dr. Y.S. Parmar Vidyarthi Rin' scheme offering education loans up to ₹20 Lakh at 1%.</span>
+                            <span class="detail-hi">विद्यार्थी ऋण: 1% ब्याज दर पर ₹20 लाख तक उच्च शिक्षा ऋण देने वाली योजना।</span>
                         </li>
                     </ul>
                 </div>
 
-                <!-- NEW Card 10: Health Indicators -->
+                <!-- Card 10: Health Indicators -->
                 <div class="scheme-card">
                     <div class="scheme-header">
                         <div class="scheme-title"><i class="fa-solid fa-notes-medical"></i> Health Indicators</div>
@@ -769,21 +1128,25 @@
                     </div>
                     <ul class="scheme-details">
                         <li>
-                            <span class="detail-en">Infant Mortality Rate (IMR): Significantly lower than the national average, reflecting good healthcare.</span>
-                            <span class="detail-hi">शिशु मृत्यु दर (IMR): राष्ट्रीय औसत से काफी कम, जो अच्छे स्वास्थ्य सेवा को दर्शाता है।</span>
+                            <span class="detail-en">Infant Mortality Rate (IMR): Stands low at 17 per 1000 live births, significantly better than national average.</span>
+                            <span class="detail-hi">शिशु मृत्यु दर (IMR): 17 प्रति 1000 जीवित जन्म, जो राष्ट्रीय औसत से काफी बेहतर है।</span>
                         </li>
                         <li>
-                            <span class="detail-en">HIMCARE Impact: Lakhs of families covered, saving massive out-of-pocket health expenditure.</span>
-                            <span class="detail-hi">हिमकेयर प्रभाव: लाखों परिवारों को कवर किया, स्वास्थ्य पर जेब से होने वाले भारी खर्च को बचाया।</span>
+                            <span class="detail-en">HIMCARE Impact: Lakhs of families covered with ₹5 Lakh cashless treatment per year.</span>
+                            <span class="detail-hi">हिमकेयर प्रभाव: लाखों परिवारों को सालाना ₹5 लाख का कैशलेस इलाज कवर दिया गया।</span>
                         </li>
                         <li>
-                            <span class="detail-en">Network: Dense network of Sub-Centers, PHCs, and CHCs ensuring access in remote terrain.</span>
-                            <span class="detail-hi">नेटवर्क: उप-केंद्रों, PHC और CHC का घना नेटवर्क जो दूरदराज के क्षेत्रों में पहुंच सुनिश्चित करता है।</span>
+                            <span class="detail-en">Sahara Yojana: Financial aid of ₹3,000/month provided to bedridden chronic illness patients.</span>
+                            <span class="detail-hi">सहारा योजना: गंभीर बीमारियों से पीड़ित गंभीर मरीजों को ₹3,000/माह की वित्तीय सहायता।</span>
+                        </li>
+                        <li>
+                            <span class="detail-en">Doorstep Care: Mobile Veterinary Units (MVUs) deployed under 'Project Sanjeevani'.</span>
+                            <span class="detail-hi">डोरस्टेप केयर: 'प्रोजेक्ट संजीवनी' के तहत मोबाइल वेटरनरी यूनिट्स तैनात।</span>
                         </li>
                     </ul>
                 </div>
 
-                <!-- NEW Card 11: Forestry & Environment -->
+                <!-- Card 11: Forestry & Environment -->
                 <div class="scheme-card">
                     <div class="scheme-header">
                         <div class="scheme-title"><i class="fa-solid fa-tree"></i> Forest & Environment</div>
@@ -795,17 +1158,21 @@
                             <span class="detail-hi">वन क्षेत्र: दर्ज कानूनी वन क्षेत्र 37,033 वर्ग किमी है, जो भौगोलिक क्षेत्रफल का 68.16% है।</span>
                         </li>
                         <li>
-                            <span class="detail-en">Green Target: State aims to increase total green cover through massive plantation drives.</span>
-                            <span class="detail-hi">हरित लक्ष्य: राज्य का लक्ष्य बड़े पैमाने पर वृक्षारोपण अभियान के माध्यम से हरित आवरण बढ़ाना है।</span>
+                            <span class="detail-en">Resin Factories: Govt-run Resin and Turpentine factories active in Nahan and Bilaspur.</span>
+                            <span class="detail-hi">राल कारखाने: नाहन और बिलासपुर में सरकारी राल और तारपीन कारखाने संचालित।</span>
                         </li>
                         <li>
-                            <span class="detail-en">Carbon Credit: Actively exploring revenue generation through global carbon credit mechanisms.</span>
-                            <span class="detail-hi">कार्बन क्रेडिट: वैश्विक कार्बन क्रेडिट तंत्र के माध्यम से राजस्व सृजन की सक्रिय खोज।</span>
+                            <span class="detail-en">Van Mitra Scheme: Engaging local youth and Panchayats for forest protection and fire fighting.</span>
+                            <span class="detail-hi">वन मित्र योजना: वन सुरक्षा और आग से बचाव के लिए युवाओं व पंचायतों को जोड़ना।</span>
+                        </li>
+                        <li>
+                            <span class="detail-en">Climate Proofing: JICA and KfW (Germany) funding climate-resilient forest ecosystem projects.</span>
+                            <span class="detail-hi">जलवायु प्रूफिंग: JICA और KfW (जर्मनी) द्वारा जलवायु-सहनशील वन परियोजनाओं का वित्तपोषण।</span>
                         </li>
                     </ul>
                 </div>
 
-                <!-- NEW Card 12: Roads & Transport -->
+                <!-- Card 12: Roads & Transport -->
                 <div class="scheme-card">
                     <div class="scheme-header">
                         <div class="scheme-title"><i class="fa-solid fa-road"></i> Roads & Connectivity</div>
@@ -817,17 +1184,21 @@
                             <span class="detail-hi">सड़क की लंबाई: कुल मोटर योग्य सड़क नेटवर्क 40,000+ किमी पार कर गया है, जो राज्य की जीवन रेखा है।</span>
                         </li>
                         <li>
-                            <span class="detail-en">PMGSY: Pradhan Mantri Gram Sadak Yojana has been pivotal in connecting remote villages.</span>
-                            <span class="detail-hi">PMGSY: 'प्रधानमंत्री ग्राम सड़क योजना' ने दूरदराज के गांवों को जोड़ने में महत्वपूर्ण भूमिका निभाई है।</span>
+                            <span class="detail-en">National Highways: 19 National Highways traversing over 2,600 km across the mountain terrain.</span>
+                            <span class="detail-hi">राष्ट्रीय राजमार्ग: पर्वतीय क्षेत्र में 2,600 किमी से अधिक में 19 राष्ट्रीय राजमार्ग।</span>
                         </li>
                         <li>
-                            <span class="detail-en">E-Transport: HRTC is aggressively transitioning to Electric Buses to reduce carbon footprint.</span>
-                            <span class="detail-hi">ई-परिवहन: कार्बन फुटप्रिंट कम करने के लिए HRTC आक्रामक रूप से 'इलेक्ट्रिक बसों' की ओर बढ़ रहा है।</span>
+                            <span class="detail-en">Atal Tunnel: 9.02 km tunnel under Rohtang Pass providing all-weather access to Lahaul.</span>
+                            <span class="detail-hi">अटल टनल: रोहतांग दर्रे के नीचे 9.02 किमी लंबी सुरंग लाहौल को बारहमासी संपर्क देती है।</span>
+                        </li>
+                        <li>
+                            <span class="detail-en">Rail Expansion: Bhanupali-Bilaspur-Beri (63.1 km) & Chandigarh-Baddi (33.2 km) lines active.</span>
+                            <span class="detail-hi">रेल विस्तार: भानुपुली-बिलासपुर (63.1 किमी) और चंडीगढ़-बद्दी (33.2 किमी) लाइनें निर्माणाधीन।</span>
                         </li>
                     </ul>
                 </div>
 
-                <!-- NEW Card 13: Inflation & Prices -->
+                <!-- Card 13: Inflation & Prices -->
                 <div class="scheme-card">
                     <div class="scheme-header">
                         <div class="scheme-title"><i class="fa-solid fa-tags"></i> Price Movement</div>
@@ -835,21 +1206,25 @@
                     </div>
                     <ul class="scheme-details">
                         <li>
-                            <span class="detail-en">Inflation Control: General inflation (CPI) in the state largely mirrors or stays slightly below national trends.</span>
-                            <span class="detail-hi">मुद्रास्फीति नियंत्रण: राज्य में सामान्य मुद्रास्फीति (CPI) मोटे तौर पर राष्ट्रीय रुझानों से कम या समान रहती है।</span>
+                            <span class="detail-en">Inflation Control: General CPI inflation in the state largely mirrors or stays slightly below national trends.</span>
+                            <span class="detail-hi">मुद्रास्फीति नियंत्रण: राज्य में सामान्य CPI मुद्रास्फीति मोटे तौर पर राष्ट्रीय रुझानों से कम या समान रहती है।</span>
                         </li>
                         <li>
                             <span class="detail-en">Subsidized Ration: PDS provides highly subsidized pulses, oil, and salt to all ration card holders.</span>
                             <span class="detail-hi">सब्सिडी वाला राशन: PDS सभी राशन कार्ड धारकों को भारी सब्सिडी वाली दालें, तेल और नमक प्रदान करता है।</span>
                         </li>
                         <li>
-                            <span class="detail-en">Supply Chain: Efficient civil supplies network ensures no price gouging even during extreme winters.</span>
-                            <span class="detail-hi">आपूर्ति श्रृंखला: कुशल नागरिक आपूर्ति नेटवर्क सर्दियों में भी कीमतों में भारी वृद्धि नहीं होने देता।</span>
+                            <span class="detail-en">CPI Centers: Solan, Shimla, and Sirmaur serve as key data centers for CPI Industrial Workers.</span>
+                            <span class="detail-hi">CPI केंद्र: सोलन, शिमला और सिरमौर औद्योगिक श्रमिकों के CPI डेटा संग्रह केंद्र हैं।</span>
+                        </li>
+                        <li>
+                            <span class="detail-en">Aadhaar Seeding: 100% Aadhaar linking completed for TPDS ration cards to eliminate leakage.</span>
+                            <span class="detail-hi">आधार सीडिंग: लीकेज रोकने के लिए TPDS राशन कार्डों की 100% आधार लिंकिंग पूर्ण।</span>
                         </li>
                     </ul>
                 </div>
 
-                <!-- NEW Card 14: Rural Development -->
+                <!-- Card 14: Rural Development -->
                 <div class="scheme-card">
                     <div class="scheme-header">
                         <div class="scheme-title"><i class="fa-solid fa-people-group"></i> Rural Development</div>
@@ -857,21 +1232,25 @@
                     </div>
                     <ul class="scheme-details">
                         <li>
-                            <span class="detail-en">MGNREGA: Generates crores of persondays annually, acting as a major rural employment safety net.</span>
-                            <span class="detail-hi">मनरेगा: प्रतिवर्ष करोड़ों कार्यदिवस (persondays) उत्पन्न करता है, जो ग्रामीण रोजगार सुरक्षा जाल है।</span>
+                            <span class="detail-en">MGNREGA: Generates crores of persondays annually, with >60% participation from women workforce.</span>
+                            <span class="detail-hi">मनरेगा: प्रतिवर्ष करोड़ों कार्यदिवस उत्पन्न करता है, जिसमें महिला कार्यबल की भागीदारी >60% है।</span>
                         </li>
                         <li>
-                            <span class="detail-en">Panchayati Raj: Enhanced grants directly transferred to PRIs for local infrastructure creation.</span>
-                            <span class="detail-hi">पंचायती राज: स्थानीय बुनियादी ढांचे के निर्माण के लिए PRIs को सीधे बढ़े हुए अनुदान हस्तांतरित किए गए।</span>
+                            <span class="detail-en">Panchavati & Ek Bigha: Convergence with MGNREGA to build elderly parks and kitchen gardens.</span>
+                            <span class="detail-hi">पंचवटी व एक बीघा: बुजुर्ग पार्कों और किचन गार्डन निर्माण के लिए मनरेगा के साथ अभिसरण।</span>
                         </li>
                         <li>
-                            <span class="detail-en">Livelihood Mission: NRLM empowers women Self Help Groups (SHGs) through easy credit.</span>
-                            <span class="detail-hi">आजीविका मिशन: NRLM आसान ऋण के माध्यम से महिला स्वयं सहायता समूहों (SHG) को सशक्त बनाता है।</span>
+                            <span class="detail-en">Livelihood Brand: 'Him Ira' serves as the registered brand name for SHG products in HP.</span>
+                            <span class="detail-hi">आजीविका ब्रांड: 'हिम ईरा' हिमाचल में स्वयं सहायता समूह के उत्पादों का पंजीकृत ब्रांड है।</span>
+                        </li>
+                        <li>
+                            <span class="detail-en">SVAMITVA Scheme: High-resolution drone mapping used to issue legal Property Cards in village areas.</span>
+                            <span class="detail-hi">स्वामित्व योजना: आबादी देह क्षेत्रों में कानूनी प्रॉपर्टी कार्ड देने के लिए ड्रोन मैपिंग।</span>
                         </li>
                     </ul>
                 </div>
 
-                <!-- NEW Card 15: IT & E-Governance -->
+                <!-- Card 15: IT & E-Governance -->
                 <div class="scheme-card">
                     <div class="scheme-header">
                         <div class="scheme-title"><i class="fa-solid fa-computer"></i> IT & E-Governance</div>
@@ -879,21 +1258,25 @@
                     </div>
                     <ul class="scheme-details">
                         <li>
-                            <span class="detail-en">e-District: Maximum citizen services (certificates, revenue records) are completely digitized.</span>
-                            <span class="detail-hi">ई-डिस्ट्रिक्ट: अधिकतम नागरिक सेवाएं (प्रमाण पत्र, राजस्व रिकॉर्ड) पूरी तरह से डिजिटल कर दी गई हैं।</span>
+                            <span class="detail-en">Paperless Milestones: India's 1st Paperless Vidhan Sabha (e-Vidhan 2014) and 1st e-Cabinet (2021).</span>
+                            <span class="detail-hi">पेपरलेस मील के पत्थर: भारत की पहली ई-विधानसभा (2014) और पहली ई-कैबिनेट (2021)।</span>
                         </li>
                         <li>
-                            <span class="detail-en">HIM SWAN: State Wide Area Network connects all block-level offices to the state headquarters.</span>
-                            <span class="detail-hi">हिम स्वान (HIM SWAN): सभी ब्लॉक-स्तरीय कार्यालयों को राज्य मुख्यालय से जोड़ता है।</span>
+                            <span class="detail-en">Land Records: 'HIMBHOOMI' software portal manages digital land records and Jamabandi copies.</span>
+                            <span class="detail-hi">भूमि रिकॉर्ड: 'हिमभूमि' सॉफ्टवेयर पोर्टल डिजिटल भूमि रिकॉर्ड और जमाबंदी का प्रबंधन करता है।</span>
                         </li>
                         <li>
-                            <span class="detail-en">CM Helpline 1100: AI-backed grievance redressal system ensuring time-bound solutions.</span>
-                            <span class="detail-hi">सीएम हेल्पलाइन 1100: समयबद्ध समाधान सुनिश्चित करने वाली AI-समर्थित शिकायत निवारण प्रणाली।</span>
+                            <span class="detail-en">ULPIN: 14-digit Unique Land Parcel Identification Number assigned as Aadhaar for land plots.</span>
+                            <span class="detail-hi">ULPIN: भूमि भूखंडों के लिए आधार के रूप में 14-अंकीय विशिष्ट पहचान संख्या।</span>
+                        </li>
+                        <li>
+                            <span class="detail-en">HIM SWAN & Helpline 1100: State Wide Area Network and CM Sewa Sankalp Helpline.</span>
+                            <span class="detail-hi">हिम स्वान और हेल्पलाइन 1100: स्टेट वाइड एरिया नेटवर्क और सीएम सेवा संकल्प हेल्पलाइन।</span>
                         </li>
                     </ul>
                 </div>
 
-                <!-- NEW Card 16: MSME & Industry -->
+                <!-- Card 16: MSME & Industry -->
                 <div class="scheme-card">
                     <div class="scheme-header">
                         <div class="scheme-title"><i class="fa-solid fa-industry"></i> Industry & MSME</div>
@@ -901,31 +1284,57 @@
                     </div>
                     <ul class="scheme-details">
                         <li>
-                            <span class="detail-en">BBN Corridor: Baddi-Barotiwala-Nalagarh remains the pharmaceutical and industrial hub of the state.</span>
-                            <span class="detail-hi">BBN कॉरिडोर: बद्दी-बरोटीवाला-नालागढ़ राज्य का फार्मास्युटिकल और औद्योगिक केंद्र बना हुआ है।</span>
+                            <span class="detail-en">BBN Corridor: Baddi-Barotiwala-Nalagarh accounts for over 70% of state's total industrial output.</span>
+                            <span class="detail-hi">BBN कॉरिडोर: बद्दी-बरोटीवाला-नालागढ़ राज्य के कुल औद्योगिक उत्पादन के 70% से अधिक का योगदान।</span>
                         </li>
                         <li>
-                            <span class="detail-en">Single Window: Improved clearance mechanism to attract investment and improve EoDB rankings.</span>
-                            <span class="detail-hi">सिंगल विंडो: निवेश आकर्षित करने और EoDB रैंकिंग में सुधार के लिए बेहतर क्लीयरेंस तंत्र।</span>
+                            <span class="detail-en">Bulk Drug Park: Mega central Bulk Drug Park under development over 1400+ acres at Haroli (Una).</span>
+                            <span class="detail-hi">बल्क ड्रग पार्क: हरोली (ऊना) में 1400+ एकड़ में बन रहा मेगा केंद्रीय बल्क ड्रग पार्क।</span>
                         </li>
                         <li>
-                            <span class="detail-en">CM Swavalamban: High subsidy for youth to set up manufacturing and service units locally.</span>
-                            <span class="detail-hi">सीएम स्वावलंबन: युवाओं को स्थानीय स्तर पर विनिर्माण और सेवा इकाइयां स्थापित करने के लिए उच्च सब्सिडी।</span>
+                            <span class="detail-en">Medical Device Park: State-of-the-art Medical Device Park being constructed at Nalagarh.</span>
+                            <span class="detail-hi">मेडिकल डिवाइस पार्क: नालागढ़ में अत्याधुनिक 'मेडिकल डिवाइस पार्क' का निर्माण।</span>
+                        </li>
+                        <li>
+                            <span class="detail-en">Rock Salt Mines: India's only natural Rock Salt (Saindha Namak) mines located at Drang & Guma (Mandi).</span>
+                            <span class="detail-hi">सेंधा नमक खानें: भारत की एकमात्र प्राकृतिक सेंधा नमक खानें मंडी के द्रंग और गुमा में स्थित हैं।</span>
                         </li>
                     </ul>
                 </div>
 
             </div>
+
+            <div class="related-modules-box" style="text-align: center; margin-top: 25px; margin-bottom: 25px;">
+                <div style="text-align: center;">
+                    <span class="related-tag"><i class="fa-solid fa-network-wired"></i> Related Study Modules • अन्य संबंधित विषय</span>
+                </div>
+                <div class="tools-strip-left" style="margin-bottom: 8px; justify-content: center; text-align: center;">
+                    <div>
+                        <div class="tools-strip-title font-heading" style="font-family: 'Inter', sans-serif; font-size: 0.9rem; text-align: center;">Explore Interlinked Study Guides</div>
+                        <div class="tools-strip-desc font-sans" style="font-family: 'Inter', sans-serif; text-align: center;">Switch to 600 One-Liners Series, Land Revenue Quiz, or State Budget Analysis</div>
+                    </div>
+                </div>
+                <div class="tools-strip-btn-group" style="justify-content: center;">
+                    <a href="eco-one-liners-part-1/" class="tools-strip-btn outline" style="font-size: 11.5px; padding: 5px 10px;">
+                        <i class="fa-solid fa-list-check"></i> 600 One-Liners <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 10px; opacity: 0.7;"></i>
+                    </a>
+                    <a href="../hp-revenue-and-land-laws/quiz/" class="tools-strip-btn outline" style="font-size: 11.5px; padding: 5px 10px;">
+                        <i class="fa-solid fa-gavel"></i> Revenue Quiz <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 10px; opacity: 0.7;"></i>
+                    </a>
+                    <a href="../hp-budget/" class="tools-strip-btn" style="font-size: 11.5px; padding: 5px 10px; background: var(--primary-dark);">
+                        <i class="fa-solid fa-file-invoice-dollar"></i> HP Budget Hub <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 10px; opacity: 0.7;"></i>
+                    </a>
+                </div>
+            </div>
+
         </section>
     </div>
 </main>
 
 <div id="site-footer"></div>
 
-<!-- Load Layout Manager (2 levels up ../../) -->
 <script src="../../js/layout.js"></script>
 
-<!-- Initialize Page -->
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         if (typeof renderHeader === 'function') {
@@ -935,11 +1344,11 @@
                 iconClass: 'fa-solid fa-chart-line',
                 link: '../', 
                 isQuizPage: false,
-                rootPath: '../..' /* 2 levels up */
+                rootPath: '../..'
             });
         }
         if (typeof renderFooter === 'function') {
-            renderFooter('../..'); /* 2 levels up */
+            renderFooter('../..');
         }
     });
 </script>
