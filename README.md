@@ -1,124 +1,221 @@
-🏔️ HPGK Quiz Platform - Complete Technical Documentation
+🏔️ HPGK Quiz Platform — Master Technical Documentation & Architecture Guide
 
-Welcome to the official documentation for the HPGK Quiz Platform (hpgk.toolblaster.com). This platform provides high-quality, bilingual mock tests, topic-wise practice MCQs, and study materials for Himachal Pradesh competitive exams (HPAS, HPPSC, Allied Services, Patwari, Police Constable, HRTC Conductor, etc.).
+Welcome to the comprehensive technical documentation for the HPGK Quiz Platform (hpgk.toolblaster.com). This document is designed as a single source of truth for both AI models and human developers to instantly understand the system architecture, component dependencies, database schema, security models, freemium access guards, payment webhooks, and deployment workflows.
 
-🌟 1. Project Overview & Key Features
+📌 1. Project Overview & Core Features
 
-Bilingual Engine: Questions, options, and detailed explanations are rendered in both English and Hindi simultaneously.
+The HPGK Quiz Platform is a high-performance, lightweight EdTech web app tailored for Himachal Pradesh state competitive examinations (HPAS, HPPSC, Allied Services, HP Patwari, Police Constable, HRTC Conductor, etc.).
 
-Strict Exam Simulation: TCS/NTA-style interface featuring custom timers, negative marking (-0.25), question palette navigation, section switching, and real-time marking badges.
+Key Platform Features:
 
-Secure Cloud Storage Vault: Premium full-length mock test JSON files are isolated inside Firebase Cloud Storage (gs://hpgk-quiz.firebasestorage.app/premium_mocks/) rather than public directories, protected by secure rules and CORS configuration.
+Bilingual Engine: Simultaneous rendering of questions, options, and explanations in both English (Inter) and Hindi (Noto Sans Devanagari).
 
-Cost-Optimized Cloud Sync: Local progress is stored instantly in LocalStorage and batched to Firebase Firestore every 15 questions or on page unload, cutting database write costs by over 90%.
+TCS/NTA Exam Simulator: Strict full-length mock test environment featuring multi-section switching, customizable section timers, negative marking penalties (-0.25), question palette state tracking, and re-attempt workflows.
 
-Dynamic Mock State: Automatically detects completed tests, displays green score badges (Score: X/Y), and seamlessly swaps UI buttons to Summary and Re-attempt modes without unnecessary DB reads.
+Glassmorphism Real-Time Broadcast Engine: A non-intrusive modal alert popup with backdrop-filter: blur(8px), 2.5-second UX entry delay, session-based dismissal flags, optional CTA links, and page-scope targeting driven by Firebase Firestore onSnapshot listeners.
 
-Automated Payments & Webhooks: Integrated with Razorpay and Google Cloud Run webhooks for real-time pass allocation upon payment capture.
+Zero-CLS Responsive Layout: Pure Vanilla JS layout manager (js/layout.js) injecting headers, footers, hamburger drawers, theme toggles, and Google Auth modals dynamically across all subdirectories.
 
-Super Admin Control Room: Multi-tab admin dashboard (user/admin.html) to manage live users, grant/revoke passes, track transactions, and extract student emails.
+Cost-Optimized Cloud Sync: Local question state saved instantly in LocalStorage, with batched network writes to Firestore every 15 questions or on page unload to minimize database reads/writes by over 90%.
+
+Secure Cloud Storage Vault: Full-length mock test JSON question banks isolated inside private Firebase Cloud Storage buckets (gs://hpgk-quiz.firebasestorage.app/premium_mocks/) with access gated by Firebase Auth.
+
+Dynamic Mock State & Re-attempt Engine: Automatically queries user scores from Firestore, injects green score badges (Score: X/Y), routes to summary mode using cached data (zero DB reads), and provides secure re-attempt wiping.
+
+Super Admin Control Room (user/admin.html): Multi-tab management console with 5-minute inactivity security locks, real-time revenue analytics, 1-click custom pass grants, leaderboard moderation, CSV data exports, and audit trails.
+
+Automated Webhook Payments: Razorpay integration backed by a Google Cloud Run (Node.js 22) webhook microservice that verifies digital signatures and auto-provisions premium passes in Firestore.
 
 🛠️ 2. Tech Stack & Infrastructure
 
-Frontend: Pure HTML5, CSS3 (Custom Glassmorphism CSS variables), Vanilla JavaScript (ES6+ ES Modules). Zero framework bloat (no React/Vue/jQuery).
+Layer
 
-Database: Firebase Firestore (NoSQL Document Store).
+Technology / Service
 
-Authentication: Firebase Auth (Google OAuth 2.0).
+Description
 
-Secure Storage: Firebase Cloud Storage (gs://hpgk-quiz.firebasestorage.app) for encrypted/protected JSON exam banks with CORS configuration.
+Frontend UI
 
-Backend Webhook: Google Cloud Run (Node.js 22 runtime with firebase-admin SDK).
+HTML5, CSS3, Vanilla ES6 JavaScript
 
-Typography & Styling: 'Inter' for English, 'Noto Sans Devanagari' for Hindi, with custom dark/light theme persistence.
+Zero-framework bloat (no React/Vue/jQuery) for sub-second page loads.
 
-🏗️ 3. Core Architecture: The System Engines
+Icons & Fonts
 
-A. js/core.js (Session & UI Security Guard)
+FontAwesome 6.4, Google Fonts
+
+Inter (English) & Noto Sans Devanagari (Hindi).
+
+Database
+
+Firebase Firestore (NoSQL)
+
+Real-time live snapshot syncing for announcements, leaderboards, and passes.
+
+Authentication
+
+Firebase Auth (Google OAuth 2.0)
+
+Multi-page session persistence across domain subfolder routes.
+
+Protected Storage
+
+Firebase Cloud Storage
+
+Encrypted storage bucket (gs://hpgk-quiz.firebasestorage.app) for exam banks.
+
+Backend Webhook
+
+Google Cloud Run (Node.js 22)
+
+Serverless microservice running firebase-admin SDK for Razorpay webhooks.
+
+Hosting & CDN
+
+Custom Domain HTTPS (hpgk.toolblaster.com)
+
+Edge-cached static delivery.
+
+📁 3. Directory Structure & Key Files
+
+/
+├── index.html                           # Main Platform Landing Page
+├── README.md                            # Technical Documentation (This File)
+├── js/
+│   ├── layout.js                        # Global Layout, Auth, Mobile Menu & Glassmorphism Broadcast Popup Engine
+│   ├── mock-engine.js                   # TCS/NTA Exam Simulator & Solution Renderer
+│   ├── core.js                          # Session, Auth State & UI Security/Copy Protection Guard
+│   ├── access-guard.js                  # Paywall Quota & Freemium Access Controller
+│   └── mcq-main.js                      # Topic-Wise MCQ Practice Engine (Quick 10, Bookmarks, Error Filter)
+├── user/
+│   ├── admin.html                       # Super Admin Control Center & Audit Hub
+│   ├── dashboard.html                   # Student Analytics & Score Vault
+│   ├── upgrade.html                     # Pricing, Plans & Razorpay Checkout
+│   ├── leaderboard.html                 # Global XP Ranks
+│   └── legal/                           # Platform Legal Documents
+│       ├── about.html                   # Platform Overview & Vision
+│       ├── privacy.html                 # Privacy Policy
+│       └── terms.html                   # Terms & Conditions
+├── himachal-pradesh-gk/                 # Topic-wise MCQ Study Series Subfolders (History, Geography, Polity, etc.)
+├── hp-exam-full-mock-test/              # Full-Length Mock Exam Landing Hubs (Patwari, Police, HRTC, HPAS, etc.)
+├── agriculture-quiz/                    # Specialized Agriculture Practice Series
+└── study-notes/                         # HP GK Revision Notes
+
+
+⚙️ 4. Core System Subsystem Architectures
+
+A. UI Security & Session Guard (js/core.js)
 
 Manages global user state (window.HPGK_User) and handles Google Auth state changes.
 
-Syncs user passes securely from Firestore on login.
+Syncs active user passes securely from Firestore upon authentication.
 
-Enforces UI copy protection: Blocks right-click, F12, inspect element, text selection, and copying.
+Enforces UI Protection: Blocks right-click context menus, F12 developer tools, text highlighting/selection, and key shortcuts (Ctrl+C, Ctrl+U).
 
-Injects decoy security tokens into navigation links to neutralize URL tampering.
+Inject decoy security parameters into navigation links to prevent URL tampering.
 
-B. js/access-guard.js (Paywall Enforcement)
+B. Paywall & Access Quota Controller (js/access-guard.js)
 
-Evaluates user quotas against window.PAGE_ACCESS.
+Evaluates guest question quotas against window.PAGE_ACCESS.
 
-Displays high-converting login prompts when guest limits are reached.
+Triggers high-converting SaaS login modals when anonymous limits are reached.
 
-Locks MCQ modules and mock exams behind active passes (mcq_pro_pass, mock_master_pass, etc.).
+Restricts premium MCQ modules and full mock exams to users holding valid passes (mcq_pro_pass, mock_master_pass, vip_lifetime_pass).
 
-C. js/mock-engine.js (Exam Simulator Engine)
+C. TCS/NTA Exam Simulator (js/mock-engine.js)
 
-Dynamically fetches authenticated download URLs (getDownloadURL) from Firebase Cloud Storage.
+Secure Storage Download: Resolves authenticated Firebase Storage download URLs for target test JSON files (premium_mocks/{exam}/{testId}.json).
 
-Smart Extension Resolution: Automatically appends or cleans .json extensions so URL routes function seamlessly regardless of formatting.
+Smart Extension Resolution: Automatically normalizes .json extensions in test parameters.
 
-Manages full test timing, multi-section tracking, score calculations with negative penalties, and detailed solution generation.
+Exam Mechanics: Tracks state across multiple sections (answered, not-answered, review, review_answered, not-visited), applies negative penalties, and executes countdown timers.
 
-D. js/mcq-main.js (Topic Practice Engine)
+Summary & Solution Review Mode: Ingests cached response arrays from LocalStorage when routed with ?mode=summary, rendering detailed explanations without triggering redundant Firebase Storage fetches.
 
-Controls topic-wise practice modules with bookmarking, error review filtering, question shuffling, and Quick 10 quiz modes.
+D. Topic Practice Engine (js/mcq-main.js)
+
+Manages topic-wise practice modules with bookmarking, error review filtering, question shuffling, and Quick 10 quiz modes.
 
 Implements smart batched cloud writes to Firestore to conserve database quotas.
 
-E. js/layout.js (Dynamic Layout Injector)
+E. Dynamic Layout & Glassmorphism Broadcast Engine (js/layout.js)
 
-Renders zero-CLS headers, navigation drawers, login modals, and footers across all site subdirectories.
+Handles site-wide global components without code duplication across HTML files:
 
-🔐 4. Freemium Logic & Page Configuration
+Header & Footer Injector: renderHeader() and renderFooter() build consistent navigation bars. Legal links point directly to ${SiteConfig.root}/user/legal/.
 
-Every topic practice page controls its own destiny using a simple configuration block placed at the bottom of its HTML file.
+Mobile Drawer Navigation: Slide-out hamburger menu with dark/light mode toggle, user account shortcuts, and Admin Control Room link.
 
-The "ID Card" (window.PAGE_ACCESS):
+Glassmorphism Modal Broadcast Popup:
+
+Listens in real time via Firestore onSnapshot to /artifacts/hpgk-quiz/public/data/site_config/announcement.
+
+Evaluates targetScope (home_dash, core_pages, home, dashboard, mcq, mocks, notes, leaderboard).
+
+Waits 2.5 seconds before displaying for optimal UX.
+
+Checks sessionStorage.getItem('hpgk_announcement_dismissed_time') against data.updatedAt to ensure dismissed alerts aren't spammed during the same session.
+
+Dynamically renders optional CTA buttons (falls back to upgrade.html if button text is provided but link is left blank).
+
+🔐 5. Freemium Logic & Page Configuration
+
+Every topic practice page configures its own access quotas using an inline configuration block (window.PAGE_ACCESS) placed before loading scripts:
 
 window.PAGE_ACCESS = {
-    category: 'rivers',         // Syncs with Firebase for Leaderboard
-    loginLimit: 30,             // Questions free for anonymous guests
-    proLimit: 9999,             // Questions free for logged-in users (9999 = no paywall)
-    requiredPass: 'mcq_pro_pass'// Pass required if proLimit is reached
+    category: 'rivers',          // Category identifier for Firestore Sync & Leaderboard
+    loginLimit: 30,              // Free question limit for anonymous guests
+    proLimit: 9999,              // Free question limit for logged-in users (9999 = unlimited)
+    requiredPass: 'mcq_pro_pass' // Pass ID required when proLimit is reached
 };
 
 
 🔄 6. Dynamic Mock State & Re-attempt Engine
 
-Our Mock Test Collection pages (Patwari, Police, HRTC) feature a seamless, race-condition-free state manager that integrates smoothly with mock-engine.js:
+Our Mock Test Collection hubs feature a race-condition-free state manager that integrates smoothly with mock-engine.js:
 
-Auto-Detect Attempts: Automatically queries the user's scores collection in Firestore to find completed tests within that specific exam category.
+Auto-Detect Attempts: Queries the user's scores subcollection in Firestore to identify completed tests within that exam category.
 
-Score Badges: Dynamically injects a green Score: X/Y badge onto the specific test card if the user has previously attempted it.
+Score Badges: Dynamically injects a green Score: X/Y badge onto the corresponding test card.
 
-Summary Mode Routing: Swaps the "Attempt/Unlock" button for a "Summary" button. Clicking this routes the user to mock-engine/index.html?mode=summary, which bypasses the timer/questions and renders the detailed result panel using cached LocalStorage data (saving massive Firebase Read costs).
+Summary Mode Routing: Replaces the "Attempt/Unlock" button with "Summary". Clicking routes to mock-engine/index.html?mode=summary, rendering solution panels using cached LocalStorage data (zero DB reads).
 
-Secure Re-attempt: A dedicated Restart (🔄) button triggers a confirmation warning. If accepted, it deletes the specific Firestore score document, clears the local cache, and grants a fresh slate for the user to retry the test from zero.
+Secure Re-attempt: A dedicated Restart (🔄) button triggers a confirmation dialog. Upon confirmation, it purges the specific Firestore score document, clears local cache, and resets the test card state to allow a fresh attempt.
 
-💳 7. Razorpay & Google Cloud Webhook (Automated Payments)
+💳 7. Payment Integration & Cloud Run Webhook Flow
 
-The payment system is 100% automated. It prevents frontend "Inspect Element" hacking by relying entirely on a Google Cloud Run backend server to grant premium passes.
+[Student Clicks Buy on upgrade.html]
+                  │
+                  ▼
+   [Razorpay Checkout Modal Opens]
+(Passes UID & PlanID inside notes object)
+                  │
+                  ▼
+      [Payment Captured on Razorpay]
+                  │
+                  ▼
+ [Razorpay POSTs Webhook Payload to Cloud Run]
+                  │
+                  ▼
+[Google Cloud Run Microservice Verifies Signature]
+                  │
+                  ▼
+ [Firebase Admin SDK writes Pass to Firestore Vault]
+                  │
+                  ▼
+ [Frontend Real-Time Listener Unlocks Premium Content]
 
-The Payment Flow:
 
-Frontend Request: User clicks "Buy" on upgrade.html or dashboard.html.
-
-Razorpay Popup: Razorpay opens. The notes object securely passes the user's uid and planId to Razorpay servers.
-
-Webhook Trigger: Upon successful payment, Razorpay sends a hidden POST request to our Google Cloud Webhook.
-
-Backend Verification: The Webhook verifies the digital signature (x-razorpay-signature) using the secret key.
-
-Database Update: The Webhook uses the Firebase Admin SDK to bypass client security rules and instantly writes the pass into the user's private Firestore vault.
+Frontend Razorpay Options Example:
 
 var options = {
-    "key": "rzp_test_YOUR_KEY_HERE", 
+    "key": "rzp_live_YOUR_KEY_HERE", 
     "amount": price * 100,
     "currency": "INR",
     "name": "HPGK Quiz Platform",
+    "description": "Mock Master Pass Subscription",
     "handler": function (response) {
-        // HPGK_verifyAndRedirect listens to Firestore for real-time unlock.
+        // HPGK_verifyAndRedirect listens to Firestore for real-time pass unlock
     },
     "notes": {
         "uid": window.HPGK_User.uid,
@@ -127,9 +224,7 @@ var options = {
 };
 
 
-☁️ 8. Backend Webhook Setup (Google Cloud Run)
-
-The backend is hosted on Google Cloud Run (Node.js 22). It requires firebase-admin to update Firestore securely.
+Google Cloud Run Webhook Handler Code (Node.js 22):
 
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
@@ -138,7 +233,7 @@ const crypto = require('crypto');
 admin.initializeApp();
 const db = admin.firestore();
 
-const RAZORPAY_WEBHOOK_SECRET = "hpgk_super_secret_key_123";
+const RAZORPAY_WEBHOOK_SECRET = "YOUR_WEBHOOK_SECRET_KEY";
 
 exports.razorpayWebhook = functions.https.onRequest(async (req, res) => {
     try {
@@ -148,7 +243,9 @@ exports.razorpayWebhook = functions.https.onRequest(async (req, res) => {
             .update(JSON.stringify(req.body))
             .digest('hex');
 
-        if (expectedSignature !== signature) return res.status(400).send('Invalid signature');
+        if (expectedSignature !== signature) {
+            return res.status(400).send('Invalid signature');
+        }
 
         const event = req.body.event;
         if (event === 'payment.captured' || event === 'payment.authorized') {
@@ -175,29 +272,70 @@ exports.razorpayWebhook = functions.https.onRequest(async (req, res) => {
         }
         res.status(200).send('Processed');
     } catch (error) {
-        res.status(500).send('Internal Error');
+        res.status(500).send('Internal Server Error');
     }
 });
 
 
-🔥 10. Firebase Configuration & Database Paths
+🗄️ 8. Firebase Firestore Database Schema
 
-All Firebase initialisations are handled securely inside js/core.js.
+Database documents are stored under the /artifacts/hpgk-quiz/ namespace:
 
-Public Data (Leaderboard): /artifacts/hpgk-quiz/public/data/leaderboard/{uid}
+artifacts/
+└── hpgk-quiz/
+    ├── public/
+    │   └── data/
+    │       ├── leaderboard/
+    │       │   └── {uid}                # User rank profile (name, photo, email, mockXP, mcqXP, lastUpdated)
+    │       └── site_config/
+    │           └── announcement         # Live broadcast config (enabled, message, ctaText, link, scope, style, updatedAt)
+    ├── users/
+    │   └── {uid}/                       # Private user document (adminNote, passes object)
+    │       ├── adminNote                # Private customer support memo
+    │       ├── passes/                  # Active passes object
+    │       │   └── {planId}             # (name, purchaseDate, expiryDate, paymentId, mode, isComplimentary)
+    │       └── scores/
+    │           └── {scoreDocId}         # Test attempt record (testId, category, score, total, accuracy, timeTaken, timestamp)
+    └── admin_logs/
+        └── {logId}                      # Security audit trail (adminEmail, actionType, targetUid, details, timestamp)
 
-Private User Data (Passes Vault): /artifacts/hpgk-quiz/users/{uid}
 
-User Scores/History: /artifacts/hpgk-quiz/users/{uid}/scores/{testId}
+Storage Bucket Path:
 
-Secure Mock Storage: gs://hpgk-quiz.firebasestorage.app/premium_mocks/{exam}/{testFile}.json
+Private Mock Test Banks: gs://hpgk-quiz.firebasestorage.app/premium_mocks/{exam_category}/{test_id}.json
 
-🚀 11. Developer Guide: How to Add a New Mock Test
+👑 9. Super Admin Control Room (user/admin.html)
 
-To add a new full-length mock test:
+Restricted strictly to authorized administrator email addresses (amanrana7350@gmail.com). Includes:
 
-Upload your JSON file to Firebase Storage ➔ premium_mocks/{exam-folder}/.
+Command Center: Financial metrics (Mock Master vs. MCQ Pro vs. Complimentary Grants) and gross revenue calculations.
 
-Add your test button/card in the corresponding exam HTML collection page. The engine handles the rest automatically.
+Glassmorphism Broadcast Control: Visual preview card, message templates, target scope selector, color themes, and 1-click push to Firestore.
+
+Advanced Pass Control: 1-click custom pass grants (durations from 1 Hour to Lifetime) and optional "Complimentary/₹0 Revenue" flags.
+
+User Matrix: Searchable student directory with XP rankings, active pass badges, quick extension buttons (+7d, +30d), and direct WhatsApp support deep links.
+
+Payment Desk: Ledger of Razorpay webhooks, manual grants, and CSV spreadsheet exports.
+
+Marketing Center: Raw user CSV exports and email extraction tools for outreach campaigns.
+
+Leaderboard Moderation: Anti-cheat tool to delete cheated score documents from the public leaderboard.
+
+Security Audit Trail: Log recording all administrative actions in Firestore.
+
+5-Minute Security Lock: Automatic overlay lock after 300 seconds of inactivity.
+
+🚀 10. Developer Onboarding: Adding a New Premium Mock Test
+
+To add a new full-length mock test to the platform:
+
+Prepare your exam question bank JSON file following the standard section schema.
+
+Upload the file to Firebase Cloud Storage under gs://hpgk-quiz.firebasestorage.app/premium_mocks/{exam_category}/{test_id}.json.
+
+Add the corresponding test button card inside the exam hub HTML page (hp-exam-full-mock-test/index.html).
+
+The engine automatically handles authenticated Storage download URL resolution, paywall enforcement, timer countdown, score processing, and solution rendering.
 
 Maintained by ToolBlaster Dev Team.
