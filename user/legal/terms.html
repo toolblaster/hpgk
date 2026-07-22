@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Terms of Use | HPGK Quiz & Agriculture Prep</title>
-    <meta name="description" content="Read the Terms of Use for HPGK Quiz. Understand our educational purpose, intellectual property rights, and user conduct guidelines for exam preparation.">
+    <meta name="description" content="Read the Terms of Use for HPGK Quiz. Understand our educational purpose, subscription pass terms, payment policies via Razorpay, and user conduct guidelines.">
     
     <!-- Canonical Link -->
     <link rel="canonical" href="https://hpgk.toolblaster.com/user/legal/terms.html">
 
-    <!-- Assets (Favicon paths pointing to js/favicon relative to user/legal/) -->
+    <!-- Favicon Assets -->
     <link rel="apple-touch-icon" sizes="180x180" href="../../js/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="512x512" href="../../js/favicon/web-app-manifest-512x512.png">
     <link rel="icon" type="image/png" sizes="192x192" href="../../js/favicon/web-app-manifest-192x192.png">
@@ -23,52 +23,54 @@
     <meta name="theme-color" content="#ffffff">
 
     <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Noto+Sans+Devanagari:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Load Global Style First -->
+
+    <!-- Global Style Base -->
     <link rel="stylesheet" href="../../js/style.css">
 
-    <!-- Premium Glassmorphism Stylesheet for Legal Pages (Compact Version) -->
+    <!-- Premium Glassmorphism Styles for Legal & Information Pages -->
     <style>
         :root {
             --primary: #2563eb;        
             --primary-hover: #1d4ed8; 
-            --primary-light: rgba(37, 99, 235, 0.1); 
-            --primary-dark: #1e3a8a;  
-            --accent: #ea580c;        
+            --primary-light: rgba(37, 99, 235, 0.08); 
+            --accent: #f59e0b;        
+            --success: #10b981;
             
-            --bg-gradient: linear-gradient(135deg, #eff6ff 0%, #dbeafe 50%, #f3e8ff 100%);
-            --card-bg: rgba(255, 255, 255, 0.65); 
-            --card-border: rgba(255, 255, 255, 0.5); 
-            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+            --bg-gradient: linear-gradient(135deg, #eff6ff 0%, #e0f2fe 50%, #f3e8ff 100%);
+            --card-bg: rgba(255, 255, 255, 0.75); 
+            --card-border: rgba(255, 255, 255, 0.6); 
+            --glass-shadow: 0 10px 30px 0 rgba(31, 38, 135, 0.08);
             
             --text-main: #0f172a;     
             --text-body: #334155;     
-            --text-sec: #475569;      
-            --input-bg: rgba(255, 255, 255, 0.4); 
+            --text-sec: #64748b;      
+            --input-bg: rgba(255, 255, 255, 0.5); 
             
-            --radius-md: 8px;
-            --radius-lg: 12px;
-            --radius-xl: 16px;
+            --radius-md: 10px;
+            --radius-lg: 14px;
+            --radius-xl: 20px;
         }
 
         [data-theme="dark"] {
             --primary: #60a5fa;        
             --primary-hover: #93c5fd; 
-            --primary-light: rgba(96, 165, 250, 0.15); 
-            --primary-dark: #bfdbfe;  
+            --primary-light: rgba(96, 165, 250, 0.12); 
             --accent: #fbbf24;        
+            --success: #34d399;
             
             --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #020617 100%);
-            --card-bg: rgba(30, 41, 59, 0.5); 
+            --card-bg: rgba(30, 41, 59, 0.65); 
             --card-border: rgba(255, 255, 255, 0.08); 
-            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            --glass-shadow: 0 10px 35px 0 rgba(0, 0, 0, 0.4);
             
             --text-main: #f8fafc;     
             --text-body: #cbd5e1;     
             --text-sec: #94a3b8;      
-            --input-bg: rgba(0, 0, 0, 0.2); 
+            --input-bg: rgba(0, 0, 0, 0.25); 
         }
 
         body {
@@ -78,89 +80,59 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            margin: 0;
         }
 
-        h1, h2, h3, h4 { font-family: 'Inter', sans-serif !important; color: var(--text-main); }
+        h1, h2, h3, h4 { font-family: 'Inter', sans-serif !important; color: var(--text-main); margin: 0; }
 
         .glass-panel {
             background: var(--card-bg);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
             border: 1px solid var(--card-border);
             box-shadow: var(--glass-shadow);
         }
 
-        /* Reduced vertical padding and margins */
-        main { flex: 1; max-width: 900px; margin: 0 auto; padding: 15px; width: 100%; box-sizing: border-box; }
+        main { flex: 1; max-width: 920px; margin: 0 auto; padding: 25px 15px; width: 100%; box-sizing: border-box; }
 
-        /* Page Header */
-        .page-header {
-            text-align: center;
-            margin-bottom: 15px; 
+        .page-header { text-align: center; margin-bottom: 25px; }
+        .page-badge {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: var(--primary-light); color: var(--primary);
+            padding: 4px 14px; border-radius: 20px; font-size: 0.72rem; font-weight: 800;
+            text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px;
+            border: 1px solid rgba(37, 99, 235, 0.15);
         }
+        .page-title { font-size: 2.2rem !important; font-weight: 900 !important; letter-spacing: -0.8px; color: var(--text-main); line-height: 1.2; }
+        .page-desc { font-size: 0.95rem; color: var(--text-sec); margin-top: 6px; font-weight: 500; }
 
-        .page-title {
-            font-size: 28px !important; 
-            font-weight: 800 !important;
-            margin: 0 0 4px 0; 
-            letter-spacing: -0.5px;
-            color: var(--text-main);
-        }
-
-        .page-desc {
-            font-size: 0.85rem;
-            color: var(--text-sec);
-            margin: 0;
-        }
-
-        /* Content Blocks */
-        .content-section {
-            border-radius: var(--radius-xl);
-            padding: 15px; 
-            margin-bottom: 15px; 
-            display: flex;
-            flex-direction: column;
-            gap: 12px; 
-        }
-
-        .content-block {
-            background: var(--input-bg);
-            border: 1px solid var(--card-border);
-            border-radius: var(--radius-lg);
-            padding: 15px; 
-            box-shadow: var(--shadow-sm);
-        }
-
-        .content-block h3 {
-            font-size: 1.05rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin: 0 0 6px 0; 
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .content-block p {
-            font-size: 0.85rem;
-            line-height: 1.5;
-            margin: 0 0 8px 0; 
-        }
-
+        .content-section { border-radius: var(--radius-xl); padding: 22px; margin-bottom: 20px; display: flex; flex-direction: column; gap: 16px; }
+        
+        .content-block { background: var(--input-bg); border: 1px solid var(--card-border); border-radius: var(--radius-lg); padding: 18px; }
+        .content-block h3 { font-size: 1.15rem; font-weight: 800; color: var(--primary); margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+        .content-block p { font-size: 0.88rem; line-height: 1.6; margin: 0 0 10px 0; color: var(--text-body); }
         .content-block p:last-child { margin-bottom: 0; }
-
-        .content-block a {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 600;
-        }
+        .content-block a { color: var(--primary); text-decoration: none; font-weight: 700; }
         .content-block a:hover { text-decoration: underline; }
 
+        .styled-list { list-style: none; padding-left: 0; margin: 8px 0 0 0; }
+        .styled-list li { position: relative; padding-left: 22px; font-size: 0.88rem; margin-bottom: 8px; line-height: 1.5; color: var(--text-body); }
+        .styled-list li::before { content: "\f00c"; font-family: "Font Awesome 6 Free"; font-weight: 900; color: var(--success); position: absolute; left: 0; top: 2px; font-size: 0.75rem; }
+
+        .disclaimer-box {
+            background: rgba(245, 158, 11, 0.08);
+            border: 1.5px solid rgba(245, 158, 11, 0.3);
+            border-radius: var(--radius-lg);
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+        .disclaimer-box h4 { color: var(--accent); font-size: 0.95rem; font-weight: 800; display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+        .disclaimer-box p { font-size: 0.82rem; line-height: 1.55; color: var(--text-body); margin: 0; }
+
         @media (max-width: 600px) {
-            main { padding: 10px; }
-            .content-section { padding: 12px; gap: 10px; margin-bottom: 10px; }
-            .content-block { padding: 12px; }
-            .page-title { font-size: 24px !important; }
+            main { padding: 15px 10px; }
+            .content-section { padding: 15px; gap: 12px; }
+            .page-title { font-size: 1.75rem !important; }
         }
     </style>
 
@@ -175,57 +147,116 @@
 
 <main>
     <div class="page-header">
+        <div class="page-badge"><i class="fa-solid fa-file-contract"></i> User Agreement & Rules</div>
         <h1 class="page-title">Terms of Use</h1>
-        <p class="page-desc">Effective Date: January 2026</p>
+        <p class="page-desc">Last Updated: July 2026 | Effective for hpgk.toolblaster.com</p>
     </div>
 
-    <!-- Main Content Section -->
+    <!-- Official Non-Government Disclaimer Card -->
+    <div class="disclaimer-box glass-panel">
+        <h4><i class="fa-solid fa-shield-halved"></i> Independent Educational Platform Clarification</h4>
+        <p>
+            <strong>HPGK Quiz (hpgk.toolblaster.com)</strong> is an independent educational platform published by <strong>ToolBlaster EdTech</strong>. We are <strong>NOT affiliated with, endorsed by, or representing</strong> any government department, public service commission (HPPSC, HPSSC), or official recruitment agency. All mock tests and study modules are created solely for self-study and exam practice.
+        </p>
+    </div>
+
     <div class="content-section glass-panel">
         
+        <!-- Section 1: Acceptance of Terms -->
         <div class="content-block">
             <h3><i class="fa-solid fa-handshake"></i> 1. Acceptance of Terms</h3>
             <p>
-                By accessing and using <strong>HPGK Quiz</strong>, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by these terms, please do not use this service.
+                By accessing, browsing, or registering an account on <strong>HPGK Quiz</strong> (<a href="https://hpgk.toolblaster.com">hpgk.toolblaster.com</a>), operated by <strong>ToolBlaster EdTech</strong>, you agree to comply with and be bound by these Terms of Use. If you do not agree to these terms, please discontinue use of the platform immediately.
             </p>
         </div>
 
+        <!-- Section 2: Educational Disclaimer -->
         <div class="content-block">
-            <h3><i class="fa-solid fa-book-open-reader"></i> 2. Educational Purpose</h3>
+            <h3><i class="fa-solid fa-graduation-cap"></i> 2. Educational & Informational Purpose</h3>
             <p>
-                The content provided on this website is for <strong>educational and informational purposes only</strong>. While we strive for accuracy, HPGK Quiz does not guarantee that all information is 100% error-free or up-to-date. Users are advised to cross-verify facts from standard textbooks for critical exams.
+                All bilingual MCQs, full-length mock tests, study notes, and agriculture practice modules are provided for <strong>general educational and exam preparation practice only</strong> (such as HPAS, HP Allied, Patwari, Police, ICAR, and IBPS AFO exams).
+            </p>
+            <ul class="styled-list">
+                <li>While we maintain high editorial accuracy, we make no guarantees regarding completeness or absolute error-free content.</li>
+                <li>Users are strongly advised to cross-verify official notifications, syllabus updates, and factual data with standard government textbooks and notifications.</li>
+            </ul>
+        </div>
+
+        <!-- Section 3: User Accounts & Google Sign-In -->
+        <div class="content-block">
+            <h3><i class="fa-solid fa-user-check"></i> 3. User Accounts & Google Authentication</h3>
+            <p>
+                You may access free question quotas as an anonymous guest. To save score history, track progress across devices, and participate in global leaderboard rankings, you may log in using Google OAuth.
+            </p>
+            <ul class="styled-list">
+                <li>You are responsible for maintaining the security of your Google account credentials.</li>
+                <li>We reserve the right to suspend or terminate accounts engaging in automated scraping, abuse, or violation of intellectual property rights.</li>
+            </ul>
+        </div>
+
+        <!-- Section 4: Subscriptions, Pricing & Razorpay Payments -->
+        <div class="content-block">
+            <h3><i class="fa-solid fa-indian-rupee-sign"></i> 4. Subscription Passes & Payment Processing</h3>
+            <p>
+                HPGK Quiz offers optional premium access passes (such as the <em>MCQ Pro Pass</em> and <em>Mock Master Pass</em>) to unlock unlimited question practice and full-length exam series.
+            </p>
+            <ul class="styled-list">
+                <li><strong>Secure Payments:</strong> All financial transactions are processed securely through our authorized payment gateway partner, <strong>Razorpay</strong>. We do not store financial card credentials on our servers.</li>
+                <li><strong>Instant Provisioning:</strong> Upon successful payment capture, subscription passes are automatically activated in your account vault.</li>
+                <li><strong>Refund Policy:</strong> Due to the digital and immediate nature of online educational content delivery, all pass purchases are <strong>final and non-refundable</strong>. Please evaluate free question quotas before upgrading.</li>
+            </ul>
+        </div>
+
+        <!-- Section 5: Intellectual Property & Copyright -->
+        <div class="content-block">
+            <h3><i class="fa-solid fa-copyright"></i> 5. Intellectual Property Rights</h3>
+            <p>
+                All platform elements—including bilingual question banks, custom explanations, site layout, graphics, code, and study notes—are the intellectual property of <strong>ToolBlaster EdTech</strong>.
+            </p>
+            <ul class="styled-list">
+                <li>Content is licensed exclusively for your personal, non-commercial exam preparation.</li>
+                <li>Systematic downloading, bulk scraping, republishing, or commercial resale of our question banks without written consent is strictly prohibited and subject to legal action.</li>
+            </ul>
+        </div>
+
+        <!-- Section 6: Third-Party Ads & Google AdSense -->
+        <div class="content-block">
+            <h3><i class="fa-solid fa-ad"></i> 6. Third-Party Advertisements</h3>
+            <p>
+                To support free content offerings and server maintenance, our platform displays third-party advertisements served by <strong>Google AdSense</strong>. Your interactions with ads are governed by the respective privacy and cookie policies of Google and its advertising partners.
             </p>
         </div>
 
+        <!-- Section 7: Limitation of Liability -->
         <div class="content-block">
-            <h3><i class="fa-solid fa-copyright"></i> 3. Intellectual Property</h3>
+            <h3><i class="fa-solid fa-shield-virus"></i> 7. Limitation of Liability</h3>
             <p>
-                All content, including quizzes, notes, layout, and code, is the property of ToolBlaster unless otherwise stated. You may use this content for personal, non-commercial study. Reproduction or redistribution of content for commercial purposes without permission is strictly prohibited.
+                ToolBlaster EdTech, its founders, and contributors shall not be liable for any direct, indirect, incidental, or consequential damages arising from examination outcomes, service interruptions, network connectivity delays, or data loss.
             </p>
         </div>
 
+        <!-- Section 8: Changes to Terms -->
         <div class="content-block">
-            <h3><i class="fa-solid fa-triangle-exclamation"></i> 4. Limitation of Liability</h3>
+            <h3><i class="fa-solid fa-pen-to-square"></i> 8. Modifications to Terms</h3>
             <p>
-                HPGK Quiz shall not be held liable for any direct, indirect, or consequential damages resulting from the use or inability to use our services, or for any errors or omissions in the content.
+                We reserve the right to modify these Terms of Use at any time. Continued use of the website following the posting of updated terms constitutes your formal acceptance of those changes.
             </p>
         </div>
 
+        <!-- Section 9: Contact Information -->
         <div class="content-block">
-            <h3><i class="fa-solid fa-users"></i> 5. User Conduct</h3>
+            <h3><i class="fa-solid fa-envelope"></i> 9. Contact & Support</h3>
             <p>
-                You agree to use the website only for lawful purposes. You are prohibited from violating or attempting to violate the security of the website, including scraping data or attempting to bypass our local tracking mechanisms maliciously.
+                For questions regarding these Terms of Use or subscription support, reach out to our team:
+            </p>
+            <p style="margin-top: 6px;">
+                <strong>Publisher:</strong> ToolBlaster EdTech<br>
+                <strong>Website:</strong> <a href="https://hpgk.toolblaster.com">hpgk.toolblaster.com</a><br>
+                <strong>Support Email:</strong> <a href="mailto:hello@toolblaster.com">hello@toolblaster.com</a>
             </p>
         </div>
 
-        <div class="content-block">
-            <h3><i class="fa-solid fa-scale-balanced"></i> 6. Governing Law</h3>
-            <p>
-                These terms shall be governed by and construed in accordance with the laws of India.
-            </p>
-        </div>
-        
     </div>
-
 </main>
 
 <div id="site-footer"></div>
@@ -236,7 +267,7 @@
         if (typeof renderHeader === 'function') {
             renderHeader({
                 title: 'Terms of Use',
-                subtitle: 'Legal',
+                subtitle: 'Legal & Agreement',
                 iconClass: 'fa-solid fa-file-contract',
                 link: '../../index.html',
                 isQuizPage: false,
