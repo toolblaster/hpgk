@@ -86,6 +86,41 @@
           "@type": "Answer",
           "text": "Apple constitutes approximately 85% of the total fruit production in Himachal Pradesh and forms the backbone of its horticultural economy."
         }
+      },{
+        "@type": "Question",
+        "name": "What proportion of HP's total geographical area is recorded as forest area?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Recorded legal forest area in Himachal Pradesh is 37,033 sq. km, which constitutes 68.16% of the state's total geographical area."
+        }
+      },{
+        "@type": "Question",
+        "name": "What percentage of HP's main workforce depends on agriculture?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Approximately 57.03% of the total main working population in Himachal Pradesh directly depends on agriculture and allied activities for livelihood."
+        }
+      },{
+        "@type": "Question",
+        "name": "What item consumes the largest single share in the HP State Budget?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Salaries of government employees constitute the largest single committed expenditure item (~25-26%), followed by pensions (~16-17%)."
+        }
+      },{
+        "@type": "Question",
+        "name": "When did HP Vidhan Sabha become India's first paperless assembly?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "HP Vidhan Sabha became India's first completely paperless assembly in August 2014 by launching the e-Vidhan system."
+        }
+      },{
+        "@type": "Question",
+        "name": "By what target date does HP aim to become India's first Green Energy State?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The Himachal Pradesh Government has set a firm target date of March 31, 2026 to transform HP into India's first Green Energy State."
+        }
       }]
     }
     </script>
@@ -214,25 +249,25 @@
             gap: 8px;
         }
 
-        .breadcrumb-nav { margin: 0; flex-shrink: 1; display: flex; align-items: center; height: 24px; }
+        .breadcrumb-nav { margin: 0; flex-shrink: 1; display: flex; align-items: center; height: 20px; }
         .breadcrumb-list { 
-            list-style: none; padding: 0 10px; margin: 0; display: flex; flex-wrap: nowrap; 
-            align-items: center; gap: 4px; background: rgba(255, 255, 255, 0.35); border-radius: 12px; 
+            list-style: none; padding: 0 8px; margin: 0; display: flex; flex-wrap: nowrap; 
+            align-items: center; gap: 4px; background: rgba(255, 255, 255, 0.35); border-radius: 10px; 
             border: 1px solid var(--card-border);
             box-shadow: 0 1px 2px rgba(0,0,0,0.05); height: 100%; box-sizing: border-box;
         }
         [data-theme="dark"] .breadcrumb-list { background: rgba(30, 41, 59, 0.4); box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
-        .breadcrumb-item { font-size: 0.6rem; font-weight: 600; color: var(--text-sec); display: flex; align-items: center; white-space: nowrap; height: 100%; }
+        .breadcrumb-item { font-size: 0.58rem; font-weight: 600; color: var(--text-sec); display: flex; align-items: center; white-space: nowrap; height: 100%; }
         .breadcrumb-item a { color: var(--text-sec); text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 4px; }
         .breadcrumb-item a:hover { color: var(--primary); }
         .breadcrumb-item.active { color: var(--primary); pointer-events: none; }
-        .breadcrumb-separator { font-size: 0.55rem; color: var(--text-sec); opacity: 0.6; margin: 0 2px; }
+        .breadcrumb-separator { font-size: 0.52rem; color: var(--text-sec); opacity: 0.6; margin: 0 2px; }
 
         .hero-badge { 
-            display: inline-flex; align-items: center; justify-content: center; height: 20px; 
-            background: var(--primary); color: white; padding: 0 8px; 
-            border-radius: 10px; font-size: 0.58rem; font-weight: 700; text-transform: uppercase; 
-            margin: 0; border: 1px solid var(--primary); letter-spacing: 0.4px; white-space: nowrap; 
+            display: inline-flex; align-items: center; justify-content: center; height: 18px; 
+            background: var(--primary); color: white; padding: 0 7px; 
+            border-radius: 9px; font-size: 0.55rem; font-weight: 700; text-transform: uppercase; 
+            margin: 0; border: 1px solid var(--primary); letter-spacing: 0.3px; white-space: nowrap; 
             flex-shrink: 0; box-sizing: border-box; line-height: 1;
         }
 
@@ -520,7 +555,7 @@
             display: grid;
             grid-template-columns: repeat(1, 1fr);
             gap: 15px;
-            margin-bottom: 40px; 
+            margin-bottom: 30px; 
             width: 100%;
         }
 
@@ -636,6 +671,78 @@
             line-height: 1.4;
         }
 
+        /* 2-COLUMN STATIC FAQ STYLES */
+        .faq-section {
+            margin-top: 30px;
+            margin-bottom: 30px;
+            width: 100%;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        @media (min-width: 768px) {
+            .faq-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 14px;
+            }
+        }
+
+        .faq-static-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-lg);
+            padding: 12px 16px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 6px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .faq-static-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.06);
+        }
+
+        .faq-q {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-main);
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            line-height: 1.35;
+        }
+
+        .faq-q i {
+            color: var(--primary);
+            margin-top: 2px;
+            flex-shrink: 0;
+            font-size: 0.85rem;
+        }
+
+        .faq-a {
+            font-size: 0.82rem;
+            color: var(--text-body);
+            line-height: 1.4;
+            padding-left: 22px;
+        }
+
+        .faq-a strong {
+            color: var(--primary-dark);
+            font-weight: 700;
+        }
+
+        [data-theme="dark"] .faq-a strong {
+            color: #a5b4fc;
+        }
+
         @media (max-width: 600px) {
             .hide-mobile { display: none; }
             .page-header-top { margin-top: 25px; margin-bottom: 20px; }
@@ -647,11 +754,11 @@
             .indicator-label { font-size: 0.6rem; }
 
             .top-meta-bar { flex-wrap: nowrap; justify-content: space-between; }
-            .breadcrumb-nav { height: 22px; }
-            .hero-badge { height: 19px; padding: 0 8px; border-radius: 10px; font-size: 0.55rem; }
+            .breadcrumb-nav { height: 18px; }
+            .hero-badge { height: 16px; padding: 0 6px; border-radius: 8px; font-size: 0.50rem; }
             .print-btn { height: 19px; padding: 0 6px; font-size: 0.55rem; }
-            .breadcrumb-list { padding: 0 8px; border-radius: 11px; }
-            .breadcrumb-item { font-size: 0.6rem; }
+            .breadcrumb-list { padding: 0 6px; border-radius: 9px; }
+            .breadcrumb-item { font-size: 0.55rem; }
             
             .hero-interlinks { flex-direction: row; flex-wrap: wrap; gap: 6px; padding: 8px 12px; border-radius: 30px; }
             .hero-interlinks .dot { display: inline; font-size: 0.7rem; }
@@ -663,6 +770,9 @@
             .tools-strip-title, .tools-strip-desc { text-align: center !important; }
             .tools-strip-btn-group { width: 100%; justify-content: center; display: flex; gap: 8px; flex-wrap: wrap;}
             .tools-strip-btn { justify-content: center; padding: 6px 12px; font-size: 11.5px; width: fit-content; max-width: 60%; margin: 0 auto; }
+
+            .faq-q { font-size: 0.8rem; }
+            .faq-a { font-size: 0.78rem; padding-left: 20px; }
         }
 
         .section-heading-divider {
@@ -709,7 +819,7 @@
         }
 
         @media print {
-            #site-header, #site-footer, .top-meta-bar, .hero-interlinks, .tools-strip, .related-modules-box, .print-btn, .section-heading-divider {
+            #site-header, #site-footer, .top-meta-bar, .hero-interlinks, .tools-strip, .related-modules-box, .print-btn, .section-heading-divider, .faq-section {
                 display: none !important;
             }
             body {
@@ -1303,6 +1413,66 @@
                 </div>
 
             </div>
+
+            <section class="faq-section">
+                <div class="section-heading-divider" style="margin-top: 20px; margin-bottom: 20px;">
+                    <span class="divider-tag">
+                        <i class="fa-solid fa-circle-question"></i> Frequently Asked Questions • 10 मुख्य परीक्षा प्रश्नोत्तरी
+                    </span>
+                </div>
+
+                <div class="faq-grid">
+                    <div class="faq-static-card">
+                        <div class="faq-q"><i class="fa-solid fa-circle-question"></i> <span>1. Estimated Per Capita Income of HP?</span></div>
+                        <div class="faq-a">Estimated at <strong>₹2,35,199</strong> at current prices, which is significantly above the national average.</div>
+                    </div>
+
+                    <div class="faq-static-card">
+                        <div class="faq-q"><i class="fa-solid fa-circle-question"></i> <span>2. Real GSDP Growth Rate of HP?</span></div>
+                        <div class="faq-a">Estimated at approximately <strong>7.1%</strong> at constant (2011-12) base prices.</div>
+                    </div>
+
+                    <div class="faq-static-card">
+                        <div class="faq-q"><i class="fa-solid fa-circle-question"></i> <span>3. Harnessable Hydropower Potential?</span></div>
+                        <div class="faq-a">Identified total is <strong>27,436 MW</strong> across 5 river basins; over <strong>11,150 MW</strong> has been harnessed.</div>
+                    </div>
+
+                    <div class="faq-static-card">
+                        <div class="faq-q"><i class="fa-solid fa-circle-question"></i> <span>4. Highest GSVA Contributing Sector?</span></div>
+                        <div class="faq-a">The <strong>Tertiary (Services) sector</strong> contributes the highest share (nearly <strong>43.4%</strong>) to state GSVA.</div>
+                    </div>
+
+                    <div class="faq-static-card">
+                        <div class="faq-q"><i class="fa-solid fa-circle-question"></i> <span>5. Apple's Share in Fruit Production?</span></div>
+                        <div class="faq-a">Apple accounts for approximately <strong>85%</strong> of the total fruit production in Himachal Pradesh.</div>
+                    </div>
+
+                    <div class="faq-static-card">
+                        <div class="faq-q"><i class="fa-solid fa-circle-question"></i> <span>6. Recorded Legal Forest Area?</span></div>
+                        <div class="faq-a">Legal forest area is <strong>37,033 sq. km</strong>, which is <strong>68.16%</strong> of HP's total geographical area.</div>
+                    </div>
+
+                    <div class="faq-static-card">
+                        <div class="faq-q"><i class="fa-solid fa-circle-question"></i> <span>7. Agriculture Workforce Share?</span></div>
+                        <div class="faq-a">Employs approximately <strong>57.03%</strong> of the total main working population in the state.</div>
+                    </div>
+
+                    <div class="faq-static-card">
+                        <div class="faq-q"><i class="fa-solid fa-circle-question"></i> <span>8. Single Largest Budget Expenditure?</span></div>
+                        <div class="faq-a">Employee <strong>Salaries (~25-26%)</strong> consume the largest budget share, followed by Pensions (~16-17%).</div>
+                    </div>
+
+                    <div class="faq-static-card">
+                        <div class="faq-q"><i class="fa-solid fa-circle-question"></i> <span>9. India's First Paperless Vidhan Sabha?</span></div>
+                        <div class="faq-a">HP Assembly became India's 1st paperless house in <strong>August 2014</strong> via the e-Vidhan application.</div>
+                    </div>
+
+                    <div class="faq-static-card">
+                        <div class="faq-q"><i class="fa-solid fa-circle-question"></i> <span>10. Target Date for 1st Green Energy State?</span></div>
+                        <div class="faq-a">The HP State Government has set a target date of <strong>March 31, 2026</strong> to become a Green Energy State.</div>
+                    </div>
+                </div>
+            </section>
 
             <div class="related-modules-box" style="text-align: center; margin-top: 25px; margin-bottom: 25px;">
                 <div style="text-align: center;">
