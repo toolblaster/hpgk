@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy | HPGK Quiz & Agriculture Prep</title>
-    <meta name="description" content="Read the Privacy Policy for HPGK Quiz. Learn how we protect your data, use local storage, and prioritize privacy while you prepare for exams.">
+    <meta name="description" content="Read the Privacy Policy for HPGK Quiz by ToolBlaster EdTech. Learn about Google OAuth sign-in data, local storage usage, Razorpay payment processing, and Google AdSense cookie policies.">
     
     <!-- Canonical Link -->
     <link rel="canonical" href="https://hpgk.toolblaster.com/user/legal/privacy.html">
 
-    <!-- Assets (Favicon paths pointing to js/favicon relative to user/legal/) -->
+    <!-- Favicon Assets -->
     <link rel="apple-touch-icon" sizes="180x180" href="../../js/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="512x512" href="../../js/favicon/web-app-manifest-512x512.png">
     <link rel="icon" type="image/png" sizes="192x192" href="../../js/favicon/web-app-manifest-192x192.png">
@@ -25,52 +25,52 @@
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Noto+Sans+Devanagari:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Load Global Style First -->
+
+    <!-- Global Style Base -->
     <link rel="stylesheet" href="../../js/style.css">
 
-    <!-- Premium Glassmorphism Stylesheet for Legal Pages (Compact Version) -->
+    <!-- Premium Glassmorphism Styles for Legal & Information Pages -->
     <style>
         :root {
             --primary: #2563eb;        
             --primary-hover: #1d4ed8; 
-            --primary-light: rgba(37, 99, 235, 0.1); 
-            --primary-dark: #1e3a8a;  
-            --accent: #ea580c;        
+            --primary-light: rgba(37, 99, 235, 0.08); 
+            --accent: #f59e0b;        
+            --success: #10b981;
             
-            --bg-gradient: linear-gradient(135deg, #eff6ff 0%, #dbeafe 50%, #f3e8ff 100%);
-            --card-bg: rgba(255, 255, 255, 0.65); 
-            --card-border: rgba(255, 255, 255, 0.5); 
-            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+            --bg-gradient: linear-gradient(135deg, #eff6ff 0%, #e0f2fe 50%, #f3e8ff 100%);
+            --card-bg: rgba(255, 255, 255, 0.75); 
+            --card-border: rgba(255, 255, 255, 0.6); 
+            --glass-shadow: 0 10px 30px 0 rgba(31, 38, 135, 0.08);
             
             --text-main: #0f172a;     
             --text-body: #334155;     
-            --text-sec: #475569;      
-            --input-bg: rgba(255, 255, 255, 0.4); 
+            --text-sec: #64748b;      
+            --input-bg: rgba(255, 255, 255, 0.5); 
             
-            --radius-md: 8px;
-            --radius-lg: 12px;
-            --radius-xl: 16px;
+            --radius-md: 10px;
+            --radius-lg: 14px;
+            --radius-xl: 20px;
         }
 
         [data-theme="dark"] {
             --primary: #60a5fa;        
             --primary-hover: #93c5fd; 
-            --primary-light: rgba(96, 165, 250, 0.15); 
-            --primary-dark: #bfdbfe;  
+            --primary-light: rgba(96, 165, 250, 0.12); 
             --accent: #fbbf24;        
+            --success: #34d399;
             
             --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #020617 100%);
-            --card-bg: rgba(30, 41, 59, 0.5); 
+            --card-bg: rgba(30, 41, 59, 0.65); 
             --card-border: rgba(255, 255, 255, 0.08); 
-            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            --glass-shadow: 0 10px 35px 0 rgba(0, 0, 0, 0.4);
             
             --text-main: #f8fafc;     
             --text-body: #cbd5e1;     
             --text-sec: #94a3b8;      
-            --input-bg: rgba(0, 0, 0, 0.2); 
+            --input-bg: rgba(0, 0, 0, 0.25); 
         }
 
         body {
@@ -80,41 +80,59 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            margin: 0;
         }
 
-        h1, h2, h3, h4 { font-family: 'Inter', sans-serif !important; color: var(--text-main); }
+        h1, h2, h3, h4 { font-family: 'Inter', sans-serif !important; color: var(--text-main); margin: 0; }
 
         .glass-panel {
             background: var(--card-bg);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
             border: 1px solid var(--card-border);
             box-shadow: var(--glass-shadow);
         }
 
-        /* Compact Layout */
-        main { flex: 1; max-width: 900px; margin: 0 auto; padding: 15px; width: 100%; box-sizing: border-box; }
+        main { flex: 1; max-width: 920px; margin: 0 auto; padding: 25px 15px; width: 100%; box-sizing: border-box; }
 
-        .page-header { text-align: center; margin-bottom: 15px; }
-        .page-title { font-size: 28px !important; font-weight: 800 !important; margin: 0 0 4px 0; letter-spacing: -0.5px; color: var(--text-main); }
-        .page-desc { font-size: 0.85rem; color: var(--text-sec); margin: 0; }
+        .page-header { text-align: center; margin-bottom: 25px; }
+        .page-badge {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: var(--primary-light); color: var(--primary);
+            padding: 4px 14px; border-radius: 20px; font-size: 0.72rem; font-weight: 800;
+            text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px;
+            border: 1px solid rgba(37, 99, 235, 0.15);
+        }
+        .page-title { font-size: 2.2rem !important; font-weight: 900 !important; letter-spacing: -0.8px; color: var(--text-main); line-height: 1.2; }
+        .page-desc { font-size: 0.95rem; color: var(--text-sec); margin-top: 6px; font-weight: 500; }
 
-        .content-section { border-radius: var(--radius-xl); padding: 15px; margin-bottom: 15px; display: flex; flex-direction: column; gap: 12px; }
-        .content-block { background: var(--input-bg); border: 1px solid var(--card-border); border-radius: var(--radius-lg); padding: 15px; box-shadow: var(--shadow-sm); }
-        .content-block h3 { font-size: 1.05rem; font-weight: 700; color: var(--primary); margin: 0 0 6px 0; display: flex; align-items: center; gap: 8px; }
-        .content-block p { font-size: 0.85rem; line-height: 1.5; margin: 0 0 8px 0; }
+        .content-section { border-radius: var(--radius-xl); padding: 22px; margin-bottom: 20px; display: flex; flex-direction: column; gap: 16px; }
+        
+        .content-block { background: var(--input-bg); border: 1px solid var(--card-border); border-radius: var(--radius-lg); padding: 18px; }
+        .content-block h3 { font-size: 1.12rem; font-weight: 800; color: var(--primary); margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+        .content-block p { font-size: 0.88rem; line-height: 1.6; margin: 0 0 10px 0; color: var(--text-body); }
         .content-block p:last-child { margin-bottom: 0; }
-        .content-block a { color: var(--primary); text-decoration: none; font-weight: 600; }
+        .content-block a { color: var(--primary); text-decoration: none; font-weight: 700; }
         .content-block a:hover { text-decoration: underline; }
 
-        .styled-list { list-style: none; padding-left: 0; margin: 0; }
-        .styled-list li { position: relative; padding-left: 20px; font-size: 0.85rem; margin-bottom: 6px; line-height: 1.5; }
-        .styled-list li::before { content: "\f111"; font-family: "Font Awesome 6 Free"; font-weight: 900; color: var(--primary); position: absolute; left: 0; top: 6px; font-size: 0.4rem; }
+        .styled-list { list-style: none; padding-left: 0; margin: 8px 0 0 0; }
+        .styled-list li { position: relative; padding-left: 22px; font-size: 0.88rem; margin-bottom: 8px; line-height: 1.5; color: var(--text-body); }
+        .styled-list li::before { content: "\f00c"; font-family: "Font Awesome 6 Free"; font-weight: 900; color: var(--success); position: absolute; left: 0; top: 2px; font-size: 0.75rem; }
+
+        .highlight-box {
+            background: rgba(37, 99, 235, 0.05);
+            border: 1px solid rgba(37, 99, 235, 0.2);
+            border-radius: var(--radius-md);
+            padding: 12px 15px;
+            margin-top: 10px;
+            font-size: 0.83rem;
+            line-height: 1.5;
+        }
 
         @media (max-width: 600px) {
-            main { padding: 10px; }
-            .content-section { padding: 12px; gap: 10px; }
-            .page-title { font-size: 24px !important; }
+            main { padding: 15px 10px; }
+            .content-section { padding: 15px; gap: 12px; }
+            .page-title { font-size: 1.75rem !important; }
         }
     </style>
 
@@ -129,51 +147,138 @@
 
 <main>
     <div class="page-header">
+        <div class="page-badge"><i class="fa-solid fa-shield-halved"></i> Data Protection & Privacy</div>
         <h1 class="page-title">Privacy Policy</h1>
-        <p class="page-desc">Last Updated: January 2026</p>
+        <p class="page-desc">Last Updated: July 2026 | Effective for hpgk.toolblaster.com</p>
     </div>
 
-    <!-- Main Content Section -->
     <div class="content-section glass-panel">
         
+        <!-- Section 1: Overview & Scope -->
         <div class="content-block">
-            <h3><i class="fa-solid fa-user-shield"></i> 1. No Personal Data Collection</h3>
+            <h3><i class="fa-solid fa-circle-info"></i> 1. Overview & Commitment</h3>
             <p>
-                We respect your privacy. HPGK Quiz <strong>does not collect or share personal identifiable information</strong> (PII) such as name, email, or location. You can use the app freely without an account.
+                Welcome to <strong>HPGK Quiz Platform</strong> (<a href="https://hpgk.toolblaster.com">hpgk.toolblaster.com</a>), published by <strong>ToolBlaster EdTech</strong>. We respect your privacy and are committed to protecting any personal information you share while using our bilingual competitive exam preparation platform, mock test simulator, and agriculture learning modules.
+            </p>
+            <p>
+                This Privacy Policy explains what data we collect, how it is used to save your test progress, how payments are securely processed, and your choices regarding third-party advertising cookies.
             </p>
         </div>
 
+        <!-- Section 2: Information We Collect -->
         <div class="content-block">
-            <h3><i class="fa-solid fa-hard-drive"></i> 2. Local Storage Usage</h3>
+            <h3><i class="fa-solid fa-database"></i> 2. Information We Collect</h3>
             <p>
-                To enhance your experience, we use <strong>Local Storage</strong> on your device to:
+                Depending on how you interact with our platform (as an anonymous guest or authenticated user), we collect the following types of information:
             </p>
             <ul class="styled-list">
-                <li>Save your quiz progress and history.</li>
-                <li>Remember your Dark/Light mode preference.</li>
-                <li>Store bookmarked questions for review.</li>
+                <li><strong>Anonymous Guest Data:</strong> You may explore free question quotas without creating an account. In guest mode, no personal identifiable information (PII) is collected or stored on our servers.</li>
+                <li><strong>Account Authentication Data (Google Sign-In):</strong> When you register or log in using Google OAuth, we receive basic public profile information provided by Google, including your <strong>full name, email address, and profile picture URL</strong>. This data is used solely to authenticate your account, maintain your quiz score history, and display your XP on the global leaderboard.</li>
+                <li><strong>Quiz Performance & Score Logs:</strong> We store test attempt scores, category completion status, time taken per test, and accuracy metrics linked to your account ID so you can review detailed solutions and track preparation progress across devices.</li>
+                <li><strong>Payment Transaction Metadata:</strong> When purchasing access passes (such as the MCQ Pro Pass or Mock Master Pass), payment transactions are processed securely through <strong>Razorpay</strong>. We receive and store transaction metadata including Razorpay Payment IDs, pass subscription start/expiry dates, and plan identifiers. <strong>We do NOT receive, handle, or store full credit/debit card numbers, CVV codes, net banking credentials, or UPI PINs on our servers.</strong></li>
             </ul>
-            <p style="margin-top: 8px;">
-                This data remains strictly on your device and is never transmitted to us.
+        </div>
+
+        <!-- Section 3: Browser Storage (LocalStorage & SessionStorage) -->
+        <div class="content-block">
+            <h3><i class="fa-solid fa-hard-drive"></i> 3. Local & Session Storage Usage</h3>
+            <p>
+                We utilize standard browser <strong>LocalStorage</strong> and <strong>SessionStorage</strong> mechanisms to ensure a responsive, zero-delay exam experience:
+            </p>
+            <ul class="styled-list">
+                <li><strong>Quiz State Caching:</strong> Your active question choices and bookmarks are cached locally on your device to prevent progress loss during internet network fluctuations.</li>
+                <li><strong>Theme Preferences:</strong> Your selected Light/Dark visual theme is stored locally to maintain consistent visual appearance.</li>
+                <li><strong>Broadcast Dismissal Flags:</strong> Session flags are set when you dismiss announcement popups to ensure you are not repeatedly interrupted while studying.</li>
+            </ul>
+            <div class="highlight-box">
+                <i class="fa-solid fa-lock" style="color: var(--primary);"></i> <strong>Control over Local Storage:</strong> You can clear your browser cache and local storage at any time through your browser settings. Note that clearing local cache while logged out will erase unsynced local guest progress.
+            </div>
+        </div>
+
+        <!-- Section 4: Google AdSense & Third-Party Advertising Cookies -->
+        <div class="content-block">
+            <h3><i class="fa-solid fa-ad"></i> 4. Google AdSense & Third-Party Cookies</h3>
+            <p>
+                To support server maintenance, content creation, and keep our core practice modules accessible for students, <strong>HPGK Quiz displays third-party advertisements served by Google AdSense</strong>.
+            </p>
+            <ul class="styled-list">
+                <li><strong>Use of Cookies:</strong> Third-party vendors, including Google, use cookies to serve ads based on a user's prior visits to our website or other websites on the internet.</li>
+                <li><strong>Advertising Cookies (DART Cookie):</strong> Google's use of advertising cookies enables it and its partners to serve ads to users based on their visit to our site and/or other sites on the Internet.</li>
+                <li><strong>Opting Out of Personalized Ads:</strong> Users may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">Google Ads Settings</a>. Alternatively, you can opt out of third-party vendor cookies for personalized advertising by visiting <a href="https://www.aboutads.info" target="_blank" rel="noopener">www.aboutads.info</a>.</li>
+            </ul>
+        </div>
+
+        <!-- Section 5: Third-Party Service Providers -->
+        <div class="content-block">
+            <h3><i class="fa-solid fa-network-wired"></i> 5. Trusted Third-Party Services</h3>
+            <p>
+                We partner with trusted third-party infrastructure providers to deliver secure authentication, database synchronization, and payment processing:
+            </p>
+            <ul class="styled-list">
+                <li><strong>Google Firebase (Auth & Cloud Firestore):</strong> Manages secure OAuth 2.0 user authentication, cloud database syncing, and global leaderboard rankings.</li>
+                <li><strong>Razorpay Software Private Limited:</strong> Encrypted 256-bit payment gateway handling subscription billing and instant pass provisioning.</li>
+                <li><strong>Google Analytics:</strong> Aggregated, non-personally identifiable site analytics to monitor page traffic, user engagement, and platform performance.</li>
+            </ul>
+        </div>
+
+        <!-- Section 6: Data Security & Protection -->
+        <div class="content-block">
+            <h3><i class="fa-solid fa-shield-virus"></i> 6. Data Security Measures</h3>
+            <p>
+                We employ industry-standard technical safeguards to protect student data against unauthorized access, loss, or alteration:
+            </p>
+            <ul class="styled-list">
+                <li><strong>HTTPS Encryption:</strong> All data transmitted between your browser and our servers is encrypted using 256-bit Transport Layer Security (TLS/SSL).</li>
+                <li><strong>Access Control:</strong> Administrative user management access is restricted to authorized personnel using multi-factor authentication.</li>
+            </ul>
+        </div>
+
+        <!-- Section 7: User Data Rights & Account Deletion -->
+        <div class="content-block">
+            <h3><i class="fa-solid fa-user-gear"></i> 7. Your Data Rights & Deletion Requests</h3>
+            <p>
+                You retain complete control over your account data. You have the right to:
+            </p>
+            <ul class="styled-list">
+                <li>Access the personal information linked to your Google profile on your <strong>Student Dashboard</strong>.</li>
+                <li>Request permanent deletion of your user profile, score logs, active passes, and leaderboard entries from our server database.</li>
+            </ul>
+            <p style="margin-top: 10px;">
+                To submit an account or data deletion request, email us at <a href="mailto:hello@toolblaster.com">hello@toolblaster.com</a> with the subject line <em>"Data Deletion Request"</em> from your registered Google email address. Account purges are executed within 7 business days.
             </p>
         </div>
 
+        <!-- Section 8: Non-Government Entity Clarification -->
         <div class="content-block">
-            <h3><i class="fa-solid fa-chart-pie"></i> 3. Analytics</h3>
+            <h3><i class="fa-solid fa-building-columns"></i> 8. Independent Legal Status</h3>
             <p>
-                We may use standard tools (like Google Analytics) to monitor aggregate usage patterns to improve the site. These tools do not identify you personally.
+                As declared in our <a href="about.html">About Us</a> section, <strong>HPGK Quiz (hpgk.toolblaster.com)</strong> is an independent educational platform operated by <strong>ToolBlaster EdTech</strong>. We do not represent or claim affiliation with HPPSC, HPECA/HPSSC, the Government of Himachal Pradesh, ICAR, IBPS, or any official recruitment agency.
             </p>
         </div>
 
+        <!-- Section 9: Updates to This Policy -->
         <div class="content-block">
-            <h3><i class="fa-solid fa-clock-rotate-left"></i> 4. Policy Updates</h3>
+            <h3><i class="fa-solid fa-pen-to-square"></i> 9. Updates to This Privacy Policy</h3>
             <p>
-                Changes will be posted on this page and reflected by the "Last Updated" date.
+                We may update this Privacy Policy periodically to reflect platform enhancements, legal requirements, or advertising partner guidelines. Any changes will be posted on this page with an updated "Last Updated" timestamp at the top.
             </p>
         </div>
-        
+
+        <!-- Section 10: Publisher Contact -->
+        <div class="content-block">
+            <h3><i class="fa-solid fa-envelope"></i> 10. Contact Us</h3>
+            <p>
+                If you have questions, feedback, or privacy concerns regarding this policy, please reach out to our legal and support team:
+            </p>
+            <p style="margin-top: 6px;">
+                <strong>Publisher:</strong> ToolBlaster EdTech<br>
+                <strong>Website:</strong> <a href="https://hpgk.toolblaster.com">hpgk.toolblaster.com</a><br>
+                <strong>Email Contact:</strong> <a href="mailto:hello@toolblaster.com">hello@toolblaster.com</a><br>
+                <strong>Location:</strong> Himachal Pradesh, India
+            </p>
+        </div>
+
     </div>
-
 </main>
 
 <div id="site-footer"></div>
@@ -184,7 +289,7 @@
         if (typeof renderHeader === 'function') {
             renderHeader({
                 title: 'Privacy Policy',
-                subtitle: 'Legal',
+                subtitle: 'Legal & Protection',
                 iconClass: 'fa-solid fa-shield-halved',
                 link: '../../index.html',
                 isQuizPage: false,
