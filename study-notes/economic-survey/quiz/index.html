@@ -10,7 +10,7 @@
     <!-- Canonical Link -->
     <link rel="canonical" href="https://hpgk.toolblaster.com/study-notes/economic-survey/quiz/">
 
-    <!-- JSON-LD Schema for WebPage & Breadcrumb -->
+    <!-- JSON-LD Schema for WebPage, Breadcrumb & FAQPage -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -42,6 +42,85 @@
           "item": "https://hpgk.toolblaster.com/study-notes/economic-survey/quiz/"
         }]
       }
+    }
+    </script>
+
+    <!-- Quiz-Specific FAQ Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "How many MCQs are included in the HP Economic Survey Mock Quiz?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The test series contains over 450 high-yield, exam-oriented MCQs covering State GSDP, Hydropower, Agriculture, Banking, and Welfare Schemes."
+        }
+      },{
+        "@type": "Question",
+        "name": "Is this Economic Survey Mock Quiz aligned with HPPSC & HPAS exam patterns?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, all questions strictly follow the official syllabus and statement-style formats tested in HPPSC, HPAS, and Allied Services examinations."
+        }
+      },{
+        "@type": "Question",
+        "name": "Are the quiz questions available in both English and Hindi?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, every question and detailed answer explanation is available in a bilingual format (English and Hindi)."
+        }
+      },{
+        "@type": "Question",
+        "name": "What is the Quick 10 Quiz feature?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Quick 10 Quiz mode selects 10 random high-yield questions for fast practice when you want a rapid revision session."
+        }
+      },{
+        "@type": "Question",
+        "name": "Can I save or bookmark questions for revision later?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, you can click the bookmark icon on any question and filter your saved questions anytime using the toolbar bookmark filter."
+        }
+      },{
+        "@type": "Question",
+        "name": "How can I review my incorrect answers?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Click the Mistake Filter button (warning icon) in the toolbar to isolate and review only the questions you answered incorrectly."
+        }
+      },{
+        "@type": "Question",
+        "name": "Is my quiz progress saved automatically?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, your performance stats, accuracy, completed questions, and bookmarks are automatically saved in your browser."
+        }
+      },{
+        "@type": "Question",
+        "name": "Can I export or backup my quiz progress?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, use the Download/Upload buttons in the toolbar to backup or transfer your test progress across different devices."
+        }
+      },{
+        "@type": "Question",
+        "name": "Which topics carry the highest weightage in the Economic Survey MCQs?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Macro-economic growth, Per Capita Income, Hydropower basin potential, Agriculture landholdings, and Government welfare schemes carry top weightage."
+        }
+      },{
+        "@type": "Question",
+        "name": "Is there any limit on re-attempting the mock quiz?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No, you can re-attempt the quiz and reset your score progress as many times as you like for complete mastery."
+        }
+      }]
     }
     </script>
 
@@ -154,7 +233,7 @@
             padding: 0 15px; flex-wrap: nowrap; gap: 10px; box-sizing: border-box;
         }
 
-        .page-header-top, .main-layout, .seo-content-wrapper { 
+        .page-header-top, .main-layout, .seo-content-wrapper, .faq-section-wrapper { 
             width: 100%; max-width: var(--site-width); margin: 0 auto; padding: 0 15px; box-sizing: border-box;
         }
 
@@ -177,41 +256,31 @@
         }
         [data-theme="dark"] .hero-desc span.hi-desc { color: #e2e8f0; }
 
-        .section-separator { 
-            height: 1px; background: linear-gradient(90deg, transparent, var(--card-border), transparent); 
-            margin: 25px auto; width: 100%; max-width: var(--site-width); 
-        }
-
-        @media (max-width: 480px) {
-            .top-meta-bar, .page-header-top, .main-layout, .seo-content-wrapper {
-                padding: 0 12px !important;
-            }
-            .page-header-top { margin-bottom: 20px; }
-        }
-
-        .breadcrumb-nav { margin: 0; flex-shrink: 1; display: flex; align-items: center; height: 24px; overflow-x: auto; scrollbar-width: none;}
+        /* Compact Breadcrumbs */
+        .breadcrumb-nav { margin: 0; flex-shrink: 1; display: flex; align-items: center; height: 20px; overflow-x: auto; scrollbar-width: none; }
         .breadcrumb-nav::-webkit-scrollbar { display: none; }
         
         .breadcrumb-list { 
-            list-style: none; padding: 0 10px; margin: 0; display: flex; flex-wrap: nowrap; 
-            align-items: center; gap: 4px; background: rgba(255, 255, 255, 0.35); border-radius: 12px; 
+            list-style: none; padding: 0 8px; margin: 0; display: flex; flex-wrap: nowrap; 
+            align-items: center; gap: 4px; background: rgba(255, 255, 255, 0.35); border-radius: 10px; 
             border: 1px solid var(--card-border); backdrop-filter: blur(8px); box-shadow: var(--shadow-sm); 
             height: 100%; box-sizing: border-box;
         }
         [data-theme="dark"] .breadcrumb-list { background: rgba(30, 41, 59, 0.4); box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
         
-        .breadcrumb-item { font-size: 0.6rem; font-weight: 600; color: var(--text-sec); display: flex; align-items: center; white-space: nowrap; height: 100%; }
+        .breadcrumb-item { font-size: 0.58rem; font-weight: 600; color: var(--text-sec); display: flex; align-items: center; white-space: nowrap; height: 100%; }
         .breadcrumb-item a { color: var(--text-sec); text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 4px; }
         .breadcrumb-item a:hover { color: var(--primary); }
         .breadcrumb-item.active { color: var(--primary); pointer-events: none; }
-        .breadcrumb-separator { font-size: 0.55rem; color: var(--text-sec); opacity: 0.6; margin: 0 2px; }
+        .breadcrumb-separator { font-size: 0.52rem; color: var(--text-sec); opacity: 0.6; margin: 0 2px; }
 
+        /* Compact Hero Badge */
         .hero-badge { 
-            display: inline-flex; align-items: center; justify-content: center; height: 24px; 
-            background: var(--primary-light); color: var(--primary); padding: 0 10px; 
-            border-radius: 12px; font-size: 0.6rem; font-weight: 800; text-transform: uppercase; 
-            margin: 0; border: 1px solid var(--primary); letter-spacing: 0.5px; white-space: nowrap; 
-            flex-shrink: 0; box-sizing: border-box;
+            display: inline-flex; align-items: center; justify-content: center; height: 18px; 
+            background: var(--primary-light); color: var(--primary); padding: 0 7px; 
+            border-radius: 9px; font-size: 0.55rem; font-weight: 800; text-transform: uppercase; 
+            margin: 0; border: 1px solid var(--primary); letter-spacing: 0.3px; white-space: nowrap; 
+            flex-shrink: 0; box-sizing: border-box; line-height: 1;
         }
 
         .hero-title { 
@@ -243,22 +312,17 @@
 
         /* INDIGO TOOLS STRIP */
         .tools-strip {
-            margin-top: 20px; background: rgba(79, 70, 229, 0.05); border: 1px solid rgba(79, 70, 229, 0.2);
-            border-radius: var(--radius-lg); padding: 12px 16px; display: flex; align-items: center; justify-content: space-between;
-            max-width: 800px; margin-left: auto; margin-right: auto; transition: all 0.3s ease;
+            margin-top: 16px; background: rgba(234, 88, 12, 0.08); border: 1px solid rgba(234, 88, 12, 0.3);
+            border-radius: var(--radius-lg); padding: 8px 14px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;
+            width: 100%; transition: all 0.3s ease; box-sizing: border-box;
         }
-        .tools-strip-left { display: flex; align-items: center; gap: 12px; }
-        .tools-strip-icon {
-            width: 40px; height: 40px; background: rgba(79, 70, 229, 0.15); color: var(--primary);
-            border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;
-        }
-        [data-theme="dark"] .tools-strip-icon { color: #818cf8; background: rgba(129, 140, 248, 0.2); }
-        .tools-strip-title { font-weight: 800; color: var(--text-main); font-size: 0.95rem; text-align: left;}
-        .tools-strip-desc { font-size: 0.75rem; color: var(--text-sec); margin-top: 2px; text-align: left; font-weight: 500;}
-        .tools-strip-btn-group { display: flex; gap: 8px; align-items: center; flex-wrap: wrap;}
+        .tools-strip-left { display: flex; align-items: center; gap: 12px; flex: 1 1 auto; min-width: 260px; }
+        .tools-strip-title { font-weight: 800; color: var(--text-main); font-size: 0.95rem; text-align: left; font-family: 'Inter', sans-serif;}
+        .tools-strip-desc { font-size: 0.75rem; color: var(--text-sec); margin-top: 2px; text-align: left; font-weight: 500; font-family: 'Inter', sans-serif;}
+        .tools-strip-btn-group { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; justify-content: flex-end;}
         
         .tools-strip-btn {
-            background: var(--primary); color: white !important; padding: 6px 12px; border-radius: 6px;
+            background: var(--primary); color: white !important; padding: 5px 12px; border-radius: 6px;
             font-size: 12px; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 5px;
             transition: all 0.2s; white-space: nowrap; letter-spacing: 0.2px;
         }
@@ -272,6 +336,24 @@
         .tools-strip-btn.outline:hover { background: rgba(79, 70, 229, 0.1); color: var(--primary-hover) !important; }
         [data-theme="dark"] .tools-strip-btn.outline { color: #a5b4fc !important; border-color: #a5b4fc; }
         [data-theme="dark"] .tools-strip-btn.outline:hover { background: rgba(129, 140, 248, 0.15); color: #818cf8 !important;}
+
+        /* Section Heading Divider - Matching Main Page */
+        .section-heading-divider {
+            display: flex; align-items: center; justify-content: center;
+            margin: 30px 0 15px 0; position: relative; text-align: center; width: 100%;
+        }
+        .section-heading-divider::before {
+            content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent); opacity: 0.3; z-index: 1;
+        }
+        .divider-tag {
+            position: relative; z-index: 2; background: var(--card-bg); border: 1px solid var(--primary);
+            color: var(--primary-dark); padding: 6px 18px; border-radius: 20px; font-size: 0.8rem;
+            font-weight: 800; letter-spacing: 0.4px; box-shadow: 0 4px 12px rgba(79, 70, 229, 0.08);
+            display: inline-flex; align-items: center; gap: 8px; max-width: 92%; box-sizing: border-box;
+        }
+        .divider-tag i { flex-shrink: 0; }
+        [data-theme="dark"] .divider-tag { color: #a5b4fc; background: #1e293b; border-color: #818cf8; }
 
         .main-layout { display: flex; flex-direction: column; gap: 20px; }
         @media (min-width: 900px) { .main-layout { flex-direction: row; align-items: flex-start; } .intro-column, .quiz-widget-wrapper { flex: 1; width: 50%; box-sizing: border-box; } }
@@ -419,15 +501,29 @@
         .progress-display { display: flex; align-items: center; justify-content: center; padding: 4px 10px; }
         .progress-text { font-weight: 800; color: var(--text-main); font-size: 0.85rem; }
 
-        /* SEO Cards Styling */
+        /* SEO Cards Styling - Softer Left Border Contrast */
         .seo-content-wrapper { margin-bottom: 30px; }
-        .seo-header { text-align: center; margin-bottom: 20px; }
-        .seo-header h2 { font-size: clamp(1.2rem, 3vw, 1.6rem); margin-bottom: 8px; font-weight: 800; }
-        .seo-header p { color: var(--text-sec); max-width: 600px; margin: 0 auto; font-size: 0.85rem; }
+        .seo-header { text-align: center; margin-bottom: 15px; }
+        .seo-header p { color: var(--text-sec); max-width: 650px; margin: 0 auto; font-size: 0.85rem; font-weight: 500; }
         
         .seo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; align-items: stretch; width: 100%; }
         
-        .seo-card { background: var(--card-bg); border: 1px solid var(--card-border); padding: 20px; border-radius: var(--radius-lg); box-shadow: var(--glass-shadow); border-left: 4px solid var(--primary); transition: border-color 0.2s; display: flex; flex-direction: column; box-sizing: border-box; width: 100%; }
+        .seo-card { 
+            background: var(--card-bg); 
+            border: 1px solid var(--card-border); 
+            padding: 20px; 
+            border-radius: var(--radius-lg); 
+            box-shadow: var(--glass-shadow); 
+            border-left: 3px solid rgba(79, 70, 229, 0.35); 
+            transition: border-color 0.2s; 
+            display: flex; 
+            flex-direction: column; 
+            box-sizing: border-box; 
+            width: 100%; 
+        }
+        [data-theme="dark"] .seo-card {
+            border-left: 3px solid rgba(129, 140, 248, 0.35);
+        }
         .seo-card:hover { border-color: var(--primary-light); }
         .seo-card h3 { font-size: 1rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; color: var(--text-main) !important; font-weight: 800;}
         .seo-card h3 i { color: var(--primary); }
@@ -436,6 +532,33 @@
         .seo-list { list-style: none; padding-left: 0; margin-top: 0; }
         .seo-list li { position: relative; padding-left: 18px; margin-bottom: 8px; font-size: 0.8rem; color: var(--text-body) !important; line-height: 1.4; font-weight: 500;}
         .seo-list li::before { content: "\f111"; font-family: "Font Awesome 6 Free"; font-weight: 900; color: var(--primary); position: absolute; left: 0; top: 5px; font-size: 0.4rem; }
+
+        /* 2-COLUMN STATIC FAQ STYLES */
+        .faq-grid {
+            display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 10px; width: 100%;
+        }
+        @media (min-width: 768px) {
+            .faq-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+        }
+
+        .faq-static-card {
+            background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-lg);
+            padding: 12px 16px; box-shadow: 0 2px 6px rgba(0,0,0,0.02); display: flex; flex-direction: column;
+            justify-content: center; gap: 6px; transition: border-color 0.2s, box-shadow 0.2s; box-sizing: border-box;
+        }
+        .faq-static-card:hover { border-color: var(--primary); box-shadow: 0 4px 12px rgba(79, 70, 229, 0.06); }
+
+        .faq-q {
+            font-size: 0.85rem; font-weight: 700; color: var(--text-main); display: flex; align-items: flex-start;
+            gap: 8px; line-height: 1.35;
+        }
+        .faq-q i { color: var(--primary); margin-top: 2px; flex-shrink: 0; font-size: 0.85rem; }
+
+        .faq-a {
+            font-size: 0.82rem; color: var(--text-body); line-height: 1.4; padding-left: 22px;
+        }
+        .faq-a strong { color: var(--primary-dark); font-weight: 700; }
+        [data-theme="dark"] .faq-a strong { color: #a5b4fc; }
 
         .quiz-modal-overlay {
             position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important;
@@ -458,6 +581,8 @@
             .page-header-top { margin-top: 25px; } 
             .hero-title { font-size: 25px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
             .top-meta-bar { flex-wrap: nowrap; justify-content: space-between; }
+            .breadcrumb-nav { height: 18px; }
+            .hero-badge { height: 16px; padding: 0 6px; border-radius: 8px; font-size: 0.50rem; }
             .widget-header { padding: 10px; align-items: center; }
             .text-controls { justify-content: center; gap: 3px; padding: 2px 0; }
             .icon-btn, .text-btn, .text-controls label { width: 28px !important; height: 28px !important; font-size: 13.6px !important; border-radius: 6px !important; }
@@ -475,10 +600,13 @@
             .hero-interlinks a { font-size: 0.8rem; }
             .hero-interlinks .interlink-label { font-size: 0.75rem; }
 
+            .divider-tag { padding: 5px 12px; font-size: 0.72rem; gap: 6px; }
+
             .tools-strip { flex-direction: column; align-items: stretch; gap: 12px; }
-            .tools-strip-btn-group { width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
-            .tools-strip-btn-group .tools-strip-btn:last-child { grid-column: span 2; }
-            .tools-strip-btn { justify-content: center; padding: 7px 10px; font-size: 12px; }
+            .tools-strip-left { flex-direction: column; text-align: center; justify-content: center; width: 100%; }
+            .tools-strip-title, .tools-strip-desc { text-align: center !important; }
+            .tools-strip-btn-group { width: 100%; display: flex; gap: 8px; align-items: center; justify-content: center; flex-wrap: wrap; }
+            .tools-strip-btn { justify-content: center; padding: 6px 12px; font-size: 11.5px; width: fit-content; margin: 0; }
         }
     </style>
 
@@ -514,7 +642,7 @@
                 <li class="breadcrumb-item active" aria-current="page">Mock Quiz</li>
             </ol>
         </nav>
-        <span class="hero-badge">Economy Quiz</span>
+        <span class="hero-badge"><span class="hide-mobile">Economy </span>Quiz</span>
     </div>
 
     <div class="page-layout">
@@ -536,9 +664,6 @@
             <!-- DEDICATED INDIGO TOOLS STRIP FOR MASTERCLASS -->
             <div class="tools-strip">
                 <div class="tools-strip-left">
-                    <div class="tools-strip-icon">
-                        <i class="fa-solid fa-book-open-reader"></i>
-                    </div>
                     <div>
                         <div class="tools-strip-title font-heading">Explore Notes & Facts</div>
                         <div class="tools-strip-desc font-sans">Read Eco Survey Highlights & Schemes</div>
@@ -556,6 +681,13 @@
                     </a>
                 </div>
             </div>
+        </div>
+
+        <!-- Section Heading Divider 1: Practice Engine -->
+        <div class="section-heading-divider">
+            <span class="divider-tag">
+                <i class="fa-solid fa-brain"></i> Interactive Mock Quiz Engine • इंटरएक्टिव मॉक क्विज़
+            </span>
         </div>
 
         <!-- Side-by-Side Two Column Layout -->
@@ -660,12 +792,16 @@
 
         </div>
         
-        <div class="section-separator"></div>
+        <!-- Section Heading Divider 2: Fact-Check Cards -->
+        <div class="section-heading-divider" style="margin-top: 35px;">
+            <span class="divider-tag">
+                <i class="fa-solid fa-lightbulb"></i> Important Economic Fact-Checks • महत्वपूर्ण आर्थिक तथ्य
+            </span>
+        </div>
 
-        <!-- Full Width Bilingual Content (6 Rich SEO Cards) -->
+        <!-- Full Width Bilingual Content (6 Rich SEO Cards - 7 Points Each) -->
         <section class="seo-content-wrapper">
             <div class="seo-header">
-                <h2>Important Economic Fact-Checks (महत्वपूर्ण आर्थिक तथ्य)</h2>
                 <p>Crucial pointers often asked as trick questions in the HPAS and HPPSC examinations. <br>(अक्सर हि.प्र. लोक सेवा आयोग परीक्षाओं में पूछे जाने वाले महत्वपूर्ण तथ्य।)</p>
             </div>
 
@@ -675,11 +811,13 @@
                 <div class="seo-card glass-panel">
                     <h3><i class="fa-solid fa-chart-pie"></i> 1. Sectoral Contribution & GSDP (क्षेत्रीय योगदान और GSDP)</h3>
                     <ul class="seo-list">
-                        <li><strong>Tertiary Sector (Services):</strong> The fastest-growing sector, contributing nearly 43.4% to HP's GVA, driven by IT, trade, transport, and tourism. (सेवा क्षेत्र GVA में लगभग 43.4% का योगदान देता है).</li>
-                        <li><strong>Secondary Sector:</strong> Accounts for ~43.1% of GVA, heavily dominated by Manufacturing (BBN pharma hub), Construction, and Hydropower generation. (विनिर्माण और पनबिजली के कारण द्वितीयक क्षेत्र 43.1%).</li>
-                        <li><strong>Primary Sector:</strong> Though employing ~57.03% of the workforce, it contributes only ~13.5% to GVA due to small marginal landholdings. (कृषि क्षेत्र का योगदान केवल 13.5% है).</li>
-                        <li><strong>Per Capita Income:</strong> Estimated at ₹2,35,199, which is significantly higher than the national average. (प्रति व्यक्ति आय राष्ट्रीय औसत से काफी अधिक है).</li>
-                        <li><strong>GSDP Growth:</strong> HP's real economic growth rate at constant (2011-12) prices is estimated around 7.1%. (स्थिर कीमतों पर विकास दर ~7.1%).</li>
+                        <li><strong>Tertiary Sector (Services):</strong> The largest contributor, accounting for nearly 43.4% of GSVA, driven by IT, trade, hotels, transport, real estate, and tourism. (सेवा क्षेत्र GSVA में 43.4% के साथ सबसे बड़ा योगदानकर्ता है).</li>
+                        <li><strong>Secondary Sector:</strong> Contributes ~43.1% to GSVA, heavily dominated by Manufacturing (BBN pharma cluster), Construction, Electricity, and Water Supply. (द्वितीयक क्षेत्र 43.1% योगदान देता है).</li>
+                        <li><strong>Primary Sector:</strong> Though employing ~57.03% of the main workforce, it contributes only ~13.5% to GSVA due to small marginal landholdings. (कृषि क्षेत्र का योगदान केवल 13.5% है).</li>
+                        <li><strong>Per Capita Income:</strong> Estimated at ₹2,35,199 at current prices, which is significantly higher than the national average. (प्रति व्यक्ति आय ₹2,35,199 राष्ट्रीय औसत से काफी अधिक है).</li>
+                        <li><strong>Real GSDP Growth:</strong> HP's real economic growth rate at constant (2011-12) prices is estimated around 7.1%. (स्थिर 2011-12 कीमतों पर विकास दर ~7.1%).</li>
+                        <li><strong>GSDP Size:</strong> Gross State Domestic Product at current prices has crossed the ₹2.07 Lakh Crore threshold. (वर्तमान कीमतों पर GSDP ₹2.07 लाख करोड़ के पार).</li>
+                        <li><strong>Operational Landholding:</strong> Average size of landholding is 0.95 hectares, with Small & Marginal farmers comprising 88.86% of total holdings. (औसत जोत 0.95 हेक्टेयर है और 88.86% छोटे/सीमांत किसान हैं).</li>
                     </ul>
                 </div>
 
@@ -687,11 +825,13 @@
                 <div class="seo-card glass-panel">
                     <h3><i class="fa-solid fa-building-columns"></i> 2. Banking, Credit & Inclusion (बैंकिंग, साख और समावेशन)</h3>
                     <ul class="seo-list">
-                        <li><strong>CD Ratio Challenge:</strong> HP's Credit-Deposit Ratio is low (around 34-36%), with the SLBC actively working to push credit flow past 40%. (राज्य का ऋण-जमा अनुपात 34-36% के आसपास कम है).</li>
-                        <li><strong>Lead Bank Allocation:</strong> PNB leads in 6 districts, UCO Bank in 4, while State Bank of India (SBI) acts as lead bank in Lahaul-Spiti & Sirmaur. (पीएनबी 6 और यूको 4 जिलों में लीड बैंक है).</li>
-                        <li><strong>Branch Density:</strong> HP boasts high banking penetration with 1 branch per ~3,000 population. (प्रति 3,000 आबादी पर एक बैंक शाखा).</li>
-                        <li><strong>Cooperative Network:</strong> HPSCB operates in 6 districts, KCCB in 5, and JCCB exclusively in Solan district. (HPSCB 6, KCCB 5 और JCCB सोलन में कार्य करता है).</li>
-                        <li><strong>Financial Inclusion:</strong> PMJDY zero-balance accounts combined with APY, PMJJBY, and PMSBY provide comprehensive safety nets. (जन धन और सामाजिक सुरक्षा बीमा योजनाएं).</li>
+                        <li><strong>CD Ratio Challenge:</strong> HP's Credit-Deposit Ratio stands low at ~36.32%, with the SLBC actively working to push credit deployment past 40-50%. (राज्य का ऋण-जमा अनुपात 36.32% पर कम है).</li>
+                        <li><strong>Lead Bank Allocation:</strong> PNB leads in 6 districts (Hamirpur, Kangra, Kullu, Mandi, Chamba, Una), UCO Bank in 4 (Bilaspur, Shimla, Solan, Kinnaur), and SBI in 2 (Lahaul-Spiti, Sirmaur). (PNB 6, UCO 4 और SBI 2 जिलों में लीड बैंक है).</li>
+                        <li><strong>High Branch Density:</strong> Over 2,200+ bank branches operate across HP, boasting 1 branch per ~3,000 population (highest per-capita density in India). (प्रति 3,000 आबादी पर एक बैंक शाखा).</li>
+                        <li><strong>Cooperative Network:</strong> Apex HPSCB operates in 6 districts, KCCB in 5 districts, and JCCB exclusively in Solan district. (HPSCB 6, KCCB 5 और JCCB सोलन में कार्य करता है).</li>
+                        <li><strong>Sponsor & Regional Banks:</strong> HP Gramin Bank (headquartered at Mandi) is sponsored by Punjab National Bank. (हिमाचल प्रदेश ग्रामीण बैंक का प्रायोजक बैंक PNB है).</li>
+                        <li><strong>Financial Security Net:</strong> Comprehensive coverage via PMJDY accounts, PMJJBY (₹436/yr), PMSBY (₹20/yr), and Atal Pension Yojana (APY). (जन धन और सामाजिक सुरक्षा बीमा योजनाएं).</li>
+                        <li><strong>NABARD Assistance:</strong> RIDF funds heavily support rural roads, bridges, kuhls, and solar pumping under Saur Sinchayee Yojana. (नाबार्ड RIDF फंड से ग्रामीण इंफ्रा का विकास).</li>
                     </ul>
                 </div>
 
@@ -699,11 +839,13 @@
                 <div class="seo-card glass-panel">
                     <h3><i class="fa-solid fa-hand-holding-heart"></i> 3. Key Welfare Schemes (कल्याणकारी योजनाएं)</h3>
                     <ul class="seo-list">
-                        <li><strong>Sukh Ashray Yojana:</strong> State legally adopted orphans as 'Children of the State', granting ₹4000/month pocket money till 27 years and housing assistance. (अनाथों को 'राज्य के बच्चे' माना गया).</li>
-                        <li><strong>HIMCARE & Sahara:</strong> HIMCARE offers ₹5 Lakh cashless health cover for non-PMJAY families, while Sahara provides ₹3000/month for chronic illness treatment. (सहारा योजना में ₹3000/माह).</li>
-                        <li><strong>Sukh Samman Nidhi:</strong> Provides a dedicated ₹1500/month pension to women under the Pyari Behna Samman Nidhi scheme. (महिलाओं के लिए ₹1500/माह पेंशन).</li>
-                        <li><strong>Swaran Jayanti Nari Sambal:</strong> Grants ₹1150/month pension to women aged 65-69 years without any income threshold. (65-69 वर्ष की महिलाओं को बिना आय सीमा पेंशन).</li>
-                        <li><strong>Urban Employment:</strong> MMSAGY guarantees 120 days of wage employment in urban areas, surpassing national standards. (शहरी क्षेत्रों में 120 दिन का गारंटीकृत रोजगार).</li>
+                        <li><strong>Sukh Ashray Yojana:</strong> State legally adopted orphans as 'Children of the State', granting ₹4,000/month pocket money till 27 years, higher education fees, and housing grants. (अनाथों को 'राज्य के बच्चे' माना गया).</li>
+                        <li><strong>HIMCARE & Sahara:</strong> HIMCARE offers ₹5 Lakh cashless health cover for non-PMJAY families; Sahara provides ₹3,000/month for 11 chronic illnesses (cancer, stroke, paralysis). (सहारा योजना में ₹3,000/माह).</li>
+                        <li><strong>Pyari Behna Sukh Samman Nidhi:</strong> Provides a dedicated ₹1,500/month stipend to eligible women aged 18 to 59 years across HP. (महिलाओं के लिए ₹1,500/माह पेंशन).</li>
+                        <li><strong>Swaran Jayanti Nari Sambal:</strong> Grants ₹1,150/month pension to elderly women aged 65-69 years without any household income limit. (65-69 वर्ष की महिलाओं को बिना आय सीमा पेंशन).</li>
+                        <li><strong>Marriage Grants:</strong> ₹31,000 grant for BPL daughters under Shagun; ₹51,000 for destitute girls under Kanyadaan; ₹65,000 for widow remarriage incentives. (शगुन में ₹31,000 और कन्यादान में ₹51,000).</li>
+                        <li><strong>Beti Hai Anmol:</strong> Fixed deposit (FD) of ₹21,000 created in post office/bank for girl children born in BPL households. (BPL परिवार की बेटी के जन्म पर ₹21,000 की FD).</li>
+                        <li><strong>Urban & Rural Employment:</strong> MMSAGY guarantees 120 days of wage employment in urban areas; MGNREGA maintains >60% female workforce participation in rural areas. (शहरी क्षेत्रों में 120 दिन और मनरेगा में >60% महिला भागीदारी).</li>
                     </ul>
                 </div>
 
@@ -711,11 +853,13 @@
                 <div class="seo-card glass-panel">
                     <h3><i class="fa-solid fa-bolt"></i> 4. Hydropower & Green Energy (जलविद्युत और हरित ऊर्जा)</h3>
                     <ul class="seo-list">
-                        <li><strong>Harnessable Potential:</strong> Out of the total estimated 27,436 MW potential, HP has harnessed ~11,150+ MW (~40% of state capacity). (कुल 27,436 MW क्षमता में से ~11,150+ MW का दोहन).</li>
-                        <li><strong>Basin Share:</strong> Satluj River Basin holds the maximum potential (~13,332 MW), followed by Beas (~5,995 MW) and Chenab (~4,032 MW). (सतलुज बेसिन में सबसे अधिक 13,332 MW क्षमता).</li>
-                        <li><strong>Green State Target:</strong> HP aims to become India's 1st 'Green Energy State' by March 2026 by adding 500 MW solar capacity. (मार्च 2026 तक 'हरित ऊर्जा राज्य' बनने का लक्ष्य).</li>
-                        <li><strong>Solar Expansion:</strong> SJVN is developing an 880 MW mega solar park in Spiti Valley, while Rajiv Gandhi Startup Phase-2 promotes 100-500 kW solar plants. (स्पीति में 880 MW सोलर पार्क).</li>
-                        <li><strong>Free Power & LADA:</strong> 125 units of free electricity for domestic users; 1.5% of project cost goes to LADA for local area development. (1.5% राशि LADA फंड में).</li>
+                        <li><strong>Harnessable Potential:</strong> Out of the total estimated 27,436 MW potential across 5 river basins, HP has harnessed ~11,150+ MW (~40.6% of total capacity). (कुल 27,436 MW में से ~11,150+ MW का दोहन).</li>
+                        <li><strong>Basin Capacity Share:</strong> Satluj River Basin holds the maximum potential (~13,332 MW), followed by Beas (~5,995 MW), Chenab (~4,032 MW), Ravi (~3,237 MW), and Yamuna (~840 MW). (सतलुज बेसिन में सर्वाधिक 13,332 MW क्षमता).</li>
+                        <li><strong>Green State Target:</strong> HP aims to become India's 1st 'Green Energy State' by March 31, 2026 by adding 500 MW solar capacity annually. (मार्च 2026 तक 'हरित ऊर्जा राज्य' बनने का लक्ष्य).</li>
+                        <li><strong>Solar Expansion:</strong> SJVN is developing an 880 MW mega solar park in Spiti Valley, while Rajiv Gandhi Startup Phase-2 promotes 100-500 kW solar plants with 50% subsidy. (स्पीति में 880 MW सोलर पार्क).</li>
+                        <li><strong>Free Domestic Power & LADA:</strong> 125 units of free electricity for domestic users; 1.5% of project cost goes to LADA for local area development; 12% free power royalty from IPPs. (1.5% राशि LADA फंड में).</li>
+                        <li><strong>Flagship Projects:</strong> Nathpa Jhakri (1500 MW - SJVN), Koldam (800 MW - NTPC), Parbati-II (800 MW - NHPC), Karcham Wangtoo (1000 MW - JSW), Sawra Kuddu (111 MW - HPPCL). (प्रमुख जलविद्युत परियोजनाएं).</li>
+                        <li><strong>Nodal Agencies:</strong> HPPCL executes large projects; HPPTCL manages power transmission grids; HIMURJA handles small hydro up to 5 MW and renewable energy. (हिम ऊर्जा 5 MW तक लघु हाइड्रो देखती है).</li>
                     </ul>
                 </div>
 
@@ -723,11 +867,13 @@
                 <div class="seo-card glass-panel">
                     <h3><i class="fa-solid fa-mountain-sun"></i> 5. Tourism & Infrastructure (पर्यटन और अवसंरचना)</h3>
                     <ul class="seo-list">
-                        <li><strong>Tourism Capital:</strong> Kangra is being aggressively developed as the state's official 'Tourism Capital' with a Bankhandi Zoo and Golf Course. (कांगड़ा को 'पर्यटन राजधानी' के रूप में विकास).</li>
-                        <li><strong>Nai Raahein Nai Manzilein:</strong> State scheme focused on unexplored destinations like Janjehli (eco-tourism), Bir-Billing (paragliding), and Chanshal (skiing). (अनछुए गंतव्यों का विकास).</li>
-                        <li><strong>Cultural Tourism:</strong> ADB-funded $100 Million project is developing Shiv Dham in Mandi and beautifying Mall Road in Shimla. (मंडी में शिव धाम का विकास).</li>
-                        <li><strong>Road Network:</strong> Motorable road network exceeds 40,000 km, with PMGSY providing rural connectivity and HRTC adding electric buses. (40,000+ किमी मोटर योग्य सड़कें).</li>
-                        <li><strong>Rail & Air Expansion:</strong> Bhanupali-Bilaspur-Beri (63.1 km) & Chandigarh-Baddi (33.2 km) railway lines under construction; Mandi's Nagchala airport proposed. (रेल और हवाई कनेक्टिविटी विकास).</li>
+                        <li><strong>Tourism Capital Kangra:</strong> Kangra is officially developed as the state's 'Tourism Capital' featuring a Bankhandi Zoo (190 ha), Golf Course, and expanded Gaggal Airport runway. (कांगड़ा को 'पर्यटन राजधानी' के रूप में विकास).</li>
+                        <li><strong>Nai Raahein Nai Manzilein:</strong> State scheme focused on unexplored circuits like Janjehli (eco-tourism), Bir-Billing (paragliding), Chanshal (skiing), and Pong Dam (water sports). (अनछुए गंतव्यों का विकास).</li>
+                        <li><strong>Cultural & Religious Tourism:</strong> ADB-funded $100 Million project is building Shiv Dham in Mandi and beautifying Mall Road Shimla; PRASHAD scheme upgrades Mata Chintpurni Temple. (शिव धाम और प्रसाद योजना).</li>
+                        <li><strong>Road & Tunnel Network:</strong> Motorable road network exceeds 40,000 km with 19 National Highways (2,600+ km); 9.02 km Atal Tunnel Rohtang provides all-weather access to Lahaul. (40,000+ किमी सड़कें और अटल टनल).</li>
+                        <li><strong>Rail Lines Construction:</strong> Bhanupali-Bilaspur-Beri (63.1 km) & Chandigarh-Baddi (33.2 km) BG railway lines under construction; Nangal-Amb Andaura-Daulatpur Chowk BG operational. (रेल कनेक्टिविटी विकास).</li>
+                        <li><strong>Aviation Infrastructure:</strong> 3 operational airports (Gaggal-Kangra, Bhuntar-Kullu, Jubbarhatti-Shimla) and proposed Greenfield International Airport at Nagchala (Balh, Mandi). (नागचला में अंतर्राष्ट्रीय हवाई अड्डा).</li>
+                        <li><strong>Transport Innovation:</strong> HRTC adding electric buses for green transit; 6 major highways developed as EV Green Corridors; 1000+ Lok Mitra Kendras providing e-services. (ग्रीन बसें और ई-चार्जिंग कॉरिडोर).</li>
                     </ul>
                 </div>
 
@@ -735,14 +881,78 @@
                 <div class="seo-card glass-panel">
                     <h3><i class="fa-solid fa-file-invoice-dollar"></i> 6. Budget & Fiscal Finances (बजट एवं राजकोषीय स्थिति)</h3>
                     <ul class="seo-list">
-                        <li><strong>Expenditure Focus:</strong> The Education sector consistently consumes the largest chunk (16-18%) of the state budget, followed by Health (6-7%). (बजट का सबसे बड़ा हिस्सा शिक्षा पर).</li>
-                        <li><strong>Committed Liabilities:</strong> Salaries (~25-26%) and Pensions (~16-17%) consume >42% of every rupee spent, creating a tight fiscal space. (वेतन और पेंशन राज्य का सबसे बड़ा खर्च है).</li>
-                        <li><strong>Revenue Sources:</strong> Share in Central Taxes (~25 paise) and Grants-in-aid (~20 paise) make up the largest part of every rupee earned. (केंद्रीय करों में हिस्सा कमाई का मुख्य जरिया).</li>
-                        <li><strong>Fiscal Deficit:</strong> HP aims to restrict its fiscal deficit around 4.5% to 4.7% of GSDP, slightly higher than FRBM targets. (राजकोषीय घाटा GSDP का 4.5% से 4.7%).</li>
-                        <li><strong>Old Pension Scheme (OPS):</strong> Restoration of OPS for government employees stands as a major social security and fiscal decision. (ओल्ड पेंशन स्कीम/OPS की बहाली).</li>
+                        <li><strong>Sectoral Allocation:</strong> The Education sector consistently consumes the largest share (16-18%) of the state budget, followed by Health (6-7%) and Agriculture/Irrigation (10-12%). (बजट का सबसे बड़ा हिस्सा शिक्षा पर).</li>
+                        <li><strong>Committed Expenditure:</strong> Employee Salaries (~25-26%) and Pensions (~16-17%) consume >42% of every rupee spent, creating tight fiscal room; Interest payments take ~10-11%. (वेतन और पेंशन राज्य का सबसे बड़ा खर्च है).</li>
+                        <li><strong>Revenue Receipts:</strong> Share in Central Taxes (~25 paise in every rupee earned) and Grants-in-aid (~20 paise) make up the largest state revenue stream. (केंद्रीय करों में हिस्सा कमाई का मुख्य जरिया).</li>
+                        <li><strong>Internal Own Tax Revenue:</strong> State Goods and Services Tax (SGST) and State Excise serve as the twin pillars of HP's internal tax collections. (SGST और आबकारी मुख्य आंतरिक कर).</li>
+                        <li><strong>Non-Tax Revenue:</strong> Sale of Hydroelectric Power from state equity shares serves as the single largest non-tax revenue contributor to the exchequer. (बिजली बिक्री सबसे बड़ा गैर-कर राजस्व).</li>
+                        <li><strong>Fiscal Deficit & Grants:</strong> HP aims to restrict its fiscal deficit around 4.5% to 4.7% of GSDP under FRBM norms; Post-Devolution Revenue Deficit Grants released under Article 275. (राजकोषीय घाटा GSDP का 4.5% से 4.7%).</li>
+                        <li><strong>Social Security Decisions:</strong> Restoration of Old Pension Scheme (OPS) for state employees and institutionalized Gender Budgeting since 2008-09. (ओल्ड पेंशन स्कीम/OPS की बहाली).</li>
                     </ul>
                 </div>
 
+            </div>
+        </section>
+
+        <!-- Section Heading Divider 3: FAQs -->
+        <div class="section-heading-divider" style="margin-top: 35px;">
+            <span class="divider-tag">
+                <i class="fa-solid fa-circle-question"></i> Frequently Asked Questions • 10 परीक्षा प्रश्नोत्तरी एवं सहायता
+            </span>
+        </div>
+
+        <!-- STATIC 2-COLUMN QUIZ-SPECIFIC FAQ SECTION -->
+        <section class="faq-section-wrapper" style="margin-bottom: 30px;">
+            <div class="faq-grid">
+                <div class="faq-static-card">
+                    <div class="faq-q"><i class="fa-solid fa-circle-question"></i> <span>1. How many MCQs are in this Mock Quiz?</span></div>
+                    <div class="faq-a">The quiz contains <strong>450+ High-Yield MCQs</strong> divided across 5 comprehensive practice modules.</div>
+                </div>
+
+                <div class="faq-static-card">
+                    <div class="faq-q"><i class="fa-solid fa-circle-question"></i> <span>2. Is this aligned with HPPSC / HPAS syllabus?</span></div>
+                    <div class="faq-a">Yes, all questions strictly mirror the <strong>HPPSC, HPAS Prelims & Mains</strong> current affairs pattern.</div>
+                </div>
+
+                <div class="faq-static-card">
+                    <div class="faq-q"><i class="fa-solid fa-circle-question"></i> <span>3. Is the quiz available in Hindi & English?</span></div>
+                    <div class="faq-a">Yes, every single MCQ and solution explanation features <strong>complete bilingual support</strong>.</div>
+                </div>
+
+                <div class="faq-static-card">
+                    <div class="faq-q"><i class="fa-solid fa-circle-question"></i> <span>4. How does the "Quick 10 Quiz" mode work?</span></div>
+                    <div class="faq-a">It randomly draws <strong>10 high-priority MCQs</strong> for rapid revision when you have limited study time.</div>
+                </div>
+
+                <div class="faq-static-card">
+                    <div class="faq-q"><i class="fa-solid fa-circle-question"></i> <span>5. Can I save/bookmark difficult questions?</span></div>
+                    <div class="faq-a">Yes, tap the <strong>Bookmark icon</strong> on any card and access all saved questions via the toolbar filter.</div>
+                </div>
+
+                <div class="faq-static-card">
+                    <div class="faq-q"><i class="fa-solid fa-circle-question"></i> <span>6. How do I review my incorrect answers?</span></div>
+                    <div class="faq-a">Click the <strong>Mistake Filter button</strong> (warning icon) in the toolbar to focus exclusively on wrong attempts.</div>
+                </div>
+
+                <div class="faq-static-card">
+                    <div class="faq-q"><i class="fa-solid fa-circle-question"></i> <span>7. Is my test progress auto-saved?</span></div>
+                    <div class="faq-a">Yes, your score stats, accuracy, and answered questions are <strong>saved locally in your browser</strong>.</div>
+                </div>
+
+                <div class="faq-static-card">
+                    <div class="faq-q"><i class="fa-solid fa-circle-question"></i> <span>8. Can I backup or restore progress across devices?</span></div>
+                    <div class="faq-a">Yes, use the <strong>Download and Upload buttons</strong> in the top controls bar to transfer your progress JSON file.</div>
+                </div>
+
+                <div class="faq-static-card">
+                    <div class="faq-q"><i class="fa-solid fa-circle-question"></i> <span>9. Which topics carry maximum weightage?</span></div>
+                    <div class="faq-a">Top weightage goes to <strong>GSDP Growth, Per Capita Income, Hydropower basins, and Welfare Schemes</strong>.</div>
+                </div>
+
+                <div class="faq-static-card">
+                    <div class="faq-q"><i class="fa-solid fa-circle-question"></i> <span>10. Can I reset and re-attempt the test?</span></div>
+                    <div class="faq-a">Yes, click the <strong>Reset icon</strong> in the toolbar anytime to clear stats and attempt the test fresh.</div>
+                </div>
             </div>
         </section>
 
