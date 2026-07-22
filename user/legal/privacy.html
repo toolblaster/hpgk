@@ -13,13 +13,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="../../js/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="512x512" href="../../js/favicon/web-app-manifest-512x512.png">
     <link rel="icon" type="image/png" sizes="192x192" href="../../js/favicon/web-app-manifest-192x192.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="../../js/favicon/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="48x48" href="../../js/favicon/favicon-48x48.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../../js/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../../js/favicon/favicon-16x16.png">
-    <link rel="manifest" href="../../js/favicon/site.webmanifest">
     <link rel="shortcut icon" href="../../js/favicon/favicon.ico">
-    <meta name="msapplication-TileColor" content="#2563eb">
     <meta name="theme-color" content="#ffffff">
 
     <!-- Fonts & Icons -->
@@ -31,7 +25,6 @@
     <!-- Global Style Base -->
     <link rel="stylesheet" href="../../js/style.css">
 
-    <!-- Premium Glassmorphism Styles for Legal & Information Pages -->
     <style>
         :root {
             --primary: #2563eb;        
@@ -41,18 +34,18 @@
             --success: #10b981;
             
             --bg-gradient: linear-gradient(135deg, #eff6ff 0%, #e0f2fe 50%, #f3e8ff 100%);
-            --card-bg: rgba(255, 255, 255, 0.75); 
-            --card-border: rgba(255, 255, 255, 0.6); 
-            --glass-shadow: 0 10px 30px 0 rgba(31, 38, 135, 0.08);
+            --card-bg: rgba(255, 255, 255, 0.82); 
+            --card-border: rgba(255, 255, 255, 0.85); 
+            --glass-shadow: 0 6px 20px 0 rgba(31, 38, 135, 0.06);
             
             --text-main: #0f172a;     
             --text-body: #334155;     
             --text-sec: #64748b;      
-            --input-bg: rgba(255, 255, 255, 0.5); 
+            --input-bg: rgba(241, 245, 249, 0.65); 
             
-            --radius-md: 10px;
-            --radius-lg: 14px;
-            --radius-xl: 20px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 16px;
         }
 
         [data-theme="dark"] {
@@ -63,14 +56,14 @@
             --success: #34d399;
             
             --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #020617 100%);
-            --card-bg: rgba(30, 41, 59, 0.65); 
+            --card-bg: rgba(30, 41, 59, 0.7); 
             --card-border: rgba(255, 255, 255, 0.08); 
-            --glass-shadow: 0 10px 35px 0 rgba(0, 0, 0, 0.4);
+            --glass-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.35);
             
             --text-main: #f8fafc;     
             --text-body: #cbd5e1;     
             --text-sec: #94a3b8;      
-            --input-bg: rgba(0, 0, 0, 0.25); 
+            --input-bg: rgba(0, 0, 0, 0.22); 
         }
 
         body {
@@ -83,56 +76,60 @@
             margin: 0;
         }
 
-        h1, h2, h3, h4 { font-family: 'Inter', sans-serif !important; color: var(--text-main); margin: 0; }
+        h1, h2, h3, h4 { font-family: 'Inter', sans-serif; color: var(--text-main); margin: 0; }
 
         .glass-panel {
             background: var(--card-bg);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
             border: 1px solid var(--card-border);
             box-shadow: var(--glass-shadow);
         }
 
-        main { flex: 1; max-width: 920px; margin: 0 auto; padding: 25px 15px; width: 100%; box-sizing: border-box; }
+        main { flex: 1; max-width: 860px; margin: 0 auto; padding: 10px 12px; width: 100%; box-sizing: border-box; display: flex; flex-direction: column; gap: 10px; }
 
-        .page-header { text-align: center; margin-bottom: 25px; }
+        .page-header { text-align: center; margin-bottom: 4px; padding-top: 4px; }
         .page-badge {
-            display: inline-flex; align-items: center; gap: 6px;
+            display: inline-flex; align-items: center; gap: 5px;
             background: var(--primary-light); color: var(--primary);
-            padding: 4px 14px; border-radius: 20px; font-size: 0.72rem; font-weight: 800;
-            text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px;
+            padding: 3px 10px; border-radius: 20px; font-size: 0.64rem; font-weight: 800;
+            text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 6px;
             border: 1px solid rgba(37, 99, 235, 0.15);
         }
-        .page-title { font-size: 2.2rem !important; font-weight: 900 !important; letter-spacing: -0.8px; color: var(--text-main); line-height: 1.2; }
-        .page-desc { font-size: 0.95rem; color: var(--text-sec); margin-top: 6px; font-weight: 500; }
+        .page-title { font-size: 1.45rem; font-weight: 900; letter-spacing: -0.4px; color: var(--text-main); line-height: 1.25; }
+        .page-desc { font-size: 0.78rem; color: var(--text-sec); margin-top: 4px; font-weight: 500; line-height: 1.35; }
 
-        .content-section { border-radius: var(--radius-xl); padding: 22px; margin-bottom: 20px; display: flex; flex-direction: column; gap: 16px; }
+        .content-section { border-radius: var(--radius-xl); padding: 12px; display: flex; flex-direction: column; gap: 10px; }
         
-        .content-block { background: var(--input-bg); border: 1px solid var(--card-border); border-radius: var(--radius-lg); padding: 18px; }
-        .content-block h3 { font-size: 1.12rem; font-weight: 800; color: var(--primary); margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
-        .content-block p { font-size: 0.88rem; line-height: 1.6; margin: 0 0 10px 0; color: var(--text-body); }
+        .content-block { background: var(--input-bg); border: 1px solid var(--card-border); border-radius: var(--radius-lg); padding: 12px 14px; }
+        .content-block h3 { font-size: 0.95rem; font-weight: 800; color: var(--primary); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+        .content-block p { font-size: 0.81rem; line-height: 1.5; margin: 0 0 8px 0; color: var(--text-body); }
         .content-block p:last-child { margin-bottom: 0; }
         .content-block a { color: var(--primary); text-decoration: none; font-weight: 700; }
         .content-block a:hover { text-decoration: underline; }
 
-        .styled-list { list-style: none; padding-left: 0; margin: 8px 0 0 0; }
-        .styled-list li { position: relative; padding-left: 22px; font-size: 0.88rem; margin-bottom: 8px; line-height: 1.5; color: var(--text-body); }
-        .styled-list li::before { content: "\f00c"; font-family: "Font Awesome 6 Free"; font-weight: 900; color: var(--success); position: absolute; left: 0; top: 2px; font-size: 0.75rem; }
+        .styled-list { list-style: none; padding-left: 0; margin: 6px 0 0 0; }
+        .styled-list li { position: relative; padding-left: 18px; font-size: 0.8rem; margin-bottom: 6px; line-height: 1.45; color: var(--text-body); }
+        .styled-list li::before { content: "\f00c"; font-family: "Font Awesome 6 Free"; font-weight: 900; color: var(--success); position: absolute; left: 0; top: 2px; font-size: 0.68rem; }
 
         .highlight-box {
             background: rgba(37, 99, 235, 0.05);
-            border: 1px solid rgba(37, 99, 235, 0.2);
+            border: 1px solid rgba(37, 99, 235, 0.18);
             border-radius: var(--radius-md);
-            padding: 12px 15px;
-            margin-top: 10px;
-            font-size: 0.83rem;
-            line-height: 1.5;
+            padding: 8px 10px;
+            margin-top: 8px;
+            font-size: 0.76rem;
+            line-height: 1.45;
         }
 
-        @media (max-width: 600px) {
-            main { padding: 15px 10px; }
-            .content-section { padding: 15px; gap: 12px; }
-            .page-title { font-size: 1.75rem !important; }
+        @media (min-width: 680px) {
+            main { padding: 20px 15px; gap: 14px; }
+            .page-title { font-size: 1.85rem; }
+            .page-desc { font-size: 0.88rem; }
+            .content-section { padding: 18px; gap: 14px; }
+            .content-block { padding: 16px; }
+            .content-block h3 { font-size: 1.08rem; }
+            .content-block p, .styled-list li { font-size: 0.86rem; }
         }
     </style>
 
@@ -186,12 +183,12 @@
                 We utilize standard browser <strong>LocalStorage</strong> and <strong>SessionStorage</strong> mechanisms to ensure a responsive, zero-delay exam experience:
             </p>
             <ul class="styled-list">
-                <li><strong>Quiz State Caching:</strong> Your active question choices and bookmarks are cached locally on your device to prevent progress loss during internet network fluctuations.</li>
-                <li><strong>Theme Preferences:</strong> Your selected Light/Dark visual theme is stored locally to maintain consistent visual appearance.</li>
+                <li><strong>Quiz State Caching:</strong> Active question choices and bookmarks are cached locally on your device to prevent progress loss during internet network fluctuations.</li>
+                <li><strong>Theme Preferences:</strong> Selected Light/Dark visual theme is stored locally to maintain consistent visual appearance.</li>
                 <li><strong>Broadcast Dismissal Flags:</strong> Session flags are set when you dismiss announcement popups to ensure you are not repeatedly interrupted while studying.</li>
             </ul>
             <div class="highlight-box">
-                <i class="fa-solid fa-lock" style="color: var(--primary);"></i> <strong>Control over Local Storage:</strong> You can clear your browser cache and local storage at any time through your browser settings. Note that clearing local cache while logged out will erase unsynced local guest progress.
+                <i class="fa-solid fa-lock" style="color: var(--primary);"></i> <strong>Control over Local Storage:</strong> You can clear your browser cache and local storage at any time through your browser settings.
             </div>
         </div>
 
@@ -204,7 +201,7 @@
             <ul class="styled-list">
                 <li><strong>Use of Cookies:</strong> Third-party vendors, including Google, use cookies to serve ads based on a user's prior visits to our website or other websites on the internet.</li>
                 <li><strong>Advertising Cookies (DART Cookie):</strong> Google's use of advertising cookies enables it and its partners to serve ads to users based on their visit to our site and/or other sites on the Internet.</li>
-                <li><strong>Opting Out of Personalized Ads:</strong> Users may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">Google Ads Settings</a>. Alternatively, you can opt out of third-party vendor cookies for personalized advertising by visiting <a href="https://www.aboutads.info" target="_blank" rel="noopener">www.aboutads.info</a>.</li>
+                <li><strong>Opting Out of Personalized Ads:</strong> Users may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">Google Ads Settings</a> or <a href="https://www.aboutads.info" target="_blank" rel="noopener">www.aboutads.info</a>.</li>
             </ul>
         </div>
 
@@ -243,7 +240,7 @@
                 <li>Access the personal information linked to your Google profile on your <strong>Student Dashboard</strong>.</li>
                 <li>Request permanent deletion of your user profile, score logs, active passes, and leaderboard entries from our server database.</li>
             </ul>
-            <p style="margin-top: 10px;">
+            <p style="margin-top: 8px;">
                 To submit an account or data deletion request, email us at <a href="mailto:hello@toolblaster.com">hello@toolblaster.com</a> with the subject line <em>"Data Deletion Request"</em> from your registered Google email address. Account purges are executed within 7 business days.
             </p>
         </div>
@@ -252,7 +249,7 @@
         <div class="content-block">
             <h3><i class="fa-solid fa-building-columns"></i> 8. Independent Legal Status</h3>
             <p>
-                As declared in our <a href="about.html">About Us</a> section, <strong>HPGK Quiz (hpgk.toolblaster.com)</strong> is an independent educational platform operated by <strong>ToolBlaster EdTech</strong>. We do not represent or claim affiliation with HPPSC, HPECA/HPSSC, the Government of Himachal Pradesh, ICAR, IBPS, or any official recruitment agency.
+                As declared in our <a href="about.html">About Us</a> section, <strong>HPGK Quiz (hpgk.toolblaster.com)</strong> is an independent educational platform operated by <strong>ToolBlaster EdTech</strong>. We do not represent or claim affiliation with HPPSC, HPSSC/HPECA, the Government of Himachal Pradesh, ICAR, IBPS, or any official recruitment agency.
             </p>
         </div>
 
@@ -260,7 +257,7 @@
         <div class="content-block">
             <h3><i class="fa-solid fa-pen-to-square"></i> 9. Updates to This Privacy Policy</h3>
             <p>
-                We may update this Privacy Policy periodically to reflect platform enhancements, legal requirements, or advertising partner guidelines. Any changes will be posted on this page with an updated "Last Updated" timestamp at the top.
+                We may update this Privacy Policy periodically to reflect platform enhancements, legal requirements, or advertising partner guidelines. Any changes will be posted on this page with an updated timestamp.
             </p>
         </div>
 
@@ -270,7 +267,7 @@
             <p>
                 If you have questions, feedback, or privacy concerns regarding this policy, please reach out to our legal and support team:
             </p>
-            <p style="margin-top: 6px;">
+            <p style="margin-top: 4px;">
                 <strong>Publisher:</strong> ToolBlaster EdTech<br>
                 <strong>Website:</strong> <a href="https://hpgk.toolblaster.com">hpgk.toolblaster.com</a><br>
                 <strong>Email Contact:</strong> <a href="mailto:hello@toolblaster.com">hello@toolblaster.com</a><br>
