@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- STREAMING_CHUNK:Configuring metadata, SEO tags, and page settings... -->
+    <!-- STREAMING_CHUNK:Configuring metadata, SEO tags, and viewport settings... -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
@@ -27,7 +27,7 @@
     <!-- Global CSS -->
     <link rel="stylesheet" href="../js/style.css">
 
-    <!-- STREAMING_CHUNK:Styling dashboard layout with high contrast borders and anti-blur smoothing... -->
+    <!-- STREAMING_CHUNK:Styling dashboard layout with 2-column resume grid and comfortable internal padding... -->
     <style>
         :root {
             --site-width: 1120px;
@@ -77,19 +77,20 @@
             --tooltip-bg: #1e293b;
         }
 
-        /* 🔥 High-Precision Sub-Pixel Font Anti-Aliasing & Static Vector Sharpness */
+        /* 🔥 Sub-Pixel Font Anti-Aliasing & Sharpness */
         body, button, input, select, textarea, div, p, h1, h2, h3, h4, span, a {
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             text-rendering: optimizeLegibility;
         }
 
-        /* GPU Hardware Acceleration Layer Stabilization (Fixes Mobile Scroll Disappearing Glitch) */
+        /* GPU Layer Stabilization */
         .glass-panel, 
         .stat-group-card, 
         .stat-dense-card, 
         .active-plan-box, 
-        .lb-banner {
+        .lb-banner,
+        .resume-card {
             transform: translateZ(0);
             -webkit-transform: translateZ(0);
             -webkit-backface-visibility: hidden;
@@ -99,13 +100,13 @@
         body { 
             background: var(--bg-gradient); color: var(--text-body); 
             font-family: 'Inter', sans-serif; margin: 0; min-height: 100vh;
-            display: flex; flex-direction: column; line-height: 1.25;
+            display: flex; flex-direction: column; line-height: 1.35;
         }
         
         main { 
-            flex: 1; width: 100%; padding: 10px 12px !important; 
+            flex: 1; width: 100%; padding: 12px 14px !important; 
             box-sizing: border-box; max-width: var(--site-width); margin: 0 auto; 
-            display: flex; flex-direction: column; gap: 12px;
+            display: flex; flex-direction: column; gap: 14px;
         }
         
         h1, h2, h3, h4 { color: var(--text-main); margin-top: 0; letter-spacing: -0.3px; }
@@ -113,108 +114,223 @@
         .glass-panel {
             background: var(--card-bg); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
             border: 1px solid var(--card-border); border-radius: var(--radius-xl);
-            padding: 14px 16px; margin-bottom: 0; box-shadow: var(--glass-shadow);
+            padding: 12px 16px; margin-bottom: 0; box-shadow: var(--glass-shadow);
+        }
+
+        /* SECTION SEPARATION CONTAINER GAP */
+        #logged-in-state {
+            display: none;
+            flex-direction: column;
+            gap: 14px;
         }
 
         /* TOP GRID */
-        .top-dashboard-grid { display: grid; grid-template-columns: 3.2fr 6.8fr; gap: 12px; }
+        .top-dashboard-grid { display: grid; grid-template-columns: 3.5fr 6.5fr; gap: 12px; }
         .compact-top-card { padding: 12px 14px; margin-bottom: 0; display: flex; }
 
         /* Profile Panel */
-        .profile-panel { align-items: center; gap: 12px; }
+        .profile-panel { flex-direction: column; align-items: flex-start; justify-content: space-between; gap: 10px; }
+        .profile-main-row { display: flex; align-items: center; gap: 10px; width: 100%; }
         .avatar-wrapper { position: relative; flex-shrink: 0; }
-        .avatar { width: 48px; height: 48px; border-radius: 12px; object-fit: cover; border: 1px solid var(--card-border); background: #ffffff; }
-        .status-dot { position: absolute; bottom: -2px; right: -2px; width: 12px; height: 12px; background-color: var(--success); border: 2px solid var(--card-bg); border-radius: 50%; }
-        .user-info { display: flex; flex-direction: column; justify-content: center; }
-        .user-info h1 { font-size: 1rem; font-weight: 800; margin: 0 0 2px 0; }
+        .avatar { width: 46px; height: 48px; border-radius: 12px; object-fit: cover; border: 1px solid var(--card-border); background: #ffffff; }
+        .status-dot { position: absolute; bottom: -2px; right: -2px; width: 11px; height: 11px; background-color: var(--success); border: 2px solid var(--card-bg); border-radius: 50%; }
+        .user-info { display: flex; flex-direction: column; justify-content: center; flex: 1; }
+        .user-info h1 { font-size: 0.98rem; font-weight: 800; margin: 0 0 2px 0; }
         .user-info p { color: var(--text-sec); margin: 0 0 4px 0; font-size: 0.68rem; font-weight: 500; }
-        .badge { font-size: 0.62rem; font-weight: 800; text-transform: uppercase; padding: 2px 6px; border-radius: 4px; display: inline-block; width: fit-content; background: var(--input-bg); border: 1px solid var(--card-border); color: var(--text-main); }
+        
+        .profile-meta-tags { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+        
+        /* 📋 COPY UID BADGE */
+        .badge-uid-copy { 
+            font-size: 0.62rem; font-weight: 800; text-transform: uppercase; 
+            padding: 3px 8px; border-radius: 6px; display: inline-flex; align-items: center; gap: 4px; 
+            background: var(--input-bg); border: 1px solid var(--card-border); color: var(--text-main); 
+            cursor: pointer; transition: all 0.2s ease;
+        }
+        .badge-uid-copy:hover { border-color: var(--primary); color: var(--primary); background: rgba(37, 99, 235, 0.08); }
+
+        /* Level XP Gauge Bar */
+        .xp-level-box { width: 100%; background: var(--input-bg); border: 1px solid var(--card-border); border-radius: 8px; padding: 6px 10px; box-sizing: border-box; }
+        .xp-level-header { display: flex; justify-content: space-between; align-items: center; font-size: 0.64rem; font-weight: 800; color: var(--text-main); margin-bottom: 4px; }
+        .xp-level-track { width: 100%; height: 6px; background: rgba(0,0,0,0.06); border-radius: 3px; overflow: hidden; }
+        [data-theme="dark"] .xp-level-track { background: rgba(255,255,255,0.08); }
+        .xp-level-fill { height: 100%; background: linear-gradient(90deg, var(--primary) 0%, #3b82f6 100%); border-radius: 3px; transition: width 0.8s ease; }
 
         /* Purchases Panel */
         .purchases-panel { display: flex; align-items: stretch; gap: 12px; width: 100%; }
         .purchases-left { flex: 1; display: flex; flex-direction: column; justify-content: center; border-right: 1px dashed var(--card-border); padding-right: 12px; }
         .purchases-right { flex: 1; display: flex; flex-direction: column; justify-content: center; }
-        .mini-section-title { font-size: 0.65rem; font-weight: 800; color: var(--text-sec); text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.5px; display: flex; align-items: center; gap: 4px;}
+        .mini-section-title { font-size: 0.64rem; font-weight: 800; color: var(--text-sec); text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.5px; display: flex; align-items: center; gap: 5px;}
 
         /* Active Plan Box */
         .active-plan-box {
             background: linear-gradient(135deg, var(--card-bg) 0%, rgba(21,128,61,0.05) 100%);
             border: 1px solid var(--card-border); border-radius: var(--radius-md);
-            padding: 10px 12px; position: relative; overflow: hidden; box-shadow: var(--glass-shadow);
+            padding: 9px 12px; position: relative; overflow: hidden; box-shadow: var(--glass-shadow);
         }
         [data-theme="dark"] .active-plan-box { background: linear-gradient(135deg, rgba(0,0,0,0.2) 0%, rgba(34,197,94,0.1) 100%); }
-        .active-plan-box .bg-icon { position: absolute; right: -10px; bottom: -15px; font-size: 4.5rem; opacity: 0.05; color: var(--success); }
-        .plan-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; position: relative; z-index: 2; }
-        .plan-name { font-size: 0.8rem; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 6px; }
-        .plan-details { font-size: 0.65rem; color: var(--text-sec); line-height: 1.4; font-weight: 500; position: relative; z-index: 2; }
+        .active-plan-box .bg-icon { position: absolute; right: -10px; bottom: -15px; font-size: 4rem; opacity: 0.05; color: var(--success); }
+        .plan-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px; position: relative; z-index: 2; }
+        .plan-name { font-size: 0.8rem; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 5px; }
+        .plan-details { font-size: 0.66rem; color: var(--text-sec); line-height: 1.4; font-weight: 500; position: relative; z-index: 2; }
         .plan-details strong { color: var(--text-main); font-weight: 700; }
 
         .compact-upgrade-item { display: flex; justify-content: space-between; align-items: center; background: var(--input-bg); border: 1px solid var(--card-border); padding: 6px 10px; border-radius: var(--radius-sm); margin-bottom: 4px; }
-        .compact-btn-buy { background: linear-gradient(135deg, #f59e0b, #ea580c); color: #ffffff; font-size: 0.65rem; font-weight: 800; padding: 6px 12px; border-radius: 6px; cursor: pointer; border: none; text-transform: uppercase; transition: border-color 0.2s ease, opacity 0.2s ease; box-shadow: 0 2px 8px rgba(234, 88, 12, 0.25); }
+        .compact-btn-buy { background: linear-gradient(135deg, #f59e0b, #ea580c); color: #ffffff; font-size: 0.64rem; font-weight: 800; padding: 5px 10px; border-radius: 6px; cursor: pointer; border: none; text-transform: uppercase; transition: opacity 0.2s ease; box-shadow: 0 2px 6px rgba(234, 88, 12, 0.2); }
         .compact-btn-buy:hover { opacity: 0.9; }
 
-        /* STREAMING_CHUNK:Styling dense performance cards and stationary hover states... */
-        /* DESKTOP STATS GRID - Stationary Hover (Glow & Border Only) */
-        .stats-density-grid { display: grid; grid-template-columns: 1.3fr repeat(5, 1fr); gap: 8px; }
+        /* STREAMING_CHUNK:Styling 2-column quick resume grid and comfortable internal card paddings... */
+        /* ⚡ 2-COLUMN QUICK RESUME GRID */
+        .quick-resume-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            width: 100%;
+        }
+
+        .resume-card {
+            display: flex; align-items: center; justify-content: space-between; gap: 10px;
+            background: linear-gradient(135deg, rgba(29, 78, 216, 0.06) 0%, rgba(37, 99, 235, 0.02) 100%);
+            border: 1px solid var(--card-border); border-radius: var(--radius-lg);
+            padding: 10px 14px; box-shadow: var(--glass-shadow); box-sizing: border-box;
+        }
+
+        .resume-left { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0; }
+        .resume-icon { width: 32px; height: 32px; border-radius: 8px; background: rgba(29, 78, 216, 0.12); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0; border: 1px solid var(--card-border); }
+        .resume-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+        .resume-tag { font-size: 0.58rem; font-weight: 800; text-transform: uppercase; color: var(--primary); letter-spacing: 0.4px; }
+        .resume-title { font-size: 0.82rem; font-weight: 800; color: var(--text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .resume-sub { font-size: 0.66rem; color: var(--text-sec); font-weight: 600; }
+
+        .btn-resume { background: var(--primary); color: #ffffff; border: none; padding: 6px 12px; border-radius: 6px; font-size: 0.7rem; font-weight: 800; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; flex-shrink: 0; transition: opacity 0.2s ease; }
+        .btn-resume:hover { opacity: 0.9; }
+
+        /* DESKTOP STATS GRID - Sleek Compact Dimensions */
+        .stats-density-grid { 
+            display: grid; 
+            grid-template-columns: 1.4fr repeat(5, 1fr); 
+            gap: 8px; 
+        }
         
         .stat-group-card { 
-            border-radius: var(--radius-md); padding: 8px 12px; display: flex; align-items: center; gap: 10px; 
-            position: relative; overflow: hidden; box-shadow: var(--glass-shadow); 
-            text-decoration: none; cursor: pointer; transition: border-color 0.2s ease, filter 0.2s ease;
+            border-radius: var(--radius-md); 
+            padding: 8px 12px; 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            position: relative; 
+            overflow: hidden; 
+            box-shadow: var(--glass-shadow); 
+            text-decoration: none; 
+            cursor: pointer; 
+            transition: border-color 0.2s ease, filter 0.2s ease;
             border: 1px solid transparent;
+            min-height: 52px;
+            box-sizing: border-box;
         }
         .stat-group-card:hover { filter: brightness(1.08); }
 
-        .stat-group-card.mock-bg { background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%); box-shadow: 0 4px 12px rgba(220, 38, 38, 0.2); }
-        .stat-group-card.topic-bg { background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%); box-shadow: 0 4px 12px rgba(29, 78, 216, 0.2); }
-        .stat-group-bg-icon { position: absolute; right: -10px; bottom: -10px; font-size: 4rem; opacity: 0.1; color: #ffffff; z-index: 1; }
-        .stat-group-icon { font-size: 1.5rem; color: #ffffff; z-index: 2; opacity: 0.95; flex-shrink: 0;}
+        .stat-group-card.mock-bg { background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%); box-shadow: 0 3px 10px rgba(220, 38, 38, 0.18); }
+        .stat-group-card.topic-bg { background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%); box-shadow: 0 3px 10px rgba(29, 78, 216, 0.18); }
+        .stat-group-bg-icon { position: absolute; right: -8px; bottom: -8px; font-size: 3.5rem; opacity: 0.12; color: #ffffff; z-index: 1; }
+        .stat-group-icon { font-size: 1.3rem; color: #ffffff; z-index: 2; opacity: 0.95; flex-shrink: 0;}
         .stat-group-text { display: flex; flex-direction: column; z-index: 2; }
-        .stat-group-text h4 { color: #ffffff; margin: 0; font-size: 0.8rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.1;}
-        .stat-group-text p { color: rgba(255,255,255,0.85); margin: 0; font-size: 0.55rem; font-weight: 600; text-transform: uppercase; margin-top: 2px;}
+        .stat-group-text h4 { color: #ffffff; margin: 0; font-size: 0.8rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.4px; line-height: 1.1;}
+        .stat-group-text p { color: rgba(255,255,255,0.85); margin: 0; font-size: 0.56rem; font-weight: 600; text-transform: uppercase; margin-top: 1px;}
 
-        .stat-dense-card { background: var(--card-bg); backdrop-filter: blur(14px); border: 1px solid var(--card-border); border-radius: var(--radius-md); padding: 8px 10px; display: flex; flex-direction: column; justify-content: center; box-shadow: var(--glass-shadow); }
-        .stat-dense-label { font-size: 0.58rem; color: var(--text-sec); font-weight: 800; text-transform: uppercase; margin-bottom: 3px; white-space: nowrap; letter-spacing: 0.2px; display: flex; align-items: center; gap: 4px; }
-        .stat-dense-label i { font-size: 0.65rem; opacity: 0.7; }
-        .stat-dense-val { font-size: 0.98rem; font-weight: 900; color: var(--text-main); display: flex; align-items: center; justify-content: space-between; line-height: 1.1; }
-        .cw-text { font-size: 0.88rem; display: flex; align-items: center; }
-        .cw-slash { font-size: 0.75rem; color: var(--card-border); margin: 0 3px; font-weight: 400; }
+        /* Centered Metric Cards with comfortable internal padding */
+        .stat-dense-card { 
+            background: var(--card-bg); 
+            backdrop-filter: blur(14px); 
+            border: 1px solid var(--card-border); 
+            border-radius: var(--radius-md); 
+            padding: 8px 10px; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            text-align: center;   
+            box-shadow: var(--glass-shadow); 
+            min-height: 52px;
+            box-sizing: border-box;
+        }
 
-        /* LEADERBOARD BANNER - Stationary Hover */
+        .stat-dense-label { 
+            font-size: 0.6rem; 
+            color: var(--text-sec); 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            margin-bottom: 3px; 
+            white-space: nowrap; 
+            letter-spacing: 0.2px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 4px; 
+            width: 100%;
+        }
+        .stat-dense-label i { font-size: 0.65rem; opacity: 0.75; }
+
+        .stat-dense-val { 
+            font-size: 1.05rem; 
+            font-weight: 900; 
+            color: var(--text-main); 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            width: 100%;
+            line-height: 1; 
+        }
+
+        .cw-text { 
+            font-size: 0.9rem; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+        }
+        .cw-slash { font-size: 0.75rem; color: var(--card-border); margin: 0 2px; font-weight: 400; }
+
+        /* LEADERBOARD BANNER */
         .lb-banner {
-            padding: 12px 18px; display: flex; justify-content: space-between; align-items: center; 
+            padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; 
             background: linear-gradient(135deg, rgba(251, 191, 36, 0.12), rgba(245, 158, 11, 0.05)); 
             border: 1px solid rgba(245, 158, 11, 0.35); gap: 12px;
         }
         .lb-left { display: flex; align-items: center; gap: 12px; }
-        .lb-icon { font-size: 1.8rem; color: var(--warning); flex-shrink: 0; }
-        .lb-text h3 { margin: 0; font-size: 0.92rem; color: var(--text-main); font-weight: 800; }
-        .lb-text p { margin: 2px 0 0 0; font-size: 0.72rem; color: var(--text-sec); font-weight: 500; }
+        .lb-icon { font-size: 1.6rem; color: var(--warning); flex-shrink: 0; }
+        .lb-text h3 { margin: 0; font-size: 0.9rem; color: var(--text-main); font-weight: 800; }
+        .lb-text p { margin: 2px 0 0 0; font-size: 0.7rem; color: var(--text-sec); font-weight: 500; }
         .lb-btn { 
-            background: linear-gradient(135deg, #f59e0b, #d97706); color: #ffffff; padding: 8px 16px; 
+            background: linear-gradient(135deg, #f59e0b, #d97706); color: #ffffff; padding: 7px 14px; 
             border: none; font-size: 0.72rem; text-decoration: none; border-radius: var(--radius-sm); 
             font-weight: 800; white-space: nowrap; flex-shrink: 0; transition: opacity 0.2s ease; 
         }
         .lb-btn:hover { opacity: 0.9; }
 
-        /* BOTTOM LAYOUT: 60/40 Split */
+        /* BOTTOM LAYOUT: 60/40 Split with Relaxed Internal Padding */
         .dashboard-cols { display: grid; grid-template-columns: 6fr 4fr; gap: 12px; }
-        .section-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--card-border); padding-bottom: 6px; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;}
-        .section-title { font-size: 0.85rem; font-weight: 800; margin: 0; display: flex; align-items: center; gap: 6px; color: var(--text-main); }
+        .section-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--card-border); padding-bottom: 6px; margin-bottom: 10px; flex-wrap: wrap; gap: 6px;}
+        .section-title { font-size: 0.88rem; font-weight: 800; margin: 0; display: flex; align-items: center; gap: 6px; color: var(--text-main); }
         .section-title span { font-size: 0.6rem; background: var(--input-bg); padding: 2px 6px; border-radius: 4px; color: var(--text-sec); border: 1px solid var(--card-border); font-weight: 700; }
 
         .dense-list { display: flex; flex-direction: column; gap: 6px; } 
         .subject-perf-item { margin-bottom: 8px; }
         .subject-perf-item:last-child { margin-bottom: 0; }
-        .perf-labels { display: flex; justify-content: space-between; font-size: 0.72rem; font-weight: 700; color: var(--text-main); margin-bottom: 3px; }
+        .perf-labels { display: flex; justify-content: space-between; align-items: center; font-size: 0.72rem; font-weight: 700; color: var(--text-main); margin-bottom: 3px; }
         .perf-track { width: 100%; height: 6px; background: var(--input-bg); border-radius: 4px; overflow: hidden; border: 1px solid var(--card-border); }
         .perf-fill { height: 100%; border-radius: 4px; transition: width 0.8s ease-out; }
 
+        /* ⚠️ Weak Topic Tag & Action Link */
+        .badge-weak { font-size: 0.58rem; background: rgba(220, 38, 38, 0.12); color: #dc2626; padding: 2px 6px; border-radius: 4px; font-weight: 800; border: 1px solid rgba(220, 38, 38, 0.25); display: inline-flex; align-items: center; gap: 3px; }
+        [data-theme="dark"] .badge-weak { background: rgba(239, 68, 68, 0.18); color: #f87171; }
+        .btn-improve-link { font-size: 0.64rem; color: var(--primary); font-weight: 800; text-decoration: none; margin-left: 4px; }
+        .btn-improve-link:hover { text-decoration: underline; }
+
         /* AUTH WARNING */
         .auth-warning { text-align: center; padding: 30px 20px; }
-        .auth-warning h2 { font-size: 1.05rem; margin-bottom: 6px; color: var(--text-main); font-weight: 800; }
+        .auth-warning h2 { font-size: 1.05rem; margin-bottom: 4px; color: var(--text-main); font-weight: 800; }
         .auth-warning p { font-size: 0.78rem; margin-bottom: 16px; color: var(--text-sec); max-width: 400px; margin-inline: auto; font-weight: 500; }
-        .modern-google-btn { background: var(--input-bg); color: var(--text-main); border: 1px solid var(--card-border); padding: 8px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; box-shadow: var(--glass-shadow); font-family: 'Inter', sans-serif; transition: background 0.2s;}
+        .modern-google-btn { background: var(--input-bg); color: var(--text-main); border: 1px solid var(--card-border); padding: 8px 16px; border-radius: 20px; font-size: 0.78rem; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; box-shadow: var(--glass-shadow); font-family: 'Inter', sans-serif; transition: background 0.2s;}
         .modern-google-btn:hover { background: var(--card-border); }
 
         /* MODALS */
@@ -240,29 +356,33 @@
         @media (max-width: 850px) { 
             .top-dashboard-grid { grid-template-columns: 1fr; } 
             .dashboard-cols { grid-template-columns: 1fr; }
+            .quick-resume-grid { grid-template-columns: 1fr; } /* Stack to 1 column on mobile screens */
         }
         @media (max-width: 600px) {
             main { padding: 8px 6px !important; gap: 10px; }
+            #logged-in-state { gap: 10px; }
             .stats-density-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
-            .stat-group-card { width: 100%; padding: 10px 12px; margin-bottom: 2px; box-sizing: border-box; }
+            .stat-group-card { width: 100%; padding: 8px 10px; margin-bottom: 0; box-sizing: border-box; min-height: 46px; }
             .stat-dense-card { 
                 width: calc(50% - 3px); box-sizing: border-box; 
-                padding: 10px 8px; display: flex; flex-direction: column; 
-                align-items: center; text-align: center; 
+                padding: 8px 6px; display: flex; flex-direction: column; 
+                align-items: center; text-align: center; min-height: 46px;
             }
-            .stat-dense-label { justify-content: center; width: 100%; margin-bottom: 4px; }
+            .stat-dense-label { justify-content: center; width: 100%; margin-bottom: 2px; }
             .stat-dense-val { justify-content: center; width: 100%; }
             .cw-text { justify-content: center; }
 
-            .purchases-panel { flex-direction: column; gap: 10px; }
-            .purchases-left { border-right: none; border-bottom: 1px dashed var(--card-border); padding-right: 0; padding-bottom: 10px; }
+            .purchases-panel { flex-direction: column; gap: 8px; }
+            .purchases-left { border-right: none; border-bottom: 1px dashed var(--card-border); padding-right: 0; padding-bottom: 8px; }
 
-            .lb-banner { padding: 8px 12px; flex-direction: row; flex-wrap: nowrap; align-items: center; gap: 8px; }
+            .lb-banner { padding: 8px 10px; flex-direction: row; flex-wrap: nowrap; align-items: center; gap: 8px; }
             .lb-left { gap: 8px; }
             .lb-icon { font-size: 1.3rem; } 
-            .lb-text h3 { font-size: 0.82rem; line-height: 1.1; margin-bottom: 2px; }
+            .lb-text h3 { font-size: 0.82rem; line-height: 1.1; margin-bottom: 1px; }
             .lb-text p { font-size: 0.65rem; line-height: 1.2; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; } 
-            .lb-btn { padding: 6px 10px; font-size: 0.68rem; width: auto; }
+            .lb-btn { padding: 5px 10px; font-size: 0.68rem; width: auto; }
+            .resume-card { flex-direction: column; align-items: flex-start; gap: 8px; padding: 10px; }
+            .btn-resume { width: 100%; justify-content: center; }
         }
     </style>
     
@@ -315,19 +435,37 @@
     </div>
 
     <!-- Logged In State -->
-    <div id="logged-in-state" style="display: none; display: flex; flex-direction: column; gap: 12px;">
+    <div id="logged-in-state">
         
-        <!-- SPLIT HEADER -->
+        <!-- SECTION 1: SPLIT HEADER (Profile + Level XP Meter + Active Passes) -->
         <div class="top-dashboard-grid">
             <div class="glass-panel compact-top-card profile-panel">
-                <div class="avatar-wrapper">
-                    <img id="user-photo" src="" alt="Avatar" class="avatar">
-                    <div class="status-dot"></div>
+                <div class="profile-main-row">
+                    <div class="avatar-wrapper">
+                        <img id="user-photo" src="" alt="Avatar" class="avatar">
+                        <div class="status-dot"></div>
+                    </div>
+                    <div class="user-info">
+                        <h1 id="user-name">Student</h1>
+                        <p id="user-email">student@email.com</p>
+                        <div class="profile-meta-tags">
+                            <!-- 📋 1-CLICK COPY UID OPTION -->
+                            <span class="badge-uid-copy" id="uid-copy-btn" onclick="copyUidToClipboard()" title="Click to copy full UID">
+                                UID: <span id="user-short-id">...</span> <i class="fa-solid fa-copy" style="font-size:0.6rem;"></i>
+                            </span>
+                        </div>
+                    </div>
                 </div>
-                <div class="user-info">
-                    <h1 id="user-name">Student</h1>
-                    <p id="user-email">student@email.com</p>
-                    <span class="badge">UID: <span id="user-short-id">...</span></span>
+
+                <!-- 🔥 LEVEL XP GAUGE METER -->
+                <div class="xp-level-box">
+                    <div class="xp-level-header">
+                        <span id="level-title-text"><i class="fa-solid fa-graduation-cap" style="color:var(--primary);"></i> Level 1 (Novice)</span>
+                        <span id="level-xp-text" style="color:var(--primary);">0 / 200 XP</span>
+                    </div>
+                    <div class="xp-level-track">
+                        <div class="xp-level-fill" id="level-xp-fill" style="width: 0%;"></div>
+                    </div>
                 </div>
             </div>
 
@@ -335,7 +473,40 @@
             <div class="glass-panel compact-top-card purchases-panel" id="smart-purchases-container"></div>
         </div>
 
-        <!-- High Density Stats: MOCKS -->
+        <!-- ⚡ SECTION 1.5: 2-COLUMN QUICK RESUME DUAL GRID -->
+        <div id="quick-resume-box" class="quick-resume-grid" style="display: none;">
+            <!-- Column 1: Latest Full Mock Test Attempt -->
+            <div class="resume-card soft-glass" id="resume-mock-card">
+                <div class="resume-left">
+                    <div class="resume-icon" style="color:var(--danger); background:rgba(220,38,38,0.1);"><i class="fa-solid fa-file-signature"></i></div>
+                    <div class="resume-text">
+                        <span class="resume-tag" style="color:var(--danger);">Latest Full Mock</span>
+                        <div class="resume-title" id="resume-mock-title">Mock Test</div>
+                        <div class="resume-sub" id="resume-mock-sub">Score: 0/0 | Acc: 0%</div>
+                    </div>
+                </div>
+                <a href="#" id="resume-mock-btn" class="btn-resume" style="background:var(--danger);">
+                    Summary <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <!-- Column 2: Latest Topic Practice Attempt -->
+            <div class="resume-card soft-glass" id="resume-topic-card">
+                <div class="resume-left">
+                    <div class="resume-icon"><i class="fa-solid fa-layer-group"></i></div>
+                    <div class="resume-text">
+                        <span class="resume-tag">Latest Topic Quiz</span>
+                        <div class="resume-title" id="resume-topic-title">Topic Practice</div>
+                        <div class="resume-sub" id="resume-topic-sub">Solved: 0 Qs | Acc: 0%</div>
+                    </div>
+                </div>
+                <a href="#" id="resume-topic-btn" class="btn-resume">
+                    Practice <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- SECTION 2: High Density Stats: MOCKS -->
         <div class="stats-density-grid">
             <a href="https://hpgk.toolblaster.com/hp-exam-full-mock-test/" class="stat-group-card mock-bg">
                 <i class="fa-solid fa-file-signature stat-group-bg-icon"></i>
@@ -368,7 +539,7 @@
             </div>
         </div>
 
-        <!-- High Density Stats: TOPICS -->
+        <!-- SECTION 3: High Density Stats: TOPICS -->
         <div class="stats-density-grid">
             <a href="https://hpgk.toolblaster.com/himachal-pradesh-gk/" class="stat-group-card topic-bg">
                 <i class="fa-solid fa-layer-group stat-group-bg-icon"></i>
@@ -401,7 +572,7 @@
             </div>
         </div>
 
-        <!-- LEADERBOARD BANNER -->
+        <!-- SECTION 4: LEADERBOARD BANNER -->
         <div class="glass-panel lb-banner">
             <div class="lb-left">
                 <div class="lb-icon"><i class="fa-solid fa-trophy"></i></div>
@@ -414,7 +585,7 @@
         </div>
 
         <!-- STREAMING_CHUNK:Rendering mastery performance panels... -->
-        <!-- MAIN GRID: Mastery (Updated 60/40 Split) -->
+        <!-- SECTION 5: MAIN GRID: Mastery (60/40 Split) -->
         <div class="dashboard-cols">
             <!-- Mock Mastery Analytics (60% width) -->
             <div class="glass-panel">
@@ -426,7 +597,7 @@
                 </div>
             </div>
 
-            <!-- Subject Mastery Analytics (40% width) -->
+            <!-- Subject Mastery Analytics with Weak Topic Smart Alerts (40% width) -->
             <div class="glass-panel">
                 <div class="section-header">
                     <h2 class="section-title"><i class="fa-solid fa-chart-column" style="color:var(--primary);"></i> Topic Mastery <span>Top 10</span></h2>
@@ -563,7 +734,7 @@
     });
 </script>
 
-<!-- STREAMING_CHUNK:Connecting Firebase Firestore analytics calculations... -->
+<!-- STREAMING_CHUNK:Connecting Firebase Firestore analytics calculations and Level XP Gauge... -->
 <!-- Firebase Firestore Integration for fetching User History & Analytics -->
 <script type="module">
     import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
@@ -588,6 +759,27 @@
     const elLoading = document.getElementById('loading-state');
     const elLoggedOut = document.getElementById('logged-out-state');
     const elLoggedIn = document.getElementById('logged-in-state');
+
+    // 📋 1-CLICK COPY FULL UID FUNCTION (System Mandate: document.execCommand)
+    window.copyUidToClipboard = function() {
+        if (!window.HPGK_User || !window.HPGK_User.uid) return;
+        const fullUid = window.HPGK_User.uid;
+        
+        const tempInput = document.createElement('textarea');
+        tempInput.value = fullUid;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempInput);
+        
+        const copyBtn = document.getElementById('uid-copy-btn');
+        if (copyBtn) {
+            copyBtn.innerHTML = `<i class="fa-solid fa-check" style="color:var(--success);"></i> Copied!`;
+            setTimeout(() => {
+                copyBtn.innerHTML = `UID: <span id="user-short-id">${fullUid.substring(0, 6).toUpperCase()}</span> <i class="fa-solid fa-copy" style="font-size:0.6rem;"></i>`;
+            }, 1800);
+        }
+    };
 
     async function fetchWithTimeout(promise, ms = 8000) {
         let timeoutId;
@@ -760,7 +952,9 @@
             const categoryMap = {
                 'rivers': 'Rivers of HP', 'geography': 'Geography of HP', 'history': 'History of HP',
                 'economy': 'Economy of HP', 'polity': 'Polity of HP', 'art culture': 'Art & Culture',
-                'agriculture': 'Agriculture', 'district': 'Districts of HP', 'hp patwari mock': 'HP Patwari Mock'
+                'agriculture': 'Agriculture', 'district': 'Districts of HP', 'hp patwari mock': 'HP Patwari Mock',
+                'hp-patwari-mock': 'HP Patwari Mock', 'hp-police-constable-mock': 'HP Police Constable',
+                'hp-hrtc-conductor-mock': 'HP HRTC Conductor'
             };
 
             const catStats = {}; 
@@ -795,7 +989,6 @@
                 data._safeWrong = parsedWrong;
                 data._safeTime = Number(data.timeTaken) || 0;
 
-                // SMART DEDUPLICATION: Latest attempt retained
                 if (data.isMock) {
                     if (!latestMocks[uniqueQuizId] || latestMocks[uniqueQuizId].timestamp < data.timestamp) {
                         latestMocks[uniqueQuizId] = data; 
@@ -811,7 +1004,7 @@
             const finalTopics = Object.values(latestTopics).sort((a,b) => b.timestamp - a.timestamp);
 
             finalTopics.forEach(data => {
-                if (!catStats[data.cleanCatName]) catStats[data.cleanCatName] = { correct: 0, total: 0 };
+                if (!catStats[data.cleanCatName]) catStats[data.cleanCatName] = { correct: 0, total: 0, rawCat: data.category };
                 catStats[data.cleanCatName].correct += data._safeCorrect;
                 catStats[data.cleanCatName].total += data._safeTotal;
             });
@@ -878,6 +1071,78 @@
                 weeklyMcqXP: calcMcqXP(stats.week.topicCorr, stats.week.topicAtt, stats.week.topicTime),
                 weeklyMockXP: calcMockXP(stats.week.mockScore, stats.week.mockCorr, stats.week.mockAtt, stats.week.mockTime),
             };
+
+            const totalXP = xpData.mcqXP + xpData.mockXP;
+
+            // 🔥 1. CALIBRATED LEVEL XP GAUGE (Smooth 5-Tier Scaling)
+            let currentLevel = 1;
+            let levelTitle = "Novice";
+            let prevLevelXp = 0;
+            let nextLevelXp = 200;
+
+            if (totalXP >= 2000) {
+                currentLevel = 5; levelTitle = "Legend"; prevLevelXp = 2000; nextLevelXp = 3500;
+            } else if (totalXP >= 1000) {
+                currentLevel = 4; levelTitle = "Master"; prevLevelXp = 1000; nextLevelXp = 2000;
+            } else if (totalXP >= 500) {
+                currentLevel = 3; levelTitle = "Scholar"; prevLevelXp = 500; nextLevelXp = 1000;
+            } else if (totalXP >= 200) {
+                currentLevel = 2; levelTitle = "Explorer"; prevLevelXp = 200; nextLevelXp = 500;
+            }
+
+            const xpInLevel = totalXP - prevLevelXp;
+            const xpBracket = nextLevelXp - prevLevelXp;
+            const levelProgressPct = Math.min(100, Math.max(3, Math.round((xpInLevel / xpBracket) * 100)));
+
+            document.getElementById('level-title-text').innerHTML = `<i class="fa-solid fa-graduation-cap" style="color:var(--primary);"></i> Level ${currentLevel} (${levelTitle})`;
+            document.getElementById('level-xp-text').innerText = `${totalXP} / ${nextLevelXp} XP`;
+            document.getElementById('level-xp-fill').style.width = levelProgressPct + '%';
+
+            // 🔥 2. 2-COLUMN QUICK RESUME DUAL GRID
+            const resumeContainer = document.getElementById('quick-resume-box');
+            let hasAtLeastOneAttempt = false;
+
+            if (finalMocks.length > 0) {
+                const lastMock = finalMocks[0];
+                const mockCard = document.getElementById('resume-mock-card');
+                const mockTitle = document.getElementById('resume-mock-title');
+                const mockSub = document.getElementById('resume-mock-sub');
+                const mockBtn = document.getElementById('resume-mock-btn');
+
+                let acc = lastMock.accuracy !== undefined ? lastMock.accuracy : (lastMock._safeTotal > 0 ? Math.round((lastMock._safeCorrect / lastMock._safeTotal) * 100) : 0);
+
+                mockTitle.innerText = lastMock.displayTitle;
+                mockSub.innerText = `Score: ${lastMock.score}/${lastMock._safeTotal} • Acc: ${acc}%`;
+                mockBtn.href = `../mock-engine/index.html?exam=${lastMock.category}&testId=${lastMock.testId}&mode=summary`;
+                
+                mockCard.style.display = 'flex';
+                hasAtLeastOneAttempt = true;
+            } else {
+                document.getElementById('resume-mock-card').style.display = 'none';
+            }
+
+            if (finalTopics.length > 0) {
+                const lastTopic = finalTopics[0];
+                const topicCard = document.getElementById('resume-topic-card');
+                const topicTitle = document.getElementById('resume-topic-title');
+                const topicSub = document.getElementById('resume-topic-sub');
+                const topicBtn = document.getElementById('resume-topic-btn');
+
+                let acc = lastTopic.accuracy !== undefined ? lastTopic.accuracy : (lastTopic._safeTotal > 0 ? Math.round((lastTopic._safeCorrect / lastTopic._safeTotal) * 100) : 0);
+
+                topicTitle.innerText = lastTopic.displayTitle;
+                topicSub.innerText = `Solved: ${lastTopic._safeTotal} Qs • Acc: ${acc}%`;
+                topicBtn.href = `../himachal-pradesh-gk/${lastTopic.category || ''}/`;
+                
+                topicCard.style.display = 'flex';
+                hasAtLeastOneAttempt = true;
+            } else {
+                document.getElementById('resume-topic-card').style.display = 'none';
+            }
+
+            if (hasAtLeastOneAttempt) {
+                resumeContainer.style.display = 'grid';
+            }
 
             const mAcc = stats.all.mockQs > 0 ? Math.round((stats.all.mockCorr / stats.all.mockQs) * 100) : 0;
             const mTime = stats.all.mockQs > 0 ? Math.round(stats.all.mockTime / stats.all.mockQs) : 0;
@@ -973,10 +1238,12 @@
                 }
             } catch(e) { }
 
+            // STREAMING_CHUNK:Rendering topic mastery with weak topic smart alerts...
             try {
-                // TOP 10 TOPICS
+                // WEAK TOPIC SMART FOCUS (<50% Accuracy Alert Tag)
                 const sortedCats = Object.keys(catStats).map(cat => ({
                     name: cat,
+                    rawCat: catStats[cat].rawCat,
                     acc: catStats[cat].total > 0 ? Math.round((catStats[cat].correct / catStats[cat].total) * 100) : 0,
                     total: catStats[cat].total
                 })).sort((a, b) => b.total - a.total).slice(0, 10); 
@@ -985,13 +1252,23 @@
                     let subjectHtml = '';
                     sortedCats.forEach(cat => {
                         let barColor = 'var(--danger)';
-                        if (cat.acc >= 75) barColor = 'var(--success)';
-                        else if (cat.acc >= 50) barColor = 'var(--warning)';
+                        let weakBadge = '';
+                        let improveLink = '';
+
+                        if (cat.acc >= 75) {
+                            barColor = 'var(--success)';
+                        } else if (cat.acc >= 50) {
+                            barColor = 'var(--warning)';
+                        } else {
+                            barColor = 'var(--danger)';
+                            weakBadge = `<span class="badge-weak"><i class="fa-solid fa-triangle-exclamation"></i> Needs Focus</span>`;
+                            improveLink = `<a href="../himachal-pradesh-gk/${cat.rawCat || ''}/" class="btn-improve-link">Improve <i class="fa-solid fa-arrow-right"></i></a>`;
+                        }
 
                         subjectHtml += `
                         <div class="subject-perf-item">
                             <div class="perf-labels">
-                                <span>${cat.name} <span style="font-size:0.6rem; color:var(--text-sec); font-weight:500;">(${cat.total} Qs)</span></span>
+                                <span>${cat.name} ${weakBadge} ${improveLink}</span>
                                 <span style="color:${barColor};">${cat.acc}%</span>
                             </div>
                             <div class="perf-track">
