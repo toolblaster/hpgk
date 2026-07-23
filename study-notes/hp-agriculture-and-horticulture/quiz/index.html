@@ -10,7 +10,7 @@
     <!-- Canonical Link -->
     <link rel="canonical" href="https://hpgk.toolblaster.com/study-notes/hp-agriculture-and-horticulture/quiz/">
 
-    <!-- JSON-LD Schema for WebPage & Breadcrumb -->
+    <!-- JSON-LD Schema for WebPage, Breadcrumb & FAQPage -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -45,6 +45,85 @@
     }
     </script>
 
+    <!-- Quiz-Specific Agriculture FAQ Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "How many MCQs are included in the HP Agriculture & Horticulture Mock Quiz?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The test series contains over 600 high-yield, exam-oriented MCQs divided into 6 practice parts covering Apple Economy, Agro-Climatic Zones, Cash Crops, Animal Husbandry, and Irrigation."
+        }
+      },{
+        "@type": "Question",
+        "name": "Are questions aligned with official HPPSC, HPAS, and Allied Services patterns?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, all questions strictly adhere to the official syllabus and statement-style formats tested in HPPSC, HPAS Prelims, and Horticulture Officer exams."
+        }
+      },{
+        "@type": "Question",
+        "name": "Is full bilingual support (English and Hindi) provided?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, every question, options list, and detailed explanation is presented in both English and Hindi for maximum comprehension."
+        }
+      },{
+        "@type": "Question",
+        "name": "What is the Quick 10 Quiz feature?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Quick 10 Quiz mode selects 10 random high-priority questions from the 600+ pool for rapid revision sessions on the go."
+        }
+      },{
+        "@type": "Question",
+        "name": "Can I bookmark difficult agriculture questions for later review?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, tap the bookmark icon on any card and filter all your saved questions anytime using the toolbar bookmark button."
+        }
+      },{
+        "@type": "Question",
+        "name": "How can I filter and re-attempt my wrong answers?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Click the Mistake Filter button (warning icon) in the top toolbar to isolate and re-attempt only the MCQs answered incorrectly."
+        }
+      },{
+        "@type": "Question",
+        "name": "Is my test progress saved across sessions?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, your overall accuracy, answered question count, mistakes, and bookmarked questions are automatically saved in browser local memory."
+        }
+      },{
+        "@type": "Question",
+        "name": "How do I transfer my quiz progress to another phone or PC?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use the Download (Backup) and Upload (Restore) buttons in the top toolbar to export your JSON progress file and import it on any device."
+        }
+      },{
+        "@type": "Question",
+        "name": "Which agricultural topics carry the highest weightage in HPPSC exams?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Apple History & Varieties, Agro-Climatic Zone elevations, Kangra Tea GI status, Seed Potato (CPRI), Sheep Breeding Farms, and Schemes like PK3Y & HP SHIVA carry top weightage."
+        }
+      },{
+        "@type": "Question",
+        "name": "Can I reset my stats to attempt the agriculture test fresh?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, click the Reset button (rotate icon) in the toolbar anytime to clear performance statistics and start with a clean slate."
+        }
+      }]
+    }
+    </script>
+
     <!-- Assets (3 levels up) -->
     <link rel="apple-touch-icon" sizes="180x180" href="../../../js/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="512x512" href="../../../js/favicon/web-app-manifest-512x512.png">
@@ -55,17 +134,18 @@
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Poppins:wght@400;600;700;800;900&family=Noto+Sans+Devanagari:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Poppins:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Global CSS -->
     <link rel="stylesheet" href="../../../js/style.css">
 
-    <!-- Premium Glassmorphism & Compact UI Stylesheet (Green/Emerald Theme for Agriculture) -->
+    <!-- Premium Glassmorphism & Compact UI Stylesheet (Green Theme for Agriculture) -->
     <style>
         :root {
             --site-width: 1100px;
             
+            /* Professional Green Theme */
             --primary: #16a34a;        
             --primary-hover: #15803d; 
             --primary-light: rgba(22, 163, 74, 0.1); 
@@ -82,6 +162,8 @@
             --text-body: #334155;     
             --text-sec: #475569;      
             --input-bg: rgba(255, 255, 255, 0.4); 
+            
+            /* Feedback Colors */
             --correct-bg: rgba(220, 252, 231, 0.9); 
             --correct-border: #22c55e;
             --correct-text: #14532d;  
@@ -111,6 +193,8 @@
             --text-body: #cbd5e1;     
             --text-sec: #94a3b8;      
             --input-bg: rgba(0, 0, 0, 0.2); 
+            
+            /* Dark Mode Feedback Colors */
             --correct-bg: rgba(6, 78, 59, 0.9); 
             --correct-border: #059669;
             --correct-text: #6ee7b7;  
@@ -149,7 +233,7 @@
             padding: 0 15px; flex-wrap: nowrap; gap: 10px; box-sizing: border-box;
         }
 
-        .page-header-top, .main-layout, .seo-content-wrapper { 
+        .page-header-top, .main-layout, .seo-content-wrapper, .faq-section-wrapper { 
             width: 100%; max-width: var(--site-width); margin: 0 auto; padding: 0 15px; box-sizing: border-box;
         }
 
@@ -163,43 +247,49 @@
             line-height: 1.6;
             color: var(--text-sec);
         }
-
-        .section-separator { 
-            height: 1px; background: linear-gradient(90deg, transparent, var(--card-border), transparent); 
-            margin: 25px auto; width: 100%; max-width: var(--site-width); 
+        .hero-desc span.hi-desc {
+            font-family: 'Noto Sans Devanagari', sans-serif;
+            font-size: 0.85rem; 
+            color: var(--text-sec);
+            display: block;
+            margin-top: 4px;
         }
+        [data-theme="dark"] .hero-desc span.hi-desc { color: #e2e8f0; }
 
         @media (max-width: 480px) {
-            .top-meta-bar, .page-header-top, .main-layout, .seo-content-wrapper {
+            .top-meta-bar, .page-header-top, .main-layout, .seo-content-wrapper, .faq-section-wrapper {
                 padding: 0 12px !important;
             }
             .page-header-top { margin-bottom: 20px; }
         }
 
-        .breadcrumb-nav { margin: 0; flex-shrink: 1; display: flex; align-items: center; height: 24px; overflow-x: auto; scrollbar-width: none;}
+        /* Compact Breadcrumbs (Height: 20px desktop / 18px mobile) */
+        .breadcrumb-nav { margin: 0; flex-shrink: 1; display: flex; align-items: center; height: 20px; overflow-x: auto; scrollbar-width: none; }
         .breadcrumb-nav::-webkit-scrollbar { display: none; }
         
         .breadcrumb-list { 
-            list-style: none; padding: 0 10px; margin: 0; display: flex; flex-wrap: nowrap; 
-            align-items: center; gap: 4px; background: var(--card-bg); border-radius: 12px; 
+            list-style: none; padding: 0 8px; margin: 0; display: flex; flex-wrap: nowrap; 
+            align-items: center; gap: 4px; background: rgba(255, 255, 255, 0.35); border-radius: 10px; 
             border: 1px solid var(--card-border); backdrop-filter: blur(8px); box-shadow: var(--shadow-sm); 
             height: 100%; box-sizing: border-box;
         }
+        [data-theme="dark"] .breadcrumb-list { background: rgba(30, 41, 59, 0.4); box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
         
-        .breadcrumb-item { font-size: 0.6rem; font-weight: 600; color: var(--text-sec); display: flex; align-items: center; white-space: nowrap; height: 100%; }
+        .breadcrumb-item { font-size: 0.58rem; font-weight: 600; color: var(--text-sec); display: flex; align-items: center; white-space: nowrap; height: 100%; }
         .breadcrumb-item a { color: var(--text-sec); text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 4px; }
         .breadcrumb-item a:hover { color: var(--primary); }
         .breadcrumb-item.active { color: var(--primary); pointer-events: none; }
-        .breadcrumb-separator { font-size: 0.55rem; color: var(--text-sec); opacity: 0.6; margin: 0 2px; }
+        .breadcrumb-separator { font-size: 0.52rem; color: var(--text-sec); opacity: 0.6; margin: 0 2px; }
 
+        /* Compact Hero Badge (Height: 18px desktop / 16px mobile) */
         .hero-badge { 
-            display: inline-flex; align-items: center; justify-content: center; height: 24px; 
-            background: var(--primary-light); color: var(--primary); padding: 0 10px; 
-            border-radius: 12px; font-size: 0.6rem; font-weight: 700; text-transform: uppercase; 
-            margin: 0; border: 1px solid var(--primary); letter-spacing: 0.5px; white-space: nowrap; 
-            flex-shrink: 0; box-sizing: border-box;
+            display: inline-flex; align-items: center; justify-content: center; height: 18px; 
+            background: var(--primary-light); color: var(--primary); padding: 0 7px; 
+            border-radius: 9px; font-size: 0.55rem; font-weight: 800; text-transform: uppercase; 
+            margin: 0; border: 1px solid var(--primary); letter-spacing: 0.3px; white-space: nowrap; 
+            flex-shrink: 0; box-sizing: border-box; line-height: 1;
         }
-        
+
         .hero-title { 
             margin: 0 0 8px 0; 
             background: linear-gradient(135deg, var(--text-main) 0%, var(--primary) 100%);
@@ -210,14 +300,6 @@
             letter-spacing: -0.8px;
             font-size: 32px;
             font-weight: 800;
-        }
-
-        .hero-desc span.hi-desc {
-            font-family: 'Noto Sans Devanagari', sans-serif;
-            font-size: 0.85rem; 
-            color: var(--text-sec);
-            display: block;
-            margin-top: 4px;
         }
 
         /* HIGH-CONTRAST INTERLINKING PILL */
@@ -235,29 +317,24 @@
         [data-theme="dark"] .hero-interlinks a:hover { color: #22c55e; }
         .hero-interlinks .dot { color: var(--text-sec); font-size: 0.8rem; opacity: 0.6; }
 
-        /* GREEN TOOLS STRIP */
+        /* DISTINCT REDDISH / ACCENT TOOLS STRIP */
         .tools-strip {
-            margin-top: 20px; background: rgba(22, 163, 74, 0.1); border: 1px solid rgba(22, 163, 74, 0.3);
-            border-radius: var(--radius-lg); padding: 12px 16px; display: flex; align-items: center; justify-content: space-between;
-            max-width: 800px; margin-left: auto; margin-right: auto; transition: all 0.3s ease;
+            margin-top: 16px; background: rgba(234, 88, 12, 0.08); border: 1px solid rgba(234, 88, 12, 0.3);
+            border-radius: var(--radius-lg); padding: 8px 14px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;
+            width: 100%; transition: all 0.3s ease; box-sizing: border-box;
         }
-        .tools-strip-left { display: flex; align-items: center; gap: 12px; }
-        .tools-strip-icon {
-            width: 40px; height: 40px; background: rgba(22, 163, 74, 0.2); color: #15803d;
-            border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;
-        }
-        [data-theme="dark"] .tools-strip-icon { color: #4ade80; background: rgba(74, 222, 128, 0.2); }
-        .tools-strip-title { font-weight: 800; color: var(--text-main); font-size: 0.95rem; text-align: left;}
+        .tools-strip-left { display: flex; align-items: center; gap: 12px; flex: 1 1 auto; min-width: 260px; }
+        .tools-strip-title { font-weight: 800; color: var(--text-main); font-size: 0.95rem; text-align: left; font-family: 'Inter', sans-serif;}
         .tools-strip-desc { font-size: 0.75rem; color: var(--text-sec); margin-top: 2px; text-align: left; font-weight: 500;}
-        .tools-strip-btn-group { display: flex; gap: 8px; align-items: center; flex-wrap: wrap;}
+        .tools-strip-btn-group { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; justify-content: flex-end;}
         
         .tools-strip-btn {
-            background: #16a34a; color: white !important; padding: 6px 12px; border-radius: 6px;
+            background: #16a34a; color: white !important; padding: 5px 12px; border-radius: 6px;
             font-size: 12px; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 5px;
             transition: all 0.2s; white-space: nowrap; letter-spacing: 0.2px;
         }
         .tools-strip-btn:hover { background: #15803d; }
-        [data-theme="dark"] .tools-strip-btn { background: #22c55e; }
+        [data-theme="dark"] .tools-strip-btn { background: #22c55e; color: white !important; }
         [data-theme="dark"] .tools-strip-btn:hover { background: #16a34a; }
         
         .tools-strip-btn.outline {
@@ -265,7 +342,25 @@
         }
         .tools-strip-btn.outline:hover { background: rgba(22, 163, 74, 0.1); color: #15803d !important; }
         [data-theme="dark"] .tools-strip-btn.outline { color: #4ade80 !important; border-color: #4ade80; }
-        [data-theme="dark"] .tools-strip-btn.outline:hover { background: rgba(74, 222, 128, 0.1); }
+        [data-theme="dark"] .tools-strip-btn.outline:hover { background: rgba(74, 222, 128, 0.15); color: #4ade80 !important;}
+
+        /* Section Heading Divider */
+        .section-heading-divider {
+            display: flex; align-items: center; justify-content: center;
+            margin: 30px 0 15px 0; position: relative; text-align: center; width: 100%;
+        }
+        .section-heading-divider::before {
+            content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent); opacity: 0.3; z-index: 1;
+        }
+        .divider-tag {
+            position: relative; z-index: 2; background: var(--card-bg); border: 1px solid var(--primary);
+            color: var(--primary-dark); padding: 6px 18px; border-radius: 20px; font-size: 0.8rem;
+            font-weight: 800; letter-spacing: 0.4px; box-shadow: 0 4px 12px rgba(22, 163, 74, 0.08);
+            display: inline-flex; align-items: center; gap: 8px; max-width: 92%; box-sizing: border-box;
+        }
+        .divider-tag i { flex-shrink: 0; }
+        [data-theme="dark"] .divider-tag { color: #4ade80; background: #1e293b; border-color: #22c55e; }
 
         .main-layout { display: flex; flex-direction: column; gap: 20px; }
         @media (min-width: 900px) { .main-layout { flex-direction: row; align-items: flex-start; } .intro-column, .quiz-widget-wrapper { flex: 1; width: 50%; box-sizing: border-box; } }
@@ -281,7 +376,7 @@
         /* QUIZ WIDGET */
         .quiz-card { border-radius: var(--radius-xl); display: flex; flex-direction: column; overflow: hidden; height: auto; min-height: 480px; background: var(--card-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--card-border); box-shadow: var(--glass-shadow); position: sticky; top: 80px; box-sizing: border-box; width: 100%; }
         .quick-start-ribbon { background: var(--primary); color: #fff; border: none; padding: 12px; font-size: 0.95rem; font-weight: 700; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px; transition: background 0.2s; width: 100%; flex-shrink: 0; min-height: 45px; box-sizing: border-box; }
-        .quick-start-ribbon:hover { background: var(--primary-dark); }
+        .quick-start-ribbon:hover { background: var(--primary-hover); }
         
         .widget-header { 
             padding: 12px 10px; border-bottom: none; display: flex; justify-content: center; align-items: center; 
@@ -413,15 +508,29 @@
         .progress-display { display: flex; align-items: center; justify-content: center; padding: 4px 10px; }
         .progress-text { font-weight: 800; color: var(--text-main); font-size: 0.85rem; }
 
-        /* SEO Cards Styling */
+        /* SEO Cards Styling - Softer Left Border Contrast */
         .seo-content-wrapper { margin-bottom: 30px; }
-        .seo-header { text-align: center; margin-bottom: 20px; }
-        .seo-header h2 { font-size: clamp(1.2rem, 3vw, 1.6rem); margin-bottom: 8px; font-weight: 800; }
-        .seo-header p { color: var(--text-sec); max-width: 600px; margin: 0 auto; font-size: 0.85rem; }
+        .seo-header { text-align: center; margin-bottom: 15px; }
+        .seo-header p { color: var(--text-sec); max-width: 650px; margin: 0 auto; font-size: 0.85rem; font-weight: 500; }
         
         .seo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; align-items: stretch; width: 100%; }
         
-        .seo-card { background: var(--card-bg); border: 1px solid var(--card-border); padding: 20px; border-radius: var(--radius-lg); box-shadow: var(--glass-shadow); border-left: 4px solid var(--primary); transition: border-color 0.2s; display: flex; flex-direction: column; box-sizing: border-box; width: 100%; }
+        .seo-card { 
+            background: var(--card-bg); 
+            border: 1px solid var(--card-border); 
+            padding: 20px; 
+            border-radius: var(--radius-lg); 
+            box-shadow: var(--glass-shadow); 
+            border-left: 3px solid rgba(22, 163, 74, 0.35); 
+            transition: border-color 0.2s; 
+            display: flex; 
+            flex-direction: column; 
+            box-sizing: border-box; 
+            width: 100%; 
+        }
+        [data-theme="dark"] .seo-card {
+            border-left: 3px solid rgba(74, 222, 128, 0.35);
+        }
         .seo-card:hover { border-color: var(--primary-light); }
         .seo-card h3 { font-size: 1rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; color: var(--text-main) !important; font-weight: 800;}
         .seo-card h3 i { color: var(--primary); }
@@ -430,6 +539,33 @@
         .seo-list { list-style: none; padding-left: 0; margin-top: 0; }
         .seo-list li { position: relative; padding-left: 18px; margin-bottom: 8px; font-size: 0.8rem; color: var(--text-body) !important; line-height: 1.4; font-weight: 500;}
         .seo-list li::before { content: "\f111"; font-family: "Font Awesome 6 Free"; font-weight: 900; color: var(--primary); position: absolute; left: 0; top: 5px; font-size: 0.4rem; }
+
+        /* 2-COLUMN STATIC FAQ STYLES */
+        .faq-grid {
+            display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 10px; width: 100%;
+        }
+        @media (min-width: 768px) {
+            .faq-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+        }
+
+        .faq-static-card {
+            background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-lg);
+            padding: 12px 16px; box-shadow: 0 2px 6px rgba(0,0,0,0.02); display: flex; flex-direction: column;
+            justify-content: center; gap: 6px; transition: border-color 0.2s, box-shadow 0.2s; box-sizing: border-box;
+        }
+        .faq-static-card:hover { border-color: var(--primary); box-shadow: 0 4px 12px rgba(22, 163, 74, 0.08); }
+
+        .faq-q {
+            font-size: 0.85rem; font-weight: 700; color: var(--text-main); display: flex; align-items: flex-start;
+            gap: 8px; line-height: 1.35;
+        }
+        .faq-q i { color: var(--primary); margin-top: 2px; flex-shrink: 0; font-size: 0.85rem; }
+
+        .faq-a {
+            font-size: 0.82rem; color: var(--text-body); line-height: 1.4; padding-left: 22px;
+        }
+        .faq-a strong { color: var(--primary-dark); font-weight: 700; }
+        [data-theme="dark"] .faq-a strong { color: #4ade80; }
 
         .quiz-modal-overlay {
             position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important;
@@ -452,6 +588,8 @@
             .page-header-top { margin-top: 25px; } 
             .hero-title { font-size: 25px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
             .top-meta-bar { flex-wrap: nowrap; justify-content: space-between; }
+            .breadcrumb-nav { height: 18px; }
+            .hero-badge { height: 16px; padding: 0 6px; border-radius: 8px; font-size: 0.50rem; }
             .widget-header { padding: 10px; align-items: center; }
             .text-controls { justify-content: center; gap: 3px; padding: 2px 0; }
             .icon-btn, .text-btn, .text-controls label { width: 28px !important; height: 28px !important; font-size: 13.6px !important; border-radius: 6px !important; }
@@ -469,10 +607,13 @@
             .hero-interlinks a { font-size: 0.8rem; }
             .hero-interlinks .interlink-label { font-size: 0.75rem; }
 
+            .divider-tag { padding: 5px 12px; font-size: 0.72rem; gap: 6px; }
+
             .tools-strip { flex-direction: column; align-items: stretch; gap: 12px; }
-            .tools-strip-btn-group { width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
-            .tools-strip-btn-group .tools-strip-btn:last-child { grid-column: span 2; }
-            .tools-strip-btn { justify-content: center; padding: 7px 10px; font-size: 12px; }
+            .tools-strip-left { flex-direction: column; text-align: center; justify-content: center; width: 100%; }
+            .tools-strip-title, .tools-strip-desc { text-align: center !important; }
+            .tools-strip-btn-group { width: 100%; display: flex; gap: 8px; align-items: center; justify-content: center; flex-wrap: wrap; }
+            .tools-strip-btn { justify-content: center; padding: 6px 12px; font-size: 11.5px; width: fit-content; margin: 0; }
         }
     </style>
 
@@ -508,7 +649,7 @@
                 <li class="breadcrumb-item active" aria-current="page">Mock Quiz</li>
             </ol>
         </nav>
-        <span class="hero-badge glass-panel" style="border-color: var(--primary); color: var(--primary);">Test Series</span>
+        <span class="hero-badge"><span class="hide-mobile">Agri-Horti </span>Quiz</span>
     </div>
 
     <div class="page-layout">
@@ -524,17 +665,14 @@
                 <a href="../agri-one-liners-part-1/">One Liners</a><span class="dot">•</span>
                 <a href="../../economic-survey/">Eco Survey</a><span class="dot">•</span>
                 <a href="../../../himachal-pradesh-gk/">HP GK Hub</a><span class="dot">•</span>
-                <a href="../../../himachal-pradesh-gk/economy/">Economy</a>
+                <a href="../../../himachal-pradesh-gk/economy/">Economy Hub</a>
             </div>
 
-            <!-- DEDICATED GREEN TOOLS STRIP FOR MASTERCLASS -->
+            <!-- DEDICATED REDDISH / ACCENT TOOLS STRIP FOR MASTERCLASS -->
             <div class="tools-strip">
                 <div class="tools-strip-left">
-                    <div class="tools-strip-icon">
-                        <i class="fa-solid fa-book-open-reader"></i>
-                    </div>
                     <div>
-                        <div class="tools-strip-title font-heading">Explore Notes & Acts</div>
+                        <div class="tools-strip-title font-heading">Explore Notes & Masterclass</div>
                         <div class="tools-strip-desc font-sans">Read Agriculture Masterclass & Revenue Laws</div>
                     </div>
                 </div>
@@ -552,6 +690,13 @@
             </div>
         </div>
 
+        <!-- Section Heading Divider 1: Practice Engine -->
+        <div class="section-heading-divider">
+            <span class="divider-tag">
+                <i class="fa-solid fa-brain"></i> Interactive Mock Quiz Engine • इंटरएक्टिव मॉक क्विज़
+            </span>
+        </div>
+
         <!-- Side-by-Side Two Column Layout -->
         <div class="main-layout">
             
@@ -566,7 +711,7 @@
                             <li><strong>Agro-Climatic Zones:</strong> Test your knowledge on rainfall, altitude limits, and crops grown in Shivalik to Cold Dry zones. (कृषि-जलवायु क्षेत्रों की ऊँचाई और फसलें).</li>
                             <li><strong>Cash Crops & GI Tags:</strong> Tricky MCQs on Kangra Tea, Seed Potato (CPRI), Ginger, and Seabuckthorn. (नकदी फसलें और जीआई टैग).</li>
                             <li><strong>Animal Husbandry:</strong> Locations of sheep, yak, and angora rabbit breeding farms across HP. (पशुपालन और प्रजनन फार्म).</li>
-                            <li><strong>Flagship Schemes:</strong> Budget 2026 updates, MM Khet Sanrakshan, PK3Y, and HP SHIVA project details. (प्रमुख कृषि और बागवानी योजनाएं).</li>
+                            <li><strong>Flagship Schemes:</strong> Budget updates, MM Khet Sanrakshan, PK3Y, and HP SHIVA project details. (प्रमुख कृषि और बागवानी योजनाएं).</li>
                             <li><strong>Irrigation & Soils:</strong> Questions targeting Shahnehar, Kuhls system, and soil profiles of Shimla vs Spiti. (सिंचाई प्रणाली और मिट्टी).</li>
                         </ul>
                     </div>
@@ -654,12 +799,16 @@
 
         </div>
         
-        <div class="section-separator"></div>
+        <!-- Section Heading Divider 2: Fact-Check Cards -->
+        <div class="section-heading-divider" style="margin-top: 35px;">
+            <span class="divider-tag">
+                <i class="fa-solid fa-lightbulb"></i> Important Agri Fact-Checks • महत्वपूर्ण कृषि तथ्य
+            </span>
+        </div>
 
-        <!-- Full Width Bilingual Content (6 Rich SEO Cards) -->
+        <!-- Full Width Bilingual Content (6 Rich SEO Cards - 7 Points Each) -->
         <section class="seo-content-wrapper">
             <div class="seo-header">
-                <h2>Important Agri Fact-Checks (महत्वपूर्ण कृषि तथ्य)</h2>
                 <p>Crucial pointers often asked as trick questions in the HPAS and HPPSC examinations. <br>(अक्सर हि.प्र. लोक सेवा आयोग परीक्षाओं में पूछे जाने वाले महत्वपूर्ण तथ्य।)</p>
             </div>
 
@@ -667,11 +816,15 @@
                 
                 <!-- Card 1 -->
                 <div class="seo-card glass-panel">
-                    <h3><i class="fa-solid fa-apple-whole"></i> 1. Apple History (सेब का इतिहास)</h3>
+                    <h3><i class="fa-solid fa-apple-whole"></i> 1. Apple History & Economy (सेब का इतिहास एवं अर्थव्यवस्था)</h3>
                     <ul class="seo-list">
-                        <li><strong>First Orchard:</strong> Captain R.C. Lee planted the first British variety orchard in Kullu (Bandrol) in 1870. (कैप्टन आर.सी. ली ने 1870 में कुल्लू में पहला बाग लगाया).</li>
-                        <li><strong>Mashobra:</strong> Alexander Coutts established an English apple orchard at 'Hillock's Head' in 1887. (अलेक्जेंडर कूट्स ने 1887 में मशोबरा में बाग लगाया).</li>
-                        <li><strong>Satyanand Stokes:</strong> The absolute father of HP's apple economy. He brought American 'Delicious' varieties to Kotgarh in 1916. (सत्यानंद स्टोक्स ने 1916 में कोटगढ़ में 'डिलीशियस' किस्में लगाईं).</li>
+                        <li><strong>First English Introductions:</strong> Major Kennedy first introduced English apple varieties in Shimla in 1825. (मेजर कैनेडी ने 1825 में शिमला में पहले सेब के पौधे लगाए).</li>
+                        <li><strong>First British Orchard:</strong> Captain R.C. Lee planted the first commercial British variety orchard at Bandrol (Kullu) in 1870. (कैप्टन आर.सी. ली ने 1870 में कुल्लू में पहला बाग लगाया).</li>
+                        <li><strong>Alexander Coutts (1887):</strong> Planted an English variety orchard at 'Hillock's Head' in Mashobra, Shimla. (मशोबरा में अलेक्जेंडर कूट्स ने अंग्रेजी किस्म का बाग लगाया).</li>
+                        <li><strong>Satyanand Stokes (1916):</strong> Samuel Evans Stokes brought American 'Delicious' varieties (Red & Golden) from Philadelphia to Kotgarh. (सत्यानंद स्टोक्स 1916 में अमेरिका से 'डिलीशियस' किस्में लाए).</li>
+                        <li><strong>Harmony Hall Estate:</strong> Stokes' famous orchard estate in Barubagh, Kotgarh that transformed HP's apple economy. (कोटगढ़ का बारूबाग एस्टेट जिससे सेब क्रांति शुरू हुई).</li>
+                        <li><strong>Horticultural Fruit Share:</strong> Apple accounts for approximately ~85% of total fruit production in Himachal Pradesh. (सेब का कुल फल उत्पादन में ~85% योगदान है).</li>
+                        <li><strong>High-Density Dwarf Rootstocks:</strong> M-9 and MM-111 imported rootstocks actively promoted for high-yield orchards. (M-9 और MM-111 आयातित रूटस्टॉक सघन बागवानी हेतु प्रयुक्त).</li>
                     </ul>
                 </div>
 
@@ -679,52 +832,134 @@
                 <div class="seo-card glass-panel">
                     <h3><i class="fa-solid fa-cloud-sun"></i> 2. Agro-Climatic Zones (कृषि-जलवायु क्षेत्र)</h3>
                     <ul class="seo-list">
-                        <li><strong>Zone 1 (Shivalik):</strong> Up to 800m. Highly productive for Wheat, Maize, and Citrus fruits like Mango/Litchi. (शिवालिक जोन गेहूं, मक्का और खट्टे फलों के लिए उत्पादक है).</li>
-                        <li><strong>Zone 3 (High-Hill):</strong> 1600m to 2700m. The primary revenue generator focusing exclusively on Commercial Apple and Seed Potato. (व्यावसायिक सेब और बीज आलू के लिए हाई-हिल जोन).</li>
-                        <li><strong>Zone 4 (Cold Dry):</strong> Above 2700m (Lahaul-Spiti/Kinnaur). Deficient rainfall; grows Kuth, Hops, and Chilgoza. (कोल्ड ड्राई जोन में कुठ, हॉप्स और चिलगोजा उगता है).</li>
+                        <li><strong>Zone 1 (Shivalik Hill):</strong> Altitude up to 800m, ~35% cultivated area; famous for Wheat, Maize, and Citrus fruits (Mango, Litchi). (800 मीटर तक ऊँचाई, गेहूं और खट्टे फल).</li>
+                        <li><strong>Zone 2 (Mid-Hill):</strong> Altitude 800m to 1600m, ~32% area; produces Stone Fruits (Peach, Plum), Tomato, Mushroom, and Kangra Tea. (800-1600 मीटर, गुठलीदार फल और टमाटर).</li>
+                        <li><strong>Zone 3 (High-Hill):</strong> Altitude 1600m to 2700m, ~25% area; primary revenue engine growing Commercial Apple and Seed Potato. (1600-2700 मीटर, व्यावसायिक सेब और बीज आलू).</li>
+                        <li><strong>Zone 4 (Cold Dry Zone):</strong> Altitude above 2700m (Spiti & Kinnaur); precipitation below 200mm; grows Kuth, Hops, Seabuckthorn, and Chilgoza. (2700 मीटर से ऊपर, कुठ और चिलगोजा).</li>
+                        <li><strong>Rainfall Variation:</strong> Varies sharply from over 3,000mm in Dharamshala (Zone 2) to less than 200mm in Spiti cold desert (Zone 4). (धौलाधार में 3,000mm वर्षा बनाम स्पीति में 200mm).</li>
+                        <li><strong>Peach Bowl of Asia:</strong> Rajgarh region in Sirmaur district holds the national title for high peach density. (सिरमौर का राजगढ़ 'एशिया का आड़ू का कटोरा' कहलाता है).</li>
+                        <li><strong>Mushroom City of India:</strong> Solan conferred the title in 1997 due to ICAR-DMR research pioneering button and oyster farming. (सोलन को 1997 में 'मशरूम सिटी' का दर्जा मिला).</li>
                     </ul>
                 </div>
 
                 <!-- Card 3 -->
                 <div class="seo-card glass-panel">
-                    <h3><i class="fa-solid fa-wheat-awn"></i> 3. Cash Crops (नकदी फसलें)</h3>
+                    <h3><i class="fa-solid fa-wheat-awn"></i> 3. Cash Crops & GI Tag Assets (नकदी फसलें और GI टैग)</h3>
                     <ul class="seo-list">
-                        <li><strong>Kangra Tea:</strong> Introduced by Dr. Jameson in 1849. Got Indian GI Tag in 2005 and European GI Tag in 2023. (कांगड़ा चाय को 2023 में यूरोपीय जीआई टैग मिला).</li>
-                        <li><strong>Seed Potato:</strong> CPRI was shifted from Patna to Kufri in 1956. Lahaul-Spiti has the highest per-hectare yield globally. (CPRI 1956 में पटना से कुफरी शिफ्ट हुआ).</li>
-                        <li><strong>Ginger:</strong> Sirmaur is the highest producer in HP. 'Himgiri' is a famous local disease-resistant variety. (सिरमौर हिमाचल में अदरक का सबसे बड़ा उत्पादक है).</li>
+                        <li><strong>Kangra Tea GI Milestones:</strong> Dr. Jameson introduced Chinese tea in 1849; earned Indian GI Tag in 2005 and European Union GI Tag in April 2023. (कांगड़ा चाय को 2023 में यूरोपीय GI टैग मिला).</li>
+                        <li><strong>Ginger Capital Sirmaur:</strong> HP is 2nd in India after Kerala; Sangrah/Shillai in Sirmaur lead production; 'Himgiri' is a rot-resistant variety. (केरल के बाद हि.प्र. दूसरा सबसे बड़ा अदरक उत्पादक).</li>
+                        <li><strong>Seed Potato & CPRI:</strong> Central Potato Research Institute shifted from Patna to Kufri in 1956; Lahaul Valley sets global yield records. (CPRI 1956 में कुफरी स्थानांतरित हुआ).</li>
+                        <li><strong>Chilgoza & Chulli Oil:</strong> Pinus gerardiana (Chilgoza) nuts grown exclusively in Kinnaur; Chulli (wild apricot) oil holds official GI Tag. (किन्नौर का चिलगोजा और चुली तेल GI-टैग प्राप्त).</li>
+                        <li><strong>Kala Jeera & Lahauli Socks:</strong> Black Cumin (2019) and traditional hand-knitted Lahauli Socks/Gloves (2021) hold GI protection. (काला जीरा और लाहौली मोज़े GI-टैग संरक्षित).</li>
+                        <li><strong>Rare Brewery & Medicinal Roots:</strong> Hops (beer flavoring) and Kuth (medicinal root introduced 1925) grown in Lahaul cold desert. (बीयर निर्माण के लिए हॉप्स और औषधीय कुठ).</li>
+                        <li><strong>Saffron Cultivation:</strong> Commercial experimental Saffron (Kesar) grown strictly in Sangla Valley of Kinnaur. (सांगला घाटी में केसर की व्यावसायिक खेती).</li>
                     </ul>
                 </div>
 
                 <!-- Card 4 -->
                 <div class="seo-card glass-panel">
-                    <h3><i class="fa-solid fa-cow"></i> 4. Animal Husbandry (पशुपालन)</h3>
+                    <h3><i class="fa-solid fa-cow"></i> 4. Livestock, Fisheries & Forestry (पशुपालन, मत्स्य एवं वन)</h3>
                     <ul class="seo-list">
-                        <li><strong>Sheep Breeding:</strong> Major Govt farms are at Jeori (Shimla), Tal (Hamirpur), Sarol (Chamba), and Karcham (Kinnaur). (भेड़ प्रजनन फार्म ज्यूरी, ताल, सरोल और करछम में हैं).</li>
-                        <li><strong>Yak & Horse:</strong> Both specialized breeding farms are located at Lari in Lahaul-Spiti. (याक और घोड़ा प्रजनन फार्म लारी में स्थित हैं).</li>
-                        <li><strong>Indigenous Breeds:</strong> 'Chegu' goat (Pashmina wool), 'Spiti' horse, and 'Gaddi' sheep are local treasures. ('चेगु' बकरी पश्मीना ऊन के लिए प्रसिद्ध है).</li>
+                        <li><strong>Indigenous Breeds:</strong> 'Chegu' goat (Pashmina wool), 'Rampur Bushahri' sheep, 'Gaddi' sheep, and sure-footed 'Spiti' mountain horse. (चेगु बकरी से पश्मीना ऊन और स्पीति घोड़ा).</li>
+                        <li><strong>Sheep Breeding Farms:</strong> Major government breeding farms operate at Jeori (Shimla), Tal (Hamirpur), Sarol (Chamba), and Karcham (Kinnaur). (ज्यूरी, ताल, सरोल और करछम में फार्म).</li>
+                        <li><strong>Yak & Horse Breeding:</strong> Specialized Yak and Spiti Horse breeding farms operate jointly at Lari in Lahaul-Spiti district. (लारी स्पीति में याक और घोड़ा प्रजनन फार्म).</li>
+                        <li><strong>Trout Cold-Water Fisheries:</strong> British introduced trout; major breeding hubs operate at Barot (Uhl river, Mandi) and Patlikuhl (Kullu). (बरोट और पतलीकूहल में ट्राउट मछली पालन).</li>
+                        <li><strong>Mirror Carp Deoli Farm:</strong> Asia's largest Mirror Carp fish seed farm operates at Deoli on Ali Khad in Bilaspur district. (बिलासपुर का देवली फार्म एशिया का सबसे बड़ा फार्म है).</li>
+                        <li><strong>Game Fish Mahseer:</strong> Famous 'Tiger of Indian Rivers' game fish found abundantly in Pong Dam reservoir (Maharana Pratap Sagar). (पोंग बांध में पाई जाने वाली प्रसिद्ध महसीर).</li>
+                        <li><strong>Resin & Forest Resources:</strong> Resin (Leesa) extracted from Chir Pine tapped for turpentine factories at Nahan and Bilaspur. (नाहन व बिलासपुर कारखानों हेतु चीड़ का लीसा).</li>
                     </ul>
                 </div>
 
                 <!-- Card 5 -->
                 <div class="seo-card glass-panel">
-                    <h3><i class="fa-solid fa-shield-cat"></i> 5. Flagship Schemes (प्रमुख योजनाएं)</h3>
+                    <h3><i class="fa-solid fa-shield-cat"></i> 5. Flagship Schemes & Budget Support (प्रमुख कृषि योजनाएं)</h3>
                     <ul class="seo-list">
-                        <li><strong>MM Khet Sanrakshan:</strong> Provides massive 80-85% subsidies for solar/electric fencing against wild animals. (सौर बाड़ लगाने के लिए 80-85% सब्सिडी).</li>
-                        <li><strong>PK3Y:</strong> Promotes Subhash Palekar Natural Farming (Zero Budget) and gives 50% subsidy to buy a Desi Cow. (देसी गाय खरीदने के लिए 50% सब्सिडी).</li>
-                        <li><strong>HP SHIVA:</strong> An ADB-funded mega project expanding subtropical horticulture (Guava, Litchi) in 7 lower districts. (निचले जिलों में बागवानी के लिए ADB-वित्तपोषित परियोजना).</li>
+                        <li><strong>MM Khet Sanrakshan Yojana:</strong> Grants 80% individual (85% group) subsidy for installing solar electric fencing against wild animals. (सौर बाड़ लगाने हेतु 80-85% सब्सिडी).</li>
+                        <li><strong>PK3Y Natural Farming:</strong> Promotes Subhash Palekar Natural Farming (SPNF); offers up to 50% subsidy (max ₹25,000) for buying Desi Cow. (प्राकृतिक खेती और देसी गाय सब्सिडी).</li>
+                        <li><strong>HP SHIVA Subtropical Project:</strong> ADB-funded $130 Million project expanding Guava, Citrus, and Litchi orchards across 7 lower districts. (निचले 7 जिलों में उपोष्णकटिबंधीय बागवानी).</li>
+                        <li><strong>MM Nutan Polyhouse Yojana:</strong> Offers an 85% subsidy to construct polyhouses for cultivating high-value off-season vegetables. (बेमौसम सब्जियों के लिए 85% पॉलीहाउस सब्सिडी).</li>
+                        <li><strong>Anti-Hail Net Subsidy:</strong> State provides an 80% subsidy on anti-hail nets to safeguard fragile apple blooms from storms. (ओलावृष्टि से बचाव के लिए 80% नेट सब्सिडी).</li>
+                        <li><strong>Project Sanjeevani:</strong> Animal Husbandry Dept deploys Mobile Veterinary Units (MVUs) for doorstep livestock healthcare. (मोबाइल वेटरनरी यूनिट्स द्वारा घर-द्वार पशु उपचार).</li>
+                        <li><strong>Him Ganga Scheme:</strong> Milk procurement rate set at ₹45/liter (cow) and ₹55/liter (buffalo); 3 LLPD automated plant at Dhagwar. (हिम गंगा दुग्ध खरीद दर ₹45 व ₹55 प्रति लीटर).</li>
                     </ul>
                 </div>
 
                 <!-- Card 6 -->
                 <div class="seo-card glass-panel">
-                    <h3><i class="fa-solid fa-flask-vial"></i> 6. Key Institutions (प्रमुख संस्थान)</h3>
+                    <h3><i class="fa-solid fa-landmark-dome"></i> 6. Research Institutions & Irrigation (अनुसंधान संस्थान एवं सिंचाई)</h3>
                     <ul class="seo-list">
-                        <li><strong>UHF Nauni:</strong> Dr. Y.S. Parmar University of Horticulture & Forestry was established in Solan in 1985. (औद्यानिकी विश्वविद्यालय नौणी की स्थापना 1985 में हुई).</li>
-                        <li><strong>DMR Solan:</strong> Directorate of Mushroom Research is at Chambaghat. Solan is India's 'Mushroom City'. (मशरूम अनुसंधान निदेशालय चंबाघाट में है).</li>
-                        <li><strong>Vet College:</strong> Dr. G.C. Negi College of Veterinary & Animal Sciences is located in Palampur. (पशु चिकित्सा विज्ञान महाविद्यालय पालमपुर में स्थित है).</li>
+                        <li><strong>UHF Nauni (1985):</strong> Dr. Y.S. Parmar University of Horticulture and Forestry established at Solan; regional hubs at Mashobra & Bajaura. (नौणी बागवानी विश्वविद्यालय 1985 में स्थापित).</li>
+                        <li><strong>CSKHPKV Palampur (1978):</strong> Chaudhary Sarwan Kumar HP Krishi Vishvavidyalaya leads agricultural research and seed multiplication. (पालमपुर कृषि विश्वविद्यालय).</li>
+                        <li><strong>Irrigation Deficit:</strong> Only 18-20% of cultivated land is artificially irrigated; remaining ~80% depends on monsoon rainfall (Barani). (केवल 18-20% खेती योग्य भूमि सिंचित).</li>
+                        <li><strong>Kuhls System:</strong> Traditional community gravity-flow channels ('Kuhls') account for over 70% of total irrigated land in HP (highest in Kangra). (कूहलें 70% से अधिक सिंचाई करती हैं).</li>
+                        <li><strong>Shahnehar Project:</strong> The single major canal irrigation project in HP, drawing water from the Beas River in Kangra district. (कांगड़ा में शाहनहर प्रमुख सिंचाई परियोजना).</li>
+                        <li><strong>Bee & Poultry Research:</strong> Regional Bee Research Station at Nagrota Bagwan; Wheat Breeding Station at Keylong in Lahaul. (नगरोटा बगवां मधुमक्खी अनुसंधान केंद्र).</li>
+                        <li><strong>DMR Chambaghat:</strong> ICAR Directorate of Mushroom Research situated at Chambaghat (Solan), training growers nationwide. (चंबाघाट सोलन में मशरूम अनुसंधान केंद्र).</li>
                     </ul>
                 </div>
 
+            </div>
+        </section>
+
+        <!-- Section Heading Divider 3: FAQs -->
+        <div class="section-heading-divider" style="margin-top: 35px;">
+            <span class="divider-tag">
+                <i class="fa-solid fa-circle-question"></i> Frequently Asked Questions • 10 कृषि परीक्षा प्रश्नोत्तरी
+            </span>
+        </div>
+
+        <!-- STATIC 2-COLUMN QUIZ-SPECIFIC FAQ SECTION -->
+        <section class="faq-section-wrapper" style="margin-bottom: 30px;">
+            <div class="faq-grid">
+                <div class="faq-static-card">
+                    <div class="faq-q"><i class="fa-solid fa-circle-question"></i> <span>1. How many MCQs are in this Agriculture Quiz?</span></div>
+                    <div class="faq-a">The test series contains <strong>600+ High-Yield MCQs</strong> divided into 6 practice sets covering full syllabus.</div>
+                </div>
+
+                <div class="faq-static-card">
+                    <div class="faq-q"><i class="fa-solid fa-circle-question"></i> <span>2. Is this aligned with HPPSC / HPAS pattern?</span></div>
+                    <div class="faq-a">Yes, questions strictly mirror <strong>HPPSC Prelims, HPAS, and Horticulture Officer</strong> exam formats.</div>
+                </div>
+
+                <div class="faq-static-card">
+                    <div class="faq-q"><i class="fa-solid fa-circle-question"></i> <span>3. Is complete bilingual support provided?</span></div>
+                    <div class="faq-a">Yes, every single question, options list, and solution explanation features <strong>complete Hindi & English support</strong>.</div>
+                </div>
+
+                <div class="faq-static-card">
+                    <div class="faq-q"><i class="fa-solid fa-circle-question"></i> <span>4. How does "Quick 10 Quiz" mode work?</span></div>
+                    <div class="faq-a">It randomly draws <strong>10 high-priority MCQs</strong> for rapid revision when you have limited study time.</div>
+                </div>
+
+                <div class="faq-static-card">
+                    <div class="faq-q"><i class="fa-solid fa-circle-question"></i> <span>5. Can I bookmark difficult questions?</span></div>
+                    <div class="faq-a">Yes, tap the <strong>Bookmark icon</strong> on any question card to save and filter them later via top toolbar.</div>
+                </div>
+
+                <div class="faq-static-card">
+                    <div class="faq-q"><i class="fa-solid fa-circle-question"></i> <span>6. How do I isolate and review my mistakes?</span></div>
+                    <div class="faq-a">Click the <strong>Mistake Filter button</strong> (warning icon) in the toolbar to focus strictly on incorrect attempts.</div>
+                </div>
+
+                <div class="faq-static-card">
+                    <div class="faq-q"><i class="fa-solid fa-circle-question"></i> <span>7. Is test performance auto-saved?</span></div>
+                    <div class="faq-a">Yes, your answered status, score, accuracy, and bookmarks are <strong>saved locally in your browser</strong>.</div>
+                </div>
+
+                <div class="faq-static-card">
+                    <div class="faq-q"><i class="fa-solid fa-circle-question"></i> <span>8. Can I transfer test data across devices?</span></div>
+                    <div class="faq-a">Yes, use the <strong>Download and Upload buttons</strong> in the top controls bar to backup or import progress files.</div>
+                </div>
+
+                <div class="faq-static-card">
+                    <div class="faq-q"><i class="fa-solid fa-circle-question"></i> <span>9. Which topics carry maximum exam weightage?</span></div>
+                    <div class="faq-a">Top weightage goes to <strong>Apple History, Agro-Climatic Zones, Kangra Tea GI, Animal Breeding, and PK3Y</strong>.</div>
+                </div>
+
+                <div class="faq-static-card">
+                    <div class="faq-q"><i class="fa-solid fa-circle-question"></i> <span>10. Can I reset and attempt the quiz again?</span></div>
+                    <div class="faq-a">Yes, click the <strong>Reset icon</strong> in the toolbar anytime to clear statistics and start fresh.</div>
+                </div>
             </div>
         </section>
 
