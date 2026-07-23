@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- STREAMING_CHUNK:Configuring metadata and viewport settings... -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="HP HRTC Conductor Full Mock Test Series. Attempt the first mock test free. Based on latest pattern, bilingual format, and detailed analytics.">
@@ -72,6 +73,7 @@
     <!-- Global CSS -->
     <link rel="stylesheet" href="../../js/style.css">
 
+    <!-- STREAMING_CHUNK:Styling page layout with high-contrast borders and font anti-aliasing... -->
     <style>
         :root {
             --site-width: 1120px;
@@ -112,7 +114,14 @@
             --text-sec: #94a3b8;
         }
 
-        /* 🔥 GPU Hardware Acceleration Layer Stabilization (Fixes Mobile Scroll Disappearing Content Glitch) */
+        /* 🔥 High-Precision Sub-Pixel Font Anti-Aliasing & Rendering Stability */
+        body, button, input, select, textarea, div, p, h1, h2, h3, h4, span, a {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+        }
+
+        /* GPU Hardware Acceleration Layer Stabilization */
         .soft-glass, 
         .hero-glass-card, 
         .section-glass-panel, 
@@ -122,7 +131,6 @@
         .faq-item {
             transform: translateZ(0);
             -webkit-transform: translateZ(0);
-            will-change: transform;
             -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
         }
@@ -245,10 +253,10 @@
         .tab-content.active { display: block; animation: fadeIn 0.3s ease; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Test List Grid */
+        /* Test List Grid - Stationary Hover (No Physical Shift) */
         .test-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 2px; }
-        .test-card { display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; border-radius: var(--radius-lg); transition: 0.2s ease; border: 1px solid var(--card-border); }
-        .test-card:hover { border-color: rgba(37, 99, 235, 0.5); transform: translateY(-1px); box-shadow: 0 6px 16px rgba(37, 99, 235, 0.08); }
+        .test-card { display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; border-radius: var(--radius-lg); transition: border-color 0.2s ease, box-shadow 0.2s ease; border: 1px solid var(--card-border); }
+        .test-card:hover { border-color: rgba(37, 99, 235, 0.5); box-shadow: 0 6px 16px rgba(37, 99, 235, 0.08); }
         [data-theme="dark"] .test-card:hover { border-color: rgba(96, 165, 250, 0.5); box-shadow: 0 6px 16px rgba(0,0,0,0.4); }
         
         .tc-left { display: flex; align-items: center; gap: 8px; flex: 1; }
@@ -273,15 +281,15 @@
 
         /* Action Buttons & Accessible High Contrast */
         .tc-action-box { display: flex; align-items: center; gap: 5px; flex-shrink: 0; }
-        .btn-action { padding: 6px 12px; border-radius: 8px; font-size: 0.7rem; font-weight: 800; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 5px; border: 1px solid transparent; cursor: pointer; font-family: 'Inter', sans-serif; white-space: nowrap; flex-shrink: 0; transition: all 0.2s ease; }
+        .btn-action { padding: 6px 12px; border-radius: 8px; font-size: 0.7rem; font-weight: 800; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 5px; border: 1px solid transparent; cursor: pointer; font-family: 'Inter', sans-serif; white-space: nowrap; flex-shrink: 0; transition: border-color 0.2s ease, background-color 0.2s ease; }
         
         /* High Contrast Attempt Free Button */
         .btn-free { background: #15803d; color: #ffffff; }
-        .btn-free:hover { background: #166534; transform: translateY(-1px); box-shadow: 0 4px 10px rgba(21, 128, 61, 0.3); }
+        .btn-free:hover { background: #166534; box-shadow: 0 4px 10px rgba(21, 128, 61, 0.3); }
         [data-theme="dark"] .btn-free { background: #16a34a; color: #ffffff; }
         
         .btn-pro { background: var(--text-main); color: #ffffff; border: none; }
-        .btn-pro:hover { opacity: 0.88; transform: translateY(-1px); box-shadow: 0 4px 10px rgba(0,0,0,0.15); }
+        .btn-pro:hover { opacity: 0.88; box-shadow: 0 4px 10px rgba(0,0,0,0.15); }
         [data-theme="dark"] .btn-pro { background: #ffffff; color: #0f172a; }
         [data-theme="dark"] .btn-pro:hover { background: #f8fafc; box-shadow: 0 4px 10px rgba(255,255,255,0.15); }
 
@@ -294,9 +302,9 @@
         .btn-upgrade { background: var(--primary); color: #ffffff; border: none; box-shadow: 0 4px 12px rgba(37,99,235,0.25); }
         .btn-upgrade:hover { opacity: 0.9; }
 
-        /* Cross Link Cards - Compact & Dense Layout */
-        .cross-link-card { text-decoration: none; display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: var(--radius-md); transition: all 0.2s ease; border: 1px solid var(--card-border); }
-        .cross-link-card:hover { transform: translateY(-1px); border-color: rgba(37, 99, 235, 0.5); box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1); }
+        /* Cross Link Cards - Compact & Dense Stationary Hover */
+        .cross-link-card { text-decoration: none; display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: var(--radius-md); transition: border-color 0.2s ease, box-shadow 0.2s ease; border: 1px solid var(--card-border); }
+        .cross-link-card:hover { border-color: rgba(37, 99, 235, 0.5); box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1); }
         .cross-link-card .fa-arrow-right { transition: transform 0.2s ease; }
         .cross-link-card:hover .fa-arrow-right { transform: translateX(3px); }
         [data-theme="dark"] .cross-link-card:hover { border-color: rgba(96, 165, 250, 0.5); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); }
@@ -352,6 +360,7 @@
 
 <div id="site-header"></div>
 
+<!-- STREAMING_CHUNK:Rendering main header and breadcrumbs... -->
 <main>
     <!-- Top Breadcrumbs Navigation -->
     <div class="top-meta-bar">
@@ -410,6 +419,7 @@
         </div>
     </section>
 
+    <!-- STREAMING_CHUNK:Rendering test collection grid... -->
     <!-- 🌟 MAIN TEST COLLECTION SECTION PANEL -->
     <section class="section-glass-panel soft-glass">
         
@@ -672,7 +682,7 @@
                 
                 <div class="test-card soft-glass" data-testid="hpgkdata.hp-hrtc-conductor-previous-year-paper-2023">
                     <div class="tc-left">
-                        <div class="tc-icon"><i class="fa-solid fa-lock"></i></div>
+                        <div class="tc-icon" style="color:var(--accent);"><i class="fa-solid fa-clock-rotate-left"></i></div>
                         <div class="tc-info">
                             <h3>HRTC Conductor 2023 Official Paper</h3>
                             <div class="tc-meta">100 Qs • 120 Mins • <span class="mark-positive">+1</span></div>
@@ -691,7 +701,7 @@
 
                 <div class="test-card soft-glass" data-testid="hpgkdata.hp-hrtc-conductor-previous-year-paper-2020">
                     <div class="tc-left">
-                        <div class="tc-icon"><i class="fa-solid fa-lock"></i></div>
+                        <div class="tc-icon" style="color:var(--accent);"><i class="fa-solid fa-clock-rotate-left"></i></div>
                         <div class="tc-info">
                             <h3>HRTC Conductor 2020 Official Paper</h3>
                             <div class="tc-meta">170 Qs • 120 Mins • <span class="mark-positive">+0.5</span></div>
@@ -710,7 +720,7 @@
 
                 <div class="test-card soft-glass" data-testid="hpgkdata.hp-hrtc-conductor-previous-year-paper-2017">
                     <div class="tc-left">
-                        <div class="tc-icon"><i class="fa-solid fa-lock"></i></div>
+                        <div class="tc-icon" style="color:var(--accent);"><i class="fa-solid fa-clock-rotate-left"></i></div>
                         <div class="tc-info">
                             <h3>HRTC Conductor 2017 Official Paper</h3>
                             <div class="tc-meta">85 Qs • 90 Mins • <span class="mark-positive">+1</span></div>
@@ -729,7 +739,7 @@
 
                 <div class="test-card soft-glass" data-testid="hpgkdata.hp-hrtc-conductor-previous-year-paper-2014">
                     <div class="tc-left">
-                        <div class="tc-icon"><i class="fa-solid fa-lock"></i></div>
+                        <div class="tc-icon" style="color:var(--accent);"><i class="fa-solid fa-clock-rotate-left"></i></div>
                         <div class="tc-info">
                             <h3>HRTC Conductor 2014 Official Paper</h3>
                             <div class="tc-meta">80 Qs • 90 Mins • <span class="mark-positive">+1</span></div>
@@ -750,6 +760,7 @@
         </div>
     </section>
 
+    <!-- STREAMING_CHUNK:Rendering cross link cards section... -->
     <!-- 🌟 EXPLORE OTHER SERIES SECTION PANEL (DENSE & COMPACT) -->
     <section class="section-glass-panel soft-glass" style="padding: 12px 14px; gap: 8px;">
         <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
@@ -790,6 +801,7 @@
         </div>
     </section>
 
+    <!-- STREAMING_CHUNK:Rendering FAQ section with question numbers... -->
     <!-- 🌟 FAQ SECTION PANEL -->
     <section class="section-glass-panel soft-glass" style="padding: 12px 14px; gap: 10px;">
         <div class="section-header-box" style="border-bottom: none; padding-bottom: 0;">
@@ -829,6 +841,7 @@
 
 </main>
 
+<!-- STREAMING_CHUNK:Building authentication and upgrade modals... -->
 <!-- LOGIN AUTH MODAL -->
 <div id="authModal" class="modal-overlay">
     <div class="modal-box soft-glass">
@@ -872,6 +885,7 @@
 
 <div id="site-footer"></div>
 
+<!-- STREAMING_CHUNK:Initializing scripts and event listeners... -->
 <!-- Core Scripts -->
 <script src="../../js/core.js"></script>
 <script src="../../js/layout.js"></script>
@@ -1000,6 +1014,7 @@
     }
 </script>
 
+<!-- STREAMING_CHUNK:Connecting Firestore real-time attempt state synchronization... -->
 <!-- 🔥 Dynamic Attempt State Logic (Summary & Re-attempt) -->
 <script type="module">
     import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
