@@ -151,7 +151,7 @@
     <!-- Global CSS -->
     <link rel="stylesheet" href="../js/style.css">
 
-    <!-- STREAMING_CHUNK:Styling page layout and high contrast rules... -->
+    <!-- STREAMING_CHUNK:Applying GPU Hardware Acceleration fixes for smooth mobile scrolling... -->
     <style>
         :root {
             --site-width: 1120px;
@@ -190,6 +190,20 @@
             --text-main: #f8fafc;
             --text-body: #cbd5e1;
             --text-sec: #94a3b8;
+        }
+
+        /* 🔥 GPU Hardware Acceleration Layer Stabilization (Fixes Mobile Scroll Disappearing Content Glitch) */
+        .soft-glass, 
+        .hero-glass-card, 
+        .section-glass-panel, 
+        .series-card, 
+        .seo-block,
+        .trust-pillar-card {
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
+            will-change: transform;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
         }
 
         body { background: var(--bg-gradient); font-family: 'Inter', sans-serif; margin: 0; min-height: 100vh; display: flex; flex-direction: column; }
@@ -547,7 +561,8 @@
                 </div>
                 <p class="sc-desc">100 Questions pattern. Specialized mocks featuring First Aid, Motor Vehicle Act, IT Tools, and Core GK.</p>
                 <div class="sc-stats">
-                    <span class="sc-stat-pill"><i class="fa-solid fa-clipboard-list" style="color:var(--accent);"></i> 12 Mocks</sp             <span class="sc-stat-pill"><i class="fa-solid fa-clock-rotate-left" style="color:var(--primary);"></i> 4 PYPs</span>
+                    <span class="sc-stat-pill"><i class="fa-solid fa-clipboard-list" style="color:var(--accent);"></i> 12 Mocks</span>
+                    <span class="sc-stat-pill"><i class="fa-solid fa-clock-rotate-left" style="color:var(--primary);"></i> 4 PYPs</span>
                 </div>
                 <div class="sc-action" style="color: var(--accent);">
                     <span>Explore Series</span>
