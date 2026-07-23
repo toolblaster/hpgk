@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- STREAMING_CHUNK:Configuring metadata and viewport settings... -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="HP Police Constable Full Mock Test Series. Attempt the first mock test free. Based on latest pattern, bilingual format, and detailed analytics.">
@@ -73,13 +72,11 @@
     <!-- Global CSS -->
     <link rel="stylesheet" href="../../js/style.css">
 
-    <!-- STREAMING_CHUNK:Styling page layout with high-contrast borders and elevated shadows... -->
     <style>
         :root {
             --site-width: 1120px;
             --bg-gradient: linear-gradient(135deg, #f0f7ff 0%, #f8fafc 50%, #e0f2fe 100%);
             --card-bg: rgba(255, 255, 255, 0.88); 
-            /* 🔥 High contrast visible border to define clear section bounds */
             --card-border: rgba(148, 163, 184, 0.35);
             --input-bg: rgba(241, 245, 249, 0.85);
             --glass-shadow: 0 10px 30px -5px rgba(37, 99, 235, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.04); 
@@ -113,6 +110,21 @@
             --text-main: #f8fafc;
             --text-body: #cbd5e1;
             --text-sec: #94a3b8;
+        }
+
+        /* 🔥 GPU Hardware Acceleration Layer Stabilization (Fixes Mobile Scroll Disappearing Content Glitch) */
+        .soft-glass, 
+        .hero-glass-card, 
+        .section-glass-panel, 
+        .test-card, 
+        .trust-pillar-card,
+        .cross-link-card,
+        .faq-item {
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
+            will-change: transform;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
         }
 
         body { background: var(--bg-gradient); font-family: 'Inter', sans-serif; margin: 0; min-height: 100vh; display: flex; flex-direction: column; }
@@ -340,7 +352,6 @@
 
 <div id="site-header"></div>
 
-<!-- STREAMING_CHUNK:Rendering main header and breadcrumbs... -->
 <main>
     <!-- Top Breadcrumbs Navigation -->
     <div class="top-meta-bar">
@@ -373,7 +384,7 @@
             <div class="stat-pill"><i class="fa-solid fa-calculator"></i> 0.25 Penalty Mode</div>
         </div>
 
-        <!-- Trust Pillars -->
+        <!-- Trust Pillars (Div title used to preserve strict H1 -> H2 sequential heading order) -->
         <div class="trust-pillars">
             <div class="trust-pillar-card soft-glass">
                 <div class="trust-pillar-icon"><i class="fa-solid fa-language"></i></div>
@@ -399,7 +410,6 @@
         </div>
     </section>
 
-    <!-- STREAMING_CHUNK:Rendering test collection grid... -->
     <!-- 🌟 MAIN TEST COLLECTION SECTION PANEL -->
     <section class="section-glass-panel soft-glass">
         
@@ -798,7 +808,6 @@
         </div>
     </section>
 
-    <!-- STREAMING_CHUNK:Rendering cross link cards section... -->
     <!-- 🌟 EXPLORE OTHER SERIES SECTION PANEL (DENSE & COMPACT) -->
     <section class="section-glass-panel soft-glass" style="padding: 12px 14px; gap: 8px;">
         <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
@@ -839,7 +848,6 @@
         </div>
     </section>
 
-    <!-- STREAMING_CHUNK:Rendering FAQ section with question numbers... -->
     <!-- 🌟 FAQ SECTION PANEL -->
     <section class="section-glass-panel soft-glass" style="padding: 12px 14px; gap: 10px;">
         <div class="section-header-box" style="border-bottom: none; padding-bottom: 0;">
@@ -879,7 +887,6 @@
 
 </main>
 
-<!-- STREAMING_CHUNK:Building authentication and upgrade modals... -->
 <!-- LOGIN AUTH MODAL -->
 <div id="authModal" class="modal-overlay">
     <div class="modal-box soft-glass">
@@ -927,7 +934,6 @@
 <script src="../../js/core.js"></script>
 <script src="../../js/layout.js"></script>
 
-<!-- STREAMING_CHUNK:Initializing event listeners and auto-unlock guards... -->
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         if (typeof renderHeader === 'function') {
@@ -1052,7 +1058,6 @@
     }
 </script>
 
-<!-- STREAMING_CHUNK:Connecting Firestore real-time attempt state synchronization... -->
 <!-- 🔥 Dynamic Attempt State Logic (Summary & Re-attempt) -->
 <script type="module">
     import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
@@ -1186,5 +1191,5 @@
     };
 </script>
 
-</body
+</body>
 </html>
