@@ -151,7 +151,7 @@
     <!-- Global CSS -->
     <link rel="stylesheet" href="../js/style.css">
 
-    <!-- STREAMING_CHUNK:Applying GPU Hardware Acceleration fixes for smooth mobile scrolling... -->
+    <!-- STREAMING_CHUNK:Styling page layout with high-contrast borders and stationary hover effects... -->
     <style>
         :root {
             --site-width: 1120px;
@@ -192,16 +192,21 @@
             --text-sec: #94a3b8;
         }
 
-        /* 🔥 GPU Hardware Acceleration Layer Stabilization (Fixes Mobile Scroll Disappearing Content Glitch) */
+        /* 🔥 High-Precision Sub-Pixel Font Anti-Aliasing & Rendering Stability */
+        body, button, input, select, textarea, div, p, h1, h2, h3, h4, span, a {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+        }
+
+        /* GPU Layer Stabilization for Mobile Devices */
         .soft-glass, 
         .hero-glass-card, 
         .section-glass-panel, 
-        .series-card, 
         .seo-block,
         .trust-pillar-card {
             transform: translateZ(0);
             -webkit-transform: translateZ(0);
-            will-change: transform;
             -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
         }
@@ -302,21 +307,21 @@
             padding: 12px 14px;
             text-decoration: none; 
             color: var(--text-main); 
-            transition: all 0.2s ease;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
             display: flex; 
             flex-direction: column; 
             position: relative;
             overflow: hidden;
         }
 
+        /* 🔥 Stationary Hover Effect (Border Highlight + Glow) prevents text blurriness */
         .series-card:hover {
-            border-color: rgba(37, 99, 235, 0.5);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.1);
+            border-color: rgba(37, 99, 235, 0.6);
+            box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.15);
         }
         [data-theme="dark"] .series-card:hover { 
-            border-color: rgba(96, 165, 250, 0.5); 
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); 
+            border-color: rgba(96, 165, 250, 0.6); 
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5); 
         }
 
         .sc-header { 
@@ -474,7 +479,7 @@
             </p>
         </div>
 
-        <!-- Trust Pillars (Div title used to preserve strict H1 -> H2 sequential heading order) -->
+        <!-- Trust Pillars -->
         <div class="trust-pillars">
             <div class="trust-pillar-card soft-glass">
                 <div class="trust-pillar-icon"><i class="fa-solid fa-language"></i></div>
