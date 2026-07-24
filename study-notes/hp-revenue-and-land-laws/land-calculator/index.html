@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- STREAMING_CHUNK:Configuring metadata, SEO meta tags, and accessibility schemas... -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- SEO Meta Tags -->
     <title>HP Land Calculator & Digital Tools | Patwari Prep</title>
     <meta name="description" content="Free HP Land Calculator (Bigha to Sq Yards, Acre, Hectare), Revenue Officer Hierarchy, and 24 Digital Land Record tools for HPPSC Patwari exam preparation.">
+    <meta name="keywords" content="HP Land Calculator, Bigha to Acre, HP Patwari Tools, Himbhoomi, HP Revenue Hierarchy, Bigha Conversion, Biswa, Karam">
     
     <!-- Clean Canonical Link -->
     <link rel="canonical" href="https://hpgk.toolblaster.com/study-notes/hp-revenue-and-land-laws/land-calculator/">
@@ -163,6 +165,7 @@
     <!-- Load Global Style First (3 levels up) -->
     <link rel="stylesheet" href="../../../js/style.css">
 
+    <!-- STREAMING_CHUNK:Styling page structure, single hero badge, and responsive containers... -->
     <!-- PAGE SPECIFIC STYLESHEET -->
     <style>
         :root {
@@ -239,10 +242,10 @@
         .breadcrumb-item.active { color: var(--primary); pointer-events: none; }
         .breadcrumb-separator { font-size: 0.52rem; color: var(--text-sec); opacity: 0.6; margin: 0 2px; }
 
-        /* Hero Badge Formatted as 2 Distinct Words */
+        /* Single Hero Badge Pill */
         .hero-badge { 
             display: inline-flex; align-items: center; justify-content: center; height: 18px; 
-            background: var(--primary); color: white; padding: 0 7px; border-radius: 9px; 
+            background: var(--primary); color: white; padding: 0 8px; border-radius: 9px; 
             font-size: 0.55rem; font-weight: 800; text-transform: uppercase; margin: 0; 
             border: 1px solid var(--primary-dark); letter-spacing: 0.3px; white-space: nowrap; flex-shrink: 0; box-sizing: border-box; line-height: 1;
         }
@@ -306,6 +309,7 @@
         [data-theme="dark"] .tools-strip-btn.outline { color: #60a5fa !important; border-color: #60a5fa; }
         [data-theme="dark"] .tools-strip-btn.outline:hover { background: rgba(96, 165, 250, 0.15); color: #60a5fa !important;}
 
+        /* STREAMING_CHUNK:Configuring key indicators grid and quiz banner... */
         /* 6 KEY INDICATORS AT-A-GLANCE STRIP */
         .key-indicators-grid {
             display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 16px; width: 100%;
@@ -356,7 +360,7 @@
         .quiz-banner-left { display: flex; align-items: center; gap: 12px; }
         .quiz-banner-icon { font-size: 22px; color: #fbbf24; }
         .quiz-banner-text { display: flex; flex-direction: column; justify-content: center; }
-        .quiz-banner-text h3 { font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 800; margin: 0; color: #fff; letter-spacing: 0.2px;}
+        .quiz-banner-title { font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 800; margin: 0; color: #fff; letter-spacing: 0.2px;}
         .quiz-banner-text p { font-size: 11px; margin: 2px 0 0 0; color: rgba(255,255,255,0.85); font-family: 'Inter', sans-serif; font-weight: 500;}
         
         .quiz-btn {
@@ -366,6 +370,7 @@
         }
         .quiz-btn:hover { background: #f59e0b; color: #78350f !important; transform: translateY(-1px); box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
 
+        /* STREAMING_CHUNK:Styling interactive calculator, form elements, and card grids... */
         /* MODULE CONTAINERS & CUSTOM LAYOUT */
         .module-container {
             background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-lg);
@@ -604,8 +609,9 @@
 <div id="site-header"></div>
 
 <main class="hub-main-wrapper">
+    <!-- STREAMING_CHUNK:Rendering header meta bar with single badge pill... -->
     
-    <!-- Top Meta Bar: Breadcrumb (Left) & Hero Badge (Right) -->
+    <!-- Top Meta Bar: Breadcrumb (Left) & Single Hero Badge (Right) -->
     <div class="top-meta-bar">
         <nav aria-label="breadcrumb" class="breadcrumb-nav">
             <ol class="breadcrumb-list">
@@ -622,7 +628,8 @@
             <button onclick="window.print()" class="print-btn" title="Print or Save Page as PDF">
                 <i class="fa-solid fa-print"></i> Print / PDF
             </button>
-            <span class="hero-badge"><span class="hide-mobile">Land </span>Calculator</span>
+            <!-- Single Hero Badge Pill with Two Words -->
+            <span class="hero-badge">Land Calculator</span>
         </div>
     </div>
 
@@ -710,12 +717,12 @@
             </div>
         </div>
 
-        <!-- QUIZ BANNER (Sleek, Compact & Engaging) -->
+        <!-- QUIZ BANNER (Sleek & Sequential Heading Structure) -->
         <div class="quiz-banner">
             <div class="quiz-banner-left">
                 <i class="fa-solid fa-bolt quiz-banner-icon"></i>
                 <div class="quiz-banner-text">
-                    <h3>Revenue Mock Quiz</h3>
+                    <h2 class="quiz-banner-title">Revenue Mock Quiz</h2>
                     <p>Test Section 118, Patwari terms & Acts</p>
                 </div>
             </div>
@@ -727,6 +734,7 @@
         <!-- APP CONTENT -->
         <div id="app-content">
 
+            <!-- STREAMING_CHUNK:Rendering Module 1 with accessible input labels... -->
             <!-- MODULE 1: MEASUREMENTS -->
             <section id="measurements" class="module-container">
                 <div class="module-header">
@@ -748,9 +756,10 @@
                     <div class="calc-left">
                         <div class="calc-input-panel">
                             <div class="input-group">
-                                <label class="input-label" id="lbl-unit">Unit</label>
+                                <!-- Explicit label association using for="unit-selector" -->
+                                <label class="input-label" id="lbl-unit" for="unit-selector">Unit</label>
                                 <div class="input-wrapper">
-                                    <select id="unit-selector" onchange="convertLand()" class="calc-select">
+                                    <select id="unit-selector" name="unit-selector" onchange="convertLand()" class="calc-select">
                                         <option value="bigha" selected>Bigha</option>
                                         <option value="acre">Acre</option>
                                         <option value="hectare">Hectare</option>
@@ -764,9 +773,10 @@
                                 </div>
                             </div>
                             <div class="input-group" style="margin-bottom:0;">
-                                <label class="input-label" id="lbl-value">Value</label>
+                                <!-- Explicit label association using for="land-input" -->
+                                <label class="input-label" id="lbl-value" for="land-input">Value</label>
                                 <div class="input-wrapper">
-                                    <input type="number" id="land-input" placeholder="1" value="1" min="0" oninput="convertLand()" class="calc-input">
+                                    <input type="number" id="land-input" name="land-input" placeholder="1" value="1" min="0" oninput="convertLand()" class="calc-input">
                                 </div>
                             </div>
                         </div>
@@ -827,6 +837,7 @@
                 </div>
             </section>
 
+            <!-- STREAMING_CHUNK:Rendering Module 2: Administrative Hierarchy... -->
             <!-- MODULE 2: HIERARCHY -->
             <section id="hierarchy" class="module-container">
                 <div class="module-header">
@@ -850,6 +861,7 @@
                 <div id="hierarchy-container" class="hier-grid" style="display: none;"></div>
             </section>
 
+            <!-- STREAMING_CHUNK:Rendering Module 3: 24 Digital Land Record Tools... -->
             <!-- MODULE 3: TOOLS -->
             <section id="tools-section" class="module-container">
                 <div class="module-header">
@@ -867,6 +879,7 @@
             
         </div>
 
+        <!-- STREAMING_CHUNK:Rendering FAQ grid and interlinked bottom navigation... -->
         <!-- STATIC 2-COLUMN LAND CALCULATOR FAQ SECTION -->
         <section class="faq-section">
             <div class="section-heading-divider">
@@ -935,8 +948,8 @@
             </div>
             <div class="tools-strip-left" style="margin-bottom: 8px; justify-content: center; text-align: center;">
                 <div>
-                    <div class="tools-strip-title font-heading" style="font-size: 0.9rem; text-align: center;">Explore Interlinked Study Guides</div>
-                    <div class="tools-strip-desc font-sans" style="text-align: center;">Switch to Section 118 Masterclass, Revenue Laws Guide, or Patwari Mock Quiz</div>
+                    <h2 class="tools-strip-title font-heading" style="font-size: 0.9rem; text-align: center; margin:0;">Explore Interlinked Study Guides</h2>
+                    <div class="tools-strip-desc font-sans" style="text-align: center; margin-top:2px;">Switch to Section 118 Masterclass, Revenue Laws Guide, or Patwari Mock Quiz</div>
                 </div>
             </div>
             <div class="tools-strip-btn-group" style="justify-content: center;">
@@ -963,6 +976,7 @@
 
 <!-- Embedded JS Logic -->
 <script>
+    /* STREAMING_CHUNK:Initializing embedded dataset and calculator conversion handlers... */
     // --- EMBEDDED JSON DATA ---
     const hierarchyDataRaw = [
         { "role": "Financial Commissioner (Revenue)", "role_hi": "वित्तीय आयुक्त (राजस्व)", "desc": "Highest Revenue Authority. Ultimate appellate court for revenue cases. Equivalent to High Court for Revenue matters.", "desc_hi": "सर्वोच्च राजस्व प्राधिकारी। राजस्व मामलों के लिए अंतिम अपीलीय अदालत। राजस्व मामलों के लिए उच्च न्यायालय के बराबर।", "themeColor": "#0f766e", "rank_group": "State Head" },
@@ -1001,11 +1015,10 @@
         { "title": "e-Mutation Workflow", "title_hi": "ई-इंतकाल प्रक्रिया", "desc": "Digital mutation processing module inside Himbhoomi. Patwari submits field mutation proposals online and Assistant Collectors attest undisputed (Gair-Mutnaza) cases on spot.", "desc_hi": "हिमभूमि के भीतर डिजिटल म्यूटेशन प्रसंस्करण मॉड्यूल। पटवारी ऑनलाइन म्यूटेशन प्रस्ताव प्रस्तुत करते हैं और नायब तहसीलदार/तहसीलदार मौके पर निर्विवाद इंतकाल सत्यापित करते हैं।", "icon": "fa-solid fa-file-pen" },
         { "title": "e-Nakal QR Verifier", "title_hi": "ई-नकल क्यूआर सत्यापनकर्ता", "desc": "Security verification system for digital Jamabandi copies. Banks and judicial courts scan the embedded QR code to verify watermarked revenue records instantly.", "desc_hi": "डिजिटल जमाबंदी प्रतियों के लिए सुरक्षा सत्यापन प्रणाली। बैंक और अदालतें वॉटरमार्क वाले राजस्व रिकॉर्ड की तुरंत जांच करने के लिए एम्बेडेड क्यूआर कोड को स्कैन करते हैं।", "icon": "fa-solid fa-qrcode" },
         { "title": "e-Taqseem Tracker", "title_hi": "ई-तकसीम (विभाजन) ट्रैकर", "desc": "Dedicated online partition monitoring utility inside RCMS. Tracks contested and uncontested land partition applications under Section 123 to ensure mandatory 6-month disposal.", "desc_hi": "RCMS के भीतर विशेष भूमि विभाजन निगरानी पोर्टल। अनिवार्य 6 महीने की समय सीमा के भीतर निपटान सुनिश्चित करने के लिए धारा 123 के तहत भूमि विभाजन मामलों को ट्रैक करता है।", "icon": "fa-solid fa-diagram-successor" },
-        // 4 NEW HIGH-YIELD DIGITAL TOOLS
         { "title": "HP Geoportal (HPSAC)", "title_hi": "एचपी भू-पोर्टल (HPSAC)", "desc": "GIS-based spatial database managed by HIMCOSTE. Overlays high-resolution satellite imagery over cadastral revenue maps to verify topography and land use classification.", "desc_hi": "HIMCOSTE द्वारा प्रबंधित GIS-आधारित स्थानिक डेटाबेस। भू-भाग और भूमि उपयोग वर्गीकरण को सत्यापित करने के लिए कैडस्ट्राल राजस्व मानचित्रों पर उच्च-रिज़ॉल्यूशन उपग्रह इमेजरी ओवरले करता है।", "icon": "fa-solid fa-earth-asia" },
         { "title": "e-Stamping Portal", "title_hi": "ई-स्टाम्पिंग पोर्टल", "desc": "Digital Non-Judicial e-Stamp paper portal operated by SHCIL & Revenue Dept. Eliminates fake physical stamp papers for legal land sale deeds, leases, and agreements.", "desc_hi": "SHCIL और राजस्व विभाग द्वारा संचालित डिजिटल गैर-न्यायिक ई-स्टाम्प पेपर पोर्टल। कानूनी भूमि बिक्री विलेख, पट्टे और समझौतों के लिए नकली भौतिक स्टाम्प पेपर को समाप्त करता है।", "icon": "fa-solid fa-stamp" },
         { "title": "HPSIDC Land Bank", "title_hi": "एचपीएसआईडीसी लैंड बैंक", "desc": "Digitized repository of government and private land parcels allocated for industrial development, BBN corridor, and HIMUDA housing projects under Section 118.", "desc_hi": "धारा 118 के तहत औद्योगिक विकास, BBN कॉरिडोर और हिमुडा आवास परियोजनाओं के लिए आवंटित सरकारी और निजी भूमि भूखंडों का डिजिटल भंडार।", "icon": "fa-solid fa-landmark-flag" },
-        { "title": "e-FCA Clearances", "title_hi": "ई-एफसीए (वन क्लीयरेंस)", "desc": "Online forest land diversion portal. Crucial for revenue officers to verify non-forest land status and check demarcated forest boundaries during land transfers.", "desc_hi": "ऑनलाइन वन भूमि डायवर्जन पोर्टल। भूमि हस्तांतरण के दौरान गैर-वन भूमि की स्थिति और सीमांकित वन सीमाओं की जांच करने के लिए राजस्व अधिकारियों के लिए महत्वपूर्ण।", "icon": "fa-solid fa-tree" }
+        { "title": "e-FCA Clearances", "title_hi": "ई-एफसीए (वन क्लीयरेंस)", "desc": "Online forest land diversion portal. Crucial for revenue officers to verify non-forest land status and check demarcated forest boundaries during land transfers.", "desc_hi": "ऑनलाइन वन भूमि डायवर्जन पोर्टल। भूमि हस्तांतरण के दौरान गैर-वन भूमि की स्थिति और सीमांकन की गई वन सीमाओं की जांच करने के लिए राजस्व अधिकारियों के लिए महत्वपूर्ण।", "icon": "fa-solid fa-tree" }
     ];
 
     let hierarchyData = hierarchyDataRaw;
