@@ -3,6 +3,7 @@
  * HPGK MOCK TEST ENGINE (TCS/NTA Style Master Logic - SECURE STORAGE EDITION)
  * Includes Score Calculation, Detailed Analytics & Firebase DB Sync
  * Compact UI Updates, Production Paywall Fixes, Custom Watermark & Summary Mode
+ * UPDATED: Strict Timestamp Pass Expiration Validation via HPGK_IsPassValid
  * --------------------------------------------------------------------------
  */
 
@@ -163,24 +164,31 @@ const engine = (function() {
             const userName = user.displayName || user.name || user.email || 'Candidate';
             const userPhoto = user.photoURL || user.picture || user.avatar || null;
 
-            document.getElementById('ui-user-name').innerText = userName;
+            if (document.getElementById('ui-user-name')) {
+                document.getElementById('ui-user-name').innerText = userName;
+            }
 
             const avatarImg = document.getElementById('ui-user-avatar');
-            if (userPhoto) {
-                avatarImg.src = userPhoto;
-                avatarImg.onerror = function() {
-                    this.src = 'https://ui-avatars.com/api/?name=' + encodeURIComponent(userName) + '&background=cbd5e1';
-                };
-            } else {
-                avatarImg.src = 'https://ui-avatars.com/api/?name=' + encodeURIComponent(userName) + '&background=cbd5e1';
+            if (avatarImg) {
+                if (userPhoto) {
+                    avatarImg.src = userPhoto;
+                    avatarImg.onerror = function() {
+                        this.src = 'https://ui-avatars.com/api/?name=' + encodeURIComponent(userName) + '&background=cbd5e1';
+                    };
+                } else {
+                    avatarImg.src = 'https://ui-avatars.com/api/?name=' + encodeURIComponent(userName) + '&background=cbd5e1';
+                }
             }
 
             const isFree = testParam.endsWith('-1'); 
             
+            // Helper to strictly validate timestamp expiration
+            const checkPass = window.HPGK_IsPassValid || (p => !!p);
+
             const hasPass = user.passes && (
-                user.passes['mock_master_pass'] || 
-                user.passes['vip_lifetime_pass'] || 
-                user.passes['mega_combo_pass']
+                checkPass(user.passes['mock_master_pass']) || 
+                checkPass(user.passes['vip_lifetime_pass']) || 
+                checkPass(user.passes['mega_combo_pass'])
             );
             
             if (!isFree && !hasPass) {
@@ -292,7 +300,6 @@ const engine = (function() {
             const app = getApp();
             const auth = getAuth(app);
             
-            // 1. Ensure Firebase Auth token is actively bound to session if user logged in
             if (auth.currentUser === null) {
                 await new Promise(res => {
                     const unsub = auth.onAuthStateChanged(u => {
@@ -303,14 +310,12 @@ const engine = (function() {
                 });
             }
 
-            // 2. Target bucket reference explicitly
             const storage = getStorage(app, "gs://hpgk-quiz.firebasestorage.app");
             
             const cleanTestId = state.testId.endsWith('.json') ? state.testId : `${state.testId}.json`;
             const filePath = `premium_mocks/${state.exam}/${cleanTestId}`;
             const fileRef = ref(storage, filePath);
 
-            // 3. Fetch Authorized Download URL
             let downloadUrl;
             try {
                 downloadUrl = await getDownloadURL(fileRef);
@@ -318,7 +323,6 @@ const engine = (function() {
                 throw new Error(`Firebase Storage Error [${storageErr.code || 'UNKNOWN'}]: ${storageErr.message || storageErr} (Path: ${filePath})`);
             }
             
-            // 4. Download and parse JSON payload
             let response;
             try {
                 response = await fetch(downloadUrl);
@@ -361,7 +365,7 @@ const engine = (function() {
             state.totalDurationMinutes = data.durationMinutes || 120; 
             state.timeLeftSeconds = state.totalDurationMinutes * 60;
 
-            DOM.title.innerText = data.testTitle || "Mock Test";
+            if (DOM.title) DOM.title.innerText = data.testTitle || "Mock Test";
             
             buildInstructionsTable(state.totalDurationMinutes, totalMarks, data.customInstructions);
 
@@ -384,14 +388,18 @@ const engine = (function() {
                 showResultPanelDirectly(); 
             } else {
                 DOM.blocker.style.display = 'none';
-                DOM.instPanel.style.display = 'flex'; 
+                if (DOM.instPanel) DOM.instPanel.style.display = 'flex'; 
             }
 
-            DOM.instAgree.addEventListener('change', (e) => {
-                DOM.btnStart.disabled = !e.target.checked;
-                DOM.btnStart.style.opacity = e.target.checked ? '1' : '0.5';
-                DOM.btnStart.style.cursor = e.target.checked ? 'pointer' : 'not-allowed';
-            });
+            if (DOM.instAgree) {
+                DOM.instAgree.addEventListener('change', (e) => {
+                    if (DOM.btnStart) {
+                        DOM.btnStart.disabled = !e.target.checked;
+                        DOM.btnStart.style.opacity = e.target.checked ? '1' : '0.5';
+                        DOM.btnStart.style.cursor = e.target.checked ? 'pointer' : 'not-allowed';
+                    }
+                });
+            }
 
         } catch (error) {
             console.error("Secure Storage Fetch Error:", error);
@@ -403,21 +411,25 @@ const engine = (function() {
     function handleInstLanguageChange(val) {
         if (val) {
             state.language = val;
-            DOM.instAgree.disabled = false; 
+            if (DOM.instAgree) DOM.instAgree.disabled = false; 
         } else {
-            DOM.instAgree.disabled = true;
-            DOM.instAgree.checked = false;
-            DOM.btnStart.disabled = true;
-            DOM.btnStart.style.opacity = '0.5';
+            if (DOM.instAgree) {
+                DOM.instAgree.disabled = true;
+                DOM.instAgree.checked = false;
+            }
+            if (DOM.btnStart) {
+                DOM.btnStart.disabled = true;
+                DOM.btnStart.style.opacity = '0.5';
+            }
         }
     }
 
     function buildInstructionsTable(duration, totalMarks, customInstructions) {
-        document.getElementById('inst-duration').innerText = duration;
-        document.getElementById('inst-time-text').innerText = duration + " minutes";
-        document.getElementById('inst-total-qs').innerText = state.questions.length;
-        document.getElementById('inst-qs-text').innerText = state.questions.length + " questions";
-        document.getElementById('inst-max-marks').innerText = totalMarks;
+        if (document.getElementById('inst-duration')) document.getElementById('inst-duration').innerText = duration;
+        if (document.getElementById('inst-time-text')) document.getElementById('inst-time-text').innerText = duration + " minutes";
+        if (document.getElementById('inst-total-qs')) document.getElementById('inst-total-qs').innerText = state.questions.length;
+        if (document.getElementById('inst-qs-text')) document.getElementById('inst-qs-text').innerText = state.questions.length + " questions";
+        if (document.getElementById('inst-max-marks')) document.getElementById('inst-max-marks').innerText = totalMarks;
 
         let tbodyHTML = '';
         state.sections.forEach((sec, idx) => {
@@ -439,7 +451,7 @@ const engine = (function() {
                 <td>${totalMarks}</td>
             </tr>
         `;
-        document.getElementById('inst-table-body').innerHTML = tbodyHTML;
+        if (document.getElementById('inst-table-body')) document.getElementById('inst-table-body').innerHTML = tbodyHTML;
 
         if (customInstructions && customInstructions.length > 0) {
             const listContainer = document.getElementById('inst-general-list');
@@ -450,14 +462,17 @@ const engine = (function() {
             }
         }
 
-        document.getElementById('mid-test-inst-clone').innerHTML = ''; 
-        const cloneContent = document.querySelector('.inst-content').cloneNode(true);
-        document.getElementById('mid-test-inst-clone').appendChild(cloneContent);
+        const cloneTarget = document.getElementById('mid-test-inst-clone');
+        if (cloneTarget) {
+            cloneTarget.innerHTML = ''; 
+            const cloneContent = document.querySelector('.inst-content');
+            if (cloneContent) cloneTarget.appendChild(cloneContent.cloneNode(true));
+        }
     }
 
     function renderSectionsUI() {
         if (state.sections.length <= 1) {
-            DOM.sectionsBar.style.display = 'none';
+            if (DOM.sectionsBar) DOM.sectionsBar.style.display = 'none';
             return;
         }
         
@@ -471,10 +486,10 @@ const engine = (function() {
                 </button>
             `;
         });
-        DOM.sectionsBar.innerHTML = html;
+        if (DOM.sectionsBar) DOM.sectionsBar.innerHTML = html;
         
         const currentSec = state.sections.find(s => state.currentIndex >= s.startIdx && state.currentIndex <= s.endIdx);
-        if (currentSec) DOM.paletteTitle.innerText = currentSec.name;
+        if (currentSec && DOM.paletteTitle) DOM.paletteTitle.innerText = currentSec.name;
     }
 
     function showSectionStats(event, secIdx) {
@@ -491,31 +506,35 @@ const engine = (function() {
             else notVis++;
         }
 
-        document.getElementById('tt-sec-name').innerText = sec.name;
-        document.getElementById('tt-ans').innerText = ans;
-        document.getElementById('tt-not-ans').innerText = notAns;
-        document.getElementById('tt-rev').innerText = rev;
-        document.getElementById('tt-rev-ans').innerText = revAns;
-        document.getElementById('tt-not-vis').innerText = notVis;
+        if (document.getElementById('tt-sec-name')) document.getElementById('tt-sec-name').innerText = sec.name;
+        if (document.getElementById('tt-ans')) document.getElementById('tt-ans').innerText = ans;
+        if (document.getElementById('tt-not-ans')) document.getElementById('tt-not-ans').innerText = notAns;
+        if (document.getElementById('tt-rev')) document.getElementById('tt-rev').innerText = rev;
+        if (document.getElementById('tt-rev-ans')) document.getElementById('tt-rev-ans').innerText = revAns;
+        if (document.getElementById('tt-not-vis')) document.getElementById('tt-not-vis').innerText = notVis;
 
         const rect = event.target.getBoundingClientRect();
-        DOM.sectionTooltip.style.display = 'flex';
-        DOM.sectionTooltip.style.top = (rect.bottom + 10) + 'px';
-        
-        let leftPos = rect.left;
-        if (leftPos + 240 > window.innerWidth) {
-            leftPos = window.innerWidth - 250;
+        if (DOM.sectionTooltip) {
+            DOM.sectionTooltip.style.display = 'flex';
+            DOM.sectionTooltip.style.top = (rect.bottom + 10) + 'px';
+            
+            let leftPos = rect.left;
+            if (leftPos + 240 > window.innerWidth) {
+                leftPos = window.innerWidth - 250;
+            }
+            DOM.sectionTooltip.style.left = leftPos + 'px';
         }
-        DOM.sectionTooltip.style.left = leftPos + 'px';
     }
 
     function startExam() {
-        DOM.instPanel.style.display = 'none';
+        if (DOM.instPanel) DOM.instPanel.style.display = 'none';
         
         if (state.language === 'en') {
-            DOM.btnLangEn.classList.add('active'); DOM.btnLangHi.classList.remove('active');
+            if (DOM.btnLangEn) DOM.btnLangEn.classList.add('active'); 
+            if (DOM.btnLangHi) DOM.btnLangHi.classList.remove('active');
         } else {
-            DOM.btnLangHi.classList.add('active'); DOM.btnLangEn.classList.remove('active');
+            if (DOM.btnLangHi) DOM.btnLangHi.classList.add('active'); 
+            if (DOM.btnLangEn) DOM.btnLangEn.classList.remove('active');
         }
 
         startTimer();
@@ -526,17 +545,19 @@ const engine = (function() {
 
     function toggleMidTestInstructions() {
         const modal = DOM.midTestModal;
-        modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
+        if (modal) modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
     }
 
     function toggleRightPanel() {
         state.isPanelHidden = !state.isPanelHidden;
-        if (state.isPanelHidden) {
-            DOM.rightPanel.classList.add('collapsed');
-            DOM.panelArrow.classList.replace('fa-chevron-left', 'fa-chevron-right');
-        } else {
-            DOM.rightPanel.classList.remove('collapsed');
-            DOM.panelArrow.classList.replace('fa-chevron-right', 'fa-chevron-left');
+        if (DOM.rightPanel) {
+            if (state.isPanelHidden) {
+                DOM.rightPanel.classList.add('collapsed');
+                if (DOM.panelArrow) DOM.panelArrow.classList.replace('fa-chevron-left', 'fa-chevron-right');
+            } else {
+                DOM.rightPanel.classList.remove('collapsed');
+                if (DOM.panelArrow) DOM.panelArrow.classList.replace('fa-chevron-right', 'fa-chevron-left');
+            }
         }
     }
 
@@ -552,16 +573,18 @@ const engine = (function() {
             const h = Math.floor(state.timeLeftSeconds / 3600).toString().padStart(2, '0');
             const m = Math.floor((state.timeLeftSeconds % 3600) / 60).toString().padStart(2, '0');
             const s = (state.timeLeftSeconds % 60).toString().padStart(2, '0');
-            DOM.timer.innerText = `${h}:${m}:${s}`;
+            if (DOM.timer) DOM.timer.innerText = `${h}:${m}:${s}`;
         }, 1000);
     }
 
     function changeLanguage(lang) {
         state.language = lang;
         if (lang === 'en') {
-            DOM.btnLangEn.classList.add('active'); DOM.btnLangHi.classList.remove('active');
+            if (DOM.btnLangEn) DOM.btnLangEn.classList.add('active'); 
+            if (DOM.btnLangHi) DOM.btnLangHi.classList.remove('active');
         } else {
-            DOM.btnLangHi.classList.add('active'); DOM.btnLangEn.classList.remove('active');
+            if (DOM.btnLangHi) DOM.btnLangHi.classList.add('active'); 
+            if (DOM.btnLangEn) DOM.btnLangEn.classList.remove('active');
         }
         goToQuestion(state.currentIndex); 
     }
@@ -579,7 +602,7 @@ const engine = (function() {
 
         if (res.status === 'not-visited') res.status = 'not-answered';
 
-        DOM.qNum.innerText = `Question No. ${index + 1}`;
+        if (DOM.qNum) DOM.qNum.innerText = `Question No. ${index + 1}`;
         
         let optionsHtml = q.options.map((opt, i) => {
             const isChecked = res.selected === i ? 'checked' : '';
@@ -594,10 +617,12 @@ const engine = (function() {
         const questionText = state.language === 'hi' && q.questionHi ? q.questionHi : q.questionEn;
         const fontClass = state.language === 'hi' ? "font-family: 'Noto Sans Devanagari', sans-serif;" : "";
 
-        DOM.qContent.innerHTML = `
-            <div id="ui-q-text-container" style="margin-bottom: 20px; font-weight: 600; line-height: 1.6; position:relative; z-index:2; ${fontClass}">${questionText}</div>
-            <div>${optionsHtml}</div>
-        `;
+        if (DOM.qContent) {
+            DOM.qContent.innerHTML = `
+                <div id="ui-q-text-container" style="margin-bottom: 20px; font-weight: 600; line-height: 1.6; position:relative; z-index:2; ${fontClass}">${questionText}</div>
+                <div>${optionsHtml}</div>
+            `;
+        }
 
         adjustFontSize(0); 
         renderSectionsUI();
@@ -612,10 +637,12 @@ const engine = (function() {
         const qText = document.getElementById('ui-q-text-container');
         if (qText) qText.style.fontSize = state.fontSize + 'px';
         
-        const options = DOM.qContent.querySelectorAll('.option-label');
-        options.forEach(opt => {
-            opt.style.fontSize = (state.fontSize - 1) + 'px'; 
-        });
+        if (DOM.qContent) {
+            const options = DOM.qContent.querySelectorAll('.option-label');
+            options.forEach(opt => {
+                opt.style.fontSize = (state.fontSize - 1) + 'px'; 
+            });
+        }
     }
 
     function renderPalette() {
@@ -637,7 +664,7 @@ const engine = (function() {
             html += `<div class="q-bubble ${cssClass}" style="${isCurrent}" onclick="engine.jumpTo(${i})">${i + 1}</div>`;
         });
 
-        DOM.palette.innerHTML = html;
+        if (DOM.palette) DOM.palette.innerHTML = html;
 
         if (DOM.legAns) DOM.legAns.innerText = ans;
         if (DOM.legNotAns) DOM.legNotAns.innerText = notAns;
@@ -688,7 +715,8 @@ const engine = (function() {
     function jumpTo(idx) {
         goToQuestion(idx);
         if (window.innerWidth <= 800) {
-            document.getElementById('right-panel').classList.remove('open');
+            const rp = document.getElementById('right-panel');
+            if (rp) rp.classList.remove('open');
         }
     }
 
@@ -708,20 +736,21 @@ const engine = (function() {
             else if (s === 'not-visited') notVisited++;
         });
 
-        DOM.sumAnswered.innerText = answered;
-        DOM.sumNotAnswered.innerText = notAnswered;
-        DOM.sumReview.innerText = review;
-        DOM.sumReviewAns.innerText = reviewAns;
-        DOM.sumNotVisited.innerText = notVisited;
+        if (DOM.sumAnswered) DOM.sumAnswered.innerText = answered;
+        if (DOM.sumNotAnswered) DOM.sumNotAnswered.innerText = notAnswered;
+        if (DOM.sumReview) DOM.sumReview.innerText = review;
+        if (DOM.sumReviewAns) DOM.sumReviewAns.innerText = reviewAns;
+        if (DOM.sumNotVisited) DOM.sumNotVisited.innerText = notVisited;
 
-        DOM.summaryPanel.style.display = 'flex';
+        if (DOM.summaryPanel) DOM.summaryPanel.style.display = 'flex';
         if (window.innerWidth <= 800) {
-            document.getElementById('right-panel').classList.remove('open');
+            const rp = document.getElementById('right-panel');
+            if (rp) rp.classList.remove('open');
         }
     }
 
     function resumeTest() {
-        DOM.summaryPanel.style.display = 'none';
+        if (DOM.summaryPanel) DOM.summaryPanel.style.display = 'none';
     }
 
     function generateSubjectSummaryHtml() {
@@ -865,52 +894,56 @@ const engine = (function() {
     }
 
     function renderFinalResultUI(finalScore, totalQs, accuracy, timeTakenStr, correct, wrong, unattempted) {
-        DOM.resScoreVal.innerText = finalScore + ' / ' + totalQs;
-        DOM.resAccVal.innerText = accuracy + '%';
-        DOM.resTimeVal.innerText = timeTakenStr;
-        DOM.resCorrVal.innerText = correct;
-        DOM.resWrongVal.innerText = wrong;
-        DOM.resSkipVal.innerText = unattempted;
+        if (DOM.resScoreVal) DOM.resScoreVal.innerText = finalScore + ' / ' + totalQs;
+        if (DOM.resAccVal) DOM.resAccVal.innerText = accuracy + '%';
+        if (DOM.resTimeVal) DOM.resTimeVal.innerText = timeTakenStr;
+        if (DOM.resCorrVal) DOM.resCorrVal.innerText = correct;
+        if (DOM.resWrongVal) DOM.resWrongVal.innerText = wrong;
+        if (DOM.resSkipVal) DOM.resSkipVal.innerText = unattempted;
 
         injectAdvancedResultStyles();
 
-        const headings = DOM.resultPanel.querySelectorAll('h2, h3, h4');
-        headings.forEach(h => {
-            if (h.innerText.toLowerCase().includes('detailed')) {
-                h.style.display = 'none';
-            }
-        });
+        if (DOM.resultPanel) {
+            const headings = DOM.resultPanel.querySelectorAll('h2, h3, h4');
+            headings.forEach(h => {
+                if (h.innerText.toLowerCase().includes('detailed')) {
+                    h.style.display = 'none';
+                }
+            });
+        }
 
         const detailsHtml = getDetailsHtml();
         const summaryHtml = generateSubjectSummaryHtml();
 
-        DOM.resDetailedList.innerHTML = `
-            <div class="advanced-results-container">
-                <div class="advanced-results-left">
-                    <h3 style="font-size: 1.4rem; color: var(--text-main); margin: 0 0 15px 0; font-weight: 900; letter-spacing: -0.5px;">Detailed Solutions</h3>
-                    <div class="solutions-grid">
-                        ${detailsHtml}
+        if (DOM.resDetailedList) {
+            DOM.resDetailedList.innerHTML = `
+                <div class="advanced-results-container">
+                    <div class="advanced-results-left">
+                        <h3 style="font-size: 1.4rem; color: var(--text-main); margin: 0 0 15px 0; font-weight: 900; letter-spacing: -0.5px;">Detailed Solutions</h3>
+                        <div class="solutions-grid">
+                            ${detailsHtml}
+                        </div>
                     </div>
+                    ${summaryHtml ? `
+                    <div class="advanced-results-right">
+                        ${summaryHtml}
+                    </div>
+                    ` : ''}
                 </div>
-                ${summaryHtml ? `
-                <div class="advanced-results-right">
-                    ${summaryHtml}
-                </div>
-                ` : ''}
-            </div>
-        `;
+            `;
+        }
         
-        DOM.resultPanel.style.display = 'flex';
+        if (DOM.resultPanel) DOM.resultPanel.style.display = 'flex';
         attachReattemptListeners();
     }
 
     async function finalSubmit() {
         clearInterval(state.timerInterval);
 
-        DOM.summaryPanel.style.display = 'none';
-        DOM.secTitle.innerText = "Calculating Score...";
-        DOM.secDesc.innerText = "Saving result securely to the cloud. Please don't refresh.";
-        DOM.blocker.style.display = 'flex';
+        if (DOM.summaryPanel) DOM.summaryPanel.style.display = 'none';
+        if (DOM.secTitle) DOM.secTitle.innerText = "Calculating Score...";
+        if (DOM.secDesc) DOM.secDesc.innerText = "Saving result securely to the cloud. Please don't refresh.";
+        if (DOM.blocker) DOM.blocker.style.display = 'flex';
         
         let correct = 0, wrong = 0, unattempted = 0;
         let penaltyTextStr = DOM.penaltyText ? DOM.penaltyText.innerText : "0.25";
@@ -967,7 +1000,7 @@ const engine = (function() {
             console.error("Firebase Sync Error:", e);
         }
 
-        DOM.blocker.style.display = 'none';
+        if (DOM.blocker) DOM.blocker.style.display = 'none';
         renderFinalResultUI(finalScore, totalQs, accuracy, timeTakenStr, correct, wrong, unattempted);
     }
 
