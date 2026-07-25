@@ -76,7 +76,7 @@
     <!-- Global CSS (3 levels up) -->
     <link rel="stylesheet" href="../../../js/style.css">
 
-    <!-- PAGE SPECIFIC STYLESHEET (Uniform Smooth Glassmorphism - Agriculture Theme) -->
+    <!-- PAGE SPECIFIC STYLESHEET (Green Agriculture Theme) -->
     <style>
         :root {
             --site-width: 1100px;
@@ -89,10 +89,9 @@
             
             --bg-gradient: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 50%, #eff6ff 100%);
             
-            /* Uniform Card Backgrounds matching standard pages */
-            --card-bg: rgba(255, 255, 255, 0.65); 
-            --card-border: rgba(255, 255, 255, 0.5); 
-            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+            --card-bg: rgba(255, 255, 255, 0.85); 
+            --card-border: rgba(148, 163, 184, 0.4); 
+            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
             
             --text-main: #0f172a;     
             --text-body: #334155;     
@@ -111,8 +110,7 @@
             
             --bg-gradient: linear-gradient(135deg, #022c22 0%, #064e3b 50%, #0f172a 100%);
             
-            /* Uniform Dark Card Backgrounds */
-            --card-bg: rgba(30, 41, 59, 0.5); 
+            --card-bg: rgba(30, 41, 59, 0.7); 
             --card-border: rgba(255, 255, 255, 0.08); 
             --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
             
@@ -134,80 +132,57 @@
         .font-heading { font-family: 'Poppins', sans-serif; }
         .font-hindi { font-family: 'Noto Sans Devanagari', sans-serif; }
 
-        /* Hub Wrapper Overrides */
         .hub-main-wrapper { flex: 1; width: 100%; padding: 15px 0 40px 0 !important; box-sizing: border-box; }
         .page-layout, .top-meta-bar { width: 100%; max-width: var(--site-width); margin: 0 auto; padding: 0 15px; box-sizing: border-box; display: block !important; }
         @media (max-width: 480px) { .page-layout, .top-meta-bar { padding: 0 12px !important; } }
 
-        /* Top Bar & Breadcrumbs - Exact Uniform Spacing */
         .top-meta-bar { display: flex !important; justify-content: space-between; align-items: center; margin: 0 auto 5px auto; flex-wrap: nowrap; gap: 10px; }
-        .breadcrumb-nav { margin: 0; flex-shrink: 1; display: flex; align-items: center; height: 24px; overflow-x: auto; scrollbar-width: none;}
+        .top-meta-right { display: flex; align-items: center; gap: 8px; }
+
+        .breadcrumb-nav { margin: 0; flex-shrink: 1; display: flex; align-items: center; height: 20px; overflow-x: auto; scrollbar-width: none;}
         .breadcrumb-nav::-webkit-scrollbar { display: none; }
         
         .breadcrumb-list { 
-            list-style: none; padding: 0 10px; margin: 0; display: flex; flex-wrap: nowrap; 
-            align-items: center; gap: 4px; background: var(--card-bg); border-radius: 12px; 
-            border: 1px solid var(--card-border); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); 
+            list-style: none; padding: 0 8px; margin: 0; display: flex; flex-wrap: nowrap; 
+            align-items: center; gap: 4px; background: rgba(255, 255, 255, 0.35); border-radius: 10px; 
+            border: 1px solid var(--card-border); backdrop-filter: blur(8px); 
             box-shadow: 0 1px 2px rgba(0,0,0,0.05); height: 100%; box-sizing: border-box;
         }
-        [data-theme="dark"] .breadcrumb-list { box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
-        .breadcrumb-item { font-size: 0.6rem; font-weight: 600; color: var(--text-sec); display: flex; align-items: center; white-space: nowrap; height: 100%; }
+        [data-theme="dark"] .breadcrumb-list { background: rgba(30, 41, 59, 0.4); box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
+        .breadcrumb-item { font-size: 0.58rem; font-weight: 600; color: var(--text-sec); display: flex; align-items: center; white-space: nowrap; height: 100%; }
         .breadcrumb-item a { color: var(--text-sec); text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 4px; }
         .breadcrumb-item a:hover { color: var(--primary); }
         .breadcrumb-item.active { color: var(--primary); pointer-events: none; }
-        .breadcrumb-separator { font-size: 0.55rem; color: var(--text-sec); opacity: 0.6; margin: 0 2px; }
+        .breadcrumb-separator { font-size: 0.52rem; color: var(--text-sec); opacity: 0.6; margin: 0 2px; }
 
         .hero-badge { 
-            display: inline-flex; align-items: center; justify-content: center; height: 24px; 
-            background: var(--primary-light); color: var(--primary); padding: 0 10px; 
-            border-radius: 12px; font-size: 0.6rem; font-weight: 800; text-transform: uppercase; 
-            margin: 0; border: 1px solid var(--primary); letter-spacing: 0.5px; white-space: nowrap; 
-            flex-shrink: 0; box-sizing: border-box;
+            display: inline-flex; align-items: center; justify-content: center; height: 18px; 
+            background: var(--primary); color: white; padding: 0 8px; border-radius: 9px; 
+            font-size: 0.55rem; font-weight: 800; text-transform: uppercase; margin: 0; 
+            border: 1px solid var(--primary-dark); letter-spacing: 0.3px; white-space: nowrap; flex-shrink: 0; box-sizing: border-box; line-height: 1;
         }
 
-        /* Compact Hero Section (Uniform with other pages) */
-        .page-header-top { 
-            text-align: center; 
-            margin-bottom: 25px; 
-            margin-top: 0; 
-            padding-top: 0; 
-            width: 100%; 
+        .print-btn {
+            display: inline-flex; align-items: center; gap: 5px; height: 20px;
+            background: var(--card-bg); color: var(--text-sec); border: 1px solid var(--card-border);
+            padding: 0 8px; border-radius: 10px; font-size: 0.58rem; font-weight: 700;
+            cursor: pointer; transition: all 0.2s ease; box-sizing: border-box; white-space: nowrap;
         }
+        .print-btn:hover { color: var(--primary); border-color: var(--primary); background: var(--primary-light); }
+
+        .page-header-top { text-align: center; margin-bottom: 25px; margin-top: 0; padding-top: 0; width: 100%; }
         
         .hero-title { 
-            margin: 0 0 8px 0; 
-            letter-spacing: -0.8px; 
-            background: linear-gradient(135deg, var(--text-main) 0%, var(--primary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            color: var(--primary); 
-            font-size: 32px;
-            font-weight: 800;
-            line-height: 1.2;
+            margin: 0 0 8px 0; letter-spacing: -0.8px; background: linear-gradient(135deg, var(--text-main) 0%, var(--primary) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            color: var(--primary); font-size: 32px; font-weight: 800; line-height: 1.2;
         }
 
-        /* EXACTLY 14px as requested */
-        .hero-desc { 
-            font-size: 14px !important; 
-            color: var(--text-sec); 
-            line-height: 1.6; 
-            margin: 0 auto; 
-            max-width: 700px; 
-            font-weight: 500;
-        }
-        
-        .hero-desc span.hi-desc { 
-            font-family: 'Noto Sans Devanagari', sans-serif; 
-            font-size: 0.85rem; 
-            color: var(--text-sec); 
-            display: block; 
-            margin-top: 4px; 
-            font-weight: 500;
-        }
+        .hero-desc { font-size: 14px !important; color: var(--text-sec); line-height: 1.6; margin: 0 auto; max-width: 700px; font-weight: 500; }
+        .hero-desc span.hi-desc { font-family: 'Noto Sans Devanagari', sans-serif; font-size: 0.85rem; color: var(--text-sec); display: block; margin-top: 4px; font-weight: 500; }
         [data-theme="dark"] .hero-desc span.hi-desc { color: #e2e8f0; }
 
-        /* HIGH-CONTRAST INTERLINKING PILL */
+        /* HIGH-CONTRAST INTERLINKING PILL (EXACTLY 3 LINKS) */
         .hero-interlinks {
             display: inline-flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px;
             margin-top: 15px; padding: 10px 20px; background: var(--card-bg); border: 1px solid var(--card-border);
@@ -216,118 +191,103 @@
         [data-theme="dark"] .hero-interlinks { background: #1e293b; border-color: #334155; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
         .hero-interlinks .interlink-label { font-size: 0.8rem; font-weight: 800; color: var(--text-sec); text-transform: uppercase; letter-spacing: 0.5px; }
         .hero-interlinks .interlink-label i { color: var(--primary); margin-right: 4px; }
-        .hero-interlinks a { font-size: 0.9rem; font-weight: 700; color: var(--primary-dark); text-decoration: none; transition: all 0.2s ease; }
-        .hero-interlinks a:hover { color: var(--primary); text-decoration: underline; }
+        .hero-interlinks a { font-size: 0.9rem; font-weight: 700; color: #16a34a; text-decoration: none; transition: all 0.2s ease; }
+        .hero-interlinks a:hover { color: #15803d; text-decoration: underline; }
         [data-theme="dark"] .hero-interlinks a { color: #4ade80; }
         [data-theme="dark"] .hero-interlinks a:hover { color: #22c55e; }
         .hero-interlinks .dot { color: var(--text-sec); font-size: 0.8rem; opacity: 0.6; }
 
         /* GREEN TOOLS STRIP */
         .tools-strip {
-            margin-top: 25px; background: rgba(22, 163, 74, 0.1); border: 1px solid rgba(22, 163, 74, 0.3);
-            border-radius: var(--radius-lg); padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;
-            max-width: 800px; margin-left: auto; margin-right: auto; transition: all 0.3s ease;
+            margin-top: 20px; background: rgba(22, 163, 74, 0.08); border: 1px solid rgba(22, 163, 74, 0.3);
+            border-radius: var(--radius-lg); padding: 8px 14px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;
+            width: 100%; transition: all 0.3s ease; box-sizing: border-box;
         }
         .tools-strip:hover { border-color: var(--primary); box-shadow: 0 4px 12px rgba(22, 163, 74, 0.15); }
         .tools-strip-left { display: flex; align-items: center; gap: 12px; flex: 1 1 auto; min-width: 260px; }
-        .tools-strip-icon {
-            width: 40px; height: 40px; background: rgba(22, 163, 74, 0.2); color: var(--primary-hover);
-            border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;
-        }
-        [data-theme="dark"] .tools-strip-icon { color: var(--primary); background: rgba(74, 222, 128, 0.2); }
         .tools-strip-title { font-weight: 800; color: var(--text-main); font-size: 0.95rem; text-align: left; font-family: 'Inter', sans-serif;}
-        .tools-strip-desc { font-size: 0.75rem; color: var(--text-sec); margin-top: 2px; text-align: left; font-weight: 500; font-family: 'Inter', sans-serif;}
+        .tools-strip-desc { font-size: 0.75rem; color: var(--text-sec); margin-top: 2px; text-align: left; font-weight: 500;}
         .tools-strip-btn-group { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; justify-content: flex-end;}
         
         .tools-strip-btn {
-            background: var(--primary); color: white !important; padding: 6px 14px; border-radius: 6px;
+            background: #16a34a; color: white !important; padding: 5px 12px; border-radius: 6px;
             font-size: 12px; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 5px;
-            transition: background 0.2s; white-space: nowrap; letter-spacing: 0.2px;
+            transition: all 0.2s; white-space: nowrap; letter-spacing: 0.2px;
         }
-        .tools-strip-btn:hover { background: var(--primary-hover); }
-        [data-theme="dark"] .tools-strip-btn { background: var(--primary-hover); color: white !important; }
-        [data-theme="dark"] .tools-strip-btn:hover { background: var(--primary); }
+        .tools-strip-btn:hover { background: #15803d; }
+        [data-theme="dark"] .tools-strip-btn { background: #22c55e; }
+        [data-theme="dark"] .tools-strip-btn:hover { background: #16a34a; }
         
         .tools-strip-btn.outline {
-            background: transparent; color: var(--primary) !important; border: 1px solid var(--primary);
+            background: transparent; color: #16a34a !important; border: 1px solid #16a34a;
         }
-        .tools-strip-btn.outline:hover { background: rgba(22, 163, 74, 0.1); color: var(--primary-hover) !important; }
-        [data-theme="dark"] .tools-strip-btn.outline { color: var(--primary) !important; border-color: var(--primary); }
-        [data-theme="dark"] .tools-strip-btn.outline:hover { background: rgba(74, 222, 128, 0.1); }
+        .tools-strip-btn.outline:hover { background: rgba(22, 163, 74, 0.1); color: #15803d !important; }
+        [data-theme="dark"] .tools-strip-btn.outline { color: #4ade80 !important; border-color: #4ade80; }
+        [data-theme="dark"] .tools-strip-btn.outline:hover { background: rgba(74, 222, 128, 0.15); color: #4ade80 !important;}
 
-        /* ==========================================
-           1100px 2-COLUMN LIST LAYOUT
-           ========================================== */
-        .one-liner-container {
-            max-width: 1100px; 
-            margin: 0 auto;
-            padding: 0 15px 40px 15px;
-            width: 100%;
-            box-sizing: border-box;
+        /* 6 KEY INDICATORS AT-A-GLANCE STRIP */
+        .key-indicators-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 16px; width: 100%;
         }
+        @media (min-width: 600px) { .key-indicators-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (min-width: 900px) { .key-indicators-grid { grid-template-columns: repeat(6, 1fr); } }
 
-        .one-liner-grid {
-            display: grid;
-            grid-template-columns: 1fr; 
-            gap: 12px;
+        .indicator-card {
+            background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-lg);
+            padding: 8px 10px; display: flex; align-items: center; gap: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.02); transition: all 0.2s ease;
         }
-
-        @media (min-width: 900px) {
-            .one-liner-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 16px;
-            }
+        .indicator-card:hover { border-color: var(--primary); transform: translateY(-2px); }
+        .indicator-icon {
+            width: 32px; height: 32px; border-radius: 8px; background: var(--primary-light); color: var(--primary);
+            display: flex; align-items: center; justify-content: center; font-size: 0.95rem; flex-shrink: 0;
         }
+        [data-theme="dark"] .indicator-icon { color: #4ade80; background: rgba(74, 222, 128, 0.15); }
+        .indicator-content { text-align: left; min-width: 0; }
+        .indicator-value { font-size: 0.95rem; font-weight: 800; color: var(--primary-dark); line-height: 1.1; white-space: nowrap; }
+        [data-theme="dark"] .indicator-value { color: #4ade80; }
+        .indicator-label { font-size: 0.65rem; font-weight: 600; color: var(--text-sec); margin-top: 2px; line-height: 1.15; }
 
-        /* Compact, clean Row Design */
+        /* 1100px 2-COLUMN LIST LAYOUT */
+        .one-liner-container { max-width: 1100px; margin: 0 auto; padding: 0 15px; width: 100%; box-sizing: border-box; }
+        .one-liner-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+        @media (min-width: 900px) { .one-liner-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; } }
+
         .fact-row {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: var(--radius-md);
-            padding: 12px 15px;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.03);
-            position: relative;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-md);
+            padding: 12px 15px; display: flex; flex-direction: column; box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+            position: relative; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
         }
         [data-theme="dark"] .fact-row { box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
 
         .fact-id {
-            font-size: 0.65rem;
-            color: white;
-            background: var(--primary);
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-weight: 800;
-            position: absolute;
-            top: 12px;
-            right: 15px;
-            z-index: 2;
+            font-size: 0.65rem; color: white; background: var(--primary); padding: 2px 6px;
+            border-radius: 4px; font-weight: 800; position: absolute; top: 12px; right: 15px; z-index: 2;
         }
 
-        /* English Content */
         .content-en { margin-bottom: 8px; padding-right: 50px; }
         .q-en { font-size: 0.9rem; font-weight: 700; color: var(--text-main); margin-bottom: 4px; line-height: 1.4; }
-        .a-en { font-size: 0.85rem; font-weight: 700; color: var(--primary); }
+        .a-en { font-size: 0.85rem; font-weight: 700; color: var(--primary-dark); }
         [data-theme="dark"] .a-en { color: #4ade80; }
 
-        /* Hindi Content */
         .content-hi { padding-top: 8px; border-top: 1px dashed var(--card-border); }
         .q-hi { font-size: 0.85rem; font-weight: 600; color: var(--text-sec); font-family: 'Noto Sans Devanagari', sans-serif; margin-bottom: 4px; line-height: 1.4; }
         [data-theme="dark"] .q-hi { color: #cbd5e1; }
         .a-hi { font-size: 0.85rem; font-weight: 600; color: var(--accent); font-family: 'Noto Sans Devanagari', sans-serif; }
         [data-theme="dark"] .a-hi { color: #fbbf24; }
 
-        /* ==========================================================================
-           MOBILE FIXES: Matching standard exact alignment
-           ========================================================================== */
         @media (max-width: 600px) {
             .page-header-top { margin-top: 25px; margin-bottom: 20px; padding-top: 0; }
-            .hero-title { font-size: 24px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
-            .top-meta-bar { padding: 0 12px !important; }
-            
+            .hero-title { font-size: 25px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
+            .top-meta-bar { flex-wrap: nowrap; justify-content: space-between; }
+            .breadcrumb-nav { height: 18px; }
+            .hero-badge { height: 16px; padding: 0 6px; border-radius: 8px; font-size: 0.50rem; }
+            .print-btn { height: 19px; padding: 0 6px; font-size: 0.55rem; }
+
+            .indicator-card { padding: 6px 8px; gap: 6px; }
+            .indicator-icon { width: 28px; height: 28px; font-size: 0.85rem; border-radius: 6px; }
+            .indicator-value { font-size: 0.85rem; }
+            .indicator-label { font-size: 0.6rem; }
+
             .fact-row { padding: 10px 12px; }
             .content-en { padding-right: 45px; } 
             .q-en { font-size: 0.85rem; }
@@ -337,14 +297,30 @@
             .fact-id { top: 10px; right: 12px; font-size: 0.6rem; }
             
             .hero-interlinks { flex-direction: row; flex-wrap: wrap; gap: 6px; padding: 8px 12px; border-radius: 30px; }
-            .hero-interlinks .dot { display: inline; font-size: 0.7rem; }
-            .hero-interlinks a { font-size: 0.8rem; }
+            .hero-interlinks .dot { font-size: 0.7rem; }
+            .hero-interlinks a { font-size: calc(0.8rem + 1.5px); }
             .hero-interlinks .interlink-label { font-size: 0.75rem; }
             
-            .tools-strip { flex-direction: column; align-items: stretch; gap: 15px;}
-            .tools-strip-btn-group { width: 100%; justify-content: stretch; display: grid; grid-template-columns: 1fr 1fr; gap: 8px;}
-            .tools-strip-btn-group .tools-strip-btn:last-child { grid-column: span 2; }
-            .tools-strip-btn { justify-content: center; padding: 7px 10px; font-size: 12px; }
+            .tools-strip { flex-direction: column; align-items: stretch; gap: 12px; }
+            .tools-strip-left { flex-direction: column; text-align: center; justify-content: center; width: 100%; }
+            .tools-strip-title, .tools-strip-desc { text-align: center !important; }
+            .tools-strip-btn-group { width: 100%; justify-content: center; display: flex; gap: 8px; flex-wrap: wrap; }
+            .tools-strip-btn { justify-content: center; padding: 6px 12px; font-size: 11.5px; width: fit-content; margin: 0; }
+        }
+
+        @media print {
+            #site-header, #site-footer, .top-meta-bar, .hero-interlinks, .tools-strip, .print-btn {
+                display: none !important;
+            }
+            body { background: #ffffff !important; color: #000000 !important; font-size: 11pt !important; }
+            main, .page-layout, .one-liner-container { max-width: 100% !important; padding: 0 !important; margin: 0 !important; }
+            .hero-title { color: #000000 !important; -webkit-text-fill-color: #000000 !important; font-size: 20pt !important; text-align: left !important; }
+            .hero-desc { color: #333333 !important; text-align: left !important; margin-bottom: 20px !important; }
+            .key-indicators-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 10px !important; margin-bottom: 20px !important; }
+            .indicator-card { border: 1px solid #ccc !important; box-shadow: none !important; padding: 8px !important; }
+            .one-liner-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; }
+            .fact-row { border: 1px solid #cccccc !important; box-shadow: none !important; page-break-inside: avoid !important; break-inside: avoid !important; background: #ffffff !important; }
+            .q-en, .q-hi, .a-en, .a-hi { color: #222222 !important; }
         }
     </style>
 
@@ -365,7 +341,7 @@
 <div id="site-header"></div>
 
 <main class="hub-main-wrapper">
-    <!-- Top Meta Bar: Breadcrumb (Left) & Hero Badge (Right) -->
+    <!-- Top Meta Bar -->
     <div class="top-meta-bar">
         <nav aria-label="breadcrumb" class="breadcrumb-nav">
             <ol class="breadcrumb-list">
@@ -378,7 +354,12 @@
                 <li class="breadcrumb-item active" aria-current="page">One Liners P-3</li>
             </ol>
         </nav>
-        <span class="hero-badge">Revision Series</span>
+        <div class="top-meta-right">
+            <button onclick="window.print()" class="print-btn" title="Print or Save Page as PDF">
+                <i class="fa-solid fa-print"></i> Print / PDF
+            </button>
+            <span class="hero-badge"><span class="hide-mobile">Agri </span>One-Liners</span>
+        </div>
     </div>
 
     <div class="page-layout">
@@ -390,9 +371,9 @@
                 <span class="hi-desc">हिमाचल प्रदेश के राजस्व कानूनों, भूमि अभिलेखों और विरासत नियमों से निकाले गए 150 उच्च-उपज (High-Yield) द्विभाषी वन-लाइनर्स।</span>
             </p>
             
-            <!-- High-Contrast Interlinking Hook -->
+            <!-- High-Contrast Interlinking Hook (EXACTLY 3 LINKS) -->
             <div class="hero-interlinks">
-                <span class="interlink-label"><i class="fa-solid fa-layer-group"></i> Deep Dive:</span>
+                <span class="interlink-label"><i class="fa-solid fa-layer-group"></i> Explore:</span>
                 <a href="../">Agri Masterclass</a>
                 <span class="dot">•</span>
                 <a href="../../hp-revenue-and-land-laws/">Revenue Acts</a>
@@ -403,32 +384,72 @@
             <!-- DEDICATED GREEN TOOLS STRIP FOR PARTS NAVIGATION -->
             <div class="tools-strip">
                 <div class="tools-strip-left">
-                    <div class="tools-strip-icon">
-                        <i class="fa-solid fa-book-open-reader"></i>
-                    </div>
                     <div>
-                        <div class="tools-strip-title font-heading">Continue Reading Series</div>
-                        <div class="tools-strip-desc font-sans">Jump to the next/previous parts</div>
+                        <div class="tools-strip-title font-heading">Agri One-Liners Series & Quiz</div>
+                        <div class="tools-strip-desc font-sans">Read Rapid Revision Facts & Practice Test</div>
                     </div>
                 </div>
                 <div class="tools-strip-btn-group">
-                    <a href="../agri-one-liners-part-2/" class="tools-strip-btn outline">
-                        <i class="fa-solid fa-arrow-left"></i> Part 2
+                    <a href="../agri-one-liners-part-1/" class="tools-strip-btn outline">Part 1</a>
+                    <a href="../agri-one-liners-part-2/" class="tools-strip-btn outline">Part 2</a>
+                    <a href="#" class="tools-strip-btn" style="background: var(--primary-dark);">Part 3 (Current)</a>
+                    <a href="../agri-one-liners-part-4/" class="tools-strip-btn outline">Part 4 <i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="../quiz/" class="tools-strip-btn">
+                        <i class="fa-solid fa-brain"></i> Mock Quiz
                     </a>
-                    <!-- Highlighted Current Part -->
-                    <a href="#" class="tools-strip-btn" style="background: var(--primary-dark);">
-                        Part 3 (Current)
-                    </a>
-                    <a href="../agri-one-liners-part-4/" class="tools-strip-btn outline">
-                        Part 4 <i class="fa-solid fa-arrow-right"></i>
-                    </a>
+                </div>
+            </div>
+
+            <!-- 6 AT-A-GLANCE INDICATOR CHIPS -->
+            <div class="key-indicators-grid">
+                <div class="indicator-card">
+                    <div class="indicator-icon"><i class="fa-solid fa-list-check"></i></div>
+                    <div class="indicator-content">
+                        <div class="indicator-value">150 Facts</div>
+                        <div class="indicator-label">Part 3 Coverage</div>
+                    </div>
+                </div>
+                <div class="indicator-card">
+                    <div class="indicator-icon"><i class="fa-solid fa-hand-holding-hand"></i></div>
+                    <div class="indicator-content">
+                        <div class="indicator-value">Sec 104</div>
+                        <div class="indicator-label">Tenant Vesting</div>
+                    </div>
+                </div>
+                <div class="indicator-card">
+                    <div class="indicator-icon"><i class="fa-solid fa-mountain-sun"></i></div>
+                    <div class="indicator-content">
+                        <div class="indicator-value">20 Bigha</div>
+                        <div class="indicator-label">Nautor Grant Cap</div>
+                    </div>
+                </div>
+                <div class="indicator-card">
+                    <div class="indicator-icon"><i class="fa-solid fa-ruler-horizontal"></i></div>
+                    <div class="indicator-content">
+                        <div class="indicator-value">57.15"</div>
+                        <div class="indicator-label">1 Karam Length</div>
+                    </div>
+                </div>
+                <div class="indicator-card">
+                    <div class="indicator-icon"><i class="fa-solid fa-calendar-check"></i></div>
+                    <div class="indicator-content">
+                        <div class="indicator-value">6 Months</div>
+                        <div class="indicator-label">Partition Deadline</div>
+                    </div>
+                </div>
+                <div class="indicator-card">
+                    <div class="indicator-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+                    <div class="indicator-content">
+                        <div class="indicator-value">7 Years</div>
+                        <div class="indicator-label">Missing Presumption</div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- 1100px Container with 2-Column Grid -->
-    <div class="one-liner-container">
+    <div class="one-liner-container" style="margin-top: 20px;">
         <div id="oneLinerGrid" class="one-liner-grid">
             <!-- Content will be injected here by JavaScript -->
         </div>
@@ -452,7 +473,7 @@
         {id: 304, qHi: "कौन सी संपत्तियां हि.प्र. जोत सीमा अधिनियम द्वारा लगाई गई सीमाओं से पूरी तरह से मुक्त (Exempted) हैं?", aHi: "चाय बागान (Tea Estates) और पंजीकृत धार्मिक/धर्मार्थ ट्रस्टों द्वारा धारित भूमि।", qEn: "Which of the following properties are completely EXEMPTED from the limits imposed by the HP Ceiling on Land Holdings Act?", aEn: "Lands held by Tea Estates and registered Religious/Charitable Trusts."},
         {id: 305, qHi: "हि.प्र. नौतोड़ भूमि नियम 1968 के तहत किसी भूमिहीन व्यक्ति को सरकारी बंजर भूमि की अधिकतम कितनी सीमा दी जा सकती है?", aHi: "20 बीघा तक।", qEn: "What is the maximum limit of government waste land that can be granted to a landless person under the HP Nautor Land Rules 1968?", aEn: "Up to 20 Bighas."},
         {id: 306, qHi: "इसके दुरुपयोग को रोकने के लिए नौतोड़ नियमों के तहत दी गई भूमि के साथ कौन सी सख्त शर्त जुड़ी हुई है?", aHi: "भूमि को लॉक-इन अवधि (आमतौर पर 15-20 वर्ष) के लिए बेचा, उपहार में या हस्तांतरित नहीं किया जा सकता है।", qEn: "What stringent condition is attached to the land granted under Nautor rules to prevent its misuse?", aEn: "The land cannot be sold, gifted, or transferred for a lock-in period (typically 15-20 years)."},
-        {id: 307, qHi: "'हि.प्र. भूमि अंतरण (विनियमन) अधिनियम 1968' मुख्य रूप से किस जनसांख्यिकीय की भूमि की रक्षा के लिए अधिनियमित किया गया था?", aHi: "अनुसूचित क्षेत्रों (लाहौल, किन्नौर, पांगी, भरमौर) में अनुसूचित जनजातियां।", qEn: "The 'HP Transfer of Land (Regulation) Act 1968' was enacted primarily to protect the lands of which demographic?", aEn: "Scheduled Tribes in Scheduled Areas (Lahaul, Kinnaur, Pangi, Bharmour)."},
+        {id: 307, qHi: "'हि.प्र. भूमि अंतरण (विनियमन) अधिनियम 1968' मुख्य रूप से किसकी भूमि की रक्षा के लिए अधिनियमित किया गया था?", aHi: "अनुसूचित क्षेत्रों (लाहौल, किन्नौर, पांगी, भरमौर) में अनुसूचित जनजातियां।", qEn: "The 'HP Transfer of Land (Regulation) Act 1968' was enacted primarily to protect the lands of which demographic?", aEn: "Scheduled Tribes in Scheduled Areas (Lahaul, Kinnaur, Pangi, Bharmour)."},
         {id: 308, qHi: "हिंदू उत्तराधिकार अधिनियम 1956 के तहत, किसे विरासत के तत्काल अधिकार के साथ 'क्लास I' कानूनी वारिस माना जाता है?", aHi: "मृतक की विधवा (माँ, बेटा और बेटी भी शामिल हैं)।", qEn: "Under the Hindu Succession Act 1956, who is considered a 'Class I' legal heir with an immediate right to inheritance?", aEn: "Widow of the deceased (also includes Mother, Son, and Daughter)."},
         {id: 309, qHi: "हिंदू उत्तराधिकार अधिनियम में 2005 के संशोधन द्वारा क्या बड़ा सुधार लाया गया था?", aHi: "इसने बेटियों को 'सहदायिक' का दर्जा (पैतृक संयुक्त संपत्ति पर जन्मसिद्ध अधिकार) बेटों के बिल्कुल बराबर दिया।", qEn: "What major reform was brought about by the 2005 Amendment to the Hindu Succession Act?", aEn: "Granted daughters the status of 'Coparceners' (birthright to ancestral joint property) exactly equal to sons."},
         {id: 310, qHi: "हिंदू उत्तराधिकार अधिनियम की धारा 22 के तहत 'हक शुफा' (Right of Pre-emption) का क्या अर्थ है?", aHi: "किसी बाहरी व्यक्ति को बेचे जाने से पहले किसी अन्य वारिस की संपत्ति का हिस्सा खरीदने का एक कानूनी वारिस का अधिमान्य अधिकार।", qEn: "What does 'Haq Shufa' (Right of Pre-emption) mean under Section 22 of the Hindu Succession Act?", aEn: "The preferential right of one legal heir to buy out the property share of another heir before it is sold to an outsider."},
@@ -643,5 +664,5 @@
 
 </script>
 
-</body>
+</body
 </html>
