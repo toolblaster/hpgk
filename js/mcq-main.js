@@ -7,7 +7,8 @@
  * FIXED: VIP Shuffle Bug (Now Pro users get unlimited pool in Random mode).
  * FIXED: Instant UI Refresh Sync after successful login/payment.
  * FIXED: Auto-Healing logic for "Quick 10" button core.js collision bug.
- * 🔥 NEW: Firebase Cost Saver - Batched Database Writes (Syncs every 15 Qs)
+ * UPDATED: Strict Timestamp Pass Expiration Validation via HPGK_IsPassValid.
+ * 🔥 NEW: Firebase Cost Saver - Batched Database Writes (Syncs every 10 Qs)
  * --------------------------------------------------------------------------
  */
 (function() {
@@ -41,7 +42,7 @@
 
     let bookmarkFilterBtn, mistakeFilterBtn, shuffleBtn, quickModeBtn;
 
-    // 🔥 NEW: Track last cloud sync to save 90% Firebase Write Costs
+    // Track last cloud sync to optimize Firebase Write Costs
     let lastSyncedCount = -1;
 
     window.HPGK_Engine_Refresh = function() {
@@ -52,7 +53,7 @@
         protectQuick10Button(); // Auto-heal on refresh
     };
 
-    // 🔥 SMART CLOUD SYNC (Batched Updates)
+    // 🔥 SMART CLOUD SYNC (Batched Updates - Every 10 Answers)
     function triggerCloudSync(forceSync = false) {
         if (!window.HPGK_SaveScore) return;
         let validDoneCount = 0;
@@ -72,8 +73,8 @@
             lastSyncedCount = validDoneCount;
         }
 
-        // 🔥 FIREBASE COST SAVER: Sync to cloud only if FORCED, or every 15 new answers
-        if (forceSync || (validDoneCount - lastSyncedCount >= 15)) {
+        // 🔥 FIREBASE COST SAVER: Sync to cloud only if FORCED, or every 10 new answers
+        if (forceSync || (validDoneCount - lastSyncedCount >= 10)) {
             const rawCategory = window.QUIZ_NAME || (window.QUIZ_CONFIG && window.QUIZ_CONFIG.category) || 'General Practice';
             window.HPGK_SaveScore(rawCategory, validCorrectCount, validDoneCount);
             lastSyncedCount = validDoneCount; // Update the checkpoint
@@ -86,7 +87,7 @@
         triggerCloudSync(true);
     });
 
-    // 🚨 BUG FIX: Auto-Heal the "Quick 10" button from core.js Lock Logic
+    // Auto-Heal the "Quick 10" button from core.js Lock Logic
     function protectQuick10Button() {
         document.querySelectorAll('.quick-start-ribbon').forEach(btn => {
             // Change onclick string to avoid matching core.js '*="true)"' regex
@@ -329,9 +330,6 @@
         updateControls();
     }
 
-    // ------------------------------------------------------------------
-    // TOGGLES & FILTERS
-    // ------------------------------------------------------------------
     window.clearAllFilters = function() {
         isBookmarkFilterActive = false; isMistakesFilterActive = false; isShuffleActive = false; isQuickModeActive = false;
         if(bookmarkFilterBtn) bookmarkFilterBtn.classList.remove('active');
@@ -370,7 +368,6 @@
         applyFilters(true); 
     };
 
-    // 🔥 BUG FIX: Now accepts strings so it doesn't break HTML string matches
     window.toggleQuickMode = function(forceOn = null) { 
         if (forceOn === 'start' || forceOn === true) isQuickModeActive = true;
         else if (forceOn === 'stop' || forceOn === false) isQuickModeActive = false;
@@ -395,14 +392,16 @@
         if (!window.quizData) return;
         let filtered = [...window.quizData];
 
-        // 1. 🔥 DYNAMIC POOL RESTRICTOR (THE VIP BUG FIX)
+        // 1. 🔥 DYNAMIC POOL RESTRICTOR WITH STRICT EXPIRATION VALIDATION
         const userObj = window.HPGK_User || {};
         const isLoggedIn = userObj.isLoggedIn === true;
+        const checkPass = window.HPGK_IsPassValid || (p => !!p);
+
         const hasProPass = userObj.passes && (
-            userObj.passes['mcq_pro_pass'] || 
-            userObj.passes['mock_master_pass'] || 
-            userObj.passes['mega_combo_pass'] || 
-            userObj.passes['vip_lifetime_pass']
+            checkPass(userObj.passes['mcq_pro_pass']) || 
+            checkPass(userObj.passes['mock_master_pass']) || 
+            checkPass(userObj.passes['mega_combo_pass']) || 
+            checkPass(userObj.passes['vip_lifetime_pass'])
         );
         
         const loginLimit = (window.PAGE_ACCESS && window.PAGE_ACCESS.loginLimit) || 30;
@@ -413,7 +412,7 @@
             filtered = filtered.slice(0, poolSize);
         }
         
-        // 2. ACTUAL SHUFFLE LOGIC (Fisher-Yates Algorithm for true randomness)
+        // 2. Fisher-Yates Shuffle Logic
         if (isShuffleActive) { 
             for (let i = filtered.length - 1; i > 0; i--) { 
                 const j = Math.floor(Math.random() * (i + 1)); 
@@ -436,7 +435,7 @@
             });
         }
         
-        // 5. QUICK MODE EXTRACTOR (Force Random if not already shuffled)
+        // 5. QUICK MODE EXTRACTOR
         if (isQuickModeActive) { 
             filtered = filtered.filter(q => historyState.answers[q.id] === undefined); 
             if (!isShuffleActive) {
@@ -455,7 +454,6 @@
         loadQuestion(currentIndex);
     }
 
-    // Handlers
     window.handleAnswer = function(btn, qId, choiceIndex) {
         if (!currentList || !currentList[currentIndex]) return;
         const q = currentList[currentIndex];
@@ -469,7 +467,7 @@
         updateStats(); 
         loadQuestion(currentIndex);
         
-        // 2. TRIGGER CLOUD SYNC (Batched Logic handles Cost)
+        // 2. TRIGGER CLOUD SYNC (Batched Logic every 10 answers)
         triggerCloudSync(); 
     };
 
