@@ -137,30 +137,38 @@
         @media (max-width: 480px) { .page-layout, .top-meta-bar { padding: 0 12px !important; } }
 
         .top-meta-bar { display: flex !important; justify-content: space-between; align-items: center; margin: 0 auto 5px auto; flex-wrap: nowrap; gap: 10px; }
-        .breadcrumb-nav { margin: 0; flex-shrink: 1; display: flex; align-items: center; height: 24px; overflow-x: auto; scrollbar-width: none;}
+        .top-meta-right { display: flex; align-items: center; gap: 8px; }
+
+        .breadcrumb-nav { margin: 0; flex-shrink: 1; display: flex; align-items: center; height: 20px; overflow-x: auto; scrollbar-width: none;}
         .breadcrumb-nav::-webkit-scrollbar { display: none; }
         
-        /* Updated Breadcrumb background for soft glass effect */
         .breadcrumb-list { 
-            list-style: none; padding: 0 10px; margin: 0; display: flex; flex-wrap: nowrap; 
-            align-items: center; gap: 4px; background: rgba(255, 255, 255, 0.35); border-radius: 12px; 
+            list-style: none; padding: 0 8px; margin: 0; display: flex; flex-wrap: nowrap; 
+            align-items: center; gap: 4px; background: rgba(255, 255, 255, 0.35); border-radius: 10px; 
             border: 1px solid var(--card-border); backdrop-filter: blur(8px); 
             box-shadow: 0 1px 2px rgba(0,0,0,0.05); height: 100%; box-sizing: border-box;
         }
         [data-theme="dark"] .breadcrumb-list { background: rgba(30, 41, 59, 0.4); box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
-        .breadcrumb-item { font-size: 0.6rem; font-weight: 600; color: var(--text-sec); display: flex; align-items: center; white-space: nowrap; height: 100%; }
+        .breadcrumb-item { font-size: 0.58rem; font-weight: 600; color: var(--text-sec); display: flex; align-items: center; white-space: nowrap; height: 100%; }
         .breadcrumb-item a { color: var(--text-sec); text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 4px; }
         .breadcrumb-item a:hover { color: var(--primary); }
         .breadcrumb-item.active { color: var(--primary); pointer-events: none; }
-        .breadcrumb-separator { font-size: 0.55rem; color: var(--text-sec); opacity: 0.6; margin: 0 2px; }
+        .breadcrumb-separator { font-size: 0.52rem; color: var(--text-sec); opacity: 0.6; margin: 0 2px; }
 
         .hero-badge { 
-            display: inline-flex; align-items: center; justify-content: center; height: 24px; 
-            background: var(--primary-light); color: var(--primary); padding: 0 10px; 
-            border-radius: 12px; font-size: 0.6rem; font-weight: 800; text-transform: uppercase; 
-            margin: 0; border: 1px solid var(--primary); letter-spacing: 0.5px; white-space: nowrap; 
-            flex-shrink: 0; box-sizing: border-box;
+            display: inline-flex; align-items: center; justify-content: center; height: 18px; 
+            background: var(--primary); color: white; padding: 0 8px; border-radius: 9px; 
+            font-size: 0.55rem; font-weight: 800; text-transform: uppercase; margin: 0; 
+            border: 1px solid var(--primary-dark); letter-spacing: 0.3px; white-space: nowrap; flex-shrink: 0; box-sizing: border-box; line-height: 1;
         }
+
+        .print-btn {
+            display: inline-flex; align-items: center; gap: 5px; height: 20px;
+            background: var(--card-bg); color: var(--text-sec); border: 1px solid var(--card-border);
+            padding: 0 8px; border-radius: 10px; font-size: 0.58rem; font-weight: 700;
+            cursor: pointer; transition: all 0.2s ease; box-sizing: border-box; white-space: nowrap;
+        }
+        .print-btn:hover { color: var(--primary); border-color: var(--primary); background: var(--primary-light); }
 
         .page-header-top { text-align: center; margin-bottom: 25px; margin-top: 0; padding-top: 0; width: 100%; }
         
@@ -174,7 +182,7 @@
         .hero-desc span.hi-desc { font-family: 'Noto Sans Devanagari', sans-serif; font-size: 0.85rem; color: var(--text-sec); display: block; margin-top: 4px; font-weight: 500; }
         [data-theme="dark"] .hero-desc span.hi-desc { color: #e2e8f0; }
 
-        /* HIGH-CONTRAST INTERLINKING PILL */
+        /* HIGH-CONTRAST INTERLINKING PILL (EXACTLY 3 LINKS) */
         .hero-interlinks {
             display: inline-flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px;
             margin-top: 15px; padding: 10px 20px; background: var(--card-bg); border: 1px solid var(--card-border);
@@ -183,44 +191,61 @@
         [data-theme="dark"] .hero-interlinks { background: #1e293b; border-color: #334155; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
         .hero-interlinks .interlink-label { font-size: 0.8rem; font-weight: 800; color: var(--text-sec); text-transform: uppercase; letter-spacing: 0.5px; }
         .hero-interlinks .interlink-label i { color: var(--primary); margin-right: 4px; }
-        .hero-interlinks a { font-size: 0.9rem; font-weight: 700; color: var(--primary-dark); text-decoration: none; transition: all 0.2s ease; }
-        .hero-interlinks a:hover { color: var(--primary); text-decoration: underline; }
-        [data-theme="dark"] .hero-interlinks a { color: #a5b4fc; }
-        [data-theme="dark"] .hero-interlinks a:hover { color: #818cf8; }
+        .hero-interlinks a { font-size: 0.9rem; font-weight: 700; color: #4f46e5; text-decoration: none; transition: all 0.2s ease; }
+        .hero-interlinks a:hover { color: #4338ca; text-decoration: underline; }
+        [data-theme="dark"] .hero-interlinks a { color: #818cf8; }
+        [data-theme="dark"] .hero-interlinks a:hover { color: #a5b4fc; }
         .hero-interlinks .dot { color: var(--text-sec); font-size: 0.8rem; opacity: 0.6; }
 
         /* INDIGO TOOLS STRIP */
         .tools-strip {
-            margin-top: 25px; background: rgba(79, 70, 229, 0.05); border: 1px solid rgba(79, 70, 229, 0.2);
-            border-radius: var(--radius-lg); padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;
-            max-width: 800px; margin-left: auto; margin-right: auto; transition: all 0.3s ease;
+            margin-top: 20px; background: rgba(79, 70, 229, 0.08); border: 1px solid rgba(79, 70, 229, 0.3);
+            border-radius: var(--radius-lg); padding: 8px 14px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;
+            width: 100%; transition: all 0.3s ease; box-sizing: border-box;
         }
-        .tools-strip:hover { border-color: var(--primary); box-shadow: 0 4px 12px rgba(79, 70, 229, 0.1); }
+        .tools-strip:hover { border-color: var(--primary); box-shadow: 0 4px 12px rgba(79, 70, 229, 0.15); }
         .tools-strip-left { display: flex; align-items: center; gap: 12px; flex: 1 1 auto; min-width: 260px; }
-        .tools-strip-icon {
-            width: 40px; height: 40px; background: rgba(79, 70, 229, 0.15); color: var(--primary);
-            border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;
-        }
-        [data-theme="dark"] .tools-strip-icon { color: #818cf8; background: rgba(129, 140, 248, 0.2); }
-        .tools-strip-title { font-weight: 800; color: var(--text-main); font-size: 0.95rem; text-align: left; }
-        .tools-strip-desc { font-size: 0.75rem; color: var(--text-sec); margin-top: 2px; text-align: left; font-weight: 500; }
+        .tools-strip-title { font-weight: 800; color: var(--text-main); font-size: 0.95rem; text-align: left; font-family: 'Inter', sans-serif;}
+        .tools-strip-desc { font-size: 0.75rem; color: var(--text-sec); margin-top: 2px; text-align: left; font-weight: 500;}
         .tools-strip-btn-group { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; justify-content: flex-end;}
         
         .tools-strip-btn {
-            background: var(--primary); color: white !important; padding: 6px 14px; border-radius: 6px;
+            background: #4f46e5; color: white !important; padding: 5px 12px; border-radius: 6px;
             font-size: 12px; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 5px;
-            transition: background 0.2s; white-space: nowrap; letter-spacing: 0.2px;
+            transition: all 0.2s; white-space: nowrap; letter-spacing: 0.2px;
         }
-        .tools-strip-btn:hover { background: var(--primary-hover); }
-        [data-theme="dark"] .tools-strip-btn { background: #4f46e5; color: white !important; }
-        [data-theme="dark"] .tools-strip-btn:hover { background: #4338ca; }
+        .tools-strip-btn:hover { background: #4338ca; }
+        [data-theme="dark"] .tools-strip-btn { background: #6366f1; }
+        [data-theme="dark"] .tools-strip-btn:hover { background: #4f46e5; }
         
         .tools-strip-btn.outline {
-            background: transparent; color: var(--primary) !important; border: 1px solid var(--primary);
+            background: transparent; color: #4f46e5 !important; border: 1px solid #4f46e5;
         }
-        .tools-strip-btn.outline:hover { background: rgba(79, 70, 229, 0.1); color: var(--primary-hover) !important; }
-        [data-theme="dark"] .tools-strip-btn.outline { color: #a5b4fc !important; border-color: #a5b4fc; }
-        [data-theme="dark"] .tools-strip-btn.outline:hover { background: rgba(129, 140, 248, 0.15); color: #818cf8 !important; }
+        .tools-strip-btn.outline:hover { background: rgba(79, 70, 229, 0.1); color: #4338ca !important; }
+        [data-theme="dark"] .tools-strip-btn.outline { color: #818cf8 !important; border-color: #818cf8; }
+        [data-theme="dark"] .tools-strip-btn.outline:hover { background: rgba(129, 140, 248, 0.15); color: #a5b4fc !important;}
+
+        /* 6 KEY INDICATORS AT-A-GLANCE STRIP */
+        .key-indicators-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 16px; width: 100%;
+        }
+        @media (min-width: 600px) { .key-indicators-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (min-width: 900px) { .key-indicators-grid { grid-template-columns: repeat(6, 1fr); } }
+
+        .indicator-card {
+            background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-lg);
+            padding: 8px 10px; display: flex; align-items: center; gap: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.02); transition: all 0.2s ease;
+        }
+        .indicator-card:hover { border-color: var(--primary); transform: translateY(-2px); }
+        .indicator-icon {
+            width: 32px; height: 32px; border-radius: 8px; background: var(--primary-light); color: var(--primary);
+            display: flex; align-items: center; justify-content: center; font-size: 0.95rem; flex-shrink: 0;
+        }
+        [data-theme="dark"] .indicator-icon { color: #818cf8; background: rgba(129, 140, 248, 0.15); }
+        .indicator-content { text-align: left; min-width: 0; }
+        .indicator-value { font-size: 0.95rem; font-weight: 800; color: var(--primary-dark); line-height: 1.1; white-space: nowrap; }
+        [data-theme="dark"] .indicator-value { color: #818cf8; }
+        .indicator-label { font-size: 0.65rem; font-weight: 600; color: var(--text-sec); margin-top: 2px; line-height: 1.15; }
 
         /* 1100px 2-COLUMN LIST LAYOUT */
         .one-liner-container { max-width: 1100px; margin: 0 auto; padding: 0 15px; width: 100%; box-sizing: border-box; }
@@ -252,9 +277,17 @@
 
         @media (max-width: 600px) {
             .page-header-top { margin-top: 25px; margin-bottom: 20px; padding-top: 0; }
-            .hero-title { font-size: 24px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
-            .top-meta-bar { padding: 0 12px !important; }
-            
+            .hero-title { font-size: 25px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
+            .top-meta-bar { flex-wrap: nowrap; justify-content: space-between; }
+            .breadcrumb-nav { height: 18px; }
+            .hero-badge { height: 16px; padding: 0 6px; border-radius: 8px; font-size: 0.50rem; }
+            .print-btn { height: 19px; padding: 0 6px; font-size: 0.55rem; }
+
+            .indicator-card { padding: 6px 8px; gap: 6px; }
+            .indicator-icon { width: 28px; height: 28px; font-size: 0.85rem; border-radius: 6px; }
+            .indicator-value { font-size: 0.85rem; }
+            .indicator-label { font-size: 0.6rem; }
+
             .fact-row { padding: 10px 12px; }
             .content-en { padding-right: 45px; } 
             .q-en { font-size: 0.85rem; }
@@ -264,14 +297,30 @@
             .fact-id { top: 10px; right: 12px; font-size: 0.6rem; }
             
             .hero-interlinks { flex-direction: row; flex-wrap: wrap; gap: 6px; padding: 8px 12px; border-radius: 30px; }
-            .hero-interlinks .dot { display: inline; font-size: 0.7rem; }
-            .hero-interlinks a { font-size: 0.8rem; }
+            .hero-interlinks .dot { font-size: 0.7rem; }
+            .hero-interlinks a { font-size: calc(0.8rem + 1.5px); }
             .hero-interlinks .interlink-label { font-size: 0.75rem; }
             
-            .tools-strip { flex-direction: column; align-items: stretch; gap: 15px;}
-            .tools-strip-btn-group { width: 100%; justify-content: stretch; display: grid; grid-template-columns: 1fr 1fr; gap: 8px;}
-            .tools-strip-btn-group .tools-strip-btn:last-child { grid-column: span 2; }
-            .tools-strip-btn { justify-content: center; padding: 7px 10px; font-size: 12px; }
+            .tools-strip { flex-direction: column; align-items: stretch; gap: 12px; }
+            .tools-strip-left { flex-direction: column; text-align: center; justify-content: center; width: 100%; }
+            .tools-strip-title, .tools-strip-desc { text-align: center !important; }
+            .tools-strip-btn-group { width: 100%; justify-content: center; display: flex; gap: 8px; flex-wrap: wrap; }
+            .tools-strip-btn { justify-content: center; padding: 6px 12px; font-size: 11.5px; width: fit-content; margin: 0; }
+        }
+
+        @media print {
+            #site-header, #site-footer, .top-meta-bar, .hero-interlinks, .tools-strip, .print-btn {
+                display: none !important;
+            }
+            body { background: #ffffff !important; color: #000000 !important; font-size: 11pt !important; }
+            main, .page-layout, .one-liner-container { max-width: 100% !important; padding: 0 !important; margin: 0 !important; }
+            .hero-title { color: #000000 !important; -webkit-text-fill-color: #000000 !important; font-size: 20pt !important; text-align: left !important; }
+            .hero-desc { color: #333333 !important; text-align: left !important; margin-bottom: 20px !important; }
+            .key-indicators-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 10px !important; margin-bottom: 20px !important; }
+            .indicator-card { border: 1px solid #ccc !important; box-shadow: none !important; padding: 8px !important; }
+            .one-liner-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; }
+            .fact-row { border: 1px solid #cccccc !important; box-shadow: none !important; page-break-inside: avoid !important; break-inside: avoid !important; background: #ffffff !important; }
+            .q-en, .q-hi, .a-en, .a-hi { color: #222222 !important; }
         }
     </style>
 
@@ -305,7 +354,12 @@
                 <li class="breadcrumb-item active" aria-current="page">One Liners P-3</li>
             </ol>
         </nav>
-        <span class="hero-badge">Economy Series</span>
+        <div class="top-meta-right">
+            <button onclick="window.print()" class="print-btn" title="Print or Save Page as PDF">
+                <i class="fa-solid fa-print"></i> Print / PDF
+            </button>
+            <span class="hero-badge"><span class="hide-mobile">Eco </span>One-Liners</span>
+        </div>
     </div>
 
     <div class="page-layout">
@@ -317,45 +371,85 @@
                 <span class="hi-desc">हिमाचल प्रदेश आर्थिक सर्वेक्षण से निकाले गए 150 उच्च-उपज (High-Yield) द्विभाषी वन-लाइनर्स। राज्य बजट, स्वास्थ्य, ई-गवर्नेंस और ग्रामीण विकास शामिल है।</span>
             </p>
             
-            <!-- High-Contrast Interlinking Hook -->
+            <!-- High-Contrast Interlinking Hook (EXACTLY 3 LINKS) -->
             <div class="hero-interlinks">
-                <span class="interlink-label"><i class="fa-solid fa-layer-group"></i> Deep Dive:</span>
+                <span class="interlink-label"><i class="fa-solid fa-layer-group"></i> Explore:</span>
                 <a href="../">Eco Survey Hub</a>
                 <span class="dot">•</span>
                 <a href="../../hp-budget/">HP Budget</a>
                 <span class="dot">•</span>
-                <a href="../../../himachal-pradesh-gk/economy/">Economy Quiz</a>
+                <a href="../quiz/">Economy Quiz</a>
             </div>
 
             <!-- INDIGO TOOLS STRIP FOR PARTS NAVIGATION -->
             <div class="tools-strip">
                 <div class="tools-strip-left">
-                    <div class="tools-strip-icon">
-                        <i class="fa-solid fa-book-open-reader"></i>
-                    </div>
                     <div>
-                        <div class="tools-strip-title font-heading">Continue Reading Series</div>
-                        <div class="tools-strip-desc font-sans">Navigate to previous or next parts</div>
+                        <div class="tools-strip-title font-heading">600 One-Liners Series & Mock Quiz</div>
+                        <div class="tools-strip-desc font-sans">Read 600 Rapid Revision Facts across 4 Parts & Practice Test</div>
                     </div>
                 </div>
                 <div class="tools-strip-btn-group">
-                    <a href="../eco-one-liners-part-2/" class="tools-strip-btn outline">
-                        <i class="fa-solid fa-arrow-left"></i> Part 2
+                    <a href="../eco-one-liners-part-1/" class="tools-strip-btn outline">Part 1</a>
+                    <a href="../eco-one-liners-part-2/" class="tools-strip-btn outline">Part 2</a>
+                    <a href="#" class="tools-strip-btn" style="background: var(--primary-dark);">Part 3 (Current)</a>
+                    <a href="../eco-one-liners-part-4/" class="tools-strip-btn outline">Part 4</a>
+                    <a href="../quiz/" class="tools-strip-btn">
+                        <i class="fa-solid fa-brain"></i> Mock Quiz
                     </a>
-                    <!-- Highlighted Current Part -->
-                    <a href="#" class="tools-strip-btn" style="background: var(--primary-dark);">
-                        Part 3 (Current)
-                    </a>
-                    <a href="../eco-one-liners-part-4/" class="tools-strip-btn outline">
-                        Part 4 <i class="fa-solid fa-arrow-right"></i>
-                    </a>
+                </div>
+            </div>
+
+            <!-- 6 AT-A-GLANCE INDICATOR CHIPS -->
+            <div class="key-indicators-grid">
+                <div class="indicator-card">
+                    <div class="indicator-icon"><i class="fa-solid fa-list-check"></i></div>
+                    <div class="indicator-content">
+                        <div class="indicator-value">150 Facts</div>
+                        <div class="indicator-label">Part 3 Coverage</div>
+                    </div>
+                </div>
+                <div class="indicator-card">
+                    <div class="indicator-icon"><i class="fa-solid fa-scale-unbalanced"></i></div>
+                    <div class="indicator-content">
+                        <div class="indicator-value">3.0%</div>
+                        <div class="indicator-label">FRBM Deficit Cap</div>
+                    </div>
+                </div>
+                <div class="indicator-card">
+                    <div class="indicator-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                    <div class="indicator-content">
+                        <div class="indicator-value">~16-18%</div>
+                        <div class="indicator-label">Education Allocation</div>
+                    </div>
+                </div>
+                <div class="indicator-card">
+                    <div class="indicator-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
+                    <div class="indicator-content">
+                        <div class="indicator-value">₹1,500/mo</div>
+                        <div class="indicator-label">Sukh Samman Nidhi</div>
+                    </div>
+                </div>
+                <div class="indicator-card">
+                    <div class="indicator-icon"><i class="fa-solid fa-shower"></i></div>
+                    <div class="indicator-content">
+                        <div class="indicator-value">100% ODF</div>
+                        <div class="indicator-label">Swachh Bharat Goal</div>
+                    </div>
+                </div>
+                <div class="indicator-card">
+                    <div class="indicator-icon"><i class="fa-solid fa-headset"></i></div>
+                    <div class="indicator-content">
+                        <div class="indicator-value">1100</div>
+                        <div class="indicator-label">CM Sewa Helpline</div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- 1100px Container with 2-Column Grid -->
-    <div class="one-liner-container">
+    <div class="one-liner-container" style="margin-top: 20px;">
         <div id="oneLinerGrid" class="one-liner-grid">
             <!-- Content will be injected here by JavaScript -->
         </div>
@@ -472,7 +566,57 @@
         {id: 447, qHi: "हिमाचल प्रदेश में आर्थिक विकास (Economic Growth) का मुख्य चालक कौन सा क्षेत्र बन गया है?", aHi: "सेवा क्षेत्र (Services Sector - पर्यटन, परिवहन, व्यापार और संचार)।", qEn: "Which sector has become the main driver of Economic Growth in Himachal Pradesh?", aEn: "Services Sector (Tourism, Transport, Trade, and Communications)."},
         {id: 448, qHi: "राज्य में विनिर्माण (Manufacturing) क्षेत्र को सबसे अधिक बढ़ावा किस नीति से मिला था?", aHi: "2003 में केंद्र सरकार द्वारा घोषित 'औद्योगिक पैकेज' (Industrial Package 2003) से।", qEn: "Which policy gave the biggest boost to the Manufacturing sector in the state?", aEn: "The 'Industrial Package 2003' announced by the Central Govt."},
         {id: 449, qHi: "हिमाचल प्रदेश के 'आर्थिक सर्वेक्षण' को कौन सा विभाग संकलित करता है?", aHi: "अर्थशास्त्र और सांख्यिकी विभाग (DES - Department of Economics and Statistics)।", qEn: "Which department compiles the 'Economic Survey' of Himachal Pradesh?", aEn: "Department of Economics and Statistics (DES)."},
-        {id: 450, qHi: "हिमाचल प्रदेश का 'बजट' विधानसभा में कौन प्रस्तुत करता है?", aHi: "राज्य के वित्त मंत्री (आमतौर पर मुख्यमंत्री ही वित्त विभाग संभालते हैं)।", qEn: "Who presents the 'Budget' of Himachal Pradesh in the Vidhan Sabha?", aEn: "The Finance Minister of the state (usually the Chief Minister holds the Finance portfolio)."}
+        {id: 450, qHi: "हिमाचल प्रदेश का 'बजट' विधानसभा में कौन प्रस्तुत करता है?", aHi: "राज्य के वित्त मंत्री (आमतौर पर मुख्यमंत्री ही वित्त विभाग संभालते हैं)।", qEn: "Who presents the 'Budget' of Himachal Pradesh in the Vidhan Sabha?", aEn: "The Finance Minister of the state (usually the Chief Minister holds the Finance portfolio)."},
+        {id: 451, qHi: "आवधिक श्रम बल सर्वेक्षण (PLFS) के अनुसार, हिमाचल प्रदेश में 'श्रम बल भागीदारी दर' (LFPR) लगभग कितनी है?", aHi: "58-60% (जो 40% के राष्ट्रीय औसत से काफी अधिक है)।", qEn: "According to PLFS, what is the approximate 'Labour Force Participation Rate' (LFPR) in HP?", aEn: "58-60% (which is significantly higher than the national average of 40%)."},
+        {id: 452, qHi: "हिमाचल प्रदेश में 'श्रमिक जनसंख्या अनुपात' (WPR - Worker Population Ratio) की क्या स्थिति है?", aHi: "यह भी राष्ट्रीय औसत से बेहतर है, जो राज्य में उच्च रोजगार जुड़ाव को दर्शाता है।", qEn: "What is the status of the 'Worker Population Ratio' (WPR) in Himachal Pradesh?", aEn: "It is also better than the national average, indicating high employment engagement in the state."},
+        {id: 453, qHi: "PLFS रिपोर्ट के अनुसार, हिमाचल प्रदेश में 'बेरोजगारी दर' (Unemployment Rate) का सामान्य रुझान क्या है?", aHi: "राज्य की बेरोजगारी दर आमतौर पर 4% से 5% के बीच रहती है।", qEn: "As per the PLFS report, what is the general trend of the 'Unemployment Rate' in HP?", aEn: "The state's unemployment rate generally hovers between 4% to 5%."},
+        {id: 454, qHi: "भारत में 'थोक मूल्य सूचकांक' (WPI) की गणना के लिए वर्तमान 'आधार वर्ष' (Base Year) क्या है?", aHi: "2011-12।", qEn: "What is the current 'Base Year' for calculating the 'Wholesale Price Index' (WPI) in India?", aEn: "2011-12."},
+        {id: 455, qHi: "औद्योगिक श्रमिकों के लिए उपभोक्ता मूल्य सूचकांक (CPI-IW) की गणना के लिए हिमाचल में कौन से 3 केंद्र हैं?", aHi: "सोलन, शिमला और सिरमौर।", qEn: "Which 3 centres in Himachal are used for calculating the Consumer Price Index for Industrial Workers (CPI-IW)?", aEn: "Solan, Shimla, and Sirmaur."},
+        {id: 456, qHi: "सार्वजनिक वितरण प्रणाली (PDS) के तहत उचित मूल्य की दुकानों के माध्यम से कौन सी वस्तुएं अनिवार्य रूप से दी जाती हैं?", aHi: "गेहूं, चावल, दालें (Pulses), खाद्य तेल और आयोडाइज्ड नमक।", qEn: "Which commodities are mandatorily provided through Fair Price Shops under PDS?", aEn: "Wheat, Rice, Pulses, Edible Oil, and Iodized Salt."},
+        {id: 457, qHi: "'राजीव गांधी स्वरोजगार स्टार्ट-अप योजना' (चरण-1) मुख्य रूप से युवाओं को क्या खरीदने के लिए 50% सब्सिडी देती है?", aHi: "ई-टैक्सी (e-Taxis) खरीदने के लिए।", qEn: "'Rajiv Gandhi Swarozgar Start-up Yojana' (Phase-1) primarily gives 50% subsidy to youth to buy what?", aEn: "To purchase e-Taxis."},
+        {id: 458, qHi: "'राजीव गांधी स्वरोजगार स्टार्ट-अप योजना' (चरण-2) के तहत युवाओं को किस क्षेत्र में निवेश करने के लिए प्रोत्साहित किया जाता है?", aHi: "100 kW से 500 kW तक के सौर ऊर्जा संयंत्र (Solar Power Plants) स्थापित करने के लिए।", qEn: "Under Phase-2 of the 'Rajiv Gandhi Swarozgar Start-up Yojana', youth are encouraged to invest in which sector?", aEn: "To establish Solar Power Plants ranging from 100 kW to 500 kW."},
+        {id: 459, qHi: "हिमाचल प्रदेश में लागू की जा रही 'पीएम विश्वकर्मा योजना' (PM Vishwakarma Scheme) का मुख्य उद्देश्य क्या है?", aHi: "पारंपरिक कारीगरों और शिल्पकारों (जैसे बढ़ई, लोहार) को ऋण, कौशल प्रशिक्षण और टूलकिट प्रदान करना।", qEn: "What is the main objective of the 'PM Vishwakarma Scheme' being implemented in HP?", aEn: "To provide credit, skill training, and toolkits to traditional artisans and craftspeople (like carpenters, blacksmiths)."},
+        {id: 460, qHi: "राष्ट्रीय ग्रामीण आजीविका मिशन (NRLM) के तहत महिलाओं द्वारा संचालित 'हिम ईरा' (Him Ira) ब्रांड के अंतर्गत कौन सी अनूठी पहल शुरू की गई है?", aHi: "हिम ईरा दुकानें (Shops) और हिम ईरा रसोइयां (Kitchens/Canteens)।", qEn: "Under NRLM, which unique initiative has been started by women under the 'Him Ira' brand?", aEn: "Him Ira Shops and Him Ira Kitchens/Canteens."},
+        {id: 461, qHi: "राज्य ग्रामीण आजीविका मिशन (SRLM) का प्राथमिक फोकस क्या है?", aHi: "स्वयं सहायता समूहों (SHGs) को मजबूत करना और उन्हें सूक्ष्म-उद्यम शुरू करने के लिए ऋण से जोड़ना।", qEn: "What is the primary focus of the State Rural Livelihood Mission (SRLM)?", aEn: "Strengthening Self Help Groups (SHGs) and linking them to credit to start micro-enterprises."},
+        {id: 462, qHi: "'मुख्यमंत्री ग्राम कौशल योजना' (Mukhya Mantri Gram Kaushal Yojana) का उद्देश्य क्या है?", aHi: "पारंपरिक कला, शिल्प और हथकरघा को संरक्षित करने के लिए ग्रामीण युवाओं को मास्टर कारीगरों के तहत प्रशिक्षित करना।", qEn: "What is the objective of 'Mukhya Mantri Gram Kaushal Yojana'?", aEn: "To train rural youth under master artisans to preserve traditional arts, crafts, and handlooms."},
+        {id: 463, qHi: "मनरेगा (MGNREGA) के तहत ग्रामीण क्षेत्रों में वरिष्ठ नागरिकों के लिए पार्क और उद्यान बनाने वाली योजना कौन सी है?", aHi: "पंचवटी योजना (Panchavati Yojana)।", qEn: "Which scheme builds parks and gardens for senior citizens in rural areas under MGNREGA?", aEn: "Panchavati Yojana."},
+        {id: 464, qHi: "गरीबी रेखा से नीचे (BPL) परिवारों की महिलाओं को मृत्यु या स्थायी विकलांगता के मामले में कवर करने वाली बीमा योजना कौन सी है?", aHi: "मातृ शक्ति बीमा योजना (Matri Shakti Bima Yojana)।", qEn: "Which insurance scheme covers women of BPL families in case of death or permanent disability?", aEn: "Matri Shakti Bima Yojana."},
+        {id: 465, qHi: "गरीब और बेसहारा लड़कियों की शादी के लिए 'मुख्यमंत्री कन्यादान योजना' के तहत कितना अनुदान दिया जाता है?", aHi: "₹51,000।", qEn: "How much grant is given under 'Mukhya Mantri Kanyadaan Yojana' for the marriage of poor and destitute girls?", aEn: "₹51,000."},
+        {id: 466, qHi: "हिमाचल प्रदेश में 'विधवा पुनर्विवाह योजना' (Widow Remarriage Scheme) के तहत नवविवाहित जोड़े को कितनी प्रोत्साहन राशि दी जाती है?", aHi: "₹65,000।", qEn: "How much incentive amount is given to the newlywed couple under the 'Widow Remarriage Scheme' in HP?", aEn: "₹65,000."},
+        {id: 467, qHi: "निराश्रित माताओं (Destitute Mothers) को उनके बच्चों के भरण-पोषण के लिए वित्तीय सहायता देने वाली योजना कौन सी है?", aHi: "मदर टेरेसा असहाय मातृ संबल योजना।", qEn: "Which scheme provides financial assistance to destitute mothers for the maintenance of their children?", aEn: "Mother Teresa Asahaya Matri Sambal Yojana."},
+        {id: 468, qHi: "घरेलू हिंसा और नैतिक खतरे से पीड़ित महिलाओं के पुनर्वास (Rehabilitation) के लिए कौन सी योजना है?", aHi: "विशेष महिला उत्थान योजना (Vishesh Mahila Utthan Yojana)।", qEn: "Which scheme is for the rehabilitation of women victims of domestic violence and moral danger?", aEn: "Vishesh Mahila Utthan Yojana."},
+        {id: 469, qHi: "महिलाओं और बालिकाओं के खिलाफ अपराधों पर नजर रखने और उनकी सुरक्षा सुनिश्चित करने के लिए राज्य में कौन सा बोर्ड स्थापित किया गया है?", aHi: "सक्षम गुड़िया बोर्ड (Saksham Gudiya Board)।", qEn: "Which board has been established in the state to monitor crimes against women and girls and ensure their safety?", aEn: "Saksham Gudiya Board."},
+        {id: 470, qHi: "पुलिस स्टेशनों को डिजिटल रूप से जोड़ने और एफआईआर (FIR) का ऑनलाइन डेटाबेस बनाए रखने वाली राष्ट्रीय प्रणाली कौन सी है?", aHi: "CCTNS (Crime and Criminal Tracking Network & Systems)।", qEn: "Which national system digitally connects police stations and maintains an online database of FIRs?", aEn: "CCTNS (Crime and Criminal Tracking Network & Systems)."},
+        {id: 471, qHi: "नागरिकों की शिकायतों के निवारण के लिए 'मुख्यमंत्री सेवा संकल्प हेल्पलाइन' का टोल-फ्री नंबर क्या है?", aHi: "1100।", qEn: "What is the toll-free number of the 'Mukhya Mantri Sewa Sankalp Helpline' for redressal of citizen grievances?", aEn: "1100."},
+        {id: 472, qHi: "भारत की पहली 'पेपरलेस' राज्य विधानसभा (Paperless State Assembly) बनने का गौरव किस राज्य को प्राप्त है?", aHi: "हिमाचल प्रदेश (ई-विधान / e-Vidhan प्रणाली के माध्यम से)।", qEn: "Which state holds the distinction of becoming India's first 'Paperless' State Assembly?", aEn: "Himachal Pradesh (through the e-Vidhan system)."},
+        {id: 473, qHi: "कागजी कार्रवाई को खत्म करने और कैबिनेट बैठकों को डिजिटल बनाने वाला भारत का पहला राज्य कौन सा है?", aHi: "हिमाचल प्रदेश (ई-कैबिनेट / e-Cabinet लागू करके)।", qEn: "Which is the first state in India to eliminate paperwork and digitize cabinet meetings?", aEn: "Himachal Pradesh (by implementing e-Cabinet)."},
+        {id: 474, qHi: "नागरिकों को आय, जाति और बोनाफाइड जैसे 'डिजिटल रूप से हस्ताक्षरित प्रमाण पत्र' (Digitally signed certificates) प्रदान करने वाला पोर्टल कौन सा है?", aHi: "ई-प्रमाण (e-Praman / Lok Praman Patra)।", qEn: "Which portal provides 'digitally signed certificates' like income, caste, and bonafide to citizens?", aEn: "e-Praman / Lok Praman Patra."},
+        {id: 475, qHi: "राज्य सरकार की कल्याणकारी योजनाओं को लक्षित रूप से वितरित करने के लिए सभी निवासियों का एक एकीकृत 'परिवार रजिस्टर' (Family Register) बनाने वाली पहल कौन सी है?", aHi: "हिम परिवार (HIM PARIVAR)।", qEn: "Which initiative creates an integrated 'Family Register' of all residents for targeted delivery of state welfare schemes?", aEn: "HIM PARIVAR."},
+        {id: 476, qHi: "अनाथ और बेसहारा बच्चों की देखभाल के लिए राज्य द्वारा संचालित आश्रमों को मजबूत करने वाली योजना कौन सी है?", aHi: "मुख्यमंत्री बाल उद्धार योजना (Mukhya Mantri Bal Uddhar Yojana)।", qEn: "Which scheme strengthens state-run ashrams for the care of orphan and destitute children?", aEn: "Mukhya Mantri Bal Uddhar Yojana."},
+        {id: 477, qHi: "'स्वर्ण जयंती नारी संबल योजना' (Swaran Jayanti Nari Sambal Yojana) के तहत किस आयु वर्ग की महिलाओं को बिना आय सीमा के पेंशन दी जाती है?", aHi: "65 से 69 वर्ष की आयु की महिलाओं को।", qEn: "Under the 'Swaran Jayanti Nari Sambal Yojana', women of which age group are given pension without an income limit?", aEn: "Women aged 65 to 69 years."},
+        {id: 478, qHi: "वाल्मीकि समुदाय की लड़कियों की शिक्षा का समर्थन करने के लिए कौन सी छात्रवृत्ति योजना (Scholarship scheme) है?", aHi: "महर्षि बाल्मीकि छात्रवृत्ति योजना (Maharishi Balmiki Chatravriti Yojana)।", qEn: "Which scholarship scheme is there to support the education of girls from the Balmiki community?", aEn: "Maharishi Balmiki Chatravriti Yojana."},
+        {id: 479, qHi: "12वीं कक्षा की मेरिट सूची में शीर्ष पर रहने वाले छात्रों (Top 10) को कौन सी छात्रवृत्ति दी जाती है?", aHi: "इंदिरा गांधी उत्कृष्ट छात्रवृत्ति योजना (Indira Gandhi Utkrisht Chatravriti Yojana)।", qEn: "Which scholarship is given to the students topping the merit list of class 12th (Top 10)?", aEn: "Indira Gandhi Utkrisht Chatravriti Yojana."},
+        {id: 480, qHi: "विज्ञान स्ट्रीम में शीर्ष 2000 मेधावी छात्राओं को कौन सी छात्रवृत्ति दी जाती है?", aHi: "कल्पना चावला छात्रवृत्ति योजना (Kalpana Chawla Chatravriti Yojana)।", qEn: "Which scholarship is given to the top 2000 meritorious girl students in the Science stream?", aEn: "Kalpana Chawla Chatravriti Yojana."},
+        {id: 481, qHi: "सामान्य वर्ग के शीर्ष 2000 मेधावी छात्रों को कौन सी छात्रवृत्ति दी जाती है?", aHi: "स्वामी विवेकानंद उत्कृष्ट छात्रवृत्ति योजना (Swami Vivekanand Utkrisht Chatravriti Yojana)।", qEn: "Which scholarship is given to the top 2000 meritorious students of the General category?", aEn: "Swami Vivekanand Utkrisht Chatravriti Yojana."},
+        {id: 482, qHi: "अनुसूचित जाति (SC) और अन्य पिछड़ा वर्ग (OBC) के मेधावी छात्रों के लिए कौन सी छात्रवृत्ति योजना है?", aHi: "डॉ. अंबेडकर मेधावी छात्रवृत्ति योजना (Dr. Ambedkar Medhavi Chatravriti Yojana)।", qEn: "Which scholarship scheme is for the meritorious students of Scheduled Caste (SC) and Other Backward Classes (OBC)?", aEn: "Dr. Ambedkar Medhavi Chatravriti Yojana."},
+        {id: 483, qHi: "अनुसूचित जनजाति (ST) के मेधावी छात्रों (शीर्ष 100 लड़के और लड़कियां) के लिए कौन सी छात्रवृत्ति योजना है?", aHi: "ठाकुर सेन नेगी उत्कृष्ट छात्रवृत्ति योजना (Thakur Sen Negi Utkrisht Chatravriti Yojana)।", qEn: "Which scholarship scheme is for meritorious students of Scheduled Tribe (ST) (Top 100 boys and girls)?", aEn: "Thakur Sen Negi Utkrisht Chatravriti Yojana."},
+        {id: 484, qHi: "रक्षा बलों, अर्धसैनिक बलों और पुलिस के शहीदों के बच्चों के लिए कौन सी छात्रवृत्ति योजना है?", aHi: "महाराणा प्रताप छात्रवृत्ति योजना (Maharana Pratap Chatravriti Yojana)।", qEn: "Which scholarship scheme is for the children of martyrs of defense forces, paramilitary forces, and police?", aEn: "Maharana Pratap Chatravriti Yojana."},
+        {id: 485, qHi: "BPL, SC, ST और OBC छात्रों को कॉलेज/विश्वविद्यालय स्तर पर वित्तीय सहायता प्रदान करने वाली योजना कौन सी है?", aHi: "मुख्यमंत्री विद्यार्थी कल्याण योजना (Mukhya Mantri Vidyarthi Kalyan Yojana)।", qEn: "Which scheme provides financial assistance to BPL, SC, ST and OBC students at the college/university level?", aEn: "Mukhya Mantri Vidyarthi Kalyan Yojana."},
+        {id: 486, qHi: "'मेधा प्रोत्साहन योजना' (Medha Protsahan Yojana) के तहत UPSC और NEET जैसी प्रतियोगी परीक्षाओं की कोचिंग के लिए छात्रों को कितनी राशि दी जाती है?", aHi: "₹1 लाख।", qEn: "Under the 'Medha Protsahan Yojana', how much amount is given to students for coaching of competitive exams like UPSC and NEET?", aEn: "₹1 Lakh."},
+        {id: 487, qHi: "10वीं कक्षा के शीर्ष 100 छात्रों को पेशेवर कोचिंग प्रदान करने वाली योजना कौन सी है?", aHi: "स्वर्ण जयंती सुपर 100 योजना (Swaran Jayanti Super 100 Yojana)।", qEn: "Which scheme provides professional coaching to the top 100 students of class 10th?", aEn: "Swaran Jayanti Super 100 Yojana."},
+        {id: 488, qHi: "सरकारी स्कूलों में आधुनिक आईटी बुनियादी ढांचे और ई-लर्निंग को बढ़ावा देने वाली योजना का क्या नाम है?", aHi: "सी.वी. रमन वर्चुअल क्लासरूम योजना (C.V. Raman Virtual Classrooms)।", qEn: "What is the name of the scheme promoting modern IT infrastructure and e-learning in government schools?", aEn: "C.V. Raman Virtual Classrooms."},
+        {id: 489, qHi: "सरकारी स्कूलों (कक्षा 1 से 12) के छात्रों को मुफ्त स्कूल यूनिफॉर्म (School Uniforms) प्रदान करने वाली योजना कौन सी है?", aHi: "अटल वर्दी योजना (Atal Vardi Yojana)।", qEn: "Which scheme provides free school uniforms to students of government schools (Class 1 to 12)?", aEn: "Atal Vardi Yojana."},
+        {id: 490, qHi: "प्राथमिक शिक्षा से पहले बच्चों के विकास के लिए हिमाचल के सरकारी स्कूलों में कौन सी कक्षाएं शुरू की गई हैं?", aHi: "पूर्व-प्राथमिक (नर्सरी) कक्षाएं (Pre-Primary / Nursery Education)।", qEn: "Which classes have been started in government schools of Himachal for the development of children before primary education?", aEn: "Pre-Primary (Nursery) classes."},
+        {id: 491, qHi: "राज्य के कुल बजट का सबसे बड़ा हिस्सा (लगभग 16%) किस क्षेत्र के लिए आवंटित किया जाता है?", aHi: "शिक्षा (Education) क्षेत्र के लिए।", qEn: "The largest portion of the state's total budget (approx 16%) is allocated for which sector?", aEn: "For the Education sector."},
+        {id: 492, qHi: "राज्य बजट का लगभग कितना प्रतिशत 'स्वास्थ्य और परिवार कल्याण' (Health) क्षेत्र पर खर्च किया जाता है?", aHi: "लगभग 6% से 7%।", qEn: "Approximately what percentage of the state budget is spent on the 'Health and Family Welfare' sector?", aEn: "Approximately 6% to 7%."},
+        {id: 493, qHi: "सांख्यिकीय आंकड़ों के अनुसार, हिमाचल प्रदेश में 'जन्म दर' (Birth Rate) लगभग कितनी है?", aHi: "लगभग 15.2 प्रति 1000 जनसंख्या (जो राष्ट्रीय औसत 19.5 से काफी कम है)।", qEn: "According to statistical data, what is the approximate 'Birth Rate' in Himachal Pradesh?", aEn: "Approx 15.2 per 1000 population (which is much lower than the national average of 19.5)."},
+        {id: 494, qHi: "हिमाचल प्रदेश में 'मृत्यु दर' (Death Rate) लगभग कितनी है?", aHi: "लगभग 6.8 प्रति 1000 जनसंख्या।", qEn: "What is the approximate 'Death Rate' in Himachal Pradesh?", aEn: "Approx 6.8 per 1000 population."},
+        {id: 495, qHi: "हिमाचल प्रदेश की 'शिशु मृत्यु दर' (IMR - Infant Mortality Rate) क्या है?", aHi: "17 प्रति 1000 जीवित जन्म (यह बेहतर स्वास्थ्य सुविधाओं का सूचक है)।", qEn: "What is the 'Infant Mortality Rate' (IMR) of Himachal Pradesh?", aEn: "17 per 1000 live births (It is an indicator of better health facilities)."},
+        {id: 496, qHi: "हिमाचल प्रदेश में 'जन्म के समय लिंगानुपात' (Sex Ratio at Birth - SRB) में सुधार का मुख्य कारण कौन सा अधिनियम है?", aHi: "PNDT अधिनियम (Pre-Natal Diagnostic Techniques Act) का सख्त कार्यान्वयन।", qEn: "Which act is the main reason for the improvement in 'Sex Ratio at Birth' (SRB) in Himachal Pradesh?", aEn: "Strict implementation of the PNDT Act (Pre-Natal Diagnostic Techniques Act)."},
+        {id: 497, qHi: "हिमाचल प्रदेश में 'कुल प्रजनन दर' (TFR - Total Fertility Rate) क्या है?", aHi: "लगभग 1.6 (जो 2.1 के प्रतिस्थापन स्तर से कम है, जो जनसंख्या स्थिरीकरण को दर्शाता है)।", qEn: "What is the 'Total Fertility Rate' (TFR) in Himachal Pradesh?", aEn: "Approx 1.6 (which is below the replacement level of 2.1, indicating population stabilization)."},
+        {id: 498, qHi: "राष्ट्रीय स्वास्थ्य सुरक्षा योजना 'आयुष्मान भारत' के तहत राज्य में कितने रुपये तक का मुफ्त इलाज मिलता है?", aHi: "₹5 लाख प्रति परिवार प्रति वर्ष।", qEn: "Under the National Health Protection Scheme 'Ayushman Bharat', up to how much free treatment is available in the state?", aEn: "₹5 Lakh per family per year."},
+        {id: 499, qHi: "जो परिवार आयुष्मान भारत में कवर नहीं हैं, उनके लिए राज्य सरकार की कौन सी योजना ₹5 लाख का स्वास्थ्य कवर देती है?", aHi: "हिमकेयर (HIMCARE - Himachal Health Care Scheme)।", qEn: "For families not covered in Ayushman Bharat, which state government scheme provides a health cover of ₹5 lakh?", aEn: "HIMCARE (Himachal Health Care Scheme)."},
+        {id: 500, qHi: "कैंसर और पार्किंसंस जैसी गंभीर बीमारियों वाले मरीजों को 'मुख्यमंत्री सहारा योजना' के तहत वित्तीय सहायता के रूप में कितनी राशि दी जाती है?", aHi: "₹3000 प्रति माह।", qEn: "How much amount is given as financial assistance under 'Mukhya Mantri Sahara Yojana' to patients with severe diseases like cancer and Parkinson's?", aEn: "₹3000 per month."}
     ];
 
     function renderOneLiners() {
