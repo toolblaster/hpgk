@@ -6,7 +6,6 @@
     
     <!-- Optimized Meta Description for SEO -->
     <meta name="description" content="Unlock premium full-length HP GK mock tests and MCQ bundles for HPPSC, HPAS, and Allied exams. Choose your Master Access Pass today.">
-    <!-- Optimized Title Tag (Max 60 Chars) -->
     <title>Premium HP GK Mock Tests & Passes | HPGK Quiz Prep</title>
     
     <!-- Assets -->
@@ -59,7 +58,7 @@
         "name": "Are the mock tests bilingual?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes! Every single question, option, and detailed explanation is provided in both English and Hindi simultaneously to ensure maximum clarity. You can easily switch language context while practicing or reviewing your results. This helps both Hindi and English medium aspirants prepare with complete confidence."
+          "text": "Yes! Every single question, option, and detailed explanation is provided in both English and Hindi simultaneously to ensure maximum clarity. You can easily switch language context while practicing or reviewing your results."
         }
       }, {
         "@type": "Question",
@@ -157,12 +156,12 @@
             
             --bg-gradient: linear-gradient(135deg, #e0f2fe 0%, #dcfce7 50%, #f3e8ff 100%);
             --card-bg: rgba(255, 255, 255, 0.95); 
-            --card-border: rgba(203, 213, 225, 0.8); 
+            --card-border: rgba(148, 163, 184, 0.45); 
             --glass-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
             
             --text-main: #1f2937;     
             --text-body: #374151;     
-            --text-sec: #4b5563;      
+            --text-sec: #475569;      
             
             --correct-bg: #dcfce7;
             --correct-border: #22c55e;
@@ -182,17 +181,23 @@
             --accent: #fbbf24;        
             
             --bg-gradient: linear-gradient(135deg, #0f172a 0%, #022c22 50%, #1e1b4b 100%);
-            --card-bg: rgba(30, 41, 59, 0.85); 
-            --card-border: rgba(51, 65, 85, 0.8); 
+            --card-bg: rgba(30, 41, 59, 0.9); 
+            --card-border: rgba(255, 255, 255, 0.22); 
             --glass-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             
             --text-main: #f9fafb;     
             --text-body: #e5e7eb;     
-            --text-sec: #94a3b8;      
+            --text-sec: #cbd5e1; /* Upgraded for 4.5:1 WCAG AA contrast ratio */     
             
             --correct-bg: rgba(6, 78, 59, 0.9);
             --correct-border: #059669;
             --correct-text: #6ee7b7;
+        }
+
+        body, button, input, select, textarea, div, p, h1, h2, h3, h4, span, a {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
         }
 
         body {
@@ -232,7 +237,7 @@
         }
         [data-theme="dark"] .breadcrumb-list { box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
         
-        .breadcrumb-item { font-size: 0.6rem; font-weight: 600; color: var(--text-sec); display: flex; align-items: center; white-space: nowrap; height: 100%; }
+        .breadcrumb-item { font-size: 0.62rem; font-weight: 700; color: var(--text-sec); display: flex; align-items: center; white-space: nowrap; height: 100%; }
         .breadcrumb-item a { color: var(--text-sec); text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 4px; }
         .breadcrumb-item a:hover { color: var(--primary); }
         .breadcrumb-item.active { color: var(--primary); pointer-events: none; }
@@ -242,13 +247,13 @@
         .hero-badge { 
             display: inline-flex; align-items: center; justify-content: center; height: 20px; 
             background: var(--primary-light); color: var(--primary); padding: 0 8px; 
-            border-radius: 10px; font-size: 0.55rem; font-weight: 700; text-transform: uppercase; 
+            border-radius: 10px; font-size: 0.58rem; font-weight: 800; text-transform: uppercase; 
             margin: 0; border: 1px solid var(--primary); letter-spacing: 0.4px; white-space: nowrap; 
             flex-shrink: 0; box-sizing: border-box;
         }
         [data-theme="dark"] .hero-badge { border-color: rgba(52, 211, 153, 0.4); }
 
-        /* Hero Section (Punchy & Compact with Adjusted Vertical Margin) */
+        /* Hero Section */
         .upgrade-header { text-align: center; margin-bottom: 25px; margin-top: 0; }
         .upgrade-header h1 { 
             font-size: clamp(1.4rem, 4vw, 2rem); 
@@ -265,15 +270,16 @@
             max-width: 600px; 
             margin: 0 auto 12px auto; 
             line-height: 1.5; 
+            font-weight: 600;
         }
         
         .trust-badge {
             display: inline-flex; align-items: center; gap: 6px;
             background: var(--primary-light); color: var(--primary);
-            padding: 4px 12px; border-radius: 20px; font-size: 0.72rem; font-weight: 700;
+            padding: 4px 12px; border-radius: 20px; font-size: 0.72rem; font-weight: 800;
             border: 1px solid rgba(4, 120, 87, 0.2);
         }
-        [data-theme="dark"] .trust-badge { border-color: rgba(52, 211, 153, 0.2); }
+        [data-theme="dark"] .trust-badge { border-color: rgba(52, 211, 153, 0.3); }
 
         .pricing-grid {
             display: grid;
@@ -305,7 +311,7 @@
             box-shadow: 0 6px 20px rgba(4, 120, 87, 0.1);
         }
         [data-theme="dark"] .price-card:hover {
-            box-shadow: 0 6px 20px rgba(52, 211, 153, 0.1);
+            box-shadow: 0 6px 20px rgba(52, 211, 153, 0.15);
         }
 
         /* VIBRANT COMBO CARD */
@@ -331,7 +337,6 @@
             white-space: nowrap; box-shadow: 0 2px 5px rgba(245, 158, 11, 0.3);
         }
 
-        /* Typography inside cards */
         .card-type { width: 100%; font-size: 0.7rem; font-weight: 800; color: var(--accent); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
         .card-title { width: 100%; font-size: 1.15rem; font-weight: 900; color: var(--text-main); margin: 0 0 10px 0; line-height: 1.2; letter-spacing: -0.3px; font-family: 'Poppins', sans-serif; }
         
@@ -339,16 +344,16 @@
             width: 100%; margin-bottom: 15px; display: flex; align-items: baseline; gap: 4px; 
             border-bottom: 1px solid var(--card-border); padding-bottom: 15px;
         }
-        .currency { font-size: 1.1rem; font-weight: 700; color: var(--text-main); }
+        .currency { font-size: 1.1rem; font-weight: 800; color: var(--text-main); }
         .amount { font-size: 30px; font-weight: 900; color: var(--text-main); letter-spacing: -1px; line-height: 1; }
-        .price-suffix { font-size: 0.75rem; color: var(--text-sec); font-weight: 600; }
-        .original-price { text-decoration: line-through; color: var(--text-sec); font-size: 0.9rem; margin-left: 6px; opacity: 0.7; font-weight: 600; }
+        .price-suffix { font-size: 0.75rem; color: var(--text-sec); font-weight: 700; }
+        .original-price { text-decoration: line-through; color: var(--text-sec); font-size: 0.9rem; margin-left: 6px; opacity: 0.8; font-weight: 700; }
 
         /* Combo Card overrides */
         .premium-combo .card-type { color: #fcd34d !important; }
         .premium-combo .card-title, .premium-combo .amount, .premium-combo .currency { color: #ffffff !important; }
         .premium-combo .price-suffix { color: #bfdbfe !important; opacity: 0.9; }
-        .premium-combo .original-price { color: #bfdbfe !important; opacity: 0.7; border-bottom: none;}
+        .premium-combo .original-price { color: #bfdbfe !important; opacity: 0.8; border-bottom: none;}
         .premium-combo .price-box { border-bottom-color: rgba(255,255,255,0.2); }
 
         /* FEATURE LIST */
@@ -363,7 +368,7 @@
             gap: 8px;
             font-size: 0.8rem; 
             color: var(--text-body); 
-            font-weight: 500; 
+            font-weight: 600; 
             line-height: 1.4;
             text-align: left; 
         }
@@ -374,7 +379,7 @@
             flex-shrink: 0; 
         }
         .card-features li div { flex: 1; }
-        .card-features li strong { color: var(--text-main); font-weight: 700; }
+        .card-features li strong { color: var(--text-main); font-weight: 800; }
         
         [data-theme="dark"] .card-features li strong { color: #fff; }
 
@@ -393,15 +398,15 @@
             margin-top: auto; 
         }
         .buy-btn:hover { background: var(--card-border); color: var(--primary); }
-        [data-theme="dark"] .buy-btn { border-color: #475569; }
-        [data-theme="dark"] .buy-btn:hover { background: rgba(255,255,255,0.05); }
+        [data-theme="dark"] .buy-btn { border-color: rgba(255, 255, 255, 0.25); }
+        [data-theme="dark"] .buy-btn:hover { background: rgba(255,255,255,0.1); }
 
         /* Button for Combo Card */
         .price-card.premium-combo .buy-btn {
             background: #f59e0b; 
             color: #0f172a; 
             border: none;
-            box-shadow: 0 4px 10px rgba(245, 158, 11, 0.2);
+            box-shadow: 0 4px 10px rgba(245, 158, 11, 0.25);
         }
         .price-card.premium-combo .buy-btn:hover { 
             background: #fbbf24; 
@@ -412,16 +417,16 @@
             display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 12px 24px;
             margin: 0 auto 25px auto; max-width: 850px; padding: 12px 20px;
             border-radius: var(--radius-xl); box-sizing: border-box;
-            background: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.6);
             border: 1px solid var(--card-border);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
         }
         [data-theme="dark"] .minimal-features {
-            background: rgba(30, 41, 59, 0.4);
+            background: rgba(30, 41, 59, 0.6);
         }
         .minimal-features span {
-            font-size: 0.78rem; font-weight: 700; color: var(--text-main);
+            font-size: 0.78rem; font-weight: 800; color: var(--text-main);
             display: flex; align-items: center; gap: 6px;
         }
         .minimal-features i { color: var(--primary); font-size: 0.9rem; }
@@ -461,22 +466,29 @@
         }
         
         .m-faq-q { 
-            font-size: 0.85rem; font-weight: 700; color: var(--text-main); margin-bottom: 4px; display: flex; gap: 8px; align-items: flex-start;
+            font-size: 0.85rem; font-weight: 800; color: var(--text-main); margin-bottom: 4px; display: flex; gap: 8px; align-items: flex-start;
         }
         .m-faq-q i { color: var(--primary); margin-top: 3px; font-size: 0.75rem; flex-shrink: 0; }
         .m-faq-a { 
-            font-size: 0.8rem; color: var(--text-sec); line-height: 1.5; margin: 0 0 0 24px; 
+            font-size: 0.8rem; color: var(--text-sec); line-height: 1.5; margin: 0 0 0 24px; font-weight: 500;
         }
-        .m-faq-a strong { color: var(--text-main); font-weight: 600; }
-        [data-theme="dark"] .m-faq-a strong { color: #e2e8f0; }
+        .m-faq-a strong { color: var(--text-main); font-weight: 700; }
 
-        /* Secure Payment Note */
         .secure-note {
-            text-align: center; font-size: 0.72rem; color: var(--text-sec); margin-top: 15px;
-            display: flex; align-items: center; justify-content: center; gap: 6px; font-weight: 600;
-            opacity: 0.9;
+            text-align: center; font-size: 0.75rem; color: var(--text-sec); margin-top: 15px;
+            display: flex; align-items: center; justify-content: center; gap: 6px; font-weight: 700;
         }
         .secure-note i { color: #10b981; font-size: 0.9rem; }
+
+        /* UI Notification Message Overlay (Non-Alert) */
+        .notification-toast {
+            position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%) translateY(100px);
+            background: var(--text-main); color: #ffffff; padding: 12px 24px; border-radius: 30px;
+            font-size: 0.82rem; font-weight: 700; z-index: 100000; box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            opacity: 0; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: flex; align-items: center; gap: 8px;
+            pointer-events: none; max-width: 90vw; text-align: center;
+        }
+        .notification-toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
 
         @media (max-width: 900px) {
             .pricing-grid { grid-template-columns: 1fr; max-width: 450px; gap: 20px; }
@@ -548,11 +560,23 @@
 </head>
 <body>
 
+<noscript>
+    <div style="padding: 20px; text-align: center; color: #7f1d1d; background: #fef2f2;">
+        <strong>JavaScript is required.</strong> Please enable JavaScript to use the HPGK Quiz application.
+    </div>
+</noscript>
+
 <!-- Payment Processing Overlay -->
 <div id="payment-processing-overlay">
     <div class="spinner"></div>
     <h2 style="margin:0 0 10px 0; font-size: 1.5rem; font-weight:800;" id="verify-title">Securing Your Access...</h2>
     <p style="margin:0; font-size: 0.9rem; color:#cbd5e1;" id="verify-desc">Please wait while we verify your transaction with the bank.</p>
+</div>
+
+<!-- Non-blocking Custom Notification Toast -->
+<div id="notification-toast" class="notification-toast">
+    <i class="fa-solid fa-circle-info" style="color:var(--warning);"></i>
+    <span id="toast-message">Notification Message</span>
 </div>
 
 <!-- Dynamic Header Container -->
@@ -660,12 +684,12 @@
 
                     <div class="m-faq-item">
                         <div class="m-faq-q"><i class="fa-solid fa-q"></i> Are the mock tests bilingual?</div>
-                        <div class="m-faq-a">Yes! Every single question, option, and detailed explanation is provided in <strong>both English and Hindi</strong> simultaneously to ensure maximum clarity. You can easily switch language context while practicing or reviewing results, helping both medium aspirants prepare with full confidence.</div>
+                        <div class="m-faq-a">Yes! Every single question, option, and detailed explanation is provided in <strong>both English and Hindi</strong> simultaneously to ensure maximum clarity. You can easily switch language context while practicing or reviewing results.</div>
                     </div>
 
                     <div class="m-faq-item">
                         <div class="m-faq-q"><i class="fa-solid fa-q"></i> Can I upgrade from MCQ Pass to Mock Master Pass?</div>
-                        <div class="m-faq-a">Yes! You can upgrade anytime. However, please note that <strong>there is no pro-rated waiver or price deduction</strong> for previously purchased passes (e.g., buying the ₹39 pass earlier). Upgrading requires paying the full ₹89 for the Mock Master Pass, which activates a fresh 1-month validity.</div>
+                        <div class="m-faq-a">Yes! You can upgrade anytime. However, please note that <strong>there is no pro-rated waiver or price deduction</strong> for previously purchased passes. Upgrading requires paying the full ₹89 for the Mock Master Pass.</div>
                     </div>
 
                     <div class="m-faq-item">
@@ -729,10 +753,16 @@
     const db = getFirestore(app);
     const auth = getAuth(app);
 
-    // Make db globally accessible for the payment listener
-    window._db = db;
-    window._doc = doc;
-    window._onSnapshot = onSnapshot;
+    // Toast helper for user notifications without alert()
+    window.showToast = function(msg) {
+        const toast = document.getElementById('notification-toast');
+        const msgSpan = document.getElementById('toast-message');
+        if (toast && msgSpan) {
+            msgSpan.innerText = msg;
+            toast.classList.add('show');
+            setTimeout(() => { toast.classList.remove('show'); }, 3500);
+        }
+    };
 
     // Initialize Header & Footer
     document.addEventListener('DOMContentLoaded', () => {
@@ -751,15 +781,21 @@
         }
     });
 
-    // SMART UI LOCKER
+    // SMART UI LOCKER WITH STRICT TIMESTAMP VALIDATION
     function updateUpgradeUI(passes) {
         if (!passes) return;
 
         const btnMcq = document.getElementById('btn-mcq');
         const btnMock = document.getElementById('btn-mock');
 
-        // Check for highest tier first
-        if (passes.mock_master_pass || passes.mega_combo_pass || passes.vip_lifetime_pass) {
+        const mockPass = passes.mock_master_pass || passes.mega_combo_pass || passes.vip_lifetime_pass;
+        const mcqPass = passes.mcq_pro_pass;
+
+        const hasValidMock = window.HPGK_IsPassValid ? window.HPGK_IsPassValid(mockPass) : !!mockPass;
+        const hasValidMcq = window.HPGK_IsPassValid ? window.HPGK_IsPassValid(mcqPass) : !!mcqPass;
+
+        // Check highest tier valid pass
+        if (hasValidMock) {
             if (btnMcq) {
                 btnMcq.innerHTML = '<i class="fa-solid fa-circle-check"></i> Included in VIP';
                 btnMcq.style.background = 'var(--correct-bg)';
@@ -778,8 +814,7 @@
                 btnMock.style.cursor = 'default';
             }
         } 
-        // If they only have the MCQ Pro pass
-        else if (passes.mcq_pro_pass) {
+        else if (hasValidMcq) {
             if (btnMcq) {
                 btnMcq.innerHTML = '<i class="fa-solid fa-circle-check"></i> Pass Active';
                 btnMcq.style.background = 'var(--correct-bg)';
@@ -795,7 +830,7 @@
         }
     }
 
-    // Listen for Auth changes to lock UI on the upgrade page securely
+    // Listen for Auth changes to lock UI on upgrade page securely
     onAuthStateChanged(auth, async (user) => {
         if (user && !user.isAnonymous) {
             try {
@@ -819,13 +854,11 @@
         try {
             const uid = window.HPGK_User.uid;
             const userRef = doc(db, 'artifacts', 'hpgk-quiz', 'users', uid);
-            
             let isRedirected = false;
 
             const fallbackTimer = setTimeout(() => {
                 if (!isRedirected) {
                     isRedirected = true;
-                    alert("Payment received! The server might take a minute to sync your pass. Redirecting to Dashboard...");
                     window.location.href = "dashboard.html";
                 }
             }, 10000);
@@ -833,7 +866,7 @@
             const unsubscribe = onSnapshot(userRef, (docSnap) => {
                 if (docSnap.exists()) {
                     const passes = docSnap.data().passes || {};
-                    if (passes[planId] && !isRedirected) {
+                    if (passes[planId] && window.HPGK_IsPassValid(passes[planId]) && !isRedirected) {
                         isRedirected = true;
                         clearTimeout(fallbackTimer);
                         unsubscribe();
@@ -841,7 +874,7 @@
                     }
                 }
             });
-        } catch (e) {
+        } catch(e) {
             console.error("Verification Listener Error:", e);
             setTimeout(() => { window.location.href = "dashboard.html"; }, 3000);
         }
@@ -852,8 +885,8 @@
         if (!window.HPGK_User || !window.HPGK_User.isLoggedIn) {
             if (window.openLoginModal) {
                 window.openLoginModal();
-            } else {
-                alert("Please login securely from the top bar to continue.");
+            } else if (window.showToast) {
+                window.showToast("Please log in securely from the header to continue.");
             }
             return;
         }
@@ -872,7 +905,6 @@
             "image": "../js/favicon/web-app-manifest-192x192.png", 
             
             "handler": function (response) {
-                console.log("Payment Success ID:", response.razorpay_payment_id);
                 document.getElementById('payment-processing-overlay').style.display = 'flex';
                 window.HPGK_verifyAndRedirect(planId);
             },
@@ -893,7 +925,9 @@
         var rzp1 = new Razorpay(options);
         rzp1.on('payment.failed', function (response){
             console.error("Payment Failed:", response.error);
-            alert("Payment Failed or Cancelled!\nReason: " + response.error.description);
+            if (window.showToast) {
+                window.showToast("Payment Failed or Cancelled: " + (response.error.description || 'Transaction incomplete'));
+            }
         });
         
         rzp1.open();
