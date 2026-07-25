@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- STREAMING_CHUNK:Configuring SEO meta tags, canonical link, and JSON-LD schemas... -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Master HP Economic Survey with Part 2 of our One Liners. High-yield facts covering Tourism, Hydropower, MSME, and Social Welfare for HPPSC.">
@@ -76,7 +77,8 @@
     <!-- Global CSS (3 levels up) -->
     <link rel="stylesheet" href="../../../js/style.css">
 
-    <!-- PAGE SPECIFIC STYLESHEET (Professional Indigo Theme) -->
+    <!-- STREAMING_CHUNK:Styling page layout, theme tokens, and 2-column grid... -->
+    <!-- PAGE SPECIFIC STYLESHEET (Professional Indigo Theme - Economic Survey) -->
     <style>
         :root {
             --site-width: 1100px;
@@ -137,29 +139,38 @@
         @media (max-width: 480px) { .page-layout, .top-meta-bar { padding: 0 12px !important; } }
 
         .top-meta-bar { display: flex !important; justify-content: space-between; align-items: center; margin: 0 auto 5px auto; flex-wrap: nowrap; gap: 10px; }
-        .breadcrumb-nav { margin: 0; flex-shrink: 1; display: flex; align-items: center; height: 24px; overflow-x: auto; scrollbar-width: none;}
+        .top-meta-right { display: flex; align-items: center; gap: 8px; }
+
+        .breadcrumb-nav { margin: 0; flex-shrink: 1; display: flex; align-items: center; height: 20px; overflow-x: auto; scrollbar-width: none;}
         .breadcrumb-nav::-webkit-scrollbar { display: none; }
         
         .breadcrumb-list { 
-            list-style: none; padding: 0 10px; margin: 0; display: flex; flex-wrap: nowrap; 
-            align-items: center; gap: 4px; background: rgba(255, 255, 255, 0.35); border-radius: 12px; 
+            list-style: none; padding: 0 8px; margin: 0; display: flex; flex-wrap: nowrap; 
+            align-items: center; gap: 4px; background: rgba(255, 255, 255, 0.35); border-radius: 10px; 
             border: 1px solid var(--card-border); backdrop-filter: blur(8px); 
             box-shadow: 0 1px 2px rgba(0,0,0,0.05); height: 100%; box-sizing: border-box;
         }
         [data-theme="dark"] .breadcrumb-list { background: rgba(30, 41, 59, 0.4); box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
-        .breadcrumb-item { font-size: 0.6rem; font-weight: 600; color: var(--text-sec); display: flex; align-items: center; white-space: nowrap; height: 100%; }
+        .breadcrumb-item { font-size: 0.58rem; font-weight: 600; color: var(--text-sec); display: flex; align-items: center; white-space: nowrap; height: 100%; }
         .breadcrumb-item a { color: var(--text-sec); text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 4px; }
         .breadcrumb-item a:hover { color: var(--primary); }
         .breadcrumb-item.active { color: var(--primary); pointer-events: none; }
-        .breadcrumb-separator { font-size: 0.55rem; color: var(--text-sec); opacity: 0.6; margin: 0 2px; }
+        .breadcrumb-separator { font-size: 0.52rem; color: var(--text-sec); opacity: 0.6; margin: 0 2px; }
 
         .hero-badge { 
-            display: inline-flex; align-items: center; justify-content: center; height: 24px; 
-            background: var(--primary-light); color: var(--primary); padding: 0 10px; 
-            border-radius: 12px; font-size: 0.6rem; font-weight: 800; text-transform: uppercase; 
-            margin: 0; border: 1px solid var(--primary); letter-spacing: 0.5px; white-space: nowrap; 
-            flex-shrink: 0; box-sizing: border-box;
+            display: inline-flex; align-items: center; justify-content: center; height: 18px; 
+            background: var(--primary); color: white; padding: 0 8px; border-radius: 9px; 
+            font-size: 0.55rem; font-weight: 800; text-transform: uppercase; margin: 0; 
+            border: 1px solid var(--primary-dark); letter-spacing: 0.3px; white-space: nowrap; flex-shrink: 0; box-sizing: border-box; line-height: 1;
         }
+
+        .print-btn {
+            display: inline-flex; align-items: center; gap: 5px; height: 20px;
+            background: var(--card-bg); color: var(--text-sec); border: 1px solid var(--card-border);
+            padding: 0 8px; border-radius: 10px; font-size: 0.58rem; font-weight: 700;
+            cursor: pointer; transition: all 0.2s ease; box-sizing: border-box; white-space: nowrap;
+        }
+        .print-btn:hover { color: var(--primary); border-color: var(--primary); background: var(--primary-light); }
 
         .page-header-top { text-align: center; margin-bottom: 25px; margin-top: 0; padding-top: 0; width: 100%; }
         
@@ -173,7 +184,7 @@
         .hero-desc span.hi-desc { font-family: 'Noto Sans Devanagari', sans-serif; font-size: 0.85rem; color: var(--text-sec); display: block; margin-top: 4px; font-weight: 500; }
         [data-theme="dark"] .hero-desc span.hi-desc { color: #e2e8f0; }
 
-        /* HIGH-CONTRAST INTERLINKING PILL */
+        /* HIGH-CONTRAST INTERLINKING PILL (EXACTLY 3 LINKS) */
         .hero-interlinks {
             display: inline-flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px;
             margin-top: 15px; padding: 10px 20px; background: var(--card-bg); border: 1px solid var(--card-border);
@@ -182,44 +193,62 @@
         [data-theme="dark"] .hero-interlinks { background: #1e293b; border-color: #334155; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
         .hero-interlinks .interlink-label { font-size: 0.8rem; font-weight: 800; color: var(--text-sec); text-transform: uppercase; letter-spacing: 0.5px; }
         .hero-interlinks .interlink-label i { color: var(--primary); margin-right: 4px; }
-        .hero-interlinks a { font-size: 0.9rem; font-weight: 700; color: var(--primary-dark); text-decoration: none; transition: all 0.2s ease; }
-        .hero-interlinks a:hover { color: var(--primary); text-decoration: underline; }
-        [data-theme="dark"] .hero-interlinks a { color: #a5b4fc; }
-        [data-theme="dark"] .hero-interlinks a:hover { color: #818cf8; }
+        .hero-interlinks a { font-size: 0.9rem; font-weight: 700; color: #4f46e5; text-decoration: none; transition: all 0.2s ease; }
+        .hero-interlinks a:hover { color: #4338ca; text-decoration: underline; }
+        [data-theme="dark"] .hero-interlinks a { color: #818cf8; }
+        [data-theme="dark"] .hero-interlinks a:hover { color: #a5b4fc; }
         .hero-interlinks .dot { color: var(--text-sec); font-size: 0.8rem; opacity: 0.6; }
 
         /* INDIGO TOOLS STRIP */
         .tools-strip {
-            margin-top: 25px; background: rgba(79, 70, 229, 0.05); border: 1px solid rgba(79, 70, 229, 0.2);
-            border-radius: var(--radius-lg); padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;
-            max-width: 800px; margin-left: auto; margin-right: auto; transition: all 0.3s ease;
+            margin-top: 20px; background: rgba(79, 70, 229, 0.08); border: 1px solid rgba(79, 70, 229, 0.3);
+            border-radius: var(--radius-lg); padding: 8px 14px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;
+            width: 100%; transition: all 0.3s ease; box-sizing: border-box;
         }
-        .tools-strip:hover { border-color: var(--primary); box-shadow: 0 4px 12px rgba(79, 70, 229, 0.1); }
+        .tools-strip:hover { border-color: var(--primary); box-shadow: 0 4px 12px rgba(79, 70, 229, 0.15); }
         .tools-strip-left { display: flex; align-items: center; gap: 12px; flex: 1 1 auto; min-width: 260px; }
-        .tools-strip-icon {
-            width: 40px; height: 40px; background: rgba(79, 70, 229, 0.15); color: var(--primary);
-            border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;
-        }
-        [data-theme="dark"] .tools-strip-icon { color: #818cf8; background: rgba(129, 140, 248, 0.2); }
-        .tools-strip-title { font-weight: 800; color: var(--text-main); font-size: 0.95rem; text-align: left; }
-        .tools-strip-desc { font-size: 0.75rem; color: var(--text-sec); margin-top: 2px; text-align: left; font-weight: 500; }
+        .tools-strip-title { font-weight: 800; color: var(--text-main); font-size: 0.95rem; text-align: left; font-family: 'Inter', sans-serif;}
+        .tools-strip-desc { font-size: 0.75rem; color: var(--text-sec); margin-top: 2px; text-align: left; font-weight: 500;}
         .tools-strip-btn-group { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; justify-content: flex-end;}
         
         .tools-strip-btn {
-            background: var(--primary); color: white !important; padding: 6px 14px; border-radius: 6px;
+            background: #4f46e5; color: white !important; padding: 5px 12px; border-radius: 6px;
             font-size: 12px; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 5px;
-            transition: background 0.2s; white-space: nowrap; letter-spacing: 0.2px;
+            transition: all 0.2s; white-space: nowrap; letter-spacing: 0.2px;
         }
-        .tools-strip-btn:hover { background: var(--primary-hover); }
-        [data-theme="dark"] .tools-strip-btn { background: #4f46e5; color: white !important; }
-        [data-theme="dark"] .tools-strip-btn:hover { background: #4338ca; }
+        .tools-strip-btn:hover { background: #4338ca; }
+        [data-theme="dark"] .tools-strip-btn { background: #6366f1; }
+        [data-theme="dark"] .tools-strip-btn:hover { background: #4f46e5; }
         
         .tools-strip-btn.outline {
-            background: transparent; color: var(--primary) !important; border: 1px solid var(--primary);
+            background: transparent; color: #4f46e5 !important; border: 1px solid #4f46e5;
         }
-        .tools-strip-btn.outline:hover { background: rgba(79, 70, 229, 0.1); color: var(--primary-hover) !important; }
-        [data-theme="dark"] .tools-strip-btn.outline { color: #a5b4fc !important; border-color: #a5b4fc; }
-        [data-theme="dark"] .tools-strip-btn.outline:hover { background: rgba(129, 140, 248, 0.15); color: #818cf8 !important; }
+        .tools-strip-btn.outline:hover { background: rgba(79, 70, 229, 0.1); color: #4338ca !important; }
+        [data-theme="dark"] .tools-strip-btn.outline { color: #818cf8 !important; border-color: #818cf8; }
+        [data-theme="dark"] .tools-strip-btn.outline:hover { background: rgba(129, 140, 248, 0.15); color: #a5b4fc !important;}
+
+        /* STREAMING_CHUNK:Configuring key indicators grid and one-liner row cards... */
+        /* 6 KEY INDICATORS AT-A-GLANCE STRIP */
+        .key-indicators-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 16px; width: 100%;
+        }
+        @media (min-width: 600px) { .key-indicators-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (min-width: 900px) { .key-indicators-grid { grid-template-columns: repeat(6, 1fr); } }
+
+        .indicator-card {
+            background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-lg);
+            padding: 8px 10px; display: flex; align-items: center; gap: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.02); transition: all 0.2s ease;
+        }
+        .indicator-card:hover { border-color: var(--primary); transform: translateY(-2px); }
+        .indicator-icon {
+            width: 32px; height: 32px; border-radius: 8px; background: var(--primary-light); color: var(--primary);
+            display: flex; align-items: center; justify-content: center; font-size: 0.95rem; flex-shrink: 0;
+        }
+        [data-theme="dark"] .indicator-icon { color: #818cf8; background: rgba(129, 140, 248, 0.15); }
+        .indicator-content { text-align: left; min-width: 0; }
+        .indicator-value { font-size: 0.95rem; font-weight: 800; color: var(--primary-dark); line-height: 1.1; white-space: nowrap; }
+        [data-theme="dark"] .indicator-value { color: #818cf8; }
+        .indicator-label { font-size: 0.65rem; font-weight: 600; color: var(--text-sec); margin-top: 2px; line-height: 1.15; }
 
         /* 1100px 2-COLUMN LIST LAYOUT */
         .one-liner-container { max-width: 1100px; margin: 0 auto; padding: 0 15px; width: 100%; box-sizing: border-box; }
@@ -251,9 +280,17 @@
 
         @media (max-width: 600px) {
             .page-header-top { margin-top: 25px; margin-bottom: 20px; padding-top: 0; }
-            .hero-title { font-size: 24px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
-            .top-meta-bar { padding: 0 12px !important; }
-            
+            .hero-title { font-size: 25px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
+            .top-meta-bar { flex-wrap: nowrap; justify-content: space-between; }
+            .breadcrumb-nav { height: 18px; }
+            .hero-badge { height: 16px; padding: 0 6px; border-radius: 8px; font-size: 0.50rem; }
+            .print-btn { height: 19px; padding: 0 6px; font-size: 0.55rem; }
+
+            .indicator-card { padding: 6px 8px; gap: 6px; }
+            .indicator-icon { width: 28px; height: 28px; font-size: 0.85rem; border-radius: 6px; }
+            .indicator-value { font-size: 0.85rem; }
+            .indicator-label { font-size: 0.6rem; }
+
             .fact-row { padding: 10px 12px; }
             .content-en { padding-right: 45px; } 
             .q-en { font-size: 0.85rem; }
@@ -263,14 +300,30 @@
             .fact-id { top: 10px; right: 12px; font-size: 0.6rem; }
             
             .hero-interlinks { flex-direction: row; flex-wrap: wrap; gap: 6px; padding: 8px 12px; border-radius: 30px; }
-            .hero-interlinks .dot { display: inline; font-size: 0.7rem; }
-            .hero-interlinks a { font-size: 0.8rem; }
+            .hero-interlinks .dot { font-size: 0.7rem; }
+            .hero-interlinks a { font-size: calc(0.8rem + 1.5px); }
             .hero-interlinks .interlink-label { font-size: 0.75rem; }
             
-            .tools-strip { flex-direction: column; align-items: stretch; gap: 15px;}
-            .tools-strip-btn-group { width: 100%; justify-content: stretch; display: grid; grid-template-columns: 1fr 1fr; gap: 8px;}
-            .tools-strip-btn-group .tools-strip-btn:last-child { grid-column: span 2; }
-            .tools-strip-btn { justify-content: center; padding: 7px 10px; font-size: 12px; }
+            .tools-strip { flex-direction: column; align-items: stretch; gap: 12px; }
+            .tools-strip-left { flex-direction: column; text-align: center; justify-content: center; width: 100%; }
+            .tools-strip-title, .tools-strip-desc { text-align: center !important; }
+            .tools-strip-btn-group { width: 100%; justify-content: center; display: flex; gap: 8px; flex-wrap: wrap; }
+            .tools-strip-btn { justify-content: center; padding: 6px 12px; font-size: 11.5px; width: fit-content; margin: 0; }
+        }
+
+        @media print {
+            #site-header, #site-footer, .top-meta-bar, .hero-interlinks, .tools-strip, .print-btn {
+                display: none !important;
+            }
+            body { background: #ffffff !important; color: #000000 !important; font-size: 11pt !important; }
+            main, .page-layout, .one-liner-container { max-width: 100% !important; padding: 0 !important; margin: 0 !important; }
+            .hero-title { color: #000000 !important; -webkit-text-fill-color: #000000 !important; font-size: 20pt !important; text-align: left !important; }
+            .hero-desc { color: #333333 !important; text-align: left !important; margin-bottom: 20px !important; }
+            .key-indicators-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 10px !important; margin-bottom: 20px !important; }
+            .indicator-card { border: 1px solid #ccc !important; box-shadow: none !important; padding: 8px !important; }
+            .one-liner-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; }
+            .fact-row { border: 1px solid #cccccc !important; box-shadow: none !important; page-break-inside: avoid !important; break-inside: avoid !important; background: #ffffff !important; }
+            .q-en, .q-hi, .a-en, .a-hi { color: #222222 !important; }
         }
     </style>
 
@@ -291,6 +344,7 @@
 <div id="site-header"></div>
 
 <main class="hub-main-wrapper">
+    <!-- STREAMING_CHUNK:Rendering header top-meta bar and hero section... -->
     <!-- Top Meta Bar -->
     <div class="top-meta-bar">
         <nav aria-label="breadcrumb" class="breadcrumb-nav">
@@ -304,7 +358,12 @@
                 <li class="breadcrumb-item active" aria-current="page">One Liners P-2</li>
             </ol>
         </nav>
-        <span class="hero-badge">Economy Series</span>
+        <div class="top-meta-right">
+            <button onclick="window.print()" class="print-btn" title="Print or Save Page as PDF">
+                <i class="fa-solid fa-print"></i> Print / PDF
+            </button>
+            <span class="hero-badge"><span class="hide-mobile">Eco </span>One-Liners</span>
+        </div>
     </div>
 
     <div class="page-layout">
@@ -316,45 +375,86 @@
                 <span class="hi-desc">हिमाचल प्रदेश आर्थिक सर्वेक्षण से निकाले गए 150 उच्च-उपज (High-Yield) द्विभाषी वन-लाइनर्स। पर्यटन, जलविद्युत, उद्योग और सामाजिक कल्याण शामिल है।</span>
             </p>
             
-            <!-- High-Contrast Interlinking Hook -->
+            <!-- High-Contrast Interlinking Hook (EXACTLY 3 LINKS) -->
             <div class="hero-interlinks">
-                <span class="interlink-label"><i class="fa-solid fa-layer-group"></i> Deep Dive:</span>
+                <span class="interlink-label"><i class="fa-solid fa-layer-group"></i> Explore:</span>
                 <a href="../">Eco Survey Hub</a>
                 <span class="dot">•</span>
                 <a href="../../hp-budget/">HP Budget</a>
                 <span class="dot">•</span>
-                <a href="../../../himachal-pradesh-gk/economy/">Economy Quiz</a>
+                <a href="../quiz/">Economy Quiz</a>
             </div>
 
             <!-- INDIGO TOOLS STRIP FOR PARTS NAVIGATION -->
             <div class="tools-strip">
                 <div class="tools-strip-left">
-                    <div class="tools-strip-icon">
-                        <i class="fa-solid fa-book-open-reader"></i>
-                    </div>
                     <div>
-                        <div class="tools-strip-title font-heading">Continue Reading Series</div>
-                        <div class="tools-strip-desc font-sans">Navigate to previous or next parts</div>
+                        <div class="tools-strip-title font-heading">600 One-Liners Series & Mock Quiz</div>
+                        <div class="tools-strip-desc font-sans">Read 600 Rapid Revision Facts across 4 Parts & Practice Test</div>
                     </div>
                 </div>
                 <div class="tools-strip-btn-group">
-                    <a href="../eco-one-liners-part-1/" class="tools-strip-btn outline">
-                        <i class="fa-solid fa-arrow-left"></i> Part 1
+                    <a href="../eco-one-liners-part-1/" class="tools-strip-btn outline">Part 1</a>
+                    <a href="#" class="tools-strip-btn" style="background: var(--primary-dark);">Part 2 (Current)</a>
+                    <a href="../eco-one-liners-part-3/" class="tools-strip-btn outline">Part 3</a>
+                    <a href="../eco-one-liners-part-4/" class="tools-strip-btn outline">Part 4</a>
+                    <a href="../quiz/" class="tools-strip-btn">
+                        <i class="fa-solid fa-brain"></i> Mock Quiz
                     </a>
-                    <!-- Highlighted Current Part -->
-                    <a href="#" class="tools-strip-btn" style="background: var(--primary-dark);">
-                        Part 2 (Current)
-                    </a>
-                    <a href="../eco-one-liners-part-3/" class="tools-strip-btn outline">
-                        Part 3 <i class="fa-solid fa-arrow-right"></i>
-                    </a>
+                </div>
+            </div>
+
+            <!-- 6 AT-A-GLANCE INDICATOR CHIPS -->
+            <div class="key-indicators-grid">
+                <div class="indicator-card">
+                    <div class="indicator-icon"><i class="fa-solid fa-list-check"></i></div>
+                    <div class="indicator-content">
+                        <div class="indicator-value">150 Facts</div>
+                        <div class="indicator-label">Part 2 Coverage</div>
+                    </div>
+                </div>
+                <div class="indicator-card">
+                    <div class="indicator-icon"><i class="fa-solid fa-umbrella-beach"></i></div>
+                    <div class="indicator-content">
+                        <div class="indicator-value">7.3%</div>
+                        <div class="indicator-label">Tourism GDP Share</div>
+                    </div>
+                </div>
+                <div class="indicator-card">
+                    <div class="indicator-icon"><i class="fa-solid fa-bolt"></i></div>
+                    <div class="indicator-content">
+                        <div class="indicator-value">27,436 MW</div>
+                        <div class="indicator-label">Harnessable Hydro</div>
+                    </div>
+                </div>
+                <div class="indicator-card">
+                    <div class="indicator-icon"><i class="fa-solid fa-industry"></i></div>
+                    <div class="indicator-content">
+                        <div class="indicator-value">>70%</div>
+                        <div class="indicator-label">BBN Industrial Output</div>
+                    </div>
+                </div>
+                <div class="indicator-card">
+                    <div class="indicator-icon"><i class="fa-solid fa-hospital"></i></div>
+                    <div class="indicator-content">
+                        <div class="indicator-value">₹5 Lakh</div>
+                        <div class="indicator-label">HIMCARE Health Cover</div>
+                    </div>
+                </div>
+                <div class="indicator-card">
+                    <div class="indicator-icon"><i class="fa-solid fa-people-roof"></i></div>
+                    <div class="indicator-content">
+                        <div class="indicator-value">50%</div>
+                        <div class="indicator-label">Women PRI Reservation</div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- STREAMING_CHUNK:Preparing container for Facts 201 to 350 data array... -->
     <!-- 1100px Container with 2-Column Grid -->
-    <div class="one-liner-container">
+    <div class="one-liner-container" style="margin-top: 20px;">
         <div id="oneLinerGrid" class="one-liner-grid">
             <!-- Content will be injected here by JavaScript -->
         </div>
@@ -366,6 +466,7 @@
 
 <script src="../../../js/layout.js"></script>
 
+<!-- STREAMING_CHUNK:Injecting complete bilingual dataset for Facts 201-350... -->
 <script>
     /* ----------------------------------------------------------------------
        Authentic Data Extracted for HP Economic Survey & Economy (Part 2)
@@ -524,6 +625,7 @@
         {id: 350, qHi: "हिमाचल प्रदेश का 'अर्थशास्त्र और सांख्यिकी विभाग' (Economics and Statistics Department) किस मासिक/वार्षिक पत्रिका का प्रकाशन करता है?", aHi: "आर्थिक सर्वेक्षण (Economic Survey) और सांख्यिकीय रूपरेखा (Statistical Outline)।", qEn: "Which monthly/annual magazine is published by the 'Economics and Statistics Department' of Himachal Pradesh?", aEn: "Economic Survey and Statistical Outline."}
     ];
 
+    /* STREAMING_CHUNK:Rendering facts grid to DOM... */
     function renderOneLiners() {
         const grid = document.getElementById('oneLinerGrid');
         if (!grid) return;
