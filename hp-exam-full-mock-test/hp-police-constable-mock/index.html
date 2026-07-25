@@ -109,10 +109,10 @@
             --success: #22c55e;
             --text-main: #f8fafc;
             --text-body: #cbd5e1;
-            --text-sec: #94a3b8;
+            --text-sec: #cbd5e1;
         }
 
-        /* 🔥 High-Precision Sub-Pixel Font Anti-Aliasing & Rendering Stability */
+        /* High-Precision Sub-Pixel Font Anti-Aliasing & Rendering Stability */
         body, button, input, select, textarea, div, p, h1, h2, h3, h4, span, a {
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
@@ -150,7 +150,7 @@
 
         .hero-badge { display: inline-flex; align-items: center; justify-content: center; height: 20px; background: var(--primary-light); color: var(--primary); padding: 0 8px; border-radius: 20px; font-size: 0.58rem; font-weight: 800; text-transform: uppercase; margin: 0; border: 1px solid var(--card-border); letter-spacing: 0.4px; white-space: nowrap; flex-shrink: 0; box-sizing: border-box; }
 
-        /* 🌟 COMPACT HERO CONTAINER */
+        /* COMPACT HERO CONTAINER */
         .hero-glass-card {
             border-radius: var(--radius-xl);
             padding: 14px 16px;
@@ -213,7 +213,7 @@
         .trust-pillar-title { margin: 0; font-size: 0.74rem; font-weight: 800; color: var(--text-main); }
         .trust-pillar-text p { margin: 0; font-size: 0.65rem; color: var(--text-sec); line-height: 1.25; font-weight: 500; }
 
-        /* 🌟 SECTION CONTAINER PANEL */
+        /* SECTION CONTAINER PANEL */
         .section-glass-panel {
             border-radius: var(--radius-xl);
             padding: 14px 16px;
@@ -373,7 +373,7 @@
         <span class="hero-badge soft-glass">HP Police Series</span>
     </div>
 
-    <!-- 🌟 HERO GLASS BANNER SECTION -->
+    <!-- HERO GLASS BANNER SECTION -->
     <section class="hero-glass-card soft-glass">
         <div class="hero-title-wrap">
             <h1 class="hero-title">HP Police Constable Mock Test Series</h1>
@@ -390,7 +390,7 @@
             <div class="stat-pill"><i class="fa-solid fa-calculator"></i> 0.25 Penalty Mode</div>
         </div>
 
-        <!-- Trust Pillars (Div title used to preserve strict H1 -> H2 sequential heading order) -->
+        <!-- Trust Pillars -->
         <div class="trust-pillars">
             <div class="trust-pillar-card soft-glass">
                 <div class="trust-pillar-icon"><i class="fa-solid fa-language"></i></div>
@@ -416,7 +416,7 @@
         </div>
     </section>
 
-    <!-- 🌟 MAIN TEST COLLECTION SECTION PANEL -->
+    <!-- MAIN TEST COLLECTION SECTION PANEL -->
     <section class="section-glass-panel soft-glass">
         
         <div class="section-header-box">
@@ -814,7 +814,7 @@
         </div>
     </section>
 
-    <!-- 🌟 EXPLORE OTHER SERIES SECTION PANEL (DENSE & COMPACT) -->
+    <!-- EXPLORE OTHER SERIES SECTION PANEL (DENSE & COMPACT) -->
     <section class="section-glass-panel soft-glass" style="padding: 12px 14px; gap: 8px;">
         <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
             <h2 style="margin: 0; font-size: 0.95rem; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 6px;">
@@ -854,7 +854,7 @@
         </div>
     </section>
 
-    <!-- 🌟 FAQ SECTION PANEL -->
+    <!-- FAQ SECTION PANEL -->
     <section class="section-glass-panel soft-glass" style="padding: 12px 14px; gap: 10px;">
         <div class="section-header-box" style="border-bottom: none; padding-bottom: 0;">
             <div class="section-title-group">
@@ -948,10 +948,19 @@
         if (typeof renderFooter === 'function') { renderFooter('../..'); }
     });
 
-    // Smart Auto-Unlock Guard that respects attempted tests
+    // Helper to evaluate pass expiration strictly
+    function isPassActive(passes) {
+        if (!passes) return false;
+        const checkPass = window.HPGK_IsPassValid || (p => !!p);
+        return checkPass(passes['mock_master_pass']) || 
+               checkPass(passes['vip_lifetime_pass']) || 
+               checkPass(passes['mega_combo_pass']);
+    }
+
+    // Smart Auto-Unlock Guard that respects attempted tests & strict pass expiration
     window.HPGK_AutoUnlockPremiumUI = function() {
         const user = window.HPGK_User;
-        const hasPass = user && user.isLoggedIn && user.passes && (user.passes['mock_master_pass'] || user.passes['vip_lifetime_pass'] || user.passes['mega_combo_pass']);
+        const hasPass = user && user.isLoggedIn && isPassActive(user.passes);
         if (!hasPass) return;
 
         document.querySelectorAll('.test-card:not([data-attempted="true"])').forEach(card => {
@@ -1014,7 +1023,7 @@
         }
         
         const user = window.HPGK_User;
-        const hasPass = user && user.isLoggedIn && user.passes && (user.passes['mock_master_pass'] || user.passes['vip_lifetime_pass'] || user.passes['mega_combo_pass']);
+        const hasPass = user && user.isLoggedIn && isPassActive(user.passes);
         
         if (hasPass) {
             window.location.href = url;
@@ -1040,7 +1049,7 @@
                         // Run live card unlocking
                         if(window.HPGK_AutoUnlockPremiumUI) window.HPGK_AutoUnlockPremiumUI();
 
-                        const hasPass = user.passes && (user.passes['mock_master_pass'] || user.passes['vip_lifetime_pass'] || user.passes['mega_combo_pass']);
+                        const hasPass = isPassActive(user.passes);
                         
                         if (!hasPass && pendingIsPremium) {
                             document.getElementById('upgradeModal').style.display = 'flex';
@@ -1064,7 +1073,7 @@
     }
 </script>
 
-<!-- 🔥 Dynamic Attempt State Logic (Summary & Re-attempt) -->
+<!-- Dynamic Attempt State Logic (Summary & Re-attempt) -->
 <script type="module">
     import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
     import { getFirestore, collection, query, where, onSnapshot, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
