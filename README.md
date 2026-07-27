@@ -6,7 +6,7 @@ Welcome to the comprehensive technical documentation for the HPGK Quiz Platform 
 
 The HPGK Quiz Platform is a high-performance, lightweight EdTech web app tailored for Himachal Pradesh state competitive examinations (HPAS, HPPSC, Allied Services, HP Patwari, Police Constable, HRTC Conductor, etc.).
 
-Key Platform Features
+Key Platform Features:
 
 Bilingual Engine: Simultaneous rendering of questions, options, and explanations in both English (Inter) and Hindi (Noto Sans Devanagari).
 
@@ -16,15 +16,15 @@ Glassmorphism Real-Time Broadcast Engine: A non-intrusive modal alert popup with
 
 Zero-CLS Responsive Layout: Pure Vanilla JS layout manager (js/layout.js) injecting headers, footers, hamburger drawers, theme toggles, and Google Auth modals dynamically across all subdirectories.
 
-Cost-Optimized Cloud Sync: Local question state saved instantly in LocalStorage, with batched network writes to Firestore every 10-15 questions or on page unload to minimize database reads/writes by over 90%.
+Cost-Optimized Cloud Sync: Local question state saved instantly in LocalStorage, with batched network writes to Firestore every 15 questions or on page unload to minimize database reads/writes by over 90%.
 
 Secure Cloud Storage Vault: Full-length mock test JSON question banks isolated inside private Firebase Cloud Storage buckets (gs://hpgk-quiz.firebasestorage.app/premium_mocks/) with access gated by Firebase Auth.
 
-Dynamic Mock State & Re-attempt Engine: Automatically queries user scores from Firestore, injects green score badges (Score: X/Y), routes to summary mode using cached data (zero DB reads), and provides secure re-attempt score wiping.
+Dynamic Mock State & Re-attempt Engine: Automatically queries user scores from Firestore, injects green score badges (Score: X/Y), routes to summary mode using cached data (zero DB reads), and provides secure re-attempt wiping.
 
 Super Admin Control Room (user/admin.html): Multi-tab management console with 5-minute inactivity security locks, real-time revenue analytics, 1-click custom pass grants, leaderboard moderation, CSV data exports, and audit trails.
 
-Automated Webhook Payments: Razorpay integration backed by a Google Cloud Run (Node.js 22) webhook microservice that strictly verifies HMAC SHA-256 digital signatures (payment.captured event filtering with idempotency protection) and auto-provisions 30-day premium passes in Firestore down to exact millisecond timestamps (expiryDateTimestamp).
+Automated Webhook Payments: Razorpay integration backed by a Google Cloud Run (Node.js 22) webhook microservice that verifies digital signatures and auto-provisions premium passes in Firestore.
 
 🛠️ 2. Tech Stack & Infrastructure
 
@@ -108,23 +108,19 @@ A. UI Security & Session Guard (js/core.js)
 
 Manages global user state (window.HPGK_User) and handles Google Auth state changes.
 
-Evaluates pass expiration strictly down to the exact millisecond (HPGK_IsPassValid).
-
 Syncs active user passes securely from Firestore upon authentication.
 
 Enforces UI Protection: Blocks right-click context menus, F12 developer tools, text highlighting/selection, and key shortcuts (Ctrl+C, Ctrl+U).
 
-Injects decoy security parameters into navigation links to prevent URL tampering.
+Inject decoy security parameters into navigation links to prevent URL tampering.
 
 B. Paywall & Access Quota Controller (js/access-guard.js)
 
 Evaluates guest question quotas against window.PAGE_ACCESS.
 
-Triggers high-converting SaaS login modals when anonymous limits (Q30) are reached.
+Triggers high-converting SaaS login modals when anonymous limits are reached.
 
-Enforces the 100-question paywall limit for free logged-in users, prompting upgrade to mcq_pro_pass (₹39/mo).
-
-Restricts premium MCQ modules and full mock exams to users holding valid, unexpired passes (mcq_pro_pass, mock_master_pass, vip_lifetime_pass).
+Restricts premium MCQ modules and full mock exams to users holding valid passes (mcq_pro_pass, mock_master_pass, vip_lifetime_pass).
 
 C. TCS/NTA Exam Simulator (js/mock-engine.js)
 
@@ -140,7 +136,7 @@ D. Topic Practice Engine (js/mcq-main.js)
 
 Manages topic-wise practice modules with bookmarking, error review filtering, question shuffling, and Quick 10 quiz modes.
 
-Implements smart batched cloud writes to Firestore (syncs every 10 answered questions or on page unload) to conserve database quotas.
+Implements smart batched cloud writes to Firestore to conserve database quotas.
 
 E. Dynamic Layout & Glassmorphism Broadcast Engine (js/layout.js)
 
@@ -168,8 +164,8 @@ Every topic practice page configures its own access quotas using an inline confi
 
 window.PAGE_ACCESS = {
     category: 'rivers',          // Category identifier for Firestore Sync & Leaderboard
-    loginLimit: 30,              // Free question limit for anonymous guests (Requires login at Q31)
-    proLimit: 100,               // Free question limit for logged-in users (Paywall triggers at Q101)
+    loginLimit: 30,              // Free question limit for anonymous guests
+    proLimit: 9999,              // Free question limit for logged-in users (9999 = unlimited)
     requiredPass: 'mcq_pro_pass' // Pass ID required when proLimit is reached
 };
 
@@ -184,35 +180,33 @@ Score Badges: Dynamically injects a green Score: X/Y badge onto the correspondin
 
 Summary Mode Routing: Replaces the "Attempt/Unlock" button with "Summary". Clicking routes to mock-engine/index.html?mode=summary, rendering solution panels using cached LocalStorage data (zero DB reads).
 
-Secure Re-attempt: A dedicated Restart ($\circlearrowleft$) button triggers a confirmation dialog. Upon confirmation, it purges the specific Firestore score document, clears local cache, and resets the test card state to allow a fresh attempt.
+Secure Re-attempt: A dedicated Restart (🔄) button triggers a confirmation dialog. Upon confirmation, it purges the specific Firestore score document, clears local cache, and resets the test card state to allow a fresh attempt.
 
 💳 7. Payment Integration & Cloud Run Webhook Flow
 
-[Student Clicks Buy on upgrade.html or dashboard.html]
-                        │
-                        ▼
-         [Razorpay Checkout Modal Opens]
-      (Passes UID & PlanID inside notes object)
-                        │
-                        ▼
-            [Payment Captured on Razorpay]
-                        │
-                        ▼
-       [Razorpay POSTs payment.captured Webhook]
-                        │
-                        ▼
-      [Google Cloud Run Microservice Verifies HMAC]
-    (Validates exact price: ₹39 or ₹89 & Idempotency)
-                        │
-                        ▼
-      [Firebase Admin SDK writes Pass to Firestore]
-    (Stores exact expiryDateTimestamp in milliseconds)
-                        │
-                        ▼
-   [Frontend Real-Time Listener Unlocks Premium Content]
+[Student Clicks Buy on upgrade.html]
+                  │
+                  ▼
+   [Razorpay Checkout Modal Opens]
+(Passes UID & PlanID inside notes object)
+                  │
+                  ▼
+      [Payment Captured on Razorpay]
+                  │
+                  ▼
+ [Razorpay POSTs Webhook Payload to Cloud Run]
+                  │
+                  ▼
+[Google Cloud Run Microservice Verifies Signature]
+                  │
+                  ▼
+ [Firebase Admin SDK writes Pass to Firestore Vault]
+                  │
+                  ▼
+ [Frontend Real-Time Listener Unlocks Premium Content]
 
 
-Frontend Razorpay Options Example
+Frontend Razorpay Options Example:
 
 var options = {
     "key": "rzp_live_YOUR_KEY_HERE", 
@@ -230,110 +224,60 @@ var options = {
 };
 
 
-Google Cloud Run Webhook Handler Code (Node.js 22)
+Google Cloud Run Webhook Handler Code (Node.js 22):
 
-const functions = require('@google-cloud/functions-framework');
+const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 const crypto = require('crypto');
 
-if (admin.apps.length === 0) {
-    admin.initializeApp();
-}
+admin.initializeApp();
 const db = admin.firestore();
 
-const RAZORPAY_WEBHOOK_SECRET = process.env.RAZORPAY_WEBHOOK_SECRET || "hpgk_super_secret_key_123";
+const RAZORPAY_WEBHOOK_SECRET = "YOUR_WEBHOOK_SECRET_KEY";
 
-functions.http('razorpayWebhook', async (req, res) => {
+exports.razorpayWebhook = functions.https.onRequest(async (req, res) => {
     try {
-        if (req.method !== 'POST') {
-            return res.status(405).send('Method Not Allowed');
-        }
-
         const signature = req.headers['x-razorpay-signature'];
-        if (!signature || !req.rawBody) {
-            return res.status(400).send('Missing Signature or Raw Body');
-        }
-
         const expectedSignature = crypto
             .createHmac('sha256', RAZORPAY_WEBHOOK_SECRET)
-            .update(req.rawBody)
+            .update(JSON.stringify(req.body))
             .digest('hex');
 
         if (expectedSignature !== signature) {
-            return res.status(400).send('Signature Verification Mismatch');
+            return res.status(400).send('Invalid signature');
         }
 
         const event = req.body.event;
-        
-        // Strictly handle payment.captured for atomic execution
-        if (event === 'payment.captured') {
+        if (event === 'payment.captured' || event === 'payment.authorized') {
             const payment = req.body.payload.payment.entity;
             const uid = payment.notes ? payment.notes.uid : null;
             const planId = payment.notes ? payment.notes.planId : null;
 
-            if (!uid || !planId) {
-                return res.status(200).send('Missing critical metadata, ignored.');
+            if (uid && planId) {
+                const expiry = new Date();
+                expiry.setDate(expiry.getDate() + 30); 
+
+                const passData = {
+                    name: planId === 'mock_master_pass' ? 'Mock Master Pass (All Inclusive)' : 'MCQ Pro Pass (VIP)',
+                    purchaseDate: new Date().toLocaleDateString('en-IN'),
+                    expiryDate: expiry.toLocaleDateString('en-IN'),
+                    timestamp: Date.now(),
+                    paymentId: payment.id,
+                    mode: "Razorpay_Webhook_Verified"
+                };
+
+                const userRef = db.collection('artifacts').doc('hpgk-quiz').collection('users').doc(uid);
+                await userRef.set({ passes: { [planId]: passData } }, { merge: true });
             }
-
-            let expectedPrice = 0;
-            let planName = '';
-
-            if (planId === 'mcq_pro_pass') {
-                expectedPrice = 39;
-                planName = 'MCQ Pro Pass (VIP)';
-            } else if (planId === 'mock_master_pass') {
-                expectedPrice = 89;
-                planName = 'Mock Master Pass (All Inclusive)';
-            } else {
-                return res.status(400).send('Unknown plan ID');
-            }
-
-            if ((payment.amount / 100) !== expectedPrice) {
-                return res.status(400).send('Price Validation Mismatch');
-            }
-
-            // Idempotency check: Skip if paymentId already processed
-            const userRef = db.collection('artifacts').doc('hpgk-quiz').collection('users').doc(uid);
-            const userDoc = await userRef.get();
-
-            if (userDoc.exists) {
-                const existingPasses = userDoc.data().passes || {};
-                const currentPass = existingPasses[planId];
-                if (currentPass && currentPass.paymentId === payment.id) {
-                    return res.status(200).send('Payment already processed');
-                }
-            }
-
-            const now = new Date();
-            const expiryDate = new Date();
-            expiryDate.setDate(expiryDate.getDate() + 30); // 30 Days Access
-
-            const passData = {
-                name: planName,
-                purchaseDate: now.toLocaleDateString('en-IN'),
-                expiryDate: expiryDate.toLocaleDateString('en-IN'),
-                timestamp: now.getTime(),
-                expiryTimestamp: expiryDate.getTime(),
-                expiryDateTimestamp: expiryDate.getTime(),
-                paymentId: payment.id,
-                mode: "Razorpay_Webhook_Verified"
-            };
-
-            await userRef.set({
-                passes: {
-                    [planId]: passData
-                }
-            }, { merge: true });
         }
-
-        res.status(200).send('Webhook Processed Successfully');
+        res.status(200).send('Processed');
     } catch (error) {
         res.status(500).send('Internal Server Error');
     }
 });
 
 
-🗄️ 8. Firebase Firestore Schema & Cloud Storage Rules
+🗄️ 8. Firebase Firestore Database Schema
 
 Database documents are stored under the /artifacts/hpgk-quiz/ namespace:
 
@@ -349,34 +293,16 @@ artifacts/
     │   └── {uid}/                       # Private user document (adminNote, passes object)
     │       ├── adminNote                # Private customer support memo
     │       ├── passes/                  # Active passes object
-    │       │   └── {planId}             # (name, purchaseDate, expiryDate, expiryTimestamp, expiryDateTimestamp, paymentId, mode)
+    │       │   └── {planId}             # (name, purchaseDate, expiryDate, paymentId, mode, isComplimentary)
     │       └── scores/
     │           └── {scoreDocId}         # Test attempt record (testId, category, score, total, accuracy, timeTaken, timestamp)
     └── admin_logs/
         └── {logId}                      # Security audit trail (adminEmail, actionType, targetUid, details, timestamp)
 
 
-Private Cloud Storage Bucket Rules
+Storage Bucket Path:
 
-rules_version = '2';
-service firebase.storage {
-  match /b/{bucket}/o {
-
-    // Free Demo files (e.g., test-1.json, patwari-mock-test-1.json)
-    match /premium_mocks/{examId}/{testId} {
-      allow read: if testId.matches('.*-1.*') || request.auth != null;
-      allow write: if false;
-    }
-
-    // All paid mock files under premium_mocks secured by authenticated client guards
-    match /premium_mocks/{allPaths=**} {
-      allow read: if request.auth != null;
-      allow write: if false;
-    }
-
-  }
-}
-
+Private Mock Test Banks: gs://hpgk-quiz.firebasestorage.app/premium_mocks/{exam_category}/{test_id}.json
 
 👑 9. Super Admin Control Room (user/admin.html)
 
