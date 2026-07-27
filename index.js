@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------------------------------------
  * HPGK QUIZ PLATFORM - SECURE WEBHOOK SERVER (GCP Cloud Functions Gen 2)
- * Strictly verifies signatures and automates pass allocation in Firestore
+ * Strictly verifies signatures, checks idempotency, & automates pass allocation
  * --------------------------------------------------------------------------
  */
 
@@ -33,7 +33,7 @@ functions.http('razorpayWebhook', async (req, res) => {
             return res.status(400).send('Missing Signature');
         }
 
-        // GCP Cloud Functions automatically parses body but preserves raw body buffer in req.rawBody!
+        // GCP Cloud Functions preserves raw body buffer in req.rawBody
         if (!req.rawBody) {
             console.error("[!] req.rawBody is missing. Signature verification cannot proceed.");
             return res.status(400).send('Missing Raw Body Buffer');
@@ -55,8 +55,8 @@ functions.http('razorpayWebhook', async (req, res) => {
         const event = req.body.event;
         console.log(`[i] Event Received: ${event}`);
 
-        // Handle successful payment events securely
-        if (event === 'payment.captured' || event === 'payment.authorized') {
+        // Handle ONLY final successful captured payment events (Prevents double triggering)
+        if (event === 'payment.captured') {
             const payment = req.body.payload.payment.entity;
             const uid = payment.notes ? payment.notes.uid : null;
             const planId = payment.notes ? payment.notes.planId : null;
@@ -66,7 +66,7 @@ functions.http('razorpayWebhook', async (req, res) => {
                 return res.status(200).send('Missing critical metadata, ignored.');
             }
 
-            // 2. STAGE-2 VALIDATION: Strict price verification on the backend to prevent tampering
+            // 2. STAGE-2 VALIDATION: Strict price verification on the backend
             let expectedPrice = 0;
             let planName = '';
 
@@ -91,21 +91,35 @@ functions.http('razorpayWebhook', async (req, res) => {
 
             console.log(`[+] Payment Validated: ₹${paidAmount} received for '${planId}' from User '${uid}'`);
 
-            // 3. SECURE PASS ALLOCATION IN FIRESTORE (Admin SDK bypasses client restrictions)
+            // 3. IDEMPOTENCY CHECK: Check if this payment was already processed
+            const userRef = db.collection('artifacts').doc('hpgk-quiz').collection('users').doc(uid);
+            const userDoc = await userRef.get();
+
+            if (userDoc.exists) {
+                const existingPasses = userDoc.data().passes || {};
+                const currentPass = existingPasses[planId];
+                if (currentPass && currentPass.paymentId === payment.id) {
+                    console.log(`[i] Idempotency Hit: Payment ID '${payment.id}' was already processed. Skipping rewrite.`);
+                    return res.status(200).send('Payment already processed');
+                }
+            }
+
+            // 4. SECURE PASS ALLOCATION WITH EXACT TIMESTAMPS
+            const now = new Date();
             const expiryDate = new Date();
-            expiryDate.setDate(expiryDate.getDate() + 30); // Valid for 30 Days
+            expiryDate.setDate(expiryDate.getDate() + 30); // Valid for 30 Days (720 Hours)
 
             const passData = {
                 name: planName,
-                purchaseDate: new Date().toLocaleDateString('en-IN'),
+                purchaseDate: now.toLocaleDateString('en-IN'),
                 expiryDate: expiryDate.toLocaleDateString('en-IN'),
-                timestamp: Date.now(),
+                timestamp: now.getTime(),
+                expiryTimestamp: expiryDate.getTime(),          // Milliseconds timestamp for core.js
+                expiryDateTimestamp: expiryDate.getTime(),      // Milliseconds timestamp for Storage Rules
                 paymentId: payment.id,
                 mode: "Razorpay_Webhook_Verified"
             };
 
-            const userRef = db.collection('artifacts').doc('hpgk-quiz').collection('users').doc(uid);
-            
             // Atomically write pass into private passes vault
             await userRef.set({
                 passes: {
@@ -113,7 +127,7 @@ functions.http('razorpayWebhook', async (req, res) => {
                 }
             }, { merge: true });
 
-            console.log(`[SUCCESS] Pass '${planId}' instantly assigned to User '${uid}'!`);
+            console.log(`[SUCCESS] Pass '${planId}' (Expires: ${passData.expiryDate}) instantly assigned to User '${uid}'!`);
         }
 
         res.status(200).send('Webhook Processed Successfully');
