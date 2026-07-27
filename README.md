@@ -165,7 +165,7 @@ Every topic practice page configures its own access quotas using an inline confi
 window.PAGE_ACCESS = {
     category: 'rivers',          // Category identifier for Firestore Sync & Leaderboard
     loginLimit: 30,              // Free question limit for anonymous guests
-    proLimit: 9999,              // Free question limit for logged-in users (9999 = unlimited)
+    proLimit: 100,              // Free question limit for logged-in users (9999 = unlimited)
     requiredPass: 'mcq_pro_pass' // Pass ID required when proLimit is reached
 };
 
