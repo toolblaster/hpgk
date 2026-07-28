@@ -50,40 +50,114 @@
     }
     </script>
 
+    <!-- JSON-LD FAQ Schema for Google Rich Snippets -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "Which is the largest National Park in Himachal Pradesh?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The Great Himalayan National Park (GHNP) in Kullu district is the largest National Park in HP, covering 754.4 sq km. It was declared a UNESCO World Heritage Site in 2014."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Which is the largest Wildlife Sanctuary in Himachal Pradesh?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Kibber Wildlife Sanctuary in Lahaul-Spiti district is the largest wildlife sanctuary in HP, spanning 1,400 sq km in the high-altitude cold desert."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Which is the smallest Wildlife Sanctuary in Himachal Pradesh?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Shilli Wildlife Sanctuary in Solan district is the smallest sanctuary in HP, covering an area of just 2 sq km."
+        }
+      }, {
+        "@type": "Question",
+        "name": "How many Ramsar Wetland sites are located in Himachal Pradesh?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Himachal Pradesh hosts 3 internationally recognized Ramsar Wetland sites: Pong Dam Lake (Kangra), Renuka Lake (Sirmaur), and Chandratal Lake (Lahaul-Spiti)."
+        }
+      }, {
+        "@type": "Question",
+        "name": "What is the official State Bird of Himachal Pradesh?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The Western Tragopan (Tragopan melanocephalus), locally known as 'Jujurana' (King of Birds), is the official State Bird of Himachal Pradesh."
+        }
+      }, {
+        "@type": "Question",
+        "name": "What is the official State Animal of Himachal Pradesh?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The Snow Leopard (Panthera uncia) is the official State Animal of Himachal Pradesh, having officially replaced the Musk Deer in 2007."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Where is the world's only Western Tragopan (Jujurana) Breeding Center located?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The world's only dedicated captive breeding facility for the Western Tragopan (Jujurana) is located at Sarahan in Shimla district."
+        }
+      }, {
+        "@type": "Question",
+        "name": "What percentage of HP's total geographic area is officially recorded as forest area?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Officially recorded forest area in Himachal Pradesh is 37,033 sq km, which constitutes 66.52% of the state's total geographical area."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Which tree species in HP is tapped for collecting resin (Leesa)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Chir Pine (Pinus roxburghii) trees are tapped for resin (Leesa) collection, which is processed at government factories in Nahan and Bilaspur."
+        }
+      }, {
+        "@type": "Question",
+        "name": "What is the official State Flower of Himachal Pradesh?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The Pink Rhododendron (Rhododendron campanulatum) is the official State Flower of Himachal Pradesh."
+        }
+      }]
+    }
+    </script>
+
     <!-- Assets -->
     <link rel="apple-touch-icon" sizes="180x180" href="../../js/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="512x512" href="../../js/favicon/web-app-manifest-512x512.png">
     <link rel="icon" type="image/png" sizes="192x192" href="../../js/favicon/web-app-manifest-192x192.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="../../js/favicon/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="48x48" href="../../js/favicon/favicon-48x48.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../../js/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../../js/favicon/favicon-16x16.png">
-    <link rel="manifest" href="../../js/favicon/site.webmanifest">
     <link rel="shortcut icon" href="../../js/favicon/favicon.ico">
-    <meta name="msapplication-TileColor" content="#2563eb">
     <meta name="theme-color" content="#ffffff">
 
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Noto+Sans+Devanagari:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Poppins:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Global CSS -->
     <link rel="stylesheet" href="../../js/style.css">
 
-    <!-- Premium Glassmorphism & Compact UI Stylesheet -->
     <style>
         :root {
-            --primary: #2563eb;       
+            --site-width: 1100px;
+            
+            --primary: #2563eb;        
             --primary-hover: #1d4ed8; 
             --primary-light: rgba(37, 99, 235, 0.1); 
             --primary-dark: #1e3a8a;  
             --accent: #ea580c;        
             
             --bg-gradient: linear-gradient(135deg, #eff6ff 0%, #dbeafe 50%, #f3e8ff 100%);
-            --card-bg: rgba(255, 255, 255, 0.65); 
-            --card-border: rgba(255, 255, 255, 0.5); 
+            --card-bg: rgba(255, 255, 255, 0.85); 
+            --card-border: rgba(148, 163, 184, 0.4); 
             --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
             --tooltip-bg: #ffffff;    
             
@@ -104,14 +178,14 @@
         }
 
         [data-theme="dark"] {
-            --primary: #60a5fa;       
+            --primary: #60a5fa;        
             --primary-hover: #93c5fd; 
             --primary-light: rgba(96, 165, 250, 0.15); 
             --primary-dark: #bfdbfe;  
             --accent: #fbbf24;        
             
             --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #020617 100%);
-            --card-bg: rgba(30, 41, 59, 0.5); 
+            --card-bg: rgba(30, 41, 59, 0.7); 
             --card-border: rgba(255, 255, 255, 0.08); 
             --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
             --tooltip-bg: #1e293b;    
@@ -128,6 +202,27 @@
             --wrong-text: #fca5a5;    
         }
 
+        /* GPU Hardware Acceleration & Layer Stabilization Fix */
+        html, body {
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .glass-panel,
+        .seo-card,
+        .faq-static-card,
+        .quiz-card,
+        .indicator-card,
+        .related-modules-box {
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
+            will-change: transform;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            isolation: isolate;
+        }
+
         body {
             background: var(--bg-gradient);
             color: var(--text-body);
@@ -136,6 +231,9 @@
             display: flex;
             flex-direction: column;
         }
+
+        .font-sans { font-family: 'Inter', sans-serif; }
+        .font-heading { font-family: 'Poppins', sans-serif; }
 
         h1, h2, h3, h4 { font-family: 'Inter', sans-serif !important; color: var(--text-main); }
 
@@ -154,14 +252,14 @@
             width: 100%; max-width: var(--site-width); margin: 0 auto 5px auto; 
             padding: 0 15px; flex-wrap: nowrap; gap: 10px; box-sizing: border-box;
         }
+        .top-meta-right { display: flex; align-items: center; gap: 8px; }
 
-        .page-header-top, .main-layout, .seo-content-wrapper { 
+        .page-header-top, .main-layout, .seo-content-wrapper, .faq-section-wrapper { 
             width: 100%; max-width: var(--site-width); margin: 0 auto; padding: 0 15px; box-sizing: border-box;
         }
 
         .page-header-top { text-align: center; margin-bottom: 25px; }
 
-        /* FIXED: Hero Description forced to 14px with good line height */
         .hero-desc {
             margin: 0 auto;
             text-align: center;
@@ -169,6 +267,14 @@
             font-size: 14px !important;
             line-height: 1.6;
             color: var(--text-sec);
+            font-weight: 500;
+        }
+        .hero-desc span.hi-desc {
+            font-family: 'Noto Sans Devanagari', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-sec);
+            display: block;
+            margin-top: 4px;
         }
 
         .section-separator { 
@@ -177,46 +283,51 @@
         }
 
         @media (max-width: 480px) {
-            .top-meta-bar, .page-header-top, .main-layout, .seo-content-wrapper {
+            .top-meta-bar, .page-header-top, .main-layout, .seo-content-wrapper, .faq-section-wrapper {
                 padding: 0 12px !important;
             }
             .page-header-top { margin-bottom: 20px; }
         }
 
-        .breadcrumb-nav { margin: 0; flex-shrink: 1; display: flex; align-items: center; height: 24px; }
+        /* Top Meta Bar & Breadcrumbs */
+        .breadcrumb-nav { margin: 0; flex-shrink: 1; display: flex; align-items: center; height: 20px; overflow-x: auto; scrollbar-width: none; }
+        .breadcrumb-nav::-webkit-scrollbar { display: none; }
         
         .breadcrumb-list { 
-            list-style: none; padding: 0 10px; margin: 0; display: flex; flex-wrap: nowrap; 
-            align-items: center; gap: 4px; background: var(--card-bg); border-radius: 12px; 
-            border: 1px solid var(--card-border); backdrop-filter: blur(8px); box-shadow: var(--shadow-sm); 
-            height: 100%; box-sizing: border-box;
+            list-style: none; padding: 0 8px; margin: 0; display: flex; flex-wrap: nowrap; 
+            align-items: center; gap: 4px; background: rgba(255, 255, 255, 0.35); border-radius: 10px; 
+            border: 1px solid var(--card-border); backdrop-filter: blur(8px); 
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05); height: 100%; box-sizing: border-box;
         }
-        
-        .breadcrumb-item { font-size: 0.6rem; font-weight: 600; color: var(--text-sec); display: flex; align-items: center; white-space: nowrap; height: 100%; }
+        [data-theme="dark"] .breadcrumb-list { background: rgba(30, 41, 59, 0.4); box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
+        .breadcrumb-item { font-size: 0.58rem; font-weight: 600; color: var(--text-sec); display: flex; align-items: center; white-space: nowrap; height: 100%; }
         .breadcrumb-item a { color: var(--text-sec); text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 4px; }
         .breadcrumb-item a:hover { color: var(--primary); }
         .breadcrumb-item.active { color: var(--primary); pointer-events: none; }
-        .breadcrumb-separator { font-size: 0.55rem; color: var(--text-sec); opacity: 0.6; margin: 0 2px; }
+        .breadcrumb-separator { font-size: 0.52rem; color: var(--text-sec); opacity: 0.6; margin: 0 2px; }
 
         .hero-badge { 
-            display: inline-flex; align-items: center; justify-content: center; height: 24px; 
-            background: var(--primary-light); color: var(--primary); padding: 0 10px; 
-            border-radius: 12px; font-size: 0.6rem; font-weight: 700; text-transform: uppercase; 
-            margin: 0; border: 1px solid var(--primary); letter-spacing: 0.5px; white-space: nowrap; 
-            flex-shrink: 0; box-sizing: border-box;
-        }
-        
-        .hero-title { 
-            background: linear-gradient(135deg, var(--text-main) 0%, var(--primary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            color: var(--primary); 
-            letter-spacing: -0.8px;
-            margin-bottom: 8px !important;
+            display: inline-flex; align-items: center; justify-content: center; height: 18px; 
+            background: var(--primary); color: white; padding: 0 8px; border-radius: 9px; 
+            font-size: 0.55rem; font-weight: 800; text-transform: uppercase; margin: 0; 
+            border: 1px solid var(--primary-dark); letter-spacing: 0.3px; white-space: nowrap; flex-shrink: 0; box-sizing: border-box; line-height: 1;
         }
 
-        /* HIGH-CONTRAST INTERLINKING PILL */
+        .print-btn {
+            display: inline-flex; align-items: center; gap: 5px; height: 20px;
+            background: var(--card-bg); color: var(--text-sec); border: 1px solid var(--card-border);
+            padding: 0 8px; border-radius: 10px; font-size: 0.58rem; font-weight: 700;
+            cursor: pointer; transition: all 0.2s ease; box-sizing: border-box; white-space: nowrap;
+        }
+        .print-btn:hover { color: var(--primary); border-color: var(--primary); background: var(--primary-light); }
+
+        .hero-title { 
+            margin: 0 0 8px 0; letter-spacing: -0.8px; background: linear-gradient(135deg, var(--text-main) 0%, var(--primary) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            color: var(--primary); font-size: 32px; font-weight: 800; line-height: 1.2;
+        }
+
+        /* HIGH-CONTRAST INTERLINKING PILL (EXACTLY 3 LINKS) */
         .hero-interlinks {
             display: inline-flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px;
             margin-top: 15px; padding: 10px 20px; background: var(--card-bg); border: 1px solid var(--card-border);
@@ -225,12 +336,80 @@
         [data-theme="dark"] .hero-interlinks { background: #1e293b; border-color: #334155; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
         .hero-interlinks .interlink-label { font-size: 0.8rem; font-weight: 800; color: var(--text-sec); text-transform: uppercase; letter-spacing: 0.5px; }
         .hero-interlinks .interlink-label i { color: var(--primary); margin-right: 4px; }
-        .hero-interlinks a { font-size: 0.9rem; font-weight: 700; color: var(--primary-dark); text-decoration: none; transition: all 0.2s ease; }
-        .hero-interlinks a:hover { color: var(--primary); text-decoration: underline; }
-        [data-theme="dark"] .hero-interlinks a { color: #93c5fd; }
-        [data-theme="dark"] .hero-interlinks a:hover { color: #60a5fa; }
+        .hero-interlinks a { font-size: 0.9rem; font-weight: 700; color: #2563eb; text-decoration: none; transition: all 0.2s ease; }
+        .hero-interlinks a:hover { color: #1d4ed8; text-decoration: underline; }
+        [data-theme="dark"] .hero-interlinks a { color: #60a5fa; }
+        [data-theme="dark"] .hero-interlinks a:hover { color: #93c5fd; }
         .hero-interlinks .dot { color: var(--text-sec); font-size: 0.8rem; opacity: 0.6; }
+
+        /* ACCENT TOOLS STRIP */
+        .tools-strip {
+            margin-top: 20px; background: rgba(20, 184, 166, 0.08); border: 1px solid rgba(20, 184, 166, 0.3);
+            border-radius: var(--radius-lg); padding: 8px 14px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;
+            width: 100%; transition: all 0.3s ease; box-sizing: border-box;
+        }
+        .tools-strip:hover { border-color: #0f766e; box-shadow: 0 4px 12px rgba(20, 184, 166, 0.15); }
+        .tools-strip-left { display: flex; align-items: center; gap: 12px; flex: 1 1 auto; min-width: 260px; }
+        .tools-strip-title { font-weight: 800; color: var(--text-main); font-size: 0.95rem; text-align: left; font-family: 'Inter', sans-serif;}
+        .tools-strip-desc { font-size: 0.75rem; color: var(--text-sec); margin-top: 2px; text-align: left; font-weight: 500;}
+        .tools-strip-btn-group { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; justify-content: flex-end;}
         
+        .tools-strip-btn {
+            background: #0f766e; color: white !important; padding: 5px 12px; border-radius: 6px;
+            font-size: 12px; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 5px;
+            transition: all 0.2s; white-space: nowrap; letter-spacing: 0.2px;
+        }
+        .tools-strip-btn:hover { background: #115e59; }
+        [data-theme="dark"] .tools-strip-btn { background: #0d9488; }
+        [data-theme="dark"] .tools-strip-btn:hover { background: #0f766e; }
+        
+        .tools-strip-btn.outline {
+            background: transparent; color: #0f766e !important; border: 1px solid #0f766e;
+        }
+        .tools-strip-btn.outline:hover { background: rgba(15, 118, 110, 0.1); color: #115e59 !important; }
+        [data-theme="dark"] .tools-strip-btn.outline { color: #5eead4 !important; border-color: #5eead4; }
+        [data-theme="dark"] .tools-strip-btn.outline:hover { background: rgba(94, 234, 212, 0.15); color: #5eead4 !important;}
+
+        /* 6 KEY INDICATORS AT-A-GLANCE STRIP */
+        .key-indicators-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 16px; width: 100%;
+        }
+        @media (min-width: 600px) { .key-indicators-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (min-width: 900px) { .key-indicators-grid { grid-template-columns: repeat(6, 1fr); } }
+
+        .indicator-card {
+            background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-lg);
+            padding: 8px 10px; display: flex; align-items: center; gap: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.02); transition: all 0.2s ease;
+        }
+        .indicator-card:hover { border-color: var(--primary); transform: translateY(-2px); }
+        .indicator-icon {
+            width: 32px; height: 32px; border-radius: 8px; background: var(--primary-light); color: var(--primary);
+            display: flex; align-items: center; justify-content: center; font-size: 0.95rem; flex-shrink: 0;
+        }
+        [data-theme="dark"] .indicator-icon { color: #60a5fa; background: rgba(96, 165, 250, 0.15); }
+        .indicator-content { text-align: left; min-width: 0; }
+        .indicator-value { font-size: 0.95rem; font-weight: 800; color: var(--primary-dark); line-height: 1.1; white-space: nowrap; }
+        [data-theme="dark"] .indicator-value { color: #60a5fa; }
+        .indicator-label { font-size: 0.65rem; font-weight: 600; color: var(--text-sec); margin-top: 2px; line-height: 1.15; }
+
+        /* Section Heading Divider */
+        .section-heading-divider {
+            display: flex; align-items: center; justify-content: center;
+            margin: 30px 0 20px 0; position: relative; text-align: center; width: 100%;
+        }
+        .section-heading-divider::before {
+            content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent); opacity: 0.3; z-index: 1;
+        }
+        .divider-tag {
+            position: relative; z-index: 2; background: var(--card-bg); border: 1px solid var(--primary);
+            color: var(--primary-dark); padding: 6px 18px; border-radius: 20px; font-size: 0.8rem;
+            font-weight: 800; letter-spacing: 0.4px; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.08);
+            display: inline-flex; align-items: center; gap: 8px; max-width: 92%; box-sizing: border-box;
+        }
+        .divider-tag i { flex-shrink: 0; }
+        [data-theme="dark"] .divider-tag { color: #60a5fa; background: #1e293b; border-color: #3b82f6; }
+
         .main-layout { display: flex; flex-direction: column; gap: 20px; }
         @media (min-width: 900px) { 
             .main-layout { flex-direction: row; align-items: flex-start; } 
@@ -241,7 +420,7 @@
         .intro-card { background: var(--input-bg); border: 1px solid var(--card-border); border-radius: var(--radius-lg); padding: 15px; box-shadow: var(--shadow-sm); box-sizing: border-box; width: 100%; }
         .intro-card h2 { font-size: 1.05rem; color: var(--primary); margin: 0 0 8px 0; display: flex; align-items: center; gap: 8px; font-weight: 700; justify-content: center; }
         .intro-card p { font-size: 0.85rem; color: var(--text-body); margin: 0; line-height: 1.5; }
-        .intro-list { margin: 8px 0 0 0; padding-left: 20px; font-size: 0.85rem; color: var(--text-body); line-height: 1.5; }
+        .intro-list { margin: 8px 0 0 0; padding-left: 20px; font-size: 0.85rem; color: var(--text-body); line-height: 1.5; font-weight: 500; }
         .intro-list li { margin-bottom: 6px; } 
 
         /* QUIZ WIDGET */
@@ -250,11 +429,8 @@
         .quick-start-ribbon:hover { background: var(--primary-dark); }
         
         .widget-header { 
-            padding: 12px 10px; 
-            border-bottom: none; 
-            display: flex; justify-content: center; align-items: center; 
-            flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; 
-            background: transparent !important; 
+            padding: 12px 10px; border-bottom: none; display: flex; justify-content: center; align-items: center; 
+            flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; background: transparent !important; 
         }
         .widget-header::-webkit-scrollbar { display: none; }
         
@@ -264,50 +440,36 @@
         }
         .text-controls::-webkit-scrollbar { display: none; }
         
-        /* Toolbar Icons 13.6px - Fixed !important color issue so inline styles work */
         .icon-btn, .text-btn, .text-controls label {
-            background: #ffffff !important; 
-            border: none !important; 
-            color: var(--text-sec);
-            width: 32px !important; 
-            height: 32px !important; 
-            border-radius: 8px !important; 
-            cursor: pointer !important; 
-            font-size: 13.6px !important; 
-            display: flex !important; align-items: center !important; justify-content: center !important; 
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important; 
+            background: #ffffff !important; border: none !important; color: var(--text-sec); width: 32px !important; height: 32px !important; 
+            border-radius: 8px !important; cursor: pointer !important; font-size: 13.6px !important; display: flex !important; 
+            align-items: center !important; justify-content: center !important; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important; 
             margin: 0 !important; padding: 0 !important; flex-shrink: 0 !important;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.02) !important; 
         }
         
         .icon-btn:hover, .text-btn:hover, .text-controls label:hover { 
-            color: var(--primary) !important; 
-            transform: translateY(-2px) !important;
+            color: var(--primary) !important; transform: translateY(-2px) !important;
             box-shadow: 0 6px 15px rgba(37, 99, 235, 0.15) !important; 
         }
         
         .icon-btn.active, .icon-btn:active, .text-btn:active, .text-controls label:active { 
-            color: var(--primary) !important; 
-            background: var(--input-bg) !important;
-            transform: translateY(1px) !important;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important; 
+            color: var(--primary) !important; background: var(--input-bg) !important;
+            transform: translateY(1px) !important; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important; 
         }
 
         [data-theme="dark"] .icon-btn, [data-theme="dark"] .text-btn, [data-theme="dark"] .text-controls label { 
-            background: rgba(30, 41, 59, 0.9) !important; 
-            color: var(--text-body);
+            background: rgba(30, 41, 59, 0.9) !important; color: var(--text-body);
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3) !important;
         }
         
         [data-theme="dark"] .icon-btn:hover, [data-theme="dark"] .text-btn:hover, [data-theme="dark"] .text-controls label:hover { 
-            color: var(--primary) !important; 
-            background: #1e293b !important;
+            color: var(--primary) !important; background: #1e293b !important;
             box-shadow: 0 6px 15px rgba(96, 165, 250, 0.2) !important; 
         }
 
         [data-theme="dark"] .icon-btn.active, [data-theme="dark"] .icon-btn:active, [data-theme="dark"] .text-btn:active, [data-theme="dark"] .text-controls label:active {
-            background: rgba(0,0,0,0.3) !important;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.2) !important;
+            background: rgba(0,0,0,0.3) !important; box-shadow: inset 0 2px 4px rgba(0,0,0,0.2) !important;
         }
 
         .v-divider { width: 1px; height: 16px; background: var(--card-border); margin: 0 2px; border-radius: 2px; flex-shrink: 0; }
@@ -315,8 +477,7 @@
         .quiz-mcq-container {
             display: flex; flex-direction: column; flex: 1; overflow: hidden; margin: 10px 15px 15px 15px; 
             border: 1px solid rgba(37, 99, 235, 0.25); border-radius: var(--radius-lg); background: var(--input-bg); 
-            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.03);
-            box-sizing: border-box;
+            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.03); box-sizing: border-box;
         }
         [data-theme="dark"] .quiz-mcq-container { border-color: rgba(96, 165, 250, 0.25); }
 
@@ -356,49 +517,24 @@
         .options-list { display: flex; flex-direction: column; gap: 8px; counter-reset: opt-counter; width: 100%; box-sizing: border-box; }
         
         .option-btn { 
-            width: 100%; 
-            text-align: left; 
-            padding: 12px 40px 12px 12px; 
-            background: var(--card-bg); 
-            border: 1px solid var(--card-border); 
-            border-radius: var(--radius-md); 
-            cursor: pointer; 
-            color: var(--text-body); 
-            font-weight: 600; 
-            transition: all 0.2s; 
-            display: flex; 
-            align-items: flex-start; 
-            line-height: 1.4; 
-            position: relative; 
-            box-sizing: border-box;
+            width: 100%; text-align: left; padding: 12px 40px 12px 12px; background: var(--card-bg); 
+            border: 1px solid var(--card-border); border-radius: var(--radius-md); cursor: pointer; 
+            color: var(--text-body); font-weight: 600; transition: all 0.2s; display: flex; 
+            align-items: flex-start; line-height: 1.4; position: relative; box-sizing: border-box;
         }
         
         .option-btn::before { 
-            counter-increment: opt-counter; 
-            content: counter(opt-counter, upper-alpha) ". "; 
-            color: var(--primary); 
-            font-weight: 800; 
-            margin-right: 8px; 
-            min-width: 20px; 
-            flex-shrink: 0; 
-            margin-top: 1px; 
+            counter-increment: opt-counter; content: counter(opt-counter, upper-alpha) ". "; 
+            color: var(--primary); font-weight: 800; margin-right: 8px; min-width: 20px; 
+            flex-shrink: 0; margin-top: 1px; 
         }
         
-        .option-btn span:not(.status-icon) { 
-            flex: 1; 
-            word-break: break-word; 
-        }
+        .option-btn span:not(.status-icon) { flex: 1; word-break: break-word; }
 
         .option-btn .status-icon {
-            position: absolute !important;
-            right: 12px !important; 
-            top: 50% !important;
-            transform: translateY(-50%) !important;
-            font-size: 1.1rem !important;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 20px;
+            position: absolute !important; right: 12px !important; top: 50% !important; 
+            transform: translateY(-50%) !important; font-size: 1.1rem !important; 
+            display: flex; align-items: center; justify-content: center; width: 20px;
         }
 
         .option-btn:hover:not(.disabled) { border-color: var(--primary); background: var(--primary-light); }
@@ -407,9 +543,7 @@
         .option-btn.wrong { background: var(--wrong-bg); border-color: var(--wrong-border); color: var(--wrong-text); }
 
         .feedback-row { display: flex; gap: 8px; align-items: center; margin-top: 12px; width: 100%; box-sizing: border-box; }
-        
         .feedback-msg { flex: 1; padding: 8px 12px; border-radius: var(--radius-md); font-weight: 700; font-size: 0.85rem; text-align: center; margin: 0; border: 1px solid transparent; box-sizing: border-box; }
-        
         .correct-feed { background: var(--correct-bg); color: var(--correct-text); border-color: var(--correct-border); }
         .wrong-feed { background: var(--wrong-bg); color: var(--wrong-text); border-color: var(--wrong-border); }
 
@@ -432,35 +566,75 @@
         .progress-display { display: flex; align-items: center; justify-content: center; padding: 4px 10px; }
         .progress-text { font-weight: 800; color: var(--text-main); font-size: 0.85rem; }
 
-        /* SEO Card Styles - Adjusted for clean, non-bloated look */
+        /* SEO Cards Styling - Low-Contrast & Fixed Left Blue Border */
         .seo-content-wrapper { margin-bottom: 30px; }
         .seo-header { text-align: center; margin-bottom: 20px; }
-        .seo-header h2 { font-size: clamp(1.2rem, 3vw, 1.6rem); margin-bottom: 8px; }
-        .seo-header p { color: var(--text-sec); max-width: 600px; margin: 0 auto; font-size: 0.85rem; }
+        .seo-header h2 { font-size: clamp(1.2rem, 3vw, 1.6rem); margin-bottom: 8px; font-weight: 800; }
+        .seo-header p { color: var(--text-sec); max-width: 600px; margin: 0 auto; font-size: 0.85rem; font-weight: 500; }
         
-        /* Grid Alignment */
         .seo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 15px; align-items: stretch; width: 100%; }
         
-        .seo-card { background: var(--card-bg); border: 1px solid var(--card-border); padding: 20px; border-radius: var(--radius-lg); box-shadow: var(--glass-shadow); border-left: 4px solid var(--primary); transition: border-color 0.2s; display: flex; flex-direction: column; box-sizing: border-box; width: 100%; }
-        .seo-card:hover { border-color: var(--primary-light); }
-        .seo-card h3 { font-size: 1rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; color: var(--text-main) !important; }
+        .seo-card { 
+            background: var(--card-bg); 
+            border: 1px solid var(--card-border); 
+            padding: 20px; 
+            border-radius: var(--radius-lg); 
+            box-shadow: var(--glass-shadow); 
+            border-left: 3px solid rgba(37, 99, 235, 0.18); 
+            display: flex; flex-direction: column; box-sizing: border-box; width: 100%; 
+            transition: box-shadow 0.2s ease;
+        }
+        [data-theme="dark"] .seo-card { 
+            border-left: 3px solid rgba(96, 165, 250, 0.18); 
+        }
+        .seo-card:hover { 
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05); 
+        }
+        .seo-card h3 { font-size: 1rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; color: var(--text-main) !important; font-weight: 800; }
         .seo-card h3 i { color: var(--primary); }
         .seo-card p { color: var(--text-body) !important; font-size: 0.85rem; margin-bottom: 15px; }
         
         .seo-list { list-style: none; padding-left: 0; margin-top: 0; }
-        
-        /* Dense, concise list items */
-        .seo-list li { position: relative; padding-left: 18px; margin-bottom: 6px; font-size: 0.8rem; color: var(--text-body) !important; line-height: 1.35; }
+        .seo-list li { position: relative; padding-left: 18px; margin-bottom: 6px; font-size: 0.8rem; color: var(--text-body) !important; line-height: 1.35; font-weight: 500; }
         .seo-list li::before { 
-            content: "\f111"; 
-            font-family: "Font Awesome 6 Free";
-            font-weight: 900;
-            color: var(--primary); 
-            position: absolute; 
-            left: 0; 
-            top: 5px; 
-            font-size: 0.4rem; 
+            content: "\f111"; font-family: "Font Awesome 6 Free"; font-weight: 900; 
+            color: var(--primary); position: absolute; left: 0; top: 5px; font-size: 0.4rem; 
         }
+
+        /* 2-COLUMN STATIC FAQ STYLES */
+        .faq-section-wrapper { margin-top: 30px; margin-bottom: 30px; width: 100%; }
+
+        .faq-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 15px; }
+        @media (min-width: 768px) { .faq-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; } }
+
+        .faq-static-card {
+            background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-lg);
+            padding: 12px 16px; box-shadow: 0 2px 6px rgba(0,0,0,0.02); display: flex; flex-direction: column;
+            justify-content: center; gap: 6px; transition: border-color 0.2s, box-shadow 0.2s; box-sizing: border-box;
+        }
+        .faq-static-card:hover { border-color: var(--primary); box-shadow: 0 4px 12px rgba(37, 99, 235, 0.08); }
+
+        .faq-q { font-size: 0.85rem; font-weight: 700; color: var(--text-main); display: flex; align-items: flex-start; gap: 8px; line-height: 1.35; }
+        .faq-q i { color: var(--primary); margin-top: 2px; flex-shrink: 0; font-size: 0.85rem; }
+
+        .faq-a { font-size: 0.82rem; color: var(--text-body); line-height: 1.4; padding-left: 22px; }
+        .faq-a strong { color: var(--primary-dark); font-weight: 700; }
+        [data-theme="dark"] .faq-a strong { color: #60a5fa; }
+
+        /* Bottom Interlinked Modules Box - Constrained Width & Fixed Border */
+        .related-modules-box {
+            width: 100%; max-width: var(--site-width); margin: 25px auto;
+            background: rgba(15, 23, 42, 0.03); border: 1px dashed rgba(148, 163, 184, 0.4);
+            border-radius: var(--radius-lg); padding: 12px 16px; text-align: center;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.02); box-sizing: border-box;
+        }
+        [data-theme="dark"] .related-modules-box { background: rgba(30, 41, 59, 0.3); border-color: rgba(100, 116, 139, 0.3); }
+        .related-tag {
+            display: inline-flex; align-items: center; gap: 5px; font-size: 0.65rem; font-weight: 800;
+            text-transform: uppercase; letter-spacing: 0.6px; color: var(--primary-dark);
+            background: rgba(37, 99, 235, 0.12); padding: 2px 8px; border-radius: 4px; margin-bottom: 8px;
+        }
+        [data-theme="dark"] .related-tag { color: #60a5fa; background: rgba(96, 165, 250, 0.18); }
 
         /* Modal specific styles */
         .quiz-modal-overlay {
@@ -471,47 +645,65 @@
         }
         .quiz-modal-overlay.show { display: flex !important; opacity: 1; }
         
-        /* Solid background for the modal content */
         .quiz-modal-content {
-            background: var(--tooltip-bg) !important; 
-            width: 100%; max-width: 320px; margin: auto !important;
-            border: 1px solid var(--border-color);
-            border-radius: 12px; padding: 15px;
+            background: var(--tooltip-bg) !important; width: 100%; max-width: 320px; margin: auto !important;
+            border: 1px solid var(--card-border); border-radius: 12px; padding: 15px;
             box-shadow: var(--glass-shadow); transform: translateY(20px); transition: transform 0.2s ease;
-            position: relative !important; z-index: 1000000 !important;
-            box-sizing: border-box;
+            position: relative !important; z-index: 1000000 !important; box-sizing: border-box;
         }
         .quiz-modal-overlay.show .quiz-modal-content { transform: translateY(0); }
-        .quiz-modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; margin-bottom: 10px; }
+        .quiz-modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--card-border); padding-bottom: 10px; margin-bottom: 10px; }
 
         @media (max-width: 600px) {
-            /* FIXED: Pushes H1 down to avoid cluttering with the Breadcrumb */
             .page-header-top { margin-top: 25px; } 
-
             .hero-title { font-size: 25px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
             .top-meta-bar { flex-wrap: nowrap; justify-content: space-between; }
+            .breadcrumb-nav { height: 18px; }
+            .hero-badge { height: 16px; padding: 0 6px; border-radius: 8px; font-size: 0.50rem; }
+            .print-btn { height: 19px; padding: 0 6px; font-size: 0.55rem; }
             .widget-header { padding: 10px; align-items: center; }
             .text-controls { justify-content: center; gap: 3px; padding: 2px 0; }
-            
             .icon-btn, .text-btn, .text-controls label { width: 28px !important; height: 28px !important; font-size: 13.6px !important; border-radius: 6px !important; }
             .v-divider { margin: 0 1px; height: 14px; }
-            
             .stat-item { flex-direction: column; gap: 1px; padding: 4px 1px; align-items: center; }
             .stat-label { font-size: 10.4px !important; letter-spacing: -0.2px; margin: 0; }
             .stat-value { font-size: 10.4px !important; }
-
             .quiz-mcq-container { margin: 8px 10px 10px 10px; border-width: 1.5px; }
             .seo-card { padding: 15px; }
-            
             .nav-btn { padding: 4px 8px; font-size: 0.7rem; min-width: 55px; }
             .progress-display { padding: 2px 6px; }
             .progress-text { font-size: 0.7rem; }
-            
-            /* Quick Links Mobile Fix: Inline & Scrollable */
             .hero-interlinks { flex-direction: row; flex-wrap: wrap; gap: 6px; padding: 8px 12px; border-radius: 30px; }
             .hero-interlinks .dot { display: inline; font-size: 0.7rem; }
             .hero-interlinks a { font-size: 0.8rem; }
             .hero-interlinks .interlink-label { font-size: 0.75rem; }
+
+            .indicator-card { padding: 6px 8px; gap: 6px; }
+            .indicator-icon { width: 28px; height: 28px; font-size: 0.85rem; border-radius: 6px; }
+            .indicator-value { font-size: 0.85rem; }
+            .indicator-label { font-size: 0.6rem; }
+
+            .tools-strip { flex-direction: column; align-items: stretch; gap: 12px; }
+            .tools-strip-left { flex-direction: column; text-align: center; justify-content: center; width: 100%; }
+            .tools-strip-title, .tools-strip-desc { text-align: center !important; }
+            .tools-strip-btn-group { width: 100%; justify-content: center; display: flex; gap: 8px; flex-wrap: wrap; }
+            .tools-strip-btn { justify-content: center; padding: 6px 12px; font-size: 11.5px; width: fit-content; margin: 0; }
+
+            .faq-q { font-size: 0.8rem; }
+            .faq-a { font-size: 0.78rem; padding-left: 20px; }
+        }
+
+        @media print {
+            #site-header, #site-footer, .top-meta-bar, .hero-interlinks, .tools-strip, .related-modules-box, .print-btn, .section-heading-divider, .faq-section-wrapper {
+                display: none !important;
+            }
+            body { background: #ffffff !important; color: #000000 !important; font-size: 11pt !important; }
+            main, .main-layout { max-width: 100% !important; padding: 0 !important; margin: 0 !important; }
+            .hero-title { color: #000000 !important; -webkit-text-fill-color: #000000 !important; font-size: 20pt !important; text-align: left !important; }
+            .hero-desc { color: #333333 !important; text-align: left !important; margin-bottom: 20px !important; }
+            .key-indicators-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 10px !important; margin-bottom: 20px !important; }
+            .indicator-card { border: 1px solid #ccc !important; box-shadow: none !important; padding: 8px !important; }
+            .seo-card { border: 1px solid #cccccc !important; box-shadow: none !important; page-break-inside: avoid !important; break-inside: avoid !important; background: #ffffff !important; }
         }
     </style>
 
@@ -536,33 +728,116 @@
 
 <main>
     
-    <!-- Top Meta Bar: Breadcrumb (Left) & Hero Badge (Right) Inline & Compact -->
+    <!-- Top Meta Bar: Breadcrumb (Left) & Hero Badge (Right) -->
     <div class="top-meta-bar">
         <nav aria-label="breadcrumb" class="breadcrumb-nav">
             <ol class="breadcrumb-list">
                 <li class="breadcrumb-item"><a href="../../"><i class="fa-solid fa-house"></i> Home</a></li>
                 <li class="breadcrumb-separator"><i class="fa-solid fa-chevron-right"></i></li>
-                <li class="breadcrumb-item active" aria-current="page">Environment of HP</li>
+                <li class="breadcrumb-item"><a href="../">HP GK</a></li>
+                <li class="breadcrumb-separator"><i class="fa-solid fa-chevron-right"></i></li>
+                <li class="breadcrumb-item active" aria-current="page">Environment</li>
             </ol>
         </nav>
-        <span class="hero-badge glass-panel">Ecology Series</span>
+        <div class="top-meta-right">
+            <button onclick="window.print()" class="print-btn" title="Print or Save Page as PDF">
+                <i class="fa-solid fa-print"></i> Print / PDF
+            </button>
+            <span class="hero-badge"><span class="hide-mobile">Ecology </span>Series</span>
+        </div>
     </div>
 
-    <!-- New Top Page Header (Centers H1 above the columns) -->
+    <!-- Top Page Header -->
     <div class="page-header-top">
         <h1 class="hero-title">Environment & Biodiversity of HP</h1>
-        <!-- Descriptive content acting as hero sub-heading -->
         <p class="hero-desc">
-            Environment and Forestry cover a highly significant portion of the HPAS and HPPSC syllabus. Questions on National Parks, Wildlife Sanctuaries, and State Symbols are asked frequently. <br>यह विषय HPAS और HPPSC पाठ्यक्रम का एक महत्वपूर्ण हिस्सा है। राष्ट्रीय उद्यानों, वन्यजीव अभयारण्यों और राज्य प्रतीकों पर अक्सर प्रश्न पूछे जाते हैं।
+            Master National Parks, Wildlife Sanctuaries, Ramsar Wetlands, State Symbols, and ISFR Forest Cover data of Dev Bhumi through 450+ curated MCQs.
+            <span class="hi-desc">राष्ट्रीय उद्यानों, अभयारण्यों, रामसर आर्द्रभूमियों, राज्य प्रतीकों और वन सर्वेक्षण आंकड़ों पर 450+ द्विभाषी प्रश्नों का अभ्यास करें।</span>
         </p>
-        
+
+        <!-- High-Contrast Interlinking Hook (EXACTLY 3 LINKS) -->
         <div class="hero-interlinks">
-            <span class="interlink-label"><i class="fa-solid fa-link"></i> Quick Links:</span>
-            <a href="../geography/">Geography</a><span class="dot">•</span>
-            <a href="../rivers/">Rivers</a><span class="dot">•</span>
-            <a href="../district/">Districts</a><span class="dot">•</span>
+            <span class="interlink-label"><i class="fa-solid fa-layer-group"></i> Explore:</span>
+            <a href="../geography/">Geography</a>
+            <span class="dot">•</span>
+            <a href="../rivers/">Rivers</a>
+            <span class="dot">•</span>
             <a href="../economy/">Economy</a>
         </div>
+
+        <!-- GREEN ACCENT TOOLS STRIP -->
+        <div class="tools-strip">
+            <div class="tools-strip-left">
+                <div>
+                    <div class="tools-strip-title font-heading">Need Fast Forestry & Agriculture Revision?</div>
+                    <div class="tools-strip-desc font-sans">Read Agriculture & Forestry Study Notes or Track Score in Dashboard</div>
+                </div>
+            </div>
+            <div class="tools-strip-btn-group">
+                <a href="../../study-notes/hp-agriculture-and-horticulture/" class="tools-strip-btn">
+                    <i class="fa-solid fa-leaf"></i> Agri & Forestry
+                </a>
+                <a href="../../study-notes/" class="tools-strip-btn outline">
+                    <i class="fa-solid fa-book-open"></i> Study Notes
+                </a>
+                <a href="../../user/dashboard.html" class="tools-strip-btn outline">
+                    <i class="fa-solid fa-chart-pie"></i> Dashboard
+                </a>
+            </div>
+        </div>
+
+        <!-- 6 AT-A-GLANCE INDICATOR CHIPS -->
+        <div class="key-indicators-grid">
+            <div class="indicator-card">
+                <div class="indicator-icon"><i class="fa-solid fa-database"></i></div>
+                <div class="indicator-content">
+                    <div class="indicator-value">450+ MCQs</div>
+                    <div class="indicator-label">Question Bank</div>
+                </div>
+            </div>
+            <div class="indicator-card">
+                <div class="indicator-icon"><i class="fa-solid fa-tree"></i></div>
+                <div class="indicator-content">
+                    <div class="indicator-value">5 Parks</div>
+                    <div class="indicator-label">National Parks</div>
+                </div>
+            </div>
+            <div class="indicator-card">
+                <div class="indicator-icon"><i class="fa-solid fa-paw"></i></div>
+                <div class="indicator-content">
+                    <div class="indicator-value">32 Sanctuaries</div>
+                    <div class="indicator-label">Wildlife Zones</div>
+                </div>
+            </div>
+            <div class="indicator-card">
+                <div class="indicator-icon"><i class="fa-solid fa-water"></i></div>
+                <div class="indicator-content">
+                    <div class="indicator-value">3 Sites</div>
+                    <div class="indicator-label">Ramsar Wetlands</div>
+                </div>
+            </div>
+            <div class="indicator-card">
+                <div class="indicator-icon"><i class="fa-solid fa-language"></i></div>
+                <div class="indicator-content">
+                    <div class="indicator-value">Bilingual</div>
+                    <div class="indicator-label">English & Hindi</div>
+                </div>
+            </div>
+            <div class="indicator-card">
+                <div class="indicator-icon"><i class="fa-solid fa-circle-check"></i></div>
+                <div class="indicator-content">
+                    <div class="indicator-value">100% Free</div>
+                    <div class="indicator-label">Full Practice</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION HEADING DIVIDER -->
+    <div class="section-heading-divider">
+        <span class="divider-tag">
+            <i class="fa-solid fa-tree"></i> Interactive Environment Practice Engine • पर्यावरण एवं वन प्रश्नोत्तरी
+        </span>
     </div>
 
     <!-- Side-by-Side Two Column Layout -->
@@ -600,7 +875,7 @@
                         <button class="icon-btn" onclick="toggleHelpModal()" title="Help Guide" type="button">
                             <i class="fa-solid fa-circle-question"></i>
                         </button>
-                        <div class="v-divider" style="width: 1px; height: 16px; background: var(--border-color); margin: 0 4px;"></div>
+                        <div class="v-divider"></div>
                         
                         <button class="icon-btn" onclick="exportProgress()" title="Backup Progress" type="button">
                             <i class="fa-solid fa-download"></i>
@@ -614,7 +889,7 @@
                             <i class="fa-solid fa-rotate-right"></i>
                         </button>
                         
-                        <div class="v-divider" style="width: 1px; height: 16px; background: var(--border-color); margin: 0 4px;"></div>
+                        <div class="v-divider"></div>
 
                         <button class="icon-btn" id="quickModeBtn" onclick="toggleQuickMode()" title="Quick 10 Quiz" type="button" style="color: var(--accent);">
                             <i class="fa-solid fa-bolt"></i>
@@ -629,7 +904,7 @@
                             <i class="fa-regular fa-bookmark"></i>
                         </button>
                         
-                        <div class="v-divider" style="width: 1px; height: 16px; background: var(--border-color); margin: 0 4px;"></div>
+                        <div class="v-divider"></div>
                         
                         <button class="text-btn" onclick="adjustFont(-1)" title="Decrease Font" type="button">A-</button>
                         <button class="text-btn" onclick="adjustFont(1)" title="Increase Font" type="button">A+</button>
@@ -670,10 +945,14 @@
     
     <div class="section-separator"></div>
 
-    <!-- Full Width Bilingual Content: Expanded to 9 Detailed Bullet-Point Sections -->
+    <!-- Full Width Bilingual Content: 9 Detailed Bullet-Point Sections -->
     <section class="seo-content-wrapper">
+        <div class="section-heading-divider" style="margin-top: 10px;">
+            <span class="divider-tag">
+                <i class="fa-solid fa-book-open"></i> Detailed Environment Notes • विस्तृत पर्यावरण नोट्स
+            </span>
+        </div>
         <div class="seo-header">
-            <h2>Detailed Environment Notes (विस्तृत पर्यावरण नोट्स)</h2>
             <p>Comprehensive ecological analysis of Forests, Wetlands, and Wildlife Sanctuaries for competitive exams. <br>(प्रतियोगी परीक्षाओं के लिए वनों, आर्द्रभूमियों और वन्यजीव अभयारण्यों का व्यापक पारिस्थितिक विश्लेषण।)</p>
         </div>
 
@@ -826,9 +1105,95 @@
         </div>
     </section>
 
+    <!-- Section Heading Divider: FAQs -->
+    <div class="section-heading-divider" style="margin-top: 35px;">
+        <span class="divider-tag">
+            <i class="fa-solid fa-circle-question"></i> Frequently Asked Questions • 10 पर्यावरण एवं वन प्रश्नोत्तरी
+        </span>
+    </div>
+
+    <!-- STATIC 2-COLUMN FAQ SECTION -->
+    <section class="faq-section-wrapper" style="margin-bottom: 30px;">
+        <div class="faq-grid">
+            <div class="faq-static-card">
+                <div class="faq-q"><i class="fa-solid fa-circle-question"></i> <span>1. Which is the largest National Park in HP?</span></div>
+                <div class="faq-a">The <strong>Great Himalayan National Park (GHNP)</strong> in Kullu is the largest (754.4 sq km) and a UNESCO World Heritage Site.</div>
+            </div>
+
+            <div class="faq-static-card">
+                <div class="faq-q"><i class="fa-solid fa-circle-question"></i> <span>2. Which is the largest Wildlife Sanctuary in HP?</span></div>
+                <div class="faq-a"><strong>Kibber Wildlife Sanctuary</strong> in Lahaul-Spiti is the largest (1,400 sq km) located in the cold desert.</div>
+            </div>
+
+            <div class="faq-static-card">
+                <div class="faq-q"><i class="fa-solid fa-circle-question"></i> <span>3. Which is the smallest Wildlife Sanctuary in HP?</span></div>
+                <div class="faq-a"><strong>Shilli Wildlife Sanctuary</strong> in Solan district is the smallest, covering an area of just 2 sq km.</div>
+            </div>
+
+            <div class="faq-static-card">
+                <div class="faq-q"><i class="fa-solid fa-circle-question"></i> <span>4. What are the 3 Ramsar Sites in HP?</span></div>
+                <div class="faq-a">The three Ramsar wetlands are <strong>Pong Dam Lake (Kangra), Renuka Lake (Sirmaur), and Chandratal Lake (Lahaul-Spiti)</strong>.</div>
+            </div>
+
+            <div class="faq-static-card">
+                <div class="faq-q"><i class="fa-solid fa-circle-question"></i> <span>5. What is the official State Bird of Himachal?</span></div>
+                <div class="faq-a">The <strong>Western Tragopan (Jujurana)</strong> is the official State Bird, replacing the Monal.</div>
+            </div>
+
+            <div class="faq-static-card">
+                <div class="faq-q"><i class="fa-solid fa-circle-question"></i> <span>6. What is the official State Animal of Himachal?</span></div>
+                <div class="faq-a">The <strong>Snow Leopard</strong> is the official State Animal, having replaced the Musk Deer in 2007.</div>
+            </div>
+
+            <div class="faq-static-card">
+                <div class="faq-q"><i class="fa-solid fa-circle-question"></i> <span>7. Where is the world's only Jujurana Breeding Center?</span></div>
+                <div class="faq-a">Located at <strong>Sarahan in Shimla district</strong> for captive breeding of Western Tragopan.</div>
+            </div>
+
+            <div class="faq-static-card">
+                <div class="faq-q"><i class="fa-solid fa-circle-question"></i> <span>8. What percentage of HP is recorded as Forest Area?</span></div>
+                <div class="faq-a">Officially recorded forest area is <strong>37,033 sq km</strong>, forming <strong>66.52%</strong> of HP's geographic area.</div>
+            </div>
+
+            <div class="faq-static-card">
+                <div class="faq-q"><i class="fa-solid fa-circle-question"></i> <span>9. Which tree species is tapped for Resin (Leesa)?</span></div>
+                <div class="faq-a"><strong>Chir Pine (Pinus roxburghii)</strong> trees are tapped for resin processed at Nahan and Bilaspur factories.</div>
+            </div>
+
+            <div class="faq-static-card">
+                <div class="faq-q"><i class="fa-solid fa-circle-question"></i> <span>10. What is the official State Flower of HP?</span></div>
+                <div class="faq-a">The <strong>Pink Rhododendron</strong> (Rhododendron campanulatum) is the official State Flower.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BOTTOM INTERLINKED MODULES BOX -->
+    <div class="related-modules-box">
+        <div>
+            <span class="related-tag"><i class="fa-solid fa-network-wired"></i> Related Study Guides • अन्य अध्ययन संसाधन</span>
+        </div>
+        <div class="tools-strip-left" style="margin-bottom: 8px; justify-content: center; text-align: center;">
+            <div>
+                <h2 class="tools-strip-title font-heading" style="font-size: 0.9rem; text-align: center; margin:0;">Explore Interlinked Study Guides</h2>
+                <div class="tools-strip-desc font-sans" style="text-align: center; margin-top:2px;">Switch to Main Study Notes, Geography Quiz, or Agriculture & Forestry Module</div>
+            </div>
+        </div>
+        <div class="tools-strip-btn-group" style="justify-content: center;">
+            <a href="../../study-notes/" class="tools-strip-btn" style="font-size: 11.5px; padding: 5px 10px; background: #2563eb;">
+                <i class="fa-solid fa-book-open"></i> Study Notes <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 10px; opacity: 0.7;"></i>
+            </a>
+            <a href="../geography/" class="tools-strip-btn outline" style="font-size: 11.5px; padding: 5px 10px;">
+                <i class="fa-solid fa-mountain-sun"></i> Geography Quiz <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 10px; opacity: 0.7;"></i>
+            </a>
+            <a href="../../study-notes/hp-agriculture-and-horticulture/" class="tools-strip-btn outline" style="font-size: 11.5px; padding: 5px 10px;">
+                <i class="fa-solid fa-leaf"></i> Agriculture & Forestry <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 10px; opacity: 0.7;"></i>
+            </a>
+        </div>
+    </div>
+
 </main>
 
-<!-- HTML HARDCODED HELP MODAL - EXTREME LOCK FOR CENTER POPUP -->
+<!-- HELP MODAL -->
 <div id="quizHelpModal" class="quiz-modal-overlay" onclick="if(event.target === this) toggleHelpModal()">
     <div class="quiz-modal-content glass-panel">
         <div class="quiz-modal-header">
@@ -887,7 +1252,7 @@
     window.PAGE_ACCESS = {
         category: 'environment',
         loginLimit: 30,         // Questions free for anonymous users
-        proLimit: 9999,         // Questions free for logged-in users (before Paywall)
+        proLimit: 100,         // Questions free for logged-in users (before Paywall)
         requiredPass: 'mcq_pro_pass'// Pass required if proLimit is reached
     };
     
@@ -907,7 +1272,7 @@
 <!-- B. The Bouncer (Security & Paywall Limits) -->
 <script src="../../js/access-guard.js"></script>
 
-<!-- C. The Raw Data (Questions Array) -->
+<!-- C. The Raw Data (Questions Array - All 6 Parts) -->
 <script src="environment-part-1.js"></script>
 <script src="environment-part-2.js"></script>
 <script src="environment-part-3.js"></script>
