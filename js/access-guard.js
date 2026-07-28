@@ -80,7 +80,7 @@
             // -----------------------------------------------------------
             if (accessState.status === 'blocked_login') {
                 title = "Free Guest Limit Reached";
-                desc = `Awesome progress! 🎉 You've reached the free guest question limit.<br><br><strong>Login securely</strong> to unlock more questions, save your progress, track rankings, and access detailed study notes!`;
+                desc = `Awesome progress! ðŸŽ‰ You've reached the free guest question limit.<br><br><strong>Login securely</strong> to unlock more questions, save your progress, track rankings, and access detailed study notes!`;
                 iconClass = "fa-solid fa-user-shield";
                 borderColor = "var(--primary)";
                 btnHtml = `
@@ -114,7 +114,7 @@
                 iconClass = "fa-solid fa-bolt";
                 borderColor = "var(--accent)";
                 btnHtml = `
-                    <div style="font-size: 2.2rem; font-weight: 900; color: var(--text-main); margin-bottom: 15px; letter-spacing: -1px;">₹39<span style="font-size:0.85rem; color:var(--text-sec); font-weight:700;">/month</span></div>
+                    <div style="font-size: 2.2rem; font-weight: 900; color: var(--text-main); margin-bottom: 15px; letter-spacing: -1px;">â‚¹39<span style="font-size:0.85rem; color:var(--text-sec); font-weight:700;">/month</span></div>
                     <button class="login-btn" style="margin: 0 auto; padding: 12px 30px; font-size: 0.95rem; font-weight: 800; border-radius: 25px; border: none; background: linear-gradient(135deg, #f59e0b, #ea580c); color: #fff; cursor: pointer; box-shadow: 0 4px 15px rgba(234, 88, 12, 0.3); display: inline-flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.2s;" onclick="window.location.href='../user/upgrade.html'" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
                         <i class="fa-solid fa-rocket"></i> <span>Get MCQ Pro Pass</span>
                     </button>
