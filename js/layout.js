@@ -1,7 +1,7 @@
 /**
  * Layout Manager for HPGK
  * Handles global Header, Footer, Theme logic, Back to Top, Google Auth, and Mobile Menu.
- * 🔥 UPDATED: Legal links pointing to /user/legal/ folder structure
+ * ðŸ”¥ UPDATED: Legal links pointing to /user/legal/ folder structure
  */
 
 const SiteConfig = {
@@ -12,7 +12,7 @@ const SiteConfig = {
 let currentRootPath = '.';
 
 // =========================================================================
-// 🔥 PREMIUM MOBILE HAMBURGER MENU (Slide-out Navigation)
+// ðŸ”¥ PREMIUM MOBILE HAMBURGER MENU (Slide-out Navigation)
 // =========================================================================
 function initMobileMenu() {
     if (document.getElementById('mobileSideMenu')) return;
@@ -199,7 +199,7 @@ window.toggleMobileMenu = function() {
 };
 
 // =========================================================================
-// 🔥 PREMIUM SAAS LOGIN MODAL (Injects the popup into any page)
+// ðŸ”¥ PREMIUM SAAS LOGIN MODAL (Injects the popup into any page)
 // =========================================================================
 function initLoginModal() {
     if (document.getElementById('saasLoginModal')) return;
@@ -618,7 +618,7 @@ function initBackToTop() {
 }
 
 // =========================================================================
-// 🔥 FIREBASE GOOGLE AUTHENTICATION INTEGRATION
+// ðŸ”¥ FIREBASE GOOGLE AUTHENTICATION INTEGRATION
 // =========================================================================
 
 let auth, provider;
