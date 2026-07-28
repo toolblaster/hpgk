@@ -1,5 +1,3 @@
-update //file: core.js
-
 /**
  * --------------------------------------------------------------------------
  * HPGK CORE SYSTEM & GLOBAL SECURITY (PRODUCTION)
