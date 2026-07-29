@@ -1,0 +1,39 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // 🔴 ZERO-COST ADMIN CHECK:
+    function isAdmin() {
+      return request.auth != null && request.auth.token.email == 'amanrana7350@gmail.com';
+    }
+
+    // 1. PRIVATE USER DATA
+    match /artifacts/hpgk-quiz/users/{userId} {
+      // Student apna profile read kar sakta hai
+      allow read: if isAdmin() || (request.auth != null && request.auth.uid == userId);
+      
+      // 🔒 SECURITY FIX: Student client-side se 'passes' ko EDIT nahi kar sakta.
+      // Sirf Admin ya Webhook (Firebase Admin SDK) hi passes likh sakta hai.
+      allow write: if isAdmin() || (
+        request.auth != null && request.auth.uid == userId && 
+        (!request.resource.data.keys().hasAny(['passes']) || (resource != null && resource.data.passes == request.resource.data.passes))
+      );
+
+      // 🟢 SCORES SUBCOLLECTION: Student test submit karke score save kar sakta hai
+      match /scores/{scoreId} {
+        allow read, write: if isAdmin() || (request.auth != null && request.auth.uid == userId);
+      }
+    }
+
+    // 2. PUBLIC LEADERBOARD DATA
+    match /artifacts/hpgk-quiz/public/data/{document=**} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null;
+    }
+
+    // 3. GLOBAL ADMIN FALLBACK
+    match /{document=**} {
+      allow read, write: if isAdmin();
+    }
+  }
+}
