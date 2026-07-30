@@ -11,6 +11,7 @@
  * 🔥 NEW: Firebase Cost Saver - Batched Database Writes (Syncs every 10 Qs)
  * 🛡️ NEW: User-Scoped Isolation - Prevents cross-session progress leakage.
  * 🚀 NEW: Auto-Resume & Guest Progress Migration to Account Profile.
+ * 🎯 NEW: Smart Performance Weak-Spot Targeter (10-Q Booster Sets).
  * --------------------------------------------------------------------------
  */
 
@@ -37,6 +38,7 @@
     let isMistakesFilterActive = false;
     let isShuffleActive = false;
     let isQuickModeActive = false;
+    let isWeakSpotModeActive = false;
     let quickSessionScore = 0;
     const QUICK_LIMIT = 10;
 
@@ -293,7 +295,7 @@
                     <i class="fa-solid fa-file-circle-question" style="font-size:2.5rem; color:var(--border-color); margin-bottom:10px;"></i>
                     <p>No questions found.</p>
                     ${currentSearchTerm ? '<button class="nav-btn" onclick="clearSearch()" style="margin-top: 10px; margin-inline:auto;">Clear Search</button>' : ''}
-                    ${(isQuickModeActive || isMistakesFilterActive || isBookmarkFilterActive) ? '<button class="nav-btn" onclick="clearAllFilters()" style="margin-top: 10px; margin-inline:auto;">Clear Filters</button>' : ''}
+                    ${(isQuickModeActive || isMistakesFilterActive || isBookmarkFilterActive || isWeakSpotModeActive) ? '<button class="nav-btn" onclick="clearAllFilters()" style="margin-top: 10px; margin-inline:auto;">Clear Filters</button>' : ''}
                 </div>`;
             updateControls(); return;
         }
@@ -377,9 +379,11 @@
         const statusDisplay = isAnswered ? (savedAnswer === q.answer ? '<i class="fa-solid fa-check"></i> Solved' : '<i class="fa-solid fa-xmark"></i> Review') : 'Pending';
         const bookmarkIconClass = isBookmarked ? 'fa-solid fa-bookmark active' : 'fa-regular fa-bookmark';
 
+        let weakSpotTag = isWeakSpotModeActive ? `<span style="font-size:0.6rem; font-weight:800; background:rgba(239,68,68,0.15); color:var(--danger); padding:2px 6px; border-radius:4px; margin-left:6px;"><i class="fa-solid fa-bolt"></i> WEAK-SPOT BOOSTER</span>` : '';
+
         cardArea.innerHTML = `
             <div class="q-meta">
-                <span class="q-id">Q. ${q.id}</span>
+                <span class="q-id">Q. ${q.id} ${weakSpotTag}</span>
                 <span class="q-actions">
                     <span class="q-status">${statusDisplay}</span>
                     <i class="fa-solid fa-share-nodes share-icon" onclick="shareQuestion('${q.id}')" title="Share"></i>
@@ -394,18 +398,19 @@
             ${feedbackHtml}
         `;
 
-        if (!currentSearchTerm && !isBookmarkFilterActive && !isMistakesFilterActive && !isShuffleActive && !isQuickModeActive) { 
+        if (!currentSearchTerm && !isBookmarkFilterActive && !isMistakesFilterActive && !isShuffleActive && !isQuickModeActive && !isWeakSpotModeActive) { 
             historyState.lastIndex = currentIndex; saveToStorage(); 
         }
         updateControls();
     }
 
     window.clearAllFilters = function() {
-        isBookmarkFilterActive = false; isMistakesFilterActive = false; isShuffleActive = false; isQuickModeActive = false;
+        isBookmarkFilterActive = false; isMistakesFilterActive = false; isShuffleActive = false; isQuickModeActive = false; isWeakSpotModeActive = false;
         if(bookmarkFilterBtn) bookmarkFilterBtn.classList.remove('active');
         if(mistakeFilterBtn) mistakeFilterBtn.classList.remove('active');
         if(shuffleBtn) shuffleBtn.classList.remove('active');
         if(quickModeBtn) quickModeBtn.classList.remove('active');
+        sessionStorage.removeItem('hpgk_weak_spots');
         applyFilters(true);
     };
 
@@ -462,6 +467,31 @@
         if (!window.quizData) return;
         let filtered = [...window.quizData];
 
+        // 🎯 0. WEAK-SPOT BOOSTER FILTER
+        const savedWeakSpotsRaw = sessionStorage.getItem('hpgk_weak_spots');
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('mode') === 'weakspot' || savedWeakSpotsRaw) {
+            isWeakSpotModeActive = true;
+            let weakCategories = [];
+            try { weakCategories = JSON.parse(savedWeakSpotsRaw) || []; } catch(e) {}
+            
+            // Prioritize questions from weak categories or previously incorrect answers
+            if (weakCategories.length > 0) {
+                const categoryFiltered = filtered.filter(q => {
+                    const cat = (q.category || window.QUIZ_CONFIG?.category || '').toLowerCase();
+                    return weakCategories.some(wc => cat.includes(wc.toLowerCase()));
+                });
+                if (categoryFiltered.length > 0) filtered = categoryFiltered;
+            }
+
+            // Shuffle weak spot candidate pool
+            for (let i = filtered.length - 1; i > 0; i--) { 
+                const j = Math.floor(Math.random() * (i + 1)); 
+                [filtered[i], filtered[j]] = [filtered[j], filtered[i]]; 
+            }
+            filtered = filtered.slice(0, QUICK_LIMIT);
+        }
+
         // 1. 🔥 DYNAMIC POOL RESTRICTOR WITH STRICT EXPIRATION VALIDATION
         const userObj = window.HPGK_User || {};
         const isLoggedIn = userObj.isLoggedIn === true;
@@ -477,18 +507,18 @@
         const loginLimit = (window.PAGE_ACCESS && window.PAGE_ACCESS.loginLimit) || 30;
         const proLimit = 100; 
 
-        if (isShuffleActive || isQuickModeActive) {
+        if ((isShuffleActive || isQuickModeActive) && !isWeakSpotModeActive) {
             const poolSize = hasProPass ? filtered.length : (isLoggedIn ? proLimit : loginLimit);
             filtered = filtered.slice(0, poolSize);
         }
         
         // 2. Fisher-Yates Shuffle Logic
-        if (isShuffleActive) { 
+        if (isShuffleActive && !isWeakSpotModeActive) { 
             for (let i = filtered.length - 1; i > 0; i--) { 
                 const j = Math.floor(Math.random() * (i + 1)); 
                 [filtered[i], filtered[j]] = [filtered[j], filtered[i]]; 
             } 
-        } else { 
+        } else if (!isWeakSpotModeActive) { 
             filtered.sort((a, b) => a.id - b.id); 
         }
         
@@ -506,7 +536,7 @@
         }
         
         // 5. QUICK MODE EXTRACTOR
-        if (isQuickModeActive) { 
+        if (isQuickModeActive && !isWeakSpotModeActive) { 
             filtered = filtered.filter(q => historyState.answers[q.id] === undefined); 
             if (!isShuffleActive) {
                 for (let i = filtered.length - 1; i > 0; i--) { 
@@ -528,7 +558,7 @@
         if (!currentList || !currentList[currentIndex]) return;
         const q = currentList[currentIndex];
         if (historyState.answers[qId] !== undefined) return;
-        if (isQuickModeActive && q.answer === choiceIndex) { quickSessionScore++; }
+        if ((isQuickModeActive || isWeakSpotModeActive) && q.answer === choiceIndex) { quickSessionScore++; }
         
         historyState.answers[qId] = choiceIndex;
         
@@ -566,11 +596,13 @@
         nextBtn.addEventListener('click', () => {
             const currentQ = currentList[currentIndex];
             const isAnswered = currentQ && historyState.answers[currentQ.id] !== undefined;
-            if (!isAnswered && !isQuickModeActive) {
+            if (!isAnswered && !isQuickModeActive && !isWeakSpotModeActive) {
                 if(cardArea) { cardArea.classList.remove('apply-shake'); void cardArea.offsetWidth; cardArea.classList.add('apply-shake'); }
                 return; 
             }
-            if (isQuickModeActive && currentIndex === currentList.length - 1 && isAnswered) { currentIndex++; loadQuestion(currentIndex); } 
+            if ((isQuickModeActive || isWeakSpotModeActive) && currentIndex === currentList.length - 1 && isAnswered) { 
+                currentIndex++; loadQuestion(currentIndex); 
+            } 
             else if (currentIndex < currentList.length - 1) { currentIndex++; loadQuestion(currentIndex); }
         });
     }
@@ -583,7 +615,7 @@
             if (e.key === 'ArrowRight') {
                 const currentQ = currentList[currentIndex];
                 const isAnswered = currentQ && historyState.answers[currentQ.id] !== undefined;
-                if (nextBtn && !nextBtn.disabled && (isAnswered || isQuickModeActive)) { nextBtn.click(); } 
+                if (nextBtn && !nextBtn.disabled && (isAnswered || isQuickModeActive || isWeakSpotModeActive)) { nextBtn.click(); } 
                 else if (cardArea && !isAnswered) { cardArea.classList.remove('apply-shake'); void cardArea.offsetWidth; cardArea.classList.add('apply-shake'); }
             }
             if (e.key === 'ArrowLeft' && prevBtn && !prevBtn.disabled) prevBtn.click();
@@ -606,11 +638,11 @@
             if (progressFill) progressFill.style.backgroundColor = "var(--primary)";
         }
 
-        const isDone = isQuickModeActive && currentIndex >= currentList.length;
+        const isDone = (isQuickModeActive || isWeakSpotModeActive) && currentIndex >= currentList.length;
         prevBtn.disabled = currentIndex === 0 || isDone;
         const currentQ = currentList[currentIndex];
         const isAnswered = currentQ && historyState.answers[currentQ.id] !== undefined;
-        nextBtn.disabled = (currentIndex === currentList.length - 1 && !isQuickModeActive) || isDone || !isAnswered;
+        nextBtn.disabled = (currentIndex === currentList.length - 1 && !isQuickModeActive && !isWeakSpotModeActive) || isDone || !isAnswered;
         progressText.innerText = isDone ? "Done" : `${currentIndex + 1} / ${currentList.length}`;
         
         if (progressFill) {
@@ -681,7 +713,8 @@
                 // Resume automatically at the user's saved index position
                 currentIndex = (historyState.lastIndex && historyState.lastIndex < currentList.length) ? historyState.lastIndex : 0; 
             }
-            loadQuestion(currentIndex); 
+            
+            applyFilters(false);
             updateStats();
         } else {
             if (cardArea) cardArea.innerHTML = `<div class="empty-state"><p>No Data Loaded</p></div>`;
