@@ -22,9 +22,9 @@
         :root {
             --site-width: 1120px;
             --bg-gradient: linear-gradient(135deg, #f0f7ff 0%, #f8fafc 50%, #e0f2fe 100%);
-            --card-bg: rgba(255, 255, 255, 0.92);
-            --card-border: rgba(148, 163, 184, 0.35);
-            --glass-shadow: 0 10px 30px -5px rgba(37, 99, 235, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.04); 
+            --card-bg: rgba(255, 255, 255, 0.94);
+            --card-border: rgba(148, 163, 184, 0.28);
+            --glass-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.06), 0 2px 6px -1px rgba(0, 0, 0, 0.04); 
             --input-bg: rgba(241, 245, 249, 0.85);
             --primary: #1d4ed8;
             --primary-dark: #1e40af;
@@ -45,7 +45,7 @@
         [data-theme="dark"] {
             --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #020617 100%);
             --card-bg: rgba(30, 41, 59, 0.92);
-            --card-border: rgba(255, 255, 255, 0.22);
+            --card-border: rgba(255, 255, 255, 0.16);
             --glass-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5);
             --input-bg: rgba(15, 23, 42, 0.6);
             --primary: #60a5fa;
@@ -66,12 +66,16 @@
         }
 
         body { background: var(--bg-gradient); color: var(--text-body); font-family: 'Inter', sans-serif; margin: 0; min-height: 100vh; display: flex; flex-direction: column; line-height: 1.35; }
-        main { flex: 1; width: 100%; padding: 12px 14px; box-sizing: border-box; max-width: var(--site-width); margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
+        main { flex: 1; width: 100%; padding: 12px 14px; box-sizing: border-box; max-width: var(--site-width); margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
         
-        .glass-panel { background: var(--card-bg); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1px solid var(--card-border); border-radius: var(--radius-xl); padding: 12px 16px; box-shadow: var(--glass-shadow); }
+        .glass-panel { background: var(--card-bg); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1px solid var(--card-border); border-radius: var(--radius-xl); padding: 14px 16px; box-shadow: var(--glass-shadow); }
 
-        #logged-in-state { display: none; flex-direction: column; gap: 14px; }
+        #logged-in-state { display: none; flex-direction: column; gap: 16px; }
         
+        /* Section Group Containers for Distinct Visual Separation */
+        .dashboard-section { display: flex; flex-direction: column; gap: 8px; }
+        .section-label-header { font-size: 0.65rem; font-weight: 800; color: var(--text-sec); text-transform: uppercase; letter-spacing: 0.8px; display: flex; align-items: center; gap: 6px; margin-left: 2px; opacity: 0.9; }
+
         /* Top Row Grid */
         .top-dashboard-grid { display: grid; grid-template-columns: 3.5fr 6.5fr; gap: 12px; }
         .compact-top-card { padding: 12px 14px; margin-bottom: 0; display: flex; }
@@ -103,7 +107,6 @@
         .plan-details { font-size: 0.68rem; color: var(--text-sec); line-height: 1.4; font-weight: 600; position: relative; z-index: 2; }
         .plan-details strong { color: var(--text-main); font-weight: 800; }
 
-        /* PROMINENT VIP BADGE */
         .badge-all-access { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: #ffffff !important; padding: 4px 12px; border-radius: 20px; font-size: 0.68rem; font-weight: 900; letter-spacing: 0.5px; box-shadow: 0 3px 10px rgba(217, 119, 6, 0.35); text-transform: uppercase; display: inline-flex; align-items: center; gap: 4px; border: none !important; }
 
         .compact-upgrade-item { display: flex; justify-content: space-between; align-items: center; background: var(--input-bg); border: 1px solid var(--card-border); padding: 6px 10px; border-radius: var(--radius-sm); margin-bottom: 4px; }
@@ -119,19 +122,8 @@
         .lb-btn { background: linear-gradient(135deg, #f59e0b, #d97706); color: #ffffff; padding: 6px 14px; border: none; font-size: 0.7rem; text-decoration: none; border-radius: var(--radius-sm); font-weight: 800; white-space: nowrap; flex-shrink: 0; transition: opacity 0.2s ease; }
         .lb-btn:hover { opacity: 0.9; }
 
-        /* Quick Resume Dual Grid */
-        .quick-resume-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; width: 100%; }
-        .resume-card { display: flex; align-items: center; justify-content: space-between; gap: 10px; background: linear-gradient(135deg, rgba(29, 78, 216, 0.06) 0%, rgba(37, 99, 235, 0.02) 100%); border: 1px solid var(--card-border); border-radius: var(--radius-lg); padding: 10px 14px; box-shadow: var(--glass-shadow); box-sizing: border-box; }
-        .resume-left { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0; }
-        .resume-icon { width: 32px; height: 32px; border-radius: 8px; background: rgba(29, 78, 216, 0.12); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0; border: 1px solid var(--card-border); }
-        .resume-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
-        .resume-tag { font-size: 0.58rem; font-weight: 800; text-transform: uppercase; color: var(--primary); letter-spacing: 0.4px; }
-        .resume-title { font-size: 0.82rem; font-weight: 800; color: var(--text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .resume-sub { font-size: 0.66rem; color: var(--text-sec); font-weight: 600; }
-        .btn-resume { background: var(--primary); color: #ffffff; border: none; padding: 6px 12px; border-radius: 6px; font-size: 0.7rem; font-weight: 800; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; flex-shrink: 0; transition: opacity 0.2s ease; }
-        .btn-resume:hover { opacity: 0.9; }
-
-        /* High Density Stats Grid */
+        /* High Density Stats Grid Container */
+        .stats-wrapper { display: flex; flex-direction: column; gap: 8px; }
         .stats-density-grid { display: grid; grid-template-columns: 1.4fr repeat(5, 1fr); gap: 8px; }
         .stat-group-card { border-radius: var(--radius-md); padding: 8px 12px; display: flex; align-items: center; gap: 8px; position: relative; overflow: hidden; box-shadow: var(--glass-shadow); text-decoration: none; cursor: pointer; transition: filter 0.2s ease; border: 1px solid transparent; min-height: 52px; box-sizing: border-box; }
         .stat-group-card:hover { filter: brightness(1.08); }
@@ -150,6 +142,18 @@
         .cw-text { font-size: 0.9rem; display: flex; align-items: center; justify-content: center; }
         .cw-slash { font-size: 0.75rem; color: var(--card-border); margin: 0 2px; font-weight: 400; }
 
+        /* Quick Resume Dual Grid */
+        .quick-resume-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; width: 100%; }
+        .resume-card { display: flex; align-items: center; justify-content: space-between; gap: 10px; background: linear-gradient(135deg, rgba(29, 78, 216, 0.06) 0%, rgba(37, 99, 235, 0.02) 100%); border: 1px solid var(--card-border); border-radius: var(--radius-lg); padding: 10px 14px; box-shadow: var(--glass-shadow); box-sizing: border-box; }
+        .resume-left { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0; }
+        .resume-icon { width: 32px; height: 32px; border-radius: 8px; background: rgba(29, 78, 216, 0.12); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0; border: 1px solid var(--card-border); }
+        .resume-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+        .resume-tag { font-size: 0.58rem; font-weight: 800; text-transform: uppercase; color: var(--primary); letter-spacing: 0.4px; }
+        .resume-title { font-size: 0.82rem; font-weight: 800; color: var(--text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .resume-sub { font-size: 0.66rem; color: var(--text-sec); font-weight: 600; }
+        .btn-resume { background: var(--primary); color: #ffffff; border: none; padding: 6px 12px; border-radius: 6px; font-size: 0.7rem; font-weight: 800; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; flex-shrink: 0; transition: opacity 0.2s ease; }
+        .btn-resume:hover { opacity: 0.9; }
+
         /* EQUAL 50/50 MASTERY SPLIT */
         .dashboard-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
         .section-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--card-border); padding-bottom: 6px; margin-bottom: 10px; flex-wrap: wrap; gap: 6px; }
@@ -163,10 +167,24 @@
         .perf-track { width: 100%; height: 6px; background: var(--input-bg); border-radius: 4px; overflow: hidden; border: 1px solid var(--card-border); }
         .perf-fill { height: 100%; border-radius: 4px; transition: width 0.8s ease-out; }
 
-        /* WEAK TOPIC TAG & IMPROVE LINK BREATHING ROOM */
-        .badge-weak { font-size: 0.58rem; background: rgba(220, 38, 38, 0.12); color: #dc2626; padding: 2px 8px; border-radius: 4px; font-weight: 800; border: 1px solid rgba(220, 38, 38, 0.25); display: inline-flex; align-items: center; gap: 3px; margin: 0 8px; }
+        /* VERTICALLY COMPACT WEAK TOPIC BADGE & IMPROVE LINK */
+        .badge-weak { 
+            font-size: 0.56rem; 
+            background: rgba(220, 38, 38, 0.12); 
+            color: #dc2626; 
+            padding: 1px 6px; 
+            border-radius: 4px; 
+            font-weight: 800; 
+            border: 1px solid rgba(220, 38, 38, 0.25); 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 3px; 
+            margin: 0 6px;
+            line-height: 1.1; 
+            vertical-align: middle;
+        }
         [data-theme="dark"] .badge-weak { background: rgba(239, 68, 68, 0.18); color: #f87171; }
-        .btn-improve-link { font-size: 0.64rem; color: var(--primary); font-weight: 800; text-decoration: none; padding: 2px 6px; border-radius: 4px; transition: background 0.2s ease; }
+        .btn-improve-link { font-size: 0.62rem; color: var(--primary); font-weight: 800; text-decoration: none; padding: 1px 5px; border-radius: 4px; transition: background 0.2s ease; line-height: 1.1; }
         .btn-improve-link:hover { text-decoration: underline; background: var(--input-bg); }
 
         /* Auth Warning */
@@ -195,8 +213,8 @@
             .quick-resume-grid { grid-template-columns: 1fr; } 
         }
         @media (max-width: 600px) {
-            main { padding: 8px 6px !important; gap: 10px; }
-            #logged-in-state { gap: 10px; }
+            main { padding: 8px 6px !important; gap: 12px; }
+            #logged-in-state { gap: 12px; }
             .stats-density-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
             .stat-group-card { width: 100%; padding: 8px 10px; margin-bottom: 0; box-sizing: border-box; min-height: 46px; }
             .stat-dense-card { width: calc(50% - 3px); box-sizing: border-box; padding: 8px 6px; display: flex; flex-direction: column; align-items: center; text-align: center; min-height: 46px; }
@@ -260,156 +278,175 @@
     <!-- Logged In State -->
     <div id="logged-in-state">
         
-        <!-- SECTION 1: TOP PANEL (Profile + Active Pass) -->
-        <div class="top-dashboard-grid">
-            <div class="glass-panel compact-top-card profile-panel">
-                <div class="profile-main-row">
-                    <div class="avatar-wrapper">
-                        <img id="user-photo" src="" alt="Avatar" class="avatar">
-                        <div class="status-dot"></div>
-                    </div>
-                    <div class="user-info">
-                        <h1 id="user-name">Student</h1>
-                        <p id="user-email">student@email.com</p>
-                        <span class="badge-uid-copy" id="uid-copy-btn" onclick="copyUidToClipboard()" title="Click to copy full UID">
-                            UID: <span id="user-short-id">...</span> <i class="fa-solid fa-copy" style="font-size:0.6rem;"></i>
-                        </span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- SMART PURCHASES PANEL -->
-            <div class="glass-panel compact-top-card purchases-panel" id="smart-purchases-container"></div>
-        </div>
-
-        <!-- SECTION 2: LEADERBOARD STRIP BELOW PROFILE & PASS -->
-        <div class="glass-panel lb-banner">
-            <div class="lb-left">
-                <div class="lb-icon"><i class="fa-solid fa-trophy"></i></div>
-                <div class="lb-text">
-                    <h3>Global Leaderboard & Rewards</h3>
-                    <p>See where you rank among thousands of HP aspirants.</p>
-                </div>
-            </div>
-            <a href="leaderboard.html" class="lb-btn">View Ranks <i class="fa-solid fa-arrow-right"></i></a>
-        </div>
-
-        <!-- SECTION 3: 2-COLUMN QUICK RESUME DUAL GRID -->
-        <div id="quick-resume-box" class="quick-resume-grid" style="display: none;">
-            <div class="resume-card soft-glass" id="resume-mock-card">
-                <div class="resume-left">
-                    <div class="resume-icon" style="color:var(--danger); background:rgba(220,38,38,0.1);"><i class="fa-solid fa-file-signature"></i></div>
-                    <div class="resume-text">
-                        <span class="resume-tag" style="color:var(--danger);">Latest Full Mock</span>
-                        <div class="resume-title" id="resume-mock-title">Mock Test</div>
-                        <div class="resume-sub" id="resume-mock-sub">Score: 0/0 | Acc: 0%</div>
+        <!-- GROUP 1: USER PROFILE & SUBSCRIPTION PASS -->
+        <div class="dashboard-section">
+            <div class="top-dashboard-grid">
+                <div class="glass-panel compact-top-card profile-panel">
+                    <div class="profile-main-row">
+                        <div class="avatar-wrapper">
+                            <img id="user-photo" src="" alt="Avatar" class="avatar">
+                            <div class="status-dot"></div>
+                        </div>
+                        <div class="user-info">
+                            <h1 id="user-name">Student</h1>
+                            <p id="user-email">student@email.com</p>
+                            <span class="badge-uid-copy" id="uid-copy-btn" onclick="copyUidToClipboard()" title="Click to copy full UID">
+                                UID: <span id="user-short-id">...</span> <i class="fa-solid fa-copy" style="font-size:0.6rem;"></i>
+                            </span>
+                        </div>
                     </div>
                 </div>
-                <a href="#" id="resume-mock-btn" class="btn-resume" style="background:var(--danger);">
-                    Summary <i class="fa-solid fa-arrow-right"></i>
-                </a>
-            </div>
 
-            <div class="resume-card soft-glass" id="resume-topic-card">
-                <div class="resume-left">
-                    <div class="resume-icon"><i class="fa-solid fa-layer-group"></i></div>
-                    <div class="resume-text">
-                        <span class="resume-tag">Latest Topic Quiz</span>
-                        <div class="resume-title" id="resume-topic-title">Topic Practice</div>
-                        <div class="resume-sub" id="resume-topic-sub">Solved: 0 Qs | Acc: 0%</div>
+                <!-- SMART PURCHASES PANEL -->
+                <div class="glass-panel compact-top-card purchases-panel" id="smart-purchases-container"></div>
+            </div>
+        </div>
+
+        <!-- GROUP 2: GLOBAL RANKING BANNER -->
+        <div class="dashboard-section">
+            <div class="glass-panel lb-banner">
+                <div class="lb-left">
+                    <div class="lb-icon"><i class="fa-solid fa-trophy"></i></div>
+                    <div class="lb-text">
+                        <h3>Global Leaderboard & Rewards</h3>
+                        <p>See where you rank among thousands of HP aspirants.</p>
                     </div>
                 </div>
-                <a href="#" id="resume-topic-btn" class="btn-resume">
-                    Practice <i class="fa-solid fa-arrow-right"></i>
-                </a>
+                <a href="leaderboard.html" class="lb-btn">View Ranks <i class="fa-solid fa-arrow-right"></i></a>
             </div>
         </div>
 
-        <!-- SECTION 4: High Density Stats: FULL MOCKS -->
-        <div class="stats-density-grid">
-            <a href="https://hpgk.toolblaster.com/hp-exam-full-mock-test/" class="stat-group-card mock-bg">
-                <i class="fa-solid fa-file-signature stat-group-bg-icon"></i>
-                <div class="stat-group-icon"><i class="fa-solid fa-file-signature"></i></div>
-                <div class="stat-group-text">
-                    <h4>Full Mocks</h4>
-                    <p>Performance</p>
+        <!-- GROUP 3: PERFORMANCE STATS STRIPS (MOVED DIRECTLY BELOW LEADERBOARD) -->
+        <div class="dashboard-section">
+            <div class="section-label-header"><i class="fa-solid fa-chart-simple"></i> Performance Metrics</div>
+            <div class="stats-wrapper">
+                <!-- High Density Stats: FULL MOCKS -->
+                <div class="stats-density-grid">
+                    <a href="../hp-exam-full-mock-test/" class="stat-group-card mock-bg">
+                        <i class="fa-solid fa-file-signature stat-group-bg-icon"></i>
+                        <div class="stat-group-icon"><i class="fa-solid fa-file-signature"></i></div>
+                        <div class="stat-group-text">
+                            <h4>Full Mocks</h4>
+                            <p>Performance</p>
+                        </div>
+                    </a>
+                    
+                    <div class="stat-dense-card">
+                        <span class="stat-dense-label"><i class="fa-solid fa-flag-checkered"></i> Mocks Taken</span>
+                        <div class="stat-dense-val"><span id="stat-mock-count">0</span></div>
+                    </div>
+                    <div class="stat-dense-card">
+                        <span class="stat-dense-label"><i class="fa-solid fa-list-ol"></i> Qs Solved</span>
+                        <div class="stat-dense-val"><span id="stat-mock-qs">0</span></div>
+                    </div>
+                    <div class="stat-dense-card">
+                        <span class="stat-dense-label"><i class="fa-solid fa-check-double"></i> Right / Wrong</span>
+                        <div class="stat-dense-val"><span id="stat-mock-cw" class="cw-text"><span style="color:var(--success);">0</span> <span class="cw-slash">/</span> <span style="color:var(--danger);">0</span></span></div>
+                    </div>
+                    <div class="stat-dense-card">
+                        <span class="stat-dense-label"><i class="fa-solid fa-bullseye"></i> Accuracy</span>
+                        <div class="stat-dense-val"><span id="stat-mock-acc" style="color:var(--primary);">0%</span></div>
+                    </div>
+                    <div class="stat-dense-card">
+                        <span class="stat-dense-label"><i class="fa-regular fa-clock"></i> Avg Time/Q</span>
+                        <div class="stat-dense-val"><span id="stat-mock-time" style="color:var(--warning);">0s</span></div>
+                    </div>
                 </div>
-            </a>
-            
-            <div class="stat-dense-card">
-                <span class="stat-dense-label"><i class="fa-solid fa-flag-checkered"></i> Mocks Taken</span>
-                <div class="stat-dense-val"><span id="stat-mock-count">0</span></div>
-            </div>
-            <div class="stat-dense-card">
-                <span class="stat-dense-label"><i class="fa-solid fa-list-ol"></i> Qs Solved</span>
-                <div class="stat-dense-val"><span id="stat-mock-qs">0</span></div>
-            </div>
-            <div class="stat-dense-card">
-                <span class="stat-dense-label"><i class="fa-solid fa-check-double"></i> Right / Wrong</span>
-                <div class="stat-dense-val"><span id="stat-mock-cw" class="cw-text"><span style="color:var(--success);">0</span> <span class="cw-slash">/</span> <span style="color:var(--danger);">0</span></span></div>
-            </div>
-            <div class="stat-dense-card">
-                <span class="stat-dense-label"><i class="fa-solid fa-bullseye"></i> Accuracy</span>
-                <div class="stat-dense-val"><span id="stat-mock-acc" style="color:var(--primary);">0%</span></div>
-            </div>
-            <div class="stat-dense-card">
-                <span class="stat-dense-label"><i class="fa-regular fa-clock"></i> Avg Time/Q</span>
-                <div class="stat-dense-val"><span id="stat-mock-time" style="color:var(--warning);">0s</span></div>
+
+                <!-- High Density Stats: TOPIC MCQS -->
+                <div class="stats-density-grid">
+                    <a href="../himachal-pradesh-gk/" class="stat-group-card topic-bg">
+                        <i class="fa-solid fa-layer-group stat-group-bg-icon"></i>
+                        <div class="stat-group-icon"><i class="fa-solid fa-layer-group"></i></div>
+                        <div class="stat-group-text">
+                            <h4>Topic MCQs</h4>
+                            <p>Performance</p>
+                        </div>
+                    </a>
+                    
+                    <div class="stat-dense-card">
+                        <span class="stat-dense-label"><i class="fa-solid fa-flag-checkered"></i> Topics Taken</span>
+                        <div class="stat-dense-val"><span id="stat-topic-count">0</span></div>
+                    </div>
+                    <div class="stat-dense-card">
+                        <span class="stat-dense-label"><i class="fa-solid fa-list-ol"></i> Qs Solved</span>
+                        <div class="stat-dense-val"><span id="stat-topic-qs">0</span></div>
+                    </div>
+                    <div class="stat-dense-card">
+                        <span class="stat-dense-label"><i class="fa-solid fa-check-double"></i> Right / Wrong</span>
+                        <div class="stat-dense-val"><span id="stat-topic-cw" class="cw-text"><span style="color:var(--success);">0</span> <span class="cw-slash">/</span> <span style="color:var(--danger);">0</span></span></div>
+                    </div>
+                    <div class="stat-dense-card">
+                        <span class="stat-dense-label"><i class="fa-solid fa-bullseye"></i> Accuracy</span>
+                        <div class="stat-dense-val"><span id="stat-topic-acc" style="color:var(--primary);">0%</span></div>
+                    </div>
+                    <div class="stat-dense-card">
+                        <span class="stat-dense-label"><i class="fa-solid fa-infinity"></i> Avg Time/Q</span>
+                        <div class="stat-dense-val"><span id="stat-topic-time" style="color:var(--text-sec);">N/A</span></div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- SECTION 5: High Density Stats: TOPIC MCQS -->
-        <div class="stats-density-grid">
-            <a href="https://hpgk.toolblaster.com/himachal-pradesh-gk/" class="stat-group-card topic-bg">
-                <i class="fa-solid fa-layer-group stat-group-bg-icon"></i>
-                <div class="stat-group-icon"><i class="fa-solid fa-layer-group"></i></div>
-                <div class="stat-group-text">
-                    <h4>Topic MCQs</h4>
-                    <p>Performance</p>
+        <!-- GROUP 4: CONTINUE LEARNING & RESUME -->
+        <div id="quick-resume-box" class="dashboard-section" style="display: none;">
+            <div class="section-label-header"><i class="fa-solid fa-rotate-right"></i> Quick Resume Recent Practice</div>
+            <div class="quick-resume-grid">
+                <div class="resume-card soft-glass" id="resume-mock-card">
+                    <div class="resume-left">
+                        <div class="resume-icon" style="color:var(--danger); background:rgba(220,38,38,0.1);"><i class="fa-solid fa-file-signature"></i></div>
+                        <div class="resume-text">
+                            <span class="resume-tag" style="color:var(--danger);">Latest Full Mock</span>
+                            <div class="resume-title" id="resume-mock-title">Mock Test</div>
+                            <div class="resume-sub" id="resume-mock-sub">Score: 0/0 | Acc: 0%</div>
+                        </div>
+                    </div>
+                    <a href="#" id="resume-mock-btn" class="btn-resume" style="background:var(--danger);">
+                        Summary <i class="fa-solid fa-arrow-right"></i>
+                    </a>
                 </div>
-            </a>
-            
-            <div class="stat-dense-card">
-                <span class="stat-dense-label"><i class="fa-solid fa-flag-checkered"></i> Topics Taken</span>
-                <div class="stat-dense-val"><span id="stat-topic-count">0</span></div>
-            </div>
-            <div class="stat-dense-card">
-                <span class="stat-dense-label"><i class="fa-solid fa-list-ol"></i> Qs Solved</span>
-                <div class="stat-dense-val"><span id="stat-topic-qs">0</span></div>
-            </div>
-            <div class="stat-dense-card">
-                <span class="stat-dense-label"><i class="fa-solid fa-check-double"></i> Right / Wrong</span>
-                <div class="stat-dense-val"><span id="stat-topic-cw" class="cw-text"><span style="color:var(--success);">0</span> <span class="cw-slash">/</span> <span style="color:var(--danger);">0</span></span></div>
-            </div>
-            <div class="stat-dense-card">
-                <span class="stat-dense-label"><i class="fa-solid fa-bullseye"></i> Accuracy</span>
-                <div class="stat-dense-val"><span id="stat-topic-acc" style="color:var(--primary);">0%</span></div>
-            </div>
-            <div class="stat-dense-card">
-                <span class="stat-dense-label"><i class="fa-solid fa-infinity"></i> Avg Time/Q</span>
-                <div class="stat-dense-val"><span id="stat-topic-time" style="color:var(--text-sec);">N/A</span></div>
+
+                <div class="resume-card soft-glass" id="resume-topic-card">
+                    <div class="resume-left">
+                        <div class="resume-icon"><i class="fa-solid fa-layer-group"></i></div>
+                        <div class="resume-text">
+                            <span class="resume-tag">Latest Topic Quiz</span>
+                            <div class="resume-title" id="resume-topic-title">Topic Practice</div>
+                            <div class="resume-sub" id="resume-topic-sub">Solved: 0 Qs | Acc: 0%</div>
+                        </div>
+                    </div>
+                    <a href="#" id="resume-topic-btn" class="btn-resume">
+                        Practice <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
             </div>
         </div>
 
-        <!-- SECTION 6: 50/50 EQUAL MASTERY SPLIT GRID (TOP 15 UNIQUE) -->
-        <div class="dashboard-cols">
-            <!-- Mock Mastery Analytics (50% width) -->
-            <div class="glass-panel">
-                <div class="section-header">
-                    <h2 class="section-title"><i class="fa-solid fa-medal" style="color:var(--warning);"></i> Mock Mastery <span>Top 15</span></h2>
-                </div>
-                <div class="dense-list" id="mock-perf-list">
-                    <div style="text-align: center; padding: 15px; color: var(--text-sec); font-size: 0.75rem;">Analyzing performance data...</div>
-                </div>
-            </div>
+        <!-- GROUP 5: SMART WEAK-SPOT TARGETING BOOSTER BANNER -->
+        <div id="weak-spot-banner-container" class="dashboard-section" style="display: none;"></div>
 
-            <!-- Topic Mastery Analytics (50% width) -->
-            <div class="glass-panel">
-                <div class="section-header">
-                    <h2 class="section-title"><i class="fa-solid fa-chart-column" style="color:var(--primary);"></i> Topic Mastery <span>Top 15</span></h2>
+        <!-- GROUP 6: MASTERY ANALYTICS SPLIT GRID -->
+        <div class="dashboard-section">
+            <div class="section-label-header"><i class="fa-solid fa-medal"></i> Detailed Mastery Breakdown</div>
+            <div class="dashboard-cols">
+                <!-- Mock Mastery Analytics (50% width) -->
+                <div class="glass-panel">
+                    <div class="section-header">
+                        <h2 class="section-title"><i class="fa-solid fa-medal" style="color:var(--warning);"></i> Mock Mastery <span>Top 15</span></h2>
+                    </div>
+                    <div class="dense-list" id="mock-perf-list">
+                        <div style="text-align: center; padding: 15px; color: var(--text-sec); font-size: 0.75rem;">Analyzing performance data...</div>
+                    </div>
                 </div>
-                <div class="dense-list" id="subject-perf-list">
-                    <div style="text-align: center; padding: 15px; color: var(--text-sec); font-size: 0.75rem;">Analyzing performance data...</div>
+
+                <!-- Topic Mastery Analytics (50% width) -->
+                <div class="glass-panel">
+                    <div class="section-header">
+                        <h2 class="section-title"><i class="fa-solid fa-chart-column" style="color:var(--primary);"></i> Topic Mastery <span>Top 15</span></h2>
+                    </div>
+                    <div class="dense-list" id="subject-perf-list">
+                        <div style="text-align: center; padding: 15px; color: var(--text-sec); font-size: 0.75rem;">Analyzing performance data...</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -429,7 +466,7 @@
             Pay Securely <i class="fa-solid fa-arrow-right"></i>
         </button>
         
-        <a href="../user/upgrade.html" style="font-size: 0.72rem; color: var(--text-sec); text-decoration: underline; font-weight: 600;">View full features & comparison</a>
+        <a href="upgrade.html" style="font-size: 0.72rem; color: var(--text-sec); text-decoration: underline; font-weight: 600;">View full features & comparison</a>
     </div>
 </div>
 
@@ -442,7 +479,6 @@
 <script src="../js/core.js"></script>
 <script src="../js/layout.js"></script>
 
-<!-- Production Payment Logic -->
 <script type="module">
     import { getApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
     import { getFirestore, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
@@ -475,8 +511,10 @@
             const fallbackTimer = setTimeout(() => {
                 if (!isReloaded) {
                     isReloaded = true;
-                    alert("Payment Success! Syncing is taking a bit longer. Page will reload now.");
-                    window.location.reload();
+                    if (window.HPGK_Layout && typeof window.HPGK_Layout.showToast === 'function') {
+                        window.HPGK_Layout.showToast("Payment Success! Syncing pass state now...");
+                    }
+                    setTimeout(() => window.location.reload(), 1500);
                 }
             }, 10000);
 
@@ -525,7 +563,11 @@
         };
 
         var rzp1 = new Razorpay(options);
-        rzp1.on('payment.failed', function (res){ alert("Payment Failed! " + res.error.description); });
+        rzp1.on('payment.failed', function (res){ 
+            if (window.HPGK_Layout && typeof window.HPGK_Layout.showToast === 'function') {
+                window.HPGK_Layout.showToast("❌ Payment Failed: " + res.error.description);
+            }
+        });
         rzp1.open();
     };
 
@@ -535,11 +577,10 @@
     });
 </script>
 
-<!-- Firebase Firestore Integration for fetching User History & Analytics -->
 <script type="module">
     import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
     import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
-    import { getFirestore, collection, getDocs, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
+    import { getFirestore, collection, getDocs, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
 
     const firebaseConfig = {
         apiKey: "AIzaSyDfz5Y4oVQHl-crnATIv5dMWsw7edSKddQ",
@@ -580,6 +621,37 @@
         }
     };
 
+    /**
+     * Resolves exact category string to live URL path preventing 404s
+     */
+    function getCategoryUrl(rawCatKey) {
+        if (!rawCatKey) return '../himachal-pradesh-gk/';
+        
+        const cleanKey = String(rawCatKey).toLowerCase().trim().replace(/hpgk_/g, '').replace(/_/g, '-');
+
+        const map = {
+            'history': '../himachal-pradesh-gk/history/',
+            'geography': '../himachal-pradesh-gk/geography/',
+            'district': '../himachal-pradesh-gk/district/',
+            'districts': '../himachal-pradesh-gk/district/',
+            'economy': '../himachal-pradesh-gk/economy/',
+            'polity': '../himachal-pradesh-gk/polity/',
+            'art-culture': '../himachal-pradesh-gk/art-culture/',
+            'art culture': '../himachal-pradesh-gk/art-culture/',
+            'rivers': '../himachal-pradesh-gk/rivers/',
+            'famous-people': '../himachal-pradesh-gk/famous-people/',
+            'famous people': '../himachal-pradesh-gk/famous-people/',
+            'environment': '../himachal-pradesh-gk/environment/',
+            'tourism': '../himachal-pradesh-gk/tourism/',
+            'hp-patwari-mock': '../hp-exam-full-mock-test/hp-patwari-mock/',
+            'hp patwari mock': '../hp-exam-full-mock-test/hp-patwari-mock/',
+            'hp-police-constable-mock': '../hp-exam-full-mock-test/hp-police-constable-mock/',
+            'hp-hrtc-conductor-mock': '../hp-exam-full-mock-test/hp-hrtc-conductor-mock/'
+        };
+
+        return map[cleanKey] || `../himachal-pradesh-gk/${cleanKey}/`;
+    }
+
     async function fetchWithTimeout(promise, ms = 8000) {
         let timeoutId;
         const timeoutPromise = new Promise((_, reject) => {
@@ -619,7 +691,6 @@
 
                 if(Object.keys(passes).length > 0) {
                     for(const [passId, passData] of Object.entries(passes)) {
-                        // STRICT TIMESTAMP VALIDATION
                         if (window.HPGK_IsPassValid(passData)) {
                             if (passId === 'mcq_pro_pass') { hasMcqPro = true; mcqProData = passData; }
                             if (passId === 'mock_master_pass' || passId === 'mega_combo_pass' || passId === 'vip_lifetime_pass') { 
@@ -642,7 +713,7 @@
                                 </div>
                                 <div class="plan-details" style="margin-top: 4px;">
                                     Purchased: <strong>${mockMasterData.purchaseDate || 'Active'}</strong> &nbsp;|&nbsp; Valid Till: <strong>${mockMasterData.expiryDate || 'Lifetime'}</strong><br>
-                                    <span style="color:var(--success); font-weight:800; margin-top:3px; display:inline-block;">✓ Unlimited Full Mocks, PYPs & 3800+ Topic MCQs Unlocked</span>
+                                    <span style="color:var(--success); font-weight:800; margin-top:3px; display:inline-block;">✓ Unlimited Full Mocks, PYPs & 6,500+ Topic MCQs Unlocked</span>
                                 </div>
                             </div>
                         </div>
@@ -658,7 +729,7 @@
                                 </div>
                                 <div class="plan-details">
                                     Valid Till: <strong>${mcqProData.expiryDate}</strong><br>
-                                    <span style="color:var(--success); font-weight:800; margin-top:3px; display:inline-block;">✓ 3800+ Topic MCQs Unlocked</span>
+                                    <span style="color:var(--success); font-weight:800; margin-top:3px; display:inline-block;">✓ 6,500+ Topic MCQs Unlocked</span>
                                 </div>
                             </div>
                         </div>
@@ -694,7 +765,7 @@
                                 <div class="compact-upgrade-item">
                                     <div>
                                         <div style="font-size: 0.72rem; font-weight: 800; color: var(--text-main);"><i class="fa-solid fa-bolt" style="color:var(--accent);"></i> MCQ Pro Pass</div>
-                                        <div style="font-size: 0.6rem; color: var(--text-sec);">Unlock 3800+ Premium MCQs</div>
+                                        <div style="font-size: 0.6rem; color: var(--text-sec);">Unlock 6,500+ Premium MCQs</div>
                                     </div>
                                     <button onclick="openQuickPay('mcq_pro_pass', 39, 'MCQ Pro Pass')" class="compact-btn-buy">₹39/mo</button>
                                 </div>
@@ -722,6 +793,37 @@
             elLoggedOut.style.display = 'block';
         }
     });
+
+    function renderWeakSpotBanner(weakCats) {
+        const container = document.getElementById('weak-spot-banner-container');
+        if (!container) return;
+        if (!weakCats || weakCats.length === 0) {
+            container.style.display = 'none';
+            return;
+        }
+
+        const catNames = weakCats.map(c => c.name).join(', ');
+        container.innerHTML = `
+            <div class="glass-panel" style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.12), rgba(220, 38, 38, 0.05)); border: 1px solid rgba(239, 68, 68, 0.35); padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 4px;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <div style="font-size: 1.5rem; color: var(--danger);"><i class="fa-solid fa-bolt"></i></div>
+                    <div>
+                        <h3 style="margin: 0; font-size: 0.88rem; color: var(--text-main); font-weight: 800;">Smart Weak-Spot Targeter</h3>
+                        <p style="margin: 2px 0 0 0; font-size: 0.7rem; color: var(--text-sec); font-weight: 600;">Low Accuracy Identified in: <strong style="color: var(--danger);">${catNames}</strong></p>
+                    </div>
+                </div>
+                <button onclick="launchWeakSpotBooster()" class="lb-btn" style="background: linear-gradient(135deg, #ef4444, #dc2626); color: white; cursor: pointer;">⚡ Target My Weak Spots (10 Qs) <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+        `;
+        container.style.display = 'block';
+
+        window.launchWeakSpotBooster = function() {
+            sessionStorage.setItem('hpgk_weak_spots', JSON.stringify(weakCats.map(c => c.rawCat || c.name)));
+            const firstCat = weakCats[0].rawCat || '';
+            const targetUrl = getCategoryUrl(firstCat) + '?mode=weakspot';
+            window.location.href = targetUrl;
+        };
+    }
 
     async function loadUserStatsAndSyncProfile(user) {
         try {
@@ -751,9 +853,11 @@
             const categoryMap = {
                 'rivers': 'Rivers of HP', 'geography': 'Geography of HP', 'history': 'History of HP',
                 'economy': 'Economy of HP', 'polity': 'Polity of HP', 'art culture': 'Art & Culture',
-                'agriculture': 'Agriculture', 'district': 'Districts of HP', 'hp patwari mock': 'HP Patwari Mock',
-                'hp-patwari-mock': 'HP Patwari Mock', 'hp-police-constable-mock': 'HP Police Constable',
-                'hp-hrtc-conductor-mock': 'HP HRTC Conductor'
+                'art-culture': 'Art & Culture', 'agriculture': 'Agriculture', 'district': 'Districts of HP',
+                'districts': 'Districts of HP', 'famous-people': 'Famous People', 'famous people': 'Famous People',
+                'environment': 'Environment of HP', 'tourism': 'Tourism in HP',
+                'hp patwari mock': 'HP Patwari Mock', 'hp-patwari-mock': 'HP Patwari Mock',
+                'hp-police-constable-mock': 'HP Police Constable', 'hp-hrtc-conductor-mock': 'HP HRTC Conductor'
             };
 
             const catStats = {}; 
@@ -823,7 +927,7 @@
 
                 mockTitle.innerText = lastMock.displayTitle;
                 mockSub.innerText = `Score: ${lastMock.score}/${lastMock._safeTotal} • Acc: ${acc}%`;
-                mockBtn.href = `../mock-engine/index.html?exam=${lastMock.category}&testId=${lastMock.testId}&mode=summary`;
+                mockBtn.href = `../mock-engine/index.html?exam=${lastMock.category || ''}&testId=${lastMock.testId || ''}&mode=summary`;
                 
                 mockCard.style.display = 'flex';
                 hasAtLeastOneAttempt = true;
@@ -842,7 +946,7 @@
 
                 topicTitle.innerText = lastTopic.displayTitle;
                 topicSub.innerText = `Solved: ${lastTopic._safeTotal} Qs • Acc: ${acc}%`;
-                topicBtn.href = `../himachal-pradesh-gk/${lastTopic.category || ''}/`;
+                topicBtn.href = getCategoryUrl(lastTopic.category);
                 
                 topicCard.style.display = 'flex';
                 hasAtLeastOneAttempt = true;
@@ -851,7 +955,7 @@
             }
 
             if (hasAtLeastOneAttempt) {
-                resumeContainer.style.display = 'grid';
+                resumeContainer.style.display = 'flex';
             }
 
             // POPULATE FULL MOCK METRICS
@@ -919,13 +1023,15 @@
                 document.getElementById('mock-perf-list').innerHTML = `<div style="text-align:center; padding:15px; color:var(--text-sec); font-size:0.75rem;">No mock test attempts recorded yet.</div>`;
             }
 
-            // RENDER TOP 15 UNIQUE TOPICS WITH WEAK TOPIC SPACING
+            // RENDER TOP 15 UNIQUE TOPICS & DETECT WEAK SPOTS (< 50% Accuracy)
             const sortedCats = Object.keys(catStats).map(cat => ({
                 name: cat,
                 rawCat: catStats[cat].rawCat,
                 acc: catStats[cat].total > 0 ? Math.round((catStats[cat].correct / catStats[cat].total) * 100) : 0,
                 total: catStats[cat].total
             })).sort((a, b) => b.total - a.total).slice(0, 15); 
+
+            const weakCategories = [];
 
             if (sortedCats.length > 0) {
                 let subjectHtml = '';
@@ -941,7 +1047,9 @@
                     } else {
                         barColor = 'var(--danger)';
                         weakBadge = `<span class="badge-weak"><i class="fa-solid fa-triangle-exclamation"></i> Needs Focus</span>`;
-                        improveLink = `<a href="../himachal-pradesh-gk/${cat.rawCat || ''}/" class="btn-improve-link">Improve <i class="fa-solid fa-arrow-right"></i></a>`;
+                        const targetUrl = getCategoryUrl(cat.rawCat || cat.name) + '?mode=weakspot';
+                        improveLink = `<a href="${targetUrl}" class="btn-improve-link">Target Spot <i class="fa-solid fa-arrow-right"></i></a>`;
+                        weakCategories.push(cat);
                     }
 
                     subjectHtml += `
@@ -956,6 +1064,9 @@
                     </div>`;
                 });
                 document.getElementById('subject-perf-list').innerHTML = subjectHtml;
+
+                // Render dynamic Weak-Spot Targeter Banner if weak topics exist
+                renderWeakSpotBanner(weakCategories);
             } else {
                 document.getElementById('subject-perf-list').innerHTML = `<div style="text-align:center; padding:15px; color:var(--text-sec); font-size:0.75rem;">No topic quiz attempts recorded yet.</div>`;
             }
