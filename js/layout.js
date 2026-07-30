@@ -1,7 +1,9 @@
 /**
+ * --------------------------------------------------------------------------
  * Layout Manager for HPGK
- * Handles global Header, Footer, Theme logic, Back to Top, Google Auth, and Mobile Menu.
- * ðŸ”¥ UPDATED: Legal links pointing to /user/legal/ folder structure
+ * Handles global Header, Footer, Theme logic, Back to Top, Google Auth,
+ * Mobile Menu, Glassmorphism Exit-Intent Countdown Modal & Paywall UI System.
+ * --------------------------------------------------------------------------
  */
 
 const SiteConfig = {
@@ -10,9 +12,13 @@ const SiteConfig = {
 
 // Global variable to store rootPath for auth UI
 let currentRootPath = '.';
+let countdownInterval = null;
+
+// Initialize HPGK_Layout namespace
+window.HPGK_Layout = window.HPGK_Layout || {};
 
 // =========================================================================
-// ðŸ”¥ PREMIUM MOBILE HAMBURGER MENU (Slide-out Navigation)
+// PREMIUM MOBILE HAMBURGER MENU (Slide-out Navigation)
 // =========================================================================
 function initMobileMenu() {
     if (document.getElementById('mobileSideMenu')) return;
@@ -199,12 +205,11 @@ window.toggleMobileMenu = function() {
 };
 
 // =========================================================================
-// ðŸ”¥ PREMIUM SAAS LOGIN MODAL (Injects the popup into any page)
+// PREMIUM SAAS LOGIN MODAL (Injects the popup into any page)
 // =========================================================================
 function initLoginModal() {
     if (document.getElementById('saasLoginModal')) return;
 
-    // Updated paths pointing to /user/legal/
     const termsUrl = `${SiteConfig.root}/user/legal/terms.html`;
     const privacyUrl = `${SiteConfig.root}/user/legal/privacy.html`;
 
@@ -302,18 +307,12 @@ function initLoginModal() {
                 width: 100%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important; transition: all 0.2s ease;
             }
             .modal-google-btn img { width: 1.15em; height: 1.15em; display: inline-block; }
-            
-            .modal-google-btn:hover { 
-                border-color: #94a3b8 !important; 
-            }
+            .modal-google-btn:hover { border-color: #94a3b8 !important; }
             
             [data-theme="dark"] .modal-google-btn { 
                 background: #1e293b !important; color: #f8fafc !important; border-color: #475569 !important; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3) !important; 
             }
-            
-            [data-theme="dark"] .modal-google-btn:hover { 
-                border-color: #94a3b8 !important; 
-            }
+            [data-theme="dark"] .modal-google-btn:hover { border-color: #94a3b8 !important; }
             
             .login-terms { 
                 margin-top: 15px; font-size: 0.65rem; color: #64748b !important; 
@@ -618,7 +617,7 @@ function initBackToTop() {
 }
 
 // =========================================================================
-// ðŸ”¥ FIREBASE GOOGLE AUTHENTICATION INTEGRATION
+// FIREBASE GOOGLE AUTHENTICATION INTEGRATION
 // =========================================================================
 
 let auth, provider;
@@ -643,7 +642,34 @@ async function initFirebase() {
         provider = new GoogleAuthProvider();
 
         onAuthStateChanged(auth, (user) => {
+            // Update global HPGK_User session object
+            window.HPGK_User = window.HPGK_User || {};
+            if (user) {
+                window.HPGK_User.isLoggedIn = true;
+                window.HPGK_User.uid = user.uid;
+                window.HPGK_User.email = user.email;
+                window.HPGK_User.displayName = user.displayName;
+                window.HPGK_User.photoURL = user.photoURL;
+
+                // Auto-dismiss auth popup modal and bonus countdown backdrop upon successful login
+                closeLoginModal();
+                const bonusModal = document.getElementById('hpgk-bonus-modal');
+                if (bonusModal) bonusModal.classList.remove('active');
+                
+                // Immediately claim bonus for user if eligible
+                if (window.HPGK_Guard && typeof window.HPGK_Guard.claimBonusOnLogin === 'function') {
+                    window.HPGK_Guard.claimBonusOnLogin();
+                }
+            } else {
+                window.HPGK_User.isLoggedIn = false;
+                window.HPGK_User.uid = null;
+            }
+
+            // Update Header Auth UI state
             updateAuthUI(user);
+
+            // Notify active quiz engines in-memory without forcing page reload
+            window.dispatchEvent(new CustomEvent('hpgk_auth_changed', { detail: { user } }));
         });
 
         window.loginWithGoogle = async () => {
@@ -702,7 +728,22 @@ async function initFirebase() {
         };
 
         window.logoutUser = async () => {
-            try { await signOut(auth); } catch (error) { console.error("Logout Error:", error); }
+            try { 
+                // Clear any stored guest or session progress in localStorage
+                for (let i = localStorage.length - 1; i >= 0; i--) {
+                    const key = localStorage.key(i);
+                    if (key && (key.startsWith('hpgk_quiz_') || key.startsWith('hpgk_progress_') || key.startsWith('quiz_idx_'))) {
+                        localStorage.removeItem(key);
+                    }
+                }
+
+                await signOut(auth); 
+
+                // Reload the page immediately to wipe in-memory question index variables back to Question 1
+                window.location.reload();
+            } catch (error) { 
+                console.error("Logout Error:", error); 
+            }
         };
 
     } catch (error) {
@@ -747,6 +788,371 @@ function updateAuthUI(user) {
         `;
     }
 }
+
+// =========================================================================
+// DYNAMIC GLASSMORPHISM EXIT-INTENT COUNTDOWN & PAYWALL MODAL SYSTEM
+// =========================================================================
+
+function injectModalStyles() {
+    if (document.getElementById('hpgk-layout-modal-styles')) return;
+
+    const styleTag = document.createElement('style');
+    styleTag.id = 'hpgk-layout-modal-styles';
+    styleTag.textContent = `
+        /* Glassmorphism Backdrop Overlay */
+        .hpgk-modal-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .hpgk-modal-backdrop.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Glass Modal Card */
+        .hpgk-modal-card {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.98));
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(234, 179, 8, 0.15);
+            border-radius: 20px;
+            max-width: 460px;
+            width: 100%;
+            padding: 28px;
+            color: #f8fafc;
+            text-align: center;
+            transform: scale(0.9);
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .hpgk-modal-backdrop.active .hpgk-modal-card {
+            transform: scale(1);
+        }
+
+        /* Ticking Timer Display */
+        .hpgk-timer-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: rgba(234, 179, 8, 0.12);
+            border: 1px solid rgba(234, 179, 8, 0.3);
+            color: #facc15;
+            font-size: 2rem;
+            font-weight: 800;
+            font-family: monospace;
+            padding: 10px 24px;
+            border-radius: 14px;
+            margin: 16px 0;
+            letter-spacing: 2px;
+            box-shadow: inset 0 0 12px rgba(234, 179, 8, 0.1);
+        }
+        .hpgk-timer-badge.expired {
+            background: rgba(239, 68, 68, 0.12);
+            border-color: rgba(239, 68, 68, 0.3);
+            color: #f87171;
+        }
+
+        /* Action Buttons */
+        .hpgk-btn-primary {
+            width: 100%;
+            padding: 14px 20px;
+            border-radius: 12px;
+            border: none;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            background: linear-gradient(135deg, #eab308, #ca8a04);
+            color: #0f172a;
+            box-shadow: 0 4px 15px rgba(234, 179, 8, 0.3);
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .hpgk-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(234, 179, 8, 0.4);
+        }
+        .hpgk-btn-secondary {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #94a3b8;
+            width: 100%;
+            padding: 10px;
+            border-radius: 10px;
+            margin-top: 10px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: background 0.2s ease;
+        }
+        .hpgk-btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: #f1f5f9;
+        }
+
+        /* Toast Notification Styling */
+        .hpgk-toast-container {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 100000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .hpgk-toast {
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            border: 1px solid rgba(234, 179, 8, 0.4);
+            color: #f8fafc;
+            padding: 14px 20px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            animation: hpgkToastSlide 0.3s ease forwards;
+        }
+        @keyframes hpgkToastSlide {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+    `;
+    document.head.appendChild(styleTag);
+}
+
+/**
+ * Shows the 5-Minute Exit-Intent Bonus Countdown Modal
+ * @param {boolean} forceOpen - If true, bypasses session dismissal checks (e.g., when user manually clicks button)
+ */
+function showBonusCountdownModal(forceOpen = false) {
+    injectModalStyles();
+
+    // Check if modal was already shown or dismissed during this browsing session
+    const isDismissed = sessionStorage.getItem('hpgk_bonus_modal_dismissed') === 'true';
+    const isAlreadyShown = sessionStorage.getItem('hpgk_bonus_modal_shown') === 'true';
+
+    // If auto-triggered and user has already dismissed or seen it once, do not pop up automatically
+    if (!forceOpen && (isDismissed || isAlreadyShown)) {
+        return;
+    }
+
+    let backdrop = document.getElementById('hpgk-bonus-modal');
+    if (!backdrop) {
+        backdrop = document.createElement('div');
+        backdrop.id = 'hpgk-bonus-modal';
+        backdrop.className = 'hpgk-modal-backdrop';
+        backdrop.innerHTML = `
+            <div class="hpgk-modal-card">
+                <div style="font-size: 2.5rem; margin-bottom: 8px;">⏳🎁</div>
+                <h2 style="font-size: 1.4rem; font-weight: 800; color: #fff; margin: 0 0 6px 0;">
+                    Exclusive Limited Time Offer!
+                </h2>
+                <p style="color: #94a3b8; font-size: 0.9rem; margin: 0; line-height: 1.5;" id="hpgk-bonus-subtext">
+                    You have reached the <strong style="color: #facc15;">30 Free Guest Questions</strong> limit. 
+                    Log in within the next 5 minutes to unlock <strong style="color: #facc15;">+10 Extra Bonus Questions</strong>!
+                </p>
+                
+                <div class="hpgk-timer-badge" id="hpgk-timer-display">
+                    05:00
+                </div>
+
+                <button class="hpgk-btn-primary" id="hpgk-bonus-login-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+                        <polyline points="10 17 15 12 10 7"></polyline>
+                        <line x1="15" y1="12" x2="3" y2="12"></line>
+                    </svg>
+                    Log in & Claim +10 Questions
+                </button>
+
+                <button class="hpgk-btn-secondary" id="hpgk-bonus-dismiss-btn">
+                    I'll think about it later
+                </button>
+            </div>
+        `;
+        document.body.appendChild(backdrop);
+
+        document.getElementById('hpgk-bonus-login-btn').addEventListener('click', () => {
+            backdrop.classList.remove('active');
+            if (typeof window.openLoginModal === 'function') {
+                window.openLoginModal();
+            } else if (typeof window.startGoogleLogin === 'function') {
+                window.startGoogleLogin();
+            }
+        });
+
+        document.getElementById('hpgk-bonus-dismiss-btn').addEventListener('click', () => {
+            backdrop.classList.remove('active');
+            // Remember that user explicitly dismissed popup so it won't pop up again this session
+            sessionStorage.setItem('hpgk_bonus_modal_dismissed', 'true');
+        });
+    }
+
+    // Mark modal as shown for this session
+    sessionStorage.setItem('hpgk_bonus_modal_shown', 'true');
+
+    // Activate modal and start live timer updates
+    backdrop.classList.add('active');
+    
+    if (countdownInterval) clearInterval(countdownInterval);
+
+    function updateTimerUI() {
+        if (!window.HPGK_Guard || typeof window.HPGK_Guard.getCountdownState !== 'function') return;
+
+        const state = window.HPGK_Guard.getCountdownState();
+        const timerDisplay = document.getElementById('hpgk-timer-display');
+        const subtext = document.getElementById('hpgk-bonus-subtext');
+        const loginBtn = document.getElementById('hpgk-bonus-login-btn');
+
+        if (!timerDisplay) return;
+
+        if (state.isExpired) {
+            timerDisplay.textContent = "00:00";
+            timerDisplay.classList.add('expired');
+            if (subtext) {
+                subtext.innerHTML = `Bonus period expired! Log in now to access your standard <strong style="color: #facc15;">100 Free Questions</strong>.`;
+            }
+            if (loginBtn) {
+                loginBtn.innerHTML = `
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+                        <polyline points="10 17 15 12 10 7"></polyline>
+                        <line x1="15" y1="12" x2="3" y2="12"></line>
+                    </svg>
+                    Log in to Access 100 Free Questions
+                `;
+            }
+            clearInterval(countdownInterval);
+        } else {
+            const mins = String(Math.floor(state.remainingSeconds / 60)).padStart(2, '0');
+            const secs = String(state.remainingSeconds % 60).padStart(2, '0');
+            timerDisplay.textContent = `${mins}:${secs}`;
+            timerDisplay.classList.remove('expired');
+            if (loginBtn && !loginBtn.innerHTML.includes('+10 Questions')) {
+                loginBtn.innerHTML = `
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+                        <polyline points="10 17 15 12 10 7"></polyline>
+                        <line x1="15" y1="12" x2="3" y2="12"></line>
+                    </svg>
+                    Log in & Claim +10 Questions
+                `;
+            }
+        }
+    }
+
+    updateTimerUI();
+    countdownInterval = setInterval(updateTimerUI, 1000);
+}
+
+/**
+ * Shows the Paid Upgrade Paywall Modal for Free Users exceeding quota limits
+ * @param {number} quota - The current question quota limit reached
+ */
+function showUpgradeModal(quota) {
+    injectModalStyles();
+
+    let backdrop = document.getElementById('hpgk-upgrade-modal');
+    if (!backdrop) {
+        backdrop = document.createElement('div');
+        backdrop.id = 'hpgk-upgrade-modal';
+        backdrop.className = 'hpgk-modal-backdrop';
+        backdrop.innerHTML = `
+            <div class="hpgk-modal-card" style="max-width: 500px;">
+                <div style="font-size: 2.5rem; margin-bottom: 8px;">👑</div>
+                <h2 style="font-size: 1.4rem; font-weight: 800; color: #fff; margin: 0 0 6px 0;">
+                    Free Question Limit Reached!
+                </h2>
+                <p style="color: #94a3b8; font-size: 0.9rem; margin: 0 0 16px 0;">
+                    You have completed all <strong style="color: #facc15;" id="hpgk-quota-val">${quota}</strong> free questions. 
+                    Upgrade to an active pass for unlimited practice and full mock exam access.
+                </p>
+
+                <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px;">
+                    <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 14px; border-radius: 12px; text-align: left; display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <div style="font-weight: 700; color: #fff;">MCQ Pro Pass</div>
+                            <div style="font-size: 0.8rem; color: #94a3b8;">Unlimited 6,500+ Topic MCQs</div>
+                        </div>
+                        <div style="font-weight: 800; font-size: 1.2rem; color: #facc15;">₹39<span style="font-size: 0.75rem; color: #94a3b8;">/mo</span></div>
+                    </div>
+
+                    <div style="background: rgba(234, 179, 8, 0.1); border: 1px solid rgba(234, 179, 8, 0.3); padding: 14px; border-radius: 12px; text-align: left; display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <div style="font-weight: 700; color: #fff;">Mock Master Pass 🌟</div>
+                            <div style="font-size: 0.8rem; color: #94a3b8;">All MCQs + Full-Length Mock Exams</div>
+                        </div>
+                        <div style="font-weight: 800; font-size: 1.2rem; color: #facc15;">₹89<span style="font-size: 0.75rem; color: #94a3b8;">/mo</span></div>
+                    </div>
+                </div>
+
+                <button class="hpgk-btn-primary" onclick="window.location.href='../user/upgrade.html'">
+                    View All Upgrade Plans & Pass Options
+                </button>
+                <button class="hpgk-btn-secondary" onclick="document.getElementById('hpgk-upgrade-modal').classList.remove('active')">
+                    Close
+                </button>
+            </div>
+        `;
+        document.body.appendChild(backdrop);
+    }
+
+    const quotaSpan = document.getElementById('hpgk-quota-val');
+    if (quotaSpan) quotaSpan.textContent = quota;
+
+    backdrop.classList.add('active');
+}
+
+/**
+ * Displays a lightweight floating toast notification
+ * @param {string} message - Toast content to render
+ */
+function showToast(message) {
+    injectModalStyles();
+
+    let container = document.getElementById('hpgk-toast-container');
+    if (!container) {
+        container = document.createElement('div');
+        container.id = 'hpgk-toast-container';
+        container.className = 'hpgk-toast-container';
+        document.body.appendChild(container);
+    }
+
+    const toast = document.createElement('div');
+    toast.className = 'hpgk-toast';
+    toast.innerHTML = `<span>${message}</span>`;
+    container.appendChild(toast);
+
+    setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateX(100%)';
+        toast.style.transition = 'all 0.3s ease';
+        setTimeout(() => toast.remove(), 300);
+    }, 4000);
+}
+
+// Attach renderer methods to window.HPGK_Layout
+window.HPGK_Layout.showBonusCountdownModal = showBonusCountdownModal;
+window.HPGK_Layout.showUpgradeModal = showUpgradeModal;
+window.HPGK_Layout.showToast = showToast;
 
 // Initialize everything when the DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
