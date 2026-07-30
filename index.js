@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------------------------------------
  * HPGK QUIZ PLATFORM - SECURE WEBHOOK SERVER (GCP Cloud Functions Gen 2)
- * Strictly verifies signatures and automates pass allocation in Firestore
+ * Production Hardened: Timing-Safe Verification, Idempotency & Timestamp Validations
  * --------------------------------------------------------------------------
  */
 
@@ -15,10 +15,10 @@ if (admin.apps.length === 0) {
 }
 const db = admin.firestore();
 
-// Razorpay Secret - Webhook setting se match hona chahiye
+// Razorpay Secret - Match with Razorpay Dashboard Webhook settings
 const RAZORPAY_WEBHOOK_SECRET = process.env.RAZORPAY_WEBHOOK_SECRET || "hpgk_super_secret_key_123";
 
-// 🔥 REGISTER GOOGLE CLOUD FUNCTION ENTRYPOINT
+// REGISTER GOOGLE CLOUD FUNCTION ENTRYPOINT
 functions.http('razorpayWebhook', async (req, res) => {
     try {
         // Only accept POST requests
@@ -33,19 +33,21 @@ functions.http('razorpayWebhook', async (req, res) => {
             return res.status(400).send('Missing Signature');
         }
 
-        // GCP Cloud Functions automatically parses body but preserves raw body buffer in req.rawBody!
         if (!req.rawBody) {
             console.error("[!] req.rawBody is missing. Signature verification cannot proceed.");
             return res.status(400).send('Missing Raw Body Buffer');
         }
 
-        // 1. Digital Signature Verification utilizing the RAW BODY BUFFER
+        // 1. TIMING-SAFE DIGITAL SIGNATURE VERIFICATION
         const expectedSignature = crypto
             .createHmac('sha256', RAZORPAY_WEBHOOK_SECRET)
             .update(req.rawBody)
             .digest('hex');
 
-        if (expectedSignature !== signature) {
+        const signatureBuffer = Buffer.from(signature, 'utf8');
+        const expectedBuffer = Buffer.from(expectedSignature, 'utf8');
+
+        if (signatureBuffer.length !== expectedBuffer.length || !crypto.timingSafeEqual(signatureBuffer, expectedBuffer)) {
             console.error("[!] Security Failed: Digital Signature Verification Mismatch!");
             return res.status(400).send('Signature Verification Mismatch');
         }
@@ -60,13 +62,23 @@ functions.http('razorpayWebhook', async (req, res) => {
             const payment = req.body.payload.payment.entity;
             const uid = payment.notes ? payment.notes.uid : null;
             const planId = payment.notes ? payment.notes.planId : null;
+            const paymentId = payment.id;
 
             if (!uid || !planId) {
                 console.warn("[!] Payment ignored: Missing Notes (uid or planId).");
                 return res.status(200).send('Missing critical metadata, ignored.');
             }
 
-            // 2. STAGE-2 VALIDATION: Strict price verification on the backend to prevent tampering
+            // 2. IDEMPOTENCY CHECK: Prevent duplicate processing on Razorpay retries
+            const paymentLogRef = db.collection('artifacts').doc('hpgk-quiz').collection('processed_payments').doc(paymentId);
+            const paymentLogSnap = await paymentLogRef.get();
+
+            if (paymentLogSnap.exists) {
+                console.log(`[i] Idempotency Notice: Payment ID '${paymentId}' already processed. Skipping duplicate execution.`);
+                return res.status(200).send('Payment already processed');
+            }
+
+            // 3. STAGE-2 VALIDATION: Strict Backend Price Check
             let expectedPrice = 0;
             let planName = '';
 
@@ -81,8 +93,7 @@ functions.http('razorpayWebhook', async (req, res) => {
                 return res.status(400).send('Unknown plan ID');
             }
 
-            // Razorpay amount passes in Paise (e.g. ₹89 = 8900 paise)
-            const paidAmount = payment.amount / 100; 
+            const paidAmount = payment.amount / 100; // Convert Paise to Rupees
 
             if (paidAmount !== expectedPrice) {
                 console.error(`[!] Security Warning: Expected ₹${expectedPrice} for plan '${planId}' but user paid ₹${paidAmount}. Access denied!`);
@@ -91,29 +102,41 @@ functions.http('razorpayWebhook', async (req, res) => {
 
             console.log(`[+] Payment Validated: ₹${paidAmount} received for '${planId}' from User '${uid}'`);
 
-            // 3. SECURE PASS ALLOCATION IN FIRESTORE (Admin SDK bypasses client restrictions)
+            // 4. SECURE PASS ALLOCATION
             const expiryDate = new Date();
-            expiryDate.setDate(expiryDate.getDate() + 30); // Valid for 30 Days
+            expiryDate.setDate(expiryDate.getDate() + 30); // 30-Day Pass
 
             const passData = {
                 name: planName,
                 purchaseDate: new Date().toLocaleDateString('en-IN'),
                 expiryDate: expiryDate.toLocaleDateString('en-IN'),
+                expiryTimestamp: expiryDate.getTime(), // Precise epoch timestamp for HPGK_IsPassValid
                 timestamp: Date.now(),
-                paymentId: payment.id,
+                paymentId: paymentId,
                 mode: "Razorpay_Webhook_Verified"
             };
 
             const userRef = db.collection('artifacts').doc('hpgk-quiz').collection('users').doc(uid);
             
-            // Atomically write pass into private passes vault
-            await userRef.set({
+            // Atomic Batch Write: Grants pass & records payment idempotency log in one operation
+            const batch = db.batch();
+            
+            batch.set(userRef, {
                 passes: {
                     [planId]: passData
                 }
             }, { merge: true });
 
-            console.log(`[SUCCESS] Pass '${planId}' instantly assigned to User '${uid}'!`);
+            batch.set(paymentLogRef, {
+                uid: uid,
+                planId: planId,
+                amount: paidAmount,
+                processedAt: Date.now()
+            });
+
+            await batch.commit();
+
+            console.log(`[SUCCESS] Pass '${planId}' assigned to User '${uid}' and Payment Logged!`);
         }
 
         res.status(200).send('Webhook Processed Successfully');
