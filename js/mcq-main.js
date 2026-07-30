@@ -9,13 +9,24 @@
  * FIXED: Auto-Healing logic for "Quick 10" button core.js collision bug.
  * UPDATED: Strict Timestamp Pass Expiration Validation via HPGK_IsPassValid.
  * 🔥 NEW: Firebase Cost Saver - Batched Database Writes (Syncs every 10 Qs)
+ * 🛡️ NEW: User-Scoped Isolation - Prevents cross-session progress leakage.
+ * 🚀 NEW: Auto-Resume & Guest Progress Migration to Account Profile.
  * --------------------------------------------------------------------------
  */
+
 (function() {
-    const STORAGE_KEY = (window.QUIZ_CONFIG && window.QUIZ_CONFIG.category) 
-        ? `hpgk_${window.QUIZ_CONFIG.category}_v1` 
-        : 'hpgk_general_v1';
-    
+    // Helper to dynamically resolve user-scoped storage key
+    function getStorageKey() {
+        const baseCategory = (window.QUIZ_CONFIG && window.QUIZ_CONFIG.category) 
+            ? `hpgk_${window.QUIZ_CONFIG.category}_v1` 
+            : 'hpgk_general_v1';
+        
+        if (window.HPGK_Guard && typeof window.HPGK_Guard.getUserKey === 'function') {
+            return window.HPGK_Guard.getUserKey(baseCategory);
+        }
+        return baseCategory;
+    }
+
     let currentList = [];
     let currentIndex = 0;
     let historyState = { lastIndex: 0, answers: {}, bookmarks: [] };
@@ -52,6 +63,54 @@
         updateStats();
         protectQuick10Button(); // Auto-heal on refresh
     };
+
+    // Listen to Firebase Auth state changes to re-evaluate progress for active user
+    window.addEventListener('hpgk_auth_changed', () => {
+        console.log("🔄 Auth state updated! Reloading engine state & resuming position...");
+        migrateGuestProgressIfNeeded();
+        loadFromStorage();
+        
+        // Auto-resume to the last solved/attempted question index for this user
+        if (historyState.lastIndex && historyState.lastIndex < window.quizData.length) {
+            currentIndex = historyState.lastIndex;
+        }
+
+        applyFilters(false);
+        updateStats();
+        protectQuick10Button();
+    });
+
+    /**
+     * Migrates guest progress to the logged-in user profile if user has no prior history
+     */
+    function migrateGuestProgressIfNeeded() {
+        const user = window.HPGK_User;
+        if (!user || !user.isLoggedIn || !user.uid) return;
+
+        const baseCategory = (window.QUIZ_CONFIG && window.QUIZ_CONFIG.category) 
+            ? `hpgk_${window.QUIZ_CONFIG.category}_v1` 
+            : 'hpgk_general_v1';
+
+        const userKey = `hpgk_usr_${user.uid}_${baseCategory}`;
+        const guestKey = `hpgk_guest_${baseCategory}`;
+
+        const userHistoryRaw = localStorage.getItem(userKey);
+        const guestHistoryRaw = localStorage.getItem(guestKey);
+
+        // If user has no existing cloud/local history, but guest answered questions, copy guest state to user
+        if (!userHistoryRaw && guestHistoryRaw) {
+            try {
+                const guestData = JSON.parse(guestHistoryRaw);
+                if (guestData && guestData.answers && Object.keys(guestData.answers).length > 0) {
+                    localStorage.setItem(userKey, guestHistoryRaw);
+                    localStorage.removeItem(guestKey); // 🔥 Clear guest key so future guests on this device start fresh
+                    console.log("📦 Guest progress migrated to user account profile successfully!");
+                }
+            } catch (e) {
+                console.warn("Could not migrate guest progress:", e);
+            }
+        }
+    }
 
     // 🔥 SMART CLOUD SYNC (Batched Updates - Every 10 Answers)
     function triggerCloudSync(forceSync = false) {
@@ -142,9 +201,20 @@
                     applyFilters(); 
                     updateStats();
                     triggerCloudSync(true); // Force sync after importing progress
-                    alert('Progress restored successfully!');
-                } else { alert('Invalid backup file format.'); }
-            } catch(err) { alert('Error reading file.'); }
+                    
+                    if (window.HPGK_Layout && typeof window.HPGK_Layout.showToast === 'function') {
+                        window.HPGK_Layout.showToast('✅ Progress restored successfully!');
+                    }
+                } else { 
+                    if (window.HPGK_Layout && typeof window.HPGK_Layout.showToast === 'function') {
+                        window.HPGK_Layout.showToast('⚠️ Invalid backup file format.');
+                    }
+                }
+            } catch(err) { 
+                if (window.HPGK_Layout && typeof window.HPGK_Layout.showToast === 'function') {
+                    window.HPGK_Layout.showToast('❌ Error reading file.');
+                }
+            }
         };
         reader.readAsText(file);
         input.value = '';
@@ -162,7 +232,7 @@
         if (currentFontSizePx > 15) currentFontSizePx = 15;
         if (currentFontSizePx < 12) currentFontSizePx = 12;
         loadQuestion(currentIndex);
-    }
+    };
     
     function getFontSize() { return `${currentFontSizePx}px`; }
 
@@ -241,7 +311,7 @@
             // 1. Check strict Paywall based on original index
             let access = window.HPGK_Guard.checkAccess(originalIndex !== -1 ? originalIndex : index);
 
-            // 2. Dynamic Override for Free Users: Block NEW questions if 30-quota is reached
+            // 2. Dynamic Override for Free Users: Block NEW questions if quota limit is reached
             const userObj = window.HPGK_User || {};
             if (!userObj.isLoggedIn && totalAnswered >= loginLimit && historyState.answers[q.id] === undefined) {
                 access = { status: 'blocked_login', limit: loginLimit };
@@ -462,7 +532,7 @@
         
         historyState.answers[qId] = choiceIndex;
         
-        // 1. SAVE TO LOCAL STORAGE (Immediate, 100% Safe, 0 Cost)
+        // 1. SAVE TO LOCAL STORAGE (User-scoped, 0 Cost)
         saveToStorage(); 
         updateStats(); 
         loadQuestion(currentIndex);
@@ -476,8 +546,20 @@
         if (!q) return;
         const link = `${window.location.origin}${window.location.pathname}?id=${qId}`;
         const msg = `Can you solve this HPGK question? 🤔\n\nQ: ${q.questionEn}\n\n👉 Attempt here: ${link}`;
-        if (navigator.share) { try { await navigator.share({ title: 'HPGK Challenge', text: msg, url: link }); } catch (err) {} } 
-        else { try { await navigator.clipboard.writeText(msg); alert('Link copied!'); } catch (err) { alert('Could not copy link.'); } }
+        if (navigator.share) { 
+            try { await navigator.share({ title: 'HPGK Challenge', text: msg, url: link }); } catch (err) {} 
+        } else { 
+            try { 
+                await navigator.clipboard.writeText(msg); 
+                if (window.HPGK_Layout && typeof window.HPGK_Layout.showToast === 'function') {
+                    window.HPGK_Layout.showToast('📋 Link copied to clipboard!');
+                }
+            } catch (err) { 
+                if (window.HPGK_Layout && typeof window.HPGK_Layout.showToast === 'function') {
+                    window.HPGK_Layout.showToast('❌ Could not copy link.');
+                }
+            } 
+        }
     };
 
     if (nextBtn) {
@@ -548,21 +630,36 @@
         if (searchInput) { searchInput.value = ''; searchInput.dispatchEvent(new Event('input')); searchInput.focus(); }
     };
 
-    function saveToStorage() { localStorage.setItem(STORAGE_KEY, JSON.stringify(historyState)); }
+    // User-Scoped Storage Handlers
+    function saveToStorage() { 
+        localStorage.setItem(getStorageKey(), JSON.stringify(historyState)); 
+    }
     
     function loadFromStorage() {
-        const saved = localStorage.getItem(STORAGE_KEY);
-        if (saved) { try { historyState = JSON.parse(saved); if (!historyState.answers) historyState.answers = {}; if (!historyState.bookmarks) historyState.bookmarks = []; } catch (e) {} }
+        const saved = localStorage.getItem(getStorageKey());
+        if (saved) { 
+            try { 
+                historyState = JSON.parse(saved); 
+                if (!historyState.answers) historyState.answers = {}; 
+                if (!historyState.bookmarks) historyState.bookmarks = []; 
+            } catch (e) {
+                historyState = { lastIndex: 0, answers: {}, bookmarks: [] };
+            } 
+        } else {
+            historyState = { lastIndex: 0, answers: {}, bookmarks: [] };
+        }
     }
 
     window.resetProgress = function() { 
-        if(confirm("Clear history for this section?")) { 
-            localStorage.removeItem(STORAGE_KEY); 
-            location.reload(); 
-        } 
+        localStorage.removeItem(getStorageKey()); 
+        if (window.HPGK_Layout && typeof window.HPGK_Layout.showToast === 'function') {
+            window.HPGK_Layout.showToast('🧹 Quiz history reset for this section.');
+        }
+        setTimeout(() => { location.reload(); }, 600);
     };
 
     function initQuizNow() {
+        migrateGuestProgressIfNeeded();
         loadFromStorage();
         if (window.quizData && window.quizData.length > 0) {
             window.quizData.sort((a, b) => a.id - b.id);
@@ -577,9 +674,15 @@
 
             const urlParams = new URLSearchParams(window.location.search);
             const sharedId = urlParams.get('id');
-            if (sharedId) { const target = currentList.findIndex(q => q.id == sharedId); if (target !== -1) { currentIndex = target; } } 
-            else { currentIndex = historyState.lastIndex || 0; }
-            loadQuestion(currentIndex); updateStats();
+            if (sharedId) { 
+                const target = currentList.findIndex(q => q.id == sharedId); 
+                if (target !== -1) { currentIndex = target; } 
+            } else { 
+                // Resume automatically at the user's saved index position
+                currentIndex = (historyState.lastIndex && historyState.lastIndex < currentList.length) ? historyState.lastIndex : 0; 
+            }
+            loadQuestion(currentIndex); 
+            updateStats();
         } else {
             if (cardArea) cardArea.innerHTML = `<div class="empty-state"><p>No Data Loaded</p></div>`;
         }
