@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
     <meta name="description" content="Access your personalized student dashboard to track quiz progress, review mock test scores, and manage premium access.">
-    <title>Student Dashboard: Track Quiz Progress | HPGK</title>
+    <title>Student Dashboard: Track Progress & Rewards | HPGK</title>
 
     <link rel="canonical" href="https://hpgk.toolblaster.com/user/dashboard.html">
     <link rel="apple-touch-icon" sizes="180x180" href="../js/favicon/apple-touch-icon.png">
@@ -19,39 +19,40 @@
     <link rel="stylesheet" href="../js/style.css">
 
     <style>
+        /* STREAMING_CHUNK:Configuring root layout tokens and WCAG contrast variables... */
         :root {
             --site-width: 1120px;
-            --bg-gradient: linear-gradient(135deg, #f0f7ff 0%, #f8fafc 50%, #e0f2fe 100%);
-            --card-bg: rgba(255, 255, 255, 0.94);
-            --card-border: rgba(148, 163, 184, 0.28);
-            --glass-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.06), 0 2px 6px -1px rgba(0, 0, 0, 0.04); 
-            --input-bg: rgba(241, 245, 249, 0.85);
+            --bg-gradient: radial-gradient(circle at top left, #eff6ff 0%, #f8fafc 45%, #e0f2fe 100%);
+            --card-bg: rgba(255, 255, 255, 0.98);
+            --card-border: rgba(100, 116, 139, 0.3);
+            --glass-shadow: 0 8px 24px -4px rgba(37, 99, 235, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.04); 
+            --input-bg: #f1f5f9;
             --primary: #1d4ed8;
             --primary-dark: #1e40af;
-            --accent: #ea580c;
+            --accent: #c2410c;
             --text-main: #0f172a;
-            --text-body: #334155;
-            --text-sec: #475569;
+            --text-body: #1e293b;
+            --text-sec: #334155; /* WCAG AA Compliant contrast against light backgrounds */
             --success: #15803d;
             --warning: #b45309;
-            --danger: #dc2626;
-            --gold: #d97706;
+            --danger: #b91c1c;
+            --gold: #b45309;
             --radius-sm: 6px;
-            --radius-md: 10px;
-            --radius-lg: 14px;
-            --radius-xl: 18px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 16px;
         }
 
         [data-theme="dark"] {
-            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #020617 100%);
-            --card-bg: rgba(30, 41, 59, 0.92);
-            --card-border: rgba(255, 255, 255, 0.16);
-            --glass-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5);
-            --input-bg: rgba(15, 23, 42, 0.6);
+            --bg-gradient: radial-gradient(circle at top left, #0f172a 0%, #1e1b4b 50%, #020617 100%);
+            --card-bg: rgba(30, 41, 59, 0.96);
+            --card-border: rgba(226, 232, 240, 0.2);
+            --glass-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.6);
+            --input-bg: rgba(15, 23, 42, 0.8);
             --primary: #60a5fa;
             --primary-dark: #93c5fd;
             --text-main: #f8fafc;
-            --text-body: #e2e8f0;
+            --text-body: #f1f5f9;
             --text-sec: #cbd5e1;
             --success: #4ade80;
             --warning: #fde047;
@@ -65,205 +66,801 @@
             text-rendering: optimizeLegibility;
         }
 
-        body { background: var(--bg-gradient); color: var(--text-body); font-family: 'Inter', sans-serif; margin: 0; min-height: 100vh; display: flex; flex-direction: column; line-height: 1.35; }
-        main { flex: 1; width: 100%; padding: 12px 14px; box-sizing: border-box; max-width: var(--site-width); margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
-        
-        .glass-panel { background: var(--card-bg); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1px solid var(--card-border); border-radius: var(--radius-xl); padding: 14px 16px; box-shadow: var(--glass-shadow); }
+        body { 
+            background: var(--bg-gradient); 
+            color: var(--text-body); 
+            font-family: 'Inter', sans-serif; 
+            margin: 0; 
+            min-height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+            line-height: 1.4; 
+            position: relative;
+            overflow-x: hidden;
+        }
 
-        #logged-in-state { display: none; flex-direction: column; gap: 16px; }
+        /* AMBIENT GAMIFICATION WATERMARK COLLAGE BACKGROUND LAYER */
+        .bg-gamification-collage {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.025;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 40px;
+            padding: 30px;
+            box-sizing: border-box;
+            animation: floatWatermark 30s ease-in-out infinite alternate;
+        }
+
+        [data-theme="dark"] .bg-gamification-collage {
+            opacity: 0.045;
+        }
+
+        @keyframes floatWatermark {
+            0% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-15px) scale(1.02); }
+            100% { transform: translateY(10px) scale(0.99); }
+        }
+
+        .collage-icon {
+            font-size: 4rem;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        main { 
+            flex: 1; 
+            width: 100%; 
+            padding: 12px 16px; 
+            box-sizing: border-box; 
+            max-width: var(--site-width); 
+            margin: 0 auto; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 14px; 
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ORIGINAL BREADCRUMB & HERO BADGE STYLING (PRESERVED EXACTLY) */
+        .top-meta-bar { 
+            display: flex; justify-content: space-between; align-items: center; 
+            width: 100%; max-width: var(--site-width); margin: 0 auto 2px auto; 
+            padding: 0 2px; flex-wrap: nowrap; gap: 10px; box-sizing: border-box;
+        }
+        .top-meta-right { display: flex; align-items: center; gap: 8px; }
+
+        .breadcrumb-nav { margin: 0; flex-shrink: 1; display: flex; align-items: center; height: 22px; overflow-x: auto; scrollbar-width: none; }
+        .breadcrumb-nav::-webkit-scrollbar { display: none; }
         
-        /* Section Group Containers for Distinct Visual Separation */
+        .breadcrumb-list { 
+            list-style: none; padding: 0 10px; margin: 0; display: flex; flex-wrap: nowrap; 
+            align-items: center; gap: 6px; background: rgba(255, 255, 255, 0.6); border-radius: 12px; 
+            border: 1px solid var(--card-border); backdrop-filter: blur(8px); 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05); height: 100%; box-sizing: border-box;
+        }
+        [data-theme="dark"] .breadcrumb-list { background: rgba(30, 41, 59, 0.6); box-shadow: 0 1px 4px rgba(0,0,0,0.3); }
+        .breadcrumb-item { font-size: 0.68rem; font-weight: 700; color: var(--text-sec); display: flex; align-items: center; white-space: nowrap; height: 100%; }
+        .breadcrumb-item a { color: var(--text-sec); text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 4px; }
+        .breadcrumb-item a:hover { color: var(--primary); }
+        .breadcrumb-item.active { color: var(--primary); pointer-events: none; font-weight: 800; }
+        .breadcrumb-separator { font-size: 0.6rem; color: var(--text-sec); opacity: 0.7; margin: 0 2px; }
+
+        .hero-badge { 
+            display: inline-flex; align-items: center; justify-content: center; height: 20px; 
+            background: var(--primary); color: #ffffff; padding: 0 10px; border-radius: 10px; 
+            font-size: 0.65rem; font-weight: 800; text-transform: uppercase; margin: 0; 
+            border: 1px solid var(--primary-dark); letter-spacing: 0.4px; white-space: nowrap; flex-shrink: 0; box-sizing: border-box; line-height: 1;
+        }
+
+        .glass-panel { 
+            background: var(--card-bg); 
+            backdrop-filter: blur(14px); 
+            -webkit-backdrop-filter: blur(14px); 
+            border: 1.5px solid var(--card-border); 
+            border-radius: var(--radius-xl); 
+            padding: 14px 16px; 
+            box-shadow: var(--glass-shadow); 
+            position: relative;
+        }
+
+        #logged-in-state { display: none; flex-direction: column; gap: 14px; }
+        
         .dashboard-section { display: flex; flex-direction: column; gap: 8px; }
-        .section-label-header { font-size: 0.65rem; font-weight: 800; color: var(--text-sec); text-transform: uppercase; letter-spacing: 0.8px; display: flex; align-items: center; gap: 6px; margin-left: 2px; opacity: 0.9; }
+        .section-label-header { 
+            font-size: 0.72rem; 
+            font-weight: 800; 
+            color: var(--text-sec); 
+            text-transform: uppercase; 
+            letter-spacing: 0.6px; 
+            display: flex; 
+            align-items: center; 
+            gap: 6px; 
+            margin-left: 2px; 
+            opacity: 0.95; 
+        }
 
-        /* Top Row Grid */
         .top-dashboard-grid { display: grid; grid-template-columns: 3.5fr 6.5fr; gap: 12px; }
         .compact-top-card { padding: 12px 14px; margin-bottom: 0; display: flex; }
         
-        /* Profile Panel */
-        .profile-panel { flex-direction: column; justify-content: center; gap: 10px; }
-        .profile-main-row { display: flex; align-items: center; gap: 10px; width: 100%; }
+        .profile-panel { flex-direction: column; justify-content: center; gap: 8px; }
+        .profile-main-row { display: flex; align-items: center; gap: 12px; width: 100%; }
         .avatar-wrapper { position: relative; flex-shrink: 0; }
-        .avatar { width: 50px; height: 50px; border-radius: 12px; object-fit: cover; border: 1px solid var(--card-border); background: #ffffff; }
-        .status-dot { position: absolute; bottom: -2px; right: -2px; width: 11px; height: 11px; background-color: var(--success); border: 2px solid var(--card-bg); border-radius: 50%; }
+        .avatar { width: 50px; height: 50px; border-radius: 12px; object-fit: cover; border: 1.5px solid var(--card-border); background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .status-dot { position: absolute; bottom: -2px; right: -2px; width: 12px; height: 12px; background-color: var(--success); border: 2.5px solid var(--card-bg); border-radius: 50%; }
         .user-info { display: flex; flex-direction: column; justify-content: center; flex: 1; }
-        .user-info h1 { font-size: 1.05rem; font-weight: 800; margin: 0 0 2px 0; color: var(--text-main); }
-        .user-info p { color: var(--text-sec); margin: 0 0 6px 0; font-size: 0.72rem; font-weight: 600; }
+        .user-info h1 { font-size: 1.05rem; font-weight: 800; margin: 0 0 2px 0; color: var(--text-main); letter-spacing: -0.2px; }
+        .user-info p { color: var(--text-sec); margin: 0 0 5px 0; font-size: 0.72rem; font-weight: 700; }
         
-        /* Copy UID Badge */
-        .badge-uid-copy { font-size: 0.62rem; font-weight: 800; text-transform: uppercase; padding: 3px 8px; border-radius: 6px; display: inline-flex; align-items: center; gap: 4px; background: var(--input-bg); border: 1px solid var(--card-border); color: var(--text-main); cursor: pointer; transition: all 0.2s ease; width: fit-content; }
+        .badge-uid-copy { font-size: 0.68rem; font-weight: 800; text-transform: uppercase; padding: 3px 8px; border-radius: 6px; display: inline-flex; align-items: center; gap: 6px; background: var(--input-bg); border: 1px solid var(--card-border); color: var(--text-main); cursor: pointer; transition: all 0.2s ease; width: fit-content; }
         .badge-uid-copy:hover { border-color: var(--primary); color: var(--primary); background: rgba(37, 99, 235, 0.08); }
 
-        /* Purchases Panel */
+        /* 60% / 40% SIDE-BY-SIDE SPLIT GRID */
+        .game-ref-split-grid {
+            display: grid;
+            grid-template-columns: 6fr 4fr;
+            gap: 14px;
+            width: 100%;
+        }
+
+        /* GAMIFICATION HUB (60% Width - Amber/Gold Accent Theme) */
+        .gamification-container {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.09) 0%, rgba(217, 119, 6, 0.02) 100%);
+            border: 2px solid rgba(245, 158, 11, 0.45);
+            border-radius: var(--radius-xl);
+            padding: 14px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            box-shadow: 0 6px 22px -4px rgba(245, 158, 11, 0.15);
+        }
+
+        .game-top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .game-level-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .level-badge-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            box-shadow: 0 4px 12px rgba(217, 119, 6, 0.35);
+            flex-shrink: 0;
+        }
+
+        .level-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .level-title {
+            font-size: 0.9rem;
+            font-weight: 900;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            letter-spacing: -0.2px;
+        }
+
+        .level-sub {
+            font-size: 0.68rem;
+            color: var(--text-sec);
+            font-weight: 700;
+        }
+
+        .streak-pill {
+            background: rgba(185, 28, 28, 0.12);
+            border: 1.5px solid rgba(185, 28, 28, 0.4);
+            color: var(--danger);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.72rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            animation: pulseGlow 2s infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+
+        .xp-bar-wrapper {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .xp-bar-track {
+            width: 100%;
+            height: 8px;
+            background: var(--input-bg);
+            border-radius: 5px;
+            overflow: hidden;
+            border: 1px solid var(--card-border);
+        }
+
+        .xp-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #2563eb, #f59e0b);
+            border-radius: 5px;
+            width: 0%;
+            transition: width 1s ease-in-out;
+        }
+
+        .xp-bar-text {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.68rem;
+            font-weight: 800;
+            color: var(--text-sec);
+        }
+
+        .rewards-vault-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            width: 100%;
+        }
+
+        .reward-card {
+            background: var(--card-bg);
+            border: 1.5px solid var(--card-border);
+            border-radius: var(--radius-md);
+            padding: 8px 6px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            box-shadow: var(--glass-shadow);
+        }
+
+        .reward-card.locked {
+            opacity: 0.75;
+            filter: grayscale(0.5);
+        }
+
+        .reward-card.unlocked {
+            border-color: rgba(245, 158, 11, 0.7);
+            background: linear-gradient(135deg, var(--card-bg) 0%, rgba(251, 191, 36, 0.12) 100%);
+        }
+
+        .reward-icon {
+            font-size: 1.2rem;
+            margin-bottom: 2px;
+            color: var(--gold);
+        }
+
+        .reward-name {
+            font-size: 0.68rem;
+            font-weight: 800;
+            color: var(--text-main);
+            line-height: 1.25;
+            margin-bottom: 3px;
+        }
+
+        .reward-req {
+            font-size: 0.62rem;
+            color: var(--text-sec);
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        /* WCAG AAA High-Contrast Text Fix on Gold Buttons */
+        .btn-claim-reward {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: #0f172a; /* Dark slate text for 10.5:1 AAA contrast */
+            border: none;
+            padding: 5px 8px;
+            border-radius: 5px;
+            font-size: 0.68rem;
+            font-weight: 900;
+            cursor: pointer;
+            width: 100%;
+            text-transform: uppercase;
+            box-shadow: 0 2px 6px rgba(217, 119, 6, 0.3);
+            transition: all 0.2s ease;
+        }
+
+        .btn-claim-reward:hover {
+            transform: translateY(-1px);
+            filter: brightness(1.08);
+        }
+
+        .btn-claim-reward:disabled {
+            background: var(--input-bg);
+            color: var(--text-sec);
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+            border: 1px solid var(--card-border);
+        }
+
+        .btn-xp-info {
+            background: rgba(245, 158, 11, 0.18);
+            border: 1.5px solid rgba(245, 158, 11, 0.5);
+            color: var(--gold);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.68rem;
+            font-weight: 800;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.2s ease;
+        }
+        .btn-xp-info:hover {
+            background: var(--gold);
+            color: #0f172a;
+        }
+
+        /* REFERRAL HUB (40% Width - Emerald Green Accent Theme) */
+        .referral-container {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.09) 0%, rgba(5, 150, 105, 0.02) 100%);
+            border: 2px solid rgba(16, 185, 129, 0.45);
+            border-radius: var(--radius-xl);
+            padding: 14px 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 12px;
+            box-shadow: 0 6px 22px -4px rgba(16, 185, 129, 0.15);
+        }
+
+        .ref-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .ref-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--success);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+            flex-shrink: 0;
+            border: 1.5px solid rgba(16, 185, 129, 0.4);
+        }
+
+        .ref-details h3 {
+            margin: 0;
+            font-size: 0.88rem;
+            font-weight: 800;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .ref-details p {
+            margin: 2px 0 0 0;
+            font-size: 0.68rem;
+            color: var(--text-sec);
+            font-weight: 700;
+            line-height: 1.35;
+        }
+
+        .ref-actions-col {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            width: 100%;
+        }
+
+        .btn-wa-share {
+            background: #25d366;
+            color: #ffffff;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+            box-shadow: 0 3px 10px rgba(37, 211, 102, 0.3);
+            transition: all 0.2s ease;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .btn-wa-share:hover {
+            transform: translateY(-1px);
+            filter: brightness(1.05);
+        }
+
+        .btn-copy-ref {
+            background: var(--input-bg);
+            color: var(--text-main);
+            border: 1.5px solid var(--card-border);
+            padding: 7px 12px;
+            border-radius: 8px;
+            font-size: 0.72rem;
+            font-weight: 800;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .btn-copy-ref:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .metrics-section-panel {
+            border: 2px solid rgba(37, 99, 235, 0.35);
+            border-radius: var(--radius-xl);
+            padding: 12px;
+            background: rgba(37, 99, 235, 0.02);
+            box-shadow: 0 6px 22px -4px rgba(37, 99, 235, 0.1);
+        }
+
+        .rules-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            text-align: left;
+            margin: 12px 0;
+        }
+
+        .rules-item {
+            background: var(--input-bg);
+            border: 1px solid var(--card-border);
+            padding: 10px 12px;
+            border-radius: var(--radius-md);
+            font-size: 0.72rem;
+            color: var(--text-body);
+        }
+        .rules-item strong {
+            color: var(--text-main);
+            display: block;
+            margin-bottom: 3px;
+        }
+
         .purchases-panel { display: flex; align-items: stretch; gap: 12px; width: 100%; }
         .purchases-left { flex: 1; display: flex; flex-direction: column; justify-content: center; border-right: 1px dashed var(--card-border); padding-right: 12px; }
         .purchases-right { flex: 1; display: flex; flex-direction: column; justify-content: center; }
-        .mini-section-title { font-size: 0.64rem; font-weight: 800; color: var(--text-sec); text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.5px; display: flex; align-items: center; gap: 5px; }
+        .mini-section-title { font-size: 0.68rem; font-weight: 800; color: var(--text-sec); text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.4px; display: flex; align-items: center; gap: 5px; }
 
-        /* Active Plan Box & Prominent VIP Badge */
-        .active-plan-box { background: linear-gradient(135deg, var(--card-bg) 0%, rgba(217, 119, 6, 0.06) 100%); border: 1px solid var(--card-border); border-radius: var(--radius-md); padding: 9px 12px; position: relative; overflow: hidden; box-shadow: var(--glass-shadow); }
-        .plan-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; position: relative; z-index: 2; }
+        .active-plan-box { background: linear-gradient(135deg, var(--card-bg) 0%, rgba(217, 119, 6, 0.05) 100%); border: 1.5px solid var(--card-border); border-radius: var(--radius-md); padding: 8px 12px; position: relative; overflow: hidden; }
+        .plan-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px; }
         .plan-name { font-size: 0.85rem; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 5px; }
-        .plan-details { font-size: 0.68rem; color: var(--text-sec); line-height: 1.4; font-weight: 600; position: relative; z-index: 2; }
+        .plan-details { font-size: 0.7rem; color: var(--text-sec); line-height: 1.35; font-weight: 700; }
         .plan-details strong { color: var(--text-main); font-weight: 800; }
 
-        .badge-all-access { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: #ffffff !important; padding: 4px 12px; border-radius: 20px; font-size: 0.68rem; font-weight: 900; letter-spacing: 0.5px; box-shadow: 0 3px 10px rgba(217, 119, 6, 0.35); text-transform: uppercase; display: inline-flex; align-items: center; gap: 4px; border: none !important; }
+        @keyframes badgeShimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        .badge-all-access { 
+            background: linear-gradient(90deg, #f59e0b 0%, #d97706 40%, #fbbf24 50%, #d97706 60%, #f59e0b 100%);
+            background-size: 200% 100%;
+            animation: badgeShimmer 4s infinite linear;
+            color: #0f172a !important; 
+            padding: 3px 10px; 
+            border-radius: 16px; 
+            font-size: 0.68rem; 
+            font-weight: 900; 
+            letter-spacing: 0.4px; 
+            box-shadow: 0 2px 8px rgba(217, 119, 6, 0.3); 
+            text-transform: uppercase; 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 5px; 
+        }
+
+        .expired-passes-box { margin-top: 8px; padding: 6px 10px; background: var(--input-bg); border: 1px dashed var(--card-border); border-radius: var(--radius-sm); font-size: 0.68rem; }
+        .expired-pass-row { display: flex; justify-content: space-between; align-items: center; padding: 3px 0; border-bottom: 1px dotted var(--card-border); }
+        .expired-pass-row:last-child { border-bottom: none; }
 
         .compact-upgrade-item { display: flex; justify-content: space-between; align-items: center; background: var(--input-bg); border: 1px solid var(--card-border); padding: 6px 10px; border-radius: var(--radius-sm); margin-bottom: 4px; }
-        .compact-btn-buy { background: linear-gradient(135deg, #f59e0b, #ea580c); color: #ffffff; font-size: 0.64rem; font-weight: 800; padding: 5px 10px; border-radius: 6px; cursor: pointer; border: none; text-transform: uppercase; transition: opacity 0.2s ease; box-shadow: 0 2px 6px rgba(234, 88, 12, 0.2); }
-        .compact-btn-buy:hover { opacity: 0.9; }
+        .compact-btn-buy { background: linear-gradient(135deg, #f59e0b, #d97706); color: #0f172a; font-size: 0.68rem; font-weight: 900; padding: 5px 10px; border-radius: 5px; cursor: pointer; border: none; text-transform: uppercase; transition: transform 0.15s ease; box-shadow: 0 2px 6px rgba(217, 119, 6, 0.25); }
+        .compact-btn-buy:hover { transform: translateY(-1px); }
 
-        /* Leaderboard Banner Directly Below Top Row */
-        .lb-banner { padding: 10px 16px; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(135deg, rgba(251, 191, 36, 0.12), rgba(245, 158, 11, 0.05)); border: 1px solid rgba(245, 158, 11, 0.35); gap: 12px; }
+        .lb-banner { 
+            padding: 10px 14px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.16), rgba(245, 158, 11, 0.04)); 
+            border: 2px solid rgba(245, 158, 11, 0.45); 
+            gap: 12px; 
+            border-radius: var(--radius-xl);
+            box-shadow: 0 4px 18px -2px rgba(245, 158, 11, 0.12);
+        }
         .lb-left { display: flex; align-items: center; gap: 12px; }
-        .lb-icon { font-size: 1.5rem; color: var(--gold); flex-shrink: 0; }
+        .lb-icon { font-size: 1.4rem; color: var(--gold); flex-shrink: 0; }
         .lb-text h3 { margin: 0; font-size: 0.88rem; color: var(--text-main); font-weight: 800; }
-        .lb-text p { margin: 2px 0 0 0; font-size: 0.68rem; color: var(--text-sec); font-weight: 600; }
-        .lb-btn { background: linear-gradient(135deg, #f59e0b, #d97706); color: #ffffff; padding: 6px 14px; border: none; font-size: 0.7rem; text-decoration: none; border-radius: var(--radius-sm); font-weight: 800; white-space: nowrap; flex-shrink: 0; transition: opacity 0.2s ease; }
-        .lb-btn:hover { opacity: 0.9; }
+        .lb-text p { margin: 2px 0 0 0; font-size: 0.7rem; color: var(--text-sec); font-weight: 700; }
+        .lb-btn { background: linear-gradient(135deg, #f59e0b, #d97706); color: #0f172a; padding: 6px 14px; border: none; font-size: 0.72rem; text-decoration: none; border-radius: var(--radius-sm); font-weight: 900; white-space: nowrap; flex-shrink: 0; transition: transform 0.15s ease; box-shadow: 0 2px 8px rgba(217, 119, 6, 0.3); }
+        .lb-btn:hover { transform: translateY(-1px); }
 
-        /* High Density Stats Grid Container */
         .stats-wrapper { display: flex; flex-direction: column; gap: 8px; }
-        .stats-density-grid { display: grid; grid-template-columns: 1.4fr repeat(5, 1fr); gap: 8px; }
-        .stat-group-card { border-radius: var(--radius-md); padding: 8px 12px; display: flex; align-items: center; gap: 8px; position: relative; overflow: hidden; box-shadow: var(--glass-shadow); text-decoration: none; cursor: pointer; transition: filter 0.2s ease; border: 1px solid transparent; min-height: 52px; box-sizing: border-box; }
-        .stat-group-card:hover { filter: brightness(1.08); }
-        .stat-group-card.mock-bg { background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%); }
+        .stats-density-grid { display: grid; grid-template-columns: 1.3fr repeat(5, 1fr); gap: 8px; }
+        
+        .stat-group-card { 
+            border-radius: var(--radius-md); 
+            padding: 8px 12px; 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            position: relative; 
+            overflow: hidden; 
+            box-shadow: var(--glass-shadow); 
+            text-decoration: none; 
+            cursor: pointer; 
+            transition: transform 0.2s ease; 
+            border: 1px solid transparent; 
+            min-height: 50px; 
+            box-sizing: border-box; 
+        }
+        .stat-group-card:hover { transform: translateY(-1px); filter: brightness(1.05); }
+        .stat-group-card.mock-bg { background: linear-gradient(135deg, #b91c1c 0%, #991b1b 100%); }
         .stat-group-card.topic-bg { background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%); }
-        .stat-group-bg-icon { position: absolute; right: -8px; bottom: -8px; font-size: 3.5rem; opacity: 0.12; color: #ffffff; z-index: 1; }
-        .stat-group-icon { font-size: 1.3rem; color: #ffffff; z-index: 2; opacity: 0.95; flex-shrink: 0; }
+        .stat-group-bg-icon { position: absolute; right: -6px; bottom: -6px; font-size: 3.2rem; opacity: 0.12; color: #ffffff; z-index: 1; }
+        .stat-group-icon { font-size: 1.2rem; color: #ffffff; z-index: 2; opacity: 0.95; flex-shrink: 0; }
         .stat-group-text { display: flex; flex-direction: column; z-index: 2; }
-        .stat-group-text h4 { color: #ffffff; margin: 0; font-size: 0.8rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.4px; line-height: 1.1; }
-        .stat-group-text p { color: rgba(255,255,255,0.85); margin: 0; font-size: 0.56rem; font-weight: 600; text-transform: uppercase; margin-top: 1px; }
+        .stat-group-text h4 { color: #ffffff; margin: 0; font-size: 0.8rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.3px; line-height: 1.1; }
+        .stat-group-text p { color: rgba(255,255,255,0.9); margin: 0; font-size: 0.6rem; font-weight: 700; text-transform: uppercase; margin-top: 2px; }
 
-        .stat-dense-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-md); padding: 8px 10px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; box-shadow: var(--glass-shadow); min-height: 52px; box-sizing: border-box; }
-        .stat-dense-label { font-size: 0.6rem; color: var(--text-sec); font-weight: 800; text-transform: uppercase; margin-bottom: 3px; white-space: nowrap; letter-spacing: 0.2px; display: flex; align-items: center; justify-content: center; gap: 4px; width: 100%; }
-        .stat-dense-label i { font-size: 0.65rem; opacity: 0.85; }
-        .stat-dense-val { font-size: 1.05rem; font-weight: 900; color: var(--text-main); display: flex; align-items: center; justify-content: center; width: 100%; line-height: 1; }
+        .stat-dense-card { 
+            background: var(--card-bg); 
+            border: 1.5px solid var(--card-border); 
+            border-radius: var(--radius-md); 
+            padding: 8px 10px; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            text-align: center; 
+            box-shadow: var(--glass-shadow); 
+            min-height: 50px; 
+            box-sizing: border-box; 
+        }
+        .stat-dense-label { font-size: 0.65rem; color: var(--text-sec); font-weight: 800; text-transform: uppercase; margin-bottom: 3px; white-space: nowrap; letter-spacing: 0.2px; display: flex; align-items: center; justify-content: center; gap: 4px; width: 100%; }
+        .stat-dense-val { font-size: 1rem; font-weight: 900; color: var(--text-main); display: flex; align-items: center; justify-content: center; width: 100%; line-height: 1; }
         .cw-text { font-size: 0.9rem; display: flex; align-items: center; justify-content: center; }
         .cw-slash { font-size: 0.75rem; color: var(--card-border); margin: 0 2px; font-weight: 400; }
 
-        /* Quick Resume Dual Grid */
         .quick-resume-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; width: 100%; }
-        .resume-card { display: flex; align-items: center; justify-content: space-between; gap: 10px; background: linear-gradient(135deg, rgba(29, 78, 216, 0.06) 0%, rgba(37, 99, 235, 0.02) 100%); border: 1px solid var(--card-border); border-radius: var(--radius-lg); padding: 10px 14px; box-shadow: var(--glass-shadow); box-sizing: border-box; }
+        .resume-card { 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            gap: 10px; 
+            background: linear-gradient(135deg, rgba(29, 78, 216, 0.06) 0%, rgba(37, 99, 235, 0.01) 100%); 
+            border: 1.5px solid var(--card-border); 
+            border-radius: var(--radius-lg); 
+            padding: 10px 14px; 
+            box-shadow: var(--glass-shadow); 
+            box-sizing: border-box; 
+        }
         .resume-left { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0; }
-        .resume-icon { width: 32px; height: 32px; border-radius: 8px; background: rgba(29, 78, 216, 0.12); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0; border: 1px solid var(--card-border); }
+        .resume-icon { width: 34px; height: 34px; border-radius: 10px; background: rgba(29, 78, 216, 0.12); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 0.95rem; flex-shrink: 0; border: 1px solid var(--card-border); }
         .resume-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
-        .resume-tag { font-size: 0.58rem; font-weight: 800; text-transform: uppercase; color: var(--primary); letter-spacing: 0.4px; }
+        .resume-tag { font-size: 0.62rem; font-weight: 800; text-transform: uppercase; color: var(--primary); letter-spacing: 0.3px; }
         .resume-title { font-size: 0.82rem; font-weight: 800; color: var(--text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .resume-sub { font-size: 0.66rem; color: var(--text-sec); font-weight: 600; }
-        .btn-resume { background: var(--primary); color: #ffffff; border: none; padding: 6px 12px; border-radius: 6px; font-size: 0.7rem; font-weight: 800; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; flex-shrink: 0; transition: opacity 0.2s ease; }
-        .btn-resume:hover { opacity: 0.9; }
+        .resume-sub { font-size: 0.68rem; color: var(--text-sec); font-weight: 700; }
+        .btn-resume { background: var(--primary); color: #ffffff; border: none; padding: 6px 12px; border-radius: 6px; font-size: 0.72rem; font-weight: 800; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; flex-shrink: 0; transition: transform 0.15s ease; box-shadow: 0 2px 6px rgba(37, 99, 235, 0.25); }
+        .btn-resume:hover { transform: translateY(-1px); }
 
-        /* EQUAL 50/50 MASTERY SPLIT */
         .dashboard-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        .section-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--card-border); padding-bottom: 6px; margin-bottom: 10px; flex-wrap: wrap; gap: 6px; }
+        .section-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid var(--card-border); padding-bottom: 6px; margin-bottom: 10px; flex-wrap: wrap; gap: 6px; }
         .section-title { font-size: 0.88rem; font-weight: 800; margin: 0; display: flex; align-items: center; gap: 6px; color: var(--text-main); }
-        .section-title span { font-size: 0.6rem; background: var(--input-bg); padding: 2px 6px; border-radius: 4px; color: var(--text-sec); border: 1px solid var(--card-border); font-weight: 800; }
+        .section-title span { font-size: 0.62rem; background: var(--input-bg); padding: 2px 6px; border-radius: 4px; color: var(--text-sec); border: 1px solid var(--card-border); font-weight: 800; }
 
         .dense-list { display: flex; flex-direction: column; gap: 8px; } 
-        .subject-perf-item { margin-bottom: 4px; }
+        .subject-perf-item { margin-bottom: 3px; }
         .subject-perf-item:last-child { margin-bottom: 0; }
-        .perf-labels { display: flex; justify-content: space-between; align-items: center; font-size: 0.74rem; font-weight: 700; color: var(--text-main); margin-bottom: 3px; }
+        .perf-labels { display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; font-weight: 700; color: var(--text-main); margin-bottom: 3px; }
         .perf-track { width: 100%; height: 6px; background: var(--input-bg); border-radius: 4px; overflow: hidden; border: 1px solid var(--card-border); }
-        .perf-fill { height: 100%; border-radius: 4px; transition: width 0.8s ease-out; }
+        
+        .perf-fill { height: 100%; border-radius: 4px; transition: width 0.8s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .perf-fill.green-grad { background: linear-gradient(90deg, #15803d 0%, #22c55e 100%); }
+        .perf-fill.yellow-grad { background: linear-gradient(90deg, #b45309 0%, #f59e0b 100%); }
+        .perf-fill.red-grad { background: linear-gradient(90deg, #b91c1c 0%, #ef4444 100%); }
 
-        /* VERTICALLY COMPACT WEAK TOPIC BADGE & IMPROVE LINK */
         .badge-weak { 
-            font-size: 0.56rem; 
-            background: rgba(220, 38, 38, 0.12); 
-            color: #dc2626; 
-            padding: 1px 6px; 
+            font-size: 0.6rem; 
+            background: rgba(185, 28, 28, 0.15); 
+            color: var(--danger); 
+            padding: 2px 6px; 
             border-radius: 4px; 
             font-weight: 800; 
-            border: 1px solid rgba(220, 38, 38, 0.25); 
+            border: 1px solid rgba(185, 28, 28, 0.3); 
             display: inline-flex; 
             align-items: center; 
             gap: 3px; 
-            margin: 0 6px;
-            line-height: 1.1; 
-            vertical-align: middle;
+            margin: 0 4px;
+            line-height: 1.1;
         }
-        [data-theme="dark"] .badge-weak { background: rgba(239, 68, 68, 0.18); color: #f87171; }
-        .btn-improve-link { font-size: 0.62rem; color: var(--primary); font-weight: 800; text-decoration: none; padding: 1px 5px; border-radius: 4px; transition: background 0.2s ease; line-height: 1.1; }
+        .btn-improve-link { font-size: 0.68rem; color: var(--primary); font-weight: 800; text-decoration: none; padding: 2px 6px; border-radius: 4px; line-height: 1.1; }
         .btn-improve-link:hover { text-decoration: underline; background: var(--input-bg); }
 
-        /* Auth Warning */
-        .auth-warning { text-align: center; padding: 30px 20px; }
-        .auth-warning h2 { font-size: 1.05rem; margin-bottom: 4px; color: var(--text-main); font-weight: 800; }
+        .auth-warning { text-align: center; padding: 28px 18px; }
+        .auth-warning h2 { font-size: 1.05rem; margin-bottom: 6px; color: var(--text-main); font-weight: 800; }
         .auth-warning p { font-size: 0.78rem; margin-bottom: 16px; color: var(--text-sec); max-width: 400px; margin-inline: auto; font-weight: 600; }
-        .modern-google-btn { background: var(--input-bg); color: var(--text-main); border: 1px solid var(--card-border); padding: 8px 16px; border-radius: 20px; font-size: 0.78rem; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; box-shadow: var(--glass-shadow); font-family: 'Inter', sans-serif; transition: background 0.2s; }
+        .modern-google-btn { background: var(--input-bg); color: var(--text-main); border: 1.5px solid var(--card-border); padding: 8px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 800; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; box-shadow: var(--glass-shadow); font-family: 'Inter', sans-serif; transition: background 0.2s; }
         .modern-google-btn:hover { background: var(--card-border); }
 
-        /* Modals & Payment Overlay */
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15,23,42,0.7); z-index: 9999; display: none; align-items: center; justify-content: center; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); padding: 15px; box-sizing: border-box; }
-        .modal-box { background: var(--card-bg); border: 1px solid var(--card-border); width: 100%; max-width: 380px; padding: 22px 18px; text-align: center; border-radius: var(--radius-xl); position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
-        .modal-close-btn { position: absolute; top: 12px; right: 15px; background: transparent; border: none; font-size: 1.2rem; cursor: pointer; color: var(--text-sec); transition: color 0.2s; }
-        .modal-close-btn:hover { color: var(--text-main); }
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15,23,42,0.75); z-index: 9999; display: none; align-items: center; justify-content: center; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); padding: 16px; box-sizing: border-box; }
+        .modal-box { background: var(--card-bg); border: 1.5px solid var(--card-border); width: 100%; max-width: 380px; padding: 22px 18px; text-align: center; border-radius: var(--radius-xl); position: relative; box-shadow: 0 18px 40px rgba(0,0,0,0.35); }
+        .modal-close-btn { position: absolute; top: 12px; right: 14px; background: transparent; border: none; font-size: 1.2rem; cursor: pointer; color: var(--text-sec); }
 
-        #payment-processing-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index: 99999; display: none; flex-direction: column; align-items: center; justify-content: center; color: #ffffff; text-align: center; padding: 20px; box-sizing: border-box; }
-        .spinner { width: 44px; height: 44px; border: 4px solid rgba(255,255,255,0.2); border-top-color: #10b981; border-radius: 50%; animation: spin 1s infinite linear; margin-bottom: 16px; }
+        #payment-processing-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index: 99999; display: none; flex-direction: column; align-items: center; justify-content: center; color: #ffffff; text-align: center; padding: 20px; box-sizing: border-box; }
+        .spinner { width: 44px; height: 44px; border: 4px solid rgba(255,255,255,0.2); border-top-color: #10b981; border-radius: 50%; animation: spin 1s infinite linear; margin-bottom: 14px; }
         @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        @keyframes skeletonShimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        .skeleton-box {
+            background: linear-gradient(90deg, rgba(203, 213, 225, 0.3) 25%, rgba(241, 245, 249, 0.6) 50%, rgba(203, 213, 225, 0.3) 75%);
+            background-size: 200% 100%;
+            animation: skeletonShimmer 1.5s infinite linear;
+            border-radius: 10px;
+        }
 
         @media (max-width: 1024px) { 
             .stats-density-grid { grid-template-columns: repeat(3, 1fr); } 
             .stat-group-card { grid-column: span 3; } 
         }
         @media (max-width: 850px) { 
+            .game-ref-split-grid { grid-template-columns: 1fr; }
             .top-dashboard-grid, .dashboard-cols { grid-template-columns: 1fr; } 
             .quick-resume-grid { grid-template-columns: 1fr; } 
         }
         @media (max-width: 600px) {
-            main { padding: 8px 6px !important; gap: 12px; }
-            #logged-in-state { gap: 12px; }
+            main { padding: 8px !important; gap: 10px; }
+            #logged-in-state { gap: 10px; }
             .stats-density-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
             .stat-group-card { width: 100%; padding: 8px 10px; margin-bottom: 0; box-sizing: border-box; min-height: 46px; }
             .stat-dense-card { width: calc(50% - 3px); box-sizing: border-box; padding: 8px 6px; display: flex; flex-direction: column; align-items: center; text-align: center; min-height: 46px; }
-            .stat-dense-label, .stat-dense-val, .cw-text { justify-content: center; width: 100%; }
             .purchases-panel { flex-direction: column; gap: 8px; }
             .purchases-left { border-right: none; border-bottom: 1px dashed var(--card-border); padding-right: 0; padding-bottom: 8px; }
-            .lb-banner { padding: 8px 10px; flex-direction: row; align-items: center; gap: 8px; }
-            .lb-icon { font-size: 1.3rem; } 
-            .lb-text h3 { font-size: 0.82rem; line-height: 1.1; margin-bottom: 1px; }
-            .lb-text p { font-size: 0.65rem; line-height: 1.2; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; } 
-            .lb-btn { padding: 5px 10px; font-size: 0.68rem; width: auto; }
+            .lb-banner { padding: 8px 10px; }
             .resume-card { flex-direction: column; align-items: flex-start; gap: 8px; padding: 10px; }
             .btn-resume { width: 100%; justify-content: center; }
+            .top-meta-bar { flex-wrap: nowrap; justify-content: space-between; }
+            .breadcrumb-nav { height: 20px; }
+            .hero-badge { height: 18px; padding: 0 8px; border-radius: 8px; font-size: 0.58rem; }
+            .rewards-vault-grid { grid-template-columns: 1fr; }
         }
     </style>
+
     <script>
         const savedTheme = localStorage.getItem('theme') || 'light';
         document.documentElement.setAttribute('data-theme', savedTheme);
+
+        window.getCategoryUrl = function(rawKey, catName) {
+            let str = (rawKey || catName || '').toLowerCase().trim();
+            str = str.replace(/hpgk_/g, '').replace(/[-_]/g, ' ').replace(/&/g, 'and').replace(/\s+/g, ' ').trim();
+            
+            if (str.includes('patwari')) return '../hp-exam-full-mock-test/hp-patwari-mock/';
+            if (str.includes('police') || str.includes('constable')) return '../hp-exam-full-mock-test/hp-police-constable-mock/';
+            if (str.includes('hrtc') || str.includes('conductor')) return '../hp-exam-full-mock-test/hp-hrtc-conductor-mock/';
+
+            if (str.includes('history')) return '../himachal-pradesh-gk/history/';
+            if (str.includes('geography')) return '../himachal-pradesh-gk/geography/';
+            if (str.includes('district')) return '../himachal-pradesh-gk/district/';
+            if (str.includes('economy')) return '../himachal-pradesh-gk/economy/';
+            if (str.includes('polity')) return '../himachal-pradesh-gk/polity/';
+            if (str.includes('art') || str.includes('culture')) return '../himachal-pradesh-gk/art-culture/';
+            if (str.includes('river')) return '../himachal-pradesh-gk/rivers/';
+            if (str.includes('famous') || str.includes('people')) return '../himachal-pradesh-gk/famous-people/';
+            if (str.includes('environment')) return '../himachal-pradesh-gk/environment/';
+            if (str.includes('tourism')) return '../himachal-pradesh-gk/tourism/';
+
+            const slug = str.replace(/\s+/g, '-');
+            return `../himachal-pradesh-gk/${slug}/`;
+        };
     </script>
 </head>
 <body>
 
+<!-- AMBIENT GAMIFICATION WATERMARK COLLAGE -->
+<div class="bg-gamification-collage">
+    <div class="collage-icon"><i class="fa-solid fa-trophy"></i></div>
+    <div class="collage-icon"><i class="fa-solid fa-crown"></i></div>
+    <div class="collage-icon"><i class="fa-solid fa-fire"></i></div>
+    <div class="collage-icon"><i class="fa-solid fa-bullseye"></i></div>
+    <div class="collage-icon"><i class="fa-solid fa-bolt"></i></div>
+    <div class="collage-icon"><i class="fa-solid fa-medal"></i></div>
+    <div class="collage-icon"><i class="fa-solid fa-swords"></i></div>
+    <div class="collage-icon"><i class="fa-solid fa-award"></i></div>
+    <div class="collage-icon"><i class="fa-solid fa-shield-cat"></i></div>
+    <div class="collage-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+    <div class="collage-icon"><i class="fa-solid fa-flag-checkered"></i></div>
+    <div class="collage-icon"><i class="fa-solid fa-gem"></i></div>
+</div>
+
 <noscript>
-    <div style="padding: 20px; text-align: center; color: #7f1d1d; background: #fef2f2;">
+    <div style="padding: 16px; text-align: center; color: #7f1d1d; background: #fef2f2;">
         <strong>JavaScript is required.</strong> Please enable JavaScript to use the HPGK Quiz application.
     </div>
 </noscript>
 
-<!-- Payment Processing Overlay -->
 <div id="payment-processing-overlay">
     <div class="spinner"></div>
-    <h2 style="margin:0 0 8px 0; font-size: 1.3rem; font-weight:800;" id="verify-title">Securing Your Access...</h2>
-    <p style="margin:0; font-size: 0.82rem; color:#cbd5e1;" id="verify-desc">Please wait while we verify your transaction with the bank.</p>
+    <h2 style="margin:0 0 6px 0; font-size: 1.2rem; font-weight:800;" id="verify-title">Securing Your Access...</h2>
+    <p style="margin:0; font-size: 0.8rem; color:#cbd5e1;" id="verify-desc">Please wait while we verify your transaction with the bank.</p>
 </div>
 
 <div id="site-header"></div>
 
 <main>
-    <!-- Loading State -->
-    <div id="loading-state" class="glass-panel" style="text-align: center; padding: 25px 20px;">
-        <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 1.6rem; color: var(--primary);"></i>
-        <div style="font-size: 0.78rem; font-weight: 700; margin-top: 8px; color: var(--text-sec);">Loading Student Profile...</div>
+    <!-- TOP META BAR: BREADCRUMB (LEFT) & HERO BADGE (RIGHT) - EXACT ORIGINAL STRUCTURE & STYLING PRESERVED -->
+    <div class="top-meta-bar">
+        <nav aria-label="breadcrumb" class="breadcrumb-nav">
+            <ol class="breadcrumb-list">
+                <li class="breadcrumb-item"><a href="../"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li class="breadcrumb-separator"><i class="fa-solid fa-chevron-right"></i></li>
+                <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+            </ol>
+        </nav>
+        <div class="top-meta-right">
+            <span class="hero-badge">Student Workspace</span>
+        </div>
+    </div>
+
+    <!-- Skeleton Loading State -->
+    <div id="loading-state" style="display: flex; flex-direction: column; gap: 12px;">
+        <div class="top-dashboard-grid">
+            <div class="glass-panel skeleton-box" style="height: 95px;"></div>
+            <div class="glass-panel skeleton-box" style="height: 95px;"></div>
+        </div>
+        <div class="glass-panel skeleton-box" style="height: 120px;"></div>
+        <div class="glass-panel skeleton-box" style="height: 50px;"></div>
+        <div class="glass-panel skeleton-box" style="height: 110px;"></div>
     </div>
 
     <!-- Logged Out State -->
     <div id="logged-out-state" class="glass-panel auth-warning" style="display: none;">
         <i class="fa-solid fa-lock" style="font-size: 1.8rem; color: var(--text-sec); margin-bottom: 10px;"></i>
         <h2>Workspace Locked</h2>
-        <p>Login securely with Google to access your active plans and mastery analytics.</p>
+        <p>Login securely with Google to access your active plans, streak rewards, and mastery analytics.</p>
         <button class="modern-google-btn" onclick="if(window.loginWithGoogle) window.loginWithGoogle()">
             <svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
@@ -275,10 +872,9 @@
         </button>
     </div>
 
-    <!-- Logged In State -->
     <div id="logged-in-state">
         
-        <!-- GROUP 1: USER PROFILE & SUBSCRIPTION PASS -->
+        <!-- SECTION 1: USER PROFILE & SUBSCRIPTION PASS -->
         <div class="dashboard-section">
             <div class="top-dashboard-grid">
                 <div class="glass-panel compact-top-card profile-panel">
@@ -291,24 +887,126 @@
                             <h1 id="user-name">Student</h1>
                             <p id="user-email">student@email.com</p>
                             <span class="badge-uid-copy" id="uid-copy-btn" onclick="copyUidToClipboard()" title="Click to copy full UID">
-                                UID: <span id="user-short-id">...</span> <i class="fa-solid fa-copy" style="font-size:0.6rem;"></i>
+                                UID: <span id="user-short-id">...</span> <i class="fa-solid fa-copy" style="font-size:0.62rem;"></i>
                             </span>
                         </div>
                     </div>
                 </div>
 
-                <!-- SMART PURCHASES PANEL -->
                 <div class="glass-panel compact-top-card purchases-panel" id="smart-purchases-container"></div>
             </div>
         </div>
 
-        <!-- GROUP 2: GLOBAL RANKING BANNER -->
+        <!-- SECTION 1.5: 60% / 40% SIDE-BY-SIDE SPLIT GAMIFICATION & REFERRAL HUB -->
+        <div class="dashboard-section">
+            <div class="game-ref-split-grid">
+                
+                <!-- GAMIFICATION HUB (60% Width - Amber/Gold Accent Theme) -->
+                <div class="gamification-container glass-panel">
+                    <div class="game-top-bar">
+                        <div class="game-level-box">
+                            <div class="level-badge-icon" id="user-level-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                            <div class="level-info">
+                                <div class="level-title"><span id="user-level-name">HPGK Novice Aspirant</span></div>
+                                <div class="level-sub">Hard-Earned XP: <strong style="color:var(--text-main);" id="user-xp-val">0 XP</strong></div>
+                            </div>
+                        </div>
+
+                        <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+                            <button class="btn-xp-info" onclick="document.getElementById('xpRulesModal').style.display='flex'">
+                                <i class="fa-solid fa-circle-question"></i> XP Guide
+                            </button>
+                            <div class="streak-pill">
+                                <i class="fa-solid fa-fire"></i> <span id="user-streak-val">1 Day Streak</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="xp-bar-wrapper">
+                        <div class="xp-bar-track">
+                            <div class="xp-bar-fill" id="xp-bar-fill"></div>
+                        </div>
+                        <div class="xp-bar-text">
+                            <span>Progress to next rank</span>
+                            <span id="xp-progress-label">0 / 250 XP</span>
+                        </div>
+                    </div>
+
+                    <div class="section-label-header" style="margin-top:2px;"><i class="fa-solid fa-gift" style="color:var(--gold);"></i> Claim VIP Trial Pass Vouchers</div>
+                    <div class="rewards-vault-grid">
+                        
+                        <div class="reward-card" id="reward-card-1">
+                            <div class="reward-icon"><i class="fa-solid fa-bolt" style="color:#2563eb;"></i></div>
+                            <div class="reward-name">HPGK 12-Hour Speed Pass</div>
+                            <div class="reward-req" id="req-text-1">Requires 500 XP</div>
+                            <button class="btn-claim-reward" id="claim-btn-1" onclick="claimRewardCoupon('12HR_500XP', 'HPGK 12-Hour Speed Pass')" disabled>Locked</button>
+                        </div>
+
+                        <div class="reward-card" id="reward-card-2">
+                            <div class="reward-icon"><i class="fa-solid fa-crown" style="color:#b45309;"></i></div>
+                            <div class="reward-name">HPGK 24-Hour VIP Trial</div>
+                            <div class="reward-req" id="req-text-2">1,200 XP + 7-Day Streak</div>
+                            <button class="btn-claim-reward" id="claim-btn-2" onclick="claimRewardCoupon('24HR_1200XP', 'HPGK 24-Hour VIP Trial')" disabled>Locked</button>
+                        </div>
+
+                        <div class="reward-card" id="reward-card-3">
+                            <div class="reward-icon"><i class="fa-solid fa-medal" style="color:#c2410c;"></i></div>
+                            <div class="reward-name">HPGK 3-Day All-Access Pass</div>
+                            <div class="reward-req" id="req-text-3">2,500 XP + 15-Day Streak</div>
+                            <button class="btn-claim-reward" id="claim-btn-3" onclick="claimRewardCoupon('3DAY_2500XP', 'HPGK 3-Day All-Access Pass')" disabled>Locked</button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- REFERRAL HUB (40% Width - Emerald Green Accent Theme) -->
+                <div class="referral-container glass-panel">
+                    <div class="ref-header">
+                        <div class="ref-icon"><i class="fa-solid fa-user-plus"></i></div>
+                        <div class="ref-details">
+                            <h3>Invite & Earn +20 XP</h3>
+                            <p>Earn +20 XP instantly for every friend who joins! <span style="color:var(--success); font-weight:800;" id="ref-count-badge">(0 Joined)</span></p>
+                        </div>
+                    </div>
+
+                    <!-- Custom Referral URL Display Box with Inline Copy Icon -->
+                    <div style="display:flex; flex-direction:column; gap:4px;">
+                        <span style="font-size:0.65rem; font-weight:800; color:var(--text-sec); text-transform:uppercase; letter-spacing:0.3px;"><i class="fa-solid fa-link" style="color:var(--success);"></i> Your Custom Referral Link:</span>
+                        <div style="display:flex; align-items:center; gap:6px; width:100%;">
+                            <div style="flex:1; background: var(--input-bg); border: 1.5px solid rgba(16, 185, 129, 0.4); padding: 6px 10px; border-radius: 6px; font-size: 0.68rem; color: var(--success); font-weight:800; font-family: monospace; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; user-select: all;" id="ref-url-display">
+                                https://hpgk.toolblaster.com/?ref=...
+                            </div>
+                            <button class="btn-copy-ref" onclick="copyReferralLink()" id="inline-copy-ref-btn" style="width:auto; padding:6px 10px; flex-shrink:0;" title="Copy Referral Link">
+                                <i class="fa-solid fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="ref-actions-col">
+                        <button class="btn-wa-share" onclick="shareReferralWhatsApp()">
+                            <i class="fa-brands fa-whatsapp" style="font-size:1rem;"></i> Share via WhatsApp
+                        </button>
+                        <div style="display:flex; gap:6px; width:100%;">
+                            <button class="btn-copy-ref" onclick="copyReferralLink()" id="copy-ref-btn" style="flex:1;">
+                                <i class="fa-solid fa-link"></i> Copy Link
+                            </button>
+                            <button class="btn-copy-ref" onclick="openInvitedFriendsModal()" style="background:rgba(16, 185, 129, 0.15); color:var(--success); border-color:rgba(16, 185, 129, 0.4); flex:1;" title="View list of friends who joined using your link">
+                                <i class="fa-solid fa-users"></i> Friends <span id="invited-friends-badge">(0)</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- SECTION 2: GLOBAL RANKING BANNER -->
         <div class="dashboard-section">
             <div class="glass-panel lb-banner">
                 <div class="lb-left">
                     <div class="lb-icon"><i class="fa-solid fa-trophy"></i></div>
                     <div class="lb-text">
-                        <h3>Global Leaderboard & Rewards</h3>
+                        <h3>Global Leaderboard & Ranks</h3>
                         <p>See where you rank among thousands of HP aspirants.</p>
                     </div>
                 </div>
@@ -316,85 +1014,87 @@
             </div>
         </div>
 
-        <!-- GROUP 3: PERFORMANCE STATS STRIPS (MOVED DIRECTLY BELOW LEADERBOARD) -->
+        <!-- SECTION 3: PERFORMANCE METRICS -->
         <div class="dashboard-section">
-            <div class="section-label-header"><i class="fa-solid fa-chart-simple"></i> Performance Metrics</div>
-            <div class="stats-wrapper">
-                <!-- High Density Stats: FULL MOCKS -->
-                <div class="stats-density-grid">
-                    <a href="../hp-exam-full-mock-test/" class="stat-group-card mock-bg">
-                        <i class="fa-solid fa-file-signature stat-group-bg-icon"></i>
-                        <div class="stat-group-icon"><i class="fa-solid fa-file-signature"></i></div>
-                        <div class="stat-group-text">
-                            <h4>Full Mocks</h4>
-                            <p>Performance</p>
+            <div class="metrics-section-panel glass-panel">
+                <div class="section-label-header" style="margin-bottom:8px;"><i class="fa-solid fa-chart-simple" style="color:var(--primary);"></i> Performance Metrics & Accuracy</div>
+                <div class="stats-wrapper">
+                    <!-- High Density Stats: FULL MOCKS -->
+                    <div class="stats-density-grid">
+                        <a href="../hp-exam-full-mock-test/" class="stat-group-card mock-bg">
+                            <i class="fa-solid fa-file-signature stat-group-bg-icon"></i>
+                            <div class="stat-group-icon"><i class="fa-solid fa-file-signature"></i></div>
+                            <div class="stat-group-text">
+                                <h4>Full Mocks</h4>
+                                <p>Performance</p>
+                            </div>
+                        </a>
+                        
+                        <div class="stat-dense-card">
+                            <span class="stat-dense-label"><i class="fa-solid fa-flag-checkered"></i> Mocks Taken</span>
+                            <div class="stat-dense-val"><span id="stat-mock-count">0</span></div>
                         </div>
-                    </a>
-                    
-                    <div class="stat-dense-card">
-                        <span class="stat-dense-label"><i class="fa-solid fa-flag-checkered"></i> Mocks Taken</span>
-                        <div class="stat-dense-val"><span id="stat-mock-count">0</span></div>
+                        <div class="stat-dense-card">
+                            <span class="stat-dense-label"><i class="fa-solid fa-list-ol"></i> Qs Solved</span>
+                            <div class="stat-dense-val"><span id="stat-mock-qs">0</span></div>
+                        </div>
+                        <div class="stat-dense-card">
+                            <span class="stat-dense-label"><i class="fa-solid fa-check-double"></i> Right / Wrong</span>
+                            <div class="stat-dense-val"><span id="stat-mock-cw" class="cw-text"><span style="color:var(--success);">0</span> <span class="cw-slash">/</span> <span style="color:var(--danger);">0</span></span></div>
+                        </div>
+                        <div class="stat-dense-card">
+                            <span class="stat-dense-label"><i class="fa-solid fa-bullseye"></i> Accuracy</span>
+                            <div class="stat-dense-val"><span id="stat-mock-acc" style="color:var(--primary);">0%</span></div>
+                        </div>
+                        <div class="stat-dense-card">
+                            <span class="stat-dense-label"><i class="fa-regular fa-clock"></i> Avg Time/Q</span>
+                            <div class="stat-dense-val"><span id="stat-mock-time" style="color:var(--warning);">0s</span></div>
+                        </div>
                     </div>
-                    <div class="stat-dense-card">
-                        <span class="stat-dense-label"><i class="fa-solid fa-list-ol"></i> Qs Solved</span>
-                        <div class="stat-dense-val"><span id="stat-mock-qs">0</span></div>
-                    </div>
-                    <div class="stat-dense-card">
-                        <span class="stat-dense-label"><i class="fa-solid fa-check-double"></i> Right / Wrong</span>
-                        <div class="stat-dense-val"><span id="stat-mock-cw" class="cw-text"><span style="color:var(--success);">0</span> <span class="cw-slash">/</span> <span style="color:var(--danger);">0</span></span></div>
-                    </div>
-                    <div class="stat-dense-card">
-                        <span class="stat-dense-label"><i class="fa-solid fa-bullseye"></i> Accuracy</span>
-                        <div class="stat-dense-val"><span id="stat-mock-acc" style="color:var(--primary);">0%</span></div>
-                    </div>
-                    <div class="stat-dense-card">
-                        <span class="stat-dense-label"><i class="fa-regular fa-clock"></i> Avg Time/Q</span>
-                        <div class="stat-dense-val"><span id="stat-mock-time" style="color:var(--warning);">0s</span></div>
-                    </div>
-                </div>
 
-                <!-- High Density Stats: TOPIC MCQS -->
-                <div class="stats-density-grid">
-                    <a href="../himachal-pradesh-gk/" class="stat-group-card topic-bg">
-                        <i class="fa-solid fa-layer-group stat-group-bg-icon"></i>
-                        <div class="stat-group-icon"><i class="fa-solid fa-layer-group"></i></div>
-                        <div class="stat-group-text">
-                            <h4>Topic MCQs</h4>
-                            <p>Performance</p>
+                    <!-- High Density Stats: TOPIC MCQS -->
+                    <div class="stats-density-grid">
+                        <a href="../himachal-pradesh-gk/" class="stat-group-card topic-bg">
+                            <i class="fa-solid fa-layer-group stat-group-bg-icon"></i>
+                            <div class="stat-group-icon"><i class="fa-solid fa-layer-group"></i></div>
+                            <div class="stat-group-text">
+                                <h4>Topic MCQs</h4>
+                                <p>Performance</p>
+                            </div>
+                        </a>
+                        
+                        <div class="stat-dense-card">
+                            <span class="stat-dense-label"><i class="fa-solid fa-flag-checkered"></i> Topics Taken</span>
+                            <div class="stat-dense-val"><span id="stat-topic-count">0</span></div>
                         </div>
-                    </a>
-                    
-                    <div class="stat-dense-card">
-                        <span class="stat-dense-label"><i class="fa-solid fa-flag-checkered"></i> Topics Taken</span>
-                        <div class="stat-dense-val"><span id="stat-topic-count">0</span></div>
-                    </div>
-                    <div class="stat-dense-card">
-                        <span class="stat-dense-label"><i class="fa-solid fa-list-ol"></i> Qs Solved</span>
-                        <div class="stat-dense-val"><span id="stat-topic-qs">0</span></div>
-                    </div>
-                    <div class="stat-dense-card">
-                        <span class="stat-dense-label"><i class="fa-solid fa-check-double"></i> Right / Wrong</span>
-                        <div class="stat-dense-val"><span id="stat-topic-cw" class="cw-text"><span style="color:var(--success);">0</span> <span class="cw-slash">/</span> <span style="color:var(--danger);">0</span></span></div>
-                    </div>
-                    <div class="stat-dense-card">
-                        <span class="stat-dense-label"><i class="fa-solid fa-bullseye"></i> Accuracy</span>
-                        <div class="stat-dense-val"><span id="stat-topic-acc" style="color:var(--primary);">0%</span></div>
-                    </div>
-                    <div class="stat-dense-card">
-                        <span class="stat-dense-label"><i class="fa-solid fa-infinity"></i> Avg Time/Q</span>
-                        <div class="stat-dense-val"><span id="stat-topic-time" style="color:var(--text-sec);">N/A</span></div>
+                        <div class="stat-dense-card">
+                            <span class="stat-dense-label"><i class="fa-solid fa-list-ol"></i> Qs Solved</span>
+                            <div class="stat-dense-val"><span id="stat-topic-qs">0</span></div>
+                        </div>
+                        <div class="stat-dense-card">
+                            <span class="stat-dense-label"><i class="fa-solid fa-check-double"></i> Right / Wrong</span>
+                            <div class="stat-dense-val"><span id="stat-topic-cw" class="cw-text"><span style="color:var(--success);">0</span> <span class="cw-slash">/</span> <span style="color:var(--danger);">0</span></span></div>
+                        </div>
+                        <div class="stat-dense-card">
+                            <span class="stat-dense-label"><i class="fa-solid fa-bullseye"></i> Accuracy</span>
+                            <div class="stat-dense-val"><span id="stat-topic-acc" style="color:var(--primary);">0%</span></div>
+                        </div>
+                        <div class="stat-dense-card">
+                            <span class="stat-dense-label"><i class="fa-solid fa-infinity"></i> Avg Time/Q</span>
+                            <div class="stat-dense-val"><span id="stat-topic-time" style="color:var(--text-sec);">N/A</span></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- GROUP 4: CONTINUE LEARNING & RESUME -->
+        <!-- SECTION 4: CONTINUE LEARNING & RESUME -->
         <div id="quick-resume-box" class="dashboard-section" style="display: none;">
             <div class="section-label-header"><i class="fa-solid fa-rotate-right"></i> Quick Resume Recent Practice</div>
             <div class="quick-resume-grid">
                 <div class="resume-card soft-glass" id="resume-mock-card">
                     <div class="resume-left">
-                        <div class="resume-icon" style="color:var(--danger); background:rgba(220,38,38,0.1);"><i class="fa-solid fa-file-signature"></i></div>
+                        <div class="resume-icon" style="color:var(--danger); background:rgba(185,28,28,0.12);"><i class="fa-solid fa-file-signature"></i></div>
                         <div class="resume-text">
                             <span class="resume-tag" style="color:var(--danger);">Latest Full Mock</span>
                             <div class="resume-title" id="resume-mock-title">Mock Test</div>
@@ -422,30 +1122,28 @@
             </div>
         </div>
 
-        <!-- GROUP 5: SMART WEAK-SPOT TARGETING BOOSTER BANNER -->
+        <!-- SECTION 5: SMART WEAK-SPOT TARGETING BOOSTER BANNER -->
         <div id="weak-spot-banner-container" class="dashboard-section" style="display: none;"></div>
 
-        <!-- GROUP 6: MASTERY ANALYTICS SPLIT GRID -->
+        <!-- SECTION 6: MASTERY ANALYTICS SPLIT GRID -->
         <div class="dashboard-section">
             <div class="section-label-header"><i class="fa-solid fa-medal"></i> Detailed Mastery Breakdown</div>
             <div class="dashboard-cols">
-                <!-- Mock Mastery Analytics (50% width) -->
                 <div class="glass-panel">
                     <div class="section-header">
                         <h2 class="section-title"><i class="fa-solid fa-medal" style="color:var(--warning);"></i> Mock Mastery <span>Top 15</span></h2>
                     </div>
                     <div class="dense-list" id="mock-perf-list">
-                        <div style="text-align: center; padding: 15px; color: var(--text-sec); font-size: 0.75rem;">Analyzing performance data...</div>
+                        <div style="text-align: center; padding: 12px; color: var(--text-sec); font-size: 0.72rem;">Analyzing performance data...</div>
                     </div>
                 </div>
 
-                <!-- Topic Mastery Analytics (50% width) -->
                 <div class="glass-panel">
                     <div class="section-header">
                         <h2 class="section-title"><i class="fa-solid fa-chart-column" style="color:var(--primary);"></i> Topic Mastery <span>Top 15</span></h2>
                     </div>
                     <div class="dense-list" id="subject-perf-list">
-                        <div style="text-align: center; padding: 15px; color: var(--text-sec); font-size: 0.75rem;">Analyzing performance data...</div>
+                        <div style="text-align: center; padding: 12px; color: var(--text-sec); font-size: 0.72rem;">Analyzing performance data...</div>
                     </div>
                 </div>
             </div>
@@ -454,31 +1152,121 @@
     </div>
 </main>
 
+<!-- CLAIM REWARD MODAL -->
+<div id="claimRewardModal" class="modal-overlay">
+    <div class="modal-box">
+        <button onclick="document.getElementById('claimRewardModal').style.display='none'" class="modal-close-btn"><i class="fa-solid fa-xmark"></i></button>
+        <div style="font-size: 2.2rem; color: var(--gold); margin-bottom: 6px;"><i class="fa-solid fa-gift"></i></div>
+        <h3 id="claim-modal-title" style="margin: 0 0 4px 0; font-size: 1.05rem; font-weight: 800; color: var(--text-main);">Reward Unlocked!</h3>
+        <p style="font-size: 0.75rem; color: var(--text-sec); margin-bottom: 12px; font-weight: 600;">Send your claim token to Admin to instantly activate or extend your trial pass.</p>
+        
+        <div style="background: var(--input-bg); border: 1.5px dashed var(--card-border); padding: 10px; border-radius: 8px; font-weight: 900; font-size: 1.05rem; color: var(--primary); letter-spacing: 1px; margin-bottom: 14px;" id="claim-token-display">
+            CLAIM-XP-1234
+        </div>
+        
+        <button id="send-admin-btn" style="width: 100%; background: #25d366; color: white; border: none; padding: 10px; border-radius: 8px; font-weight: 800; font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 3px 10px rgba(37,211,102,0.25);" onclick="sendClaimToAdmin()">
+            <i class="fa-brands fa-whatsapp" style="font-size:1.1rem;"></i> Send Claim to Admin for Activation
+        </button>
+    </div>
+</div>
+
+<!-- INVITED FRIENDS MODAL -->
+<div id="invitedFriendsModal" class="modal-overlay">
+    <div class="modal-box" style="max-width: 440px; text-align: left; padding: 20px;">
+        <button onclick="document.getElementById('invitedFriendsModal').style.display='none'" class="modal-close-btn"><i class="fa-solid fa-xmark"></i></button>
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom: 12px;">
+            <i class="fa-solid fa-users-viewfinder" style="font-size: 1.5rem; color: var(--success);"></i>
+            <div>
+                <h3 style="margin:0; font-size: 1.05rem; font-weight: 800; color: var(--text-main);">Friends Joined Via Your Link</h3>
+                <p style="margin:2px 0 0 0; font-size:0.7rem; color:var(--text-sec);">Every active Google account sign-in earns you +20 XP instantly.</p>
+            </div>
+        </div>
+
+        <div style="max-height: 260px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; margin-top: 10px; padding-right: 4px;" id="invited-friends-container">
+            <div style="text-align:center; padding: 20px; color: var(--text-sec); font-size: 0.75rem;">Loading invited friends...</div>
+        </div>
+    </div>
+</div>
+
+<!-- XP & REWARDS GUIDE MODAL -->
+<div id="xpRulesModal" class="modal-overlay">
+    <div class="modal-box" style="max-width: 460px; padding: 22px; text-align: left;">
+        <button onclick="document.getElementById('xpRulesModal').style.display='none'" class="modal-close-btn"><i class="fa-solid fa-xmark"></i></button>
+        
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom: 12px;">
+            <i class="fa-solid fa-award" style="font-size: 1.6rem; color: var(--gold);"></i>
+            <h3 style="margin:0; font-size: 1.15rem; font-weight: 800; color: var(--text-main);">How XP & Rewards Work</h3>
+        </div>
+
+        <div style="font-size: 0.75rem; font-weight: 800; color: var(--primary); text-transform: uppercase; margin-top: 12px; display:flex; align-items:center; gap:6px;">
+            <i class="fa-solid fa-coins"></i> 1. How to Earn XP Points
+        </div>
+        <div class="rules-grid">
+            <div class="rules-item">
+                <strong>+2 XP / Answer</strong>
+                Solve MCQs correctly across topic quizzes.
+            </div>
+            <div class="rules-item">
+                <strong>+15 XP Accuracy</strong>
+                Score >80% accuracy on sets with 15+ Qs.
+            </div>
+            <div class="rules-item">
+                <strong>+30 XP / Mock</strong>
+                Complete full-length exam mock papers.
+            </div>
+            <div class="rules-item">
+                <strong>+20 XP / Referral</strong>
+                Invite friends via your custom link.
+            </div>
+        </div>
+
+        <div style="font-size: 0.75rem; font-weight: 800; color: var(--gold); text-transform: uppercase; margin-top: 14px; display:flex; align-items:center; gap:6px;">
+            <i class="fa-solid fa-crown"></i> 2. HPGK Rank Rungs
+        </div>
+        <div style="background: var(--input-bg); border: 1.5px solid var(--card-border); padding: 10px 12px; border-radius: var(--radius-md); font-size: 0.72rem; color: var(--text-body); margin-top: 6px; line-height: 1.6;">
+            • <strong>HPGK Novice Aspirant</strong>: 0 – 250 XP<br>
+            • <strong>HPGK Scholar Warrior</strong>: 250 – 800 XP<br>
+            • <strong>HPGK District Vanguard</strong>: 800 – 2,000 XP<br>
+            • <strong>HPGK Naib Tehsildar Elite</strong>: 2,000 – 4,500 XP<br>
+            • <strong>HPGK HPAS Legend Officer</strong>: 4,500+ XP
+        </div>
+
+        <div style="font-size: 0.75rem; font-weight: 800; color: var(--success); text-transform: uppercase; margin-top: 14px; display:flex; align-items:center; gap:6px;">
+            <i class="fa-solid fa-clock-rotate-left"></i> 3. Already Have an Active Pass?
+        </div>
+        <div style="background: rgba(22, 163, 74, 0.09); border: 1.5px solid rgba(22, 163, 74, 0.3); padding: 10px 12px; border-radius: var(--radius-md); font-size: 0.72rem; color: var(--text-main); margin-top: 6px; line-height: 1.5;">
+            <strong style="color:var(--success); display:block; margin-bottom:4px;">🔄 Auto-Extension & Upgrade Teaser</strong>
+            • <strong>Auto-Extension</strong>: Claiming rewards adds extra days on top of your existing pass expiry date!<br>
+            • <strong>VIP Upgrade Teaser</strong>: MCQ Pro pass holders unlock Mock Master VIP features during the reward period.<br>
+            • <strong>Lifetime Pass Holders</strong>: XP directly boosts your Global Leaderboard rank!
+        </div>
+    </div>
+</div>
+
 <!-- QUICK PAY MODAL -->
 <div id="quickPayModal" class="modal-overlay">
     <div class="modal-box">
         <button onclick="closeQuickPay()" class="modal-close-btn"><i class="fa-solid fa-xmark"></i></button>
-        <div style="font-size: 2.2rem; color: var(--primary); margin-bottom: 8px;"><i class="fa-solid fa-shield-halved"></i></div>
+        <div style="font-size: 2.2rem; color: var(--primary); margin-bottom: 6px;"><i class="fa-solid fa-shield-halved"></i></div>
         <h3 id="qp-title" style="margin: 0 0 4px 0; font-size: 1.1rem; font-weight: 800; color: var(--text-main);">Plan Name</h3>
-        <div id="qp-price" style="font-size: 2rem; font-weight: 900; color: var(--text-main); margin-bottom: 16px; letter-spacing: -1px;">₹0</div>
+        <div id="qp-price" style="font-size: 1.9rem; font-weight: 900; color: var(--text-main); margin-bottom: 14px; letter-spacing: -0.5px;">₹0</div>
         
-        <button id="qp-pay-btn" style="width: 100%; background: var(--primary); color: white; border: none; padding: 10px; border-radius: 8px; font-weight: 800; font-size: 0.88rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 12px; box-shadow: 0 4px 12px rgba(37,99,235,0.25); transition: opacity 0.2s;" onclick="processQuickPayment()">
+        <button id="qp-pay-btn" style="width: 100%; background: var(--primary); color: white; border: none; padding: 10px; border-radius: 8px; font-weight: 800; font-size: 0.88rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 12px; box-shadow: 0 3px 10px rgba(37,99,235,0.25);" onclick="processQuickPayment()">
             Pay Securely <i class="fa-solid fa-arrow-right"></i>
         </button>
         
-        <a href="upgrade.html" style="font-size: 0.72rem; color: var(--text-sec); text-decoration: underline; font-weight: 600;">View full features & comparison</a>
+        <a href="upgrade.html" style="font-size: 0.72rem; color: var(--text-sec); text-decoration: underline; font-weight: 700;">View full features & comparison</a>
     </div>
 </div>
 
 <div id="site-footer"></div>
 
-<!-- Razorpay Official SDK -->
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
-<!-- Load Core Scripts -->
 <script src="../js/core.js"></script>
 <script src="../js/layout.js"></script>
 
+<!-- STREAMING_CHUNK:Executing Razorpay integration module script... -->
 <script type="module">
     import { getApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
     import { getFirestore, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
@@ -511,10 +1299,8 @@
             const fallbackTimer = setTimeout(() => {
                 if (!isReloaded) {
                     isReloaded = true;
-                    if (window.HPGK_Layout && typeof window.HPGK_Layout.showToast === 'function') {
-                        window.HPGK_Layout.showToast("Payment Success! Syncing pass state now...");
-                    }
-                    setTimeout(() => window.location.reload(), 1500);
+                    alert("Payment Success! Syncing is taking a bit longer. Page will reload now.");
+                    window.location.reload();
                 }
             }, 10000);
 
@@ -563,11 +1349,7 @@
         };
 
         var rzp1 = new Razorpay(options);
-        rzp1.on('payment.failed', function (res){ 
-            if (window.HPGK_Layout && typeof window.HPGK_Layout.showToast === 'function') {
-                window.HPGK_Layout.showToast("❌ Payment Failed: " + res.error.description);
-            }
-        });
+        rzp1.on('payment.failed', function (res){ alert("Payment Failed! " + res.error.description); });
         rzp1.open();
     };
 
@@ -577,10 +1359,11 @@
     });
 </script>
 
+<!-- STREAMING_CHUNK:Executing Firebase authentication & dashboard stats calculation module... -->
 <script type="module">
     import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
     import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
-    import { getFirestore, collection, getDocs, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
+    import { getFirestore, collection, getDocs, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
 
     const firebaseConfig = {
         apiKey: "AIzaSyDfz5Y4oVQHl-crnATIv5dMWsw7edSKddQ",
@@ -601,56 +1384,162 @@
     const elLoggedOut = document.getElementById('logged-out-state');
     const elLoggedIn = document.getElementById('logged-in-state');
 
-    window.copyUidToClipboard = function() {
-        if (!window.HPGK_User || !window.HPGK_User.uid) return;
-        const fullUid = window.HPGK_User.uid;
-        
-        const tempInput = document.createElement('textarea');
-        tempInput.value = fullUid;
-        document.body.appendChild(tempInput);
-        tempInput.select();
-        document.execCommand('copy');
-        document.body.removeChild(tempInput);
+    window.currentClaimDetails = { token: '', name: '' };
+    window.invitedFriendsList = [];
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const refUid = urlParams.get('ref');
+    if (refUid) {
+        sessionStorage.setItem('hpgk_ref_by', refUid);
+    }
+
+    window.openInvitedFriendsModal = function() {
+        const container = document.getElementById('invited-friends-container');
+        document.getElementById('invitedFriendsModal').style.display = 'flex';
+
+        if (window.invitedFriendsList.length === 0) {
+            container.innerHTML = `<div style="text-align:center; padding: 20px; color: var(--text-sec); font-size: 0.75rem;">No friends have joined via your link yet. Share your custom link to earn +20 XP per friend!</div>`;
+            return;
+        }
+
+        container.innerHTML = window.invitedFriendsList.map(item => {
+            const dateStr = item.timestamp ? new Date(item.timestamp).toLocaleDateString('en-IN', { day:'2-digit', month:'short', year:'numeric' }) : 'Recently';
+            let rawEmail = item.referredEmail || 'Student Friend';
+            let maskedEmail = rawEmail;
+            if (rawEmail.includes('@')) {
+                const parts = rawEmail.split('@');
+                const namePart = parts[0];
+                maskedEmail = namePart.substring(0, 2) + '***' + namePart.slice(-1) + '@' + parts[1];
+            }
+
+            return `
+                <div style="background:var(--input-bg); border:1px solid var(--card-border); padding: 8px 12px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; font-size:0.75rem;">
+                    <div>
+                        <strong style="color:var(--text-main); display:block;">${maskedEmail}</strong>
+                        <span style="font-size:0.65rem; color:var(--text-sec);">Joined on ${dateStr}</span>
+                    </div>
+                    <span style="background:rgba(22, 163, 74, 0.15); color:var(--success); border:1px solid rgba(22,163,74,0.3); padding:2px 8px; border-radius:12px; font-weight:800; font-size:0.65rem;">+20 XP Credited</span>
+                </div>
+            `;
+        }).join('');
+    };
+
+    window.copyUidToClipboard = async function() {
+        const fullUid = (window.HPGK_User && window.HPGK_User.uid) || (auth && auth.currentUser && auth.currentUser.uid);
+        if (!fullUid) return;
+
+        let success = false;
+
+        if (navigator.clipboard && window.isSecureContext) {
+            try {
+                await navigator.clipboard.writeText(fullUid);
+                success = true;
+            } catch (err) {
+                console.warn('Clipboard API error, trying execCommand fallback:', err);
+            }
+        }
+
+        if (!success) {
+            const tempInput = document.createElement('textarea');
+            tempInput.value = fullUid;
+            tempInput.style.position = 'fixed';
+            tempInput.style.left = '-9999px';
+            tempInput.style.top = '-9999px';
+            document.body.appendChild(tempInput);
+            tempInput.focus();
+            tempInput.select();
+            try {
+                document.execCommand('copy');
+                success = true;
+            } catch (err) {
+                console.error('execCommand copy failed:', err);
+            }
+            document.body.removeChild(tempInput);
+        }
         
         const copyBtn = document.getElementById('uid-copy-btn');
         if (copyBtn) {
             copyBtn.innerHTML = `<i class="fa-solid fa-check" style="color:var(--success);"></i> Copied!`;
             setTimeout(() => {
-                copyBtn.innerHTML = `UID: <span id="user-short-id">${fullUid.substring(0, 6).toUpperCase()}</span> <i class="fa-solid fa-copy" style="font-size:0.6rem;"></i>`;
+                copyBtn.innerHTML = `UID: <span id="user-short-id">${fullUid.substring(0, 9)}</span> <i class="fa-solid fa-copy" style="font-size:0.62rem;"></i>`;
             }, 1800);
         }
     };
 
-    /**
-     * Resolves exact category string to live URL path preventing 404s
-     */
-    function getCategoryUrl(rawCatKey) {
-        if (!rawCatKey) return '../himachal-pradesh-gk/';
-        
-        const cleanKey = String(rawCatKey).toLowerCase().trim().replace(/hpgk_/g, '').replace(/_/g, '-');
+    window.shareReferralWhatsApp = function() {
+        const uid = window.HPGK_User ? window.HPGK_User.uid : 'GUEST';
+        const refLink = `https://hpgk.toolblaster.com/?ref=${uid}`;
+        const msg = `Hey! I'm preparing for HP Exams on HPGK Quiz. Practice 6,500+ MCQs, Mock Tests, and earn free VIP trial passes!\n\n🎯 Practice here: ${refLink}`;
+        window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, '_blank');
+    };
 
-        const map = {
-            'history': '../himachal-pradesh-gk/history/',
-            'geography': '../himachal-pradesh-gk/geography/',
-            'district': '../himachal-pradesh-gk/district/',
-            'districts': '../himachal-pradesh-gk/district/',
-            'economy': '../himachal-pradesh-gk/economy/',
-            'polity': '../himachal-pradesh-gk/polity/',
-            'art-culture': '../himachal-pradesh-gk/art-culture/',
-            'art culture': '../himachal-pradesh-gk/art-culture/',
-            'rivers': '../himachal-pradesh-gk/rivers/',
-            'famous-people': '../himachal-pradesh-gk/famous-people/',
-            'famous people': '../himachal-pradesh-gk/famous-people/',
-            'environment': '../himachal-pradesh-gk/environment/',
-            'tourism': '../himachal-pradesh-gk/tourism/',
-            'hp-patwari-mock': '../hp-exam-full-mock-test/hp-patwari-mock/',
-            'hp patwari mock': '../hp-exam-full-mock-test/hp-patwari-mock/',
-            'hp-police-constable-mock': '../hp-exam-full-mock-test/hp-police-constable-mock/',
-            'hp-hrtc-conductor-mock': '../hp-exam-full-mock-test/hp-hrtc-conductor-mock/'
+    window.copyReferralLink = async function() {
+        const uid = window.HPGK_User ? window.HPGK_User.uid : 'GUEST';
+        const refLink = `https://hpgk.toolblaster.com/?ref=${uid}`;
+        let copied = false;
+
+        if (navigator.clipboard && window.isSecureContext) {
+            try {
+                await navigator.clipboard.writeText(refLink);
+                copied = true;
+            } catch (e) { console.warn("Clipboard write failed, using fallback:", e); }
+        }
+
+        if (!copied) {
+            const tempInput = document.createElement('textarea');
+            tempInput.value = refLink;
+            tempInput.style.position = 'fixed';
+            tempInput.style.left = '-9999px';
+            document.body.appendChild(tempInput);
+            tempInput.focus();
+            tempInput.select();
+            try { document.execCommand('copy'); copied = true; } catch(err) {}
+            document.body.removeChild(tempInput);
+        }
+
+        const btn = document.getElementById('copy-ref-btn');
+        const inlineBtn = document.getElementById('inline-copy-ref-btn');
+        
+        if (btn) {
+            btn.innerHTML = `<i class="fa-solid fa-check" style="color:var(--success);"></i> Copied Link!`;
+            setTimeout(() => { btn.innerHTML = `<i class="fa-solid fa-link"></i> Copy Link`; }, 1800);
+        }
+        if (inlineBtn) {
+            inlineBtn.innerHTML = `<i class="fa-solid fa-check" style="color:var(--success);"></i>`;
+            setTimeout(() => { inlineBtn.innerHTML = `<i class="fa-solid fa-copy"></i>`; }, 1800);
+        }
+    };
+
+    window.claimRewardCoupon = function(rewardKey, rewardName) {
+        const uid = window.HPGK_User ? window.HPGK_User.uid : 'GUEST';
+        const claimToken = `CLAIM-${rewardKey}-${uid.substring(0,6).toUpperCase()}`;
+        
+        window.currentClaimDetails = {
+            token: claimToken,
+            name: rewardName
         };
 
-        return map[cleanKey] || `../himachal-pradesh-gk/${cleanKey}/`;
-    }
+        document.getElementById('claim-modal-title').innerText = `${rewardName} Ready!`;
+        document.getElementById('claim-token-display').innerText = claimToken;
+        document.getElementById('claimRewardModal').style.display = 'flex';
+    };
+
+    window.sendClaimToAdmin = function() {
+        const uid = window.HPGK_User ? window.HPGK_User.uid : 'N/A';
+        const email = window.HPGK_User ? window.HPGK_User.email : 'N/A';
+        const name = window.HPGK_User ? (window.HPGK_User.displayName || 'Student') : 'Student';
+        
+        const msg = `Hello Admin, I earned a reward on HPGK Quiz!\n\n` +
+                    `Reward: ${window.currentClaimDetails.name}\n` +
+                    `Claim Token: ${window.currentClaimDetails.token}\n` +
+                    `Student Name: ${name}\n` +
+                    `Email: ${email}\n` +
+                    `Full UID: ${uid}\n\n` +
+                    `Please allot my free trial pass! Thank you.`;
+        
+        const encodedMsg = encodeURIComponent(msg);
+        window.open(`https://wa.me/?text=${encodedMsg}`, '_blank');
+    };
 
     async function fetchWithTimeout(promise, ms = 8000) {
         let timeoutId;
@@ -672,8 +1561,39 @@
             document.getElementById('user-name').innerText = user.displayName || 'Student';
             document.getElementById('user-email').innerText = user.email;
             document.getElementById('user-photo').src = user.photoURL || 'https://ui-avatars.com/api/?name=' + encodeURIComponent(user.displayName || 'S') + '&background=cbd5e1&color=0f172a';
-            document.getElementById('user-short-id').innerText = user.uid.substring(0, 6).toUpperCase();
+            document.getElementById('user-short-id').innerText = user.uid.substring(0, 9);
             
+            try {
+                const uRef = doc(db, 'artifacts', 'hpgk-quiz', 'users', user.uid);
+                await setDoc(uRef, {
+                    name: user.displayName || 'Student',
+                    email: user.email || '',
+                    photo: user.photoURL || '',
+                    lastSeen: Date.now()
+                }, { merge: true });
+            } catch (err) {
+                console.warn("User profile sync to Firestore skipped:", err);
+            }
+
+            const refDisplay = document.getElementById('ref-url-display');
+            if (refDisplay) {
+                refDisplay.innerText = `https://hpgk.toolblaster.com/?ref=${user.uid}`;
+            }
+
+            const referrerUid = sessionStorage.getItem('hpgk_ref_by');
+            if (referrerUid && referrerUid !== user.uid) {
+                try {
+                    const refDocRef = doc(db, 'artifacts', 'hpgk-quiz', 'users', referrerUid, 'referrals', user.uid);
+                    await setDoc(refDocRef, {
+                        referredEmail: user.email,
+                        timestamp: Date.now()
+                    }, { merge: true });
+                    sessionStorage.removeItem('hpgk_ref_by');
+                } catch(e) {
+                    console.warn("Referral tracking write failed:", e);
+                }
+            }
+
             const smartContainer = document.getElementById('smart-purchases-container');
             const userDocRef = doc(db, 'artifacts', 'hpgk-quiz', 'users', user.uid);
             
@@ -684,63 +1604,84 @@
                     if(window.HPGK_User) window.HPGK_User.passes = passes; 
                 }
 
-                let hasMcqPro = false;
-                let hasMockMaster = false;
-                let mockMasterData = null;
-                let mcqProData = null;
+                let activeMcqPro = null;
+                let activeMockMaster = null;
+                const expiredPassesList = [];
 
-                if(Object.keys(passes).length > 0) {
-                    for(const [passId, passData] of Object.entries(passes)) {
-                        if (window.HPGK_IsPassValid(passData)) {
-                            if (passId === 'mcq_pro_pass') { hasMcqPro = true; mcqProData = passData; }
-                            if (passId === 'mock_master_pass' || passId === 'mega_combo_pass' || passId === 'vip_lifetime_pass') { 
-                                hasMockMaster = true; 
-                                mockMasterData = passData; 
+                if (Object.keys(passes).length > 0) {
+                    for (const [passId, passData] of Object.entries(passes)) {
+                        const isValid = window.HPGK_IsPassValid ? window.HPGK_IsPassValid(passData) : true;
+                        if (isValid) {
+                            if (passId === 'mcq_pro_pass') activeMcqPro = passData;
+                            if (passId === 'mock_master_pass' || passId === 'mega_combo_pass' || passId === 'vip_lifetime_pass') {
+                                activeMockMaster = passData;
                             }
+                        } else {
+                            expiredPassesList.push({ id: passId, ...passData });
                         }
                     }
                 }
-                
-                // RENDER PURCHASES PANEL WITH PROMINENT VIP BADGE
-                if (hasMockMaster) {
+
+                let expiredMarkup = '';
+                if (expiredPassesList.length > 0) {
+                    const lastTwoExpired = expiredPassesList.slice(-2);
+                    expiredMarkup = `
+                        <div class="expired-passes-box">
+                            <div style="font-weight: 800; color: var(--text-sec); margin-bottom: 3px; display: flex; justify-content: space-between;">
+                                <span><i class="fa-solid fa-clock-rotate-left"></i> Past Passes</span>
+                                <span>Last ${lastTwoExpired.length}</span>
+                            </div>
+                            ${lastTwoExpired.map(p => `
+                                <div class="expired-pass-row">
+                                    <span style="font-weight: 700; color: var(--text-main);">${p.name || p.id}</span>
+                                    <span style="color: var(--danger); font-weight: 800;">Expired (${p.expiryDate || 'Ended'})</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    `;
+                }
+
+                if (activeMockMaster) {
                     smartContainer.innerHTML = `
                         <div style="width: 100%;">
                             <div class="mini-section-title"><i class="fa-solid fa-crown" style="color:var(--warning);"></i> VIP Membership Active</div>
-                            <div class="active-plan-box" style="border-left: 4px solid var(--warning); width: 100%; box-sizing: border-box;">
+                            <div class="active-plan-box" style="border-left: 3.5px solid var(--warning); width: 100%; box-sizing: border-box;">
                                 <div class="plan-header">
-                                    <span class="plan-name"><i class="fa-solid fa-crown" style="color:var(--warning);"></i> ${mockMasterData.name}</span>
-                                    <span class="badge-all-access"><i class="fa-solid fa-shield-halved"></i> ALL ACCESS GRANTED</span>
+                                    <span class="plan-name"><i class="fa-solid fa-crown" style="color:var(--warning);"></i> ${activeMockMaster.name}</span>
+                                    <span class="badge-all-access"><i class="fa-solid fa-shield-halved"></i> ALL ACCESS</span>
                                 </div>
-                                <div class="plan-details" style="margin-top: 4px;">
-                                    Purchased: <strong>${mockMasterData.purchaseDate || 'Active'}</strong> &nbsp;|&nbsp; Valid Till: <strong>${mockMasterData.expiryDate || 'Lifetime'}</strong><br>
-                                    <span style="color:var(--success); font-weight:800; margin-top:3px; display:inline-block;">✓ Unlimited Full Mocks, PYPs & 6,500+ Topic MCQs Unlocked</span>
+                                <div class="plan-details">
+                                    Purchased: <strong>${activeMockMaster.purchaseDate || 'Active'}</strong> &nbsp;|&nbsp; Valid: <strong>${activeMockMaster.expiryDate || 'Lifetime'}</strong><br>
+                                    <span style="color:var(--success); font-weight:800; display:inline-block; margin-top:3px;">✓ Full Mocks, PYPs & 6,500+ MCQs Unlocked</span>
                                 </div>
                             </div>
+                            ${expiredMarkup}
                         </div>
                     `;
-                } else if (hasMcqPro) {
+                } else if (activeMcqPro) {
                     smartContainer.innerHTML = `
                         <div class="purchases-left">
                             <div class="mini-section-title"><i class="fa-solid fa-bolt"></i> My Active Plan</div>
-                            <div class="active-plan-box" style="border-left: 4px solid var(--primary);">
+                            <div class="active-plan-box" style="border-left: 3.5px solid var(--primary);">
                                 <div class="plan-header">
-                                    <span class="plan-name">${mcqProData.name}</span>
-                                    <span class="badge-all-access" style="background:var(--primary); box-shadow:none;">MCQ ACTIVE</span>
+                                    <span class="plan-name">${activeMcqPro.name}</span>
+                                    <span class="badge-all-access" style="background:var(--primary); color:#ffffff !important; box-shadow:none;">MCQ ACTIVE</span>
                                 </div>
                                 <div class="plan-details">
-                                    Valid Till: <strong>${mcqProData.expiryDate}</strong><br>
-                                    <span style="color:var(--success); font-weight:800; margin-top:3px; display:inline-block;">✓ 6,500+ Topic MCQs Unlocked</span>
+                                    Valid Till: <strong>${activeMcqPro.expiryDate}</strong><br>
+                                    <span style="color:var(--success); font-weight:800; display:inline-block; margin-top:3px;">✓ 6,500+ MCQs Unlocked</span>
                                 </div>
                             </div>
+                            ${expiredMarkup}
                         </div>
                         <div class="purchases-right">
                             <div class="mini-section-title"><i class="fa-solid fa-arrow-up-right-dots"></i> Upgrade Available</div>
-                            <div class="compact-upgrade-item" style="background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(245, 158, 11, 0.05)); border-color: rgba(245,158,11,0.3); flex-direction: column; align-items: flex-start; gap: 6px; padding: 8px 10px;">
+                            <div class="compact-upgrade-item" style="background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(245, 158, 11, 0.03)); border-color: rgba(245,158,11,0.3); flex-direction: column; align-items: flex-start; gap: 5px; padding: 8px 10px;">
                                 <div>
                                     <div style="font-size: 0.75rem; font-weight: 800; color: var(--gold);"><i class="fa-solid fa-crown"></i> Mock Master Pass</div>
-                                    <div style="font-size: 0.65rem; color: var(--text-sec); margin-top:1px;">Unlock All Full-Length Mocks & Exams</div>
+                                    <div style="font-size: 0.65rem; color: var(--text-sec); font-weight:600;">Unlock All Full-Length Mocks & Exams</div>
                                 </div>
-                                <button onclick="openQuickPay('mock_master_pass', 89, 'Mock Master Pass')" class="compact-btn-buy" style="background: linear-gradient(135deg, #10b981, #059669); width: 100%; padding: 6px;">Upgrade for ₹89/mo</button>
+                                <button onclick="openQuickPay('mock_master_pass', 89, 'Mock Master Pass')" class="compact-btn-buy" style="background: linear-gradient(135deg, #10b981, #059669); color:#ffffff; width: 100%; padding: 6px;">Upgrade for ₹89/mo</button>
                             </div>
                         </div>
                     `;
@@ -748,16 +1689,16 @@
                     smartContainer.innerHTML = `
                         <div class="purchases-left">
                             <div class="mini-section-title"><i class="fa-solid fa-user-astronaut"></i> Current Status</div>
-                            <div class="active-plan-box" style="border-left: 4px solid var(--text-sec); opacity:0.9;">
+                            <div class="active-plan-box" style="border-left: 3.5px solid var(--text-sec); opacity:0.95;">
                                 <div class="plan-header">
                                     <span class="plan-name">Free Explorer</span>
                                     <span class="badge-all-access" style="background:var(--input-bg); color:var(--text-sec) !important; box-shadow:none; border:1px solid var(--card-border) !important;">BASIC</span>
                                 </div>
                                 <div class="plan-details">
-                                    Access limited free MCQs & history.<br>
-                                    Upgrade to unlock premium full mock tests.
+                                    Access limited free MCQs.<br>Upgrade for full practice sets.
                                 </div>
                             </div>
+                            ${expiredMarkup}
                         </div>
                         <div class="purchases-right">
                             <div class="mini-section-title"><i class="fa-solid fa-store"></i> Recommended Plans</div>
@@ -765,16 +1706,16 @@
                                 <div class="compact-upgrade-item">
                                     <div>
                                         <div style="font-size: 0.72rem; font-weight: 800; color: var(--text-main);"><i class="fa-solid fa-bolt" style="color:var(--accent);"></i> MCQ Pro Pass</div>
-                                        <div style="font-size: 0.6rem; color: var(--text-sec);">Unlock 6,500+ Premium MCQs</div>
+                                        <div style="font-size: 0.62rem; color: var(--text-sec); font-weight:600;">Unlock 6,500+ Premium MCQs</div>
                                     </div>
                                     <button onclick="openQuickPay('mcq_pro_pass', 39, 'MCQ Pro Pass')" class="compact-btn-buy">₹39/mo</button>
                                 </div>
-                                <div class="compact-upgrade-item" style="background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(245, 158, 11, 0.05)); border-color: rgba(245,158,11,0.3);">
+                                <div class="compact-upgrade-item" style="background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(245, 158, 11, 0.03)); border-color: rgba(245,158,11,0.3);">
                                     <div>
                                         <div style="font-size: 0.72rem; font-weight: 800; color: var(--text-main);"><i class="fa-solid fa-crown" style="color:var(--gold);"></i> Mock Master Pass</div>
-                                        <div style="font-size: 0.6rem; color: var(--text-sec);">Unlock All Full-Length Mocks</div>
+                                        <div style="font-size: 0.62rem; color: var(--text-sec); font-weight:600;">Unlock All Full-Length Mocks</div>
                                     </div>
-                                    <button onclick="openQuickPay('mock_master_pass', 89, 'Mock Master Pass')" class="compact-btn-buy" style="background: linear-gradient(135deg, #f59e0b, #ea580c);">₹89/mo</button>
+                                    <button onclick="openQuickPay('mock_master_pass', 89, 'Mock Master Pass')" class="compact-btn-buy">₹89/mo</button>
                                 </div>
                             </div>
                         </div>
@@ -794,70 +1735,174 @@
         }
     });
 
-    function renderWeakSpotBanner(weakCats) {
-        const container = document.getElementById('weak-spot-banner-container');
-        if (!container) return;
-        if (!weakCats || weakCats.length === 0) {
-            container.style.display = 'none';
-            return;
-        }
-
-        const catNames = weakCats.map(c => c.name).join(', ');
-        container.innerHTML = `
-            <div class="glass-panel" style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.12), rgba(220, 38, 38, 0.05)); border: 1px solid rgba(239, 68, 68, 0.35); padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 4px;">
-                <div style="display: flex; align-items: center; gap: 12px;">
-                    <div style="font-size: 1.5rem; color: var(--danger);"><i class="fa-solid fa-bolt"></i></div>
-                    <div>
-                        <h3 style="margin: 0; font-size: 0.88rem; color: var(--text-main); font-weight: 800;">Smart Weak-Spot Targeter</h3>
-                        <p style="margin: 2px 0 0 0; font-size: 0.7rem; color: var(--text-sec); font-weight: 600;">Low Accuracy Identified in: <strong style="color: var(--danger);">${catNames}</strong></p>
-                    </div>
-                </div>
-                <button onclick="launchWeakSpotBooster()" class="lb-btn" style="background: linear-gradient(135deg, #ef4444, #dc2626); color: white; cursor: pointer;">⚡ Target My Weak Spots (10 Qs) <i class="fa-solid fa-arrow-right"></i></button>
-            </div>
-        `;
-        container.style.display = 'block';
-
-        window.launchWeakSpotBooster = function() {
-            sessionStorage.setItem('hpgk_weak_spots', JSON.stringify(weakCats.map(c => c.rawCat || c.name)));
-            const firstCat = weakCats[0].rawCat || '';
-            const targetUrl = getCategoryUrl(firstCat) + '?mode=weakspot';
-            window.location.href = targetUrl;
-        };
-    }
-
     async function loadUserStatsAndSyncProfile(user) {
         try {
             const appId = 'hpgk-quiz';
             const scoresRef = collection(db, 'artifacts', appId, 'users', user.uid, 'scores');
+            const referralsRef = collection(db, 'artifacts', appId, 'users', user.uid, 'referrals');
             
-            let querySnapshot;
-            try {
-                querySnapshot = await fetchWithTimeout(getDocs(scoresRef), 8000);
-            } catch(networkErr) {
-                throw new Error("Timeout");
-            }
-            
-            const records = [];
-            querySnapshot.forEach((doc) => { records.push({ id: doc.id, ...doc.data() }); });
+            let records = [];
+            let referralCount = 0;
 
-            let mockRecords = [];
             try {
-                const mockRef = collection(db, 'artifacts', appId, 'users', user.uid, 'mock_results');
-                const mockSnap = await fetchWithTimeout(getDocs(mockRef), 8000);
-                mockSnap.forEach(doc => { mockRecords.push({ id: doc.id, ...doc.data(), isMock: true }); });
-            } catch(e) { }
+                const querySnapshot = await fetchWithTimeout(getDocs(scoresRef), 8000);
+                querySnapshot.forEach((doc) => { records.push({ id: doc.id, ...doc.data() }); });
+
+                let mockRecords = [];
+                try {
+                    const mockRef = collection(db, 'artifacts', appId, 'users', user.uid, 'mock_results');
+                    const mockSnap = await fetchWithTimeout(getDocs(mockRef), 8000);
+                    mockSnap.forEach(doc => { mockRecords.push({ id: doc.id, ...doc.data(), isMock: true }); });
+                } catch(e) { }
+                records.push(...mockRecords);
+
+                try {
+                    const refSnap = await fetchWithTimeout(getDocs(referralsRef), 5000);
+                    referralCount = refSnap.size || 0;
+                    window.invitedFriendsList = [];
+                    refSnap.forEach(doc => { window.invitedFriendsList.push(doc.data()); });
+
+                    document.getElementById('ref-count-badge').innerText = `(${referralCount} Joined)`;
+                    const friendBadge = document.getElementById('invited-friends-badge');
+                    if (friendBadge) friendBadge.innerText = `(${referralCount})`;
+                } catch(e) { }
+
+            } catch(networkErr) {
+                console.warn("Firestore fetch error or timeout, falling back to local progress scanning...", networkErr);
+            }
+
+            if (records.length === 0) {
+                for (let i = 0; i < localStorage.length; i++) {
+                    const key = localStorage.key(i);
+                    if (key && (key.startsWith(`hpgk_usr_${user.uid}_`) || key.startsWith('hpgk_guest_') || key.startsWith('hpgk_v1_'))) {
+                        try {
+                            const data = JSON.parse(localStorage.getItem(key));
+                            if (data && data.answers) {
+                                const answers = data.answers;
+                                const total = Object.keys(answers).length;
+                                if (total > 0) {
+                                    const catKey = key.replace(`hpgk_usr_${user.uid}_`, '').replace('hpgk_guest_', '').replace('hpgk_v1_', '').replace('_v1', '');
+                                    records.push({
+                                        id: key,
+                                        category: catKey,
+                                        score: total,
+                                        total: total,
+                                        correct: total,
+                                        wrong: 0,
+                                        timestamp: Date.now()
+                                    });
+                                }
+                            }
+                        } catch(e) {}
+                    }
+                }
+            }
+
+            records.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0)); 
+
+            let totalCorrectAnswers = 0;
+            let totalMocksAttempted = 0;
+            let highAccuracyBonusSets = 0;
+
+            records.forEach(r => {
+                if (r.isMock) {
+                    totalMocksAttempted++;
+                } else {
+                    const correctCount = (r.correct || r.score || 0);
+                    const totalQs = (r.total || 0);
+                    totalCorrectAnswers += correctCount;
+                    
+                    if (totalQs >= 15 && (correctCount / totalQs) >= 0.8) {
+                        highAccuracyBonusSets++;
+                    }
+                }
+            });
+
+            const calculatedXP = (totalCorrectAnswers * 2) + (totalMocksAttempted * 30) + (highAccuracyBonusSets * 15) + (referralCount * 20);
             
-            records.push(...mockRecords);
-            records.sort((a, b) => b.timestamp - a.timestamp); 
+            let streakDays = 1;
+            const lastActiveDate = localStorage.getItem(`hpgk_last_active_${user.uid}`);
+            const todayStr = new Date().toDateString();
+
+            if (lastActiveDate) {
+                const prevDate = new Date(lastActiveDate);
+                const diffTime = Math.abs(new Date() - prevDate);
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                
+                let savedStreak = Number(localStorage.getItem(`hpgk_streak_${user.uid}`)) || 1;
+                if (diffDays === 1) streakDays = savedStreak;
+                else if (diffDays === 2) streakDays = savedStreak + 1;
+                else if (diffDays > 2) streakDays = 1;
+            }
+            localStorage.setItem(`hpgk_last_active_${user.uid}`, todayStr);
+            localStorage.setItem(`hpgk_streak_${user.uid}`, streakDays);
+
+            document.getElementById('user-xp-val').innerText = `${calculatedXP.toLocaleString('en-IN')} XP`;
+            document.getElementById('user-streak-val').innerText = `${streakDays} Day${streakDays > 1 ? 's' : ''} Streak`;
+
+            let levelName = 'HPGK Novice Aspirant';
+            let levelIcon = '<i class="fa-solid fa-seedling" style="color:#15803d;"></i>';
+            let targetXP = 250;
+
+            if (calculatedXP >= 4500) {
+                levelName = 'HPGK HPAS Legend Officer';
+                levelIcon = '<i class="fa-solid fa-crown" style="color:#b45309;"></i>';
+                targetXP = 10000;
+            } else if (calculatedXP >= 2000) {
+                levelName = 'HPGK Naib Tehsildar Elite';
+                levelIcon = '<i class="fa-solid fa-award" style="color:#7e22ce;"></i>';
+                targetXP = 4500;
+            } else if (calculatedXP >= 800) {
+                levelName = 'HPGK District Vanguard';
+                levelIcon = '<i class="fa-solid fa-shield-cat" style="color:#1d4ed8;"></i>';
+                targetXP = 2000;
+            } else if (calculatedXP >= 250) {
+                levelName = 'HPGK Scholar Warrior';
+                levelIcon = '<i class="fa-solid fa-graduation-cap" style="color:#15803d;"></i>';
+                targetXP = 800;
+            }
+
+            document.getElementById('user-level-name').innerText = levelName;
+            document.getElementById('user-level-icon').innerHTML = levelIcon;
+
+            const xpPercentage = Math.min(100, Math.round((calculatedXP / targetXP) * 100));
+            document.getElementById('xp-bar-fill').style.width = `${xpPercentage}%`;
+            document.getElementById('xp-progress-label').innerText = `${calculatedXP} / ${targetXP} XP`;
+
+            if (calculatedXP >= 500) {
+                document.getElementById('reward-card-1').classList.remove('locked');
+                document.getElementById('reward-card-1').classList.add('unlocked');
+                document.getElementById('req-text-1').innerText = '✓ Requirement Met!';
+                const btn1 = document.getElementById('claim-btn-1');
+                btn1.innerText = 'Claim Code';
+                btn1.disabled = false;
+            }
+
+            if (calculatedXP >= 1200 && streakDays >= 7) {
+                document.getElementById('reward-card-2').classList.remove('locked');
+                document.getElementById('reward-card-2').classList.add('unlocked');
+                document.getElementById('req-text-2').innerText = '✓ Requirement Met!';
+                const btn2 = document.getElementById('claim-btn-2');
+                btn2.innerText = 'Claim Code';
+                btn2.disabled = false;
+            }
+
+            if (calculatedXP >= 2500 && streakDays >= 15) {
+                document.getElementById('reward-card-3').classList.remove('locked');
+                document.getElementById('reward-card-3').classList.add('unlocked');
+                document.getElementById('req-text-3').innerText = '✓ Requirement Met!';
+                const btn3 = document.getElementById('claim-btn-3');
+                btn3.innerText = 'Claim Code';
+                btn3.disabled = false;
+            }
 
             const categoryMap = {
                 'rivers': 'Rivers of HP', 'geography': 'Geography of HP', 'history': 'History of HP',
                 'economy': 'Economy of HP', 'polity': 'Polity of HP', 'art culture': 'Art & Culture',
-                'art-culture': 'Art & Culture', 'agriculture': 'Agriculture', 'district': 'Districts of HP',
-                'districts': 'Districts of HP', 'famous-people': 'Famous People', 'famous people': 'Famous People',
-                'environment': 'Environment of HP', 'tourism': 'Tourism in HP',
-                'hp patwari mock': 'HP Patwari Mock', 'hp-patwari-mock': 'HP Patwari Mock',
-                'hp-police-constable-mock': 'HP Police Constable', 'hp-hrtc-conductor-mock': 'HP HRTC Conductor'
+                'art-culture': 'Art & Culture', 'famous-people': 'Famous People', 'famous people': 'Famous People',
+                'agriculture': 'Agriculture', 'district': 'Districts of HP', 'hp patwari mock': 'HP Patwari Mock',
+                'hp-patwari-mock': 'HP Patwari Mock', 'hp-police-constable-mock': 'HP Police Constable',
+                'hp-hrtc-conductor-mock': 'HP HRTC Conductor'
             };
 
             const catStats = {}; 
@@ -893,18 +1938,18 @@
                 data._safeTime = Number(data.timeTaken) || 0;
 
                 if (data.isMock) {
-                    if (!latestMocks[uniqueQuizId] || latestMocks[uniqueQuizId].timestamp < data.timestamp) {
+                    if (!latestMocks[uniqueQuizId] || (latestMocks[uniqueQuizId].timestamp || 0) < (data.timestamp || 0)) {
                         latestMocks[uniqueQuizId] = data; 
                     }
                 } else {
-                    if (!latestTopics[uniqueQuizId] || latestTopics[uniqueQuizId].timestamp < data.timestamp) {
+                    if (!latestTopics[uniqueQuizId] || (latestTopics[uniqueQuizId].timestamp || 0) < (data.timestamp || 0)) {
                         latestTopics[uniqueQuizId] = data; 
                     }
                 }
             });
 
-            const finalMocks = Object.values(latestMocks).sort((a,b) => b.timestamp - a.timestamp);
-            const finalTopics = Object.values(latestTopics).sort((a,b) => b.timestamp - a.timestamp);
+            const finalMocks = Object.values(latestMocks).sort((a,b) => (b.timestamp || 0) - (a.timestamp || 0));
+            const finalTopics = Object.values(latestTopics).sort((a,b) => (b.timestamp || 0) - (a.timestamp || 0));
 
             finalTopics.forEach(data => {
                 if (!catStats[data.cleanCatName]) catStats[data.cleanCatName] = { correct: 0, total: 0, rawCat: data.category };
@@ -912,7 +1957,6 @@
                 catStats[data.cleanCatName].total += data._safeTotal;
             });
 
-            // QUICK RESUME GRID LOGIC
             const resumeContainer = document.getElementById('quick-resume-box');
             let hasAtLeastOneAttempt = false;
 
@@ -927,7 +1971,7 @@
 
                 mockTitle.innerText = lastMock.displayTitle;
                 mockSub.innerText = `Score: ${lastMock.score}/${lastMock._safeTotal} • Acc: ${acc}%`;
-                mockBtn.href = `../mock-engine/index.html?exam=${lastMock.category || ''}&testId=${lastMock.testId || ''}&mode=summary`;
+                mockBtn.href = window.getCategoryUrl(lastMock.category || lastMock.testId) + '?mode=summary';
                 
                 mockCard.style.display = 'flex';
                 hasAtLeastOneAttempt = true;
@@ -946,7 +1990,7 @@
 
                 topicTitle.innerText = lastTopic.displayTitle;
                 topicSub.innerText = `Solved: ${lastTopic._safeTotal} Qs • Acc: ${acc}%`;
-                topicBtn.href = getCategoryUrl(lastTopic.category);
+                topicBtn.href = window.getCategoryUrl(lastTopic.category);
                 
                 topicCard.style.display = 'flex';
                 hasAtLeastOneAttempt = true;
@@ -958,7 +2002,6 @@
                 resumeContainer.style.display = 'flex';
             }
 
-            // POPULATE FULL MOCK METRICS
             if (finalMocks.length > 0) {
                 document.getElementById('stat-mock-count').innerText = finalMocks.length;
                 let mockLatestTotalQs = 0, mockLatestCorrectQs = 0, mockLatestWrongQs = 0, mockTotalTimeSecs = 0;
@@ -976,7 +2019,6 @@
                 document.getElementById('stat-mock-time').innerText = mockAvgTime + 's';
             }
 
-            // POPULATE TOPIC MCQS METRICS
             if (finalTopics.length > 0) {
                 document.getElementById('stat-topic-count').innerText = finalTopics.length;
                 let topicLatestTotalQs = 0, topicLatestCorrectQs = 0, topicLatestWrongQs = 0, topicTotalTimeSecs = 0;
@@ -994,7 +2036,6 @@
                 document.getElementById('stat-topic-time').innerText = topicAvgTime;
             }
 
-            // RENDER TOP 15 UNIQUE MOCKS
             const sortedMocks = finalMocks.slice(0, 15); 
             if (sortedMocks.length > 0) {
                 let mockHtml = '';
@@ -1003,27 +2044,27 @@
                     let w = data._safeWrong;
                     let attempted = c + w;
                     let acc = data.accuracy !== undefined ? data.accuracy : (attempted > 0 ? Math.round((c / attempted) * 100) : 0);
+                    let barClass = 'red-grad';
                     let barColor = 'var(--danger)';
-                    if (acc >= 75) barColor = 'var(--success)';
-                    else if (acc >= 50) barColor = 'var(--warning)';
+                    if (acc >= 75) { barClass = 'green-grad'; barColor = 'var(--success)'; }
+                    else if (acc >= 50) { barClass = 'yellow-grad'; barColor = 'var(--warning)'; }
 
                     mockHtml += `
                     <div class="subject-perf-item">
                         <div class="perf-labels">
-                            <span>${data.displayTitle} <span style="font-size:0.6rem; color:var(--text-sec); font-weight:600;">(Score: ${data.score}/${data.totalMarks || data.total})</span></span>
+                            <span>${data.displayTitle} <span style="font-size:0.65rem; color:var(--text-sec); font-weight:600;">(Score: ${data.score}/${data.totalMarks || data.total})</span></span>
                             <span style="color:${barColor}; font-weight:800;">${acc}%</span>
                         </div>
                         <div class="perf-track">
-                            <div class="perf-fill" style="width: ${acc}%; background: ${barColor}"></div>
+                            <div class="perf-fill ${barClass}" style="width: ${acc}%;"></div>
                         </div>
                     </div>`;
                 });
                 document.getElementById('mock-perf-list').innerHTML = mockHtml;
             } else {
-                document.getElementById('mock-perf-list').innerHTML = `<div style="text-align:center; padding:15px; color:var(--text-sec); font-size:0.75rem;">No mock test attempts recorded yet.</div>`;
+                document.getElementById('mock-perf-list').innerHTML = `<div style="text-align:center; padding:12px; color:var(--text-sec); font-size:0.72rem;">No mock test attempts recorded yet.</div>`;
             }
 
-            // RENDER TOP 15 UNIQUE TOPICS & DETECT WEAK SPOTS (< 50% Accuracy)
             const sortedCats = Object.keys(catStats).map(cat => ({
                 name: cat,
                 rawCat: catStats[cat].rawCat,
@@ -1031,25 +2072,27 @@
                 total: catStats[cat].total
             })).sort((a, b) => b.total - a.total).slice(0, 15); 
 
-            const weakCategories = [];
-
             if (sortedCats.length > 0) {
                 let subjectHtml = '';
                 sortedCats.forEach(cat => {
+                    let barClass = 'red-grad';
                     let barColor = 'var(--danger)';
                     let weakBadge = '';
                     let improveLink = '';
 
+                    const topicUrl = window.getCategoryUrl(cat.rawCat, cat.name);
+
                     if (cat.acc >= 75) {
+                        barClass = 'green-grad';
                         barColor = 'var(--success)';
                     } else if (cat.acc >= 50) {
+                        barClass = 'yellow-grad';
                         barColor = 'var(--warning)';
                     } else {
+                        barClass = 'red-grad';
                         barColor = 'var(--danger)';
-                        weakBadge = `<span class="badge-weak"><i class="fa-solid fa-triangle-exclamation"></i> Needs Focus</span>`;
-                        const targetUrl = getCategoryUrl(cat.rawCat || cat.name) + '?mode=weakspot';
-                        improveLink = `<a href="${targetUrl}" class="btn-improve-link">Target Spot <i class="fa-solid fa-arrow-right"></i></a>`;
-                        weakCategories.push(cat);
+                        weakBadge = `<span class="badge-weak"><i class="fa-solid fa-triangle-exclamation"></i> Focus</span>`;
+                        improveLink = `<a href="${topicUrl}" class="btn-improve-link">Improve <i class="fa-solid fa-arrow-right"></i></a>`;
                     }
 
                     subjectHtml += `
@@ -1059,22 +2102,59 @@
                             <span style="color:${barColor}; font-weight:800;">${cat.acc}%</span>
                         </div>
                         <div class="perf-track">
-                            <div class="perf-fill" style="width: ${cat.acc}%; background: ${barColor}"></div>
+                            <div class="perf-fill ${barClass}" style="width: ${cat.acc}%;"></div>
                         </div>
                     </div>`;
                 });
                 document.getElementById('subject-perf-list').innerHTML = subjectHtml;
 
-                // Render dynamic Weak-Spot Targeter Banner if weak topics exist
-                renderWeakSpotBanner(weakCategories);
+                const weakSpotContainer = document.getElementById('weak-spot-banner-container');
+                const weakCats = sortedCats.filter(c => c.acc < 50);
+
+                if (weakCats.length > 0 && weakSpotContainer) {
+                    const weakNames = weakCats.map(c => c.name).join(', ');
+                    const weakRawKeys = weakCats.map(c => c.rawCat || c.name);
+                    
+                    weakSpotContainer.innerHTML = `
+                        <div class="glass-panel" style="background: linear-gradient(135deg, rgba(185, 28, 28, 0.08) 0%, rgba(239, 68, 68, 0.02) 100%); border: 1.5px solid rgba(185, 28, 28, 0.35); display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; gap: 12px; border-radius: var(--radius-lg);">
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <div style="width: 36px; height: 36px; border-radius: 10px; background: rgba(185, 28, 28, 0.15); color: var(--danger); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;">
+                                    <i class="fa-solid fa-bolt"></i>
+                                </div>
+                                <div>
+                                    <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 6px;">
+                                        Smart Weak-Spot Targeter
+                                        <span style="font-size: 0.6rem; background: var(--danger); color: #fff; padding: 2px 6px; border-radius: 4px; font-weight: 800;">${weakCats.length} Subject${weakCats.length > 1 ? '' : 's'} Need Focus</span>
+                                    </div>
+                                    <div style="font-size: 0.7rem; color: var(--text-sec); font-weight: 700; margin-top: 2px;">
+                                        Targeted focus areas: <strong style="color: var(--danger);">${weakNames}</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <button onclick="launchWeakSpotBooster(${JSON.stringify(weakRawKeys).replace(/"/g, '&quot;')})" style="background: linear-gradient(135deg, #b91c1c, #991b1b); color: #ffffff; border: none; padding: 7px 14px; border-radius: 8px; font-size: 0.72rem; font-weight: 800; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; white-space: nowrap; flex-shrink: 0; box-shadow: 0 3px 10px rgba(185, 28, 28, 0.3); transition: all 0.2s;">
+                                ⚡ Launch 10-Q Booster <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    `;
+                    weakSpotContainer.style.display = 'block';
+                } else if (weakSpotContainer) {
+                    weakSpotContainer.style.display = 'none';
+                }
             } else {
-                document.getElementById('subject-perf-list').innerHTML = `<div style="text-align:center; padding:15px; color:var(--text-sec); font-size:0.75rem;">No topic quiz attempts recorded yet.</div>`;
+                document.getElementById('subject-perf-list').innerHTML = `<div style="text-align:center; padding:12px; color:var(--text-sec); font-size:0.72rem;">No topic quiz attempts recorded yet.</div>`;
             }
 
         } catch (error) {
             console.error("Error fetching stats:", error);
         }
     }
+
+    window.launchWeakSpotBooster = function(categories) {
+        sessionStorage.setItem('hpgk_weak_spots', JSON.stringify(categories));
+        const firstCat = categories[0] ? categories[0] : 'history';
+        const targetUrl = window.getCategoryUrl(firstCat) + '?mode=weakspot';
+        window.location.href = targetUrl;
+    };
 </script>
 
 <script>
