@@ -641,7 +641,7 @@ async function initFirebase() {
         auth = getAuth(app);
         provider = new GoogleAuthProvider();
 
-        onAuthStateChanged(auth, (user) => {
+        onAuthStateChanged(auth, async (user) => {
             // Update global HPGK_User session object
             window.HPGK_User = window.HPGK_User || {};
             if (user) {
@@ -650,6 +650,21 @@ async function initFirebase() {
                 window.HPGK_User.email = user.email;
                 window.HPGK_User.displayName = user.displayName;
                 window.HPGK_User.photoURL = user.photoURL;
+
+                // 🚀 GLOBAL AUTO-SYNC: Write student Google Profile & Email to Firestore on ANY page
+                try {
+                    const { getFirestore, doc, setDoc } = await import("https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js");
+                    const db = getFirestore(app);
+                    const userRef = doc(db, 'artifacts', 'hpgk-quiz', 'users', user.uid);
+                    await setDoc(userRef, {
+                        name: user.displayName || 'Student',
+                        email: user.email || '',
+                        photo: user.photoURL || '',
+                        lastSeen: Date.now()
+                    }, { merge: true });
+                } catch (err) {
+                    console.warn("Global profile email sync skipped:", err);
+                }
 
                 // Auto-dismiss auth popup modal and bonus countdown backdrop upon successful login
                 closeLoginModal();
