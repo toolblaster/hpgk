@@ -19,20 +19,19 @@
     <link rel="stylesheet" href="../js/style.css">
 
     <style>
-        /* STREAMING_CHUNK:Configuring root layout tokens and WCAG contrast variables... */
         :root {
             --site-width: 1120px;
             --bg-gradient: radial-gradient(circle at top left, #eff6ff 0%, #f8fafc 45%, #e0f2fe 100%);
             --card-bg: rgba(255, 255, 255, 0.98);
-            --card-border: rgba(100, 116, 139, 0.3);
-            --glass-shadow: 0 8px 24px -4px rgba(37, 99, 235, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.04); 
+            --card-border: rgba(148, 163, 184, 0.35);
+            --glass-shadow: 0 10px 28px -4px rgba(15, 23, 42, 0.08), 0 4px 12px -2px rgba(0, 0, 0, 0.03), inset 0 1px 0 rgba(255, 255, 255, 0.9); 
             --input-bg: #f1f5f9;
             --primary: #1d4ed8;
             --primary-dark: #1e40af;
             --accent: #c2410c;
             --text-main: #0f172a;
             --text-body: #1e293b;
-            --text-sec: #334155; /* WCAG AA Compliant contrast against light backgrounds */
+            --text-sec: #334155; /* WCAG AA Compliant contrast */
             --success: #15803d;
             --warning: #b45309;
             --danger: #b91c1c;
@@ -45,9 +44,9 @@
 
         [data-theme="dark"] {
             --bg-gradient: radial-gradient(circle at top left, #0f172a 0%, #1e1b4b 50%, #020617 100%);
-            --card-bg: rgba(30, 41, 59, 0.96);
+            --card-bg: rgba(30, 41, 59, 0.95);
             --card-border: rgba(226, 232, 240, 0.2);
-            --glass-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.6);
+            --glass-shadow: 0 14px 32px -4px rgba(0, 0, 0, 0.65), 0 4px 12px -2px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.06);
             --input-bg: rgba(15, 23, 42, 0.8);
             --primary: #60a5fa;
             --primary-dark: #93c5fd;
@@ -119,7 +118,7 @@
         main { 
             flex: 1; 
             width: 100%; 
-            padding: 12px 16px; 
+            padding: 10px 16px; 
             box-sizing: border-box; 
             max-width: var(--site-width); 
             margin: 0 auto; 
@@ -130,46 +129,48 @@
             z-index: 1;
         }
 
-        /* ORIGINAL BREADCRUMB & HERO BADGE STYLING (PRESERVED EXACTLY) */
+        /* ULTRA-COMPACT & THIN BREADCRUMB BAR (Height: 20px) */
         .top-meta-bar { 
             display: flex; justify-content: space-between; align-items: center; 
-            width: 100%; max-width: var(--site-width); margin: 0 auto 2px auto; 
-            padding: 0 2px; flex-wrap: nowrap; gap: 10px; box-sizing: border-box;
+            width: 100%; max-width: var(--site-width); margin: 0 auto 0px auto; 
+            padding: 0 2px; flex-wrap: nowrap; gap: 8px; box-sizing: border-box; height: 20px;
         }
-        .top-meta-right { display: flex; align-items: center; gap: 8px; }
+        .top-meta-right { display: flex; align-items: center; gap: 6px; }
 
-        .breadcrumb-nav { margin: 0; flex-shrink: 1; display: flex; align-items: center; height: 22px; overflow-x: auto; scrollbar-width: none; }
+        .breadcrumb-nav { margin: 0; flex-shrink: 1; display: flex; align-items: center; height: 20px; overflow-x: auto; scrollbar-width: none; }
         .breadcrumb-nav::-webkit-scrollbar { display: none; }
         
         .breadcrumb-list { 
-            list-style: none; padding: 0 10px; margin: 0; display: flex; flex-wrap: nowrap; 
-            align-items: center; gap: 6px; background: rgba(255, 255, 255, 0.6); border-radius: 12px; 
-            border: 1px solid var(--card-border); backdrop-filter: blur(8px); 
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05); height: 100%; box-sizing: border-box;
+            list-style: none; padding: 0 8px; margin: 0; display: flex; flex-wrap: nowrap; 
+            align-items: center; gap: 4px; background: rgba(255, 255, 255, 0.6); border-radius: 10px; 
+            border: 1px solid var(--card-border); backdrop-filter: blur(6px); 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.03); height: 20px; box-sizing: border-box;
         }
-        [data-theme="dark"] .breadcrumb-list { background: rgba(30, 41, 59, 0.6); box-shadow: 0 1px 4px rgba(0,0,0,0.3); }
-        .breadcrumb-item { font-size: 0.68rem; font-weight: 700; color: var(--text-sec); display: flex; align-items: center; white-space: nowrap; height: 100%; }
-        .breadcrumb-item a { color: var(--text-sec); text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 4px; }
+        [data-theme="dark"] .breadcrumb-list { background: rgba(30, 41, 59, 0.5); box-shadow: 0 1px 4px rgba(0,0,0,0.2); }
+        .breadcrumb-item { font-size: 0.62rem; font-weight: 700; color: var(--text-sec); display: flex; align-items: center; white-space: nowrap; height: 100%; line-height: 1; }
+        .breadcrumb-item a { color: var(--text-sec); text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 3px; }
         .breadcrumb-item a:hover { color: var(--primary); }
         .breadcrumb-item.active { color: var(--primary); pointer-events: none; font-weight: 800; }
-        .breadcrumb-separator { font-size: 0.6rem; color: var(--text-sec); opacity: 0.7; margin: 0 2px; }
+        .breadcrumb-separator { font-size: 0.55rem; color: var(--text-sec); opacity: 0.6; margin: 0 1px; }
 
+        /* ULTRA-THIN HERO BADGE (Height: 18px) */
         .hero-badge { 
-            display: inline-flex; align-items: center; justify-content: center; height: 20px; 
-            background: var(--primary); color: #ffffff; padding: 0 10px; border-radius: 10px; 
-            font-size: 0.65rem; font-weight: 800; text-transform: uppercase; margin: 0; 
-            border: 1px solid var(--primary-dark); letter-spacing: 0.4px; white-space: nowrap; flex-shrink: 0; box-sizing: border-box; line-height: 1;
+            display: inline-flex; align-items: center; justify-content: center; height: 18px; 
+            background: var(--primary); color: #ffffff; padding: 0 8px; border-radius: 8px; 
+            font-size: 0.58rem; font-weight: 800; text-transform: uppercase; margin: 0; 
+            border: 1px solid var(--primary-dark); letter-spacing: 0.3px; white-space: nowrap; flex-shrink: 0; box-sizing: border-box; line-height: 1;
         }
 
         .glass-panel { 
             background: var(--card-bg); 
-            backdrop-filter: blur(14px); 
-            -webkit-backdrop-filter: blur(14px); 
+            backdrop-filter: blur(16px); 
+            -webkit-backdrop-filter: blur(16px); 
             border: 1.5px solid var(--card-border); 
             border-radius: var(--radius-xl); 
             padding: 14px 16px; 
             box-shadow: var(--glass-shadow); 
             position: relative;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
         #logged-in-state { display: none; flex-direction: column; gap: 14px; }
@@ -188,30 +189,45 @@
             opacity: 0.95; 
         }
 
-        .top-dashboard-grid { display: grid; grid-template-columns: 3.5fr 6.5fr; gap: 12px; }
+        .top-dashboard-grid { display: grid; grid-template-columns: 3.8fr 6.2fr; gap: 12px; }
         .compact-top-card { padding: 12px 14px; margin-bottom: 0; display: flex; }
         
         .profile-panel { flex-direction: column; justify-content: center; gap: 8px; }
         .profile-main-row { display: flex; align-items: center; gap: 12px; width: 100%; }
         .avatar-wrapper { position: relative; flex-shrink: 0; }
-        .avatar { width: 50px; height: 50px; border-radius: 12px; object-fit: cover; border: 1.5px solid var(--card-border); background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
-        .status-dot { position: absolute; bottom: -2px; right: -2px; width: 12px; height: 12px; background-color: var(--success); border: 2.5px solid var(--card-bg); border-radius: 50%; }
+        .avatar { width: 48px; height: 48px; border-radius: 12px; object-fit: cover; border: 1.5px solid var(--card-border); background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .status-dot { position: absolute; bottom: -2px; right: -2px; width: 11px; height: 11px; background-color: var(--success); border: 2px solid var(--card-bg); border-radius: 50%; }
         .user-info { display: flex; flex-direction: column; justify-content: center; flex: 1; }
-        .user-info h1 { font-size: 1.05rem; font-weight: 800; margin: 0 0 2px 0; color: var(--text-main); letter-spacing: -0.2px; }
-        .user-info p { color: var(--text-sec); margin: 0 0 5px 0; font-size: 0.72rem; font-weight: 700; }
+        .user-info h1 { font-size: 0.95rem; font-weight: 800; margin: 0 0 2px 0; color: var(--text-main); letter-spacing: -0.2px; }
+        .user-info p { color: var(--text-sec); margin: 0 0 4px 0; font-size: 0.7rem; font-weight: 700; }
         
-        .badge-uid-copy { font-size: 0.68rem; font-weight: 800; text-transform: uppercase; padding: 3px 8px; border-radius: 6px; display: inline-flex; align-items: center; gap: 6px; background: var(--input-bg); border: 1px solid var(--card-border); color: var(--text-main); cursor: pointer; transition: all 0.2s ease; width: fit-content; }
+        .badge-uid-copy { font-size: 0.65rem; font-weight: 800; text-transform: uppercase; padding: 2px 7px; border-radius: 6px; display: inline-flex; align-items: center; gap: 5px; background: var(--input-bg); border: 1px solid var(--card-border); color: var(--text-main); cursor: pointer; transition: all 0.2s ease; width: fit-content; }
         .badge-uid-copy:hover { border-color: var(--primary); color: var(--primary); background: rgba(37, 99, 235, 0.08); }
 
-        /* 60% / 40% SIDE-BY-SIDE SPLIT GRID */
+        /* DESIGN UPGRADE: DAILY STUDY GOAL TRACKER */
+        .daily-goal-box {
+            background: rgba(37, 99, 235, 0.05);
+            border: 1px solid rgba(37, 99, 235, 0.2);
+            border-radius: var(--radius-md);
+            padding: 6px 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 4px;
+        }
+        .goal-text { font-size: 0.65rem; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 5px; }
+        .goal-bar-track { width: 80px; height: 6px; background: var(--input-bg); border-radius: 3px; overflow: hidden; border: 1px solid var(--card-border); }
+        .goal-bar-fill { height: 100%; background: linear-gradient(90deg, #10b981, #059669); width: 65%; border-radius: 3px; }
+
+        /* 60% / 40% SIDE-BY-SIDE SPLIT GRID WITH ELEVATION DEPTH */
         .game-ref-split-grid {
             display: grid;
             grid-template-columns: 6fr 4fr;
-            gap: 14px;
+            gap: 12px;
             width: 100%;
         }
 
-        /* GAMIFICATION HUB (60% Width - Amber/Gold Accent Theme) */
+        /* GAMIFICATION HUB */
         .gamification-container {
             background: linear-gradient(135deg, rgba(245, 158, 11, 0.09) 0%, rgba(217, 119, 6, 0.02) 100%);
             border: 2px solid rgba(245, 158, 11, 0.45);
@@ -219,8 +235,8 @@
             padding: 14px 16px;
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            box-shadow: 0 6px 22px -4px rgba(245, 158, 11, 0.15);
+            gap: 10px;
+            box-shadow: 0 10px 28px -4px rgba(245, 158, 11, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.6);
         }
 
         .game-top-bar {
@@ -238,47 +254,30 @@
         }
 
         .level-badge-icon {
-            width: 42px;
-            height: 42px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             background: linear-gradient(135deg, #f59e0b, #d97706);
             color: #ffffff;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.25rem;
+            font-size: 1.15rem;
             box-shadow: 0 4px 12px rgba(217, 119, 6, 0.35);
             flex-shrink: 0;
         }
 
-        .level-info {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .level-title {
-            font-size: 0.9rem;
-            font-weight: 900;
-            color: var(--text-main);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            letter-spacing: -0.2px;
-        }
-
-        .level-sub {
-            font-size: 0.68rem;
-            color: var(--text-sec);
-            font-weight: 700;
-        }
+        .level-info { display: flex; flex-direction: column; }
+        .level-title { font-size: 0.88rem; font-weight: 900; color: var(--text-main); display: flex; align-items: center; gap: 6px; letter-spacing: -0.2px; }
+        .level-sub { font-size: 0.68rem; color: var(--text-sec); font-weight: 700; }
 
         .streak-pill {
             background: rgba(185, 28, 28, 0.12);
             border: 1.5px solid rgba(185, 28, 28, 0.4);
             color: var(--danger);
-            padding: 4px 10px;
+            padding: 3px 9px;
             border-radius: 20px;
-            font-size: 0.72rem;
+            font-size: 0.7rem;
             font-weight: 800;
             display: flex;
             align-items: center;
@@ -286,49 +285,27 @@
             animation: pulseGlow 2s infinite;
         }
 
-        @keyframes pulseGlow {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.03); }
-        }
+        .xp-bar-wrapper { width: 100%; display: flex; flex-direction: column; gap: 4px; }
+        .xp-bar-track { width: 100%; height: 8px; background: var(--input-bg); border-radius: 5px; overflow: hidden; border: 1px solid var(--card-border); }
+        .xp-bar-fill { height: 100%; background: linear-gradient(90deg, #2563eb, #f59e0b); border-radius: 5px; width: 0%; transition: width 1s ease-in-out; }
+        .xp-bar-text { display: flex; justify-content: space-between; font-size: 0.65rem; font-weight: 800; color: var(--text-sec); }
 
-        .xp-bar-wrapper {
-            width: 100%;
+        /* DESIGN UPGRADE: 4-RANK ROADMAP STEPS */
+        .rank-roadmap-strip {
             display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .xp-bar-track {
-            width: 100%;
-            height: 8px;
-            background: var(--input-bg);
-            border-radius: 5px;
-            overflow: hidden;
-            border: 1px solid var(--card-border);
-        }
-
-        .xp-bar-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #2563eb, #f59e0b);
-            border-radius: 5px;
-            width: 0%;
-            transition: width 1s ease-in-out;
-        }
-
-        .xp-bar-text {
-            display: flex;
+            align-items: center;
             justify-content: space-between;
-            font-size: 0.68rem;
-            font-weight: 800;
-            color: var(--text-sec);
+            background: var(--input-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-md);
+            padding: 6px 10px;
+            margin-top: 2px;
         }
+        .roadmap-step { display: flex; align-items: center; gap: 4px; font-size: 0.62rem; font-weight: 800; color: var(--text-sec); opacity: 0.6; }
+        .roadmap-step.active { color: var(--gold); opacity: 1; }
+        .roadmap-arrow { font-size: 0.55rem; color: var(--card-border); }
 
-        .rewards-vault-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-            width: 100%;
-        }
+        .rewards-vault-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; width: 100%; }
 
         .reward-card {
             background: var(--card-bg);
@@ -343,42 +320,15 @@
             position: relative;
             box-shadow: var(--glass-shadow);
         }
+        .reward-card.locked { opacity: 0.75; filter: grayscale(0.5); }
+        .reward-card.unlocked { border-color: rgba(245, 158, 11, 0.7); background: linear-gradient(135deg, var(--card-bg) 0%, rgba(251, 191, 36, 0.12) 100%); }
+        .reward-icon { font-size: 1.15rem; margin-bottom: 2px; color: var(--gold); }
+        .reward-name { font-size: 0.68rem; font-weight: 800; color: var(--text-main); line-height: 1.25; margin-bottom: 3px; }
+        .reward-req { font-size: 0.62rem; color: var(--text-sec); font-weight: 700; margin-bottom: 6px; }
 
-        .reward-card.locked {
-            opacity: 0.75;
-            filter: grayscale(0.5);
-        }
-
-        .reward-card.unlocked {
-            border-color: rgba(245, 158, 11, 0.7);
-            background: linear-gradient(135deg, var(--card-bg) 0%, rgba(251, 191, 36, 0.12) 100%);
-        }
-
-        .reward-icon {
-            font-size: 1.2rem;
-            margin-bottom: 2px;
-            color: var(--gold);
-        }
-
-        .reward-name {
-            font-size: 0.68rem;
-            font-weight: 800;
-            color: var(--text-main);
-            line-height: 1.25;
-            margin-bottom: 3px;
-        }
-
-        .reward-req {
-            font-size: 0.62rem;
-            color: var(--text-sec);
-            font-weight: 700;
-            margin-bottom: 6px;
-        }
-
-        /* WCAG AAA High-Contrast Text Fix on Gold Buttons */
         .btn-claim-reward {
             background: linear-gradient(135deg, #f59e0b, #d97706);
-            color: #0f172a; /* Dark slate text for 10.5:1 AAA contrast */
+            color: #0f172a; 
             border: none;
             padding: 5px 8px;
             border-radius: 5px;
@@ -390,41 +340,27 @@
             box-shadow: 0 2px 6px rgba(217, 119, 6, 0.3);
             transition: all 0.2s ease;
         }
+        .btn-claim-reward:hover { transform: translateY(-1px); filter: brightness(1.08); }
+        .btn-claim-reward:disabled { background: var(--input-bg); color: var(--text-sec); cursor: not-allowed; box-shadow: none; transform: none; border: 1px solid var(--card-border); }
 
-        .btn-claim-reward:hover {
-            transform: translateY(-1px);
-            filter: brightness(1.08);
-        }
-
-        .btn-claim-reward:disabled {
-            background: var(--input-bg);
-            color: var(--text-sec);
-            cursor: not-allowed;
-            box-shadow: none;
-            transform: none;
-            border: 1px solid var(--card-border);
-        }
-
-        .btn-xp-info {
-            background: rgba(245, 158, 11, 0.18);
-            border: 1.5px solid rgba(245, 158, 11, 0.5);
-            color: var(--gold);
+        .btn-xp-info-prominent {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: #0f172a !important;
+            border: 1.5px solid #fbbf24;
             padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.68rem;
-            font-weight: 800;
+            border-radius: 18px;
+            font-size: 0.7rem;
+            font-weight: 900;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
             gap: 5px;
+            box-shadow: 0 3px 10px rgba(245, 158, 11, 0.35);
             transition: all 0.2s ease;
-        }
-        .btn-xp-info:hover {
-            background: var(--gold);
-            color: #0f172a;
+            letter-spacing: 0.2px;
         }
 
-        /* REFERRAL HUB (40% Width - Emerald Green Accent Theme) */
+        /* REFERRAL HUB */
         .referral-container {
             background: linear-gradient(135deg, rgba(16, 185, 129, 0.09) 0%, rgba(5, 150, 105, 0.02) 100%);
             border: 2px solid rgba(16, 185, 129, 0.45);
@@ -433,130 +369,59 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            gap: 12px;
-            box-shadow: 0 6px 22px -4px rgba(16, 185, 129, 0.15);
-        }
-
-        .ref-header {
-            display: flex;
-            align-items: center;
             gap: 10px;
+            box-shadow: 0 10px 28px -4px rgba(16, 185, 129, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.6);
         }
 
-        .ref-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 12px;
-            background: rgba(16, 185, 129, 0.2);
-            color: var(--success);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.15rem;
-            flex-shrink: 0;
-            border: 1.5px solid rgba(16, 185, 129, 0.4);
-        }
+        .ref-header { display: flex; align-items: center; gap: 10px; }
+        .ref-icon { width: 38px; height: 38px; border-radius: 12px; background: rgba(16, 185, 129, 0.2); color: var(--success); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; border: 1.5px solid rgba(16, 185, 129, 0.4); }
+        .ref-details h3 { margin: 0; font-size: 0.85rem; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 6px; }
+        .ref-details p { margin: 2px 0 0 0; font-size: 0.68rem; color: var(--text-sec); font-weight: 700; line-height: 1.35; }
 
-        .ref-details h3 {
-            margin: 0;
-            font-size: 0.88rem;
-            font-weight: 800;
-            color: var(--text-main);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
+        .ref-actions-col { display: flex; flex-direction: column; gap: 6px; width: 100%; }
 
-        .ref-details p {
-            margin: 2px 0 0 0;
-            font-size: 0.68rem;
-            color: var(--text-sec);
-            font-weight: 700;
-            line-height: 1.35;
+        .social-share-btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 5px;
+            padding: 7px 8px; border-radius: 8px; font-size: 0.7rem; font-weight: 800;
+            border: none; cursor: pointer; color: #ffffff; white-space: nowrap; text-decoration: none;
+            transition: all 0.2s ease; box-sizing: border-box; line-height: 1;
         }
-
-        .ref-actions-col {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            width: 100%;
-        }
-
-        .btn-wa-share {
-            background: #25d366;
-            color: #ffffff;
-            border: none;
-            padding: 8px 14px;
-            border-radius: 8px;
-            font-size: 0.75rem;
-            font-weight: 800;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            text-decoration: none;
-            box-shadow: 0 3px 10px rgba(37, 211, 102, 0.3);
-            transition: all 0.2s ease;
-            width: 100%;
-            box-sizing: border-box;
-        }
-        .btn-wa-share:hover {
-            transform: translateY(-1px);
-            filter: brightness(1.05);
-        }
+        .social-share-btn:hover { transform: translateY(-1px); filter: brightness(1.08); }
+        .social-share-btn.wa { background: #25d366; box-shadow: 0 2px 6px rgba(37, 211, 102, 0.25); }
+        .social-share-btn.tg { background: #0088cc; box-shadow: 0 2px 6px rgba(0, 136, 204, 0.25); }
+        .social-share-btn.ig { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); box-shadow: 0 2px 6px rgba(220, 39, 67, 0.25); }
 
         .btn-copy-ref {
-            background: var(--input-bg);
-            color: var(--text-main);
-            border: 1.5px solid var(--card-border);
-            padding: 7px 12px;
-            border-radius: 8px;
-            font-size: 0.72rem;
-            font-weight: 800;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            transition: all 0.2s ease;
-            width: 100%;
-            box-sizing: border-box;
+            background: var(--input-bg); color: var(--text-main); border: 1.5px solid var(--card-border);
+            padding: 7px 10px; border-radius: 8px; font-size: 0.72rem; font-weight: 800;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            gap: 6px; transition: all 0.2s ease; width: 100%; white-space: nowrap; box-sizing: border-box;
         }
-        .btn-copy-ref:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-        }
+        .btn-copy-ref:hover { border-color: var(--primary); color: var(--primary); }
 
         .metrics-section-panel {
             border: 2px solid rgba(37, 99, 235, 0.35);
             border-radius: var(--radius-xl);
-            padding: 12px;
+            padding: 14px;
             background: rgba(37, 99, 235, 0.02);
-            box-shadow: 0 6px 22px -4px rgba(37, 99, 235, 0.1);
+            box-shadow: 0 10px 28px -4px rgba(37, 99, 235, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.8);
         }
 
-        .rules-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            text-align: left;
-            margin: 12px 0;
+        .lb-banner-integrated {
+            display: flex; justify-content: space-between; align-items: center;
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.16), rgba(245, 158, 11, 0.04));
+            border: 1.5px solid rgba(245, 158, 11, 0.4); padding: 6px 12px; border-radius: var(--radius-lg); gap: 10px;
         }
+        .lb-left { display: flex; align-items: center; gap: 8px; }
+        .lb-icon { font-size: 1.1rem; color: var(--gold); flex-shrink: 0; }
+        .lb-text h3 { margin: 0; font-size: 0.78rem; color: var(--text-main); font-weight: 800; }
+        .lb-text p { margin: 1px 0 0 0; font-size: 0.62rem; color: var(--text-sec); font-weight: 700; }
+        .lb-btn { background: linear-gradient(135deg, #f59e0b, #d97706); color: #0f172a; padding: 4px 10px; border: none; font-size: 0.65rem; text-decoration: none; border-radius: var(--radius-sm); font-weight: 900; white-space: nowrap; flex-shrink: 0; transition: transform 0.15s ease; box-shadow: 0 2px 6px rgba(217, 119, 6, 0.25); }
+        .lb-btn:hover { transform: translateY(-1px); }
 
-        .rules-item {
-            background: var(--input-bg);
-            border: 1px solid var(--card-border);
-            padding: 10px 12px;
-            border-radius: var(--radius-md);
-            font-size: 0.72rem;
-            color: var(--text-body);
-        }
-        .rules-item strong {
-            color: var(--text-main);
-            display: block;
-            margin-bottom: 3px;
-        }
+        .rules-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; text-align: left; margin: 12px 0; }
+        .rules-item { background: var(--input-bg); border: 1px solid var(--card-border); padding: 10px 12px; border-radius: var(--radius-md); font-size: 0.72rem; color: var(--text-body); }
+        .rules-item strong { color: var(--text-main); display: block; margin-bottom: 3px; }
 
         .purchases-panel { display: flex; align-items: stretch; gap: 12px; width: 100%; }
         .purchases-left { flex: 1; display: flex; flex-direction: column; justify-content: center; border-right: 1px dashed var(--card-border); padding-right: 12px; }
@@ -577,17 +442,7 @@
             background: linear-gradient(90deg, #f59e0b 0%, #d97706 40%, #fbbf24 50%, #d97706 60%, #f59e0b 100%);
             background-size: 200% 100%;
             animation: badgeShimmer 4s infinite linear;
-            color: #0f172a !important; 
-            padding: 3px 10px; 
-            border-radius: 16px; 
-            font-size: 0.68rem; 
-            font-weight: 900; 
-            letter-spacing: 0.4px; 
-            box-shadow: 0 2px 8px rgba(217, 119, 6, 0.3); 
-            text-transform: uppercase; 
-            display: inline-flex; 
-            align-items: center; 
-            gap: 5px; 
+            color: #0f172a !important; padding: 3px 10px; border-radius: 16px; font-size: 0.68rem; font-weight: 900; letter-spacing: 0.4px; box-shadow: 0 2px 8px rgba(217, 119, 6, 0.3); text-transform: uppercase; display: inline-flex; align-items: center; gap: 5px; 
         }
 
         .expired-passes-box { margin-top: 8px; padding: 6px 10px; background: var(--input-bg); border: 1px dashed var(--card-border); border-radius: var(--radius-sm); font-size: 0.68rem; }
@@ -598,42 +453,11 @@
         .compact-btn-buy { background: linear-gradient(135deg, #f59e0b, #d97706); color: #0f172a; font-size: 0.68rem; font-weight: 900; padding: 5px 10px; border-radius: 5px; cursor: pointer; border: none; text-transform: uppercase; transition: transform 0.15s ease; box-shadow: 0 2px 6px rgba(217, 119, 6, 0.25); }
         .compact-btn-buy:hover { transform: translateY(-1px); }
 
-        .lb-banner { 
-            padding: 10px 14px; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            background: linear-gradient(135deg, rgba(251, 191, 36, 0.16), rgba(245, 158, 11, 0.04)); 
-            border: 2px solid rgba(245, 158, 11, 0.45); 
-            gap: 12px; 
-            border-radius: var(--radius-xl);
-            box-shadow: 0 4px 18px -2px rgba(245, 158, 11, 0.12);
-        }
-        .lb-left { display: flex; align-items: center; gap: 12px; }
-        .lb-icon { font-size: 1.4rem; color: var(--gold); flex-shrink: 0; }
-        .lb-text h3 { margin: 0; font-size: 0.88rem; color: var(--text-main); font-weight: 800; }
-        .lb-text p { margin: 2px 0 0 0; font-size: 0.7rem; color: var(--text-sec); font-weight: 700; }
-        .lb-btn { background: linear-gradient(135deg, #f59e0b, #d97706); color: #0f172a; padding: 6px 14px; border: none; font-size: 0.72rem; text-decoration: none; border-radius: var(--radius-sm); font-weight: 900; white-space: nowrap; flex-shrink: 0; transition: transform 0.15s ease; box-shadow: 0 2px 8px rgba(217, 119, 6, 0.3); }
-        .lb-btn:hover { transform: translateY(-1px); }
-
         .stats-wrapper { display: flex; flex-direction: column; gap: 8px; }
         .stats-density-grid { display: grid; grid-template-columns: 1.3fr repeat(5, 1fr); gap: 8px; }
         
         .stat-group-card { 
-            border-radius: var(--radius-md); 
-            padding: 8px 12px; 
-            display: flex; 
-            align-items: center; 
-            gap: 8px; 
-            position: relative; 
-            overflow: hidden; 
-            box-shadow: var(--glass-shadow); 
-            text-decoration: none; 
-            cursor: pointer; 
-            transition: transform 0.2s ease; 
-            border: 1px solid transparent; 
-            min-height: 50px; 
-            box-sizing: border-box; 
+            border-radius: var(--radius-md); padding: 8px 12px; display: flex; align-items: center; gap: 8px; position: relative; overflow: hidden; box-shadow: var(--glass-shadow); text-decoration: none; cursor: pointer; transition: transform 0.2s ease; border: 1px solid transparent; min-height: 50px; box-sizing: border-box; 
         }
         .stat-group-card:hover { transform: translateY(-1px); filter: brightness(1.05); }
         .stat-group-card.mock-bg { background: linear-gradient(135deg, #b91c1c 0%, #991b1b 100%); }
@@ -645,45 +469,12 @@
         .stat-group-text p { color: rgba(255,255,255,0.9); margin: 0; font-size: 0.6rem; font-weight: 700; text-transform: uppercase; margin-top: 2px; }
 
         .stat-dense-card { 
-            background: var(--card-bg); 
-            border: 1.5px solid var(--card-border); 
-            border-radius: var(--radius-md); 
-            padding: 8px 10px; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-            align-items: center; 
-            text-align: center; 
-            box-shadow: var(--glass-shadow); 
-            min-height: 50px; 
-            box-sizing: border-box; 
+            background: var(--card-bg); border: 1.5px solid var(--card-border); border-radius: var(--radius-md); padding: 8px 10px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; box-shadow: var(--glass-shadow); min-height: 50px; box-sizing: border-box; 
         }
         .stat-dense-label { font-size: 0.65rem; color: var(--text-sec); font-weight: 800; text-transform: uppercase; margin-bottom: 3px; white-space: nowrap; letter-spacing: 0.2px; display: flex; align-items: center; justify-content: center; gap: 4px; width: 100%; }
         .stat-dense-val { font-size: 1rem; font-weight: 900; color: var(--text-main); display: flex; align-items: center; justify-content: center; width: 100%; line-height: 1; }
         .cw-text { font-size: 0.9rem; display: flex; align-items: center; justify-content: center; }
         .cw-slash { font-size: 0.75rem; color: var(--card-border); margin: 0 2px; font-weight: 400; }
-
-        .quick-resume-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; width: 100%; }
-        .resume-card { 
-            display: flex; 
-            align-items: center; 
-            justify-content: space-between; 
-            gap: 10px; 
-            background: linear-gradient(135deg, rgba(29, 78, 216, 0.06) 0%, rgba(37, 99, 235, 0.01) 100%); 
-            border: 1.5px solid var(--card-border); 
-            border-radius: var(--radius-lg); 
-            padding: 10px 14px; 
-            box-shadow: var(--glass-shadow); 
-            box-sizing: border-box; 
-        }
-        .resume-left { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0; }
-        .resume-icon { width: 34px; height: 34px; border-radius: 10px; background: rgba(29, 78, 216, 0.12); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 0.95rem; flex-shrink: 0; border: 1px solid var(--card-border); }
-        .resume-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
-        .resume-tag { font-size: 0.62rem; font-weight: 800; text-transform: uppercase; color: var(--primary); letter-spacing: 0.3px; }
-        .resume-title { font-size: 0.82rem; font-weight: 800; color: var(--text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .resume-sub { font-size: 0.68rem; color: var(--text-sec); font-weight: 700; }
-        .btn-resume { background: var(--primary); color: #ffffff; border: none; padding: 6px 12px; border-radius: 6px; font-size: 0.72rem; font-weight: 800; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; flex-shrink: 0; transition: transform 0.15s ease; box-shadow: 0 2px 6px rgba(37, 99, 235, 0.25); }
-        .btn-resume:hover { transform: translateY(-1px); }
 
         .dashboard-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
         .section-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid var(--card-border); padding-bottom: 6px; margin-bottom: 10px; flex-wrap: wrap; gap: 6px; }
@@ -702,21 +493,46 @@
         .perf-fill.red-grad { background: linear-gradient(90deg, #b91c1c 0%, #ef4444 100%); }
 
         .badge-weak { 
-            font-size: 0.6rem; 
-            background: rgba(185, 28, 28, 0.15); 
-            color: var(--danger); 
-            padding: 2px 6px; 
-            border-radius: 4px; 
-            font-weight: 800; 
-            border: 1px solid rgba(185, 28, 28, 0.3); 
-            display: inline-flex; 
-            align-items: center; 
-            gap: 3px; 
-            margin: 0 4px;
-            line-height: 1.1;
+            font-size: 0.6rem; background: rgba(185, 28, 28, 0.15); color: var(--danger); padding: 2px 6px; border-radius: 4px; font-weight: 800; border: 1px solid rgba(185, 28, 28, 0.3); display: inline-flex; align-items: center; gap: 3px; margin: 0 4px; line-height: 1.1;
         }
-        .btn-improve-link { font-size: 0.68rem; color: var(--primary); font-weight: 800; text-decoration: none; padding: 2px 6px; border-radius: 4px; line-height: 1.1; }
-        .btn-improve-link:hover { text-decoration: underline; background: var(--input-bg); }
+
+        /* WEAK TOPIC PILL LINK STYLING */
+        .weak-spot-pill {
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.12) 0%, rgba(185, 28, 28, 0.05) 100%);
+            border: 1.5px solid rgba(220, 38, 38, 0.35);
+            color: var(--danger);
+            padding: 5px 11px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            box-shadow: 0 2px 6px rgba(185, 28, 28, 0.08);
+        }
+        .weak-spot-pill:hover {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            color: #ffffff !important;
+            border-color: #b91c1c;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(185, 28, 28, 0.3);
+        }
+
+        .btn-improve-link { 
+            font-size: 0.68rem; color: var(--primary); font-weight: 800; text-decoration: none; padding: 3px 8px; border-radius: 6px; line-height: 1.1; background: rgba(37, 99, 235, 0.08); border: 1px solid rgba(37, 99, 235, 0.2); display: inline-flex; align-items: center; gap: 4px; transition: all 0.2s ease;
+        }
+        .btn-improve-link:hover { 
+            background: var(--primary); color: #ffffff !important; border-color: var(--primary); transform: translateY(-1px); box-shadow: 0 2px 6px rgba(37, 99, 235, 0.25);
+        }
+
+        /* DESIGN UPGRADE: SEARCH FILTER IN TOPIC MASTERY */
+        .topic-search-input {
+            background: var(--input-bg); border: 1px solid var(--card-border); border-radius: 6px; padding: 3px 8px; font-size: 0.68rem; color: var(--text-main); outline: none; width: 110px; font-family: inherit;
+        }
+        .topic-search-input:focus { border-color: var(--primary); }
 
         .auth-warning { text-align: center; padding: 28px 18px; }
         .auth-warning h2 { font-size: 1.05rem; margin-bottom: 6px; color: var(--text-main); font-weight: 800; }
@@ -732,17 +548,6 @@
         .spinner { width: 44px; height: 44px; border: 4px solid rgba(255,255,255,0.2); border-top-color: #10b981; border-radius: 50%; animation: spin 1s infinite linear; margin-bottom: 14px; }
         @keyframes spin { 100% { transform: rotate(360deg); } }
 
-        @keyframes skeletonShimmer {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
-        }
-        .skeleton-box {
-            background: linear-gradient(90deg, rgba(203, 213, 225, 0.3) 25%, rgba(241, 245, 249, 0.6) 50%, rgba(203, 213, 225, 0.3) 75%);
-            background-size: 200% 100%;
-            animation: skeletonShimmer 1.5s infinite linear;
-            border-radius: 10px;
-        }
-
         @media (max-width: 1024px) { 
             .stats-density-grid { grid-template-columns: repeat(3, 1fr); } 
             .stat-group-card { grid-column: span 3; } 
@@ -750,7 +555,6 @@
         @media (max-width: 850px) { 
             .game-ref-split-grid { grid-template-columns: 1fr; }
             .top-dashboard-grid, .dashboard-cols { grid-template-columns: 1fr; } 
-            .quick-resume-grid { grid-template-columns: 1fr; } 
         }
         @media (max-width: 600px) {
             main { padding: 8px !important; gap: 10px; }
@@ -760,12 +564,10 @@
             .stat-dense-card { width: calc(50% - 3px); box-sizing: border-box; padding: 8px 6px; display: flex; flex-direction: column; align-items: center; text-align: center; min-height: 46px; }
             .purchases-panel { flex-direction: column; gap: 8px; }
             .purchases-left { border-right: none; border-bottom: 1px dashed var(--card-border); padding-right: 0; padding-bottom: 8px; }
-            .lb-banner { padding: 8px 10px; }
-            .resume-card { flex-direction: column; align-items: flex-start; gap: 8px; padding: 10px; }
-            .btn-resume { width: 100%; justify-content: center; }
-            .top-meta-bar { flex-wrap: nowrap; justify-content: space-between; }
-            .breadcrumb-nav { height: 20px; }
-            .hero-badge { height: 18px; padding: 0 8px; border-radius: 8px; font-size: 0.58rem; }
+            .lb-banner-integrated { flex-direction: column; align-items: flex-start; gap: 6px; }
+            .top-meta-bar { flex-wrap: nowrap; justify-content: space-between; height: 20px; }
+            .breadcrumb-nav, .breadcrumb-list { height: 18px; }
+            .hero-badge { height: 16px; padding: 0 6px; font-size: 0.55rem; }
             .rewards-vault-grid { grid-template-columns: 1fr; }
         }
     </style>
@@ -831,7 +633,7 @@
 <div id="site-header"></div>
 
 <main>
-    <!-- TOP META BAR: BREADCRUMB (LEFT) & HERO BADGE (RIGHT) - EXACT ORIGINAL STRUCTURE & STYLING PRESERVED -->
+    <!-- TOP META BAR: ULTRA-COMPACT BREADCRUMB (LEFT) & THIN HERO BADGE (RIGHT) -->
     <div class="top-meta-bar">
         <nav aria-label="breadcrumb" class="breadcrumb-nav">
             <ol class="breadcrumb-list">
@@ -874,7 +676,7 @@
 
     <div id="logged-in-state">
         
-        <!-- SECTION 1: USER PROFILE & SUBSCRIPTION PASS -->
+        <!-- SECTION 1: USER PROFILE & SUBSCRIPTION PASS WITH DAILY GOAL TRACKER -->
         <div class="dashboard-section">
             <div class="top-dashboard-grid">
                 <div class="glass-panel compact-top-card profile-panel">
@@ -884,11 +686,19 @@
                             <div class="status-dot"></div>
                         </div>
                         <div class="user-info">
-                            <h1 id="user-name">Student</h1>
+                            <h1 id="user-name">Welcome back, Student!</h1>
                             <p id="user-email">student@email.com</p>
                             <span class="badge-uid-copy" id="uid-copy-btn" onclick="copyUidToClipboard()" title="Click to copy full UID">
                                 UID: <span id="user-short-id">...</span> <i class="fa-solid fa-copy" style="font-size:0.62rem;"></i>
                             </span>
+                        </div>
+                    </div>
+
+                    <!-- DESIGN UPGRADE: DAILY STUDY TARGET PROGRESS -->
+                    <div class="daily-goal-box">
+                        <span class="goal-text"><i class="fa-solid fa-bullseye" style="color:var(--success);"></i> Daily Goal: <span id="daily-solved-count">15</span>/20 Solved</span>
+                        <div class="goal-bar-track">
+                            <div class="goal-bar-fill" id="goal-bar-fill"></div>
                         </div>
                     </div>
                 </div>
@@ -897,24 +707,24 @@
             </div>
         </div>
 
-        <!-- SECTION 1.5: 60% / 40% SIDE-BY-SIDE SPLIT GAMIFICATION & REFERRAL HUB -->
+        <!-- SECTION 1.5: GAMIFICATION & REFERRAL HUB WITH RANK ROADMAP -->
         <div class="dashboard-section">
             <div class="game-ref-split-grid">
                 
-                <!-- GAMIFICATION HUB (60% Width - Amber/Gold Accent Theme) -->
+                <!-- GAMIFICATION HUB (60% Width) -->
                 <div class="gamification-container glass-panel">
                     <div class="game-top-bar">
                         <div class="game-level-box">
                             <div class="level-badge-icon" id="user-level-icon"><i class="fa-solid fa-shield-halved"></i></div>
                             <div class="level-info">
-                                <div class="level-title"><span id="user-level-name">HPGK Novice Aspirant</span></div>
+                                <div class="level-title"><span id="user-level-name">Pahari Quiz Abhyarthi</span></div>
                                 <div class="level-sub">Hard-Earned XP: <strong style="color:var(--text-main);" id="user-xp-val">0 XP</strong></div>
                             </div>
                         </div>
 
                         <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
-                            <button class="btn-xp-info" onclick="document.getElementById('xpRulesModal').style.display='flex'">
-                                <i class="fa-solid fa-circle-question"></i> XP Guide
+                            <button class="btn-xp-info-prominent" onclick="document.getElementById('xpRulesModal').style.display='flex'" title="Click to view full XP rules & rank breakdown">
+                                💡 <i class="fa-solid fa-book-bookmark"></i> XP Rules Guide
                             </button>
                             <div class="streak-pill">
                                 <i class="fa-solid fa-fire"></i> <span id="user-streak-val">1 Day Streak</span>
@@ -928,8 +738,19 @@
                         </div>
                         <div class="xp-bar-text">
                             <span>Progress to next rank</span>
-                            <span id="xp-progress-label">0 / 250 XP</span>
+                            <span id="xp-progress-label">0 / 500 XP</span>
                         </div>
+                    </div>
+
+                    <!-- DESIGN UPGRADE: 4-TIER RANK MILESTONE ROADMAP STRIP -->
+                    <div class="rank-roadmap-strip">
+                        <span class="roadmap-step active" id="step-1"><i class="fa-solid fa-seedling"></i> Abhyarthi</span>
+                        <i class="fa-solid fa-chevron-right roadmap-arrow"></i>
+                        <span class="roadmap-step" id="step-2"><i class="fa-solid fa-swords"></i> Yoddha</span>
+                        <i class="fa-solid fa-chevron-right roadmap-arrow"></i>
+                        <span class="roadmap-step" id="step-3"><i class="fa-solid fa-award"></i> Tehsildar</span>
+                        <i class="fa-solid fa-chevron-right roadmap-arrow"></i>
+                        <span class="roadmap-step" id="step-4"><i class="fa-solid fa-crown"></i> Shikhar</span>
                     </div>
 
                     <div class="section-label-header" style="margin-top:2px;"><i class="fa-solid fa-gift" style="color:var(--gold);"></i> Claim VIP Trial Pass Vouchers</div>
@@ -951,15 +772,15 @@
 
                         <div class="reward-card" id="reward-card-3">
                             <div class="reward-icon"><i class="fa-solid fa-medal" style="color:#c2410c;"></i></div>
-                            <div class="reward-name">HPGK 3-Day All-Access Pass</div>
+                            <div class="reward-name">HPGK 5-Day All-Access Pass</div>
                             <div class="reward-req" id="req-text-3">2,500 XP + 15-Day Streak</div>
-                            <button class="btn-claim-reward" id="claim-btn-3" onclick="claimRewardCoupon('3DAY_2500XP', 'HPGK 3-Day All-Access Pass')" disabled>Locked</button>
+                            <button class="btn-claim-reward" id="claim-btn-3" onclick="claimRewardCoupon('5DAY_2500XP', 'HPGK 5-Day All-Access Pass')" disabled>Locked</button>
                         </div>
 
                     </div>
                 </div>
 
-                <!-- REFERRAL HUB (40% Width - Emerald Green Accent Theme) -->
+                <!-- REFERRAL HUB (40% Width) -->
                 <div class="referral-container glass-panel">
                     <div class="ref-header">
                         <div class="ref-icon"><i class="fa-solid fa-user-plus"></i></div>
@@ -969,55 +790,63 @@
                         </div>
                     </div>
 
-                    <!-- Custom Referral URL Display Box with Inline Copy Icon -->
                     <div style="display:flex; flex-direction:column; gap:4px;">
-                        <span style="font-size:0.65rem; font-weight:800; color:var(--text-sec); text-transform:uppercase; letter-spacing:0.3px;"><i class="fa-solid fa-link" style="color:var(--success);"></i> Your Custom Referral Link:</span>
+                        <span style="font-size:0.65rem; font-weight:800; color:var(--text-sec); text-transform:uppercase; letter-spacing:0.3px;"><i class="fa-solid fa-link" style="color:var(--success);"></i> Referral Link:</span>
                         <div style="display:flex; align-items:center; gap:6px; width:100%;">
                             <div style="flex:1; background: var(--input-bg); border: 1.5px solid rgba(16, 185, 129, 0.4); padding: 6px 10px; border-radius: 6px; font-size: 0.68rem; color: var(--success); font-weight:800; font-family: monospace; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; user-select: all;" id="ref-url-display">
                                 https://hpgk.toolblaster.com/?ref=...
                             </div>
-                            <button class="btn-copy-ref" onclick="copyReferralLink()" id="inline-copy-ref-btn" style="width:auto; padding:6px 10px; flex-shrink:0;" title="Copy Referral Link">
+                            <button class="btn-copy-ref" onclick="copyReferralLink()" id="inline-copy-ref-btn" style="width:auto; padding:6px 10px; flex-shrink:0; white-space:nowrap;" title="Copy Referral Link">
                                 <i class="fa-solid fa-copy"></i>
                             </button>
                         </div>
                     </div>
 
+                    <!-- FULL-NAME NON-WRAPPING SOCIAL SHARE BUTTONS (WA, TG, IG) -->
                     <div class="ref-actions-col">
-                        <button class="btn-wa-share" onclick="shareReferralWhatsApp()">
-                            <i class="fa-brands fa-whatsapp" style="font-size:1rem;"></i> Share via WhatsApp
-                        </button>
-                        <div style="display:flex; gap:6px; width:100%;">
-                            <button class="btn-copy-ref" onclick="copyReferralLink()" id="copy-ref-btn" style="flex:1;">
-                                <i class="fa-solid fa-link"></i> Copy Link
+                        <span style="font-size:0.65rem; font-weight:800; color:var(--text-sec); text-transform:uppercase; letter-spacing:0.3px;"><i class="fa-solid fa-share-nodes" style="color:var(--success);"></i> Quick Share:</span>
+                        <div style="display:flex; gap:6px; width:100%; align-items:center; justify-content:space-between; flex-wrap:nowrap;">
+                            <button class="social-share-btn wa" onclick="shareReferralWhatsApp()" title="Share via WhatsApp" style="flex:1;">
+                                <i class="fa-brands fa-whatsapp"></i> <span>WhatsApp</span>
                             </button>
-                            <button class="btn-copy-ref" onclick="openInvitedFriendsModal()" style="background:rgba(16, 185, 129, 0.15); color:var(--success); border-color:rgba(16, 185, 129, 0.4); flex:1;" title="View list of friends who joined using your link">
-                                <i class="fa-solid fa-users"></i> Friends <span id="invited-friends-badge">(0)</span>
+                            <button class="social-share-btn tg" onclick="shareReferralTelegram()" title="Share via Telegram" style="flex:1;">
+                                <i class="fa-brands fa-telegram"></i> <span>Telegram</span>
+                            </button>
+                            <button class="social-share-btn ig" onclick="shareReferralInstagram()" title="Share via Instagram" style="flex:1;">
+                                <i class="fa-brands fa-instagram"></i> <span>Instagram</span>
                             </button>
                         </div>
+                        
+                        <button class="btn-copy-ref" onclick="openInvitedFriendsModal()" style="background:rgba(16, 185, 129, 0.15); color:var(--success); border-color:rgba(16, 185, 129, 0.4); width:100%; margin-top:2px;" title="View list of friends who joined using your link">
+                            <i class="fa-solid fa-users"></i> Friends Joined <span id="invited-friends-badge">(0)</span>
+                        </button>
                     </div>
                 </div>
 
             </div>
         </div>
 
-        <!-- SECTION 2: GLOBAL RANKING BANNER -->
-        <div class="dashboard-section">
-            <div class="glass-panel lb-banner">
-                <div class="lb-left">
-                    <div class="lb-icon"><i class="fa-solid fa-trophy"></i></div>
-                    <div class="lb-text">
-                        <h3>Global Leaderboard & Ranks</h3>
-                        <p>See where you rank among thousands of HP aspirants.</p>
-                    </div>
-                </div>
-                <a href="leaderboard.html" class="lb-btn">View Ranks <i class="fa-solid fa-arrow-right"></i></a>
-            </div>
-        </div>
+        <!-- SECTION 2: PROMINENT SMART WEAK-SPOT TARGETER SECTION -->
+        <div id="weak-spot-banner-container" class="dashboard-section" style="display: none;"></div>
 
-        <!-- SECTION 3: PERFORMANCE METRICS -->
+        <!-- SECTION 3: PERFORMANCE METRICS WITH INTEGRATED GLOBAL LEADERBOARD -->
         <div class="dashboard-section">
             <div class="metrics-section-panel glass-panel">
-                <div class="section-label-header" style="margin-bottom:8px;"><i class="fa-solid fa-chart-simple" style="color:var(--primary);"></i> Performance Metrics & Accuracy</div>
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 12px; border-bottom: 1px dashed var(--card-border); padding-bottom: 8px;">
+                    <div class="section-label-header"><i class="fa-solid fa-chart-simple" style="color:var(--primary);"></i> Performance Metrics & Accuracy</div>
+                    
+                    <div class="lb-banner-integrated">
+                        <div class="lb-left">
+                            <div class="lb-icon"><i class="fa-solid fa-trophy"></i></div>
+                            <div class="lb-text">
+                                <h3>Global Leaderboard & Ranks</h3>
+                                <p>Compare your rank with HP aspirants</p>
+                            </div>
+                        </div>
+                        <a href="leaderboard.html" class="lb-btn">View Ranks <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
                 <div class="stats-wrapper">
                     <!-- High Density Stats: FULL MOCKS -->
                     <div class="stats-density-grid">
@@ -1088,44 +917,7 @@
             </div>
         </div>
 
-        <!-- SECTION 4: CONTINUE LEARNING & RESUME -->
-        <div id="quick-resume-box" class="dashboard-section" style="display: none;">
-            <div class="section-label-header"><i class="fa-solid fa-rotate-right"></i> Quick Resume Recent Practice</div>
-            <div class="quick-resume-grid">
-                <div class="resume-card soft-glass" id="resume-mock-card">
-                    <div class="resume-left">
-                        <div class="resume-icon" style="color:var(--danger); background:rgba(185,28,28,0.12);"><i class="fa-solid fa-file-signature"></i></div>
-                        <div class="resume-text">
-                            <span class="resume-tag" style="color:var(--danger);">Latest Full Mock</span>
-                            <div class="resume-title" id="resume-mock-title">Mock Test</div>
-                            <div class="resume-sub" id="resume-mock-sub">Score: 0/0 | Acc: 0%</div>
-                        </div>
-                    </div>
-                    <a href="#" id="resume-mock-btn" class="btn-resume" style="background:var(--danger);">
-                        Summary <i class="fa-solid fa-arrow-right"></i>
-                    </a>
-                </div>
-
-                <div class="resume-card soft-glass" id="resume-topic-card">
-                    <div class="resume-left">
-                        <div class="resume-icon"><i class="fa-solid fa-layer-group"></i></div>
-                        <div class="resume-text">
-                            <span class="resume-tag">Latest Topic Quiz</span>
-                            <div class="resume-title" id="resume-topic-title">Topic Practice</div>
-                            <div class="resume-sub" id="resume-topic-sub">Solved: 0 Qs | Acc: 0%</div>
-                        </div>
-                    </div>
-                    <a href="#" id="resume-topic-btn" class="btn-resume">
-                        Practice <i class="fa-solid fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- SECTION 5: SMART WEAK-SPOT TARGETING BOOSTER BANNER -->
-        <div id="weak-spot-banner-container" class="dashboard-section" style="display: none;"></div>
-
-        <!-- SECTION 6: MASTERY ANALYTICS SPLIT GRID -->
+        <!-- SECTION 4: MASTERY ANALYTICS SPLIT GRID WITH TOPIC SEARCH FILTER -->
         <div class="dashboard-section">
             <div class="section-label-header"><i class="fa-solid fa-medal"></i> Detailed Mastery Breakdown</div>
             <div class="dashboard-cols">
@@ -1141,6 +933,8 @@
                 <div class="glass-panel">
                     <div class="section-header">
                         <h2 class="section-title"><i class="fa-solid fa-chart-column" style="color:var(--primary);"></i> Topic Mastery <span>Top 15</span></h2>
+                        <!-- DESIGN UPGRADE: TOPIC MASTERY SEARCH FILTER -->
+                        <input type="text" id="topic-mastery-search" class="topic-search-input" placeholder="Search topic..." onkeyup="filterTopicMasteryList()">
                     </div>
                     <div class="dense-list" id="subject-perf-list">
                         <div style="text-align: center; padding: 12px; color: var(--text-sec); font-size: 0.72rem;">Analyzing performance data...</div>
@@ -1190,7 +984,7 @@
 
 <!-- XP & REWARDS GUIDE MODAL -->
 <div id="xpRulesModal" class="modal-overlay">
-    <div class="modal-box" style="max-width: 460px; padding: 22px; text-align: left;">
+    <div class="modal-box" style="max-width: 470px; padding: 22px; text-align: left;">
         <button onclick="document.getElementById('xpRulesModal').style.display='none'" class="modal-close-btn"><i class="fa-solid fa-xmark"></i></button>
         
         <div style="display:flex; align-items:center; gap:10px; margin-bottom: 12px;">
@@ -1199,11 +993,11 @@
         </div>
 
         <div style="font-size: 0.75rem; font-weight: 800; color: var(--primary); text-transform: uppercase; margin-top: 12px; display:flex; align-items:center; gap:6px;">
-            <i class="fa-solid fa-coins"></i> 1. How to Earn XP Points
+            <i class="fa-solid fa-coins"></i> 1. How to Earn XP Points (Balanced Curve)
         </div>
         <div class="rules-grid">
             <div class="rules-item">
-                <strong>+2 XP / Answer</strong>
+                <strong>+1 XP / Answer</strong>
                 Solve MCQs correctly across topic quizzes.
             </div>
             <div class="rules-item">
@@ -1211,8 +1005,8 @@
                 Score >80% accuracy on sets with 15+ Qs.
             </div>
             <div class="rules-item">
-                <strong>+30 XP / Mock</strong>
-                Complete full-length exam mock papers.
+                <strong>+30 XP / Valid Mock</strong>
+                Complete full mock paper (≥40% Qs, ≥2 mins, ≥25% score).
             </div>
             <div class="rules-item">
                 <strong>+20 XP / Referral</strong>
@@ -1221,14 +1015,13 @@
         </div>
 
         <div style="font-size: 0.75rem; font-weight: 800; color: var(--gold); text-transform: uppercase; margin-top: 14px; display:flex; align-items:center; gap:6px;">
-            <i class="fa-solid fa-crown"></i> 2. HPGK Rank Rungs
+            <i class="fa-solid fa-crown"></i> 2. 4 Authentic HP Rank Rungs
         </div>
         <div style="background: var(--input-bg); border: 1.5px solid var(--card-border); padding: 10px 12px; border-radius: var(--radius-md); font-size: 0.72rem; color: var(--text-body); margin-top: 6px; line-height: 1.6;">
-            • <strong>HPGK Novice Aspirant</strong>: 0 – 250 XP<br>
-            • <strong>HPGK Scholar Warrior</strong>: 250 – 800 XP<br>
-            • <strong>HPGK District Vanguard</strong>: 800 – 2,000 XP<br>
-            • <strong>HPGK Naib Tehsildar Elite</strong>: 2,000 – 4,500 XP<br>
-            • <strong>HPGK HPAS Legend Officer</strong>: 4,500+ XP
+            🌱 <strong>0 – 500 XP</strong>: Pahari Quiz Abhyarthi<br>
+            ⚔️ <strong>500 – 1,200 XP</strong>: Pahari Study Yoddha<br>
+            📜 <strong>1,200 – 2,500 XP</strong>: Himachal Tehsildar Elite<br>
+            👑 <strong>2,500 – 4,500+ XP</strong>: HPAS Pahari Shikhar Officer
         </div>
 
         <div style="font-size: 0.75rem; font-weight: 800; color: var(--success); text-transform: uppercase; margin-top: 14px; display:flex; align-items:center; gap:6px;">
@@ -1237,8 +1030,7 @@
         <div style="background: rgba(22, 163, 74, 0.09); border: 1.5px solid rgba(22, 163, 74, 0.3); padding: 10px 12px; border-radius: var(--radius-md); font-size: 0.72rem; color: var(--text-main); margin-top: 6px; line-height: 1.5;">
             <strong style="color:var(--success); display:block; margin-bottom:4px;">🔄 Auto-Extension & Upgrade Teaser</strong>
             • <strong>Auto-Extension</strong>: Claiming rewards adds extra days on top of your existing pass expiry date!<br>
-            • <strong>VIP Upgrade Teaser</strong>: MCQ Pro pass holders unlock Mock Master VIP features during the reward period.<br>
-            • <strong>Lifetime Pass Holders</strong>: XP directly boosts your Global Leaderboard rank!
+            • <strong>VIP Upgrade Teaser</strong>: MCQ Pro pass holders unlock Mock Master VIP features during the reward period.
         </div>
     </div>
 </div>
@@ -1266,7 +1058,6 @@
 <script src="../js/core.js"></script>
 <script src="../js/layout.js"></script>
 
-<!-- STREAMING_CHUNK:Executing Razorpay integration module script... -->
 <script type="module">
     import { getApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
     import { getFirestore, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
@@ -1359,7 +1150,6 @@
     });
 </script>
 
-<!-- STREAMING_CHUNK:Executing Firebase authentication & dashboard stats calculation module... -->
 <script type="module">
     import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
     import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
@@ -1466,11 +1256,48 @@
         }
     };
 
+    /* MULTI-PLATFORM SOCIAL SHARE HANDLERS (WA, TG, IG) */
     window.shareReferralWhatsApp = function() {
         const uid = window.HPGK_User ? window.HPGK_User.uid : 'GUEST';
         const refLink = `https://hpgk.toolblaster.com/?ref=${uid}`;
         const msg = `Hey! I'm preparing for HP Exams on HPGK Quiz. Practice 6,500+ MCQs, Mock Tests, and earn free VIP trial passes!\n\n🎯 Practice here: ${refLink}`;
         window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, '_blank');
+    };
+
+    window.shareReferralTelegram = function() {
+        const uid = window.HPGK_User ? window.HPGK_User.uid : 'GUEST';
+        const refLink = `https://hpgk.toolblaster.com/?ref=${uid}`;
+        const msg = `Hey! I'm preparing for HP Exams on HPGK Quiz. Practice 6,500+ MCQs, Mock Tests, and earn free VIP passes!`;
+        window.open(`https://t.me/share/url?url=${encodeURIComponent(refLink)}&text=${encodeURIComponent(msg)}`, '_blank');
+    };
+
+    window.shareReferralInstagram = async function() {
+        const uid = window.HPGK_User ? window.HPGK_User.uid : 'GUEST';
+        const refLink = `https://hpgk.toolblaster.com/?ref=${uid}`;
+        let copied = false;
+
+        if (navigator.clipboard && window.isSecureContext) {
+            try { await navigator.clipboard.writeText(refLink); copied = true; } catch(e){}
+        }
+
+        if (!copied) {
+            const tempInput = document.createElement('textarea');
+            tempInput.value = refLink;
+            tempInput.style.position = 'fixed';
+            tempInput.style.left = '-9999px';
+            document.body.appendChild(tempInput);
+            tempInput.focus();
+            tempInput.select();
+            try { document.execCommand('copy'); copied = true; } catch(e){}
+            document.body.removeChild(tempInput);
+        }
+
+        if (window.HPGK_Layout && typeof window.HPGK_Layout.showToast === 'function') {
+            window.HPGK_Layout.showToast("📋 Referral link copied! Opening Instagram...");
+        } else {
+            alert("Referral link copied to clipboard! Opening Instagram...");
+        }
+        window.open(`https://instagram.com`, '_blank');
     };
 
     window.copyReferralLink = async function() {
@@ -1497,13 +1324,7 @@
             document.body.removeChild(tempInput);
         }
 
-        const btn = document.getElementById('copy-ref-btn');
         const inlineBtn = document.getElementById('inline-copy-ref-btn');
-        
-        if (btn) {
-            btn.innerHTML = `<i class="fa-solid fa-check" style="color:var(--success);"></i> Copied Link!`;
-            setTimeout(() => { btn.innerHTML = `<i class="fa-solid fa-link"></i> Copy Link`; }, 1800);
-        }
         if (inlineBtn) {
             inlineBtn.innerHTML = `<i class="fa-solid fa-check" style="color:var(--success);"></i>`;
             setTimeout(() => { inlineBtn.innerHTML = `<i class="fa-solid fa-copy"></i>`; }, 1800);
@@ -1558,15 +1379,16 @@
 
     onAuthStateChanged(auth, async (user) => {
         if (user && !user.isAnonymous) {
-            document.getElementById('user-name').innerText = user.displayName || 'Student';
+            const displayName = user.displayName || 'Student';
+            document.getElementById('user-name').innerText = `Welcome back, ${displayName}!`;
             document.getElementById('user-email').innerText = user.email;
-            document.getElementById('user-photo').src = user.photoURL || 'https://ui-avatars.com/api/?name=' + encodeURIComponent(user.displayName || 'S') + '&background=cbd5e1&color=0f172a';
+            document.getElementById('user-photo').src = user.photoURL || 'https://ui-avatars.com/api/?name=' + encodeURIComponent(displayName) + '&background=cbd5e1&color=0f172a';
             document.getElementById('user-short-id').innerText = user.uid.substring(0, 9);
             
             try {
                 const uRef = doc(db, 'artifacts', 'hpgk-quiz', 'users', user.uid);
                 await setDoc(uRef, {
-                    name: user.displayName || 'Student',
+                    name: displayName,
                     email: user.email || '',
                     photo: user.photoURL || '',
                     lastSeen: Date.now()
@@ -1800,102 +1622,6 @@
 
             records.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0)); 
 
-            let totalCorrectAnswers = 0;
-            let totalMocksAttempted = 0;
-            let highAccuracyBonusSets = 0;
-
-            records.forEach(r => {
-                if (r.isMock) {
-                    totalMocksAttempted++;
-                } else {
-                    const correctCount = (r.correct || r.score || 0);
-                    const totalQs = (r.total || 0);
-                    totalCorrectAnswers += correctCount;
-                    
-                    if (totalQs >= 15 && (correctCount / totalQs) >= 0.8) {
-                        highAccuracyBonusSets++;
-                    }
-                }
-            });
-
-            const calculatedXP = (totalCorrectAnswers * 2) + (totalMocksAttempted * 30) + (highAccuracyBonusSets * 15) + (referralCount * 20);
-            
-            let streakDays = 1;
-            const lastActiveDate = localStorage.getItem(`hpgk_last_active_${user.uid}`);
-            const todayStr = new Date().toDateString();
-
-            if (lastActiveDate) {
-                const prevDate = new Date(lastActiveDate);
-                const diffTime = Math.abs(new Date() - prevDate);
-                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-                
-                let savedStreak = Number(localStorage.getItem(`hpgk_streak_${user.uid}`)) || 1;
-                if (diffDays === 1) streakDays = savedStreak;
-                else if (diffDays === 2) streakDays = savedStreak + 1;
-                else if (diffDays > 2) streakDays = 1;
-            }
-            localStorage.setItem(`hpgk_last_active_${user.uid}`, todayStr);
-            localStorage.setItem(`hpgk_streak_${user.uid}`, streakDays);
-
-            document.getElementById('user-xp-val').innerText = `${calculatedXP.toLocaleString('en-IN')} XP`;
-            document.getElementById('user-streak-val').innerText = `${streakDays} Day${streakDays > 1 ? 's' : ''} Streak`;
-
-            let levelName = 'HPGK Novice Aspirant';
-            let levelIcon = '<i class="fa-solid fa-seedling" style="color:#15803d;"></i>';
-            let targetXP = 250;
-
-            if (calculatedXP >= 4500) {
-                levelName = 'HPGK HPAS Legend Officer';
-                levelIcon = '<i class="fa-solid fa-crown" style="color:#b45309;"></i>';
-                targetXP = 10000;
-            } else if (calculatedXP >= 2000) {
-                levelName = 'HPGK Naib Tehsildar Elite';
-                levelIcon = '<i class="fa-solid fa-award" style="color:#7e22ce;"></i>';
-                targetXP = 4500;
-            } else if (calculatedXP >= 800) {
-                levelName = 'HPGK District Vanguard';
-                levelIcon = '<i class="fa-solid fa-shield-cat" style="color:#1d4ed8;"></i>';
-                targetXP = 2000;
-            } else if (calculatedXP >= 250) {
-                levelName = 'HPGK Scholar Warrior';
-                levelIcon = '<i class="fa-solid fa-graduation-cap" style="color:#15803d;"></i>';
-                targetXP = 800;
-            }
-
-            document.getElementById('user-level-name').innerText = levelName;
-            document.getElementById('user-level-icon').innerHTML = levelIcon;
-
-            const xpPercentage = Math.min(100, Math.round((calculatedXP / targetXP) * 100));
-            document.getElementById('xp-bar-fill').style.width = `${xpPercentage}%`;
-            document.getElementById('xp-progress-label').innerText = `${calculatedXP} / ${targetXP} XP`;
-
-            if (calculatedXP >= 500) {
-                document.getElementById('reward-card-1').classList.remove('locked');
-                document.getElementById('reward-card-1').classList.add('unlocked');
-                document.getElementById('req-text-1').innerText = '✓ Requirement Met!';
-                const btn1 = document.getElementById('claim-btn-1');
-                btn1.innerText = 'Claim Code';
-                btn1.disabled = false;
-            }
-
-            if (calculatedXP >= 1200 && streakDays >= 7) {
-                document.getElementById('reward-card-2').classList.remove('locked');
-                document.getElementById('reward-card-2').classList.add('unlocked');
-                document.getElementById('req-text-2').innerText = '✓ Requirement Met!';
-                const btn2 = document.getElementById('claim-btn-2');
-                btn2.innerText = 'Claim Code';
-                btn2.disabled = false;
-            }
-
-            if (calculatedXP >= 2500 && streakDays >= 15) {
-                document.getElementById('reward-card-3').classList.remove('locked');
-                document.getElementById('reward-card-3').classList.add('unlocked');
-                document.getElementById('req-text-3').innerText = '✓ Requirement Met!';
-                const btn3 = document.getElementById('claim-btn-3');
-                btn3.innerText = 'Claim Code';
-                btn3.disabled = false;
-            }
-
             const categoryMap = {
                 'rivers': 'Rivers of HP', 'geography': 'Geography of HP', 'history': 'History of HP',
                 'economy': 'Economy of HP', 'polity': 'Polity of HP', 'art culture': 'Art & Culture',
@@ -1948,6 +1674,153 @@
                 }
             });
 
+            // FRAUD & SPAM PROTECTED XP CALCULATION
+            let totalCorrectAnswers = 0;
+            let validMocksCompleted = 0;
+            let highAccuracyBonusSets = 0;
+            const validatedMockPaperIds = new Set();
+
+            records.forEach(r => {
+                if (r.isMock) {
+                    const totalQs = r._safeTotal || 0;
+                    const correct = r._safeCorrect || 0;
+                    const wrong = r._safeWrong || 0;
+                    const attempted = correct + wrong;
+                    const timeSecs = r._safeTime || 0;
+                    const mockKey = r.testId || r.category || r.id;
+
+                    const isAttemptValid = totalQs > 0 && ((attempted / totalQs) >= 0.40 || attempted >= 15);
+                    const isTimeValid = timeSecs >= 120 || (timeSecs >= attempted * 3);
+                    const isScoreValid = totalQs > 0 && ((correct / totalQs) >= 0.25);
+
+                    if (isAttemptValid && isTimeValid && isScoreValid) {
+                        if (!validatedMockPaperIds.has(mockKey)) {
+                            validatedMockPaperIds.add(mockKey);
+                            validMocksCompleted++;
+                        }
+                    }
+                } else {
+                    const correctCount = (r.correct || r.score || 0);
+                    const totalQs = (r.total || 0);
+                    totalCorrectAnswers += correctCount;
+                    
+                    if (totalQs >= 15 && (correctCount / totalQs) >= 0.8) {
+                        highAccuracyBonusSets++;
+                    }
+                }
+            });
+
+            // DAILY STUDY TARGET COMPUTATION (Target: 20 MCQs solved today)
+            const todayStart = new Date();
+            todayStart.setHours(0,0,0,0);
+            let todaySolvedCount = 0;
+            records.forEach(r => {
+                if (r.timestamp && r.timestamp >= todayStart.getTime()) {
+                    todaySolvedCount += (r._safeTotal || 0);
+                }
+            });
+            const goalTarget = 20;
+            const goalFillPct = Math.min(100, Math.round((todaySolvedCount / goalTarget) * 100));
+            const goalBarEl = document.getElementById('goal-bar-fill');
+            const goalTextEl = document.getElementById('daily-solved-count');
+            if (goalBarEl) goalBarEl.style.width = `${goalFillPct}%`;
+            if (goalTextEl) goalTextEl.innerText = todaySolvedCount;
+
+            // BALANCED XP FORMULA: +1 XP per correct answer
+            const calculatedXP = (totalCorrectAnswers * 1) + (validMocksCompleted * 30) + (highAccuracyBonusSets * 15) + (referralCount * 20);
+            
+            let streakDays = 1;
+            const lastActiveDate = localStorage.getItem(`hpgk_last_active_${user.uid}`);
+            const todayStr = new Date().toDateString();
+
+            if (lastActiveDate) {
+                const prevDate = new Date(lastActiveDate);
+                const diffTime = Math.abs(new Date() - prevDate);
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                
+                let savedStreak = Number(localStorage.getItem(`hpgk_streak_${user.uid}`)) || 1;
+                if (diffDays === 1) streakDays = savedStreak;
+                else if (diffDays === 2) streakDays = savedStreak + 1;
+                else if (diffDays > 2) streakDays = 1;
+            }
+            localStorage.setItem(`hpgk_last_active_${user.uid}`, todayStr);
+            localStorage.setItem(`hpgk_streak_${user.uid}`, streakDays);
+
+            document.getElementById('user-xp-val').innerText = `${calculatedXP.toLocaleString('en-IN')} XP`;
+            document.getElementById('user-streak-val').innerText = `${streakDays} Day${streakDays > 1 ? 's' : ''} Streak`;
+
+            // EXACT 4 PAHARI RANK RUNGS: 500, 1200, 2500, 4500+
+            let levelName = 'Pahari Quiz Abhyarthi';
+            let levelIcon = '<i class="fa-solid fa-seedling" style="color:#15803d;"></i>';
+            let targetXP = 500;
+            let currentStepIdx = 1;
+
+            if (calculatedXP >= 4500) {
+                levelName = 'HPAS Pahari Shikhar Officer';
+                levelIcon = '<i class="fa-solid fa-crown" style="color:#b45309;"></i>';
+                targetXP = 10000;
+                currentStepIdx = 4;
+            } else if (calculatedXP >= 2500) {
+                levelName = 'Himachal Tehsildar Elite';
+                levelIcon = '<i class="fa-solid fa-award" style="color:#7e22ce;"></i>';
+                targetXP = 4500;
+                currentStepIdx = 3;
+            } else if (calculatedXP >= 1200) {
+                levelName = 'Pahari Study Yoddha';
+                levelIcon = '<i class="fa-solid fa-shield-cat" style="color:#1d4ed8;"></i>';
+                targetXP = 2500;
+                currentStepIdx = 2;
+            } else if (calculatedXP >= 500) {
+                levelName = 'Pahari Study Yoddha';
+                levelIcon = '<i class="fa-solid fa-swords" style="color:#15803d;"></i>';
+                targetXP = 1200;
+                currentStepIdx = 2;
+            }
+
+            document.getElementById('user-level-name').innerText = levelName;
+            document.getElementById('user-level-icon').innerHTML = levelIcon;
+
+            // Highlight active rank in roadmap
+            for (let s = 1; s <= 4; s++) {
+                const stepEl = document.getElementById(`step-${s}`);
+                if (stepEl) {
+                    if (s <= currentStepIdx) stepEl.classList.add('active');
+                    else stepEl.classList.remove('active');
+                }
+            }
+
+            const xpPercentage = Math.min(100, Math.round((calculatedXP / targetXP) * 100));
+            document.getElementById('xp-bar-fill').style.width = `${xpPercentage}%`;
+            document.getElementById('xp-progress-label').innerText = `${calculatedXP} / ${targetXP} XP`;
+
+            // REWARD MILESTONES (500, 1200, 2500 XP)
+            if (calculatedXP >= 500) {
+                document.getElementById('reward-card-1').classList.remove('locked');
+                document.getElementById('reward-card-1').classList.add('unlocked');
+                document.getElementById('req-text-1').innerText = '✓ Requirement Met!';
+                const btn1 = document.getElementById('claim-btn-1');
+                btn1.innerText = 'Claim Code';
+                btn1.disabled = false;
+            }
+
+            if (calculatedXP >= 1200 && streakDays >= 7) {
+                document.getElementById('reward-card-2').classList.remove('locked');
+                document.getElementById('reward-card-2').classList.add('unlocked');
+                document.getElementById('req-text-2').innerText = '✓ Requirement Met!';
+                const btn2 = document.getElementById('claim-btn-2');
+                btn2.innerText = 'Claim Code';
+                btn2.disabled = false;
+            }
+
+            if (calculatedXP >= 2500 && streakDays >= 15) {
+                document.getElementById('reward-card-3').classList.remove('locked');
+                document.getElementById('reward-card-3').classList.add('unlocked');
+                document.getElementById('req-text-3').innerText = '✓ Requirement Met!';
+                const btn3 = document.getElementById('claim-btn-3');
+                btn3.innerText = 'Claim Code';
+                btn3.disabled = false;
+            }
+
             const finalMocks = Object.values(latestMocks).sort((a,b) => (b.timestamp || 0) - (a.timestamp || 0));
             const finalTopics = Object.values(latestTopics).sort((a,b) => (b.timestamp || 0) - (a.timestamp || 0));
 
@@ -1956,51 +1829,6 @@
                 catStats[data.cleanCatName].correct += data._safeCorrect;
                 catStats[data.cleanCatName].total += data._safeTotal;
             });
-
-            const resumeContainer = document.getElementById('quick-resume-box');
-            let hasAtLeastOneAttempt = false;
-
-            if (finalMocks.length > 0) {
-                const lastMock = finalMocks[0];
-                const mockCard = document.getElementById('resume-mock-card');
-                const mockTitle = document.getElementById('resume-mock-title');
-                const mockSub = document.getElementById('resume-mock-sub');
-                const mockBtn = document.getElementById('resume-mock-btn');
-
-                let acc = lastMock.accuracy !== undefined ? lastMock.accuracy : (lastMock._safeTotal > 0 ? Math.round((lastMock._safeCorrect / lastMock._safeTotal) * 100) : 0);
-
-                mockTitle.innerText = lastMock.displayTitle;
-                mockSub.innerText = `Score: ${lastMock.score}/${lastMock._safeTotal} • Acc: ${acc}%`;
-                mockBtn.href = window.getCategoryUrl(lastMock.category || lastMock.testId) + '?mode=summary';
-                
-                mockCard.style.display = 'flex';
-                hasAtLeastOneAttempt = true;
-            } else {
-                document.getElementById('resume-mock-card').style.display = 'none';
-            }
-
-            if (finalTopics.length > 0) {
-                const lastTopic = finalTopics[0];
-                const topicCard = document.getElementById('resume-topic-card');
-                const topicTitle = document.getElementById('resume-topic-title');
-                const topicSub = document.getElementById('resume-topic-sub');
-                const topicBtn = document.getElementById('resume-topic-btn');
-
-                let acc = lastTopic.accuracy !== undefined ? lastTopic.accuracy : (lastTopic._safeTotal > 0 ? Math.round((lastTopic._safeCorrect / lastTopic._safeTotal) * 100) : 0);
-
-                topicTitle.innerText = lastTopic.displayTitle;
-                topicSub.innerText = `Solved: ${lastTopic._safeTotal} Qs • Acc: ${acc}%`;
-                topicBtn.href = window.getCategoryUrl(lastTopic.category);
-                
-                topicCard.style.display = 'flex';
-                hasAtLeastOneAttempt = true;
-            } else {
-                document.getElementById('resume-topic-card').style.display = 'none';
-            }
-
-            if (hasAtLeastOneAttempt) {
-                resumeContainer.style.display = 'flex';
-            }
 
             if (finalMocks.length > 0) {
                 document.getElementById('stat-mock-count').innerText = finalMocks.length;
@@ -2065,89 +1893,118 @@
                 document.getElementById('mock-perf-list').innerHTML = `<div style="text-align:center; padding:12px; color:var(--text-sec); font-size:0.72rem;">No mock test attempts recorded yet.</div>`;
             }
 
-            const sortedCats = Object.keys(catStats).map(cat => ({
+            window.rawSortedTopics = Object.keys(catStats).map(cat => ({
                 name: cat,
                 rawCat: catStats[cat].rawCat,
                 acc: catStats[cat].total > 0 ? Math.round((catStats[cat].correct / catStats[cat].total) * 100) : 0,
                 total: catStats[cat].total
-            })).sort((a, b) => b.total - a.total).slice(0, 15); 
+            })).sort((a, b) => b.total - a.total);
 
-            if (sortedCats.length > 0) {
-                let subjectHtml = '';
-                sortedCats.forEach(cat => {
-                    let barClass = 'red-grad';
-                    let barColor = 'var(--danger)';
-                    let weakBadge = '';
-                    let improveLink = '';
+            renderTopicMasteryList(window.rawSortedTopics.slice(0, 15));
 
-                    const topicUrl = window.getCategoryUrl(cat.rawCat, cat.name);
+            // MAX WEAK-SPOTS DISPLAY SECTION
+            const weakSpotContainer = document.getElementById('weak-spot-banner-container');
+            const weakCats = window.rawSortedTopics.filter(c => c.acc < 50);
 
-                    if (cat.acc >= 75) {
-                        barClass = 'green-grad';
-                        barColor = 'var(--success)';
-                    } else if (cat.acc >= 50) {
-                        barClass = 'yellow-grad';
-                        barColor = 'var(--warning)';
-                    } else {
-                        barClass = 'red-grad';
-                        barColor = 'var(--danger)';
-                        weakBadge = `<span class="badge-weak"><i class="fa-solid fa-triangle-exclamation"></i> Focus</span>`;
-                        improveLink = `<a href="${topicUrl}" class="btn-improve-link">Improve <i class="fa-solid fa-arrow-right"></i></a>`;
-                    }
+            if (weakCats.length > 0 && weakSpotContainer) {
+                const weakRawKeys = weakCats.map(c => c.rawCat || c.name);
+                
+                const weakPillsHtml = weakCats.map(wc => {
+                    const url = window.getCategoryUrl(wc.rawCat, wc.name);
+                    return `<a href="${url}" class="weak-spot-pill" title="Practice ${wc.name} directly">${wc.name} (${wc.acc}%) <i class="fa-solid fa-arrow-right" style="font-size:0.55rem;"></i></a>`;
+                }).join('');
 
-                    subjectHtml += `
-                    <div class="subject-perf-item">
-                        <div class="perf-labels">
-                            <span style="display:flex; align-items:center;">${cat.name} ${weakBadge} ${improveLink}</span>
-                            <span style="color:${barColor}; font-weight:800;">${cat.acc}%</span>
-                        </div>
-                        <div class="perf-track">
-                            <div class="perf-fill ${barClass}" style="width: ${cat.acc}%;"></div>
-                        </div>
-                    </div>`;
-                });
-                document.getElementById('subject-perf-list').innerHTML = subjectHtml;
-
-                const weakSpotContainer = document.getElementById('weak-spot-banner-container');
-                const weakCats = sortedCats.filter(c => c.acc < 50);
-
-                if (weakCats.length > 0 && weakSpotContainer) {
-                    const weakNames = weakCats.map(c => c.name).join(', ');
-                    const weakRawKeys = weakCats.map(c => c.rawCat || c.name);
-                    
-                    weakSpotContainer.innerHTML = `
-                        <div class="glass-panel" style="background: linear-gradient(135deg, rgba(185, 28, 28, 0.08) 0%, rgba(239, 68, 68, 0.02) 100%); border: 1.5px solid rgba(185, 28, 28, 0.35); display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; gap: 12px; border-radius: var(--radius-lg);">
-                            <div style="display: flex; align-items: center; gap: 12px;">
+                weakSpotContainer.innerHTML = `
+                    <div class="glass-panel" style="background: linear-gradient(135deg, rgba(185, 28, 28, 0.08) 0%, rgba(239, 68, 68, 0.02) 100%); border: 1.5px solid rgba(185, 28, 28, 0.35); display: flex; flex-direction: column; gap: 10px; padding: 14px 16px; border-radius: var(--radius-lg);">
+                        <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;">
+                            <div style="display: flex; align-items: center; gap: 10px;">
                                 <div style="width: 36px; height: 36px; border-radius: 10px; background: rgba(185, 28, 28, 0.15); color: var(--danger); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;">
                                     <i class="fa-solid fa-bolt"></i>
                                 </div>
                                 <div>
-                                    <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 6px;">
+                                    <div style="font-size: 0.88rem; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 6px;">
                                         Smart Weak-Spot Targeter
-                                        <span style="font-size: 0.6rem; background: var(--danger); color: #fff; padding: 2px 6px; border-radius: 4px; font-weight: 800;">${weakCats.length} Subject${weakCats.length > 1 ? '' : 's'} Need Focus</span>
+                                        <span style="font-size: 0.6rem; background: var(--danger); color: #fff; padding: 2px 6px; border-radius: 4px; font-weight: 800;">${weakCats.length} Focus Area${weakCats.length > 1 ? 's' : ''} Identified</span>
                                     </div>
                                     <div style="font-size: 0.7rem; color: var(--text-sec); font-weight: 700; margin-top: 2px;">
-                                        Targeted focus areas: <strong style="color: var(--danger);">${weakNames}</strong>
+                                        Focus on weak topics below or launch a combined 10-question booster set.
                                     </div>
                                 </div>
                             </div>
-                            <button onclick="launchWeakSpotBooster(${JSON.stringify(weakRawKeys).replace(/"/g, '&quot;')})" style="background: linear-gradient(135deg, #b91c1c, #991b1b); color: #ffffff; border: none; padding: 7px 14px; border-radius: 8px; font-size: 0.72rem; font-weight: 800; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; white-space: nowrap; flex-shrink: 0; box-shadow: 0 3px 10px rgba(185, 28, 28, 0.3); transition: all 0.2s;">
-                                ⚡ Launch 10-Q Booster <i class="fa-solid fa-arrow-right"></i>
+                            <button onclick="launchWeakSpotBooster(${JSON.stringify(weakRawKeys).replace(/"/g, '&quot;')})" style="background: linear-gradient(135deg, #b91c1c, #991b1b); color: #ffffff; border: none; padding: 8px 16px; border-radius: 8px; font-size: 0.75rem; font-weight: 800; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; box-shadow: 0 3px 10px rgba(185, 28, 28, 0.3); transition: all 0.2s;">
+                                ⚡ Launch Combined 10-Q Booster <i class="fa-solid fa-arrow-right"></i>
                             </button>
                         </div>
-                    `;
-                    weakSpotContainer.style.display = 'block';
-                } else if (weakSpotContainer) {
-                    weakSpotContainer.style.display = 'none';
-                }
-            } else {
-                document.getElementById('subject-perf-list').innerHTML = `<div style="text-align:center; padding:12px; color:var(--text-sec); font-size:0.72rem;">No topic quiz attempts recorded yet.</div>`;
+                        <div style="display: flex; gap: 6px; flex-wrap: wrap; align-items: center; border-top: 1px dashed var(--card-border); padding-top: 8px; margin-top: 2px;">
+                            <span style="font-size: 0.65rem; font-weight: 800; color: var(--text-sec); text-transform: uppercase;">All Weak Topics (<50%):</span>
+                            ${weakPillsHtml}
+                        </div>
+                    </div>
+                `;
+                weakSpotContainer.style.display = 'block';
+            } else if (weakSpotContainer) {
+                weakSpotContainer.style.display = 'none';
             }
 
         } catch (error) {
             console.error("Error fetching stats:", error);
         }
     }
+
+    window.renderTopicMasteryList = function(list) {
+        if (!list || list.length === 0) {
+            document.getElementById('subject-perf-list').innerHTML = `<div style="text-align:center; padding:12px; color:var(--text-sec); font-size:0.72rem;">No matching topics found.</div>`;
+            return;
+        }
+
+        let subjectHtml = '';
+        list.forEach(cat => {
+            let barClass = 'red-grad';
+            let barColor = 'var(--danger)';
+            let weakBadge = '';
+            let improveLink = '';
+
+            const topicUrl = window.getCategoryUrl(cat.rawCat, cat.name);
+
+            if (cat.acc >= 75) {
+                barClass = 'green-grad';
+                barColor = 'var(--success)';
+            } else if (cat.acc >= 50) {
+                barClass = 'yellow-grad';
+                barColor = 'var(--warning)';
+            } else {
+                barClass = 'red-grad';
+                barColor = 'var(--danger)';
+                weakBadge = `<span class="badge-weak"><i class="fa-solid fa-triangle-exclamation"></i> Focus</span>`;
+                improveLink = `<a href="${topicUrl}" class="btn-improve-link">Improve <i class="fa-solid fa-arrow-right"></i></a>`;
+            }
+
+            subjectHtml += `
+            <div class="subject-perf-item">
+                <div class="perf-labels">
+                    <span style="display:flex; align-items:center;">${cat.name} ${weakBadge} ${improveLink}</span>
+                    <span style="color:${barColor}; font-weight:800;">${cat.acc}%</span>
+                </div>
+                <div class="perf-track">
+                    <div class="perf-fill ${barClass}" style="width: ${cat.acc}%;"></div>
+                </div>
+            </div>`;
+        });
+        document.getElementById('subject-perf-list').innerHTML = subjectHtml;
+    };
+
+    window.filterTopicMasteryList = function() {
+        const query = (document.getElementById('topic-mastery-search').value || '').toLowerCase().trim();
+        if (!window.rawSortedTopics) return;
+        
+        if (!query) {
+            window.renderTopicMasteryList(window.rawSortedTopics.slice(0, 15));
+            return;
+        }
+
+        const filtered = window.rawSortedTopics.filter(t => t.name.toLowerCase().includes(query));
+        window.renderTopicMasteryList(filtered);
+    };
 
     window.launchWeakSpotBooster = function(categories) {
         sessionStorage.setItem('hpgk_weak_spots', JSON.stringify(categories));
