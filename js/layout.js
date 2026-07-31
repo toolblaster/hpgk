@@ -1104,7 +1104,7 @@ function showUpgradeModal(quota) {
                     </div>
                 </div>
 
-                <button class="hpgk-btn-primary" onclick="window.location.href='../user/upgrade.html'">
+                <button class="hpgk-btn-primary" onclick="window.location.href='https://hpgk.toolblaster.com/user/upgrade.html'">
                     View All Upgrade Plans & Pass Options
                 </button>
                 <button class="hpgk-btn-secondary" onclick="document.getElementById('hpgk-upgrade-modal').classList.remove('active')">
