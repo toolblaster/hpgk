@@ -58,10 +58,10 @@
 
         if (hasTimerStarted && !isAlreadyClaimed && !timerState.isExpired) {
             localStorage.setItem('hpgk_bonus_questions_claimed', 'true');
-            console.log("[AccessGuard] 🎉 Bonus +10 Questions awarded successfully!");
+            console.log("[AccessGuard] ðŸŽ‰ Bonus +10 Questions awarded successfully!");
             
             if (window.HPGK_Layout && typeof window.HPGK_Layout.showToast === 'function') {
-                window.HPGK_Layout.showToast("🎉 Bonus Unlocked! +10 Extra Free Questions added to your quota.");
+                window.HPGK_Layout.showToast("ðŸŽ‰ Bonus Unlocked! +10 Extra Free Questions added to your quota.");
             }
         }
     }
@@ -266,7 +266,7 @@
 
                 btnHtml = `
                     <div class="paywall-price-tag">
-                        <span class="currency">₹</span>39<span class="period">/month</span>
+                        <span class="currency">â‚¹</span>39<span class="period">/month</span>
                     </div>
 
                     <ul class="paywall-features-list">
@@ -275,9 +275,9 @@
                         <li><i class="fa-solid fa-circle-check"></i> Score Tracking & Analytics Dashboard</li>
                     </ul>
 
-                    <button class="paywall-btn paywall-btn-pro" onclick="window.location.href='../user/upgrade.html'">
+                    <button class="paywall-btn paywall-btn-pro" onclick="window.location.href='https://hpgk.toolblaster.com/user/upgrade.html'">
                         <i class="fa-solid fa-rocket"></i>
-                        <span>Get MCQ Pro Pass — ₹39/mo</span>
+                        <span>Get MCQ Pro Pass â€” â‚¹39/mo</span>
                     </button>
 
                     <div class="paywall-trust-badge">
