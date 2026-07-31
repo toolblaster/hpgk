@@ -214,7 +214,7 @@
         <div class="nav-item active" onclick="switchTab('overview', this)" title="Command Center: Financial overview, quick pass activation, and growth statistics.">
             <i class="fa-solid fa-bolt"></i> Command Center
         </div>
-        <div class="nav-item" onclick="switchTab('rewards', this)" title="Rewards & Claims Vault: Validate student claim tokens and convert achievement vouchers to active VIP passes instantly.">
+        <div class="nav-item" onclick="switchTab('rewards', this)" title="Rewards & Claims Vault: Validate student claim tokens, convert achievement vouchers to VIP passes, and moderate leaderboard anti-cheat.">
             <i class="fa-solid fa-gift" style="color:var(--warning);"></i> Rewards & Claims
             <span class="badge-count">NEW</span>
         </div>
@@ -226,9 +226,6 @@
         </div>
         <div class="nav-item" onclick="switchTab('marketing', this)" title="Growth & Export: Download full user CSV databases and extract email dumps for marketing campaigns.">
             <i class="fa-solid fa-bullhorn"></i> Growth & Export
-        </div>
-        <div class="nav-item" onclick="switchTab('moderation', this)" title="Leaderboard Admin: Reset ranks, clear cheated score documents, and purge leaderboard spam.">
-            <i class="fa-solid fa-trophy"></i> Leaderboard Admin
         </div>
         <div class="nav-item" onclick="switchTab('logs', this)" title="Admin Audit Logs: Real-time security log of all manual grants, pass revokes, notes edits, and purges.">
             <i class="fa-solid fa-receipt"></i> Admin Audit Logs
@@ -371,7 +368,7 @@
                     <option value="0.5">⚡ 12 Hours Speed Pass</option>
                     <option value="1">🔥 24 Hours (1 Day Trial)</option>
                     <option value="2">🎁 48 Hours (2 Days)</option>
-                    <option value="3">🚀 72 Hours (3 Days All-Access)</option>
+                    <option value="5">🚀 5 Days All-Access VIP Pass</option>
                     <option value="7">7 Days Access</option>
                     <option value="30" selected>30 Days (1 Month)</option>
                     <option value="90">90 Days (3 Months)</option>
@@ -390,23 +387,39 @@
                 </label>
             </div>
 
-            <div id="grant-msg" style="margin-top: 8px; font-size: 0.7rem; font-weight: 700; text-align: center;"></div>
+            <div id="grant-msg" style="margin-top: 8px; font-size: 0.7rem; font-weight: 700; text-text-align: center;"></div>
         </div>
     </div>
 
-    <!-- TAB 2: REWARDS & TOKEN CLAIMS VAULT -->
+    <!-- TAB 2: REWARDS & TOKEN CLAIMS VAULT + LEADERBOARD MODERATION -->
     <div id="tab-rewards" class="tab-content">
+        <!-- LEADERBOARD MODERATION & ANTI-CHEAT SECTION (MOVED TO TOP) -->
+        <div class="panel-box" style="margin-bottom: 15px;">
+            <h2 style="margin: 0 0 12px 0; font-size: 1rem; display: inline-flex; align-items: center; gap: 8px;">
+                <i class="fa-solid fa-shield-cat" style="color:var(--warning);"></i>
+                <span>Leaderboard Moderation & Anti-Cheat</span>
+            </h2>
+            <p style="font-size:0.75rem; color:var(--text-sec); margin-bottom:15px;">Manage or reset suspicious user ranks, clear cheated score documents, or purge individual leaderboard entries.</p>
+            
+            <div style="display: flex; gap: 10px; max-width: 500px; margin-bottom: 10px;">
+                <input type="text" id="mod-uid" class="form-control" placeholder="Target Student UID to purge..." title="Enter the UID of the user whose rank document you want to delete.">
+                <button class="btn-sm btn-danger" style="white-space:nowrap;" onclick="purgeUserFromLeaderboard()" title="Permanently delete user rank document from public leaderboard."><i class="fa-solid fa-trash"></i> Purge Rank Data</button>
+            </div>
+            <div id="mod-msg" style="font-size:0.75rem; font-weight:700;"></div>
+        </div>
+
+        <!-- STUDENT REWARD CLAIMS & TOKEN CONVERTER (MOVED BELOW) -->
         <div class="panel-box">
             <h2 style="margin: 0 0 8px 0; font-size: 1rem; color: var(--text-main); display: inline-flex; align-items: center; gap: 8px;">
                 <i class="fa-solid fa-gift" style="color:var(--warning);"></i> Student Reward Claims & Token Converter
             </h2>
-            <p style="font-size:0.75rem; color:var(--text-sec); margin-bottom:16px;">Approve earned tokens and convert student achievements into active VIP Passes with 1-click verification.</p>
+            <p style="font-size:0.75rem; color:var(--text-sec); margin-bottom:16px;">Approve earned tokens and convert student achievements into active Mock Master VIP Passes with 1-click verification.</p>
 
             <div style="display:grid; grid-template-columns: 1fr 2fr; gap:16px;">
                 <div style="background:rgba(0,0,0,0.2); border:1px solid var(--border-color); padding:16px; border-radius:var(--radius-lg);">
                     <div class="form-group">
                         <label>Claim Token</label>
-                        <input type="text" id="vault-token-input" class="form-control" placeholder="CLAIM-3DAY_2500XP-XYZ123">
+                        <input type="text" id="vault-token-input" class="form-control" placeholder="CLAIM-5DAY_2500XP-XYZ123">
                     </div>
 
                     <div class="form-group">
@@ -420,7 +433,7 @@
                             <option value="12HR">⚡ 12-Hour Speed Pass (Mock Master VIP)</option>
                             <option value="24HR">🔥 24-Hour VIP Trial (Mock Master VIP)</option>
                             <option value="48HR">🎁 48-Hour Unlimited Pass (Mock Master VIP)</option>
-                            <option value="3DAY">🚀 3-Day All-Access Pass (Mock Master VIP)</option>
+                            <option value="5DAY">🚀 5-Day All-Access VIP Pass (Mock Master VIP)</option>
                             <option value="30DAY">👑 30-Day VIP Pass (Mock Master VIP)</option>
                         </select>
                     </div>
@@ -544,24 +557,7 @@
         </div>
     </div>
 
-    <!-- TAB 6: LEADERBOARD MODERATION -->
-    <div id="tab-moderation" class="tab-content">
-        <div class="panel-box">
-            <h2 style="margin: 0 0 12px 0; font-size: 1rem; display: inline-flex; align-items: center; gap: 8px;">
-                <i class="fa-solid fa-shield-cat" style="color:var(--warning);"></i>
-                <span>Leaderboard Moderation & Anti-Cheat</span>
-            </h2>
-            <p style="font-size:0.75rem; color:var(--text-sec); margin-bottom:15px;">Manage or reset suspicious user ranks or clear individual leaderboard entries.</p>
-            
-            <div style="display: flex; gap: 10px; max-width: 500px; margin-bottom: 15px;">
-                <input type="text" id="mod-uid" class="form-control" placeholder="Target Student UID to purge..." title="Enter the UID of the user whose rank document you want to delete.">
-                <button class="btn-sm btn-danger" style="white-space:nowrap;" onclick="purgeUserFromLeaderboard()" title="Permanently delete user rank document from public leaderboard."><i class="fa-solid fa-trash"></i> Purge Rank Data</button>
-            </div>
-            <div id="mod-msg" style="font-size:0.75rem; font-weight:700;"></div>
-        </div>
-    </div>
-
-    <!-- TAB 7: ADMIN AUDIT LOGS -->
+    <!-- TAB 6: ADMIN AUDIT LOGS -->
     <div id="tab-logs" class="tab-content">
         <div class="panel-box">
             <h2 style="margin: 0 0 12px 0; font-size: 1rem; display: inline-flex; align-items: center; gap: 8px;">
@@ -591,7 +587,7 @@
         </div>
     </div>
 
-    <!-- TAB 8: SYSTEM HEALTH -->
+    <!-- TAB 7: SYSTEM HEALTH -->
     <div id="tab-health" class="tab-content">
         <div class="panel-box" style="background: linear-gradient(135deg, rgba(30,41,59,1), rgba(16,185,129,0.05)); border-color: rgba(16,185,129,0.2); max-width: 600px;">
             <h2 style="margin: 0 0 12px 0; font-size: 1rem; color: var(--success); display: inline-flex; align-items: center; gap: 8px;">
@@ -641,7 +637,7 @@
             <div style="display:flex; gap:6px; flex-wrap:wrap;">
                 <button class="btn-sm btn-success" onclick="quickExtendActiveUser(0.0416)" title="Grant 1 Hour reward pass">+1 Hour Test</button>
                 <button class="btn-sm btn-success" onclick="quickExtendActiveUser(1)" title="Grant 24 hours (1 Day) pass">+24h Reward</button>
-                <button class="btn-sm btn-success" onclick="quickExtendActiveUser(3)" title="Grant 72 hours (3 Days) pass">+3 Days</button>
+                <button class="btn-sm btn-success" onclick="quickExtendActiveUser(5)" title="Grant 5 Days pass">+5 Days VIP</button>
                 <button class="btn-sm btn-success" onclick="quickExtendActiveUser(7)" title="Grant 7 Days pass">+7 Days</button>
                 <button class="btn-sm btn-success" onclick="quickExtendActiveUser(30)" title="Grant 30 Days pass">+30 Days</button>
             </div>
@@ -762,11 +758,10 @@
         
         const titleMap = {
             'overview': '<i class="fa-solid fa-bolt"></i> Command Center',
-            'rewards': '<i class="fa-solid fa-gift" style="color:var(--warning);"></i> Rewards & Claims Vault',
+            'rewards': '<i class="fa-solid fa-gift" style="color:var(--warning);"></i> Rewards, Claims & Moderation',
             'matrix': '<i class="fa-solid fa-users-viewfinder"></i> User Matrix Directory',
             'payments': '<i class="fa-solid fa-money-bill-transfer"></i> Payment Desk & Ledger',
             'marketing': '<i class="fa-solid fa-bullhorn"></i> Growth & Export Center',
-            'moderation': '<i class="fa-solid fa-trophy"></i> Leaderboard Anti-Cheat Moderation',
             'logs': '<i class="fa-solid fa-receipt"></i> Admin Audit Trail Logs',
             'health': '<i class="fa-solid fa-heart-pulse"></i> Infrastructure System Health'
         };
@@ -879,7 +874,7 @@
         if (passType === '12HR') { days = 0.5; planId = 'mock_master_pass'; planName = '12-Hour Speed Pass (VIP)'; }
         else if (passType === '24HR') { days = 1; planId = 'mock_master_pass'; planName = '24-Hour VIP Trial (VIP)'; }
         else if (passType === '48HR') { days = 2; planId = 'mock_master_pass'; planName = '48-Hour VIP Pass'; }
-        else if (passType === '3DAY') { days = 3; planId = 'mock_master_pass'; planName = '3-Day All-Access Pass (VIP)'; }
+        else if (passType === '5DAY') { days = 5; planId = 'mock_master_pass'; planName = '5-Day All-Access VIP Pass'; }
         else if (passType === '30DAY') { days = 30; planId = 'mock_master_pass'; planName = '30-Day Mock Master Pass'; }
 
         msgBox.innerHTML = '<span style="color:var(--warning);"><i class="fa-solid fa-circle-notch fa-spin"></i> Activating...</span>';
@@ -987,7 +982,6 @@
 
             const allUids = new Set([...Object.keys(lbMap), ...Object.keys(usersMap)]);
             
-            // Build fallback lookup for emails across user passes & transactions
             const txEmailMap = {};
             usersSnap.forEach(d => {
                 const uData = d.data();
@@ -1018,10 +1012,7 @@
                 let uData = usersMap[uid] || {};
 
                 let userName = uData.name || uData.displayName || lb.name || uData.userName || 'Student';
-                // Exhaustive email fallback search (users collection, leaderboard, passes, transactions)
                 let userEmail = uData.email || uData.userEmail || uData.mail || lb.email || lb.userEmail || txEmailMap[uid] || '';
-
-                // Safe user photo extraction
                 let userPhoto = uData.photo || uData.photoURL || lb.photo || lb.photoURL || 'https://ui-avatars.com/api/?name=' + encodeURIComponent(userName) + '&background=334155&color=fff';
 
                 let passType = 'free';
