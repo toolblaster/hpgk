@@ -211,8 +211,22 @@
         }
         .print-btn:hover { color: var(--primary); border-color: var(--primary); background: var(--primary-light); }
 
-        /* Compact Hero Section */
-        .page-header-top { text-align: center; margin-bottom: 25px; margin-top: 0; padding-top: 0; width: 100%; }
+        /* VISUALLY DISTINCTION HERO SECTION CONTAINER (NO EXTRA MARGIN/PADDING ALTERATION) */
+        .page-header-top { 
+            text-align: center; margin-bottom: 25px; margin-top: 0; padding-top: 0; width: 100%; 
+            position: relative; box-sizing: border-box;
+            background: rgba(255, 255, 255, 0.45);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-xl);
+            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.04);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            padding: 20px 16px;
+        }
+        [data-theme="dark"] .page-header-top {
+            background: rgba(30, 41, 59, 0.45);
+            border-color: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
 
         .hero-title { 
             margin: 0 0 8px 0; letter-spacing: -0.8px; background: linear-gradient(135deg, var(--text-main) 0%, var(--primary) 100%);
@@ -224,7 +238,7 @@
         .hero-desc span.hi-desc { font-family: 'Noto Sans Devanagari', sans-serif; font-size: 0.85rem; color: var(--text-sec); display: block; margin-top: 4px; font-weight: 500; }
         [data-theme="dark"] .hero-desc span.hi-desc { color: #e2e8f0; }
 
-        /* HIGH-CONTRAST INTERLINKING PILL (EXACTLY 3 LINKS) */
+        /* HIGH-CONTRAST INTERLINKING PILL */
         .hero-interlinks {
             display: inline-flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px;
             margin-top: 15px; padding: 10px 20px; background: var(--card-bg); border: 1px solid var(--card-border);
@@ -243,7 +257,7 @@
         .tools-strip {
             margin-top: 20px; background: rgba(20, 184, 166, 0.08); border: 1px solid rgba(20, 184, 166, 0.3);
             border-radius: var(--radius-lg); padding: 8px 14px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;
-            width: 100%; transition: all 0.3s ease; box-sizing: border-box;
+            width: 100%; transition: border-color 0.2s ease, box-shadow 0.2s ease; box-sizing: border-box;
         }
         .tools-strip:hover { border-color: #0f766e; box-shadow: 0 4px 12px rgba(20, 184, 166, 0.15); }
         .tools-strip-left { display: flex; align-items: center; gap: 12px; flex: 1 1 auto; min-width: 260px; }
@@ -267,7 +281,7 @@
         [data-theme="dark"] .tools-strip-btn.outline { color: #5eead4 !important; border-color: #5eead4; }
         [data-theme="dark"] .tools-strip-btn.outline:hover { background: rgba(94, 234, 212, 0.15); color: #5eead4 !important;}
 
-        /* 6 KEY INDICATORS AT-A-GLANCE STRIP */
+        /* 6 KEY INDICATORS AT-A-GLANCE STRIP (NO TRANSLATE ON HOVER) */
         .key-indicators-grid {
             display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 16px; width: 100%;
         }
@@ -276,9 +290,11 @@
 
         .indicator-card {
             background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-lg);
-            padding: 8px 10px; display: flex; align-items: center; gap: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.02); transition: all 0.2s ease;
+            padding: 8px 10px; display: flex; align-items: center; gap: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
         }
-        .indicator-card:hover { border-color: var(--primary); transform: translateY(-2px); }
+        /* STRICT BORDER HIGHLIGHT ONLY ON HOVER (NO TRANSLATE Y) */
+        .indicator-card:hover { border-color: var(--primary); box-shadow: 0 4px 12px rgba(37, 99, 235, 0.08); }
         .indicator-icon {
             width: 32px; height: 32px; border-radius: 8px; background: var(--primary-light); color: var(--primary);
             display: flex; align-items: center; justify-content: center; font-size: 0.95rem; flex-shrink: 0;
@@ -296,7 +312,7 @@
         }
         .section-heading-divider::before {
             content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 1px;
-            background: linear-gradient(90deg, transparent, var(--primary), transparent); opacity: 0.3; z-index: 1;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent); opacity: 0.35; z-index: 1;
         }
         .divider-tag {
             position: relative; z-index: 2; background: var(--card-bg); border: 1px solid var(--primary);
@@ -307,7 +323,23 @@
         .divider-tag i { flex-shrink: 0; }
         [data-theme="dark"] .divider-tag { color: #60a5fa; background: #1e293b; border-color: #3b82f6; }
 
-        /* CATEGORY GRID FOR TOPIC CARDS */
+        /* PRIMARY FEATURED TOPIC GRID WRAPPER (STANDS OUT DISTINCTLY) */
+        .topic-section-wrapper {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(147, 51, 234, 0.04) 50%, rgba(37, 99, 235, 0.02) 100%);
+            border: 1.5px solid rgba(37, 99, 235, 0.22);
+            border-radius: var(--radius-xl);
+            padding: 20px 16px;
+            box-shadow: 0 10px 30px -5px rgba(37, 99, 235, 0.08);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            width: 100%; box-sizing: border-box; margin-bottom: 25px;
+        }
+        [data-theme="dark"] .topic-section-wrapper {
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.25) 0%, rgba(88, 28, 135, 0.2) 50%, rgba(15, 23, 42, 0.4) 100%);
+            border-color: rgba(96, 165, 250, 0.3);
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3);
+        }
+
+        /* CATEGORY GRID FOR TOPIC CARDS (NO TRANSLATE ON HOVER) */
         .topic-grid { 
             display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; width: 100%;
         }
@@ -317,21 +349,26 @@
         .topic-card { 
             background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-lg); 
             padding: 15px 12px; text-decoration: none; color: var(--text-main); 
-            transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
             display: flex; flex-direction: column; align-items: center; text-align: center; 
-            box-shadow: 0 2px 6px rgba(0,0,0,0.03); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
             box-sizing: border-box; width: 100%; position: relative;
         }
 
+        /* STRICT BORDER & SHADOW HIGHLIGHT ONLY ON HOVER (NO TRANSLATE Y) */
         .topic-card:hover { 
-            border-color: var(--primary); transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(37, 99, 235, 0.08);
+            border-color: var(--primary);
+            box-shadow: 0 6px 18px rgba(37, 99, 235, 0.14);
         }
 
         .topic-icon { 
             font-size: 1.4rem; color: var(--primary); margin-bottom: 10px; 
             background: var(--primary-light); width: 44px; height: 44px; border-radius: 50%; 
             display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+        .topic-card:hover .topic-icon {
+            background: var(--primary); color: #ffffff;
         }
 
         .topic-title { 
@@ -375,7 +412,7 @@
             font-weight: 800; font-size: 0.8rem; text-decoration: none; transition: all 0.2s; white-space: nowrap;
             box-shadow: 0 4px 10px rgba(37,99,235,0.2); display: flex; align-items: center; gap: 6px;
         }
-        .cta-btn:hover { background: var(--primary-hover); transform: translateY(-1px); }
+        .cta-btn:hover { background: var(--primary-hover); }
 
         /* STATIC 2-COLUMN FAQ STYLES */
         .faq-section { margin-top: 30px; margin-bottom: 30px; width: 100%; }
@@ -415,7 +452,7 @@
 
         @media (max-width: 600px) {
             .hide-mobile { display: none; }
-            .page-header-top { margin-top: 25px; margin-bottom: 20px; padding-top: 0; }
+            .page-header-top { margin-top: 10px; margin-bottom: 20px; padding: 15px 12px; }
             .hero-title { font-size: 25px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
             .top-meta-bar { flex-wrap: nowrap; justify-content: space-between; }
             .breadcrumb-nav { height: 18px; }
@@ -437,6 +474,8 @@
             .tools-strip-title, .tools-strip-desc { text-align: center !important; }
             .tools-strip-btn-group { width: 100%; justify-content: center; display: flex; gap: 8px; flex-wrap: wrap; }
             .tools-strip-btn { justify-content: center; padding: 6px 12px; font-size: 11.5px; width: fit-content; margin: 0; }
+
+            .topic-section-wrapper { padding: 15px 10px; }
 
             .cta-banner { flex-direction: column; text-align: center; gap: 12px; padding: 15px; }
             .cta-content h3 { justify-content: center; }
@@ -494,7 +533,7 @@
     </div>
 
     <div class="page-layout">
-        <!-- Compact Hero Section -->
+        <!-- Distinct Visual Hero Section Container -->
         <div class="page-header-top">
             <h1 class="hero-title">Master Himachal Pradesh GK</h1>
             <p class="hero-desc">
@@ -502,7 +541,7 @@
                 <span class="hi-desc">HPAS, HPPSC और अन्य राज्य परीक्षाओं में सफलता के लिए हमारे विषय-वार, द्विभाषी मॉक टेस्ट का अभ्यास करें। नीचे एक विषय चुनें।</span>
             </p>
 
-            <!-- HIGH-CONTRAST INTERLINKING PILL (EXACTLY 3 LINKS) -->
+            <!-- HIGH-CONTRAST INTERLINKING PILL -->
             <div class="hero-interlinks">
                 <span class="interlink-label"><i class="fa-solid fa-layer-group"></i> Explore:</span>
                 <a href="../study-notes/govt-schemes/">Govt Schemes</a>
@@ -587,89 +626,92 @@
             </span>
         </div>
 
-        <!-- Category Grid (All 10 Core Topics) -->
-        <div class="topic-grid">
+        <!-- FEATURED PRIMARY TOPIC GRID SECTION WRAPPER -->
+        <div class="topic-section-wrapper">
+            <!-- Category Grid (All 10 Core Topics) -->
+            <div class="topic-grid">
 
-            <!-- 1. History -->
-            <a href="history/" class="topic-card">
-                <div class="topic-icon"><i class="fa-solid fa-landmark"></i></div>
-                <h2 class="topic-title">History of HP</h2>
-                <div class="topic-desc">Ancient lineages, princely states, Gorkha wars, and the freedom struggle.</div>
-                <span class="topic-badge active">620+ MCQs</span>
-            </a>
+                <!-- 1. History -->
+                <a href="history/" class="topic-card">
+                    <div class="topic-icon"><i class="fa-solid fa-landmark"></i></div>
+                    <h2 class="topic-title">History of HP</h2>
+                    <div class="topic-desc">Ancient lineages, princely states, Gorkha wars, and the freedom struggle.</div>
+                    <span class="topic-badge active">620+ MCQs</span>
+                </a>
 
-            <!-- 2. Geography -->
-            <a href="geography/" class="topic-card">
-                <div class="topic-icon"><i class="fa-solid fa-mountain-sun"></i></div>
-                <h2 class="topic-title">Geography of HP</h2>
-                <div class="topic-desc">Mountain ranges, towering peaks, high-altitude passes, and glaciers.</div>
-                <span class="topic-badge active">560+ MCQs</span>
-            </a>
+                <!-- 2. Geography -->
+                <a href="geography/" class="topic-card">
+                    <div class="topic-icon"><i class="fa-solid fa-mountain-sun"></i></div>
+                    <h2 class="topic-title">Geography of HP</h2>
+                    <div class="topic-desc">Mountain ranges, towering peaks, high-altitude passes, and glaciers.</div>
+                    <span class="topic-badge active">560+ MCQs</span>
+                </a>
 
-            <!-- 3. District Profiles -->
-            <a href="district/" class="topic-card">
-                <div class="topic-icon"><i class="fa-solid fa-map-location-dot"></i></div>
-                <h2 class="topic-title">District Profiles</h2>
-                <div class="topic-desc">In-depth geographic, historic, and economic analysis of 12 districts.</div>
-                <span class="topic-badge active">1200+ MCQs</span>
-            </a>
+                <!-- 3. District Profiles -->
+                <a href="district/" class="topic-card">
+                    <div class="topic-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+                    <h2 class="topic-title">District Profiles</h2>
+                    <div class="topic-desc">In-depth geographic, historic, and economic analysis of 12 districts.</div>
+                    <span class="topic-badge active">1200+ MCQs</span>
+                </a>
 
-            <!-- 4. Economy -->
-            <a href="economy/" class="topic-card">
-                <div class="topic-icon"><i class="fa-solid fa-chart-line"></i></div>
-                <h2 class="topic-title">Economy of HP</h2>
-                <div class="topic-desc">Economic surveys, agriculture, massive hydropower, and industries.</div>
-                <span class="topic-badge active">610+ MCQs</span>
-            </a>
+                <!-- 4. Economy -->
+                <a href="economy/" class="topic-card">
+                    <div class="topic-icon"><i class="fa-solid fa-chart-line"></i></div>
+                    <h2 class="topic-title">Economy of HP</h2>
+                    <div class="topic-desc">Economic surveys, agriculture, massive hydropower, and industries.</div>
+                    <span class="topic-badge active">610+ MCQs</span>
+                </a>
 
-            <!-- 5. Polity -->
-            <a href="polity/" class="topic-card">
-                <div class="topic-icon"><i class="fa-solid fa-scale-balanced"></i></div>
-                <h2 class="topic-title">Polity & Admin</h2>
-                <div class="topic-desc">Constitutional framework, legislative assemblies, and Panchayati Raj.</div>
-                <span class="topic-badge active">870+ MCQs</span>
-            </a>
+                <!-- 5. Polity -->
+                <a href="polity/" class="topic-card">
+                    <div class="topic-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+                    <h2 class="topic-title">Polity & Admin</h2>
+                    <div class="topic-desc">Constitutional framework, legislative assemblies, and Panchayati Raj.</div>
+                    <span class="topic-badge active">870+ MCQs</span>
+                </a>
 
-            <!-- 6. Art & Culture -->
-            <a href="art-culture/" class="topic-card">
-                <div class="topic-icon"><i class="fa-solid fa-palette"></i></div>
-                <h2 class="topic-title">Art & Culture</h2>
-                <div class="topic-desc">Temple architecture, Pahari paintings, tribal festivals, and dances.</div>
-                <span class="topic-badge active">760+ MCQs</span>
-            </a>
+                <!-- 6. Art & Culture -->
+                <a href="art-culture/" class="topic-card">
+                    <div class="topic-icon"><i class="fa-solid fa-palette"></i></div>
+                    <h2 class="topic-title">Art & Culture</h2>
+                    <div class="topic-desc">Temple architecture, Pahari paintings, tribal festivals, and dances.</div>
+                    <span class="topic-badge active">760+ MCQs</span>
+                </a>
 
-            <!-- 7. Rivers -->
-            <a href="rivers/" class="topic-card">
-                <div class="topic-icon"><i class="fa-solid fa-water"></i></div>
-                <h2 class="topic-title">River System</h2>
-                <div class="topic-desc">Detailed mapping of Satluj, Beas, Ravi, Chenab, Yamuna and origins.</div>
-                <span class="topic-badge active">350+ MCQs</span>
-            </a>
+                <!-- 7. Rivers -->
+                <a href="rivers/" class="topic-card">
+                    <div class="topic-icon"><i class="fa-solid fa-water"></i></div>
+                    <h2 class="topic-title">River System</h2>
+                    <div class="topic-desc">Detailed mapping of Satluj, Beas, Ravi, Chenab, Yamuna and origins.</div>
+                    <span class="topic-badge active">350+ MCQs</span>
+                </a>
 
-            <!-- 8. Famous People -->
-            <a href="famous-people/" class="topic-card">
-                <div class="topic-icon"><i class="fa-solid fa-users"></i></div>
-                <h2 class="topic-title">Famous People</h2>
-                <div class="topic-desc">Biographies of freedom fighters, political leaders, and local artists.</div>
-                <span class="topic-badge active">605+ MCQs</span>
-            </a>
+                <!-- 8. Famous People -->
+                <a href="famous-people/" class="topic-card">
+                    <div class="topic-icon"><i class="fa-solid fa-users"></i></div>
+                    <h2 class="topic-title">Famous People</h2>
+                    <div class="topic-desc">Biographies of freedom fighters, political leaders, and local artists.</div>
+                    <span class="topic-badge active">605+ MCQs</span>
+                </a>
 
-            <!-- 9. Environment -->
-            <a href="environment/" class="topic-card">
-                <div class="topic-icon"><i class="fa-solid fa-tree"></i></div>
-                <h2 class="topic-title">Environment</h2>
-                <div class="topic-desc">ISFR forest data, National Parks, wildlife sanctuaries, and state symbols.</div>
-                <span class="topic-badge active">540+ MCQs</span>
-            </a>
+                <!-- 9. Environment -->
+                <a href="environment/" class="topic-card">
+                    <div class="topic-icon"><i class="fa-solid fa-tree"></i></div>
+                    <h2 class="topic-title">Environment</h2>
+                    <div class="topic-desc">ISFR forest data, National Parks, wildlife sanctuaries, and state symbols.</div>
+                    <span class="topic-badge active">540+ MCQs</span>
+                </a>
 
-            <!-- 10. Tourism -->
-            <a href="tourism/" class="topic-card">
-                <div class="topic-icon"><i class="fa-solid fa-person-hiking"></i></div>
-                <h2 class="topic-title">Tourism Sector</h2>
-                <div class="topic-desc">Iconic hill stations, religious tourism, adventure sports, and heritage.</div>
-                <span class="topic-badge active">450+ MCQs</span>
-            </a>
+                <!-- 10. Tourism -->
+                <a href="tourism/" class="topic-card">
+                    <div class="topic-icon"><i class="fa-solid fa-person-hiking"></i></div>
+                    <h2 class="topic-title">Tourism Sector</h2>
+                    <div class="topic-desc">Iconic hill stations, religious tourism, adventure sports, and heritage.</div>
+                    <span class="topic-badge active">450+ MCQs</span>
+                </a>
 
+            </div>
         </div>
 
         <!-- Study Notes Cross-Linking CTA Banner -->
