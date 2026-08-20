@@ -170,7 +170,7 @@
             --accent: #ea580c;        
             
             --bg-gradient: linear-gradient(135deg, #eff6ff 0%, #dbeafe 50%, #f3e8ff 100%);
-            --card-bg: rgba(255, 255, 255, 0.85); 
+            --card-bg: rgba(255, 255, 255, 0.95); 
             --card-border: rgba(148, 163, 184, 0.4); 
             --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
             
@@ -191,7 +191,7 @@
             --accent: #fbbf24;        
             
             --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #020617 100%);
-            --card-bg: rgba(30, 41, 59, 0.7); 
+            --card-bg: rgba(30, 41, 59, 0.92); 
             --card-border: rgba(255, 255, 255, 0.08); 
             --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
             
@@ -227,11 +227,11 @@
         .breadcrumb-nav::-webkit-scrollbar { display: none; }
         .breadcrumb-list { 
             list-style: none; padding: 0 8px; margin: 0; display: flex; flex-wrap: nowrap; 
-            align-items: center; gap: 4px; background: rgba(255, 255, 255, 0.35); border-radius: 10px; 
-            border: 1px solid var(--card-border); backdrop-filter: blur(8px); 
+            align-items: center; gap: 4px; background: rgba(255, 255, 255, 0.85); border-radius: 10px; 
+            border: 1px solid var(--card-border); 
             box-shadow: 0 1px 2px rgba(0,0,0,0.05); height: 100%; box-sizing: border-box;
         }
-        [data-theme="dark"] .breadcrumb-list { background: rgba(30, 41, 59, 0.4); box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
+        [data-theme="dark"] .breadcrumb-list { background: rgba(30, 41, 59, 0.85); box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
         .breadcrumb-item { font-size: 0.58rem; font-weight: 600; color: var(--text-sec); display: flex; align-items: center; white-space: nowrap; height: 100%; }
         .breadcrumb-item a { color: var(--text-sec); text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 4px; }
         .breadcrumb-item a:hover { color: var(--primary); }
@@ -253,8 +253,21 @@
         }
         .print-btn:hover { color: var(--primary); border-color: var(--primary); background: var(--primary-light); }
 
-        /* Compact Hero Section */
-        .page-header-top { text-align: center; margin-bottom: 25px; margin-top: 0; padding-top: 0; width: 100%; }
+        /* VISUALLY DISTINCT HERO SECTION CONTAINER */
+        .page-header-top { 
+            text-align: center; margin-bottom: 25px; margin-top: 0; padding-top: 0; width: 100%; 
+            position: relative; box-sizing: border-box;
+            background: rgba(255, 255, 255, 0.75);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-xl);
+            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.04);
+            padding: 20px 16px;
+        }
+        [data-theme="dark"] .page-header-top {
+            background: rgba(30, 41, 59, 0.75);
+            border-color: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
 
         .hero-title { 
             margin: 0 0 8px 0; letter-spacing: -0.8px; background: linear-gradient(135deg, var(--text-main) 0%, var(--primary) 100%);
@@ -266,7 +279,7 @@
         .hero-desc span.hi-desc { font-family: 'Noto Sans Devanagari', sans-serif; font-size: 0.85rem; color: var(--text-sec); display: block; margin-top: 4px; font-weight: 500; }
         [data-theme="dark"] .hero-desc span.hi-desc { color: #e2e8f0; }
 
-        /* HIGH-CONTRAST INTERLINKING PILL (EXACTLY 3 LINKS) */
+        /* HIGH-CONTRAST INTERLINKING PILL */
         .hero-interlinks {
             display: inline-flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px;
             margin-top: 15px; padding: 10px 20px; background: var(--card-bg); border: 1px solid var(--card-border);
@@ -285,14 +298,14 @@
         .tools-strip {
             margin-top: 20px; background: rgba(20, 184, 166, 0.08); border: 1px solid rgba(20, 184, 166, 0.3);
             border-radius: var(--radius-lg); padding: 8px 14px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;
-            width: 100%; transition: all 0.3s ease; box-sizing: border-box;
+            width: 100%; transition: border-color 0.2s ease, box-shadow 0.2s ease; box-sizing: border-box;
         }
         .tools-strip:hover { border-color: #0f766e; box-shadow: 0 4px 12px rgba(20, 184, 166, 0.15); }
         .tools-strip-left { display: flex; align-items: center; gap: 12px; flex: 1 1 auto; min-width: 260px; }
         .tools-strip-title { font-weight: 800; color: var(--text-main); font-size: 0.95rem; text-align: left; font-family: 'Inter', sans-serif;}
         .tools-strip-desc { font-size: 0.75rem; color: var(--text-sec); margin-top: 2px; text-align: left; font-weight: 500;}
         .tools-strip-btn-group { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; justify-content: flex-end;}
-        
+
         .tools-strip-btn {
             background: #0f766e; color: white !important; padding: 5px 12px; border-radius: 6px;
             font-size: 12px; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 5px;
@@ -301,7 +314,7 @@
         .tools-strip-btn:hover { background: #115e59; }
         [data-theme="dark"] .tools-strip-btn { background: #0d9488; }
         [data-theme="dark"] .tools-strip-btn:hover { background: #0f766e; }
-        
+
         .tools-strip-btn.outline {
             background: transparent; color: #0f766e !important; border: 1px solid #0f766e;
         }
@@ -318,9 +331,10 @@
 
         .indicator-card {
             background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-lg);
-            padding: 8px 10px; display: flex; align-items: center; gap: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.02); transition: all 0.2s ease;
+            padding: 8px 10px; display: flex; align-items: center; gap: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.02); 
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
         }
-        .indicator-card:hover { border-color: var(--primary); transform: translateY(-2px); }
+        .indicator-card:hover { border-color: var(--primary); box-shadow: 0 4px 12px rgba(37, 99, 235, 0.08); }
         .indicator-icon {
             width: 32px; height: 32px; border-radius: 8px; background: var(--primary-light); color: var(--primary);
             display: flex; align-items: center; justify-content: center; font-size: 0.95rem; flex-shrink: 0;
@@ -338,7 +352,7 @@
         }
         .section-heading-divider::before {
             content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 1px;
-            background: linear-gradient(90deg, transparent, var(--primary), transparent); opacity: 0.3; z-index: 1;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent); opacity: 0.35; z-index: 1;
         }
         .divider-tag {
             position: relative; z-index: 2; background: var(--card-bg); border: 1px solid var(--primary);
@@ -349,7 +363,7 @@
         .divider-tag i { flex-shrink: 0; }
         [data-theme="dark"] .divider-tag { color: #60a5fa; background: #1e293b; border-color: #3b82f6; }
 
-        /* MODERN COMPACT CARDS GRID FOR 8 PARTS */
+        /* CARDS GRID STYLES WITH MATCHING VARIANT HOVER BORDERS (NO GENERIC BLUE OVERRIDE) */
         .cards-grid {
             display: grid; grid-template-columns: repeat(1, 1fr); gap: 12px; width: 100%;
         }
@@ -359,17 +373,16 @@
         .modern-card {
             background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px;
             padding: 16px 18px; display: flex; flex-direction: column; text-decoration: none !important;
-            position: relative; overflow: hidden; z-index: 1; transition: border-color 0.2s, box-shadow 0.2s;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.03); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-            box-sizing: border-box;
+            position: relative; overflow: hidden; z-index: 1; transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03); box-sizing: border-box;
         }
         [data-theme="dark"] .modern-card { box-shadow: 0 3px 8px rgba(0,0,0,0.15); }
 
         .modern-card:hover {
-            box-shadow: 0 6px 16px rgba(0,0,0,0.06); border-color: var(--primary-light); transform: none !important;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
         }
         [data-theme="dark"] .modern-card:hover {
-            box-shadow: 0 6px 16px rgba(0,0,0,0.3); border-color: rgba(255,255,255,0.15);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
         }
 
         .card-header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
@@ -390,9 +403,15 @@
             font-family: 'Inter', sans-serif; line-height: 1.2;
         }
 
+        /* STRICTLY MAX 3 LINES DESCRIPTION WITH ELLIPSIS UNIFORM HEIGHT */
         .modern-card-desc {
             font-size: 12.5px; color: var(--text-sec); line-height: 1.45; margin: 0 0 15px 0;
             font-weight: 500; flex-grow: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            max-height: calc(12.5px * 1.45 * 3);
         }
 
         .card-action {
@@ -402,56 +421,72 @@
         .card-action i { transition: transform 0.2s ease; font-size: 10px;}
         .modern-card:hover .card-action i { transform: translateX(3px); }
 
-        /* Theme variants for 8 Cards */
+        /* Theme variants for 8 Cards with MATCHING Variant Hover Borders */
         .c-blue .icon-box { background: rgba(37, 99, 235, 0.1); color: #2563eb; }
         .c-blue .card-badge { background: #2563eb; color: #fff; }
         .c-blue .card-action { color: #2563eb; }
+        .c-blue:hover { border-color: #2563eb; box-shadow: 0 6px 18px rgba(37, 99, 235, 0.15); }
         [data-theme="dark"] .c-blue .icon-box { background: rgba(96, 165, 250, 0.15); color: #60a5fa; }
         [data-theme="dark"] .c-blue .card-action { color: #60a5fa; }
+        [data-theme="dark"] .c-blue:hover { border-color: #60a5fa; }
 
         .c-emerald .icon-box { background: rgba(16, 185, 129, 0.1); color: #059669; }
         .c-emerald .card-badge { background: #059669; color: #fff; }
         .c-emerald .card-action { color: #059669; }
+        .c-emerald:hover { border-color: #059669; box-shadow: 0 6px 18px rgba(16, 185, 129, 0.15); }
         [data-theme="dark"] .c-emerald .icon-box { background: rgba(52, 211, 153, 0.15); color: #34d399; }
         [data-theme="dark"] .c-emerald .card-action { color: #34d399; }
+        [data-theme="dark"] .c-emerald:hover { border-color: #34d399; }
 
         .c-violet .icon-box { background: rgba(124, 58, 237, 0.1); color: #7c3aed; }
         .c-violet .card-badge { background: #7c3aed; color: #fff; }
         .c-violet .card-action { color: #7c3aed; }
+        .c-violet:hover { border-color: #7c3aed; box-shadow: 0 6px 18px rgba(124, 58, 237, 0.15); }
         [data-theme="dark"] .c-violet .icon-box { background: rgba(167, 139, 250, 0.15); color: #a78bfa; }
         [data-theme="dark"] .c-violet .card-action { color: #a78bfa; }
+        [data-theme="dark"] .c-violet:hover { border-color: #a78bfa; }
 
         .c-rose .icon-box { background: rgba(225, 29, 72, 0.1); color: #e11d48; }
         .c-rose .card-badge { background: #e11d48; color: #fff; }
         .c-rose .card-action { color: #e11d48; }
+        .c-rose:hover { border-color: #e11d48; box-shadow: 0 6px 18px rgba(225, 29, 72, 0.15); }
         [data-theme="dark"] .c-rose .icon-box { background: rgba(251, 113, 133, 0.15); color: #fb7185; }
         [data-theme="dark"] .c-rose .card-action { color: #fb7185; }
+        [data-theme="dark"] .c-rose:hover { border-color: #fb7185; }
 
         .c-amber .icon-box { background: rgba(217, 119, 6, 0.1); color: #d97706; }
         .c-amber .card-badge { background: #d97706; color: #fff; }
         .c-amber .card-action { color: #d97706; }
+        .c-amber:hover { border-color: #d97706; box-shadow: 0 6px 18px rgba(217, 119, 6, 0.15); }
         [data-theme="dark"] .c-amber .icon-box { background: rgba(251, 191, 36, 0.15); color: #fbbf24; }
         [data-theme="dark"] .c-amber .card-action { color: #fbbf24; }
+        [data-theme="dark"] .c-amber:hover { border-color: #fbbf24; }
 
         .c-teal .icon-box { background: rgba(13, 148, 136, 0.1); color: #0d9488; }
         .c-teal .card-badge { background: #0d9488; color: #fff; }
         .c-teal .card-action { color: #0d9488; }
+        .c-teal:hover { border-color: #0d9488; box-shadow: 0 6px 18px rgba(13, 148, 136, 0.15); }
         [data-theme="dark"] .c-teal .icon-box { background: rgba(45, 212, 191, 0.15); color: #2dd4bf; }
         [data-theme="dark"] .c-teal .card-action { color: #2dd4bf; }
+        [data-theme="dark"] .c-teal:hover { border-color: #2dd4bf; }
 
         .c-indigo .icon-box { background: rgba(79, 70, 229, 0.1); color: #4f46e5; }
         .c-indigo .card-badge { background: #4f46e5; color: #fff; }
         .c-indigo .card-action { color: #4f46e5; }
+        .c-indigo:hover { border-color: #4f46e5; box-shadow: 0 6px 18px rgba(79, 70, 229, 0.15); }
         [data-theme="dark"] .c-indigo .icon-box { background: rgba(129, 140, 248, 0.15); color: #818cf8; }
         [data-theme="dark"] .c-indigo .card-action { color: #818cf8; }
+        [data-theme="dark"] .c-indigo:hover { border-color: #818cf8; }
 
         .c-cyan .icon-box { background: rgba(8, 145, 178, 0.1); color: #0891b2; }
         .c-cyan .card-badge { background: #0891b2; color: #fff; }
         .c-cyan .card-action { color: #0891b2; }
+        .c-cyan:hover { border-color: #0891b2; box-shadow: 0 6px 18px rgba(8, 145, 178, 0.15); }
         [data-theme="dark"] .c-cyan .icon-box { background: rgba(34, 211, 238, 0.15); color: #22d3ee; }
         [data-theme="dark"] .c-cyan .card-action { color: #22d3ee; }
+        [data-theme="dark"] .c-cyan:hover { border-color: #22d3ee; }
 
-        /* 2-COLUMN STATIC FAQ STYLES */
+        /* STATIC 2-COLUMN FAQ STYLES */
         .faq-section { margin-top: 30px; margin-bottom: 30px; width: 100%; }
 
         .faq-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 15px; }
@@ -489,7 +524,7 @@
 
         @media (max-width: 600px) {
             .hide-mobile { display: none; }
-            .page-header-top { margin-top: 25px; margin-bottom: 20px; padding-top: 0; }
+            .page-header-top { margin-top: 10px; margin-bottom: 20px; padding: 15px 12px; }
             .hero-title { font-size: 25px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
             .top-meta-bar { flex-wrap: nowrap; justify-content: space-between; }
             .breadcrumb-nav { height: 18px; }
@@ -521,7 +556,7 @@
                 display: none !important;
             }
             body { background: #ffffff !important; color: #000000 !important; font-size: 11pt !important; }
-            main, .main-layout { max-width: 100% !important; padding: 0 !important; margin: 0 !important; }
+            main, .page-layout { max-width: 100% !important; padding: 0 !important; margin: 0 !important; }
             .hero-title { color: #000000 !important; -webkit-text-fill-color: #000000 !important; font-size: 20pt !important; text-align: left !important; }
             .hero-desc { color: #333333 !important; text-align: left !important; margin-bottom: 20px !important; }
             .key-indicators-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 10px !important; margin-bottom: 20px !important; }
@@ -568,7 +603,7 @@
     </div>
 
     <div class="page-layout">
-        <!-- Compact Hero Section -->
+        <!-- Distinct Visual Hero Section Container -->
         <div class="page-header-top">
             <h1 class="hero-title">HP GK 2250+ One Liners Master Hub</h1>
             <p class="hero-desc">
@@ -576,10 +611,10 @@
                 <span class="hi-desc">हिमाचल प्रदेश के इतिहास, भूगोल, राजनीति, संस्कृति और अर्थव्यवस्था को कवर करने वाले 2250+ उच्च-उपज, द्विभाषी वन-लाइनर तथ्यों का 8-भागों वाला मास्टर हब।</span>
             </p>
             
-            <!-- High-Contrast Interlinking Hook (EXACTLY 3 LINKS) -->
+            <!-- HIGH-CONTRAST INTERLINKING PILL -->
             <div class="hero-interlinks">
                 <span class="interlink-label"><i class="fa-solid fa-layer-group"></i> Explore:</span>
-                <a href="../economic-survey/">Eco Survey</a>
+                <a href="../hpgk-one-liners/">One Liners Hub</a>
                 <span class="dot">•</span>
                 <a href="../govt-schemes/">Govt Schemes</a>
                 <span class="dot">•</span>
