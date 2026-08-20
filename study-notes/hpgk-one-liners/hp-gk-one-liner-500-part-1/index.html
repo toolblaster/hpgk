@@ -114,6 +114,7 @@
             
             --radius-md: 8px;
             --radius-lg: 12px;
+            --radius-xl: 16px;
         }
 
         [data-theme="dark"] {
@@ -184,7 +185,21 @@
         }
         .print-btn:hover { color: var(--primary); border-color: var(--primary); background: var(--primary-light); }
 
-        .page-header-top { text-align: center; margin-bottom: 25px; margin-top: 0; padding-top: 0; width: 100%; }
+        /* VISUALLY DISTINCT HERO SECTION CONTAINER */
+        .page-header-top { 
+            text-align: center; margin-bottom: 25px; margin-top: 0; padding-top: 0; width: 100%; 
+            position: relative; box-sizing: border-box;
+            background: rgba(255, 255, 255, 0.75);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-xl);
+            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.04);
+            padding: 20px 16px;
+        }
+        [data-theme="dark"] .page-header-top {
+            background: rgba(30, 41, 59, 0.75);
+            border-color: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
         
         .hero-title { 
             margin: 0 0 8px 0; letter-spacing: -0.8px; background: linear-gradient(135deg, var(--text-main) 0%, var(--primary) 100%);
@@ -308,7 +323,7 @@
         [data-theme="dark"] .a-hi { color: #fbbf24; }
 
         @media (max-width: 600px) {
-            .page-header-top { margin-top: 25px; margin-bottom: 20px; padding-top: 0; }
+            .page-header-top { margin-top: 10px; margin-bottom: 20px; padding: 15px 12px; }
             .hero-title { font-size: 25px !important; white-space: normal; padding: 0 10px; line-height: 1.2; }
             .top-meta-bar { flex-wrap: nowrap; justify-content: space-between; }
             .breadcrumb-nav { height: 18px; }
@@ -379,9 +394,9 @@
     <div class="top-meta-bar">
         <nav aria-label="breadcrumb" class="breadcrumb-nav">
             <ol class="breadcrumb-list">
-                <li class="breadcrumb-item"><a href="../../../../"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li class="breadcrumb-item"><a href="../../../"><i class="fa-solid fa-house"></i> Home</a></li>
                 <li class="breadcrumb-separator"><i class="fa-solid fa-chevron-right"></i></li>
-                <li class="breadcrumb-item"><a href="../../../">Study Notes</a></li>
+                <li class="breadcrumb-item"><a href="../../">Study Notes</a></li>
                 <li class="breadcrumb-separator"><i class="fa-solid fa-chevron-right"></i></li>
                 <li class="breadcrumb-item"><a href="../">One Liners Hub</a></li>
                 <li class="breadcrumb-separator"><i class="fa-solid fa-chevron-right"></i></li>
@@ -397,7 +412,7 @@
     </div>
 
     <div class="page-layout">
-        <!-- Compact Uniform Hero Section -->
+        <!-- Distinct Visual Hero Section Container -->
         <div class="page-header-top">
             <h1 class="hero-title">HP GK 2250+ One Liners (Part 1)</h1>
             <p class="hero-desc">
