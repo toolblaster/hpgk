@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- STREAMING_CHUNK:Configuring metadata, SEO tags, and JSON-LD schemas... -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Attempt full-length, syllabus-based mock tests for HP Patwari, Police, and HRTC. Get detailed subject-wise analytics, negative marking & bilingual interface.">
     <title>HP Exam Full Mock Tests - Patwari, Police, HRTC</title>
-    
+
     <!-- Canonical Link -->
     <link rel="canonical" href="https://hpgk.toolblaster.com/hp-exam-full-mock-test/">
 
@@ -16,7 +15,7 @@
     <meta property="og:title" content="HP Exam Full Mock Tests - Patwari, Police, HRTC">
     <meta property="og:description" content="Attempt full-length, syllabus-based mock tests for HP Patwari, Police, and HRTC. Get detailed subject-wise analytics, negative marking & bilingual interface.">
     <meta property="og:image" content="https://hpgk.toolblaster.com/js/favicon/web-app-manifest-512x512.png">
-    
+
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://hpgk.toolblaster.com/hp-exam-full-mock-test/">
     <meta property="twitter:title" content="HP Exam Full Mock Tests - Patwari, Police, HRTC">
@@ -28,7 +27,7 @@
         if (window.history.replaceState) {
             const path = window.location.pathname;
             if (path.endsWith('index.html')) {
-                const newPath = path.substring(0, path.length - 10); 
+                const newPath = path.substring(0, path.length - 10);
                 window.history.replaceState(null, '', newPath);
             }
         }
@@ -147,26 +146,31 @@
     <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <!-- Global CSS -->
     <link rel="stylesheet" href="../js/style.css">
 
-    <!-- STREAMING_CHUNK:Styling page layout with high-contrast borders and stationary hover effects... -->
     <style>
         :root {
             --site-width: 1120px;
-            --bg-gradient: linear-gradient(135deg, #f0f7ff 0%, #f8fafc 50%, #e0f2fe 100%);
-            --card-bg: rgba(255, 255, 255, 0.88); 
-            --card-border: rgba(148, 163, 184, 0.35);
+            --bg-gradient:
+                radial-gradient(ellipse 80% 45% at 50% -10%, rgba(37, 99, 235, 0.14), transparent 70%),
+                linear-gradient(135deg, #f8fafc 0%, #eff6ff 50%, #f5f3ff 100%);
+            --card-bg: rgba(255, 255, 255, 0.94);
+            --card-bg-soft: rgba(255, 255, 255, 0.78);
+            --card-border: rgba(15, 23, 42, 0.08);
+            --card-border-hover: rgba(37, 99, 235, 0.38);
+            --card-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            --card-shadow: 0 1px 3px rgba(15, 23, 42, 0.04), 0 8px 24px -6px rgba(15, 23, 42, 0.06);
             --input-bg: rgba(241, 245, 249, 0.85);
-            --glass-shadow: 0 10px 30px -5px rgba(37, 99, 235, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.04); 
-            --primary: #1d4ed8;
-            --primary-light: rgba(37, 99, 235, 0.08);
+
+            --primary: #2563eb;
+            --primary-light: rgba(37, 99, 235, 0.09);
             --primary-dark: #1e40af;
-            --accent: #6d28d9; 
-            --accent-light: rgba(109, 40, 217, 0.1);
+            --accent: #7c3aed;
+            --accent-light: rgba(124, 58, 237, 0.1);
             --warning: #b45309;
-            --success: #15803d;
+            --success: #059669;
             --text-main: #0f172a;
             --text-body: #334155;
             --text-sec: #475569;
@@ -176,50 +180,60 @@
         }
 
         [data-theme="dark"] {
-            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #020617 100%);
-            --card-bg: rgba(30, 41, 59, 0.85); 
-            --card-border: rgba(255, 255, 255, 0.16); 
-            --input-bg: rgba(0, 0, 0, 0.35);
-            --glass-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.4);
-            --primary: #3b82f6;
-            --primary-light: rgba(59, 130, 246, 0.15);
+            --bg-gradient:
+                radial-gradient(ellipse 80% 45% at 50% -10%, rgba(59, 130, 246, 0.2), transparent 70%),
+                linear-gradient(135deg, #090d1a 0%, #0f172a 50%, #111827 100%);
+            --card-bg: rgba(30, 41, 59, 0.88);
+            --card-bg-soft: rgba(30, 41, 59, 0.62);
+            --card-border: rgba(255, 255, 255, 0.09);
+            --card-border-hover: rgba(96, 165, 250, 0.45);
+            --card-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+            --card-shadow: 0 2px 6px rgba(0, 0, 0, 0.25), 0 10px 24px -8px rgba(0, 0, 0, 0.4);
+            --input-bg: rgba(15, 23, 42, 0.55);
+
+            --primary: #60a5fa;
+            --primary-light: rgba(96, 165, 250, 0.15);
             --accent: #a78bfa;
             --accent-light: rgba(167, 139, 250, 0.15);
             --warning: #fbbf24;
-            --success: #22c55e;
+            --success: #34d399;
             --text-main: #f8fafc;
             --text-body: #cbd5e1;
             --text-sec: #94a3b8;
         }
 
-        /* 🔥 High-Precision Sub-Pixel Font Anti-Aliasing & Rendering Stability */
-        body, button, input, select, textarea, div, p, h1, h2, h3, h4, span, a {
+        body {
+            background: var(--bg-gradient);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            text-rendering: optimizeLegibility;
         }
 
-        /* GPU Layer Stabilization for Mobile Devices */
-        .soft-glass, 
-        .hero-glass-card, 
-        .section-glass-panel, 
-        .seo-block,
-        .trust-pillar-card {
-            transform: translateZ(0);
-            -webkit-transform: translateZ(0);
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
+        /* Prevent layout jump while header injects */
+        #site-header {
+            min-height: 64px;
         }
 
-        body { background: var(--bg-gradient); font-family: 'Inter', sans-serif; margin: 0; min-height: 100vh; display: flex; flex-direction: column; }
-        main { flex: 1; width: 100%; padding: 10px 12px; box-sizing: border-box; max-width: var(--site-width); margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
-        
-        .soft-glass { background: var(--card-bg); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1px solid var(--card-border); box-shadow: var(--glass-shadow); }
+        main {
+            flex: 1;
+            width: 100%;
+            padding: 10px 12px;
+            box-sizing: border-box;
+            max-width: var(--site-width);
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
 
-        /* Meta Breadcrumbs Bar - Micro Height */
+                /* Meta Breadcrumbs Bar - Micro Height */
         .top-meta-bar { display: flex; justify-content: space-between; align-items: center; width: 100%; margin: 0 auto; padding: 0; flex-wrap: nowrap; gap: 8px; box-sizing: border-box; }
         .breadcrumb-nav { margin: 0; flex-shrink: 1; display: flex; align-items: center; height: 21px; }
-        .breadcrumb-list { list-style: none; padding: 0 8px; margin: 0; display: flex; flex-wrap: nowrap; align-items: center; gap: 4px; background: var(--card-bg); border-radius: 20px; border: 1px solid var(--card-border); backdrop-filter: blur(8px); box-shadow: var(--glass-shadow); height: 100%; box-sizing: border-box; }
+        .breadcrumb-list { list-style: none; padding: 0 8px; margin: 0; display: flex; flex-wrap: nowrap; align-items: center; gap: 4px; background: var(--card-bg); border-radius: 20px; border: 1px solid var(--card-border); box-shadow: var(--card-shadow); height: 100%; box-sizing: border-box; }
         .breadcrumb-item { font-size: 0.6rem; font-weight: 600; color: var(--text-sec); display: flex; align-items: center; white-space: nowrap; height: 100%; }
         .breadcrumb-item a { color: var(--text-sec); text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 3px; }
         .breadcrumb-item a:hover { color: var(--primary); }
@@ -228,52 +242,88 @@
 
         .hero-badge { display: inline-flex; align-items: center; justify-content: center; height: 20px; background: var(--primary-light); color: var(--primary); padding: 0 8px; border-radius: 20px; font-size: 0.58rem; font-weight: 800; text-transform: uppercase; margin: 0; border: 1px solid var(--card-border); letter-spacing: 0.4px; white-space: nowrap; flex-shrink: 0; box-sizing: border-box; }
 
-        /* 🌟 COMPACT HERO CONTAINER */
+        /* HERO CONTAINER */
         .hero-glass-card {
+            background: var(--card-bg-soft);
+            border: 1px solid var(--card-border);
+            box-shadow: var(--card-highlight), var(--card-shadow);
             border-radius: var(--radius-xl);
-            padding: 14px 16px;
+            padding: 18px 18px;
             text-align: center;
-            position: relative;
-            overflow: hidden;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 10px;
-            border: 1px solid var(--card-border);
-            box-shadow: var(--glass-shadow);
+            gap: 12px;
         }
 
-        .hero-title-wrap { max-width: 800px; }
-        .hero-title { 
-            font-size: clamp(1.25rem, 3vw, 1.9rem); 
-            font-weight: 900; 
-            margin: 0 0 3px 0; 
-            line-height: 1.2; 
-            letter-spacing: -0.5px; 
-            background: linear-gradient(135deg, var(--text-main) 30%, var(--primary) 100%); 
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent; 
-            background-clip: text; 
-            color: var(--primary); 
+        .hero-title-wrap { max-width: 780px; }
+        .hero-title {
+            font-size: clamp(1.35rem, 3vw, 2rem);
+            font-weight: 900;
+            margin: 0 0 5px 0;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, var(--text-main) 20%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: var(--primary);
         }
-        .hero-desc { font-size: 0.82rem; color: var(--text-sec); margin: 0 auto; line-height: 1.4; font-weight: 500; max-width: 700px; }
+        .hero-desc {
+            font-size: 0.85rem;
+            color: var(--text-sec);
+            margin: 0 auto;
+            line-height: 1.45;
+            font-weight: 500;
+            max-width: 680px;
+        }
 
         /* Trust Pillars Grid */
-        .trust-pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 6px; width: 100%; max-width: 900px; }
-        .trust-pillar-card { border-radius: var(--radius-md); padding: 6px 10px; display: flex; align-items: center; gap: 8px; text-align: left; border: 1px solid var(--card-border); }
-        .trust-pillar-icon { background: var(--input-bg); color: var(--primary); width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; flex-shrink: 0; border: 1px solid var(--card-border); }
+        .trust-pillars {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 8px;
+            width: 100%;
+            max-width: 920px;
+        }
+        .trust-pillar-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            box-shadow: var(--card-highlight);
+            border-radius: var(--radius-md);
+            padding: 8px 11px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-align: left;
+        }
+        .trust-pillar-icon {
+            background: var(--primary-light);
+            color: var(--primary);
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+            border: 1px solid rgba(37, 99, 235, 0.14);
+        }
         .trust-pillar-text { display: flex; flex-direction: column; gap: 1px; }
-        .trust-pillar-title { margin: 0; font-size: 0.74rem; font-weight: 800; color: var(--text-main); }
-        .trust-pillar-text p { margin: 0; font-size: 0.65rem; color: var(--text-sec); line-height: 1.25; font-weight: 500; }
+        .trust-pillar-title { margin: 0; font-size: 0.76rem; font-weight: 800; color: var(--text-main); }
+        .trust-pillar-text p { margin: 0; font-size: 0.68rem; color: var(--text-sec); line-height: 1.3; font-weight: 500; }
 
-        /* 🌟 SECTION CONTAINER PANEL */
+        /* SECTION CONTAINER PANEL */
         .section-glass-panel {
+            background: var(--card-bg-soft);
+            border: 1px solid var(--card-border);
+            box-shadow: var(--card-highlight), var(--card-shadow);
             border-radius: var(--radius-xl);
-            padding: 14px 16px;
+            padding: 16px 18px;
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            border: 1px solid var(--card-border);
+            gap: 12px;
         }
 
         .section-header-box {
@@ -283,80 +333,97 @@
             gap: 8px;
             flex-wrap: wrap;
             border-bottom: 1px solid var(--card-border);
-            padding-bottom: 8px;
+            padding-bottom: 10px;
         }
 
-        .section-title-group h2 { margin: 0 0 2px 0; font-size: 1.02rem; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 8px; }
-        .section-title-group p { margin: 0; font-size: 0.72rem; color: var(--text-sec); font-weight: 500; }
+        .section-title-group h2 {
+            margin: 0 0 2px 0;
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .section-title-group p { margin: 0; font-size: 0.75rem; color: var(--text-sec); font-weight: 500; }
 
-        /* SERIES GRID (3-COLUMN DENSE) */
+        /* SERIES GRID (3-COLUMN) */
         .series-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 10px;
+            gap: 12px;
             width: 100%;
         }
 
         .series-card {
             background: var(--card-bg);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
             border: 1px solid var(--card-border);
-            box-shadow: var(--glass-shadow);
-            border-radius: var(--radius-lg); 
-            padding: 12px 14px;
-            text-decoration: none; 
-            color: var(--text-main); 
-            transition: border-color 0.2s ease, box-shadow 0.2s ease;
-            display: flex; 
-            flex-direction: column; 
+            border-top: 3px solid var(--series-color, var(--primary));
+            box-shadow: var(--card-highlight), var(--card-shadow);
+            border-radius: var(--radius-lg);
+            padding: 14px 15px;
+            text-decoration: none;
+            color: var(--text-main);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+            display: flex;
+            flex-direction: column;
             position: relative;
             overflow: hidden;
         }
 
-        /* 🔥 Stationary Hover Effect (Border Highlight + Glow) prevents text blurriness */
         .series-card:hover {
-            border-color: rgba(37, 99, 235, 0.6);
-            box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.15);
+            border-color: var(--series-color, var(--primary));
+            box-shadow: var(--card-highlight), 0 12px 26px -8px rgba(37, 99, 235, 0.18);
+            transform: translateY(-2px);
         }
-        [data-theme="dark"] .series-card:hover { 
-            border-color: rgba(96, 165, 250, 0.6); 
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5); 
+        [data-theme="dark"] .series-card:hover {
+            box-shadow: var(--card-highlight), 0 12px 26px -8px rgba(0, 0, 0, 0.5);
         }
 
-        .sc-header { 
-            display: flex; 
-            align-items: center; 
-            gap: 10px; 
-            margin-bottom: 6px; 
+        .sc-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
         }
 
         .sc-icon-wrapper {
-            width: 32px;
-            height: 32px;
-            border-radius: 8px;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             flex-shrink: 0;
             border: 1px solid var(--card-border);
         }
 
+        .sc-title-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
         .sc-title {
-            font-size: 0.92rem;
+            font-size: 0.96rem;
             font-weight: 800;
             margin: 0;
             color: var(--text-main);
-            font-family: 'Inter', sans-serif;
             line-height: 1.2;
         }
 
-        .sc-desc {
-            font-size: 0.72rem;
+        .sc-subtag {
+            font-size: 0.64rem;
+            font-weight: 700;
             color: var(--text-sec);
-            margin: 0 0 8px 0;
-            line-height: 1.35;
+        }
+
+        .sc-desc {
+            font-size: 0.75rem;
+            color: var(--text-sec);
+            margin: 0 0 10px 0;
+            line-height: 1.4;
             flex-grow: 1;
             font-weight: 500;
         }
@@ -364,19 +431,19 @@
         .sc-stats {
             display: flex;
             gap: 6px;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             flex-wrap: wrap;
         }
 
         .sc-stat-pill {
             background: var(--input-bg);
             border: 1px solid var(--card-border);
-            padding: 3px 7px;
-            border-radius: 6px;
-            font-size: 0.62rem;
+            padding: 3px 8px;
+            border-radius: 999px;
+            font-size: 0.64rem;
             font-weight: 700;
             color: var(--text-main);
-            display: flex;
+            display: inline-flex;
             align-items: center;
             gap: 4px;
         }
@@ -386,31 +453,38 @@
             align-items: center;
             justify-content: space-between;
             border-top: 1px solid var(--card-border);
-            padding-top: 8px;
+            padding-top: 9px;
             font-weight: 800;
-            font-size: 0.72rem;
-            color: var(--primary);
+            font-size: 0.74rem;
+            color: var(--series-color, var(--primary));
         }
-        
+
         .series-card:hover .sc-action i {
             transform: translateX(4px);
             transition: transform 0.2s ease;
         }
 
-        /* Minimal Modern SEO Content Grid */
-        .seo-prose { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); 
-            gap: 10px; 
-            margin-top: 4px; 
+        /* 4-Column Feature Grid */
+        .seo-prose {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+            margin-top: 2px;
         }
-        
+        @media (min-width: 560px) {
+            .seo-prose { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (min-width: 960px) {
+            .seo-prose { grid-template-columns: repeat(4, 1fr); }
+        }
+
         .seo-block {
-            background: var(--input-bg);
-            padding: 10px 12px;
+            background: var(--card-bg);
+            padding: 11px 12px;
             border-radius: var(--radius-md);
             border: 1px solid var(--card-border);
             border-left: 3px solid var(--primary);
+            box-shadow: var(--card-highlight);
         }
 
         .seo-block h3 {
@@ -421,22 +495,20 @@
             display: flex;
             align-items: center;
             gap: 6px;
-            font-family: 'Inter', sans-serif;
         }
-        
+
         .seo-block h3 i { font-size: 0.8rem; }
         .seo-block p { margin: 0; font-size: 0.72rem; line-height: 1.4; color: var(--text-sec); font-weight: 500; }
-        .seo-block p strong { color: var(--text-main); font-weight: 700; }
 
         @media (max-width: 600px) {
             main { padding: 8px 6px; gap: 10px; }
-            .hero-glass-card { padding: 12px 10px; gap: 8px; }
+            .hide-mobile { display: none; }
+            .hero-glass-card { padding: 14px 12px; gap: 10px; }
             .hero-title { font-size: 22px; }
-            .hero-desc { font-size: 0.76rem; }
-            .trust-pillars { grid-template-columns: 1fr; gap: 5px; }
-            .section-glass-panel { padding: 10px 8px; gap: 8px; }
-            .series-card { padding: 10px 12px; }
-            .seo-prose { grid-template-columns: 1fr; }
+            .hero-desc { font-size: 0.78rem; }
+            .trust-pillars { grid-template-columns: 1fr; gap: 6px; }
+            .section-glass-panel { padding: 12px 10px; gap: 10px; }
+            .series-card { padding: 12px 12px; }
         }
     </style>
 
@@ -456,22 +528,21 @@
 
 <div id="site-header"></div>
 
-<!-- STREAMING_CHUNK:Rendering main header and breadcrumbs... -->
 <main>
-    <!-- Top Breadcrumbs Navigation -->
+        <!-- Top Breadcrumbs Navigation -->
     <div class="top-meta-bar">
         <nav aria-label="breadcrumb" class="breadcrumb-nav">
-            <ol class="breadcrumb-list soft-glass">
+            <ol class="breadcrumb-list">
                 <li class="breadcrumb-item"><a href="../"><i class="fa-solid fa-house"></i> Home</a></li>
                 <li class="breadcrumb-separator"><i class="fa-solid fa-chevron-right"></i></li>
                 <li class="breadcrumb-item active" aria-current="page">Mock Test Series</li>
             </ol>
         </nav>
-        <span class="hero-badge soft-glass">Mock Test Hub</span>
+        <span class="hero-badge">Mock Test Hub</span>
     </div>
 
-    <!-- 🌟 HERO GLASS BANNER SECTION -->
-    <section class="hero-glass-card soft-glass">
+    <!-- HERO BANNER SECTION -->
+    <section class="hero-glass-card">
         <div class="hero-title-wrap">
             <h1 class="hero-title">HP Full Mock Test Series Hub</h1>
             <p class="hero-desc">
@@ -481,21 +552,21 @@
 
         <!-- Trust Pillars -->
         <div class="trust-pillars">
-            <div class="trust-pillar-card soft-glass">
+            <div class="trust-pillar-card">
                 <div class="trust-pillar-icon"><i class="fa-solid fa-language"></i></div>
                 <div class="trust-pillar-text">
                     <div class="trust-pillar-title">Bilingual Format</div>
-                    <p>Questions simultaneously in English & Hindi.</p>
+                    <p>Questions simultaneously in English &amp; Hindi.</p>
                 </div>
             </div>
-            <div class="trust-pillar-card soft-glass">
+            <div class="trust-pillar-card">
                 <div class="trust-pillar-icon"><i class="fa-solid fa-stopwatch"></i></div>
                 <div class="trust-pillar-text">
                     <div class="trust-pillar-title">Real Interface</div>
                     <p>Simulates exact exam timer and negative marking.</p>
                 </div>
             </div>
-            <div class="trust-pillar-card soft-glass">
+            <div class="trust-pillar-card">
                 <div class="trust-pillar-icon"><i class="fa-solid fa-chart-pie"></i></div>
                 <div class="trust-pillar-text">
                     <div class="trust-pillar-title">Detailed Analytics</div>
@@ -505,72 +576,79 @@
         </div>
     </section>
 
-    <!-- STREAMING_CHUNK:Rendering exam series grid... -->
-    <!-- 🌟 MAIN EXAM SERIES COLLECTION GRID PANEL -->
-    <section class="section-glass-panel soft-glass">
-        
+    <!-- MAIN EXAM SERIES COLLECTION GRID PANEL -->
+    <section class="section-glass-panel">
         <div class="section-header-box">
             <div class="section-title-group">
                 <h2><i class="fa-solid fa-layer-group" style="color:var(--primary);"></i> Select Your Target Exam Series</h2>
-                <p>Choose an examination below to view all full mock tests and official previous year papers.</p>
+                <p>Choose an examination below to view free demo tests, full mocks, and official previous year papers.</p>
             </div>
         </div>
 
         <div class="series-grid">
-            
+
             <!-- Patwari Series -->
-            <a href="hp-patwari-mock/" class="series-card soft-glass">
+            <a href="hp-patwari-mock/" class="series-card" style="--series-color: var(--primary);" data-quiz-id="patwari-series">
                 <div class="sc-header">
                     <div class="sc-icon-wrapper" style="background: rgba(37, 99, 235, 0.1); color: var(--primary);">
                         <i class="fa-solid fa-file-signature"></i>
                     </div>
-                    <h3 class="sc-title">HP Patwari Series</h3>
+                    <div class="sc-title-wrap">
+                        <h3 class="sc-title">HP Patwari Series</h3>
+                        <span class="sc-subtag">120 Qs • -0.25 Negative Marking</span>
+                    </div>
                 </div>
-                <p class="sc-desc">120 Questions pattern. Covers Arithmetic, Hindi, English, and General Knowledge aligned with syllabus.</p>
+                <p class="sc-desc">Covers Arithmetic, Hindi, English, and General Knowledge aligned with the latest official syllabus.</p>
                 <div class="sc-stats">
                     <span class="sc-stat-pill"><i class="fa-solid fa-clipboard-list" style="color:var(--primary);"></i> 12 Mocks</span>
                     <span class="sc-stat-pill"><i class="fa-solid fa-clock-rotate-left" style="color:var(--accent);"></i> 5 PYPs</span>
                 </div>
                 <div class="sc-action">
-                    <span>Explore Series</span>
+                    <span class="sc-action-label">Explore Series</span>
                     <i class="fa-solid fa-arrow-right"></i>
                 </div>
             </a>
 
             <!-- Police Constable Series -->
-            <a href="hp-police-constable-mock/" class="series-card soft-glass">
+            <a href="hp-police-constable-mock/" class="series-card" style="--series-color: var(--success);" data-quiz-id="police-series">
                 <div class="sc-header">
                     <div class="sc-icon-wrapper" style="background: rgba(16, 185, 129, 0.1); color: var(--success);">
                         <i class="fa-solid fa-shield-halved"></i>
                     </div>
-                    <h3 class="sc-title">HP Police Constable</h3>
+                    <div class="sc-title-wrap">
+                        <h3 class="sc-title">HP Police Constable</h3>
+                        <span class="sc-subtag">90 Qs • -0.25 Negative Marking</span>
+                    </div>
                 </div>
-                <p class="sc-desc">90 Questions latest pattern. Practice GK, Hindi, English, Math/Science, and Reasoning with negative marking.</p>
+                <p class="sc-desc">Practice GK, Hindi, English, Math/Science, and Reasoning on the latest HP Police Constable pattern.</p>
                 <div class="sc-stats">
                     <span class="sc-stat-pill"><i class="fa-solid fa-clipboard-list" style="color:var(--success);"></i> 10 Mocks</span>
                     <span class="sc-stat-pill"><i class="fa-solid fa-clock-rotate-left" style="color:var(--accent);"></i> 9 PYPs</span>
                 </div>
-                <div class="sc-action" style="color: var(--success);">
-                    <span>Explore Series</span>
+                <div class="sc-action">
+                    <span class="sc-action-label">Explore Series</span>
                     <i class="fa-solid fa-arrow-right"></i>
                 </div>
             </a>
 
             <!-- HRTC Conductor Series -->
-            <a href="hp-hrtc-conductor-mock/" class="series-card soft-glass">
+            <a href="hp-hrtc-conductor-mock/" class="series-card" style="--series-color: var(--accent);" data-quiz-id="hrtc-series">
                 <div class="sc-header">
-                    <div class="sc-icon-wrapper" style="background: rgba(109, 40, 217, 0.1); color: var(--accent);">
+                    <div class="sc-icon-wrapper" style="background: rgba(124, 58, 237, 0.1); color: var(--accent);">
                         <i class="fa-solid fa-bus"></i>
                     </div>
-                    <h3 class="sc-title">HP HRTC Conductor</h3>
+                    <div class="sc-title-wrap">
+                        <h3 class="sc-title">HP HRTC Conductor</h3>
+                        <span class="sc-subtag">100 Qs • No Negative Marking</span>
+                    </div>
                 </div>
-                <p class="sc-desc">100 Questions pattern. Specialized mocks featuring First Aid, Motor Vehicle Act, IT Tools, and Core GK.</p>
+                <p class="sc-desc">Specialized mocks featuring First Aid, Motor Vehicle Act, IT Tools, and Core HP GK.</p>
                 <div class="sc-stats">
                     <span class="sc-stat-pill"><i class="fa-solid fa-clipboard-list" style="color:var(--accent);"></i> 12 Mocks</span>
                     <span class="sc-stat-pill"><i class="fa-solid fa-clock-rotate-left" style="color:var(--primary);"></i> 4 PYPs</span>
                 </div>
-                <div class="sc-action" style="color: var(--accent);">
-                    <span>Explore Series</span>
+                <div class="sc-action">
+                    <span class="sc-action-label">Explore Series</span>
                     <i class="fa-solid fa-arrow-right"></i>
                 </div>
             </a>
@@ -578,9 +656,8 @@
         </div>
     </section>
 
-    <!-- STREAMING_CHUNK:Rendering SEO features breakdown panel... -->
-    <!-- 🌟 WHY ATTEMPT MOCK TESTS SECTION PANEL -->
-    <section class="section-glass-panel soft-glass" style="padding: 12px 14px; gap: 8px;">
+    <!-- WHY ATTEMPT MOCK TESTS SECTION PANEL -->
+    <section class="section-glass-panel" style="padding: 14px 16px; gap: 10px;">
         <div class="section-header-box" style="border-bottom: none; padding-bottom: 0;">
             <div class="section-title-group">
                 <h2><i class="fa-solid fa-circle-check" style="color:var(--success);"></i> Why Attempt Our Mock Test Series?</h2>
@@ -616,12 +693,11 @@
 <!-- Dynamic Footer Container -->
 <div id="site-footer"></div>
 
-<!-- STREAMING_CHUNK:Initializing page layout javascript... -->
 <!-- Load Layout Manager -->
 <script src="../js/layout.js"></script>
 <script src="../js/core.js"></script>
 
-<!-- Initialize Page -->
+<!-- Initialize Page & Local Progress -->
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         if (typeof renderHeader === 'function') {
@@ -629,13 +705,32 @@
                 title: 'HPGK Quiz',
                 subtitle: 'by toolblaster.com',
                 iconClass: 'fa-solid fa-mountain-sun',
-                link: 'https://hpgk.toolblaster.com/', 
+                link: 'https://hpgk.toolblaster.com/',
                 isQuizPage: false,
                 rootPath: '..'
             });
         }
         if (typeof renderFooter === 'function') {
             renderFooter('..');
+        }
+
+        // Hydrate series progress if stored in localStorage
+        try {
+            const progress = JSON.parse(localStorage.getItem('hpgk_progress') || '{}');
+            document.querySelectorAll('.series-card[data-quiz-id]').forEach((card) => {
+                const id = card.getAttribute('data-quiz-id');
+                const entry = progress[id];
+                const label = card.querySelector('.sc-action-label');
+                if (!entry || !label) return;
+
+                if (entry.status === 'in_progress' && entry.current && entry.total) {
+                    label.textContent = `Resume (${entry.current}/${entry.total})`;
+                } else if (entry.status === 'completed' && typeof entry.bestScore === 'number') {
+                    label.textContent = `Best: ${entry.bestScore}% • Retry`;
+                }
+            });
+        } catch (err) {
+            // Ignore malformed localStorage data
         }
     });
 </script>
