@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Master Himachal Pradesh GK with HPGK Quiz! Free mock tests for HPAS, HPPSC, Allied Services, and specialized Agriculture Mock Tests for ICAR, IBPS AFO & NABARD.">
     <title>HPGK Quiz | Himachal Pradesh General Knowledge Hub</title>
-    
+
     <!-- Clean Canonical Link -->
     <link rel="canonical" href="https://hpgk.toolblaster.com">
 
@@ -26,7 +26,7 @@
         if (window.history.replaceState) {
             const path = window.location.pathname;
             if (path.endsWith('index.html')) {
-                const newPath = path.substring(0, path.length - 10); 
+                const newPath = path.substring(0, path.length - 10);
                 window.history.replaceState(null, '', newPath);
             }
         }
@@ -114,57 +114,69 @@
     <meta name="msapplication-TileColor" content="#2563eb">
     <meta name="theme-color" content="#ffffff">
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Poppins:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@600;700;800&family=Noto+Sans+Devanagari:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <!-- Global CSS -->
     <link rel="stylesheet" href="js/style.css">
 
     <style>
         :root {
             --site-width: 1100px;
-            
-            --primary: #2563eb;        
-            --primary-hover: #1d4ed8; 
-            --primary-light: rgba(37, 99, 235, 0.1); 
-            --primary-dark: #1e3a8a;  
-            --accent: #ea580c;        
-            
-            --bg-gradient: linear-gradient(135deg, #eff6ff 0%, #dbeafe 50%, #f3e8ff 100%);
-            --card-bg: rgba(255, 255, 255, 0.85); 
-            --card-border: rgba(148, 163, 184, 0.35); 
-            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
-            
-            --text-main: #0f172a;     
-            --text-body: #1e293b;     
-            --text-sec: #475569;      
-            --input-bg: rgba(255, 255, 255, 0.6); 
-            --correct-bg: rgba(220, 252, 231, 0.9); 
-            --correct-text: #14532d;  
-            
-            --radius-md: 8px;
-            --radius-lg: 12px;
-            --radius-xl: 16px;
+
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --primary-light: rgba(37, 99, 235, 0.09);
+            --primary-dark: #1e3a8a;
+            --accent: #ea580c;
+
+            --bg-gradient:
+                radial-gradient(ellipse 80% 45% at 50% -10%, rgba(37, 99, 235, 0.14), transparent 70%),
+                linear-gradient(135deg, #f8fafc 0%, #eff6ff 50%, #f5f3ff 100%);
+            --card-bg: rgba(255, 255, 255, 0.96);
+            --card-bg-soft: rgba(255, 255, 255, 0.78);
+            --card-border: rgba(15, 23, 42, 0.08);
+            --card-border-hover: rgba(37, 99, 235, 0.38);
+            --card-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            --card-shadow: 0 1px 3px rgba(15, 23, 42, 0.04), 0 8px 24px -6px rgba(15, 23, 42, 0.06);
+            --card-shadow-hover: 0 14px 30px -10px rgba(37, 99, 235, 0.18), 0 4px 10px -2px rgba(15, 23, 42, 0.05);
+
+            --text-main: #0f172a;
+            --text-body: #1e293b;
+            --text-sec: #475569;
+            --input-bg: rgba(241, 245, 249, 0.85);
+            --correct-bg: rgba(220, 252, 231, 0.95);
+            --correct-text: #166534;
+
+            --radius-md: 10px;
+            --radius-lg: 14px;
+            --radius-xl: 18px;
         }
 
         [data-theme="dark"] {
-            --primary: #60a5fa;        
-            --primary-hover: #93c5fd; 
-            --primary-light: rgba(96, 165, 250, 0.15); 
-            --primary-dark: #bfdbfe;  
-            --accent: #fbbf24;        
-            
-            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #020617 100%);
-            --card-bg: rgba(30, 41, 59, 0.75); 
-            --card-border: rgba(255, 255, 255, 0.12); 
-            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-            
-            --text-main: #f8fafc;     
-            --text-body: #e2e8f0;     
-            --text-sec: #cbd5e1;      
-            --input-bg: rgba(0, 0, 0, 0.3); 
-            --correct-bg: rgba(6, 78, 59, 0.9); 
-            --correct-text: #6ee7b7;  
+            --primary: #60a5fa;
+            --primary-hover: #93c5fd;
+            --primary-light: rgba(96, 165, 250, 0.14);
+            --primary-dark: #bfdbfe;
+            --accent: #fbbf24;
+
+            --bg-gradient:
+                radial-gradient(ellipse 80% 45% at 50% -10%, rgba(59, 130, 246, 0.2), transparent 70%),
+                linear-gradient(135deg, #090d1a 0%, #0f172a 50%, #111827 100%);
+            --card-bg: rgba(30, 41, 59, 0.86);
+            --card-bg-soft: rgba(30, 41, 59, 0.58);
+            --card-border: rgba(255, 255, 255, 0.09);
+            --card-border-hover: rgba(96, 165, 250, 0.45);
+            --card-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+            --card-shadow: 0 2px 6px rgba(0, 0, 0, 0.25), 0 10px 24px -8px rgba(0, 0, 0, 0.4);
+            --card-shadow-hover: 0 14px 30px -10px rgba(96, 165, 250, 0.22), 0 4px 12px rgba(0, 0, 0, 0.35);
+
+            --text-main: #f8fafc;
+            --text-body: #e2e8f0;
+            --text-sec: #cbd5e1;
+            --input-bg: rgba(15, 23, 42, 0.55);
+            --correct-bg: rgba(6, 78, 59, 0.9);
+            --correct-text: #6ee7b7;
         }
 
         body {
@@ -173,36 +185,41 @@
             font-family: 'Inter', 'Noto Sans Devanagari', sans-serif;
         }
 
+        /* Prevent layout jump while header injects */
+        #site-header {
+            min-height: 64px;
+        }
+
         .glass-panel {
             background: var(--card-bg);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border: 1px solid var(--card-border);
-            box-shadow: var(--glass-shadow);
+            box-shadow: var(--card-shadow);
         }
 
-        main { 
-            flex: 1; 
-            width: 100%; 
-            padding: 15px 0 !important; 
-            box-sizing: border-box; 
+        main {
+            flex: 1;
+            width: 100%;
+            padding: 15px 0 !important;
+            box-sizing: border-box;
         }
 
-        .page-layout, .news-ticker-container { 
-            width: 100%; 
-            max-width: var(--site-width); 
-            margin: 0 auto; 
-            padding: 0 15px; 
+        .page-layout, .news-ticker-container {
+            width: 100%;
+            max-width: var(--site-width);
+            margin: 0 auto;
+            padding: 0 15px;
             box-sizing: border-box;
             display: block !important;
         }
 
-        .section-separator { 
-            height: 1px; 
-            background: linear-gradient(90deg, transparent, var(--card-border), transparent); 
-            margin: 30px auto; 
-            width: 100%; 
-            max-width: var(--site-width); 
+        .section-separator {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--card-border), transparent);
+            margin: 30px auto;
+            width: 100%;
+            max-width: var(--site-width);
         }
 
         @media (max-width: 480px) {
@@ -211,24 +228,24 @@
             }
         }
 
-        .page-header-top { 
-            text-align: center; 
-            margin-bottom: 25px; 
-            margin-top: 0; 
-            padding-top: 0; 
-            width: 100%; 
+        .page-header-top {
+            text-align: center;
+            margin-bottom: 25px;
+            margin-top: 0;
+            padding-top: 0;
+            width: 100%;
         }
 
         .hp-main-title {
             font-family: 'Inter', sans-serif !important;
-            font-size: 32px !important; 
+            font-size: 32px !important;
             font-weight: 900 !important;
-            margin: 0 0 8px 0 !important; 
+            margin: 0 0 8px 0 !important;
             line-height: 1.2 !important;
-            letter-spacing: -0.5px !important;
+            letter-spacing: -0.6px !important;
             color: var(--text-main) !important;
-            text-align: center !important; 
-            background: linear-gradient(135deg, var(--text-main) 0%, var(--primary) 100%);
+            text-align: center !important;
+            background: linear-gradient(135deg, var(--text-main) 10%, var(--primary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -238,7 +255,7 @@
             font-size: 0.95rem;
             color: var(--text-body);
             line-height: 1.5;
-            margin: 0 auto; 
+            margin: 0 auto;
             max-width: 650px;
             text-align: center;
             font-weight: 500;
@@ -246,51 +263,57 @@
 
         .hp-hero-desc span.hi-desc {
             font-family: 'Noto Sans Devanagari', sans-serif;
-            font-size: 0.85rem; 
+            font-size: 0.85rem;
             color: var(--text-sec);
             display: block;
             margin-top: 4px;
         }
-        
+
         .hero-badge {
-            font-size: 0.75rem;
-            padding: 5px 12px;
-            border-radius: 20px;
+            font-size: 0.72rem;
+            padding: 5px 13px;
+            border-radius: 999px;
             font-weight: 700;
-            display: inline-block;
-            margin-bottom: 8px; 
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 10px;
             color: var(--primary);
-            border: 1px solid var(--primary);
+            background: var(--primary-light);
+            border: 1px solid rgba(37, 99, 235, 0.25);
+            letter-spacing: 0.3px;
+        }
+        [data-theme="dark"] .hero-badge {
+            border-color: rgba(96, 165, 250, 0.3);
         }
 
         /* Ticker Section */
         .news-ticker-container {
-            background: var(--primary-light);
+            background: var(--card-bg-soft);
             border: 1px solid var(--card-border);
-            border-radius: var(--radius-md);
+            box-shadow: var(--card-highlight), var(--card-shadow);
+            border-radius: 999px;
             overflow: hidden;
             display: flex !important;
             align-items: center;
-            padding: 4px 8px;
+            padding: 5px 10px;
             margin-bottom: 25px;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.03);
         }
         [data-theme="dark"] .news-ticker-container {
-            background: rgba(96, 165, 250, 0.08);
+            background: rgba(30, 41, 59, 0.65);
         }
         .ticker-badge {
-            background: var(--primary);
+            background: linear-gradient(135deg, var(--primary), var(--primary-hover));
             color: white;
             font-size: 0.65rem;
             font-weight: 800;
-            padding: 2px 8px;
-            border-radius: 4px;
-            margin-right: 8px;
+            padding: 3px 10px;
+            border-radius: 999px;
+            margin-right: 6px;
             z-index: 2;
             text-transform: uppercase;
             white-space: nowrap;
             letter-spacing: 0.5px;
-            box-shadow: var(--shadow-sm);
         }
         .ticker-wrap {
             flex: 1;
@@ -298,13 +321,13 @@
             position: relative;
             display: flex;
             align-items: center;
-            mask-image: linear-gradient(to right, transparent, black 2%, black 98%, transparent);
-            -webkit-mask-image: linear-gradient(to right, transparent, black 2%, black 98%, transparent);
+            mask-image: linear-gradient(to right, transparent 0%, black 32px, black calc(100% - 32px), transparent 100%);
+            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 32px, black calc(100% - 32px), transparent 100%);
         }
         .ticker-text {
             display: inline-block;
             white-space: nowrap;
-            font-size: 0.75rem;
+            font-size: 0.76rem;
             font-weight: 600;
             color: var(--text-main);
             animation: tickerScroll 25s linear infinite;
@@ -321,20 +344,35 @@
             100% { transform: translate3d(-100%, 0, 0); }
         }
 
+        /* Section Headings */
+        .section-eyebrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-size: 0.68rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.9px;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+
         .section-sub-heading {
             font-family: 'Poppins', sans-serif !important;
             font-size: 25px !important;
             font-weight: 800 !important;
             color: var(--text-main) !important;
             text-align: center !important;
-            margin: 0 auto 5px auto !important; 
+            margin: 0 auto 5px auto !important;
             width: 100%;
             display: block;
+            letter-spacing: -0.3px;
         }
 
         .section-desc {
             font-size: 0.85rem;
-            color: var(--text-body);
+            color: var(--text-sec);
             line-height: 1.5;
             margin: 0 auto 20px auto;
             max-width: 700px;
@@ -342,8 +380,8 @@
             font-weight: 500;
         }
 
-        /* Topic Grid */
-        .topic-grid { 
+        /* Grids */
+        .topic-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 12px;
@@ -358,12 +396,25 @@
         }
 
         @media (min-width: 1024px) {
-            .topic-grid { 
-                grid-template-columns: repeat(5, 1fr); 
+            .topic-grid {
+                grid-template-columns: repeat(5, 1fr);
             }
         }
 
-        /* Resource Grid */
+        /* Featured 3-Column Grid for Practice & Test Series */
+        .featured-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            width: 100%;
+        }
+        @media (min-width: 640px) {
+            .featured-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 15px;
+            }
+        }
+
         .resource-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -373,369 +424,304 @@
 
         @media (min-width: 600px) {
             .resource-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(3, 1fr);
                 gap: 15px;
             }
         }
 
         @media (min-width: 1024px) {
             .resource-grid {
-                grid-template-columns: repeat(4, 1fr);
+                grid-template-columns: repeat(5, 1fr);
             }
         }
 
-        /* Compact Study Resource Cards */
-        .resource-grid .topic-card {
-            padding: 12px 10px;
-            border-radius: var(--radius-md);
+        /* Modern Card System */
+        .topic-card {
+            position: relative;
             background: var(--card-bg);
-        }
-        .resource-grid .topic-card .topic-icon {
-            width: 36px;
-            height: 36px;
-            font-size: 1.1rem;
-            margin-bottom: 6px;
-        }
-        .resource-grid .topic-card .topic-title {
-            font-size: 0.85rem;
-            margin-bottom: 4px;
-        }
-        .resource-grid .topic-card .topic-desc {
-            font-size: 0.74rem;
-            margin-bottom: 8px;
-            line-height: 1.3;
-        }
-        .resource-grid .topic-card .topic-badge {
-            font-size: 0.62rem;
-            padding: 3px 8px;
-        }
-
-        .topic-card { 
-            background: var(--card-bg);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
             border: 1px solid var(--card-border);
-            box-shadow: var(--glass-shadow);
-            border-radius: var(--radius-lg); 
-            padding: 16px 12px; 
-            text-decoration: none; 
-            color: var(--text-main); 
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-            backface-visibility: hidden;
-            transform: translateY(0) translateZ(0);
-            -webkit-font-smoothing: antialiased;
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            text-align: center; 
+            box-shadow: var(--card-highlight), var(--card-shadow);
+            border-radius: var(--radius-lg);
+            padding: 16px 12px;
+            text-decoration: none;
+            color: var(--text-main);
+            transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.22s ease, box-shadow 0.22s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
             box-sizing: border-box;
             width: 100%;
-        }
-        
-        .topic-card:hover:not(.disabled) { 
-            border-color: var(--primary); 
-            box-shadow: 0 8px 24px rgba(37, 99, 235, 0.12);
-            transform: translateY(-3px) translateZ(0);
-        }
-        [data-theme="dark"] .topic-card:hover:not(.disabled) {
-            box-shadow: 0 8px 24px rgba(96, 165, 250, 0.2);
+            overflow: hidden;
         }
 
-        .topic-card.disabled {
-            opacity: 0.7;
-            cursor: not-allowed !important;
-            background: rgba(0, 0, 0, 0.02);
-            transition: none;
+        .topic-card:hover {
+            border-color: var(--card-border-hover);
+            box-shadow: var(--card-highlight), var(--card-shadow-hover);
+            transform: translateY(-3px);
         }
-        .topic-card.disabled:hover {
-            border-color: var(--card-border) !important;
-            box-shadow: var(--glass-shadow) !important;
-            transform: translateY(0) translateZ(0) !important;
+
+        .card-arrow {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 0.7rem;
+            color: var(--text-sec);
+            opacity: 0;
+            transform: translate(-3px, 3px);
+            transition: opacity 0.2s ease, transform 0.2s ease, color 0.2s ease;
         }
-        [data-theme="dark"] .topic-card.disabled {
-            background: rgba(0, 0, 0, 0.2);
+        .topic-card:hover .card-arrow {
+            opacity: 0.85;
+            transform: translate(0, 0);
+            color: var(--primary);
         }
-        
-        .topic-icon { 
-            font-size: 1.4rem; 
-            color: var(--primary); 
-            margin-bottom: 10px; 
-            background: var(--primary-light); 
-            width: 44px; 
-            height: 44px; 
-            border-radius: 50%; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            transition: transform 0.2s ease;
+
+        .topic-icon {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            background: var(--primary-light);
+            border: 1px solid rgba(37, 99, 235, 0.14);
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.22s ease;
+        }
+        [data-theme="dark"] .topic-icon {
+            border-color: rgba(96, 165, 250, 0.2);
         }
 
         .topic-card:hover .topic-icon {
-            transform: scale(1.08);
+            transform: scale(1.07);
         }
-        
-        .topic-title { 
-            font-size: 0.92rem; 
-            font-weight: 800; 
-            margin-bottom: 6px; 
+
+        .topic-title {
+            font-size: 0.92rem;
+            font-weight: 800;
+            margin-bottom: 6px;
             line-height: 1.25;
             font-family: 'Inter', sans-serif;
             color: var(--text-main);
+            letter-spacing: -0.15px;
         }
-        
-        .topic-desc { 
-            font-size: 0.78rem; 
-            color: var(--text-body); 
-            margin-bottom: 10px; 
-            line-height: 1.4; 
+
+        .topic-desc {
+            font-size: 0.78rem;
+            color: var(--text-sec);
+            margin-bottom: 10px;
+            line-height: 1.4;
             flex-grow: 1;
             font-weight: 500;
         }
-        
-        .topic-badge { 
-            margin-top: auto; 
-            background: var(--input-bg); 
-            color: var(--text-sec); 
-            font-size: 0.65rem; 
-            padding: 4px 10px; 
-            border-radius: 12px; 
-            font-weight: 700; 
+
+        .topic-badge {
+            margin-top: auto;
+            background: var(--input-bg);
+            color: var(--text-sec);
+            font-size: 0.65rem;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-weight: 700;
             border: 1px solid var(--card-border);
             white-space: nowrap;
-            letter-spacing: 0.3px;
-        }
-        
-        .topic-badge.active, .badge-blue { 
-            background: rgba(37, 99, 235, 0.12); 
-            color: #1d4ed8; 
-            border-color: rgba(37, 99, 235, 0.3); 
-        }
-        [data-theme="dark"] .topic-badge.active, [data-theme="dark"] .badge-blue { 
-            background: rgba(96, 165, 250, 0.2); 
-            color: #93c5fd; 
-            border-color: rgba(96, 165, 250, 0.4); 
+            letter-spacing: 0.25px;
         }
 
-        .badge-emerald { 
-            background: rgba(5, 150, 105, 0.12); 
-            color: #047857; 
-            border-color: rgba(5, 150, 105, 0.3); 
+        /* Featured Cards (Practice & Test Series) */
+        .featured-card {
+            flex-direction: row;
+            align-items: flex-start;
+            text-align: left;
+            gap: 14px;
+            padding: 16px 14px;
         }
-        [data-theme="dark"] .badge-emerald { 
-            background: rgba(52, 211, 153, 0.2); 
-            color: #34d399; 
-            border-color: rgba(52, 211, 153, 0.4); 
+        .featured-card .topic-icon {
+            flex-shrink: 0;
+            margin-bottom: 0;
+            width: 46px;
+            height: 46px;
+            border-radius: 13px;
         }
-
-        .badge-amber { 
-            background: rgba(217, 119, 6, 0.12); 
-            color: #b45309; 
-            border-color: rgba(217, 119, 6, 0.3); 
+        .featured-card-body {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            flex: 1;
+            min-width: 0;
         }
-        [data-theme="dark"] .badge-amber { 
-            background: rgba(251, 191, 36, 0.2); 
-            color: #fbbf24; 
-            border-color: rgba(251, 191, 36, 0.4); 
+        .featured-card .topic-desc {
+            margin-bottom: 10px;
         }
-
-        .badge-teal { 
-            background: rgba(13, 148, 136, 0.12); 
-            color: #0f766e; 
-            border-color: rgba(13, 148, 136, 0.3); 
-        }
-        [data-theme="dark"] .badge-teal { 
-            background: rgba(45, 212, 191, 0.2); 
-            color: #2dd4bf; 
-            border-color: rgba(45, 212, 191, 0.4); 
-        }
-
-        .badge-indigo { 
-            background: rgba(79, 70, 229, 0.12); 
-            color: #4338ca; 
-            border-color: rgba(79, 70, 229, 0.3); 
-        }
-        [data-theme="dark"] .badge-indigo { 
-            background: rgba(129, 140, 248, 0.2); 
-            color: #a78bfa; 
-            border-color: rgba(129, 140, 248, 0.4); 
-        }
-
-        .badge-rose { 
-            background: rgba(225, 29, 72, 0.12); 
-            color: #be123c; 
-            border-color: rgba(225, 29, 72, 0.3); 
-        }
-        [data-theme="dark"] .badge-rose { 
-            background: rgba(251, 113, 133, 0.2); 
-            color: #fb7185; 
-            border-color: rgba(251, 113, 133, 0.4); 
-        }
-
-        /* Topic Grid */
-        .topic-grid { 
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            width: 100%;
-        }
-
-        @media (min-width: 600px) {
-            .topic-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 15px;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .topic-grid { 
-                grid-template-columns: repeat(5, 1fr); 
-            }
-        }
-
-        /* Resource Grid */
-        .resource-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            width: 100%;
-        }
-
-        @media (min-width: 600px) {
-            .resource-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 15px;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .resource-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
+        .featured-card .topic-badge {
+            margin-top: 0;
         }
 
         /* Compact Study Resource Cards */
         .resource-grid .topic-card {
-            padding: 10px 8px;
+            padding: 14px 12px;
             border-radius: var(--radius-md);
-            background: rgba(255, 255, 255, 0.55);
-        }
-        [data-theme="dark"] .resource-grid .topic-card {
-            background: rgba(30, 41, 59, 0.45);
+            background: var(--card-bg-soft);
         }
         .resource-grid .topic-card .topic-icon {
-            width: 34px;
-            height: 34px;
-            font-size: 1.1rem;
-            margin-bottom: 5px;
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            font-size: 1.05rem;
+            margin-bottom: 8px;
         }
         .resource-grid .topic-card .topic-title {
-            font-size: 0.84rem;
-            margin-bottom: 3px;
+            font-size: 0.86rem;
+            margin-bottom: 4px;
         }
         .resource-grid .topic-card .topic-desc {
-            font-size: 0.72rem;
-            margin-bottom: 6px;
-            line-height: 1.25;
+            font-size: 0.75rem;
+            margin-bottom: 8px;
+            line-height: 1.35;
         }
         .resource-grid .topic-card .topic-badge {
-            font-size: 0.6rem;
-            padding: 2px 7px;
+            font-size: 0.62rem;
+            padding: 3px 9px;
         }
 
-        .topic-card { 
+        /* Badge Variants */
+        .topic-badge.active {
+            background: var(--correct-bg);
+            color: var(--correct-text);
+            border-color: rgba(22, 101, 52, 0.16);
+        }
+        [data-theme="dark"] .topic-badge.active {
+            border-color: rgba(110, 231, 183, 0.22);
+        }
+        .badge-blue {
+            background: rgba(37, 99, 235, 0.1) !important;
+            color: #1d4ed8 !important;
+            border-color: rgba(37, 99, 235, 0.25) !important;
+        }
+        [data-theme="dark"] .badge-blue {
+            background: rgba(96, 165, 250, 0.18) !important;
+            color: #93c5fd !important;
+            border-color: rgba(96, 165, 250, 0.35) !important;
+        }
+        .badge-emerald {
+            background: rgba(5, 150, 105, 0.1) !important;
+            color: #047857 !important;
+            border-color: rgba(5, 150, 105, 0.25) !important;
+        }
+        [data-theme="dark"] .badge-emerald {
+            background: rgba(52, 211, 153, 0.18) !important;
+            color: #34d399 !important;
+            border-color: rgba(52, 211, 153, 0.35) !important;
+        }
+        .badge-amber {
+            background: rgba(217, 119, 6, 0.1) !important;
+            color: #b45309 !important;
+            border-color: rgba(217, 119, 6, 0.25) !important;
+        }
+        [data-theme="dark"] .badge-amber {
+            background: rgba(251, 191, 36, 0.18) !important;
+            color: #fbbf24 !important;
+            border-color: rgba(251, 191, 36, 0.35) !important;
+        }
+        .badge-teal {
+            background: rgba(13, 148, 136, 0.1) !important;
+            color: #0f766e !important;
+            border-color: rgba(13, 148, 136, 0.25) !important;
+        }
+        [data-theme="dark"] .badge-teal {
+            background: rgba(45, 212, 191, 0.18) !important;
+            color: #2dd4bf !important;
+            border-color: rgba(45, 212, 191, 0.35) !important;
+        }
+        .badge-indigo {
+            background: rgba(79, 70, 229, 0.1) !important;
+            color: #4338ca !important;
+            border-color: rgba(79, 70, 229, 0.25) !important;
+        }
+        [data-theme="dark"] .badge-indigo {
+            background: rgba(129, 140, 248, 0.18) !important;
+            color: #a78bfa !important;
+            border-color: rgba(129, 140, 248, 0.35) !important;
+        }
+        .badge-rose {
+            background: rgba(225, 29, 72, 0.1) !important;
+            color: #be123c !important;
+            border-color: rgba(225, 29, 72, 0.25) !important;
+        }
+        [data-theme="dark"] .badge-rose {
+            background: rgba(251, 113, 133, 0.18) !important;
+            color: #fb7185 !important;
+            border-color: rgba(251, 113, 133, 0.35) !important;
+        }
+
+        /* Compact Coming Soon Strip */
+        .upcoming-strip {
+            background: var(--card-bg-soft);
+            border: 1px dashed var(--card-border);
+            box-shadow: var(--card-highlight);
+            border-radius: var(--radius-lg);
+            padding: 12px 14px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .upcoming-label {
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            color: var(--text-sec);
+            margin-right: 4px;
+        }
+        .upcoming-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.74rem;
+            font-weight: 600;
+            color: var(--text-body);
             background: var(--card-bg);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
             border: 1px solid var(--card-border);
-            box-shadow: var(--glass-shadow);
-            border-radius: var(--radius-lg); 
-            padding: 15px 10px; 
-            text-decoration: none; 
-            color: var(--text-main); 
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-            backface-visibility: hidden;
-            transform: translateY(0) translateZ(0);
-            -webkit-font-smoothing: antialiased;
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            text-align: center; 
-            box-sizing: border-box;
-            width: 100%;
+            padding: 4px 11px;
+            border-radius: 999px;
         }
-        
-        .topic-card:hover:not(.disabled) { 
-            border-color: var(--primary); 
-            box-shadow: 0 6px 15px rgba(37, 99, 235, 0.08);
-            transform: translateY(-2px) translateZ(0);
+        .upcoming-pill i {
+            font-size: 0.72rem;
+            color: var(--primary);
         }
-
-        .topic-card.disabled {
-            opacity: 0.7;
-            cursor: not-allowed !important;
-            background: rgba(0, 0, 0, 0.02);
-            transition: none;
-        }
-        .topic-card.disabled:hover {
-            border-color: var(--card-border) !important;
-            box-shadow: var(--glass-shadow) !important;
-            transform: translateY(0) translateZ(0) !important;
-        }
-        [data-theme="dark"] .topic-card.disabled {
-            background: rgba(0, 0, 0, 0.2);
-        }
-        [data-theme="dark"] .topic-card.disabled:hover {
-            border-color: var(--card-border) !important; 
-        }
-        
-        .topic-icon { 
-            font-size: 1.4rem; 
-            color: var(--primary); 
-            margin-bottom: 8px; 
-            background: var(--input-bg); 
-            width: 42px; 
-            height: 42px; 
-            border-radius: 50%; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-        }
-        
-        .topic-title { 
-            font-size: 0.9rem; 
-            font-weight: 700; 
-            margin-bottom: 5px; 
-            line-height: 1.2;
-            font-family: 'Inter', sans-serif;
-        }
-        
-        .topic-desc { 
-            font-size: 0.75rem; 
-            color: var(--text-sec); 
-            margin-bottom: 8px; 
-            line-height: 1.3; 
-            flex-grow: 1;
-        }
-        
-        .topic-badge { 
-            margin-top: auto; 
-            background: var(--input-bg); 
-            color: var(--text-sec); 
-            font-size: 0.65rem; 
-            padding: 3px 8px; 
-            border-radius: 10px; 
-            font-weight: 600; 
-            border: 1px solid var(--card-border);
-            white-space: nowrap;
-        }
-        .topic-badge.active { background: var(--correct-bg); color: var(--correct-text); border-color: transparent; }
 
         /* Install Button Style */
-        .install-float { position: fixed; bottom: 20px; right: 20px; z-index: 1000; display: none; background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 50px; font-weight: 600; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4); cursor: pointer; align-items: center; gap: 8px; animation: slideUp 0.3s ease-out; }
-        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .install-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: none;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+            cursor: pointer;
+            align-items: center;
+            gap: 8px;
+            animation: slideUp 0.3s ease-out;
+        }
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
 
-        .seo-content-wrapper { 
-            margin: 30px auto; 
+        /* Compact SEO Content Section */
+        .seo-content-wrapper {
+            margin: 30px auto;
             max-width: 1000px;
             border-top: 1px solid var(--card-border);
             padding-top: 30px;
@@ -743,90 +729,90 @@
             padding-right: 15px;
             box-sizing: border-box;
         }
-        
-        .seo-header { text-align: center; margin-bottom: 30px; }
-        .seo-header h2 { 
-            font-size: 1.25rem !important; 
-            margin-bottom: 8px; 
-            color: var(--text-main); 
-            font-weight: 800; 
-            font-family: 'Poppins', sans-serif !important;
-            letter-spacing: -0.5px;
+
+        .seo-header {
+            text-align: center;
+            margin-bottom: 18px;
         }
-        .seo-header p { 
-            color: var(--text-sec); 
-            font-size: 0.9rem; 
+        .seo-header p {
+            color: var(--text-sec);
+            font-size: 0.85rem;
             margin: 0 auto;
             max-width: 600px;
-            line-height: 1.5;
+            line-height: 1.45;
         }
 
         .seo-prose {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
             text-align: left;
-            margin-top: 20px;
-        }
-        
-        .seo-block {
-            break-inside: avoid;
-            margin-bottom: 18px;
-            background: rgba(0, 0, 0, 0.015);
-            padding: 12px 14px;
-            border-radius: var(--radius-md);
-            border-left: 3px solid var(--card-border);
-        }
-        [data-theme="dark"] .seo-block { background: rgba(0, 0, 0, 0.2); }
-
-        .seo-block h3 {
-            font-size: 0.9rem;
-            font-weight: 800;
-            color: var(--text-main);
-            margin: 0 0 6px 0;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-family: 'Inter', sans-serif;
-        }
-        
-        .seo-block h3 i { font-size: 0.8rem; }
-        
-        .seo-block p {
-            margin: 0;
-            font-size: 0.78rem;
-            line-height: 1.45;
-            color: var(--text-body);
-        }
-        
-        .seo-block p strong {
-            color: var(--text-main);
-            font-weight: 700;
         }
 
         @media (min-width: 600px) {
             .seo-prose {
-                column-count: 2;
-                column-gap: 18px;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
             }
         }
 
         @media (min-width: 1024px) {
             .seo-prose {
-                column-count: 3;
-                column-gap: 20px;
+                grid-template-columns: repeat(3, 1fr);
             }
         }
-        
+
+        .seo-block {
+            background: var(--card-bg-soft);
+            padding: 11px 13px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--card-border);
+            border-left-width: 3px;
+            box-shadow: var(--card-highlight);
+            transition: border-color 0.2s ease, transform 0.2s ease;
+        }
+        .seo-block:hover {
+            transform: translateY(-1px);
+        }
+
+        .seo-block h3 {
+            font-size: 0.84rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin: 0 0 4px 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .seo-block h3 i {
+            font-size: 0.78rem;
+        }
+
+        .seo-block p {
+            margin: 0;
+            font-size: 0.75rem;
+            line-height: 1.42;
+            color: var(--text-sec);
+        }
+
+        .seo-block p strong {
+            color: var(--text-main);
+            font-weight: 700;
+        }
+
         @media (max-width: 600px) {
             .page-header-top { margin-top: 0; padding-top: 0; margin-bottom: 15px; }
-            .hero-badge { font-size: 0.65rem; padding: 3px 9px; margin-bottom: 5px; }
+            .hero-badge { font-size: 0.65rem; padding: 3px 10px; margin-bottom: 6px; }
             .hp-main-title { font-size: 24px !important; font-weight: 900 !important; }
             .hp-hero-desc { font-size: 14.5px !important; }
             .section-sub-heading { font-size: 22px !important; font-weight: 800 !important; }
             .section-desc { font-size: 0.8rem; margin-bottom: 12px; }
-            .news-ticker-container { padding: 3px 6px; margin-bottom: 15px; }
-            .ticker-badge { font-size: 0.6rem; padding: 2px 4px; }
+            .news-ticker-container { padding: 4px 8px; margin-bottom: 15px; }
+            .ticker-badge { font-size: 0.6rem; padding: 2px 7px; }
             .ticker-text { font-size: 0.7rem; }
-            .seo-prose { column-count: 1; }
-            .seo-block { padding: 12px; margin-bottom: 15px; }
+            .seo-block { padding: 10px 11px; }
         }
     </style>
 
@@ -848,89 +834,101 @@
     <div class="page-layout">
         <!-- Compact Hero Section -->
         <div class="page-header-top">
-            <span class="hero-badge glass-panel" style="border-color: var(--primary); color: var(--primary);">Devbhoomi Edition</span>
+            <span class="hero-badge"><i class="fa-solid fa-mountain-sun"></i> Devbhoomi Edition</span>
             <h1 class="hp-main-title">Master Himachal Pradesh General Knowledge</h1>
             <p class="hp-hero-desc">
                 The ultimate study companion for HPAS (HAS), HPPSC, Allied Services, Naib Tehsildar, and HP Police. Select a topic below to start practicing.
+                <span class="hi-desc">हिमाचल प्रदेश की सभी प्रतियोगी परीक्षाओं के लिए हिंदी और अंग्रेजी (Bilingual) मॉक टेस्ट व प्रश्नोत्तरी</span>
             </p>
         </div>
     </div>
 
     <!-- Ticker Section -->
-    <div class="news-ticker-container glass-panel">
+    <div class="news-ticker-container">
         <span class="ticker-badge"><i class="fa-solid fa-bolt" style="margin-right:2px;"></i> Updates</span>
         <div class="ticker-wrap">
             <span class="ticker-text">
-                🔥 <span>New:</span> 6500+ Bilingual MCQs for HPAS & Allied Exams &nbsp;&nbsp; | &nbsp;&nbsp; 🎯 <span>Trending:</span> District Mastery Series &nbsp;&nbsp; | &nbsp;&nbsp; 📚 <span>Updated:</span> Premium Study Notes & Agriculture Hub &nbsp;&nbsp; | &nbsp;&nbsp; 🚀 Start practicing for free!
+                🔥 <span>New:</span> 6500+ Bilingual MCQs for HPAS &amp; Allied Exams &nbsp;&nbsp; | &nbsp;&nbsp; 🎯 <span>Trending:</span> District Mastery Series &nbsp;&nbsp; | &nbsp;&nbsp; 📚 <span>Updated:</span> Premium Study Notes &amp; Agriculture Hub &nbsp;&nbsp; | &nbsp;&nbsp; 🚀 Start practicing for free!
             </span>
         </div>
     </div>
 
     <div class="page-layout">
+        <div class="section-eyebrow"><i class="fa-solid fa-layer-group"></i> Core Subjects</div>
         <h2 class="section-sub-heading">HP Topic-Wise MCQs</h2>
         <p class="section-desc">
             Master every subject of Himachal Pradesh General Knowledge with our comprehensive, syllabus-aligned bilingual quizzes.
         </p>
 
         <div class="topic-grid">
-            <a href="himachal-pradesh-gk/rivers/" class="topic-card">
+            <a href="himachal-pradesh-gk/rivers/" class="topic-card" data-quiz-id="rivers">
+                <i class="fa-solid fa-arrow-up-right-from-square card-arrow" aria-hidden="true"></i>
                 <div class="topic-icon"><i class="fa-solid fa-water"></i></div>
                 <div class="topic-title">Rivers System</div>
-                <div class="topic-desc">Satluj, Beas, Ravi, Chenab & Yamuna.</div>
+                <div class="topic-desc">Satluj, Beas, Ravi, Chenab &amp; Yamuna.</div>
                 <div class="topic-badge active">350+ MCQs</div>
             </a>
-            <a href="himachal-pradesh-gk/history/" class="topic-card">
+            <a href="himachal-pradesh-gk/history/" class="topic-card" data-quiz-id="history">
+                <i class="fa-solid fa-arrow-up-right-from-square card-arrow" aria-hidden="true"></i>
                 <div class="topic-icon"><i class="fa-solid fa-landmark"></i></div>
                 <div class="topic-title">History of HP</div>
-                <div class="topic-desc">Ancient Trigarta, British Rule & Statehood.</div>
+                <div class="topic-desc">Ancient Trigarta, British Rule &amp; Statehood.</div>
                 <div class="topic-badge active">620+ MCQs</div>
             </a>
-            <a href="himachal-pradesh-gk/geography/" class="topic-card">
+            <a href="himachal-pradesh-gk/geography/" class="topic-card" data-quiz-id="geography">
+                <i class="fa-solid fa-arrow-up-right-from-square card-arrow" aria-hidden="true"></i>
                 <div class="topic-icon"><i class="fa-solid fa-mountain"></i></div>
                 <div class="topic-title">Geography</div>
-                <div class="topic-desc">Peaks, Passes, Glaciers & Valleys.</div>
+                <div class="topic-desc">Peaks, Passes, Glaciers &amp; Valleys.</div>
                 <div class="topic-badge active">560+ MCQs</div>
             </a>
-            <a href="himachal-pradesh-gk/district/" class="topic-card">
+            <a href="himachal-pradesh-gk/district/" class="topic-card" data-quiz-id="district">
+                <i class="fa-solid fa-arrow-up-right-from-square card-arrow" aria-hidden="true"></i>
                 <div class="topic-icon"><i class="fa-solid fa-map-location-dot"></i></div>
                 <div class="topic-title">District Profile</div>
                 <div class="topic-desc">Specific GK for Kangra, Mandi, Shimla, etc.</div>
                 <div class="topic-badge active">1200+ MCQs</div>
             </a>
-            <a href="himachal-pradesh-gk/polity/" class="topic-card">
+            <a href="himachal-pradesh-gk/polity/" class="topic-card" data-quiz-id="polity">
+                <i class="fa-solid fa-arrow-up-right-from-square card-arrow" aria-hidden="true"></i>
                 <div class="topic-icon"><i class="fa-solid fa-scale-balanced"></i></div>
                 <div class="topic-title">Polity</div>
-                <div class="topic-desc">Administrative structure & Vidhan Sabha.</div>
+                <div class="topic-desc">Administrative structure &amp; Vidhan Sabha.</div>
                 <div class="topic-badge active">870+ MCQs</div>
             </a>
-            <a href="himachal-pradesh-gk/economy/" class="topic-card">
+            <a href="himachal-pradesh-gk/economy/" class="topic-card" data-quiz-id="economy">
+                <i class="fa-solid fa-arrow-up-right-from-square card-arrow" aria-hidden="true"></i>
                 <div class="topic-icon"><i class="fa-solid fa-bolt"></i></div>
                 <div class="topic-title">Economy</div>
-                <div class="topic-desc">Hydropower, Agriculture & Apple production.</div>
+                <div class="topic-desc">Hydropower, Agriculture &amp; Apple production.</div>
                 <div class="topic-badge active">610+ MCQs</div>
             </a>
-            <a href="himachal-pradesh-gk/famous-people/" class="topic-card">
+            <a href="himachal-pradesh-gk/famous-people/" class="topic-card" data-quiz-id="famous-people">
+                <i class="fa-solid fa-arrow-up-right-from-square card-arrow" aria-hidden="true"></i>
                 <div class="topic-icon"><i class="fa-solid fa-user-graduate"></i></div>
                 <div class="topic-title">Famous People</div>
-                <div class="topic-desc">Freedom fighters, PVC awardees & Artists.</div>
+                <div class="topic-desc">Freedom fighters, PVC awardees &amp; Artists.</div>
                 <div class="topic-badge active">605+ MCQs</div>
             </a>
-            <a href="himachal-pradesh-gk/environment/" class="topic-card">
+            <a href="himachal-pradesh-gk/environment/" class="topic-card" data-quiz-id="environment">
+                <i class="fa-solid fa-arrow-up-right-from-square card-arrow" aria-hidden="true"></i>
                 <div class="topic-icon"><i class="fa-solid fa-tree"></i></div>
                 <div class="topic-title">Environment</div>
-                <div class="topic-desc">National Parks, Sanctuaries & Symbols.</div>
+                <div class="topic-desc">National Parks, Sanctuaries &amp; Symbols.</div>
                 <div class="topic-badge active">540+ MCQs</div>
             </a>
-            <a href="himachal-pradesh-gk/tourism/" class="topic-card">
+            <a href="himachal-pradesh-gk/tourism/" class="topic-card" data-quiz-id="tourism">
+                <i class="fa-solid fa-arrow-up-right-from-square card-arrow" aria-hidden="true"></i>
                 <div class="topic-icon"><i class="fa-solid fa-person-hiking"></i></div>
                 <div class="topic-title">Tourism</div>
-                <div class="topic-desc">Hill Stations, Treks & Religious Circuit.</div>
+                <div class="topic-desc">Hill Stations, Treks &amp; Religious Circuit.</div>
                 <div class="topic-badge active">450+ MCQs</div>
             </a>
-            <a href="himachal-pradesh-gk/art-culture/" class="topic-card">
+            <a href="himachal-pradesh-gk/art-culture/" class="topic-card" data-quiz-id="art-culture">
+                <i class="fa-solid fa-arrow-up-right-from-square card-arrow" aria-hidden="true"></i>
                 <div class="topic-icon"><i class="fa-solid fa-gopuram"></i></div>
-                <div class="topic-title">Art & Culture</div>
-                <div class="topic-desc">Temple architecture, Fairs & Folk Dances.</div>
+                <div class="topic-title">Art &amp; Culture</div>
+                <div class="topic-desc">Temple architecture, Fairs &amp; Folk Dances.</div>
                 <div class="topic-badge active">760+ MCQs</div>
             </a>
         </div>
@@ -939,141 +937,112 @@
     <div class="section-separator"></div>
 
     <div class="page-layout">
-        <h2 class="section-sub-heading">Practice & Test Series</h2>
+        <div class="section-eyebrow"><i class="fa-solid fa-stopwatch"></i> Exam Simulator</div>
+        <h2 class="section-sub-heading">Practice &amp; Test Series</h2>
         <p class="section-desc">
             Evaluate your preparation with specialized mock tests, district-wise deep dives, and study hubs.
         </p>
-        
-        <div class="topic-grid">
-            
-            <!-- HP Study Notes Hub -->
-            <a href="study-notes/" class="topic-card">
+
+        <div class="featured-grid">
+            <a href="study-notes/" class="topic-card featured-card">
+                <i class="fa-solid fa-arrow-up-right-from-square card-arrow" aria-hidden="true"></i>
                 <div class="topic-icon"><i class="fa-solid fa-book-open"></i></div>
-                <div class="topic-title">HP Study Notes Hub</div>
-                <div class="topic-desc">Govt Schemes, Budget 2026-27 & Survey.</div>
-                <div class="topic-badge active">Updated</div>
+                <div class="featured-card-body">
+                    <div class="topic-title">HP Study Notes Hub</div>
+                    <div class="topic-desc">Govt Schemes, Budget 2026-27 &amp; Economic Survey notes.</div>
+                    <div class="topic-badge active">Updated</div>
+                </div>
             </a>
 
-            <!-- 1. Agriculture -->
-            <a href="agriculture-quiz/" class="topic-card">
-                <div class="topic-icon" style="color: #059669; background: rgba(5, 150, 105, 0.12);"><i class="fa-solid fa-seedling"></i></div>
-                <div class="topic-title">General Agriculture</div>
-                <div class="topic-desc">ICAR JRF, IBPS AFO & State ADO Exams.</div>
-                <div class="topic-badge active badge-emerald">507+ MCQs</div>
+            <a href="agriculture-quiz/" class="topic-card featured-card" data-quiz-id="agriculture">
+                <i class="fa-solid fa-arrow-up-right-from-square card-arrow" aria-hidden="true"></i>
+                <div class="topic-icon" style="color: #059669; background: rgba(5, 150, 105, 0.12); border-color: rgba(5, 150, 105, 0.2);"><i class="fa-solid fa-seedling"></i></div>
+                <div class="featured-card-body">
+                    <div class="topic-title">General Agriculture</div>
+                    <div class="topic-desc">Bilingual mock series for ICAR JRF, IBPS AFO &amp; State ADO.</div>
+                    <div class="topic-badge active badge-emerald">507+ MCQs</div>
+                </div>
             </a>
 
-            <!-- 2. Full-Length Mocks -->
-            <a href="hp-exam-full-mock-test/" class="topic-card">
-                <div class="topic-icon" style="color: #2563eb; background: rgba(37, 99, 235, 0.12);"><i class="fa-solid fa-clipboard-list"></i></div>
-                <div class="topic-title">Full-Length Mocks</div>
-                <div class="topic-desc">Complete Patwari, Police & HRTC mock tests.</div>
-                <div class="topic-badge active badge-blue">Live Now</div>
+            <a href="hp-exam-full-mock-test/" class="topic-card featured-card" data-quiz-id="full-mock">
+                <i class="fa-solid fa-arrow-up-right-from-square card-arrow" aria-hidden="true"></i>
+                <div class="topic-icon" style="color: #2563eb; background: rgba(37, 99, 235, 0.12); border-color: rgba(37, 99, 235, 0.2);"><i class="fa-solid fa-clipboard-list"></i></div>
+                <div class="featured-card-body">
+                    <div class="topic-title">Full-Length Mocks</div>
+                    <div class="topic-desc">Timed exam papers for Patwari, HP Police &amp; HRTC.</div>
+                    <div class="topic-badge active badge-blue">Live Now</div>
+                </div>
             </a>
-
-            <!-- 3. HP PYQs Archive -->
-            <div class="topic-card disabled" title="Coming Soon">
-                <div class="topic-icon" style="color: #d97706; background: rgba(217, 119, 6, 0.12);"><i class="fa-solid fa-box-archive"></i></div>
-                <div class="topic-title">HP PYQs Archive</div>
-                <div class="topic-desc">Topic-wise solved question papers for state exams.</div>
-                <div class="topic-badge">Soon</div>
-            </div>
-
-            <!-- 4. HP Current Affairs (Hidden) -->
-            <div class="topic-card disabled" title="Coming Soon" style="display: none;">
-                <div class="topic-icon"><i class="fa-regular fa-newspaper"></i></div>
-                <div class="topic-title">HP Current Affairs</div>
-                <div class="topic-desc">Monthly MCQs of HP & National events.</div>
-                <div class="topic-badge">Soon</div>
-            </div>
-
-            <!-- 5. Mini Mock Tests -->
-            <div class="topic-card disabled" title="Coming Soon">
-                <div class="topic-icon"><i class="fa-solid fa-stopwatch"></i></div>
-                <div class="topic-title">Mini Mock Tests</div>
-                <div class="topic-desc">Quick 20-Q mixed tests for daily practice.</div>
-                <div class="topic-badge">Soon</div>
-            </div>
-
         </div>
     </div>
 
     <div class="section-separator"></div>
 
     <div class="page-layout">
+        <div class="section-eyebrow"><i class="fa-solid fa-gem"></i> High-Yield Revision</div>
         <h2 class="section-sub-heading">HP Premium Study Resources</h2>
         <p class="section-desc">
             Supercharge your revision with our highly curated study hubs, fast-reading one-liners, and extra curriculum resources.
         </p>
-        
+
         <div class="resource-grid">
-            <!-- 1. HP GK One Liners Hub -->
             <a href="study-notes/hpgk-one-liners/" class="topic-card">
-                <div class="topic-icon" style="color: #d97706; background: rgba(217, 119, 6, 0.12);"><i class="fa-solid fa-bolt"></i></div>
+                <i class="fa-solid fa-arrow-up-right-from-square card-arrow" aria-hidden="true"></i>
+                <div class="topic-icon" style="color: #d97706; background: rgba(217, 119, 6, 0.12); border-color: rgba(217, 119, 6, 0.2);"><i class="fa-solid fa-bolt"></i></div>
                 <div class="topic-title">One-Liners Series</div>
                 <div class="topic-desc">2250+ rapid-fire bilingual revision facts.</div>
                 <div class="topic-badge active badge-amber">Trending</div>
             </a>
 
-            <!-- 2. HP Revenue Laws MCQs -->
-            <a href="study-notes/hp-revenue-and-land-laws/quiz/" class="topic-card">
-                <div class="topic-icon" style="color: #0d9488; background: rgba(13, 148, 136, 0.12);"><i class="fa-solid fa-gavel"></i></div>
+            <a href="study-notes/hp-revenue-and-land-laws/quiz/" class="topic-card" data-quiz-id="revenue-laws">
+                <i class="fa-solid fa-arrow-up-right-from-square card-arrow" aria-hidden="true"></i>
+                <div class="topic-icon" style="color: #0d9488; background: rgba(13, 148, 136, 0.12); border-color: rgba(13, 148, 136, 0.2);"><i class="fa-solid fa-gavel"></i></div>
                 <div class="topic-title">Revenue Laws Quiz</div>
-                <div class="topic-desc">450+ MCQs on Sec 118 & Patwari Acts.</div>
+                <div class="topic-desc">450+ MCQs on Sec 118 &amp; Patwari Acts.</div>
                 <div class="topic-badge active badge-teal">New</div>
             </a>
 
-            <!-- 3. HP Economic Survey -->
             <a href="study-notes/economic-survey/" class="topic-card">
-                <div class="topic-icon" style="color: #4f46e5; background: rgba(79, 70, 229, 0.12);"><i class="fa-solid fa-chart-line"></i></div>
+                <i class="fa-solid fa-arrow-up-right-from-square card-arrow" aria-hidden="true"></i>
+                <div class="topic-icon" style="color: #4f46e5; background: rgba(79, 70, 229, 0.12); border-color: rgba(79, 70, 229, 0.2);"><i class="fa-solid fa-chart-line"></i></div>
                 <div class="topic-title">Economic Survey</div>
-                <div class="topic-desc">Key highlights of HP Economy & GDP data.</div>
+                <div class="topic-desc">Key highlights of HP Economy &amp; GDP data.</div>
                 <div class="topic-badge active badge-indigo">Must Read</div>
             </a>
 
-            <!-- 4. HP Govt Schemes -->
             <a href="study-notes/govt-schemes/" class="topic-card">
-                <div class="topic-icon" style="color: #e11d48; background: rgba(225, 29, 72, 0.12);"><i class="fa-solid fa-hands-holding-circle"></i></div>
+                <i class="fa-solid fa-arrow-up-right-from-square card-arrow" aria-hidden="true"></i>
+                <div class="topic-icon" style="color: #e11d48; background: rgba(225, 29, 72, 0.12); border-color: rgba(225, 29, 72, 0.2);"><i class="fa-solid fa-hands-holding-circle"></i></div>
                 <div class="topic-title">Govt Welfare Schemes</div>
-                <div class="topic-desc">Latest HP Govt initiatives & subsidies notes.</div>
+                <div class="topic-desc">Latest HP Govt initiatives &amp; subsidies notes.</div>
                 <div class="topic-badge active badge-rose">High Yield</div>
             </a>
 
-            <!-- 5. Agriculture & Horticulture Notes -->
             <a href="study-notes/hp-agriculture-and-horticulture/" class="topic-card">
-                <div class="topic-icon" style="color: #059669; background: rgba(5, 150, 105, 0.12);"><i class="fa-solid fa-seedling"></i></div>
-                <div class="topic-title">Agri & Horticulture</div>
-                <div class="topic-desc">Apple economy, crop zones & livestock.</div>
+                <i class="fa-solid fa-arrow-up-right-from-square card-arrow" aria-hidden="true"></i>
+                <div class="topic-icon" style="color: #059669; background: rgba(5, 150, 105, 0.12); border-color: rgba(5, 150, 105, 0.2);"><i class="fa-solid fa-seedling"></i></div>
+                <div class="topic-title">Agri &amp; Horticulture</div>
+                <div class="topic-desc">Apple economy, crop zones &amp; livestock.</div>
                 <div class="topic-badge active badge-emerald">Premium</div>
             </a>
-
-            <!-- 6. HP Hydel Projects (Coming Soon) -->
-            <div class="topic-card disabled" title="Coming Soon">
-                <div class="topic-icon" style="color: #0284c7; background: rgba(2, 132, 199, 0.12);"><i class="fa-solid fa-bolt-lightning"></i></div>
-                <div class="topic-title">HP Hydel Projects</div>
-                <div class="topic-desc">Complete guide to HP hydro power plants & capacity.</div>
-                <div class="topic-badge">Soon</div>
-            </div>
-
-            <!-- 7. District Mastery (Coming Soon) -->
-            <div class="topic-card disabled" title="Coming Soon">
-                <div class="topic-icon" style="color: #8b5cf6; background: rgba(139, 92, 246, 0.12);"><i class="fa-solid fa-map-location-dot"></i></div>
-                <div class="topic-title">District Mastery</div>
-                <div class="topic-desc">Deep dive into all 12 districts of HP.</div>
-                <div class="topic-badge">Soon</div>
-            </div>
-
-            <!-- 8. HP Census & Demographics (Coming Soon) -->
-            <div class="topic-card disabled" title="Coming Soon">
-                <div class="topic-icon" style="color: #7c3aed; background: rgba(124, 58, 237, 0.12);"><i class="fa-solid fa-chart-pie"></i></div>
-                <div class="topic-title">Census & Demographics</div>
-                <div class="topic-desc">Essential facts on HP Census, literacy & ratios.</div>
-                <div class="topic-badge">Soon</div>
-            </div>
         </div>
     </div>
-    
+
     <div class="section-separator"></div>
 
+    <!-- Compact Coming Soon Strip -->
+    <div class="page-layout">
+        <div class="upcoming-strip" aria-label="Upcoming Modules">
+            <span class="upcoming-label"><i class="fa-solid fa-hourglass-half"></i> Coming Soon:</span>
+            <span class="upcoming-pill"><i class="fa-solid fa-box-archive"></i> HP PYQs Archive</span>
+            <span class="upcoming-pill"><i class="fa-solid fa-stopwatch"></i> Mini Mock Tests</span>
+            <span class="upcoming-pill"><i class="fa-solid fa-bolt-lightning"></i> HP Hydel Projects</span>
+            <span class="upcoming-pill"><i class="fa-solid fa-map-location-dot"></i> District Mastery</span>
+            <span class="upcoming-pill"><i class="fa-solid fa-chart-pie"></i> Census &amp; Demographics</span>
+        </div>
+    </div>
+
+    <!-- Compact SEO Content Section -->
     <div class="seo-content-wrapper">
         <div class="seo-header">
             <h2 class="section-sub-heading" style="font-size: 22px !important;">Ultimate HP GK Guide</h2>
@@ -1081,62 +1050,52 @@
         </div>
 
         <div class="seo-prose">
-            <!-- Block 1 -->
             <div class="seo-block" style="border-left-color: #3b82f6;">
                 <h3><i class="fa-solid fa-language" style="color: #3b82f6;"></i> Bilingual Learning</h3>
-                <p>Welcome to our trusted platform to master <strong>himachal pradesh gk in english</strong> and <strong>hindi</strong>. Our comprehensive dual-language approach ensures candidates across all regions can seamlessly prepare without language barriers.</p>
+                <p>Master <strong>himachal pradesh gk in english</strong> and <strong>hindi</strong> with our dual-language quiz format.</p>
             </div>
 
-            <!-- Block 2 -->
             <div class="seo-block" style="border-left-color: #a855f7;">
                 <h3><i class="fa-solid fa-clipboard-question" style="color: #a855f7;"></i> Latest Question Bank</h3>
-                <p>Stay updated with our continuously refined database. We provide the <strong>latest hp gk questions with answers in hindi</strong> and English, covering core topics like Rivers, Glaciers, Ancient Hill States, Polity, and Culture.</p>
+                <p>Practice the <strong>latest hp gk questions with answers in hindi</strong> &amp; English across Rivers, History, Polity, and Culture.</p>
             </div>
 
-            <!-- Block 3 -->
             <div class="seo-block" style="border-left-color: #10b981;">
                 <h3><i class="fa-solid fa-bullseye" style="color: #10b981;"></i> Targeted Practice</h3>
-                <p>Looking for exam-oriented revision? Practice high-yielding <strong>hp gk questions in hindi</strong> and English through timed online quizzes specifically structured for HPAS, Allied Services, Naib Tehsildar, and HP Police exams.</p>
+                <p>Timed <strong>hp gk questions in hindi</strong> &amp; English tailored for HPAS, Allied Services, Naib Tehsildar, and HP Police.</p>
             </div>
 
-            <!-- Block 4 -->
             <div class="seo-block" style="border-left-color: #ea580c;">
                 <h3><i class="fa-solid fa-fire" style="color: #ea580c;"></i> High-Yield Material</h3>
-                <p>Boost your final score with our expert notes. We offer focused study materials on complex topics including <strong>HP Revenue & Land Laws</strong> (Sec 118, Tenancy Acts), the latest <strong>Economic Survey</strong>, and rapid revision one-liners.</p>
+                <p>Focused notes on <strong>HP Revenue &amp; Land Laws</strong> (Sec 118, Tenancy Acts), <strong>Economic Survey</strong>, and one-liners.</p>
             </div>
-            
-            <!-- Block 5 -->
+
             <div class="seo-block" style="border-left-color: #06b6d4;">
                 <h3><i class="fa-solid fa-stopwatch" style="color: #06b6d4;"></i> Full Mock Tests</h3>
-                <p>Evaluate your real-time performance with full-length <strong>HP Full Mock tests</strong> and bite-sized daily quizzes. Detailed score insights help pinpoint weak areas and improve exam speed and accuracy.</p>
+                <p>Real-time <strong>HP Full Mock tests</strong> with score insights to sharpen exam speed and accuracy.</p>
             </div>
-            
-            <!-- Block 6 -->
+
             <div class="seo-block" style="border-left-color: #8b5cf6;">
                 <h3><i class="fa-solid fa-book-journal-whills" style="color: #8b5cf6;"></i> Complete Syllabus</h3>
-                <p>Beyond state general knowledge, access specialized modules like General Agriculture for ICAR/AFO, along with notes for General Science, Hindi, and English to cover your entire competitive exam syllabus.</p>
+                <p>Includes General Agriculture (ICAR/AFO), General Science, Hindi, and English modules.</p>
             </div>
 
-            <!-- Block 7 -->
             <div class="seo-block" style="border-left-color: #ec4899;">
                 <h3><i class="fa-solid fa-map-location-dot" style="color: #ec4899;"></i> District Deep Dive</h3>
-                <p>Explore specialized district-wise breakdowns for all 12 districts of Himachal Pradesh. From Kangra's history to Lahaul & Spiti's passes, master local geography, fairs, and historical milestones with dedicated MCQs.</p>
+                <p>Dedicated MCQs covering history, passes, fairs, and milestones for all 12 districts of Himachal Pradesh.</p>
             </div>
 
-            <!-- Block 8 -->
             <div class="seo-block" style="border-left-color: #f59e0b;">
-                <h3><i class="fa-solid fa-graduation-cap" style="color: #f59e0b;"></i> HPPSC & Exam Trends</h3>
-                <p>Align your preparation with the latest HPPSC & HP SSC exam patterns. Our question banks reflect recent PYQ trends from HPAS, HP Sub Inspector, Patwari, HRTC, and JOA IT examinations.</p>
+                <h3><i class="fa-solid fa-graduation-cap" style="color: #f59e0b;"></i> HPPSC &amp; Exam Trends</h3>
+                <p>Aligned with recent HPPSC &amp; HPRCA PYQ patterns for HPAS, SI, Patwari, HRTC, and JOA IT.</p>
             </div>
 
-            <!-- Block 9 -->
             <div class="seo-block" style="border-left-color: #84cc16;">
-                <h3><i class="fa-solid fa-gopuram" style="color: #84cc16;"></i> Fairs, Festivals & Culture</h3>
-                <p>Immerse yourself in Devbhoomi's rich heritage with detailed coverage of traditional fairs (Minjar, Kullu Dussehra, Lavi), Pahari painting schools, indigenous folk dances, and distinctive temple architecture.</p>
+                <h3><i class="fa-solid fa-gopuram" style="color: #84cc16;"></i> Fairs, Festivals &amp; Culture</h3>
+                <p>Detailed coverage of Minjar, Kullu Dussehra, Lavi, Pahari paintings, folk dances, and temple architecture.</p>
             </div>
         </div>
     </div>
-
 </main>
 
 <!-- Dynamic Footer Container -->
@@ -1149,11 +1108,22 @@
     let deferredPrompt;
     const installBtn = document.getElementById('installBtn');
     window.addEventListener('beforeinstallprompt', (e) => {
-        e.preventDefault(); deferredPrompt = e;
+        e.preventDefault();
+        deferredPrompt = e;
+        if (installBtn) installBtn.style.display = 'flex';
     });
+
+    function installApp() {
+        if (!deferredPrompt) return;
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.finally(() => {
+            deferredPrompt = null;
+            if (installBtn) installBtn.style.display = 'none';
+        });
+    }
 </script>
 
-<!-- Initialize Page -->
+<!-- Initialize Page & Local Progress Badges -->
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         if (typeof renderHeader === 'function') {
@@ -1161,13 +1131,34 @@
                 title: 'HPGK Quiz',
                 subtitle: 'by toolblaster.com',
                 iconClass: 'fa-solid fa-mountain-sun',
-                link: 'https://hpgk.toolblaster.com/', 
+                link: 'https://hpgk.toolblaster.com/',
                 isQuizPage: false,
                 rootPath: '.'
             });
         }
         if (typeof renderFooter === 'function') {
             renderFooter('.');
+        }
+
+        // Hydrate Progress / Resume badges from localStorage
+        try {
+            const progress = JSON.parse(localStorage.getItem('hpgk_progress') || '{}');
+            document.querySelectorAll('.topic-card[data-quiz-id]').forEach((card) => {
+                const id = card.getAttribute('data-quiz-id');
+                const entry = progress[id];
+                const badge = card.querySelector('.topic-badge');
+                if (!entry || !badge) return;
+
+                if (entry.status === 'in_progress' && entry.current && entry.total) {
+                    badge.textContent = `Resume (${entry.current}/${entry.total})`;
+                    badge.classList.add('badge-amber');
+                } else if (entry.status === 'completed' && typeof entry.bestScore === 'number') {
+                    badge.textContent = `Best: ${entry.bestScore}%`;
+                    badge.classList.add('badge-emerald');
+                }
+            });
+        } catch (err) {
+            // Ignore malformed localStorage data
         }
     });
 </script>
