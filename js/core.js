@@ -12,16 +12,16 @@
         uid: null,
         displayName: null,
         photoURL: null,
-        passes: {} 
+        passes: {}
     };
 
-    // 🔥 CENTRALIZED PASS EXPIRATION VALIDATOR
+    // CENTRALIZED PASS EXPIRATION VALIDATOR
     window.HPGK_IsPassValid = function(passData) {
         if (!passData) return false;
-        
+
         // 1. Permanent / Lifetime check
         if (passData.expiryDate === 'Lifetime' || passData.expiryTimestamp === 9999) return true;
-        
+
         // 2. Direct millisecond comparison (if expiryTimestamp exists)
         if (passData.expiryTimestamp && passData.expiryTimestamp !== 9999) {
             return Date.now() < Number(passData.expiryTimestamp);
@@ -42,7 +42,7 @@
                         const day = parseInt(dateParts[0], 10);
                         const month = parseInt(dateParts[1], 10) - 1;
                         const year = parseInt(dateParts[2], 10);
-                        
+
                         let hours = 0, minutes = 0;
                         if (parts[1]) {
                             const timeParts = parts[1].split(':');
@@ -57,7 +57,7 @@
                         }
                     }
                 }
-            } catch(e) {}
+            } catch (e) {}
         }
 
         // 4. Default purchase timestamp fallback (30 days)
@@ -82,7 +82,7 @@
                window.HPGK_HasActivePass('mega_combo_pass');
     };
 
-    // 🔥 CENTRALIZED UI UNLOCKER
+    // CENTRALIZED UI UNLOCKER (For Mock Tests & Master Passes)
     window.HPGK_AutoUnlockPremiumUI = function() {
         if (!window.HPGK_User || !window.HPGK_User.passes) return;
 
@@ -94,7 +94,7 @@
                 btn.classList.remove('btn-pro');
                 btn.classList.add('btn-free');
             });
-            
+
             document.querySelectorAll('.pro-badge').forEach(badge => {
                 badge.className = 'tc-badge-common free-badge unlocked';
                 badge.innerHTML = '<i class="fa-solid fa-unlock"></i> UNLOCKED';
@@ -102,22 +102,21 @@
 
             document.querySelectorAll('.tc-icon i.fa-lock').forEach(icon => {
                 icon.className = 'fa-solid fa-unlock';
-                if(icon.parentElement) icon.parentElement.style.color = 'var(--success)';
+                if (icon.parentElement) icon.parentElement.style.color = 'var(--success)';
             });
         } else {
-            // Lock UI if expired
             if (typeof window.HPGK_LockPremiumUI === 'function') window.HPGK_LockPremiumUI();
         }
     };
 
-    // 🔥 CENTRALIZED UI LOCKER
+    // CENTRALIZED UI LOCKER (For Mock Tests & Master Passes)
     window.HPGK_LockPremiumUI = function() {
         document.querySelectorAll('button[onclick*="true)"]').forEach(btn => {
             btn.innerHTML = 'Unlock <i class="fa-solid fa-lock"></i>';
             btn.classList.remove('btn-free');
             btn.classList.add('btn-pro');
         });
-        
+
         document.querySelectorAll('.unlocked').forEach(badge => {
             badge.className = 'tc-badge-common pro-badge';
             badge.innerHTML = '<i class="fa-solid fa-crown" style="font-size:0.5rem; margin-right:2px;"></i> PRO';
@@ -125,7 +124,7 @@
 
         document.querySelectorAll('.tc-icon i.fa-unlock').forEach(icon => {
             icon.className = 'fa-solid fa-lock';
-            if(icon.parentElement) icon.parentElement.style.color = 'var(--text-main)';
+            if (icon.parentElement) icon.parentElement.style.color = 'var(--text-main)';
         });
     };
 
@@ -135,7 +134,7 @@
             const { getApp, getApps, initializeApp } = await import("https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js");
             const { getAuth, onAuthStateChanged, signInWithPopup, GoogleAuthProvider } = await import("https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js");
             const { getFirestore, doc, getDoc, setDoc } = await import("https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js");
-            
+
             const firebaseConfig = {
                 apiKey: "AIzaSyDfz5Y4oVQHl-crnATIv5dMWsw7edSKddQ",
                 authDomain: "hpgk-quiz.firebaseapp.com",
@@ -151,17 +150,19 @@
             } else {
                 app = getApp();
             }
-            
+
             const auth = getAuth(app);
             const db = getFirestore(app);
-            
-            window.loginWithGoogle = async function() {
-                const provider = new GoogleAuthProvider();
-                return signInWithPopup(auth, provider);
-            };
-            
+
+            if (!window.loginWithGoogle) {
+                window.loginWithGoogle = async function() {
+                    const provider = new GoogleAuthProvider();
+                    return signInWithPopup(auth, provider);
+                };
+            }
+
             onAuthStateChanged(auth, async (user) => {
-                if (user) {
+                if (user && !user.isAnonymous) {
                     window.HPGK_User.isLoggedIn = true;
                     window.HPGK_User.uid = user.uid;
                     window.HPGK_User.displayName = user.displayName;
@@ -176,8 +177,8 @@
                         console.error("Error fetching passes:", e);
                     }
 
-                    // Dynamically Lock/Unlock UI based on valid unexpired passes
-                    if (window.HPGK_HasMockMaster() || window.HPGK_HasActivePass('mcq_pro_pass')) {
+                    // Dynamically Lock/Unlock UI strictly for Mock Master / VIP passes
+                    if (window.HPGK_HasMockMaster()) {
                         if (typeof window.HPGK_AutoUnlockPremiumUI === 'function') window.HPGK_AutoUnlockPremiumUI();
                     } else {
                         if (typeof window.HPGK_LockPremiumUI === 'function') window.HPGK_LockPremiumUI();
@@ -190,8 +191,10 @@
                 } else {
                     window.HPGK_User.isLoggedIn = false;
                     window.HPGK_User.uid = null;
+                    window.HPGK_User.displayName = null;
+                    window.HPGK_User.photoURL = null;
                     window.HPGK_User.passes = {};
-                    
+
                     if (typeof window.HPGK_LockPremiumUI === 'function') window.HPGK_LockPremiumUI();
                 }
             });
@@ -201,14 +204,14 @@
                 try {
                     const safeCatId = category.toLowerCase().replace(/[^a-z0-9]/g, '-');
                     const scoreRef = doc(db, 'artifacts', 'hpgk-quiz', 'users', window.HPGK_User.uid, 'scores', 'topic_' + safeCatId);
-                    
+
                     await setDoc(scoreRef, {
                         category: category,
                         correct: correctCount,
                         total: totalCount,
                         timestamp: Date.now()
                     }, { merge: true });
-                    
+
                 } catch (e) {
                     console.error("Cloud sync failed:", e);
                 }
@@ -239,7 +242,7 @@
                 }
             }
         });
-        
+
         document.addEventListener('dragstart', function(e) { e.preventDefault(); });
         document.addEventListener('copy', function(e) { e.preventDefault(); });
         document.addEventListener('cut', function(e) { e.preventDefault(); });
@@ -269,24 +272,28 @@
 
     // 4. UNIVERSAL DECOY INJECTOR
     function injectDecoyTokens() {
-        const decoyKey = '&_secToken=';
-        
+        const tokenParam = '_secToken=';
+
         function getFakeHash() {
             return 'tx_' + Math.random().toString(36).substring(2, 10) + Date.now().toString(16) + '_v9';
         }
 
         document.querySelectorAll('a[href*="mock-engine/index.html"]').forEach(a => {
-            if (!a.href.includes(decoyKey)) {
-                a.href = a.href + decoyKey + getFakeHash();
+            if (!a.href.includes(tokenParam)) {
+                const sep = a.href.includes('?') ? '&' : '?';
+                a.href = a.href + sep + tokenParam + getFakeHash();
             }
         });
 
         document.querySelectorAll('[onclick*="mock-engine/index.html"]').forEach(el => {
             let onclickStr = el.getAttribute('onclick');
-            if (onclickStr && !onclickStr.includes(decoyKey)) {
+            if (onclickStr && !onclickStr.includes(tokenParam)) {
                 let newOnclick = onclickStr.replace(
-                    /(mock-engine\/index\.html\?[^'"]+)/, 
-                    '$1' + decoyKey + getFakeHash()
+                    /(mock-engine\/index\.html(?:\?[^'"]*)?)/,
+                    (match) => {
+                        const sep = match.includes('?') ? '&' : '?';
+                        return match + sep + tokenParam + getFakeHash();
+                    }
                 );
                 el.setAttribute('onclick', newOnclick);
             }
