@@ -3,36 +3,35 @@
  * HPGK MCQ PRACTICE ENGINE (The Teacher)
  * --------------------------------------------------------------------------
  * Purely renders questions, handles UI logic, and communicates with Guard.
- * ADDED: Smart Quota Tracker & 100-Question Pool Limit for Random Modes.
- * FIXED: VIP Shuffle Bug (Now Pro users get unlimited pool in Random mode).
- * FIXED: Instant UI Refresh Sync after successful login/payment.
- * FIXED: Auto-Healing logic for "Quick 10" button core.js collision bug.
- * UPDATED: Strict Timestamp Pass Expiration Validation via HPGK_IsPassValid.
- * 🔥 NEW: Firebase Cost Saver - Batched Database Writes (Syncs every 10 Qs)
- * 🛡️ NEW: User-Scoped Isolation - Prevents cross-session progress leakage.
- * 🚀 NEW: Auto-Resume & Guest Progress Migration to Account Profile.
- * 🎯 NEW: Smart Performance Weak-Spot Targeter (10-Q Booster Sets).
+ * UPDATED: Free + Login Required model (Logged-in users get full MCQ pool).
+ * FIXED: Accurate cloud sync baseline count & clean Weak-Spot filter reset.
+ * FIXED: Auto-healing for Quick 10 button & instant refresh on auth change.
  * --------------------------------------------------------------------------
  */
 
 (function() {
     // Helper to dynamically resolve user-scoped storage key
     function getStorageKey() {
-        const baseCategory = (window.QUIZ_CONFIG && window.QUIZ_CONFIG.category) 
-            ? `hpgk_${window.QUIZ_CONFIG.category}_v1` 
+        const baseCategory = (window.QUIZ_CONFIG && window.QUIZ_CONFIG.category)
+            ? `hpgk_${window.QUIZ_CONFIG.category}_v1`
             : 'hpgk_general_v1';
-        
+
         if (window.HPGK_Guard && typeof window.HPGK_Guard.getUserKey === 'function') {
             return window.HPGK_Guard.getUserKey(baseCategory);
         }
         return baseCategory;
     }
 
+    function isUserAuthenticated() {
+        const user = window.HPGK_User;
+        return Boolean(user && (user.isLoggedIn === true || user.uid));
+    }
+
     let currentList = [];
     let currentIndex = 0;
     let historyState = { lastIndex: 0, answers: {}, bookmarks: [] };
-    
-    let currentFontSizePx = 12; 
+
+    let currentFontSizePx = 12;
     let currentSearchTerm = '';
     let isBookmarkFilterActive = false;
     let isMistakesFilterActive = false;
@@ -58,22 +57,40 @@
     // Track last cloud sync to optimize Firebase Write Costs
     let lastSyncedCount = -1;
 
+    function getValidProgressStats() {
+        let validDoneCount = 0;
+        let validCorrectCount = 0;
+        if (window.quizData && Array.isArray(window.quizData)) {
+            window.quizData.forEach(q => {
+                const ans = historyState.answers[q.id];
+                if (ans !== undefined && ans !== null) {
+                    validDoneCount++;
+                    if (ans === q.answer) validCorrectCount++;
+                }
+            });
+        }
+        return { validDoneCount, validCorrectCount };
+    }
+
     window.HPGK_Engine_Refresh = function() {
         loadFromStorage();
-        // Force the filter engine to recalculate the pool size instantly for VIPs
-        applyFilters(false); 
+        const { validDoneCount } = getValidProgressStats();
+        lastSyncedCount = validDoneCount;
+        applyFilters(false);
         updateStats();
-        protectQuick10Button(); // Auto-heal on refresh
+        protectQuick10Button();
     };
 
     // Listen to Firebase Auth state changes to re-evaluate progress for active user
     window.addEventListener('hpgk_auth_changed', () => {
-        console.log("🔄 Auth state updated! Reloading engine state & resuming position...");
         migrateGuestProgressIfNeeded();
         loadFromStorage();
-        
+
+        const { validDoneCount } = getValidProgressStats();
+        lastSyncedCount = validDoneCount;
+
         // Auto-resume to the last solved/attempted question index for this user
-        if (historyState.lastIndex && historyState.lastIndex < window.quizData.length) {
+        if (window.quizData && historyState.lastIndex && historyState.lastIndex < window.quizData.length) {
             currentIndex = historyState.lastIndex;
         }
 
@@ -89,8 +106,8 @@
         const user = window.HPGK_User;
         if (!user || !user.isLoggedIn || !user.uid) return;
 
-        const baseCategory = (window.QUIZ_CONFIG && window.QUIZ_CONFIG.category) 
-            ? `hpgk_${window.QUIZ_CONFIG.category}_v1` 
+        const baseCategory = (window.QUIZ_CONFIG && window.QUIZ_CONFIG.category)
+            ? `hpgk_${window.QUIZ_CONFIG.category}_v1`
             : 'hpgk_general_v1';
 
         const userKey = `hpgk_usr_${user.uid}_${baseCategory}`;
@@ -99,14 +116,12 @@
         const userHistoryRaw = localStorage.getItem(userKey);
         const guestHistoryRaw = localStorage.getItem(guestKey);
 
-        // If user has no existing cloud/local history, but guest answered questions, copy guest state to user
         if (!userHistoryRaw && guestHistoryRaw) {
             try {
                 const guestData = JSON.parse(guestHistoryRaw);
                 if (guestData && guestData.answers && Object.keys(guestData.answers).length > 0) {
                     localStorage.setItem(userKey, guestHistoryRaw);
-                    localStorage.removeItem(guestKey); // 🔥 Clear guest key so future guests on this device start fresh
-                    console.log("📦 Guest progress migrated to user account profile successfully!");
+                    localStorage.removeItem(guestKey);
                 }
             } catch (e) {
                 console.warn("Could not migrate guest progress:", e);
@@ -114,32 +129,21 @@
         }
     }
 
-    // 🔥 SMART CLOUD SYNC (Batched Updates - Every 10 Answers)
+    // Smart Cloud Sync (Batched Updates - Every 10 Answers)
     function triggerCloudSync(forceSync = false) {
-        if (!window.HPGK_SaveScore) return;
-        let validDoneCount = 0;
-        let validCorrectCount = 0;
-        if (window.quizData) {
-            window.quizData.forEach(q => {
-                if (historyState.answers[q.id] !== undefined && historyState.answers[q.id] !== null) {
-                    validDoneCount++;
-                    if (historyState.answers[q.id] === q.answer) validCorrectCount++;
-                }
-            });
-        }
+        if (!window.HPGK_SaveScore || !isUserAuthenticated()) return;
+
+        const { validDoneCount, validCorrectCount } = getValidProgressStats();
         if (validDoneCount === 0) return;
 
-        // Initialize baseline on first call so we don't trigger unnecessarily
         if (lastSyncedCount === -1) {
             lastSyncedCount = validDoneCount;
         }
 
-        // 🔥 FIREBASE COST SAVER: Sync to cloud only if FORCED, or every 10 new answers
         if (forceSync || (validDoneCount - lastSyncedCount >= 10)) {
             const rawCategory = window.QUIZ_NAME || (window.QUIZ_CONFIG && window.QUIZ_CONFIG.category) || 'General Practice';
             window.HPGK_SaveScore(rawCategory, validCorrectCount, validDoneCount);
-            lastSyncedCount = validDoneCount; // Update the checkpoint
-            console.log(`☁️ Cloud Sync Successful! Batched at ${validDoneCount} Qs.`);
+            lastSyncedCount = validDoneCount;
         }
     }
 
@@ -151,11 +155,9 @@
     // Auto-Heal the "Quick 10" button from core.js Lock Logic
     function protectQuick10Button() {
         document.querySelectorAll('.quick-start-ribbon').forEach(btn => {
-            // Change onclick string to avoid matching core.js '*="true)"' regex
             if (btn.getAttribute('onclick') === 'toggleQuickMode(true)') {
                 btn.setAttribute('onclick', "toggleQuickMode('start')");
             }
-            // Revert UI if core.js accidentally locked it
             if (btn.innerHTML.includes('fa-lock') || btn.classList.contains('btn-pro')) {
                 btn.innerHTML = '<i class="fa-solid fa-bolt"></i> Start Quick 10 Quiz';
                 btn.classList.remove('btn-pro');
@@ -164,17 +166,13 @@
     }
 
     window.addEventListener('DOMContentLoaded', () => {
-        if (jumpTrigger) jumpTrigger.style.display = 'none'; 
+        if (jumpTrigger) jumpTrigger.style.display = 'none';
         bookmarkFilterBtn = document.getElementById('bookmarkFilterBtn');
         mistakeFilterBtn = document.getElementById('mistakeFilterBtn');
         shuffleBtn = document.getElementById('shuffleBtn');
         quickModeBtn = document.getElementById('quickModeBtn');
-        
-        protectQuick10Button();
-        // Check again after Firebase Auth resolves (core.js runs asynchronously)
-        setTimeout(protectQuick10Button, 1500);
-        setTimeout(protectQuick10Button, 3500);
 
+        protectQuick10Button();
         setTimeout(() => { initQuizNow(); }, 100);
     });
 
@@ -197,24 +195,24 @@
                 const contents = JSON.parse(e.target.result);
                 if (contents && contents.answers) {
                     historyState = contents;
-                    if(!historyState.bookmarks) historyState.bookmarks = [];
+                    if (!historyState.bookmarks) historyState.bookmarks = [];
                     saveToStorage();
                     currentIndex = (historyState.lastIndex && historyState.lastIndex < currentList.length) ? historyState.lastIndex : 0;
-                    applyFilters(); 
+                    applyFilters();
                     updateStats();
-                    triggerCloudSync(true); // Force sync after importing progress
-                    
+                    triggerCloudSync(true);
+
                     if (window.HPGK_Layout && typeof window.HPGK_Layout.showToast === 'function') {
-                        window.HPGK_Layout.showToast('✅ Progress restored successfully!');
+                        window.HPGK_Layout.showToast('Progress restored successfully!');
                     }
-                } else { 
+                } else {
                     if (window.HPGK_Layout && typeof window.HPGK_Layout.showToast === 'function') {
-                        window.HPGK_Layout.showToast('⚠️ Invalid backup file format.');
+                        window.HPGK_Layout.showToast('Invalid backup file format.');
                     }
                 }
-            } catch(err) { 
+            } catch (err) {
                 if (window.HPGK_Layout && typeof window.HPGK_Layout.showToast === 'function') {
-                    window.HPGK_Layout.showToast('❌ Error reading file.');
+                    window.HPGK_Layout.showToast('Error reading file.');
                 }
             }
         };
@@ -235,19 +233,13 @@
         if (currentFontSizePx < 12) currentFontSizePx = 12;
         loadQuestion(currentIndex);
     };
-    
+
     function getFontSize() { return `${currentFontSizePx}px`; }
 
     function updateStats() {
         if (!document.getElementById('statDone')) return;
         const total = window.quizData.length;
-        let validDoneCount = 0, validCorrectCount = 0;
-        window.quizData.forEach(q => {
-            if (historyState.answers[q.id] !== undefined && historyState.answers[q.id] !== null) {
-                validDoneCount++;
-                if (historyState.answers[q.id] === q.answer) validCorrectCount++;
-            }
-        });
+        const { validDoneCount, validCorrectCount } = getValidProgressStats();
         const leftCount = total - validDoneCount;
         const wrongCount = validDoneCount - validCorrectCount;
         const accuracy = validDoneCount > 0 ? Math.round((validCorrectCount / validDoneCount) * 100) : 0;
@@ -286,7 +278,8 @@
                     <button style="background:transparent; color:var(--text-sec); font-size:0.75rem; border:none; cursor:pointer;" onclick="toggleQuickMode('stop')">Exit Quick Mode</button>
                 </div>
             `;
-            updateControls(); return;
+            updateControls();
+            return;
         }
 
         if (!currentList || currentList.length === 0) {
@@ -297,51 +290,54 @@
                     ${currentSearchTerm ? '<button class="nav-btn" onclick="clearSearch()" style="margin-top: 10px; margin-inline:auto;">Clear Search</button>' : ''}
                     ${(isQuickModeActive || isMistakesFilterActive || isBookmarkFilterActive || isWeakSpotModeActive) ? '<button class="nav-btn" onclick="clearAllFilters()" style="margin-top: 10px; margin-inline:auto;">Clear Filters</button>' : ''}
                 </div>`;
-            updateControls(); return;
+            updateControls();
+            return;
         }
 
         const q = currentList[index];
 
-        // 🔥 SMART QUOTA TRACKER & MAGIC GUARD LINK
+        // Access Guard Check: Guests limited to loginLimit; logged-in users get full free MCQs
         if (window.HPGK_Guard) {
-            let totalAnswered = Object.keys(historyState.answers || {}).length;
-            const loginLimit = (window.PAGE_ACCESS && window.PAGE_ACCESS.loginLimit) || 30;
-            
-            // Find the original index of this question in the main database
-            const originalIndex = window.quizData.findIndex(item => item.id === q.id);
+            const totalAnswered = Object.keys(historyState.answers || {}).length;
+            const loginLimit = (window.PAGE_ACCESS && window.PAGE_ACCESS.loginLimit !== undefined)
+                ? Number(window.PAGE_ACCESS.loginLimit)
+                : 30;
 
-            // 1. Check strict Paywall based on original index
+            const originalIndex = window.quizData.findIndex(item => item.id == q.id);
             let access = window.HPGK_Guard.checkAccess(originalIndex !== -1 ? originalIndex : index);
 
-            // 2. Dynamic Override for Free Users: Block NEW questions if quota limit is reached
-            const userObj = window.HPGK_User || {};
-            if (!userObj.isLoggedIn && totalAnswered >= loginLimit && historyState.answers[q.id] === undefined) {
+            if (!isUserAuthenticated() && totalAnswered >= loginLimit && historyState.answers[q.id] === undefined) {
                 access = { status: 'blocked_login', limit: loginLimit };
             }
 
             if (access.status !== 'allowed') {
                 window.HPGK_Guard.showBlocker(cardArea, access);
-                updateControls(true); // Lock the controls
+                updateControls(true);
                 return;
             }
         }
 
         const savedAnswer = historyState.answers[q.id];
         const isAnswered = (savedAnswer !== undefined && typeof savedAnswer === 'number');
-        const isBookmarked = historyState.bookmarks.includes(q.id);
+        const isBookmarked = historyState.bookmarks.some(bId => bId == q.id);
         const fontSize = getFontSize();
-        
+
         const qEnText = highlightText(q.questionEn, currentSearchTerm);
         const qHiText = highlightText(q.questionHi, currentSearchTerm);
 
         const optionsHtml = q.options.map((opt, i) => {
             let statusClass = '', iconHtml = '';
             if (isAnswered) {
-                if (i === q.answer) { statusClass = 'correct'; iconHtml = '<span class="status-icon"><i class="fa-solid fa-check"></i></span>'; } 
-                else if (i === savedAnswer) { statusClass = 'wrong'; iconHtml = '<span class="status-icon"><i class="fa-solid fa-xmark"></i></span>'; }
+                if (i === q.answer) {
+                    statusClass = 'correct';
+                    iconHtml = '<span class="status-icon"><i class="fa-solid fa-check"></i></span>';
+                } else if (i === savedAnswer) {
+                    statusClass = 'wrong';
+                    iconHtml = '<span class="status-icon"><i class="fa-solid fa-xmark"></i></span>';
+                }
             }
             return `
-                <div class="option-btn ${statusClass} ${isAnswered ? 'disabled' : ''}" 
+                <div class="option-btn ${statusClass} ${isAnswered ? 'disabled' : ''}"
                      style="font-size: ${fontSize};" onclick="handleAnswer(this, '${q.id}', ${i})">
                     <span>${highlightText(opt, currentSearchTerm)}</span>
                     ${iconHtml}
@@ -353,7 +349,7 @@
             const isCorrect = savedAnswer === q.answer;
             const text = isCorrect ? 'Correct!' : `Correct: ${q.options[q.answer]}`;
             const bgClass = isCorrect ? 'correct-feed' : 'wrong-feed';
-            
+
             let explToggleBtn = '';
             if (q.explanation) {
                 explToggleBtn = `
@@ -379,7 +375,9 @@
         const statusDisplay = isAnswered ? (savedAnswer === q.answer ? '<i class="fa-solid fa-check"></i> Solved' : '<i class="fa-solid fa-xmark"></i> Review') : 'Pending';
         const bookmarkIconClass = isBookmarked ? 'fa-solid fa-bookmark active' : 'fa-regular fa-bookmark';
 
-        let weakSpotTag = isWeakSpotModeActive ? `<span style="font-size:0.6rem; font-weight:800; background:rgba(239,68,68,0.15); color:var(--danger); padding:2px 6px; border-radius:4px; margin-left:6px;"><i class="fa-solid fa-bolt"></i> WEAK-SPOT BOOSTER</span>` : '';
+        const weakSpotTag = isWeakSpotModeActive
+            ? `<span style="font-size:0.6rem; font-weight:800; background:rgba(239,68,68,0.15); color:var(--danger); padding:2px 6px; border-radius:4px; margin-left:6px;"><i class="fa-solid fa-bolt"></i> WEAK-SPOT BOOSTER</span>`
+            : '';
 
         cardArea.innerHTML = `
             <div class="q-meta">
@@ -398,27 +396,43 @@
             ${feedbackHtml}
         `;
 
-        if (!currentSearchTerm && !isBookmarkFilterActive && !isMistakesFilterActive && !isShuffleActive && !isQuickModeActive && !isWeakSpotModeActive) { 
-            historyState.lastIndex = currentIndex; saveToStorage(); 
+        if (!currentSearchTerm && !isBookmarkFilterActive && !isMistakesFilterActive && !isShuffleActive && !isQuickModeActive && !isWeakSpotModeActive) {
+            historyState.lastIndex = currentIndex;
+            saveToStorage();
         }
         updateControls();
     }
 
     window.clearAllFilters = function() {
-        isBookmarkFilterActive = false; isMistakesFilterActive = false; isShuffleActive = false; isQuickModeActive = false; isWeakSpotModeActive = false;
-        if(bookmarkFilterBtn) bookmarkFilterBtn.classList.remove('active');
-        if(mistakeFilterBtn) mistakeFilterBtn.classList.remove('active');
-        if(shuffleBtn) shuffleBtn.classList.remove('active');
-        if(quickModeBtn) quickModeBtn.classList.remove('active');
+        isBookmarkFilterActive = false;
+        isMistakesFilterActive = false;
+        isShuffleActive = false;
+        isQuickModeActive = false;
+        isWeakSpotModeActive = false;
+        if (bookmarkFilterBtn) bookmarkFilterBtn.classList.remove('active');
+        if (mistakeFilterBtn) mistakeFilterBtn.classList.remove('active');
+        if (shuffleBtn) shuffleBtn.classList.remove('active');
+        if (quickModeBtn) quickModeBtn.classList.remove('active');
         sessionStorage.removeItem('hpgk_weak_spots');
+
+        if (window.location.search.includes('mode=weakspot')) {
+            const cleanUrl = new URL(window.location.href);
+            cleanUrl.searchParams.delete('mode');
+            window.history.replaceState({}, '', cleanUrl.toString());
+        }
         applyFilters(true);
     };
 
     window.toggleBookmark = function(qId) {
-        qId = parseInt(qId); 
-        const idx = historyState.bookmarks.indexOf(qId);
-        if (idx > -1) { historyState.bookmarks.splice(idx, 1); } else { historyState.bookmarks.push(qId); }
-        saveToStorage(); loadQuestion(currentIndex); 
+        const normalizedId = isNaN(Number(qId)) ? String(qId) : Number(qId);
+        const idx = historyState.bookmarks.findIndex(bId => bId == normalizedId);
+        if (idx > -1) {
+            historyState.bookmarks.splice(idx, 1);
+        } else {
+            historyState.bookmarks.push(normalizedId);
+        }
+        saveToStorage();
+        loadQuestion(currentIndex);
         if (isBookmarkFilterActive) applyFilters(false);
     };
 
@@ -428,128 +442,149 @@
             bookmarkFilterBtn.classList.toggle('active', isBookmarkFilterActive);
             bookmarkFilterBtn.innerHTML = isBookmarkFilterActive ? '<i class="fa-solid fa-bookmark"></i>' : '<i class="fa-regular fa-bookmark"></i>';
         }
-        disableOtherFilters('bookmark'); applyFilters(true);
+        disableOtherFilters('bookmark');
+        applyFilters(true);
     };
 
-    window.toggleMistakeFilter = function() { 
-        isMistakesFilterActive = !isMistakesFilterActive; 
-        if(mistakeFilterBtn) mistakeFilterBtn.classList.toggle('active', isMistakesFilterActive); 
-        disableOtherFilters('mistake'); applyFilters(true); 
+    window.toggleMistakeFilter = function() {
+        isMistakesFilterActive = !isMistakesFilterActive;
+        if (mistakeFilterBtn) mistakeFilterBtn.classList.toggle('active', isMistakesFilterActive);
+        disableOtherFilters('mistake');
+        applyFilters(true);
     };
 
-    window.toggleShuffle = function() { 
-        isShuffleActive = !isShuffleActive; 
-        if(shuffleBtn) shuffleBtn.classList.toggle('active', isShuffleActive); 
-        applyFilters(true); 
+    window.toggleShuffle = function() {
+        isShuffleActive = !isShuffleActive;
+        if (shuffleBtn) shuffleBtn.classList.toggle('active', isShuffleActive);
+        applyFilters(true);
     };
 
-    window.toggleQuickMode = function(forceOn = null) { 
+    window.toggleQuickMode = function(forceOn = null) {
         if (forceOn === 'start' || forceOn === true) isQuickModeActive = true;
         else if (forceOn === 'stop' || forceOn === false) isQuickModeActive = false;
         else isQuickModeActive = !isQuickModeActive;
-        
-        if(quickModeBtn) quickModeBtn.classList.toggle('active', isQuickModeActive); 
-        quickSessionScore = 0; disableOtherFilters('quick');
-        if (isQuickModeActive && quizWidgetWrapper) { quizWidgetWrapper.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-        
-        applyFilters(true); 
+
+        if (quickModeBtn) quickModeBtn.classList.toggle('active', isQuickModeActive);
+        quickSessionScore = 0;
+        disableOtherFilters('quick');
+        if (isQuickModeActive && quizWidgetWrapper) {
+            quizWidgetWrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        applyFilters(true);
     };
 
-    window.continueQuickMode = function() { quickSessionScore = 0; applyFilters(true); };
+    window.continueQuickMode = function() {
+        quickSessionScore = 0;
+        applyFilters(true);
+    };
 
     function disableOtherFilters(active) {
-        if (active !== 'bookmark') { isBookmarkFilterActive = false; if(bookmarkFilterBtn) { bookmarkFilterBtn.classList.remove('active'); bookmarkFilterBtn.innerHTML = '<i class="fa-regular fa-bookmark"></i>'; } }
-        if (active !== 'mistake') { isMistakesFilterActive = false; if(mistakeFilterBtn) mistakeFilterBtn.classList.remove('active'); }
-        if (active !== 'quick') { isQuickModeActive = false; if(quickModeBtn) quickModeBtn.classList.remove('active'); }
+        if (active !== 'bookmark') {
+            isBookmarkFilterActive = false;
+            if (bookmarkFilterBtn) {
+                bookmarkFilterBtn.classList.remove('active');
+                bookmarkFilterBtn.innerHTML = '<i class="fa-regular fa-bookmark"></i>';
+            }
+        }
+        if (active !== 'mistake') {
+            isMistakesFilterActive = false;
+            if (mistakeFilterBtn) mistakeFilterBtn.classList.remove('active');
+        }
+        if (active !== 'quick') {
+            isQuickModeActive = false;
+            if (quickModeBtn) quickModeBtn.classList.remove('active');
+        }
     }
 
     function applyFilters(resetIndex = false) {
         if (!window.quizData) return;
         let filtered = [...window.quizData];
 
-        // 🎯 0. WEAK-SPOT BOOSTER FILTER
-        const savedWeakSpotsRaw = sessionStorage.getItem('hpgk_weak_spots');
+        // 0. WEAK-SPOT BOOSTER FILTER (Only when explicitly launched via ?mode=weakspot)
         const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get('mode') === 'weakspot' || savedWeakSpotsRaw) {
+        const savedWeakSpotsRaw = sessionStorage.getItem('hpgk_weak_spots');
+        if (urlParams.get('mode') === 'weakspot') {
             isWeakSpotModeActive = true;
             let weakCategories = [];
-            try { weakCategories = JSON.parse(savedWeakSpotsRaw) || []; } catch(e) {}
-            
-            // Prioritize questions from weak categories or previously incorrect answers
+            try { weakCategories = JSON.parse(savedWeakSpotsRaw) || []; } catch (e) {}
+
             if (weakCategories.length > 0) {
                 const categoryFiltered = filtered.filter(q => {
-                    const cat = (q.category || window.QUIZ_CONFIG?.category || '').toLowerCase();
+                    const cat = (q.category || (window.QUIZ_CONFIG && window.QUIZ_CONFIG.category) || '').toLowerCase();
                     return weakCategories.some(wc => cat.includes(wc.toLowerCase()));
                 });
                 if (categoryFiltered.length > 0) filtered = categoryFiltered;
             }
 
-            // Shuffle weak spot candidate pool
-            for (let i = filtered.length - 1; i > 0; i--) { 
-                const j = Math.floor(Math.random() * (i + 1)); 
-                [filtered[i], filtered[j]] = [filtered[j], filtered[i]]; 
+            for (let i = filtered.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [filtered[i], filtered[j]] = [filtered[j], filtered[i]];
+            }
+            filtered = filtered.slice(0, QUICK_LIMIT);
+        } else {
+            isWeakSpotModeActive = false;
+            if (savedWeakSpotsRaw) {
+                sessionStorage.removeItem('hpgk_weak_spots');
+            }
+        }
+
+        // 1. POOL RESTRICTOR: Guests restricted to loginLimit; logged-in users get FULL MCQ pool
+        const isLoggedIn = isUserAuthenticated();
+        const loginLimit = (window.PAGE_ACCESS && window.PAGE_ACCESS.loginLimit !== undefined)
+            ? Number(window.PAGE_ACCESS.loginLimit)
+            : 30;
+
+        if ((isShuffleActive || isQuickModeActive) && !isWeakSpotModeActive && !isLoggedIn) {
+            filtered = filtered.slice(0, loginLimit);
+        }
+
+        // 2. Fisher-Yates Shuffle Logic
+        if (isShuffleActive && !isWeakSpotModeActive) {
+            for (let i = filtered.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [filtered[i], filtered[j]] = [filtered[j], filtered[i]];
+            }
+        } else if (!isWeakSpotModeActive) {
+            filtered.sort((a, b) => a.id - b.id);
+        }
+
+        // 3. BOOKMARK & MISTAKE FILTERS
+        if (isBookmarkFilterActive) {
+            filtered = filtered.filter(q => historyState.bookmarks.some(bId => bId == q.id));
+        } else if (isMistakesFilterActive) {
+            filtered = filtered.filter(q => historyState.answers[q.id] !== undefined && historyState.answers[q.id] !== q.answer);
+        }
+
+        // 4. SEARCH FILTER
+        if (currentSearchTerm) {
+            filtered = filtered.filter(q => {
+                const en = q.questionEn ? q.questionEn.toLowerCase() : '';
+                const hi = q.questionHi ? q.questionHi.toLowerCase() : '';
+                const opts = q.options ? q.options.join(' ').toLowerCase() : '';
+                const id = q.id ? q.id.toString() : '';
+                return en.includes(currentSearchTerm) || hi.includes(currentSearchTerm) || opts.includes(currentSearchTerm) || id.includes(currentSearchTerm);
+            });
+        }
+
+        // 5. QUICK MODE EXTRACTOR
+        if (isQuickModeActive && !isWeakSpotModeActive) {
+            filtered = filtered.filter(q => historyState.answers[q.id] === undefined);
+            if (!isShuffleActive) {
+                for (let i = filtered.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [filtered[i], filtered[j]] = [filtered[j], filtered[i]];
+                }
             }
             filtered = filtered.slice(0, QUICK_LIMIT);
         }
 
-        // 1. 🔥 DYNAMIC POOL RESTRICTOR WITH STRICT EXPIRATION VALIDATION
-        const userObj = window.HPGK_User || {};
-        const isLoggedIn = userObj.isLoggedIn === true;
-        const checkPass = window.HPGK_IsPassValid || (p => !!p);
-
-        const hasProPass = userObj.passes && (
-            checkPass(userObj.passes['mcq_pro_pass']) || 
-            checkPass(userObj.passes['mock_master_pass']) || 
-            checkPass(userObj.passes['mega_combo_pass']) || 
-            checkPass(userObj.passes['vip_lifetime_pass'])
-        );
-        
-        const loginLimit = (window.PAGE_ACCESS && window.PAGE_ACCESS.loginLimit) || 30;
-        const proLimit = 100; 
-
-        if ((isShuffleActive || isQuickModeActive) && !isWeakSpotModeActive) {
-            const poolSize = hasProPass ? filtered.length : (isLoggedIn ? proLimit : loginLimit);
-            filtered = filtered.slice(0, poolSize);
-        }
-        
-        // 2. Fisher-Yates Shuffle Logic
-        if (isShuffleActive && !isWeakSpotModeActive) { 
-            for (let i = filtered.length - 1; i > 0; i--) { 
-                const j = Math.floor(Math.random() * (i + 1)); 
-                [filtered[i], filtered[j]] = [filtered[j], filtered[i]]; 
-            } 
-        } else if (!isWeakSpotModeActive) { 
-            filtered.sort((a, b) => a.id - b.id); 
-        }
-        
-        // 3. BOOKMARK & MISTAKE FILTERS
-        if (isBookmarkFilterActive) { filtered = filtered.filter(q => historyState.bookmarks.includes(q.id)); } 
-        else if (isMistakesFilterActive) { filtered = filtered.filter(q => historyState.answers[q.id] !== undefined && historyState.answers[q.id] !== q.answer); }
-        
-        // 4. SEARCH FILTER
-        if (currentSearchTerm) {
-            filtered = filtered.filter(q => {
-                const en = q.questionEn ? q.questionEn.toLowerCase() : ''; const hi = q.questionHi ? q.questionHi.toLowerCase() : '';
-                const opts = q.options ? q.options.join(' ').toLowerCase() : ''; const id = q.id ? q.id.toString() : '';
-                return en.includes(currentSearchTerm) || hi.includes(currentSearchTerm) || opts.includes(currentSearchTerm) || id.includes(currentSearchTerm);
-            });
-        }
-        
-        // 5. QUICK MODE EXTRACTOR
-        if (isQuickModeActive && !isWeakSpotModeActive) { 
-            filtered = filtered.filter(q => historyState.answers[q.id] === undefined); 
-            if (!isShuffleActive) {
-                for (let i = filtered.length - 1; i > 0; i--) { 
-                    const j = Math.floor(Math.random() * (i + 1)); 
-                    [filtered[i], filtered[j]] = [filtered[j], filtered[i]]; 
-                }
-            }
-            filtered = filtered.slice(0, QUICK_LIMIT); 
-        }
-        
-        currentList = filtered; 
-        if (resetIndex) { currentIndex = 0; } else {
-            if (currentIndex >= currentList.length) { currentIndex = Math.max(0, currentList.length - 1); if(currentIndex < 0) currentIndex = 0; }
+        currentList = filtered;
+        if (resetIndex) {
+            currentIndex = 0;
+        } else if (currentIndex >= currentList.length) {
+            currentIndex = Math.max(0, currentList.length - 1);
+            if (currentIndex < 0) currentIndex = 0;
         }
         loadQuestion(currentIndex);
     }
@@ -558,37 +593,36 @@
         if (!currentList || !currentList[currentIndex]) return;
         const q = currentList[currentIndex];
         if (historyState.answers[qId] !== undefined) return;
-        if ((isQuickModeActive || isWeakSpotModeActive) && q.answer === choiceIndex) { quickSessionScore++; }
-        
+        if ((isQuickModeActive || isWeakSpotModeActive) && q.answer === choiceIndex) {
+            quickSessionScore++;
+        }
+
         historyState.answers[qId] = choiceIndex;
-        
-        // 1. SAVE TO LOCAL STORAGE (User-scoped, 0 Cost)
-        saveToStorage(); 
-        updateStats(); 
+
+        saveToStorage();
+        updateStats();
         loadQuestion(currentIndex);
-        
-        // 2. TRIGGER CLOUD SYNC (Batched Logic every 10 answers)
-        triggerCloudSync(); 
+        triggerCloudSync();
     };
 
     window.shareQuestion = async function(qId) {
         const q = window.quizData.find(item => item.id == qId);
         if (!q) return;
         const link = `${window.location.origin}${window.location.pathname}?id=${qId}`;
-        const msg = `Can you solve this HPGK question? 🤔\n\nQ: ${q.questionEn}\n\n👉 Attempt here: ${link}`;
-        if (navigator.share) { 
-            try { await navigator.share({ title: 'HPGK Challenge', text: msg, url: link }); } catch (err) {} 
-        } else { 
-            try { 
-                await navigator.clipboard.writeText(msg); 
+        const msg = `Can you solve this HPGK question?\n\nQ: ${q.questionEn}\n\nAttempt here: ${link}`;
+        if (navigator.share) {
+            try { await navigator.share({ title: 'HPGK Challenge', text: msg, url: link }); } catch (err) {}
+        } else {
+            try {
+                await navigator.clipboard.writeText(msg);
                 if (window.HPGK_Layout && typeof window.HPGK_Layout.showToast === 'function') {
-                    window.HPGK_Layout.showToast('📋 Link copied to clipboard!');
+                    window.HPGK_Layout.showToast('Link copied to clipboard!');
                 }
-            } catch (err) { 
+            } catch (err) {
                 if (window.HPGK_Layout && typeof window.HPGK_Layout.showToast === 'function') {
-                    window.HPGK_Layout.showToast('❌ Could not copy link.');
+                    window.HPGK_Layout.showToast('Could not copy link.');
                 }
-            } 
+            }
         }
     };
 
@@ -597,17 +631,31 @@
             const currentQ = currentList[currentIndex];
             const isAnswered = currentQ && historyState.answers[currentQ.id] !== undefined;
             if (!isAnswered && !isQuickModeActive && !isWeakSpotModeActive) {
-                if(cardArea) { cardArea.classList.remove('apply-shake'); void cardArea.offsetWidth; cardArea.classList.add('apply-shake'); }
-                return; 
+                if (cardArea) {
+                    cardArea.classList.remove('apply-shake');
+                    void cardArea.offsetWidth;
+                    cardArea.classList.add('apply-shake');
+                }
+                return;
             }
-            if ((isQuickModeActive || isWeakSpotModeActive) && currentIndex === currentList.length - 1 && isAnswered) { 
-                currentIndex++; loadQuestion(currentIndex); 
-            } 
-            else if (currentIndex < currentList.length - 1) { currentIndex++; loadQuestion(currentIndex); }
+            if ((isQuickModeActive || isWeakSpotModeActive) && currentIndex === currentList.length - 1 && isAnswered) {
+                currentIndex++;
+                loadQuestion(currentIndex);
+            } else if (currentIndex < currentList.length - 1) {
+                currentIndex++;
+                loadQuestion(currentIndex);
+            }
         });
     }
 
-    if (prevBtn) prevBtn.addEventListener('click', () => { if (currentIndex > 0) { currentIndex--; loadQuestion(currentIndex); } });
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                loadQuestion(currentIndex);
+            }
+        });
+    }
 
     document.addEventListener('keydown', (e) => {
         const isSearchFocused = searchInput && document.activeElement === searchInput;
@@ -615,27 +663,34 @@
             if (e.key === 'ArrowRight') {
                 const currentQ = currentList[currentIndex];
                 const isAnswered = currentQ && historyState.answers[currentQ.id] !== undefined;
-                if (nextBtn && !nextBtn.disabled && (isAnswered || isQuickModeActive || isWeakSpotModeActive)) { nextBtn.click(); } 
-                else if (cardArea && !isAnswered) { cardArea.classList.remove('apply-shake'); void cardArea.offsetWidth; cardArea.classList.add('apply-shake'); }
+                if (nextBtn && !nextBtn.disabled && (isAnswered || isQuickModeActive || isWeakSpotModeActive)) {
+                    nextBtn.click();
+                } else if (cardArea && !isAnswered) {
+                    cardArea.classList.remove('apply-shake');
+                    void cardArea.offsetWidth;
+                    cardArea.classList.add('apply-shake');
+                }
             }
-            if (e.key === 'ArrowLeft' && prevBtn && !prevBtn.disabled) prevBtn.click();
+            if (e.key === 'ArrowLeft' && prevBtn && !prevBtn.disabled) {
+                prevBtn.click();
+            }
         }
     });
 
     function updateControls(isLocked = false) {
-        if (!prevBtn || !nextBtn || !progressText) return; 
-        
+        if (!prevBtn || !nextBtn || !progressText) return;
+
         if (isLocked) {
-            prevBtn.disabled = false; 
-            nextBtn.disabled = true;  
-            progressText.innerText = "Locked";
+            prevBtn.disabled = false;
+            nextBtn.disabled = true;
+            progressText.innerText = "Login Required";
             if (progressFill) {
                 progressFill.style.width = "100%";
-                progressFill.style.backgroundColor = "var(--accent)"; 
+                progressFill.style.backgroundColor = "var(--accent)";
             }
             return;
-        } else {
-            if (progressFill) progressFill.style.backgroundColor = "var(--primary)";
+        } else if (progressFill) {
+            progressFill.style.backgroundColor = "var(--primary)";
         }
 
         const isDone = (isQuickModeActive || isWeakSpotModeActive) && currentIndex >= currentList.length;
@@ -644,7 +699,7 @@
         const isAnswered = currentQ && historyState.answers[currentQ.id] !== undefined;
         nextBtn.disabled = (currentIndex === currentList.length - 1 && !isQuickModeActive && !isWeakSpotModeActive) || isDone || !isAnswered;
         progressText.innerText = isDone ? "Done" : `${currentIndex + 1} / ${currentList.length}`;
-        
+
         if (progressFill) {
             progressFill.style.width = isDone ? "100%" : `${((currentIndex + 1) / currentList.length) * 100}%`;
         }
@@ -653,39 +708,44 @@
     if (searchInput) {
         searchInput.addEventListener('input', (e) => {
             currentSearchTerm = e.target.value.toLowerCase().trim();
-            if (searchContainer) { searchContainer.classList.toggle('active', currentSearchTerm.length > 0); }
+            if (searchContainer) {
+                searchContainer.classList.toggle('active', currentSearchTerm.length > 0);
+            }
             applyFilters(true);
         });
     }
 
     window.clearSearch = function() {
-        if (searchInput) { searchInput.value = ''; searchInput.dispatchEvent(new Event('input')); searchInput.focus(); }
+        if (searchInput) {
+            searchInput.value = '';
+            searchInput.dispatchEvent(new Event('input'));
+            searchInput.focus();
+        }
     };
 
-    // User-Scoped Storage Handlers
-    function saveToStorage() { 
-        localStorage.setItem(getStorageKey(), JSON.stringify(historyState)); 
+    function saveToStorage() {
+        localStorage.setItem(getStorageKey(), JSON.stringify(historyState));
     }
-    
+
     function loadFromStorage() {
         const saved = localStorage.getItem(getStorageKey());
-        if (saved) { 
-            try { 
-                historyState = JSON.parse(saved); 
-                if (!historyState.answers) historyState.answers = {}; 
-                if (!historyState.bookmarks) historyState.bookmarks = []; 
+        if (saved) {
+            try {
+                historyState = JSON.parse(saved);
+                if (!historyState.answers) historyState.answers = {};
+                if (!historyState.bookmarks) historyState.bookmarks = [];
             } catch (e) {
                 historyState = { lastIndex: 0, answers: {}, bookmarks: [] };
-            } 
+            }
         } else {
             historyState = { lastIndex: 0, answers: {}, bookmarks: [] };
         }
     }
 
-    window.resetProgress = function() { 
-        localStorage.removeItem(getStorageKey()); 
+    window.resetProgress = function() {
+        localStorage.removeItem(getStorageKey());
         if (window.HPGK_Layout && typeof window.HPGK_Layout.showToast === 'function') {
-            window.HPGK_Layout.showToast('🧹 Quiz history reset for this section.');
+            window.HPGK_Layout.showToast('Quiz history reset for this section.');
         }
         setTimeout(() => { location.reload(); }, 600);
     };
@@ -696,28 +756,23 @@
         if (window.quizData && window.quizData.length > 0) {
             window.quizData.sort((a, b) => a.id - b.id);
             currentList = [...window.quizData];
-            
-            // Set initial sync count to avoid firing instantly
-            let initAnsweredCount = 0;
-            window.quizData.forEach(q => {
-                if (historyState.answers[q.id] !== undefined) initAnsweredCount++;
-            });
-            lastSyncedCount = initAnsweredCount;
+
+            const { validDoneCount } = getValidProgressStats();
+            lastSyncedCount = validDoneCount;
 
             const urlParams = new URLSearchParams(window.location.search);
             const sharedId = urlParams.get('id');
-            if (sharedId) { 
-                const target = currentList.findIndex(q => q.id == sharedId); 
-                if (target !== -1) { currentIndex = target; } 
-            } else { 
-                // Resume automatically at the user's saved index position
-                currentIndex = (historyState.lastIndex && historyState.lastIndex < currentList.length) ? historyState.lastIndex : 0; 
+            if (sharedId) {
+                const target = currentList.findIndex(q => q.id == sharedId);
+                if (target !== -1) { currentIndex = target; }
+            } else {
+                currentIndex = (historyState.lastIndex && historyState.lastIndex < currentList.length) ? historyState.lastIndex : 0;
             }
-            
+
             applyFilters(false);
             updateStats();
-        } else {
-            if (cardArea) cardArea.innerHTML = `<div class="empty-state"><p>No Data Loaded</p></div>`;
+        } else if (cardArea) {
+            cardArea.innerHTML = `<div class="empty-state"><p>No Data Loaded</p></div>`;
         }
     }
 })();
