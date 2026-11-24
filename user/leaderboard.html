@@ -6,7 +6,7 @@
     <meta name="robots" content="index, follow">
     
     <!-- SEO Optimization -->
-    <meta name="description" content="Check your rank on the HPGK Quiz Global Leaderboard. Earn XP, compete with aspirants, and unlock premium rewards.">
+    <meta name="description" content="Check your rank on the HPGK Quiz Global Leaderboard. Earn XP, compete with aspirants, and unlock free VIP trial rewards.">
     <title>Global Leaderboard & Rewards | HPGK Quiz</title>
 
     <!-- Canonical Link -->
@@ -39,7 +39,7 @@
             --accent: #ea580c;
             --text-main: #0f172a;
             --text-body: #334155;
-            --text-sec: #64748b;
+            --text-sec: #475569;
             --success: #10b981;
             --warning: #f59e0b;
             --danger: #ef4444;
@@ -64,7 +64,7 @@
             --accent: #f97316;
             --text-main: #f8fafc;
             --text-body: #cbd5e1;
-            --text-sec: #94a3b8;
+            --text-sec: #cbd5e1;
             --tooltip-bg: #1e293b;
         }
 
@@ -133,7 +133,7 @@
         .lb-avatar { width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--card-border); object-fit: cover; }
         .lb-name { font-size: 0.85rem; font-weight: 800; color: var(--text-main); display: flex; align-items: center;}
         
-        /* 🔥 INLINE MICRO STATS PILL (Accuracy Only) */
+        /* INLINE MICRO STATS PILL (Accuracy Only) */
         .lb-micro-stats { font-size: 0.65rem; color: var(--text-sec); font-weight: 700; display: inline-flex; align-items: center; gap: 4px; background: var(--input-bg); padding: 2px 6px; border-radius: 4px; border: 1px solid var(--card-border); margin: 0;}
         .lb-micro-stats i { color: var(--primary); opacity: 0.9; font-size: 0.6rem;}
         
@@ -211,8 +211,8 @@
             </div>
             
             <div class="leaderboard-tabs">
-                <button class="lb-tab active tab-ninja" id="lb-btn-mcq" onclick="window.switchLeaderboardTab('mcq')">🥷 MCQ Ninjas</button>
-                <button class="lb-tab" id="lb-btn-mock" onclick="window.switchLeaderboardTab('mock')">🎖️ Mock Toppers</button>
+                <button class="lb-tab active tab-ninja" id="lb-btn-mcq" onclick="window.switchLeaderboardTab('mcq')"><i class="fa-solid fa-user-ninja"></i> MCQ Ninjas</button>
+                <button class="lb-tab" id="lb-btn-mock" onclick="window.switchLeaderboardTab('mock')"><i class="fa-solid fa-medal"></i> Mock Toppers</button>
             </div>
 
             <div class="leaderboard-list" id="global-leaderboard">
@@ -222,9 +222,9 @@
             </div>
 
             <div id="login-nudge" class="login-nudge">
-                <p>Want to see your name on the Wall of Fame?</p>
+                <p>Log in free to unlock all 6,500+ MCQs and see your name on the Wall of Fame!</p>
                 <button class="btn-nudge" onclick="handleLeaderboardLogin()">
-                    <i class="fa-brands fa-google"></i> Login to Play & Rank
+                    <i class="fa-brands fa-google"></i> Login Free to Play & Rank
                 </button>
             </div>
 
@@ -242,7 +242,7 @@
         </div>
         
         <h3 style="margin: 0 0 6px 0; font-size: 1.1rem; font-weight: 800; color: var(--text-main); letter-spacing:-0.3px;">How XP Works</h3>
-        <p style="font-size: 0.75rem; color: var(--text-sec); margin: 0 0 15px 0; line-height: 1.4; font-weight: 500;"><strong>XP (Experience Points)</strong> fuels your Global Rank. High accuracy & consistency unlock the top spots! 🚀</p>
+        <p style="font-size: 0.75rem; color: var(--text-sec); margin: 0 0 15px 0; line-height: 1.4; font-weight: 500;"><strong>XP (Experience Points)</strong> fuels your Global Rank. High accuracy & consistency unlock top spots & free VIP trial passes!</p>
         
         <div style="display:flex; flex-direction:column; gap:8px; text-align:left;">
             <div style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(29, 78, 216, 0.05)); padding: 10px 12px; border-radius: 8px; border: 1px solid rgba(59, 130, 246, 0.2); display:flex; gap:12px; align-items:center;">
@@ -328,6 +328,9 @@
             if (nudge) nudge.style.display = 'block';
         } else {
             if (nudge) nudge.style.display = 'none';
+            if (typeof window.renderLeaderboard === 'function') {
+                window.renderLeaderboard();
+            }
         }
     });
 
@@ -345,7 +348,7 @@
             } catch (err) {
                 console.error("Login Error", err);
                 const btn = document.querySelector('.btn-nudge');
-                if (btn) btn.innerHTML = '<i class="fa-brands fa-google"></i> Login to Play & Rank';
+                if (btn) btn.innerHTML = '<i class="fa-brands fa-google"></i> Login Free to Play & Rank';
             }
         }
     };
@@ -360,6 +363,12 @@
         } catch (err) { clearTimeout(timeoutId); throw err; }
     }
 
+    function escapeHtml(str) {
+        return String(str || '').replace(/[&<>"']/g, m => ({
+            '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+        })[m]);
+    }
+
     window.renderLeaderboard = function() {
         const lbContainer = document.getElementById('global-leaderboard');
         if(!lbContainer) return;
@@ -368,7 +377,7 @@
             ? (window.currentLbTime === 'all' ? 'mcqXP' : window.currentLbTime === 'month' ? 'monthlyMcqXP' : 'weeklyMcqXP')
             : (window.currentLbTime === 'all' ? 'mockXP' : window.currentLbTime === 'month' ? 'monthlyMockXP' : 'weeklyMockXP');
 
-        // 🔥 HARDCODED: Display Top 10 for the dedicated page
+        // Display Top 10 for the dedicated page
         const leaders = users.filter(u => (u[xpKey] || 0) > 0).sort((a, b) => (b[xpKey] || 0) - (a[xpKey] || 0)).slice(0, 10);
         
         if (leaders.length === 0) {
@@ -376,14 +385,21 @@
             return;
         }
 
+        const currentUid = (window.HPGK_User && window.HPGK_User.uid) || (auth.currentUser && !auth.currentUser.isAnonymous ? auth.currentUser.uid : null);
+
         let html = '';
         leaders.forEach((u, index) => {
             let rankDisplay = index === 0 ? '<i class="fa-solid fa-crown rank-1"></i>' : index === 1 ? '<span class="lb-rank rank-2">2</span>' : index === 2 ? '<span class="lb-rank rank-3">3</span>' : `<span class="lb-rank" style="color:var(--text-sec); font-size:1rem;">${index + 1}</span>`;
             
-            let isMe = (window.HPGK_User && window.HPGK_User.uid === u.uid) ? 'border-color: var(--primary); background: var(--primary-light);' : '';
-            let meBadge = (window.HPGK_User && window.HPGK_User.uid === u.uid) ? ' <span style="font-size:0.55rem; background:var(--primary); color:white; padding:2px 4px; border-radius:4px; margin-left:4px;">YOU</span>' : '';
+            let isMe = (currentUid && currentUid === u.uid) ? 'border-color: var(--primary); background: var(--primary-light);' : '';
+            let meBadge = (currentUid && currentUid === u.uid) ? ' <span style="font-size:0.55rem; background:var(--primary); color:white; padding:2px 4px; border-radius:4px; margin-left:4px;">YOU</span>' : '';
 
-            // 🔥 SMART MICRO STATS INJECTION (ACCURACY ONLY, INLINE WITH NAME)
+            const rawName = u.name || 'Student';
+            const safeShortName = escapeHtml(rawName.substring(0, 15)) + (rawName.length > 15 ? '...' : '');
+            const fallbackAvatar = 'https://ui-avatars.com/api/?name=' + encodeURIComponent(rawName) + '&background=cbd5e1';
+            const avatarSrc = u.photo ? escapeHtml(u.photo) : fallbackAvatar;
+
+            // Inline micro stats pill (Accuracy only)
             let acc = (window.currentLbType === 'mcq') ? (u.mcqAcc || 0) : (u.mockAcc || 0);
             let statsHtml = `<i class="fa-solid fa-bullseye"></i> ${acc}%`;
 
@@ -391,9 +407,9 @@
             <div class="lb-item ${index === 0 ? 'is-first' : ''}" style="${isMe}">
                 ${rankDisplay}
                 <div class="lb-user" style="display:flex; align-items:center; gap:10px; flex:1; margin-left:5px; z-index:2;">
-                    <img src="${u.photo || 'https://ui-avatars.com/api/?name='+u.name+'&background=cbd5e1'}" class="lb-avatar">
+                    <img src="${avatarSrc}" onerror="this.src='${fallbackAvatar}'" class="lb-avatar" alt="${safeShortName}">
                     <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
-                        <span class="lb-name">${u.name.substring(0, 15)}${u.name.length > 15 ? '...' : ''}${meBadge}</span>
+                        <span class="lb-name">${safeShortName}${meBadge}</span>
                         <span class="lb-micro-stats" style="margin:0;">${statsHtml}</span>
                     </div>
                 </div>
@@ -410,7 +426,7 @@
             if (!auth.currentUser) throw new Error("unauthenticated");
             const lbSnap = await fetchWithTimeout(getDocs(collection(db, 'artifacts', 'hpgk-quiz', 'public', 'data', 'leaderboard')));
             window.rawLeaderboardUsers = [];
-            lbSnap.forEach(doc => window.rawLeaderboardUsers.push(doc.data()));
+            lbSnap.forEach(doc => window.rawLeaderboardUsers.push({ uid: doc.id, ...doc.data() }));
             if (window.switchLeaderboardTab) window.switchLeaderboardTab(window.currentLbType || 'mcq');
         } catch (e) {
             console.error("Leaderboard Error:", e);
