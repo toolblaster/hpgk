@@ -80,7 +80,7 @@ function initMobileMenu() {
                     </a>
                     <a href="${SiteConfig.root}/user/upgrade.html" class="menu-link">
                         <div class="menu-icon" style="color: #ef4444;"><i class="fa-solid fa-crown"></i></div>
-                        <span>Pricing & Subscription</span>
+                        <span>Mock Master Plans</span>
                     </a>
                     <a href="${SiteConfig.root}/user/admin.html" class="menu-link">
                         <div class="menu-icon" style="color: #3b82f6;"><i class="fa-solid fa-server"></i></div>
@@ -100,7 +100,7 @@ function initMobileMenu() {
             .mobile-menu-overlay {
                 position: fixed; top: 0; left: 0; right: 0; bottom: 0;
                 background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
-                z-index: 1000001; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+                z-index: 999800; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
             }
             .mobile-menu-overlay.show { opacity: 1; pointer-events: auto; }
 
@@ -110,7 +110,7 @@ function initMobileMenu() {
                 background: var(--card-bg, #ffffff);
                 backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
                 box-shadow: -10px 0 40px rgba(0,0,0,0.15);
-                z-index: 1000002;
+                z-index: 999801;
                 transform: translateX(100%);
                 transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.1);
                 display: flex; flex-direction: column;
@@ -226,7 +226,7 @@ function initLoginModal() {
                     </div>
                     <h2>Sign in to hpgk.toolblaster.com</h2>
                     <p class="login-modal-desc">
-                        Log in securely to save your progress across <strong>6500+ MCQs</strong>, unlock premium mock tests, mini mocks and a personalised dashboard.
+                        Log in for free to unlock all <strong>6,500+ MCQs</strong>, save your progress across devices, and access your personalised dashboard.
                     </p>
                 </div>
                 
@@ -350,7 +350,7 @@ window.closeLoginModal = function() {
 };
 
 window.startGoogleLogin = function() {
-    if(window.loginWithGoogle) window.loginWithGoogle();
+    if (window.loginWithGoogle) window.loginWithGoogle();
 };
 
 /**
@@ -642,16 +642,15 @@ async function initFirebase() {
         provider = new GoogleAuthProvider();
 
         onAuthStateChanged(auth, async (user) => {
-            // Update global HPGK_User session object
             window.HPGK_User = window.HPGK_User || {};
-            if (user) {
+            if (user && !user.isAnonymous) {
                 window.HPGK_User.isLoggedIn = true;
                 window.HPGK_User.uid = user.uid;
                 window.HPGK_User.email = user.email;
                 window.HPGK_User.displayName = user.displayName;
                 window.HPGK_User.photoURL = user.photoURL;
 
-                // 🚀 GLOBAL AUTO-SYNC: Write student Google Profile & Email to Firestore on ANY page
+                // Global auto-sync of student profile to Firestore
                 try {
                     const { getFirestore, doc, setDoc } = await import("https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js");
                     const db = getFirestore(app);
@@ -671,17 +670,19 @@ async function initFirebase() {
                 const bonusModal = document.getElementById('hpgk-bonus-modal');
                 if (bonusModal) bonusModal.classList.remove('active');
                 
-                // Immediately claim bonus for user if eligible
                 if (window.HPGK_Guard && typeof window.HPGK_Guard.claimBonusOnLogin === 'function') {
                     window.HPGK_Guard.claimBonusOnLogin();
                 }
             } else {
                 window.HPGK_User.isLoggedIn = false;
                 window.HPGK_User.uid = null;
+                window.HPGK_User.email = null;
+                window.HPGK_User.displayName = null;
+                window.HPGK_User.photoURL = null;
             }
 
             // Update Header Auth UI state
-            updateAuthUI(user);
+            updateAuthUI(user && !user.isAnonymous ? user : null);
 
             // Notify active quiz engines in-memory without forcing page reload
             window.dispatchEvent(new CustomEvent('hpgk_auth_changed', { detail: { user } }));
@@ -738,23 +739,22 @@ async function initFirebase() {
                     return; 
                 }
 
-                alert("Login failed. Please check your internet connection and try again.");
+                showToast("Login failed. Please check your internet connection and try again.");
             }
         };
 
         window.logoutUser = async () => {
             try { 
-                // Clear any stored guest or session progress in localStorage
                 for (let i = localStorage.length - 1; i >= 0; i--) {
                     const key = localStorage.key(i);
                     if (key && (key.startsWith('hpgk_quiz_') || key.startsWith('hpgk_progress_') || key.startsWith('quiz_idx_'))) {
                         localStorage.removeItem(key);
                     }
                 }
+                sessionStorage.removeItem('hpgk_bonus_modal_dismissed');
+                sessionStorage.removeItem('hpgk_bonus_modal_shown');
 
                 await signOut(auth); 
-
-                // Reload the page immediately to wipe in-memory question index variables back to Question 1
                 window.location.reload();
             } catch (error) { 
                 console.error("Logout Error:", error); 
@@ -805,7 +805,7 @@ function updateAuthUI(user) {
 }
 
 // =========================================================================
-// DYNAMIC GLASSMORPHISM EXIT-INTENT COUNTDOWN & PAYWALL MODAL SYSTEM
+// DYNAMIC GLASSMORPHISM EXIT-INTENT COUNTDOWN & MOCK PAYWALL MODAL SYSTEM
 // =========================================================================
 
 function injectModalStyles() {
@@ -824,7 +824,7 @@ function injectModalStyles() {
             background: rgba(15, 23, 42, 0.75);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
-            z-index: 99999;
+            z-index: 999900;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -926,7 +926,7 @@ function injectModalStyles() {
             position: fixed;
             bottom: 24px;
             right: 24px;
-            z-index: 100000;
+            z-index: 1000010;
             display: flex;
             flex-direction: column;
             gap: 10px;
@@ -954,17 +954,15 @@ function injectModalStyles() {
 }
 
 /**
- * Shows the 5-Minute Exit-Intent Bonus Countdown Modal
- * @param {boolean} forceOpen - If true, bypasses session dismissal checks (e.g., when user manually clicks button)
+ * Shows the Login Prompt Countdown Modal when a guest reaches the preview limit
+ * @param {boolean} forceOpen - If true, bypasses session dismissal checks
  */
 function showBonusCountdownModal(forceOpen = false) {
     injectModalStyles();
 
-    // Check if modal was already shown or dismissed during this browsing session
     const isDismissed = sessionStorage.getItem('hpgk_bonus_modal_dismissed') === 'true';
     const isAlreadyShown = sessionStorage.getItem('hpgk_bonus_modal_shown') === 'true';
 
-    // If auto-triggered and user has already dismissed or seen it once, do not pop up automatically
     if (!forceOpen && (isDismissed || isAlreadyShown)) {
         return;
     }
@@ -976,13 +974,13 @@ function showBonusCountdownModal(forceOpen = false) {
         backdrop.className = 'hpgk-modal-backdrop';
         backdrop.innerHTML = `
             <div class="hpgk-modal-card">
-                <div style="font-size: 2.5rem; margin-bottom: 8px;">⏳🎁</div>
+                <div style="font-size: 2.5rem; margin-bottom: 8px;"><i class="fa-solid fa-unlock-keyhole" style="color: #facc15;"></i></div>
                 <h2 style="font-size: 1.4rem; font-weight: 800; color: #fff; margin: 0 0 6px 0;">
-                    Exclusive Limited Time Offer!
+                    Unlock All 6,500+ MCQs Free!
                 </h2>
                 <p style="color: #94a3b8; font-size: 0.9rem; margin: 0; line-height: 1.5;" id="hpgk-bonus-subtext">
                     You have reached the <strong style="color: #facc15;">30 Free Guest Questions</strong> limit. 
-                    Log in within the next 5 minutes to unlock <strong style="color: #facc15;">+10 Extra Bonus Questions</strong>!
+                    Log in now with Google to unlock <strong style="color: #facc15;">Unlimited Free MCQs</strong> and save your progress!
                 </p>
                 
                 <div class="hpgk-timer-badge" id="hpgk-timer-display">
@@ -990,12 +988,8 @@ function showBonusCountdownModal(forceOpen = false) {
                 </div>
 
                 <button class="hpgk-btn-primary" id="hpgk-bonus-login-btn">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
-                        <polyline points="10 17 15 12 10 7"></polyline>
-                        <line x1="15" y1="12" x2="3" y2="12"></line>
-                    </svg>
-                    Log in & Claim +10 Questions
+                    <i class="fa-brands fa-google"></i>
+                    Log in Free & Continue Practicing
                 </button>
 
                 <button class="hpgk-btn-secondary" id="hpgk-bonus-dismiss-btn">
@@ -1016,15 +1010,11 @@ function showBonusCountdownModal(forceOpen = false) {
 
         document.getElementById('hpgk-bonus-dismiss-btn').addEventListener('click', () => {
             backdrop.classList.remove('active');
-            // Remember that user explicitly dismissed popup so it won't pop up again this session
             sessionStorage.setItem('hpgk_bonus_modal_dismissed', 'true');
         });
     }
 
-    // Mark modal as shown for this session
     sessionStorage.setItem('hpgk_bonus_modal_shown', 'true');
-
-    // Activate modal and start live timer updates
     backdrop.classList.add('active');
     
     if (countdownInterval) clearInterval(countdownInterval);
@@ -1043,16 +1033,12 @@ function showBonusCountdownModal(forceOpen = false) {
             timerDisplay.textContent = "00:00";
             timerDisplay.classList.add('expired');
             if (subtext) {
-                subtext.innerHTML = `Bonus period expired! Log in now to access your standard <strong style="color: #facc15;">100 Free Questions</strong>.`;
+                subtext.innerHTML = `Log in with your Google account to unlock <strong style="color: #facc15;">Unlimited Free MCQs</strong> across all HP GK topics.`;
             }
             if (loginBtn) {
                 loginBtn.innerHTML = `
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
-                        <polyline points="10 17 15 12 10 7"></polyline>
-                        <line x1="15" y1="12" x2="3" y2="12"></line>
-                    </svg>
-                    Log in to Access 100 Free Questions
+                    <i class="fa-brands fa-google"></i>
+                    Log in Free to Unlock All MCQs
                 `;
             }
             clearInterval(countdownInterval);
@@ -1061,16 +1047,6 @@ function showBonusCountdownModal(forceOpen = false) {
             const secs = String(state.remainingSeconds % 60).padStart(2, '0');
             timerDisplay.textContent = `${mins}:${secs}`;
             timerDisplay.classList.remove('expired');
-            if (loginBtn && !loginBtn.innerHTML.includes('+10 Questions')) {
-                loginBtn.innerHTML = `
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
-                        <polyline points="10 17 15 12 10 7"></polyline>
-                        <line x1="15" y1="12" x2="3" y2="12"></line>
-                    </svg>
-                    Log in & Claim +10 Questions
-                `;
-            }
         }
     }
 
@@ -1079,8 +1055,8 @@ function showBonusCountdownModal(forceOpen = false) {
 }
 
 /**
- * Shows the Paid Upgrade Paywall Modal for Free Users exceeding quota limits
- * @param {number} quota - The current question quota limit reached
+ * Shows the Mock Master Upgrade Modal (Preserved for Mock Tests)
+ * @param {number} quota - Optional quota message
  */
 function showUpgradeModal(quota) {
     injectModalStyles();
@@ -1092,35 +1068,26 @@ function showUpgradeModal(quota) {
         backdrop.className = 'hpgk-modal-backdrop';
         backdrop.innerHTML = `
             <div class="hpgk-modal-card" style="max-width: 500px;">
-                <div style="font-size: 2.5rem; margin-bottom: 8px;">👑</div>
+                <div style="font-size: 2.5rem; margin-bottom: 8px;"><i class="fa-solid fa-crown" style="color: #facc15;"></i></div>
                 <h2 style="font-size: 1.4rem; font-weight: 800; color: #fff; margin: 0 0 6px 0;">
-                    Free Question Limit Reached!
+                    Unlock Mock Master Pass
                 </h2>
                 <p style="color: #94a3b8; font-size: 0.9rem; margin: 0 0 16px 0;">
-                    You have completed all <strong style="color: #facc15;" id="hpgk-quota-val">${quota}</strong> free questions. 
-                    Upgrade to an active pass for unlimited practice and full mock exam access.
+                    Upgrade to an active Mock Master Pass for unlimited full-length mock tests, Official PYQs, and detailed exam analytics.
                 </p>
 
                 <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px;">
-                    <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 14px; border-radius: 12px; text-align: left; display: flex; justify-content: space-between; align-items: center;">
-                        <div>
-                            <div style="font-weight: 700; color: #fff;">MCQ Pro Pass</div>
-                            <div style="font-size: 0.8rem; color: #94a3b8;">Unlimited 6,500+ Topic MCQs</div>
-                        </div>
-                        <div style="font-weight: 800; font-size: 1.2rem; color: #facc15;">₹39<span style="font-size: 0.75rem; color: #94a3b8;">/mo</span></div>
-                    </div>
-
                     <div style="background: rgba(234, 179, 8, 0.1); border: 1px solid rgba(234, 179, 8, 0.3); padding: 14px; border-radius: 12px; text-align: left; display: flex; justify-content: space-between; align-items: center;">
                         <div>
-                            <div style="font-weight: 700; color: #fff;">Mock Master Pass 🌟</div>
-                            <div style="font-size: 0.8rem; color: #94a3b8;">All MCQs + Full-Length Mock Exams</div>
+                            <div style="font-weight: 700; color: #fff;">Mock Master Pass</div>
+                            <div style="font-size: 0.8rem; color: #94a3b8;">All Full-Length Mock Exams & Official PYQs</div>
                         </div>
-                        <div style="font-weight: 800; font-size: 1.2rem; color: #facc15;">₹89<span style="font-size: 0.75rem; color: #94a3b8;">/mo</span></div>
+                        <div style="font-weight: 800; font-size: 1.2rem; color: #facc15;">&#8377;89<span style="font-size: 0.75rem; color: #94a3b8;">/mo</span></div>
                     </div>
                 </div>
 
                 <button class="hpgk-btn-primary" onclick="window.location.href='https://hpgk.toolblaster.com/user/upgrade.html'">
-                    View All Upgrade Plans & Pass Options
+                    View Mock Master Pass Options
                 </button>
                 <button class="hpgk-btn-secondary" onclick="document.getElementById('hpgk-upgrade-modal').classList.remove('active')">
                     Close
@@ -1129,9 +1096,6 @@ function showUpgradeModal(quota) {
         `;
         document.body.appendChild(backdrop);
     }
-
-    const quotaSpan = document.getElementById('hpgk-quota-val');
-    if (quotaSpan) quotaSpan.textContent = quota;
 
     backdrop.classList.add('active');
 }
