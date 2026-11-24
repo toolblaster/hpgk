@@ -217,7 +217,7 @@
         }
         .goal-text { font-size: 0.65rem; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 5px; }
         .goal-bar-track { width: 80px; height: 6px; background: var(--input-bg); border-radius: 3px; overflow: hidden; border: 1px solid var(--card-border); }
-        .goal-bar-fill { height: 100%; background: linear-gradient(90deg, #10b981, #059669); width: 65%; border-radius: 3px; }
+        .goal-bar-fill { height: 100%; background: linear-gradient(90deg, #10b981, #059669); width: 0%; border-radius: 3px; }
 
         /* 60% / 40% SIDE-BY-SIDE SPLIT GRID WITH ELEVATION DEPTH */
         .game-ref-split-grid {
@@ -662,7 +662,7 @@
     <div id="logged-out-state" class="glass-panel auth-warning" style="display: none;">
         <i class="fa-solid fa-lock" style="font-size: 1.8rem; color: var(--text-sec); margin-bottom: 10px;"></i>
         <h2>Workspace Locked</h2>
-        <p>Login securely with Google to access your active plans, streak rewards, and mastery analytics.</p>
+        <p>Login securely with Google to unlock all 6,500+ MCQs free, track your streak rewards, and access your mock test analytics.</p>
         <button class="modern-google-btn" onclick="if(window.loginWithGoogle) window.loginWithGoogle()">
             <svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
@@ -696,9 +696,9 @@
 
                     <!-- DESIGN UPGRADE: DAILY STUDY TARGET PROGRESS -->
                     <div class="daily-goal-box">
-                        <span class="goal-text"><i class="fa-solid fa-bullseye" style="color:var(--success);"></i> Daily Goal: <span id="daily-solved-count">15</span>/20 Solved</span>
+                        <span class="goal-text"><i class="fa-solid fa-bullseye" style="color:var(--success);"></i> Daily Goal: <span id="daily-solved-count">0</span>/20 Solved</span>
                         <div class="goal-bar-track">
-                            <div class="goal-bar-fill" id="goal-bar-fill"></div>
+                            <div class="goal-bar-fill" id="goal-bar-fill" style="width: 0%;"></div>
                         </div>
                     </div>
                 </div>
@@ -724,7 +724,7 @@
 
                         <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
                             <button class="btn-xp-info-prominent" onclick="document.getElementById('xpRulesModal').style.display='flex'" title="Click to view full XP rules & rank breakdown">
-                                💡 <i class="fa-solid fa-book-bookmark"></i> XP Rules Guide
+                                <i class="fa-solid fa-book-bookmark"></i> XP Rules Guide
                             </button>
                             <div class="streak-pill">
                                 <i class="fa-solid fa-fire"></i> <span id="user-streak-val">1 Day Streak</span>
@@ -952,7 +952,7 @@
         <button onclick="document.getElementById('claimRewardModal').style.display='none'" class="modal-close-btn"><i class="fa-solid fa-xmark"></i></button>
         <div style="font-size: 2.2rem; color: var(--gold); margin-bottom: 6px;"><i class="fa-solid fa-gift"></i></div>
         <h3 id="claim-modal-title" style="margin: 0 0 4px 0; font-size: 1.05rem; font-weight: 800; color: var(--text-main);">Reward Unlocked!</h3>
-        <p style="font-size: 0.75rem; color: var(--text-sec); margin-bottom: 12px; font-weight: 600;">Send your claim token to Admin to instantly activate or extend your trial pass.</p>
+        <p style="font-size: 0.75rem; color: var(--text-sec); margin-bottom: 12px; font-weight: 600;">Send your claim token to Admin to instantly activate or extend your VIP trial pass.</p>
         
         <div style="background: var(--input-bg); border: 1.5px dashed var(--card-border); padding: 10px; border-radius: 8px; font-weight: 900; font-size: 1.05rem; color: var(--primary); letter-spacing: 1px; margin-bottom: 14px;" id="claim-token-display">
             CLAIM-XP-1234
@@ -1018,19 +1018,19 @@
             <i class="fa-solid fa-crown"></i> 2. 4 Authentic HP Rank Rungs
         </div>
         <div style="background: var(--input-bg); border: 1.5px solid var(--card-border); padding: 10px 12px; border-radius: var(--radius-md); font-size: 0.72rem; color: var(--text-body); margin-top: 6px; line-height: 1.6;">
-            🌱 <strong>0 – 500 XP</strong>: Pahari Quiz Abhyarthi<br>
-            ⚔️ <strong>500 – 1,200 XP</strong>: Pahari Study Yoddha<br>
-            📜 <strong>1,200 – 2,500 XP</strong>: Himachal Tehsildar Elite<br>
-            👑 <strong>2,500 – 4,500+ XP</strong>: HPAS Pahari Shikhar Officer
+            <strong>0 – 500 XP</strong>: Pahari Quiz Abhyarthi<br>
+            <strong>500 – 1,200 XP</strong>: Pahari Study Yoddha<br>
+            <strong>1,200 – 2,500 XP</strong>: Himachal Tehsildar Elite<br>
+            <strong>2,500 – 4,500+ XP</strong>: HPAS Pahari Shikhar Officer
         </div>
 
         <div style="font-size: 0.75rem; font-weight: 800; color: var(--success); text-transform: uppercase; margin-top: 14px; display:flex; align-items:center; gap:6px;">
             <i class="fa-solid fa-clock-rotate-left"></i> 3. Already Have an Active Pass?
         </div>
         <div style="background: rgba(22, 163, 74, 0.09); border: 1.5px solid rgba(22, 163, 74, 0.3); padding: 10px 12px; border-radius: var(--radius-md); font-size: 0.72rem; color: var(--text-main); margin-top: 6px; line-height: 1.5;">
-            <strong style="color:var(--success); display:block; margin-bottom:4px;">🔄 Auto-Extension & Upgrade Teaser</strong>
-            • <strong>Auto-Extension</strong>: Claiming rewards adds extra days on top of your existing pass expiry date!<br>
-            • <strong>VIP Upgrade Teaser</strong>: MCQ Pro pass holders unlock Mock Master VIP features during the reward period.
+            <strong style="color:var(--success); display:block; margin-bottom:4px;">Auto-Extension & VIP Trial Access</strong>
+            - <strong>Auto-Extension</strong>: Claiming rewards adds extra days on top of your existing Mock Master Pass expiry date!<br>
+            - <strong>VIP Trial Access</strong>: Free members unlock Mock Master VIP features during the reward period.
         </div>
     </div>
 </div>
@@ -1090,7 +1090,9 @@
             const fallbackTimer = setTimeout(() => {
                 if (!isReloaded) {
                     isReloaded = true;
-                    alert("Payment Success! Syncing is taking a bit longer. Page will reload now.");
+                    if (window.HPGK_Layout && typeof window.HPGK_Layout.showToast === 'function') {
+                        window.HPGK_Layout.showToast("Payment Success! Reloading dashboard...");
+                    }
                     window.location.reload();
                 }
             }, 10000);
@@ -1113,15 +1115,20 @@
     };
 
     window.processQuickPayment = function() {
-        if (!window.HPGK_User || !window.HPGK_User.isLoggedIn) return alert("Please login securely first.");
+        if (!window.HPGK_User || !window.HPGK_User.isLoggedIn) {
+            if (window.HPGK_Layout && typeof window.HPGK_Layout.showToast === 'function') {
+                window.HPGK_Layout.showToast("Please login securely first.");
+            }
+            return;
+        }
 
-        const planNames = { 'mcq_pro_pass': 'MCQ Pro Pass (VIP)', 'mock_master_pass': 'Mock Master Pass' };
+        const planNames = { 'mock_master_pass': 'Mock Master Pass' };
         var options = {
             "key": "rzp_test_SiCgoJg1G0fb0m", 
             "amount": window.currentPayPrice * 100, 
             "currency": "INR",
             "name": "HPGK Quiz Platform",
-            "description": "Unlock " + planNames[window.currentPayPlan],
+            "description": "Unlock " + (planNames[window.currentPayPlan] || 'Mock Master Pass'),
             "image": "../js/favicon/web-app-manifest-192x192.png",
             "handler": function (response) {
                 document.getElementById('quickPayModal').style.display = 'none';
@@ -1140,7 +1147,11 @@
         };
 
         var rzp1 = new Razorpay(options);
-        rzp1.on('payment.failed', function (res){ alert("Payment Failed! " + res.error.description); });
+        rzp1.on('payment.failed', function (res) {
+            if (window.HPGK_Layout && typeof window.HPGK_Layout.showToast === 'function') {
+                window.HPGK_Layout.showToast("Payment Failed! " + res.error.description);
+            }
+        });
         rzp1.open();
     };
 
@@ -1176,6 +1187,7 @@
 
     window.currentClaimDetails = { token: '', name: '' };
     window.invitedFriendsList = [];
+    let userPassUnsubscribe = null;
 
     const urlParams = new URLSearchParams(window.location.search);
     const refUid = urlParams.get('ref');
@@ -1260,14 +1272,14 @@
     window.shareReferralWhatsApp = function() {
         const uid = window.HPGK_User ? window.HPGK_User.uid : 'GUEST';
         const refLink = `https://hpgk.toolblaster.com/?ref=${uid}`;
-        const msg = `Hey! I'm preparing for HP Exams on HPGK Quiz. Practice 6,500+ MCQs, Mock Tests, and earn free VIP trial passes!\n\n🎯 Practice here: ${refLink}`;
+        const msg = `Hey! I'm preparing for HP Exams on HPGK Quiz. Practice 6,500+ Free MCQs, Mock Tests, and earn VIP trial passes!\n\nPractice here: ${refLink}`;
         window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, '_blank');
     };
 
     window.shareReferralTelegram = function() {
         const uid = window.HPGK_User ? window.HPGK_User.uid : 'GUEST';
         const refLink = `https://hpgk.toolblaster.com/?ref=${uid}`;
-        const msg = `Hey! I'm preparing for HP Exams on HPGK Quiz. Practice 6,500+ MCQs, Mock Tests, and earn free VIP passes!`;
+        const msg = `Hey! I'm preparing for HP Exams on HPGK Quiz. Practice 6,500+ Free MCQs, Mock Tests, and earn VIP passes!`;
         window.open(`https://t.me/share/url?url=${encodeURIComponent(refLink)}&text=${encodeURIComponent(msg)}`, '_blank');
     };
 
@@ -1293,9 +1305,7 @@
         }
 
         if (window.HPGK_Layout && typeof window.HPGK_Layout.showToast === 'function') {
-            window.HPGK_Layout.showToast("📋 Referral link copied! Opening Instagram...");
-        } else {
-            alert("Referral link copied to clipboard! Opening Instagram...");
+            window.HPGK_Layout.showToast("Referral link copied! Opening Instagram...");
         }
         window.open(`https://instagram.com`, '_blank');
     };
@@ -1356,7 +1366,7 @@
                     `Student Name: ${name}\n` +
                     `Email: ${email}\n` +
                     `Full UID: ${uid}\n\n` +
-                    `Please allot my free trial pass! Thank you.`;
+                    `Please allot my free VIP trial pass! Thank you.`;
         
         const encodedMsg = encodeURIComponent(msg);
         window.open(`https://wa.me/?text=${encodedMsg}`, '_blank');
@@ -1419,14 +1429,18 @@
             const smartContainer = document.getElementById('smart-purchases-container');
             const userDocRef = doc(db, 'artifacts', 'hpgk-quiz', 'users', user.uid);
             
-            onSnapshot(userDocRef, (uDoc) => {
+            if (userPassUnsubscribe) {
+                userPassUnsubscribe();
+                userPassUnsubscribe = null;
+            }
+
+            userPassUnsubscribe = onSnapshot(userDocRef, (uDoc) => {
                 let passes = {};
                 if (uDoc.exists() && uDoc.data().passes) {
                     passes = uDoc.data().passes;
                     if(window.HPGK_User) window.HPGK_User.passes = passes; 
                 }
 
-                let activeMcqPro = null;
                 let activeMockMaster = null;
                 const expiredPassesList = [];
 
@@ -1434,7 +1448,6 @@
                     for (const [passId, passData] of Object.entries(passes)) {
                         const isValid = window.HPGK_IsPassValid ? window.HPGK_IsPassValid(passData) : true;
                         if (isValid) {
-                            if (passId === 'mcq_pro_pass') activeMcqPro = passData;
                             if (passId === 'mock_master_pass' || passId === 'mega_combo_pass' || passId === 'vip_lifetime_pass') {
                                 activeMockMaster = passData;
                             }
@@ -1480,62 +1493,29 @@
                             ${expiredMarkup}
                         </div>
                     `;
-                } else if (activeMcqPro) {
-                    smartContainer.innerHTML = `
-                        <div class="purchases-left">
-                            <div class="mini-section-title"><i class="fa-solid fa-bolt"></i> My Active Plan</div>
-                            <div class="active-plan-box" style="border-left: 3.5px solid var(--primary);">
-                                <div class="plan-header">
-                                    <span class="plan-name">${activeMcqPro.name}</span>
-                                    <span class="badge-all-access" style="background:var(--primary); color:#ffffff !important; box-shadow:none;">MCQ ACTIVE</span>
-                                </div>
-                                <div class="plan-details">
-                                    Valid Till: <strong>${activeMcqPro.expiryDate}</strong><br>
-                                    <span style="color:var(--success); font-weight:800; display:inline-block; margin-top:3px;">✓ 6,500+ MCQs Unlocked</span>
-                                </div>
-                            </div>
-                            ${expiredMarkup}
-                        </div>
-                        <div class="purchases-right">
-                            <div class="mini-section-title"><i class="fa-solid fa-arrow-up-right-dots"></i> Upgrade Available</div>
-                            <div class="compact-upgrade-item" style="background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(245, 158, 11, 0.03)); border-color: rgba(245,158,11,0.3); flex-direction: column; align-items: flex-start; gap: 5px; padding: 8px 10px;">
-                                <div>
-                                    <div style="font-size: 0.75rem; font-weight: 800; color: var(--gold);"><i class="fa-solid fa-crown"></i> Mock Master Pass</div>
-                                    <div style="font-size: 0.65rem; color: var(--text-sec); font-weight:600;">Unlock All Full-Length Mocks & Exams</div>
-                                </div>
-                                <button onclick="openQuickPay('mock_master_pass', 89, 'Mock Master Pass')" class="compact-btn-buy" style="background: linear-gradient(135deg, #10b981, #059669); color:#ffffff; width: 100%; padding: 6px;">Upgrade for ₹89/mo</button>
-                            </div>
-                        </div>
-                    `;
                 } else {
                     smartContainer.innerHTML = `
                         <div class="purchases-left">
                             <div class="mini-section-title"><i class="fa-solid fa-user-astronaut"></i> Current Status</div>
-                            <div class="active-plan-box" style="border-left: 3.5px solid var(--text-sec); opacity:0.95;">
+                            <div class="active-plan-box" style="border-left: 3.5px solid var(--success);">
                                 <div class="plan-header">
-                                    <span class="plan-name">Free Explorer</span>
-                                    <span class="badge-all-access" style="background:var(--input-bg); color:var(--text-sec) !important; box-shadow:none; border:1px solid var(--card-border) !important;">BASIC</span>
+                                    <span class="plan-name">Free Member</span>
+                                    <span class="badge-all-access" style="background:var(--success); color:#ffffff !important; box-shadow:none;">MCQS UNLOCKED</span>
                                 </div>
                                 <div class="plan-details">
-                                    Access limited free MCQs.<br>Upgrade for full practice sets.
+                                    <span style="color:var(--success); font-weight:800;">✓ All 6,500+ Topic MCQs Free</span><br>
+                                    Upgrade to unlock Full Mock Tests & PYPs.
                                 </div>
                             </div>
                             ${expiredMarkup}
                         </div>
                         <div class="purchases-right">
-                            <div class="mini-section-title"><i class="fa-solid fa-store"></i> Recommended Plans</div>
+                            <div class="mini-section-title"><i class="fa-solid fa-store"></i> Mock Test Pass</div>
                             <div style="display: flex; flex-direction: column; gap: 4px;">
-                                <div class="compact-upgrade-item">
-                                    <div>
-                                        <div style="font-size: 0.72rem; font-weight: 800; color: var(--text-main);"><i class="fa-solid fa-bolt" style="color:var(--accent);"></i> MCQ Pro Pass</div>
-                                        <div style="font-size: 0.62rem; color: var(--text-sec); font-weight:600;">Unlock 6,500+ Premium MCQs</div>
-                                    </div>
-                                    <button onclick="openQuickPay('mcq_pro_pass', 39, 'MCQ Pro Pass')" class="compact-btn-buy">₹39/mo</button>
-                                </div>
                                 <div class="compact-upgrade-item" style="background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(245, 158, 11, 0.03)); border-color: rgba(245,158,11,0.3);">
                                     <div>
                                         <div style="font-size: 0.72rem; font-weight: 800; color: var(--text-main);"><i class="fa-solid fa-crown" style="color:var(--gold);"></i> Mock Master Pass</div>
-                                        <div style="font-size: 0.62rem; color: var(--text-sec); font-weight:600;">Unlock All Full-Length Mocks</div>
+                                        <div style="font-size: 0.62rem; color: var(--text-sec); font-weight:600;">Unlock All Full-Length Mocks & PYPs</div>
                                     </div>
                                     <button onclick="openQuickPay('mock_master_pass', 89, 'Mock Master Pass')" class="compact-btn-buy">₹89/mo</button>
                                 </div>
@@ -1551,6 +1531,10 @@
 
             await loadUserStatsAndSyncProfile(user);
         } else {
+            if (userPassUnsubscribe) {
+                userPassUnsubscribe();
+                userPassUnsubscribe = null;
+            }
             elLoading.style.display = 'none';
             elLoggedIn.style.display = 'none';
             elLoggedOut.style.display = 'block';
@@ -1731,17 +1715,19 @@
             
             let streakDays = 1;
             const lastActiveDate = localStorage.getItem(`hpgk_last_active_${user.uid}`);
-            const todayStr = new Date().toDateString();
+            const todayMidnight = new Date();
+            todayMidnight.setHours(0, 0, 0, 0);
+            const todayStr = todayMidnight.toDateString();
 
             if (lastActiveDate) {
                 const prevDate = new Date(lastActiveDate);
-                const diffTime = Math.abs(new Date() - prevDate);
-                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                prevDate.setHours(0, 0, 0, 0);
+                const diffDays = Math.round((todayMidnight.getTime() - prevDate.getTime()) / (1000 * 60 * 60 * 24));
                 
                 let savedStreak = Number(localStorage.getItem(`hpgk_streak_${user.uid}`)) || 1;
-                if (diffDays === 1) streakDays = savedStreak;
-                else if (diffDays === 2) streakDays = savedStreak + 1;
-                else if (diffDays > 2) streakDays = 1;
+                if (diffDays === 0) streakDays = savedStreak;
+                else if (diffDays === 1) streakDays = savedStreak + 1;
+                else streakDays = 1;
             }
             localStorage.setItem(`hpgk_last_active_${user.uid}`, todayStr);
             localStorage.setItem(`hpgk_streak_${user.uid}`, streakDays);
@@ -1931,8 +1917,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <button onclick="launchWeakSpotBooster(${JSON.stringify(weakRawKeys).replace(/"/g, '&quot;')})" style="background: linear-gradient(135deg, #b91c1c, #991b1b); color: #ffffff; border: none; padding: 8px 16px; border-radius: 8px; font-size: 0.75rem; font-weight: 800; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; box-shadow: 0 3px 10px rgba(185, 28, 28, 0.3); transition: all 0.2s;">
-                                ⚡ Launch Combined 10-Q Booster <i class="fa-solid fa-arrow-right"></i>
+                            <button id="launch-weakspot-btn" style="background: linear-gradient(135deg, #b91c1c, #991b1b); color: #ffffff; border: none; padding: 8px 16px; border-radius: 8px; font-size: 0.75rem; font-weight: 800; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; box-shadow: 0 3px 10px rgba(185, 28, 28, 0.3); transition: all 0.2s;">
+                                Launch Combined 10-Q Booster <i class="fa-solid fa-arrow-right"></i>
                             </button>
                         </div>
                         <div style="display: flex; gap: 6px; flex-wrap: wrap; align-items: center; border-top: 1px dashed var(--card-border); padding-top: 8px; margin-top: 2px;">
@@ -1941,6 +1927,10 @@
                         </div>
                     </div>
                 `;
+                const weakBtn = document.getElementById('launch-weakspot-btn');
+                if (weakBtn) {
+                    weakBtn.addEventListener('click', () => launchWeakSpotBooster(weakRawKeys));
+                }
                 weakSpotContainer.style.display = 'block';
             } else if (weakSpotContainer) {
                 weakSpotContainer.style.display = 'none';
