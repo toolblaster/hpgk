@@ -325,6 +325,31 @@
         .modern-google-btn { background: var(--input-bg); color: var(--text-main); border: 1px solid var(--card-border); padding: 9px 14px; border-radius: 30px; font-size: 0.82rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; font-family: 'Inter', sans-serif; width: 100%; transition: background 0.2s; }
         .modern-google-btn:hover { background: var(--card-border); }
 
+        /* Smooth Skeleton Shimmer State while Pass Syncs */
+        @keyframes cardPassShimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        .test-card.is-syncing .btn-pro,
+        .test-card.is-syncing .pro-badge {
+            color: transparent !important;
+            border-color: transparent !important;
+            background: linear-gradient(90deg, rgba(148, 163, 184, 0.22) 25%, rgba(148, 163, 184, 0.42) 50%, rgba(148, 163, 184, 0.22) 75%) !important;
+            background-size: 200% 100% !important;
+            animation: cardPassShimmer 1.3s infinite linear !important;
+            pointer-events: none;
+            box-shadow: none !important;
+            user-select: none;
+        }
+        [data-theme="dark"] .test-card.is-syncing .btn-pro,
+        [data-theme="dark"] .test-card.is-syncing .pro-badge {
+            background: linear-gradient(90deg, rgba(71, 85, 105, 0.38) 25%, rgba(100, 116, 139, 0.65) 50%, rgba(71, 85, 105, 0.38) 75%) !important;
+            background-size: 200% 100% !important;
+        }
+        .test-card.is-syncing .tc-icon i {
+            opacity: 0.45;
+        }
+
         @media (max-width: 820px) { .test-list { grid-template-columns: 1fr; } }
         @media (max-width: 600px) {
             main { padding: 8px 6px; gap: 10px; }
@@ -925,11 +950,42 @@
 <script src="../../js/layout.js"></script>
 
 <script>
+    let passSyncCompleted = false;
+
+    function setCardsSyncingState(isSyncing) {
+        document.querySelectorAll('.test-card').forEach(card => {
+            if (isSyncing && card.querySelector('.btn-pro') && !card.hasAttribute('data-attempted')) {
+                card.classList.add('is-syncing');
+                const lockIcon = card.querySelector('.tc-icon i.fa-lock');
+                if (lockIcon) {
+                    lockIcon.className = 'fa-solid fa-circle-notch fa-spin';
+                }
+            } else {
+                card.classList.remove('is-syncing');
+                const spinIcon = card.querySelector('.tc-icon i.fa-circle-notch');
+                if (spinIcon) {
+                    spinIcon.className = 'fa-solid fa-lock';
+                }
+            }
+        });
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
         if (typeof renderHeader === 'function') {
             renderHeader({ title: 'Patwari Mock', subtitle: 'Mock Series', iconClass: 'fa-solid fa-file-signature', link: '../../', rootPath: '../..' });
         }
         if (typeof renderFooter === 'function') { renderFooter('../..'); }
+
+        // Start subtle shimmer on PRO cards until auth/pass status resolves
+        if (!passSyncCompleted) {
+            setCardsSyncingState(true);
+            setTimeout(() => {
+                if (!passSyncCompleted) {
+                    passSyncCompleted = true;
+                    setCardsSyncingState(false);
+                }
+            }, 2500);
+        }
     });
 
     // Helper to evaluate pass expiration strictly
@@ -955,16 +1011,21 @@
     window.HPGK_AutoUnlockPremiumUI = function() {
         const user = window.HPGK_User;
         const hasPass = Boolean(user && user.isLoggedIn && isPassActive(user.passes));
-        if (!hasPass) return;
+
+        if (!hasPass) {
+            setCardsSyncingState(false);
+            return;
+        }
 
         document.querySelectorAll('.test-card:not([data-attempted="true"])').forEach(card => {
+            card.classList.remove('is-syncing');
             const btnPro = card.querySelector('.btn-pro');
             if (btnPro) {
                 btnPro.classList.remove('btn-pro');
                 btnPro.classList.add('btn-free');
                 btnPro.innerHTML = 'Attempt Test <i class="fa-solid fa-arrow-right"></i>';
             }
-            const lockIcon = card.querySelector('.tc-icon i.fa-lock');
+            const lockIcon = card.querySelector('.tc-icon i.fa-lock, .tc-icon i.fa-circle-notch');
             if (lockIcon) {
                 lockIcon.className = 'fa-solid fa-file-signature';
                 const tcIcon = card.querySelector('.tc-icon');
@@ -1100,6 +1161,7 @@
         try {
             const userDocRef = doc(db, 'artifacts', 'hpgk-quiz', 'users', uid);
             userPassesUnsubscribe = onSnapshot(userDocRef, (snap) => {
+                passSyncCompleted = true;
                 window.HPGK_User = window.HPGK_User || {};
                 window.HPGK_User.isLoggedIn = true;
                 window.HPGK_User.uid = uid;
@@ -1108,9 +1170,13 @@
                     window.HPGK_AutoUnlockPremiumUI();
                 }
             }, (err) => {
+                passSyncCompleted = true;
+                setCardsSyncingState(false);
                 console.warn("User pass snapshot error:", err);
             });
         } catch (e) {
+            passSyncCompleted = true;
+            setCardsSyncingState(false);
             console.warn("Failed to watch user passes:", e);
         }
     }
@@ -1131,9 +1197,11 @@
             watchUserPasses(user.uid);
             fetchAndApplyTestStates(user.uid);
         } else {
+            passSyncCompleted = true;
             if (window.HPGK_User) {
                 window.HPGK_User.passes = {};
             }
+            setCardsSyncingState(false);
         }
     });
 
