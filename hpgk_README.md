@@ -1,30 +1,36 @@
 🏔️ HPGK Quiz Platform — Master Technical Documentation & Architecture Guide
 
-Welcome to the comprehensive technical documentation for the HPGK Quiz Platform (hpgk.toolblaster.com). This document serves as the single source of truth for both AI models and human developers to understand the system architecture, centralized rendering engines, database schema, security models, freemium access guards, payment webhooks, and deployment workflows.
+Welcome to the comprehensive technical documentation for the HPGK Quiz Platform (hpgk.toolblaster.com). This document serves as the single source of truth for both AI models and human developers to understand the system architecture, centralized rendering engines, UI design patterns, database schema, security models, freemium access guards, payment webhooks, and deployment workflows.
 
 📌 1. Project Overview & Core Features
 
-The HPGK Quiz Platform is a high-performance, zero-framework EdTech web application tailored for Himachal Pradesh state competitive examinations (HPAS, HPPSC, Allied Services, HP Patwari, Police Constable, HRTC Conductor, etc.).
+The HPGK Quiz Platform is a high-performance, zero-framework EdTech web application tailored for Himachal Pradesh state competitive examinations (HPAS, HPPSC, Allied Services, HP Patwari, Police Constable, HRTC Conductor, etc.) as well as specialized agricultural exams (ICAR JRF, IBPS AFO, NABARD, ADO).
 
 Key Platform Features:
 
 Bilingual Engine: Simultaneous rendering of questions, options, and detailed explanations in both English (Inter) and Hindi (Noto Sans Devanagari).
 
+Unified Visual & Hero Architecture:
+
+Topic MCQ & Study Note Hubs (himachal-pradesh-gk/*, subject-quiz/*, study-notes/index.html, study-notes/hpgk-one-liners/index.html, study-notes/hp-revenue-and-land-laws/index.html) share the Topic-Page Glass Hero (.hero-glass-section with 6 At-a-Glance indicator chips), English-only section divider pills (.section-heading-divider), 2-column FAQ cards, and bottom interlinked study guide boxes.
+
+Zero-Lag Platform Hubs & User Workspace (index.html, himachal-pradesh-gk/index.html, hp-exam-full-mock-test/*, user/dashboard.html, user/upgrade.html) use clean solid/soft surface cards (--card-bg, --card-bg-soft, --card-highlight) without heavy scroll-blocking backdrop blurs, paired with the signature Royal Blue (#2563eb) radial top glow.
+
 Centralized Zero-Flicker Page Engines:
 
 js/topic-page-engine.js synchronously injects shared styles, quiz toolbars, stats dashboards, mobile "Jump to MCQ Quiz" CTAs, help modals, and header/footer layouts in <head> to eliminate Flash of Unstyled Content (FOUC).
 
-js/mock-series-engine.js renders all exam mock series hubs (Patwari, Police Constable, HRTC Conductor) from a single central registry (SERIES_REGISTRY) with real-time pass sync shimmer states.
+js/mock-series-engine.js renders all exam mock series hubs (Patwari, Police Constable, HRTC Conductor) from a single central registry (SERIES_REGISTRY) with isolated pass sync shimmer states (syncMockSeriesCardsUI()).
 
 Free-With-Login MCQ Model: Guests receive 30 free preview questions per topic (loginLimit: 30), while authenticated Google users unlock all 6,500+ topic-wise MCQs 100% free (freeWithLogin: true).
 
-TCS/NTA Exam Simulator (js/mock-engine.js): Full-length mock test environment featuring multi-section switching, countdown timers, negative marking penalties (-0.25), question palette state tracking, and cached solution review (?mode=summary).
+TCS/NTA Exam Simulator (js/mock-engine.js & mock-engine/index.html): Full-length mock test environment featuring multi-section switching, countdown timers, negative marking penalties (-0.25), question palette state tracking, non-blocking custom re-attempt confirmation modals, explanation blocks, and cached solution review (?mode=summary).
 
 Cost-Optimized Cloud Sync: Local question progress is saved immediately in localStorage (with automatic guest-to-user migration on sign-in) and synced to Firestore in batches every 10 answers or on page unload.
 
 Secure Cloud Storage Vault: Full-length mock test JSON question banks stored inside private Firebase Cloud Storage buckets (gs://hpgk-quiz.firebasestorage.app/premium_mocks/) gated by Firebase Auth.
 
-Super Admin Control Room (user/admin.html): Multi-tab management console with a 5-minute inactivity security lock, real-time revenue analytics, custom Mock Master Pass grants, reward token verification, leaderboard anti-cheat moderation, CSV exports, and immutable audit logs.
+Super Admin Control Room (user/admin.html): Multi-tab management console with a 5-minute inactivity security lock, verified-email admin check, 1-click UID copy buttons, real-time revenue analytics, custom Mock Master Pass grants, reward token verification, CSV exports, and immutable audit logs.
 
 Automated Webhook Payments: Razorpay checkout backed by a Google Cloud Run (Node.js 22) webhook microservice that verifies HMAC signatures and auto-provisions mock_master_pass in Firestore.
 
@@ -52,7 +58,7 @@ Database
 
 Firebase Firestore (NoSQL)
 
-Real-time onSnapshot listeners for user passes, leaderboards, and scores.
+Real-time onSnapshot listeners for user passes, referrals, and scores.
 
 Authentication
 
@@ -85,39 +91,55 @@ Edge-cached static asset delivery.
 ├── README.md                            # Master Technical Documentation (This File)
 ├── FirestoreDatabase.rules              # Production Firestore Security & Anti-Tampering Rules
 ├── js/
-│   ├── core.js                          # Global User Session, Pass Expiration Validator & UI Security Guard
-│   ├── layout.js                        # Global Header, Footer, Mobile Drawer, Login Modal & Toast System
+│   ├── core.js                          # Global User Session, Pass Expiration Validator & Decoy Token Injector
+│   ├── layout.js                        # Global Header, Footer, Slide-Out Menu, Login Modal & Toast System
 │   ├── style.css                        # Core Theme Tokens, Typography & Global Component Styles
 │   ├── access-guard.js                  # Guest 30-Question Preview Quota & Login Gatekeeper
 │   ├── mcq-main.js                      # Bilingual Topic MCQ Engine (Quick 10, Bookmarks, Mistakes, Cloud Sync)
 │   ├── topic-page-engine.js             # Shared CSS, Quiz Toolbar, Stats Bar, Print Toggle & Mobile CTA Engine
 │   ├── mock-series-engine.js            # Central Mock Series Registry, CSS, Shimmer Sync & Re-Attempt Engine
 │   └── mock-engine.js                   # TCS/NTA Full-Length Exam Simulator & Solution Renderer
+├── mock-engine/
+│   └── index.html                       # Bilingual TCS/NTA Full-Length Mock Test Interface
 ├── user/
 │   ├── admin.html                       # Super Admin Control Center, Token Vault & Audit Logs
-│   ├── dashboard.html                   # Student Analytics, XP Levels, Streak Rewards, Referrals & Pass Vault
-│   ├── upgrade.html                     # Free MCQ vs. Mock Master Pass Store & Razorpay Checkout
-│   ├── leaderboard.html                 # Global Wall of Fame (MCQ Ninjas & Mock Toppers)
+│   ├── dashboard.html                     # Student Analytics, XP Levels, Streak Rewards, Referrals & Pass Vault
+│   ├── upgrade.html                     # 2-Card Store (Free MCQ Access ₹0 vs. Mock Master Pass ₹89/mo)
 │   └── legal/                           # Platform Legal Documents
 │       ├── about.html                   # Platform Overview & Vision
 │       ├── privacy.html                 # Privacy Policy
-│       └── terms.html                     # Terms & Conditions
-├── himachal-pradesh-gk/                 # Topic-Wise Study Notes & Bilingual MCQ Pages
+│       └── terms.html                   # Terms & Conditions
+├── himachal-pradesh-gk/                 # HP GK Hub & 10 Topic-Wise Study Notes + Bilingual MCQ Pages
+│   ├── index.html                       # HP GK Topic Hub (6-Chip Hero + 10 Topic Cards)
 │   ├── art-culture/index.html           # Standardized SEO + topic-page-engine.js Template
-│   ├── history/index.html
+│   ├── district/index.html
+│   ├── economy/index.html
+│   ├── environment/index.html
+│   ├── famous-people/index.html
 │   ├── geography/index.html
-│   └── ...
-├── hp-exam-full-mock-test/              # Full-Length Mock Exam Hubs (35-Line HTML Shells)
+│   ├── history/index.html
+│   ├── polity/index.html
+│   ├── rivers/index.html
+│   └── tourism/index.html
+├── subject-quiz/
+│   └── general-agriculture/             # Specialized General Agriculture Hub (507+ Bilingual MCQs)
+├── agriculture-quiz/
+│   └── index.html                       # SEO Redirect to /subject-quiz/general-agriculture/
+├── hp-exam-full-mock-test/              # Full-Length Mock Exam Hub & 35-Line HTML Series Shells
+│   ├── index.html                       # Mock Test Series Hub (Patwari, Police, HRTC)
 │   ├── hp-patwari-mock/index.html
 │   ├── hp-police-constable-mock/index.html
 │   └── hp-hrtc-conductor-mock/index.html
-├── agriculture-quiz/                    # Specialized Agriculture Practice Series
-└── study-notes/                         # HP GK Revision Notes & One-Liners
+└── study-notes/                         # HP GK Revision Notes & One-Liners (Topic-Page Glass Hero Style)
+    ├── index.html                       # Study Notes Master Hub
+    ├── hpgk-one-liners/index.html       # 2250+ One-Liners Master Hub (8 Parts)
+    └── hp-revenue-and-land-laws/        # HP Revenue & Land Laws Guide + Quiz
+
 
 
 ⚙️ 4. Core System Subsystem Architectures
 
-A. UI Security & Session Guard (js/core.js)
+A. Session & Pass Validator (js/core.js)
 
 Initializes Firebase Auth and hydrates window.HPGK_User (isLoggedIn, uid, displayName, photoURL, passes).
 
@@ -125,7 +147,7 @@ Provides centralized pass expiration validation (HPGK_IsPassValid(), HPGK_HasAct
 
 Dynamically locks/unlocks Mock Master UI elements (HPGK_AutoUnlockPremiumUI() / HPGK_LockPremiumUI()).
 
-Enforces UI content protection (blocks right-click context menus, DevTools shortcuts, text selection on non-input elements, and injects decoy security tokens into mock links).
+Injects decoy security tokens (_secToken) into mock links while keeping text selection/copying enabled across study notes and quiz pages.
 
 B. Guest Preview Quota & Access Controller (js/access-guard.js)
 
@@ -143,6 +165,8 @@ Automatically renders the interactive quiz card (#topic-quiz-widget), Quick 10 r
 
 Automatically removes any legacy breadcrumb .hero-badge and ensures the Print / PDF button appears on topic pages by default (configurable via showPrint: false in window.TOPIC_META).
 
+Mobile Hero Typography Standard: H1 at 22px, English description at 12px, and Hindi subtitle at 11px with a compact 3x2 indicator chip grid.
+
 D. Topic MCQ Practice Engine (js/mcq-main.js)
 
 Powers bilingual question rendering, instant answer verification, explanation tooltips, keyword highlighting, bookmarking, mistake review, shuffling, and Weak-Spot Booster sessions (?mode=weakspot).
@@ -155,11 +179,11 @@ E. Central Mock Series Engine (js/mock-series-engine.js)
 
 Drives all exam hub pages (hp-patwari-mock, hp-police-constable-mock, hp-hrtc-conductor-mock) from SERIES_REGISTRY.
 
-Injects shared CSS in <head> to prevent FOUC, renders Mock & PYP tabs, displays shimmer loading states while verifying Mock Master Pass status in Firestore, injects Score: X/Y badges on completed attempts, routes to ?mode=summary, and handles secure test resets via a custom confirmation modal.
+Injects shared CSS in <head> to prevent FOUC, renders Mock & PYP tabs, displays shimmer loading states while verifying Mock Master Pass status in Firestore via syncMockSeriesCardsUI(), injects Score: X/Y badges on completed attempts, routes to ?mode=summary, and handles secure test resets via a custom confirmation modal (#reattemptModal).
 
 F. Dynamic Layout & Modal Manager (js/layout.js)
 
-Injects the global header (renderHeader()), compact footer (renderFooter()), slide-out mobile drawer, light/dark theme toggle, Back-to-Top button, Google Login Modal, and non-blocking floating toast notifications (HPGK_Layout.showToast()).
+Injects the global header (renderHeader()), compact footer (renderFooter()), slide-out navigation menu (with subtle, stationary hover states and without any deprecated Leaderboard links), light/dark theme toggle, Back-to-Top button, Google Login Modal, and non-blocking floating toast notifications (HPGK_Layout.showToast()).
 
 🔐 5. Access Configuration (window.TOPIC_META & window.PAGE_ACCESS)
 
@@ -290,13 +314,12 @@ artifacts/
 └── hpgk-quiz/
     ├── public/
     │   └── data/
-    │       ├── leaderboard/
-    │       │   └── {uid}                # Rank profile (name, photo, mockXP, mcqXP, weekly/monthly XP, acc)
     │       └── site_config/
     │           └── announcement         # Optional live site announcement banner config
     ├── users/
     │   └── {uid}/                       # Private student document
     │       ├── name, email, photo       # Synced profile metadata
+    │       ├── lastSeen                 # Last active timestamp (used by Admin User Matrix)
     │       ├── adminNote                # Private support memo (Admin write-only)
     │       ├── passes/                  # Active passes map (Admin / Webhook write-only)
     │       │   └── mock_master_pass     # (name, purchaseDate, expiryDate, expiryTimestamp, paymentId, mode)
@@ -310,29 +333,31 @@ artifacts/
         └── {logId}                      # Immutable admin action log (adminEmail, actionType, targetUid, details)
 
 
-Anti-Tampering Protection (FirestoreDatabase.rules): Students can read/write their own scores, mock_results, and leaderboard records, but passes and adminNote fields are strictly blocked from client writes—writable only by the verified Razorpay webhook or the verified Admin account (amanrana7350@gmail.com).
+Note on Leaderboard Removal: The standalone public leaderboard.html page and leaderboard navigation links have been permanently retired to streamline the student workspace around personal XP milestones, streaks, and Mock Master rewards.
+
+Anti-Tampering Protection (FirestoreDatabase.rules): Students can read/write their own scores, mock_results, and referrals records, while passes and adminNote fields are strictly blocked from client writes—writable only by the verified Razorpay webhook or the verified Admin account (amanrana7350@gmail.com with email_verified == true).
 
 Storage Bucket Path: gs://hpgk-quiz.firebasestorage.app/premium_mocks/{exam_category}/{test_id}.json
 
 👑 8. Super Admin Control Room (user/admin.html)
 
-Restricted strictly to amanrana7350@gmail.com with an automatic 5-minute inactivity lock:
+Restricted strictly to amanrana7350@gmail.com (emailVerified === true) with an automatic 5-minute inactivity lock:
 
-Command Center: Real-time user counts, active Mock VIP subscribers, gross revenue breakdown, and custom Mock Master Pass duration grants (1 Hour to Lifetime, with optional Complimentary / ₹0 flag).
+Command Center: Real-time registered user counts, active Mock VIP subscribers, gross revenue breakdown, and custom Mock Master Pass duration grants (1 Hour to Lifetime, with optional Complimentary / ₹0 flag).
 
-Rewards & Claims Vault: Validates student XP achievement claim tokens (CLAIM-*) and converts them into active Mock Master VIP trial passes, plus leaderboard anti-cheat purging.
+Rewards & Claims Vault: Validates student dashboard XP achievement claim tokens (CLAIM-*) and converts them into active Mock Master VIP trial passes.
 
-User Matrix: Searchable directory with active pass badges, expiration alerts (3–7 days), +7d quick extensions, student score inspection modals, private admin notes, and direct WhatsApp links.
+User Matrix: Searchable directory sorted by lastSeen activity with 1-click UID copy buttons, active pass badges, expiration alerts (3–7 days), +7d quick extensions, student score inspection modals, private admin notes, and direct WhatsApp links.
 
 Payment Desk & Growth Exports: Transaction ledger with CSV exports (exportFinancialsCSV(), exportUsersCSV()) and segmented email copy tools.
 
-Admin Audit Trail: Every manual grant, pass revocation, note update, and leaderboard purge is permanently recorded in admin_logs.
+Admin Audit Trail: Every manual grant, pass revocation, and note update is permanently recorded in admin_logs.
 
 🚀 9. Developer Onboarding Workflows
 
 A. Adding a New Topic MCQ Page
 
-Create himachal-pradesh-gk/<topic-slug>/index.html and place the topic's question .js files (appending to window.quizData) in the same folder.
+Create himachal-pradesh-gk/<topic-slug>/index.html (or subject-quiz/<topic-slug>/index.html) and place the topic's question .js files (appending to window.quizData) in the same folder.
 
 In <head>, configure window.TOPIC_META and load <script src="../../js/topic-page-engine.js"></script>.
 
@@ -340,7 +365,13 @@ Keep all bilingual Study Notes (<section class="seo-content-wrapper">) and FAQs 
 
 Place <section class="quiz-widget-wrapper" id="topic-quiz-widget"></section> in the quiz column, and load core.js, layout.js, access-guard.js, your question .js parts, and mcq-main.js before </body>.
 
-B. Adding a New Exam Mock Series or Test
+B. Creating a New Study Notes Hub Page
+
+Match the Topic-Page Glass Hero structure (.hero-glass-section + 6 .indicator-card chips) used in study-notes/index.html, study-notes/hpgk-one-liners/index.html, and study-notes/hp-revenue-and-land-laws/index.html.
+
+Use English-only section divider pills (.section-heading-divider > .divider-tag), a 2-column .faq-grid section, and a .related-modules-box cross-linking strip at the bottom.
+
+C. Adding a New Exam Mock Series or Test
 
 Prepare the exam JSON question bank and upload it to Firebase Cloud Storage at gs://hpgk-quiz.firebasestorage.app/premium_mocks/{exam_slug}/{test_id}.json.
 
